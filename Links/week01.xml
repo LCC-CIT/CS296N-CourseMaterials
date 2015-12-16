@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
+    <week>
+      <number>1</number>
+      <reading>Textbook ch. 1, "Getting Started"</reading>
+      <supplemental>
+        <link>
+          <url>http://msdn.microsoft.com/en-us/library/dd381412(v=vs.100).aspx</url>
+          <text>MSDN overview of MVC</text>
+          <title>MSDN tutorial by Scott Guthrie, Scott Hanselman, and Rick Anderson</title>
+        </link>
+        <link>
+          <url>http://www.asp.net/mvc/overview/getting-started/introduction/getting-started</url>
+          <text>Getting started with MVC</text>
+          <title></title>
+        </link>
+      </supplemental>
+      <examples>
+        <link>
+          <url>https://code.msdn.microsoft.com/Getting-Started-with-91a65652</url>
+          <text>MVC Movie website source code</text>
+          <title></title>
+        </link>
+      </examples>
+      <!--<exercises></exercises>-->
+      <lab>
+        <number>1</number>
+        <link>
+          <url>https://code.msdn.microsoft.com/Getting-Started-with-91a65652</url>
+          <text></text>
+          <title></title>
+        </link>
+        <link>
+          <url>https://code.msdn.microsoft.com/Getting-Started-with-91a65652</url>
+          <text></text>
+          <title></title>
+        </link>
+      </lab>
+    </week>
