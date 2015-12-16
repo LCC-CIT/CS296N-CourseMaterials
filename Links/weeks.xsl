@@ -4,13 +4,17 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="/week">
-  <p><b>Week <xsl:value-of select="number"/></b></p>
-  <p><b>Reading</b></p>
-  <xsl:value-of select="reading"/>
-  <xsl:apply-templates select="supplemental"/>
-  <xsl:apply-templates select="examples"/>
-  <xsl:apply-templates select="exercises"/>
-  <xsl:apply-templates select="lab"/>
+  <html>
+    <body>
+      <p><b>Week <xsl:value-of select="number"/></b></p>
+      <p><b>Reading</b></p>
+      <xsl:value-of select="reading"/>
+      <xsl:apply-templates select="supplemental"/>
+      <xsl:apply-templates select="examples"/>
+      <xsl:apply-templates select="exercises"/>
+      <xsl:apply-templates select="lab"/>
+    </body>
+  </html>
 </xsl:template>
 
 <xsl:template match="supplemental">
