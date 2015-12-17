@@ -10,15 +10,16 @@
         body {
           font-family: 'Arial', 'Verdana', 'sans-serif';
         }
-        h4 {
+        h4, h5 {
           margin-top: 0; margin-bottom:0;
         }
       </style>
     </head>
     <body>
       <h3>Week <xsl:value-of select="number"/></h3>
-        <h4>Reading</h4>
-        <xsl:value-of select="reading"/>
+      <p><h4>Reading</h4></p>
+      <h5>Essential Reading</h5>
+      <xsl:value-of select="reading"/>
       <p><xsl:apply-templates select="supplemental"/></p>
       <p><xsl:apply-templates select="examples"/></p>
       <p><xsl:apply-templates select="exercises"/></p>
@@ -28,7 +29,7 @@
 </xsl:template>
 
 <xsl:template match="supplemental">
-  <h4>Supplemental Reading</h4>
+  <h5>Supplemental Reading</h5>
   <xsl:for-each select="link">
     <a href="{url}" title="{title}"
       target="_blank"><xsl:value-of select="text"/></a>
