@@ -5,9 +5,16 @@
 
 <xsl:template match="/week">
   <html>
+    <head>
+      <style>
+        body {
+          font-family: "Arial", "Verdana", "sans-serif"
+        }
+      </style>
+    </head>
     <body>
-      <p><b>Week <xsl:value-of select="number"/></b></p>
-      <p><b>Reading</b></p>
+      <h3>Week <xsl:value-of select="number"/></h3>
+      <h4></h3>Reading</h4>
       <xsl:value-of select="reading"/>
       <xsl:apply-templates select="supplemental"/>
       <xsl:apply-templates select="examples"/>
@@ -18,7 +25,7 @@
 </xsl:template>
 
 <xsl:template match="supplemental">
-  <p><b>Supplemental Reading</b></p>
+  <h4>Supplemental Reading</h4>
   <xsl:for-each select="link">
     <a href="{url}" title="{title}"
       target="_blank"><xsl:value-of select="text"/></a>
@@ -27,7 +34,7 @@
 </xsl:template>
 
 <xsl:template match="examples">
-  <p><b>Examples</b></p>
+  <h4>Examples</h4>
   <xsl:for-each select="link">
     <a href="{url}" title="{title}"
       target="_blank"><xsl:value-of select="text"/></a>
@@ -36,7 +43,7 @@
 </xsl:template>
 
 <xsl:template match="exercises">
-  <p><b>Exercises</b></p>
+  <h4>Exercises</h4>
   <xsl:for-each select="link">
     <a href="{url}" title="{title}"
       target="_blank"><xsl:value-of select="text"/></a>
@@ -45,7 +52,7 @@
 </xsl:template>
 
 <xsl:template match="lab">
-  <p><b>Lab Assignment <xsl:value-of select="number"/></b></p>
+  <h4>Lab Assignment <xsl:value-of select="number"/></h4>
     <a href="{url}" title="{title}"
       target="_blank">Instructions</a>
     <br/>
