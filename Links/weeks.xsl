@@ -5,14 +5,24 @@
 
 <xsl:template match="/week">
   <html>
-    <body style="font-family: 'Arial', 'Verdana', 'sans-serif';">
+    <head>
+      <style>
+        body {
+          font-family: 'Arial', 'Verdana', 'sans-serif';
+        }
+        h4 {
+          margin-top: 0; margin-bottom:0;
+        }
+      </style>
+    </head>
+    <body>
       <h3>Week <xsl:value-of select="number"/></h3>
-      <h4>Reading</h4>
-      <xsl:value-of select="reading"/>
-      <xsl:apply-templates select="supplemental"/>
-      <xsl:apply-templates select="examples"/>
-      <xsl:apply-templates select="exercises"/>
-      <xsl:apply-templates select="lab"/>
+        <h4>Reading</h4>
+        <xsl:value-of select="reading"/>
+      <p><xsl:apply-templates select="supplemental"/></p>
+      <p><xsl:apply-templates select="examples"/></p>
+      <p><xsl:apply-templates select="exercises"/></p>
+      <p><xsl:apply-templates select="lab"/></p>
     </body>
   </html>
 </xsl:template>
