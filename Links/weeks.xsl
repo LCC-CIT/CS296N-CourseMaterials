@@ -5,16 +5,9 @@
 
 <xsl:template match="/week">
   <html>
-    <head>
-      <style>
-        body {
-          font-family: "Arial", "Verdana", "sans-serif"
-        }
-      </style>
-    </head>
-    <body>
+    <body style="font-family: 'Arial', 'Verdana', 'sans-serif';">
       <h3>Week <xsl:value-of select="number"/></h3>
-      <h4></h3>Reading</h4>
+      <h4>Reading</h4>
       <xsl:value-of select="reading"/>
       <xsl:apply-templates select="supplemental"/>
       <xsl:apply-templates select="examples"/>
