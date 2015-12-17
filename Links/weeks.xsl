@@ -9,7 +9,7 @@
       <style>
         body {
           font-family: 'Arial', 'Verdana', 'sans-serif';
-          font-size: smaller;
+          /* font-size: smaller; */
         }
         h3, h4 {
           margin-top: 0; margin-bottom:0;
