@@ -46,11 +46,11 @@
 
 <xsl:template match="lab">
   <p><b>Lab Assignment <xsl:value-of select="number"/></b></p>
-    <a href="{url}" title="{title}"
+    <xsl:for-each select="link">
+      <a href="{url}" title="{title}"
       target="_blank">Instructions</a>
-    <br/>
-    <a href="{url}" title="{title}"
-      target="_blank">Code Review Form</a>
+      <br/>
+    </xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>
