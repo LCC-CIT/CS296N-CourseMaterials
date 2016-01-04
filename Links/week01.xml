@@ -26,13 +26,13 @@
       <lab>
         <number>1</number>
         <link>
-          <url>https://code.msdn.microsoft.com/Getting-Started-with-91a65652</url>
-          <text></text>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab1/Lab1Instructions_CS296N.docx</url>
+          <text>Instructions</text>
           <title></title>
         </link>
         <link>
-          <url>https://code.msdn.microsoft.com/Getting-Started-with-91a65652</url>
-          <text></text>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab1/Lab1Review_CS296N.docx</url>
+          <text>Code Review Form</text>
           <title></title>
         </link>
       </lab>
