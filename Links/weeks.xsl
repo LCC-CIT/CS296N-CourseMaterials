@@ -58,11 +58,11 @@
 
 <xsl:template match="lab">
   <h3>Lab Assignment <xsl:value-of select="number"/></h3>
-    <a href="{url}" title="{title}"
-      target="_blank">Instructions</a>
+    <xsl:for-each select="link">
+      <a href="{url}" title="{title}"
+      target="_blank"><xsl:value-of select="text"/></a>
     <br/>
-    <a href="{url}" title="{title}"
-      target="_blank">Code Review Form</a>
+    </xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>
