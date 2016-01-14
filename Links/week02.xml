@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="weeks.xslt"?>
     <week>
-      <number>1</number>
-      <reading>Textbook ch. 1, "Getting Started"</reading>
-      <supplemental>
+      <number>2</number>
+      <reading>Textbook ch. 2 & 3, "Controllers, Views"</reading>
+      <!-- <supplemental>
         <link>
           <url>http://msdn.microsoft.com/en-us/library/dd381412(v=vs.100).aspx</url>
           <text>MSDN overview of MVC</text>
@@ -22,18 +22,18 @@
           <title></title>
         </link>
       </examples>
-      <!--<exercises></exercises>-->
+      <exercises></exercises>
       <lab>
-        <number>1</number>
+        <number>2</number>
         <link>
-          <url>https://code.msdn.microsoft.com/Getting-Started-with-91a65652</url>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab1/Lab1Instructions_CS296N.docx</url>
           <text>Instructions</text>
-          <title>Instructions for this lab assignment</title>
+          <title></title>
         </link>
         <link>
-          <url>https://code.msdn.microsoft.com/Getting-Started-with-91a65652</url>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab1/Lab1Review_CS296N.docx</url>
           <text>Code Review Form</text>
-          <title>Code review form for this lab assignment</title>
+          <title></title>
         </link>
-      </lab>
+      </lab>-->
     </week>
