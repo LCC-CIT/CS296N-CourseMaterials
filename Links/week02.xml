@@ -3,11 +3,15 @@
     <week>
       <number>2</number>
       <reading>Textbook ch. 2 and 3- Controllers, Views"</reading>
-      <supplemental>
-      </supplemental>
+      <!-- <supplemental></supplemental> -->
       <examples>
+        <link>
+          <url>http://www.wrox.com/WileyCDA/WroxTitle/Professional-ASP-NET-MVC-5.productCd-1118794753,descCd-DOWNLOAD.html</url>
+          <text>Source code for textbook examples</text>
+          <title>Wrox Pro MVC5 source code</title>
+        </link>
       </examples>
-      <exercises></exercises>
+      <!-- <exercises></exercises> -->
       <lab>
         <number>2</number>
       </lab>
