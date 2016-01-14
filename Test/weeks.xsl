@@ -4,20 +4,9 @@
 
 <xsl:template match="/week">
   <html>
-    <head>
-      <style>
-        body {
-          font-family: 'Arial', 'Verdana', 'sans-serif';
-          font-size: medium;
-        }
-        h3, h4 {
-          margin-top: 0; margin-bottom:0;
-        }
-      </style>
-    </head>
-    <body>
-      <h2>Week <xsl:value-of select="number"/></h2>
-      <p><h3>Reading</h3></p>
+  <body>
+    <h2>Week <xsl:value-of select="number"/></h2>
+      <h3>Reading</h3>
       <h4>Essential Reading</h4>
       <xsl:value-of select="reading"/>
       <p><xsl:apply-templates select="supplemental"/></p>
@@ -26,6 +15,7 @@
       <p><xsl:apply-templates select="lab"/></p>
     </body>
   </html>
+
 </xsl:template>
 
 <xsl:template match="supplemental">
