@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
     <week>
-      <number>1</number>
-      <reading>Textbook ch. 1, "Getting Started"</reading>
+      <number>3</number>
+      <reading>Textbook ch. 4, "?"</reading>
       <supplemental>
         <link>
           <url>http://msdn.microsoft.com/en-us/library/dd381412(v=vs.100).aspx</url>
