@@ -61,11 +61,7 @@
     <xsl:for-each select="link">
       <a href="{url}" title="{title}"
       target="_blank"><xsl:value-of select="text"/></a>
-<<<<<<< HEAD:Links/weeks.xsl
     <br/>
-=======
-      <br/>
->>>>>>> 2edeac11f80c8288024a23cf9434515a0946c84e:Links/weeks.xslt
     </xsl:for-each>
 </xsl:template>
 
