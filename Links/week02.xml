@@ -9,11 +9,13 @@
           <url>http://www.wrox.com/WileyCDA/WroxTitle/Professional-ASP-NET-MVC-5.productCd-1118794753,descCd-DOWNLOAD.html</url>
           <text>Source code for textbook examples</text>
           <title>Wrox Pro MVC5 source code</title>
+          <target>_blank</target>
         </link>
         <link>
           <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Demos/BookStoreDemo1.zip</url>
           <text>BookStoreDemo1</text>
           <title>In-class code demo</title>
+          <target>_self</target>
         </link>
       </examples>
       <!-- <exercises></exercises> -->
