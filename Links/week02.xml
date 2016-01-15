@@ -26,5 +26,10 @@
           <text>Instructions</text>
           <title>Instructions for this lab assignment</title>
         </link>
+        <link>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab2/LabReviewForm-Lab2.docx</url>
+          <text>Lab 2 Code Review Form</text>
+          <title></title>
+        </link>
       </lab>
     </week>
