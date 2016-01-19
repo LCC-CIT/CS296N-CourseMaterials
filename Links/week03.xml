@@ -6,6 +6,16 @@
 
       <supplemental>
         <link>
+          <url>http://www.asp.net/mvc/overview/getting-started/introduction/adding-a-model</url>
+          <text>Adding a Model</text>
+          <title>from MSDN tutorial: Started with ASP.NET MVC5</title>
+        </link>
+        <link>
+          <url>http://www.asp.net/mvc/overview/getting-started/introduction/creating-a-connection-string</url>
+          <text>Creating a Connection String and Working with SQL Server LocalDB</text>
+          <title>from MSDN tutorial: Started with ASP.NET MVC5</title>
+        </link>
+        <link>
           <url>https://msdn.microsoft.com/en-us/library/dd409445(v=vs.110).aspx</url>
           <text>How to: Create UML Modeling Projects and Diagrams</text>
           <title>MSDN article for VS 2012 and later</title>
