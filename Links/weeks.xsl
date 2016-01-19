@@ -41,7 +41,7 @@
   <h3>Examples</h3>
   <xsl:for-each select="link">
     <a href="{url}" title="{title}"
-      target="_blank"><xsl:value-of select="text"/></a>
+      target="{target}"><xsl:value-of select="text"/></a>
     <br/>
   </xsl:for-each>
 </xsl:template>
@@ -50,7 +50,7 @@
   <h3>Exercises</h3>
   <xsl:for-each select="link">
     <a href="{url}" title="{title}"
-      target="_blank"><xsl:value-of select="text"/></a>
+      target="{target}"><xsl:value-of select="text"/></a>
     <br/>
   </xsl:for-each>
 </xsl:template>

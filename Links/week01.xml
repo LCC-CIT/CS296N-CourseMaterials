@@ -20,6 +20,7 @@
           <url>https://code.msdn.microsoft.com/Getting-Started-with-91a65652</url>
           <text>MVC Movie website source code</text>
           <title></title>
+          <target>_blank</target>
         </link>
       </examples>
       <!--<exercises></exercises>-->
