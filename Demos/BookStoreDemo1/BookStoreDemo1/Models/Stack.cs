@@ -7,6 +7,7 @@ namespace BookStoreDemo1.Models
 {
     public class Stack
     {
+        public int StackID { get; set; }
         List<Book> books = new List<Book>();
 
         public string Location { get; set; }
