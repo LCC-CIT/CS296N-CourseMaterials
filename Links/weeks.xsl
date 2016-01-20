@@ -30,38 +30,46 @@
 
 <xsl:template match="supplemental">
   <h4>Supplemental Reading</h4>
+  <ul>
   <xsl:for-each select="link">
-    <a href="{url}" title="{title}"
+    <li><a href="{url}" title="{title}"
       target="_blank"><xsl:value-of select="text"/></a>
-    <br/>
+    </li>
   </xsl:for-each>
+</ul>
 </xsl:template>
 
 <xsl:template match="examples">
   <h3>Examples</h3>
+  <ul>
   <xsl:for-each select="link">
-    <a href="{url}" title="{title}"
+    <li><a href="{url}" title="{title}"
       target="{target}"><xsl:value-of select="text"/></a>
-    <br/>
+    </li>
   </xsl:for-each>
+</ul>
 </xsl:template>
 
 <xsl:template match="exercises">
   <h3>Exercises</h3>
+  <ul>
   <xsl:for-each select="link">
-    <a href="{url}" title="{title}"
+    <li><a href="{url}" title="{title}"
       target="{target}"><xsl:value-of select="text"/></a>
-    <br/>
+    </li>
   </xsl:for-each>
+</ul>
 </xsl:template>
 
 <xsl:template match="lab">
   <h3>Lab Assignment <xsl:value-of select="number"/></h3>
+  <ul>
     <xsl:for-each select="link">
-      <a href="{url}" title="{title}">
+      <li><a href="{url}" title="{title}">
          <xsl:value-of select="text"/></a>
-    <br/>
+    </li>
     </xsl:for-each>
+  </ul>
 </xsl:template>
 
 </xsl:stylesheet>
