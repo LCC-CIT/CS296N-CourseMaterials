@@ -17,18 +17,8 @@ namespace BookStoreDemo1.Controllers
         // GET: /Books/
         public ActionResult Index()
         {
-            var books = new List<BookViewModel>();
-            foreach (Book b in db.Books)
-            {
-                var bookVm = new BookViewModel();
-                bookVm.Author = b.Author;
-                bookVm.BookID = b.BookID;
-                bookVm.Title = b.Title;
-               // foreach(Book sb in db.Stacks.ToList()[0].Books)
-                bookVm.StackItem = db.Stacks.ToList()[0];
-                books.Add(bookVm);
-            }
-            return View(books);
+            
+            return View(GetStacksAndBooks(0));
         }
 
         // GET: /Books/Details/5
@@ -38,7 +28,7 @@ namespace BookStoreDemo1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
+            BookViewModel book = GetStacksAndBooks(id).FirstOrDefault();
             if (book == null)
             {
                 return HttpNotFound();
@@ -133,6 +123,35 @@ namespace BookStoreDemo1.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // Pass zero for all books, or an id for one book
+        private List<BookViewModel> GetStacksAndBooks(int? bookId)
+        {
+            var books = new List<BookViewModel>();
+
+            var stacks = from stack in db.Stacks.Include("Books")
+                select stack;
+       
+
+            foreach (Stack s in stacks)
+            {
+                foreach (Book b in s.Books)
+                {
+                    if (b.BookID == bookId || 0 == bookId)
+                    {
+                        var bookVm = new BookViewModel();
+                        bookVm.Author = b.Author;
+                        bookVm.BookID = b.BookID;
+                        bookVm.Title = b.Title;
+                        bookVm.ISBN = b.ISBN;
+                        bookVm.Price = b.Price;
+                        bookVm.StackItem = s;
+                        books.Add(bookVm);
+                    }
+                }
+            }
+            return books;
         }
     }
 }
