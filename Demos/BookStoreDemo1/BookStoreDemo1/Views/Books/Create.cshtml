@@ -1,4 +1,4 @@
-﻿@model BookStoreDemo1.Models.Book
+﻿@model BookStoreDemo1.Models.BookViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -45,6 +45,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ISBN)
                 @Html.ValidationMessageFor(model => model.ISBN)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StackItem.Location, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StackItem.Location)
+                @Html.ValidationMessageFor(model => model.StackItem.Location)
             </div>
         </div>
 

@@ -48,16 +48,30 @@ namespace BookStoreDemo1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="BookID,Title,Author,Price,ISBN")] Book book)
+        public ActionResult Create([Bind(Include="BookID,Title,Author,Price,ISBN,Location")] BookViewModel bookVM)
         {
             if (ModelState.IsValid)
             {
+                Stack stack = (from s in db.Stacks
+                               where s.Location == bookVM.StackItem.Location
+                               select s).FirstOrDefault();
+
+                Book book = new Book()
+                {
+                    Author = bookVM.Author,
+                    BookID = bookVM.BookID,
+                    ISBN = bookVM.ISBN,
+                    Price = bookVM.Price,
+                    StackID = stack.StackID,
+                    Title = bookVM.Title
+                };
+                
                 db.Books.Add(book);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(book);
+            return View(bookVM);
         }
 
         // GET: /Books/Edit/5
