@@ -30,6 +30,7 @@ obj/
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
+packages
 
 #MonoDevelop
 *.pidb
@@ -57,6 +58,8 @@ _ReSharper*/
 
 # visual studio database projects
 *.dbmdl
+*.mdf
+*.ldf
 
 #Test files
 *.testsettings

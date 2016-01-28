@@ -1,0 +1,10 @@
+Home Controller			05
+Map Controler			05
+News Controller			05
+Shared Layout 			05
+   (title via ViewBag)
+7 static Views			07
+Today's date via ViewBag	03
+View model for news		05
+Strongly typed news view	05
+Code review given.		10
