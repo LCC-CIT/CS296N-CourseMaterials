@@ -28,7 +28,8 @@ namespace BookStoreDemo1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookViewModel book = GetStacksAndBooks(id).FirstOrDefault();
+            //BookViewModel book = GetStacksAndBooks(id).FirstOrDefault();
+            BookViewModel book = GetBookandStack(id);
             if (book == null)
             {
                 return HttpNotFound();
@@ -133,7 +134,6 @@ namespace BookStoreDemo1.Controllers
             var stacks = from stack in db.Stacks.Include("Books")
                 select stack;
        
-
             foreach (Stack s in stacks)
             {
                 foreach (Book b in s.Books)
@@ -152,6 +152,22 @@ namespace BookStoreDemo1.Controllers
                 }
             }
             return books;
+        }
+
+        private BookViewModel GetBookandStack(int? bookId)
+        {
+            BookViewModel bookVM = (from b in db.Books
+                                    join s in db.Stacks on b.StackID equals s.StackID
+                                    where b.BookID == bookId
+                                    select new BookViewModel {
+                                        BookID = b.BookID,
+                                        Author = b.Author,
+                                        ISBN = b.ISBN,
+                                        Price = b.Price,
+                                        Title = b.Title,
+                                        StackItem = s
+                                    }).FirstOrDefault();
+            return bookVM;
         }
     }
 }
