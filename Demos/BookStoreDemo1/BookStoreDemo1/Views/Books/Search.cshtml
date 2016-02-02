@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+        <h4>Book</h4>
+        <hr />
+
+        <div class="form-group">
+            @Html.Label("Enter word from title", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("searchTerm")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

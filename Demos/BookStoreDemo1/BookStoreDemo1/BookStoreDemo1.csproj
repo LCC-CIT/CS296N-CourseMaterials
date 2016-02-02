@@ -186,6 +186,7 @@
     <Content Include="Views\Books\Edit.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <Content Include="Views\Books\Search.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

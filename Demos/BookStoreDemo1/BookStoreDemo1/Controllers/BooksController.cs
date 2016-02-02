@@ -52,16 +52,15 @@ namespace BookStoreDemo1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="BookID,Title,Author,Price,ISBN, StackItem")] BookViewModel bookVM)
+        public ActionResult Create([Bind(Include="BookID,Title,Author,Price,ISBN, StackItem, StackLocations")] BookViewModel bookVM, int StackLocations)
         {
             if (ModelState.IsValid)
             {
                 Stack stack = (from s in db.Stacks
-                              // where s.Location == bookVM.StackItem.Location
-                               // where s.Location == "A2"
-                               where s.Location == bookVM.StackItem.Location
+                               where s.StackID == StackLocations
                                select s).FirstOrDefault();
 
+                //TODO: Modify the view allow entering a new location
                 if(stack == null)
                 {
                     stack = new Stack() { Location = bookVM.StackItem.Location };
@@ -140,6 +139,18 @@ namespace BookStoreDemo1.Controllers
             Book book = db.Books.Find(id);
             db.Books.Remove(book);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(string searchTerm)
+        {
+
             return RedirectToAction("Index");
         }
 
