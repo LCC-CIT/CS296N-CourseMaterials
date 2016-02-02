@@ -29,6 +29,8 @@ obj/
 [Bb]in
 [Dd]ebug*/
 [Rr]elease*/
+[Pp]ackages/
+App_Data/
 Ankh.NoLoad
 
 #MonoDevelop
