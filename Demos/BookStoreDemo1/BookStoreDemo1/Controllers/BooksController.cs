@@ -41,7 +41,9 @@ namespace BookStoreDemo1.Controllers
         // GET: /Books/Create
         public ActionResult Create()
         {
-            ViewBag.StackLocations = new SelectList(db.Stacks.OrderBy(s => s.Location), "StackID", "Location");
+            ViewBag.StackLocations = 
+                new SelectList(db.Stacks.OrderBy(s => s.Location), "StackID", "Location");
+
             return View();
         }
 
@@ -59,6 +61,12 @@ namespace BookStoreDemo1.Controllers
                                // where s.Location == "A2"
                                where s.Location == bookVM.StackItem.Location
                                select s).FirstOrDefault();
+
+                if(stack == null)
+                {
+                    stack = new Stack() { Location = bookVM.StackItem.Location };
+                    db.Stacks.Add(stack);
+                }
 
                 Book book = new Book()
                 {
