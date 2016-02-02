@@ -30,6 +30,7 @@ namespace BookStoreDemo1.Controllers
             }
             //BookViewModel book = GetStacksAndBooks(id).FirstOrDefault();
             BookViewModel book = GetBookandStack(id);
+
             if (book == null)
             {
                 return HttpNotFound();
@@ -40,6 +41,7 @@ namespace BookStoreDemo1.Controllers
         // GET: /Books/Create
         public ActionResult Create()
         {
+            ViewBag.StackLocations = new SelectList(db.Stacks.OrderBy(s => s.Location), "StackID", "Location");
             return View();
         }
 
