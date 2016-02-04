@@ -150,8 +150,51 @@ namespace BookStoreDemo1.Controllers
         [HttpPost]
         public ActionResult Search(string searchTerm)
         {
+            
+            List<BookViewModel> bookVMs = new List<BookViewModel>();
+            // Get the books that match the searchTerm
+            var books = (from b in db.Books
+                               where b.Title.Contains(searchTerm)
+                               select b).ToList<Book>();
 
-            return RedirectToAction("Index");
+            // In a loop:
+            foreach(Book b in books)
+            {
+                // TODO: Get the stack that contains each book
+                var stack = (from s in db.Stacks
+                             where s.StackID == b.StackID
+                             select s).FirstOrDefault();
+                // Create a view model for the book and put it in the list of view models
+                bookVMs.Add(new BookViewModel() {  Title = b.Title,
+                                                   StackItem = stack,
+                                                   Author = b.Author,
+                                                   ISBN = b.ISBN,
+                                                   Price = b.Price,
+                                                   BookID = b.BookID
+                });
+            }
+            
+            /*
+            List<Book> books = from b in db.Books
+                    join s in db.Stacks on b.StackID equals s.StackID
+                    where b.Title.Contains(searchTerm)
+                    select new List<BookViewModel>
+                    {
+                        BookID = b.BookID,
+                        Author = b.Author,
+                        ISBN = b.ISBN,
+                        Price = b.Price,
+                        Title = b.Title,
+                        StackItem = s
+                    }; */
+
+            // if there's just one book, display it
+            if (bookVMs.Count == 1)
+                return View("Details", bookVMs[0]);
+            // if there is more than one book display the list of books
+            else 
+                return View("Index", bookVMs);
+
         }
 
         protected override void Dispose(bool disposing)
