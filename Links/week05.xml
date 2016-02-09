@@ -6,12 +6,13 @@
 
       <supplemental>
         <link>
-          <url>https://msdn.microsoft.com/en-us/library/bb397926.aspx</url>
-          <text>LINQ (Language-Integrated Query)</text>
-          <title>MSDN tutorials and samples</title>
+          <url>http://www.asp.net/mvc/overview/getting-started/introduction/adding-search</url>
+          <text>Adding a Search Method and Search View</text>
+          <title>From the MVC Movie tutorial</title>
         </link>
       </supplemental>
 
+      <!--
       <examples>
         <link>
           <url>https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b</url>
@@ -19,6 +20,7 @@
           <title>MSDN downloadable LINQ examples</title>
         </link>
       </examples>
+    -->
       <!--<exercises></exercises>-->
       <lab>
         <number>4</number>

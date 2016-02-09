@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
+    <week>
+      <number>6</number>
+      <reading>Textbook ch. 6, "Data Annontations and Validation"</reading>
+      <!--
+      <supplemental>
+        <link>
+          <url>https://msdn.microsoft.com/en-us/library/bb397926.aspx</url>
+          <text>LINQ (Language-Integrated Query)</text>
+          <title>MSDN tutorials and samples</title>
+        </link>
+      </supplemental>
+      -->
+      <!--
+      <examples>
+        <link>
+          <url>https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b</url>
+          <text>101 LINQ Samples</text>
+          <title>MSDN downloadable LINQ examples</title>
+        </link>
+      </examples>
+    -->
+      <!--<exercises></exercises>-->
+      <lab>
+        <number>5</number>
+        <link>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab4/Lab5Instructions_CS296N.docx</url>
+          <text>Instructions will be done by 2/9/16</text>
+          <title>Instructions for this lab assignment</title>
+        </link>
+        <link>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/TermProject/CS296N-W16-TermProjectAlphaRequirements.docx</url>
+          <text>Term Project - Alpha Requirements</text>
+          <title>A preliminary (alpha) version of your web site</title>
+        </link>
+        <link>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab4/LabReviewForm-Lab5.docx</url>
+          <text>Code Review Form</text>
+          <title>Code review form for this lab assignment</title>
+        </link>
+      </lab>
+    </week>
