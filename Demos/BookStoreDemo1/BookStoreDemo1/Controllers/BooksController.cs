@@ -17,8 +17,26 @@ namespace BookStoreDemo1.Controllers
         // GET: /Books/
         public ActionResult Index()
         {
+            var books = new List<BookViewModel>();
 
-            return View(GetStacksAndBooks(0));
+            var stacks = from stack in db.Stacks.Include("Books")
+                         select stack;
+
+            foreach (Stack s in stacks)
+            {
+                foreach (Book b in s.Books)
+                {
+                        var bookVm = new BookViewModel();
+                        bookVm.Author = b.Author;
+                        bookVm.BookID = b.BookID;
+                        bookVm.Title = b.Title;
+                        bookVm.ISBN = b.ISBN;
+                        bookVm.Price = b.Price;
+                        bookVm.StackItem = s;
+                        books.Add(bookVm);
+                }
+            }
+            return View(books);
         }
 
         // GET: /Books/Details/5
@@ -28,8 +46,19 @@ namespace BookStoreDemo1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //BookViewModel book = GetStacksAndBooks(id).FirstOrDefault();
-            BookViewModel book = GetBookandStack(id);
+
+            BookViewModel book = (from b in db.Books
+                                    join s in db.Stacks on b.StackID equals s.StackID
+                                    where b.BookID == id
+                                    select new BookViewModel
+                                    {
+                                        BookID = b.BookID,
+                                        Author = b.Author,
+                                        ISBN = b.ISBN,
+                                        Price = b.Price,
+                                        Title = b.Title,
+                                        StackItem = s
+                                    }).FirstOrDefault();
 
             if (book == null)
             {
@@ -41,10 +70,13 @@ namespace BookStoreDemo1.Controllers
         // GET: /Books/Create
         public ActionResult Create()
         {
-            ViewBag.StackLocations =
-                new SelectList(db.Stacks.OrderBy(s => s.Location), "StackID", "Location");
-
+            ViewBag.StackLocations = InitStackLocationsDropDown();
             return View();
+        }
+
+        private SelectList InitStackLocationsDropDown()
+        {
+            return new SelectList(db.Stacks.OrderBy(s => s.Location), "StackID", "Location");
         }
 
         // POST: /Books/Create
@@ -82,8 +114,7 @@ namespace BookStoreDemo1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StackLocations =
-                new SelectList(db.Stacks.OrderBy(s => s.Location), "StackID", "Location");
+            ViewBag.StackLocations = InitStackLocationsDropDown();
             return View(bookVM);
         }
 
@@ -210,49 +241,5 @@ namespace BookStoreDemo1.Controllers
             base.Dispose(disposing);
         }
 
-        // Pass zero for all books, or an id for one book
-        private List<BookViewModel> GetStacksAndBooks(int? bookId)
-        {
-            var books = new List<BookViewModel>();
-
-            var stacks = from stack in db.Stacks.Include("Books")
-                         select stack;
-
-            foreach (Stack s in stacks)
-            {
-                foreach (Book b in s.Books)
-                {
-                    if (b.BookID == bookId || 0 == bookId)
-                    {
-                        var bookVm = new BookViewModel();
-                        bookVm.Author = b.Author;
-                        bookVm.BookID = b.BookID;
-                        bookVm.Title = b.Title;
-                        bookVm.ISBN = b.ISBN;
-                        bookVm.Price = b.Price;
-                        bookVm.StackItem = s;
-                        books.Add(bookVm);
-                    }
-                }
-            }
-            return books;
-        }
-
-        private BookViewModel GetBookandStack(int? bookId)
-        {
-            BookViewModel bookVM = (from b in db.Books
-                                    join s in db.Stacks on b.StackID equals s.StackID
-                                    where b.BookID == bookId
-                                    select new BookViewModel
-                                    {
-                                        BookID = b.BookID,
-                                        Author = b.Author,
-                                        ISBN = b.ISBN,
-                                        Price = b.Price,
-                                        Title = b.Title,
-                                        StackItem = s
-                                    }).FirstOrDefault();
-            return bookVM;
-        }
     }
 }
