@@ -3,15 +3,15 @@
     <week>
       <number>6</number>
       <reading>Textbook ch. 6, "Data Annontations and Validation"</reading>
-      <!--
+
       <supplemental>
         <link>
-          <url>https://msdn.microsoft.com/en-us/library/bb397926.aspx</url>
-          <text>LINQ (Language-Integrated Query)</text>
-          <title>MSDN tutorials and samples</title>
+          <url>http://www.asp.net/mvc/overview/getting-started/introduction/adding-validation</url>
+          <text>Adding Validation</text>
+          <title>Getting Started with ASP.NET MVC 5 - Tutorial 10</title>
         </link>
       </supplemental>
-      -->
+
       <!--
       <examples>
         <link>
