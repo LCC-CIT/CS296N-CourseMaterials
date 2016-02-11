@@ -16,7 +16,7 @@ namespace BookStoreDemo1.Models
         [Required]
         public string Title { get; set; }
         public string Author { get; set; }
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
         public string ISBN { get; set; }
         public Stack StackItem 
         { 
