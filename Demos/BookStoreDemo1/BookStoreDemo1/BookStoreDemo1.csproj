@@ -187,6 +187,8 @@
     <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <Content Include="Views\Books\Search.cshtml" />
+    <Content Include="Views\Books\PartialBookListContent.cshtml" />
+    <Content Include="Views\Books\PartialBookListHeader.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
