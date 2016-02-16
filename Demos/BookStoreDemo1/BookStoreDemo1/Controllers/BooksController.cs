@@ -68,6 +68,7 @@ namespace BookStoreDemo1.Controllers
         }
 
         // GET: /Books/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.StackLocations = InitStackLocationsDropDown();
@@ -83,7 +84,8 @@ namespace BookStoreDemo1.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "BookID,Title,Author,Price,ISBN, StackItem, StackLocations")] BookViewModel bookVM, int StackLocations)
         {
             if (ModelState.IsValid)
@@ -119,6 +121,7 @@ namespace BookStoreDemo1.Controllers
         }
 
         // GET: /Books/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -138,6 +141,7 @@ namespace BookStoreDemo1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "BookID, StackID, Title,Author,Price,ISBN")] Book book)
         {
             if (ModelState.IsValid)
@@ -150,6 +154,7 @@ namespace BookStoreDemo1.Controllers
         }
 
         // GET: /Books/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -167,6 +172,7 @@ namespace BookStoreDemo1.Controllers
         // POST: /Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Book book = db.Books.Find(id);
