@@ -11,46 +11,19 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Author)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ISBN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StackItem.Location)
-        </th><th></th>
-    </tr>
+    <!-- table header in partial view-->
+    @Html.Partial("PartialBookListHeader", Model)
 
 @foreach (var item in Model) {
     <tr>
+        <!-- table content without links in partial view-->
+        @Html.Partial("PartialBookListContent", item)
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.BookID })
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ISBN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StackItem.Location)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookID })
-        </td>
+
     </tr>
 }
 

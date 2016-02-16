@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
+    <week>
+      <number>7</number>
+      <reading>Textbook ch. 7, "Membership, Authorization, and Security"</reading>
+
+      <supplemental>
+        <link>
+          <url>http://www.asp.net/identity/overview/getting-started/introduction-to-aspnet-identity</url>
+          <text>An Introduction to ASP.NET Identity</text>
+          <title>MIcrosoft ASP.NET Tutorial</title>
+        </link>
+        <link>
+          <url>http://benfoster.io/blog/aspnet-identity-stripped-bare-mvc-part-1</url>
+          <text>Adding ASP.NET Identity to an existing MVC project</text>
+          <title>MIcrosoft ASP.NET Tutorial</title>
+        </link>
+      </supplemental>
+
+      <!--
+      <examples>
+        <link>
+          <url>https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b</url>
+          <text>101 LINQ Samples</text>
+          <title>MSDN downloadable LINQ examples</title>
+        </link>
+      </examples>
+    -->
+      <!--<exercises></exercises>-->
+      <lab>
+        <number>6</number>
+        <link>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab6/Lab6Instructions_CS296N.docx</url>
+          <text>Lab 6 instructions will be ready by 2/18 </text>
+          <title>Instructions for this lab assignment</title>
+        </link>
+
+        <link>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab6/LabReviewForm-Lab6.docx</url>
+          <text>Code Review Form</text>
+          <title>Code review form for this lab assignment</title>
+        </link>
+      </lab>
+    </week>
