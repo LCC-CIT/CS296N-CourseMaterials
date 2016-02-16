@@ -22,15 +22,14 @@
         </link>
       </supplemental>
 
-      <!--
       <examples>
         <link>
-          <url>https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b</url>
-          <text>101 LINQ Samples</text>
-          <title>MSDN downloadable LINQ examples</title>
+          <url>https://github.com/benfoster/NakedIdentity</url>
+          <text>Adding Identity to an existing MVC project</text>
+          <title>Example from Ben Foster</title>
         </link>
       </examples>
-    -->
+
       <!--<exercises></exercises>-->
       <lab>
         <number>6</number>
