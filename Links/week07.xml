@@ -8,12 +8,17 @@
         <link>
           <url>http://www.asp.net/identity/overview/getting-started/introduction-to-aspnet-identity</url>
           <text>An Introduction to ASP.NET Identity</text>
-          <title>MIcrosoft ASP.NET Tutorial</title>
+          <title>Microsoft ASP.NET Tutorial</title>
         </link>
         <link>
           <url>http://benfoster.io/blog/aspnet-identity-stripped-bare-mvc-part-1</url>
           <text>Adding ASP.NET Identity to an existing MVC project</text>
-          <title>MIcrosoft ASP.NET Tutorial</title>
+          <title>Ben Foster's blog</title>
+        </link>
+        <link>
+          <url>http://owin.org/</url>
+          <text>Reference: OWIN web site</text>
+          <title>Open Web Interface for .NET</title>
         </link>
       </supplemental>
 
