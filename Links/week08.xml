@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
+    <week>
+      <number>8</number>
+      <reading>Textbook ch. 8, "Routing"</reading>
+
+      <supplemental>
+        <link>
+          <url>https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-get-started/</url>
+          <text>Deploy an ASP.NET Web App to Azure</text>
+          <title>Microsoft ASP.NET Tutorial</title>
+        </link>
+
+      </supplemental>
+
+      <examples>
+        <!--<link>
+          <url>https://github.com/benfoster/NakedIdentity</url>
+          <text>Adding Identity to an existing MVC project</text>
+          <title>Example from Ben Foster</title>
+        </link>-->
+      </examples>
+
+      <!--<exercises></exercises>-->
+      <lab>
+        <number>7</number>
+        <link>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab7/Lab7Instructions_CS296N.docx</url>
+          <text>Lab 7 instructions will be ready by 2/2 </text>
+          <title>Instructions for this lab assignment</title>
+        </link>
+
+        <link>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab7/LabReviewForm-Lab7.docx</url>
+          <text>Code Review Form</text>
+          <title>Code review form for this lab assignment</title>
+        </link>
+      </lab>
+    </week>
