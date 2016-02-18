@@ -1,0 +1,16 @@
+1. Derive BookStoreDemoContex (our dbContext) from IdentityDbContext<AppUser>
+2. Add NuGet package: Microsoft.AspNet.Identity.EntityFramework
+3. Derive your user model from IdentityUser. Use thier:
+- Id (must use this)
+- email
+- username
+- phone number
+- etc.
+
+4. Add an instance of UserManager to the authController: 
+UserManager<AppUser> usermanager = new UserManager<AppUser>(
+               new UserStore<AppUser>(new BookStoreDemoContext()));
+
+5. Add a dispose method to AuthController for UserManager
+
+6. Add a viewmodel for registration.
