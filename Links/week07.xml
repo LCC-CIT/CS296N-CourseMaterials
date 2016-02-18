@@ -12,8 +12,13 @@
         </link>
         <link>
           <url>http://benfoster.io/blog/aspnet-identity-stripped-bare-mvc-part-1</url>
-          <text>Adding ASP.NET Identity to an existing MVC project</text>
-          <title>Ben Foster's blog</title>
+          <text>ASP.NET Identity Stripped Bare - Part 1</text>
+          <title>Adding Identity to an empty MVC site</title>
+        </link>
+        <link>
+          <url>http://benfoster.io/blog/aspnet-identity-stripped-bare-mvc-part-2</url>
+          <text>ASP.NET Identity Stripped Bare - Part 2</text>
+          <title>Adding Identity to an empty MVC site</title>
         </link>
         <link>
           <url>http://owin.org/</url>
@@ -25,8 +30,13 @@
       <examples>
         <link>
           <url>https://github.com/benfoster/NakedIdentity</url>
-          <text>Adding Identity to an existing MVC project</text>
+          <text>ASP.NET Identity Stripped Bare</text>
           <title>Example from Ben Foster</title>
+        </link>
+        <link>
+          <url>https://github.com/LCC-CIT/CS296nBookStoreDemo/archive/authenticate.zip</url>
+          <text>This week's BookStoreDemo</text>
+          <title>Authentication and authorization example</title>
         </link>
       </examples>
 
@@ -38,11 +48,3 @@
           <text>Lab 6 instructions will be ready by 2/18 </text>
           <title>Instructions for this lab assignment</title>
         </link>
-
-        <link>
-          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab6/LabReviewForm-Lab6.docx</url>
-          <text>Code Review Form</text>
-          <title>Code review form for this lab assignment</title>
-        </link>
-      </lab>
-    </week>
