@@ -48,3 +48,11 @@
           <text>Lab 6 instructions will be ready by 2/18 </text>
           <title>Instructions for this lab assignment</title>
         </link>
+
+        <link>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab6/LabReviewForm-Lab6.docx</url>
+          <text>Code Review Form</text>
+          <title>Code review form for this lab assignment</title>
+        </link>
+      </lab>
+    </week>
