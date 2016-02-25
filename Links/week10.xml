@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
     <week>
-      <number>8</number>
-      <reading>Textbook ch. 8, "Routing"</reading>
-
+      <number>10</number>
+      <reading>Textbook ch. 14, "Unit Testing"</reading>
+      <!--
       <supplemental>
         <link>
           <url>https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-get-started/</url>
@@ -12,7 +12,7 @@
         </link>
 
       </supplemental>
-
+    -->
       <examples>
         <!--<link>
           <url>https://github.com/benfoster/NakedIdentity</url>
@@ -23,10 +23,11 @@
 
       <!--<exercises></exercises>-->
       <lab>
-        <number>7</number>
+        <number>9</number>
+        <!--
         <link>
           <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab7/Lab7Instructions_CS296N.docx</url>
-          <text>Lab 7: Authorization - instructions</text>
+          <text>Lab 7 instructions will be ready by 2/22 </text>
           <title>Instructions for this lab assignment</title>
         </link>
 
@@ -35,5 +36,6 @@
           <text>Code Review Form</text>
           <title>Code review form for this lab assignment</title>
         </link>
+      -->
       </lab>
     </week>
