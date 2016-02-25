@@ -2,13 +2,13 @@
 <?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
     <week>
       <number>8</number>
-      <reading>Textbook ch. 8, "Routing"</reading>
+      <reading>Textbook ch. 7, Authorization</reading>
 
       <supplemental>
         <link>
-          <url>https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-get-started/</url>
-          <text>Deploy an ASP.NET Web App to Azure</text>
-          <title>Microsoft ASP.NET Tutorial</title>
+          <url>http://www.dotnetfunda.com/articles/show/2898/working-with-roles-in-aspnet-identity-for-mvc</url>
+          <text>Manage roles</text>
+          <title>.net funda blog post</title>
         </link>
 
       </supplemental>
