@@ -10,7 +10,11 @@
           <text>Manage roles</text>
           <title>.net funda blog post</title>
         </link>
-
+        <link>
+          <url>http://johnatten.com/2013/11/11/extending-identity-accounts-and-implementing-role-based-authentication-in-asp-net-mvc-5/</url>
+          <text>Alternate approach: Extend the Identity Code in the MVC Template</text>
+          <title>John Atten's blog</title>
+        </link>
       </supplemental>
 
       <examples>
