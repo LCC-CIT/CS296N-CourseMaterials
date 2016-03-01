@@ -2,12 +2,12 @@
 <?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
     <week>
       <number>10</number>
-      <reading>Textbook ch. 14, "Unit Testing"</reading>
-      <!--
+      <reading>Skim Textbook ch. 13: "Dependency Injection"<br> and 14, "Unit Testing"</reading>
+
       <supplemental>
         <link>
-          <url>https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-get-started/</url>
-          <text>Deploy an ASP.NET Web App to Azure</text>
+          <url>https://msdn.microsoft.com/en-us/library/dd264975(v=vs.120).aspx</url>
+          <text>Verify Code by Using Unit Tests</text>
           <title>Microsoft ASP.NET Tutorial</title>
         </link>
 
