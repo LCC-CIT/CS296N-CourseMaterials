@@ -28,10 +28,10 @@
       <!--<exercises></exercises>-->
       <lab>
         <number>8</number>
-        <!--
+
         <link>
           <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab8/Lab8Instructions_CS296N.docx</url>
-          <text>Lab 8 instructions TBD</text>
+          <text>Lab 8 instructions - Migrations</text>
           <title>Instructions for this lab assignment</title>
         </link>
 
@@ -40,6 +40,6 @@
           <text>Code Review Form</text>
           <title>Code review form for this lab assignment</title>
         </link>
-    -->
+
     </lab>
     </week>

@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
     <week>
       <number>10</number>
-      <reading>Skim Textbook ch. 13: "Dependency Injection"<br> and 14, "Unit Testing"</reading>
+      <reading>Skim Textbook ch. 13: "Dependency Injection" and 14, "Unit Testing"</reading>
 
       <supplemental>
         <link>
