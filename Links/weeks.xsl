@@ -26,8 +26,8 @@
             background-repeat: no-repeat;
             background-position: 0.4em;
             padding-left: 2em;
-            padding-bottom: 0.2em;
-            padding-top: 0.2em;
+            padding-bottom: 0.3em;
+            padding-top: 0.3em;
           }
 
           li.link {
@@ -35,8 +35,8 @@
             background-repeat: no-repeat;
             background-position: 0.4em;
             padding-left: 2em;
-            padding-bottom: 0.2em;
-            padding-top: 0.2em;
+            padding-bottom: 0.3em;
+            padding-top: 0.3em;
           }
 
       </style>
