@@ -10,9 +10,35 @@
           font-family: 'Arial', 'Verdana', 'sans-serif';
           font-size: medium;
         }
+
         h3, h4 {
           margin-top: 0; margin-bottom:0;
         }
+
+        ul {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+
+          li.doc {
+            background-image: url(images/document-24.png);
+            background-repeat: no-repeat;
+            background-position: 0.4em;
+            padding-left: 2em;
+            padding-bottom: 0.2em;
+            padding-top: 0.2em;
+          }
+
+          li.link {
+            background-image: url(images/icon.svg);
+            background-repeat: no-repeat;
+            background-position: 0.4em;
+            padding-left: 2em;
+            padding-bottom: 0.2em;
+            padding-top: 0.2em;
+          }
+
       </style>
     </head>
     <body>
@@ -32,7 +58,7 @@
   <h4>Supplemental Reading</h4>
   <ul>
   <xsl:for-each select="link">
-    <li><a href="{url}" title="{title}"
+    <li class="link"><a href="{url}" title="{title}"
       target="_blank"><xsl:value-of select="text"/></a>
     </li>
   </xsl:for-each>
@@ -43,7 +69,7 @@
   <h3>Examples</h3>
   <ul>
   <xsl:for-each select="link">
-    <li><a href="{url}" title="{title}"
+    <li class="link"><a href="{url}" title="{title}"
       target="{target}"><xsl:value-of select="text"/></a>
     </li>
   </xsl:for-each>
@@ -65,7 +91,7 @@
   <h3>Lab Assignment <xsl:value-of select="number"/></h3>
   <ul>
     <xsl:for-each select="link">
-      <li><a href="{url}" title="{title}">
+      <li class="doc"><a href="{url}" title="{title}">
          <xsl:value-of select="text"/></a>
     </li>
     </xsl:for-each>
