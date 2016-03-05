@@ -24,18 +24,18 @@
       <!--<exercises></exercises>-->
       <lab>
         <number>9</number>
-        <!--
+
         <link>
-          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab7/Lab7Instructions_CS296N.docx</url>
-          <text>Lab 7 instructions will be ready by 2/22 </text>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab9/Lab9Instructions_CS296N.docx</url>
+          <text>Lab 9 instructions *** TBD *** </text>
           <title>Instructions for this lab assignment</title>
         </link>
 
         <link>
-          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab7/LabReviewForm-Lab7.docx</url>
+          <url>https://rawgit.com/LCC-CIT/CS296nCourseMaterials/master/Labs/Lab9/LabReviewForm-Lab9.docx</url>
           <text>Code Review Form</text>
           <title>Code review form for this lab assignment</title>
         </link>
-      -->
+
       </lab>
     </week>
