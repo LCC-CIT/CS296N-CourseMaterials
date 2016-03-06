@@ -20,7 +20,7 @@
       <examples>
         <link>
           <url>https://github.com/LCC-CIT/CS296nBookStoreDemo/tree/authorize</url>
-          <text>BookStoreDemo - Migrations</text>
+          <text>BookStoreDemo - Authorization</text>
           <title>In class demo</title>
           <target>_blank</target>
         </link>
