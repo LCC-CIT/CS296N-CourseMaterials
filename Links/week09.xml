@@ -22,11 +22,13 @@
           <url>https://github.com/LCC-CIT/CS296nBookStoreDemo/tree/migrations</url>
           <text>BookStoreDemo - Migrations</text>
           <title>In class demo</title>
+          <target>_blank</target>
         </link>
         <link>
           <url>https://github.com/LCC-CIT/CS296nBookStoreDemo/tree/publishToAzure</url>
           <text>BookStoreDemo - Publish to Azure</text>
           <title>In class demo</title>
+          <target>_blank</target>
         </link>
       </examples>
 
