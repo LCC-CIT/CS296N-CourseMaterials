@@ -18,11 +18,12 @@
       </supplemental>
 
       <examples>
-        <!--<link>
+        <link>
           <url>https://github.com/LCC-CIT/CS296nBookStoreDemo/tree/authorize</url>
-          <text>BookStoreDemo GitHub page</text>
-          <title>Authorize branch</title>
-        </link>-->
+          <text>BookStoreDemo - Migrations</text>
+          <title>In class demo</title>
+          <target>_blank</target>
+        </link>
       </examples>
 
       <!--<exercises></exercises>-->
