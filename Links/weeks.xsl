@@ -26,8 +26,8 @@
             background-repeat: no-repeat;
             background-position: 0.4em;
             padding-left: 2em;
-            padding-bottom: 0.3em;
-            padding-top: 0.3em;
+            padding-bottom: 0.35em;
+            padding-top: 0.35em;
           }
 
           li.link {
@@ -35,10 +35,18 @@
             background-repeat: no-repeat;
             background-position: 0.4em;
             padding-left: 2em;
-            padding-bottom: 0.3em;
-            padding-top: 0.3em;
+            padding-bottom: 0.35em;
+            padding-top: 0.35em;
           }
 
+          li.github {
+            background-image: url(images/octocat.svg);
+            background-repeat: no-repeat;
+            background-position: 0.4em;
+            padding-left: 2em;
+            padding-bottom: 0.35em;
+            padding-top: 0.35em;
+          }
       </style>
     </head>
     <body>
@@ -69,7 +77,7 @@
   <h3>Examples</h3>
   <ul>
   <xsl:for-each select="link">
-    <li class="link"><a href="{url}" title="{title}"
+    <li class="github"><a href="{url}" title="{title}"
       target="{target}"><xsl:value-of select="text"/></a>
     </li>
   </xsl:for-each>
