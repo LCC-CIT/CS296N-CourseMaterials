@@ -18,11 +18,16 @@
       </supplemental>
 
       <examples>
-        <!--<link>
-          <url>https://github.com/benfoster/NakedIdentity</url>
-          <text>Adding Identity to an existing MVC project</text>
-          <title>Example from Ben Foster</title>
-        </link>-->
+        <link>
+          <url>https://github.com/LCC-CIT/CS296nBookStoreDemo/tree/migrations</url>
+          <text>BookStoreDemo - Migrations</text>
+          <title>In class demo</title>
+        </link>
+        <link>
+          <url>https://github.com/LCC-CIT/CS296nBookStoreDemo/tree/publishToAzure</url>
+          <text>BookStoreDemo - Publish to Azure</text>
+          <title>In class demo</title>
+        </link>
       </examples>
 
       <!--<exercises></exercises>-->
