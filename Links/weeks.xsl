@@ -40,7 +40,7 @@
           }
 
           li.github {
-            background-image: url(images/octocat.png);
+            background-image: url(images/octocat-24.png);
             background-repeat: no-repeat;
             background-position: 0.4em;
             padding-left: 2em;
