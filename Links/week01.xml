@@ -2,28 +2,27 @@
 <?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
     <week>
       <number>1</number>
-      <reading>Textbook ch. 1, "Getting Started"</reading>
+      <reading>Skim Freeman Ch. 1 – Core MVC in Context<br>
+        Read Freeman Ch. 3– The MVC Pattern<br>
+        <link>
+          <url>https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs</url>
+          <text>Deploy an ASP.NET Core web app to Azure</text>
+          <title>Microsoft tutorial by Rick Anderson and Cesar Blum Silveira</title>
+        </link>
+        </reading>
       <supplemental>
         <link>
           <url>http://msdn.microsoft.com/en-us/library/dd381412(v=vs.100).aspx</url>
           <text>MSDN overview of MVC</text>
           <title>MSDN tutorial by Scott Guthrie, Scott Hanselman, and Rick Anderson</title>
         </link>
-        <link>
-          <url>http://www.asp.net/mvc/overview/getting-started/introduction/getting-started</url>
-          <text>Getting started with MVC</text>
-          <title></title>
-        </link>
+
       </supplemental>
-      <examples>
-        <link>
-          <url>https://code.msdn.microsoft.com/Getting-Started-with-91a65652</url>
-          <text>MVC Movie website source code</text>
-          <title></title>
-          <target>_blank</target>
-        </link>
-      </examples>
-      <!--<exercises></exercises>-->
+      <!--<examples>
+      </examples>-->
+      <exercises>
+      Exercise 1: Freeman Ch. 2– Your 1st MVC Application
+      </exercises>
       <lab>
         <number>1</number>
         <link>
