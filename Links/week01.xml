@@ -2,8 +2,9 @@
 <?xml-stylesheet type="text/xsl" href="weeks.xsl"?>
     <week>
       <number>1</number>
-      <reading>Skim Freeman Ch. 1 – Core MVC in Context<br/>
-        Read Freeman Ch. 3– The MVC Pattern
+      <reading>
+        <title>Skim Freeman Ch. 1 – Core MVC in Context</title>
+        <title>Read Freeman Ch. 3– The MVC Pattern</title>
         </reading>
       <supplemental>
         <link>
