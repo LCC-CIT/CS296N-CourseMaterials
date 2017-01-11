@@ -3,8 +3,8 @@
     <week>
       <number>1</number>
       <reading>
-        <title>Skim Freeman Ch. 1 – Core MVC in Context</title>
-        <title>Read Freeman Ch. 3– The MVC Pattern</title>
+        <title>   Skim Freeman Ch. 1 – Core MVC in Context</title>
+        <title>   Read Freeman Ch. 3– The MVC Pattern</title>
         </reading>
       <supplemental>
         <link>
@@ -22,7 +22,7 @@
       <!--<examples>
       </examples>-->
       <exercises>
-      Exercise 1: Freeman Ch. 2– Your 1st MVC Application
+        <title>Exercise 1: Freeman Ch. 2– Your 1st MVC Application</title>
       </exercises>
       <lab>
         <number>1</number>

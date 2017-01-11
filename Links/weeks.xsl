@@ -97,9 +97,15 @@
 <xsl:template match="exercises">
   <h3>Exercises</h3>
   <ul>
+  <!-- for html links -->
   <xsl:for-each select="link">
     <li><a href="{url}" title="{title}"
       target="{target}"><xsl:value-of select="text"/></a>
+    </li>
+    <!-- for text -->
+  </xsl:for-each>
+    <xsl:for-each select="title">
+    <li> <xsl:value-of select="."/>
     </li>
   </xsl:for-each>
 </ul>
