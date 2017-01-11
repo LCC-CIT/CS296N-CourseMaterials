@@ -85,7 +85,7 @@
 </xsl:template>
 
 <xsl:template match="exercises">
-  <h3>Exercises</h3>
+  <h3>Exercise</h3>
   <ul>
   <xsl:for-each select="link">
     <li><a href="{url}" title="{title}"
