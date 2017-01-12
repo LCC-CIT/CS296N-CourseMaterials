@@ -23,7 +23,7 @@
       </examples>-->
       <exercises>
           <link>
-              <url>https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/index </url>
+              <url>https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/</url>
               <text>Your first ASP.NET Core MVC app</text>
               <title>Building your first ASP.NET Core MVC app with Visual Studio</title>
           </link>
