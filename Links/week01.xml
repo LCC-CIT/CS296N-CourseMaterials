@@ -7,11 +7,12 @@
         <title>Read Freeman Ch. 3– The MVC Pattern</title>
         </reading>
       <supplemental>
+          <!--
         <link>
           <url>https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs</url>
           <text>Deploy an ASP.NET Core web app to Azure</text>
           <title>Microsoft tutorial by Rick Anderson and Cesar Blum Silveira</title>
-        </link>
+        </link> -->
         <link>
           <url>http://msdn.microsoft.com/en-us/library/dd381412(v=vs.100).aspx</url>
           <text>MSDN overview of MVC</text>
