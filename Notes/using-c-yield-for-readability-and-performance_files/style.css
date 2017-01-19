@@ -1,0 +1,593 @@
+/**********************************************
+*   Basics & Typography                       *
+***********************************************/
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #0d297a url(http://static.ytechie.com/theme/images/bg.gif) repeat-y top center;
+	font: 62.5% "Lucida Grande", "Lucida Sans Unicode", Sans-Serif;
+	color: #000;
+	text-align: left;
+	}
+
+p,
+ol,
+ul {
+	line-height: 160%;
+	}
+ol { /* to be styled */ }
+ul { /* to be styled */ }
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	font-style: normal;
+	font-weight: bold;
+	background: transparent;
+	color: #050d24;
+	}
+
+h1 {
+	font-size: 2.2em;
+	}
+h2 {
+	font-size: 1.4em;
+	}
+h3, h4, h5, h6 {
+	font-size: 1em;
+	}
+
+a:link {
+	color: #2f63b3;
+	text-decoration: none;
+	}
+a:visited {
+	color: #2f63b3;
+	text-decoration: none;
+	}
+a:hover {
+	color: #4a5265;
+	text-decoration: underline;
+	}
+a:active {
+	color: #2f63b3;
+	text-decoration: underline;
+	}
+
+blockquote {
+	margin: 10px 0;
+	padding: 0 50px;
+	background: transparent url(http://static.ytechie.com/theme/images/blockquote.gif) no-repeat 0 0;
+	color: #abafb9;
+	}
+
+code {
+  background: #e9f0fa;
+  cursor: text;
+  font-family: "Courier New", Courier, monospace;
+ }
+
+small {
+	font-size: 0.8em;
+	}
+
+input, textarea, select { /* to be styled */ }
+
+form { /* to be styled */ }
+
+img { /* to be styled */ }
+img.noborder {
+	border: none;
+	}
+
+.alert {
+	font-weight: bold;
+	color: #f00;
+	}
+
+.left {
+	float: left;
+	}
+.right {
+	float: right;
+	}
+.center {
+	text-align: center;
+	}
+.alignleft {
+	float: left;
+	margin-right: 10px;
+	}
+.alignright {
+	float: right;
+	margin-left: 10px;
+	}
+
+/**********************************************
+*   Structure: Content, Sidebar, etc.         *
+***********************************************/
+
+#outline {
+	width: 760px;
+	margin: 0 auto;
+	padding: 0;
+	background: #fff;
+	font-size: 1.2em;
+	}
+
+
+/**********************
+*   Header            *
+***********************/
+
+#header {
+	width: 100%;
+	height: 118px;
+	background: transparent url(http://static.ytechie.com/theme/images/header_bg.gif) repeat-x left top;
+	}
+
+#header .blogtitle {
+	width: auto;
+	height: 118px;
+	background: transparent url(http://static.ytechie.com/theme/images/header.gif) no-repeat left bottom;
+	}
+#header h1 {
+	padding: 50px 0 0 50px;
+	}
+#header h1 a {
+	color: #fff;
+	}
+
+
+	#navbar {
+		clear: both;
+		float: left;
+		width: 100%;
+		height: 31px;
+		background: transparent url(http://static.ytechie.com/theme/images/nav_bg.gif) repeat-x 0 0;
+		}
+
+	ul.menu {
+		float: left;
+		margin: 0;
+		padding: 0 15px;
+		list-style-type: none;
+		}
+	ul.menu li {
+		float: left;
+		}
+	ul.menu li a {
+		float: left;
+		display: block;
+		height: 28px;
+		padding: 3px 15px 0 15px;
+		line-height: 24px;
+		color: #fff;
+		}
+	ul.menu li a:link,
+	ul.menu li a:visited {
+		color: #fff;
+		background: transparent url(http://static.ytechie.com/theme/images/nav_hover.gif) no-repeat center top;
+		}
+	ul.menu li a:hover,
+	ul.menu li a:active {
+		color: #fff;
+		background: transparent url(http://static.ytechie.com/theme/images/nav_hover.gif) no-repeat center -31px;
+		text-decoration: none;
+		}
+
+	ul.menu li.current_page_item a:link,
+	ul.menu li.current_page_item a:visited,
+	ul.menu li.current_page_item a:hover,
+	ul.menu li.current_page_item a:active {
+		color: #fff;
+		background: transparent url(http://static.ytechie.com/theme/images/nav_active.gif) no-repeat center bottom;
+		text-decoration: none;
+		}
+
+	.searchbar {
+		float: right;
+		width: 240px;
+		height: 31px;
+		margin: 0;
+		}
+	.searchform {
+		width: 240px;
+		height: 20px;
+		text-align: left;
+		}
+	input#s {
+		width: 220px;
+		height: 18px;
+		margin: 5px 0 0 0;
+		padding: 1px 0 0 0;
+		border: 1px solid #0b236c;
+		background: #fff url(http://static.ytechie.com/theme/images/searchbg.gif) repeat-x 0 0;
+		}
+
+
+/***********************
+*  Wrapper             *
+***********************/
+
+#wrapper {
+	float: left;
+	background: #fff;
+	margin: 0 !important;
+	margin: -15px 0 0 0; /* Fuck IE */
+	padding: 0;
+	}
+
+
+/**********************
+*   Content           *
+***********************/
+
+#content {
+	float: left;
+	width: 520px;
+	height: 100%;
+	background: #fff;
+	}
+
+.pages {
+	float: left;
+	width: 500px;
+	background: #dce6ff url(http://static.ytechie.com/theme/images/separator_blue.gif) repeat-x bottom center;
+	}
+.pages-border {
+	clear: both;
+	width: 100%;
+	height: 6px;
+	background: transparent url(http://static.ytechie.com/theme/images/separator_blue.gif) repeat-x 0 0;
+	}
+.page-previous {
+	float: left;
+	padding: 10px 0 16px 30px !important;
+	padding: 0 0 15px 30px; /* Fuck IE */
+	}
+.page-next {
+	float: right;
+	padding: 10px 30px 16px 0 !important;
+	padding: 0 30px 15px 0; /* Fuck IE */
+	}
+
+.page-title {
+	width: 500px;
+	margin: 20px 0 0 0;
+	background: #dce6ff url(http://static.ytechie.com/theme/images/separator_blue.gif) repeat-x bottom center;
+	}
+.page-title h2.page-title-border {
+	padding: 0 0 0 30px;
+	background: transparent url(http://static.ytechie.com/theme/images/separator_blue.gif) repeat-x 0 0;
+	font-size: 1.6em;
+	line-height: 48px;
+	color: #104177;
+	}
+
+/**********************
+*   Blog Entries      *
+***********************/
+
+.post {
+	padding: 20px 20px;
+	background: #fff;
+	}
+
+.postentry {
+	color: #050d24;
+	text-align: justify;
+	}
+.postentry a,
+.postentry a:hover {
+	color: #2f63b3;
+	}
+
+.postentry img.wp-smiley,
+.postentry img.wp-smiley:hover {
+	border: none;
+}
+
+.postentry span.alert {
+	font-weight: bold;
+	color: #f00;
+	}
+
+.posttitle { /* to be styled */ }
+.posttitle a:link,
+.posttitle a:visited,
+.posttitle a:hover,
+.posttitle a:active {
+	color: #050d24;
+	}
+
+.postmeta,
+.postmeta a {
+	margin: 5px 0 ;
+	font-size: 1em;
+	color: #2f63b3;
+	}
+.post-date {
+	padding: 0 0 0 20px;
+	background: url(http://static.ytechie.com/theme/images/icon_date.gif) no-repeat 0 0;
+	}
+.post-comment {
+	padding: 0 0 0 20px;
+	background: url(http://static.ytechie.com/theme/images/icon_comments.gif) no-repeat 0 0;
+	}
+.post-filed {
+	padding: 0 0 0 20px;
+	background: url(http://static.ytechie.com/theme/images/icon_filed.gif) no-repeat 0 0;
+	}
+
+
+/**********************
+*   Comments          *
+***********************/
+
+.commentpage {
+	margin: 0 30px;
+	padding: 0;
+	}
+
+#comments {
+	margin: 0;
+	padding: 0;
+	}
+
+.comments-num {
+	background: transparent url(http://static.ytechie.com/theme/images/separator_green.gif) repeat-x center bottom;
+	padding: 0 0 10px 0;
+	}
+
+#commentlist {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	}
+#commentlist li {
+	padding: 20px 25px 0 0;
+	border-bottom: 1px solid #dce6ff;
+	background: #edf2ff url(http://static.ytechie.com/theme/images/comment_bg.gif) repeat-y 0 0;
+	}
+	.alt {
+		background-color: #fff !important;
+		background-image: none !important;
+		}
+
+.comment-gravatar {
+	float: left;
+	width: 62px;
+	height: 62px;
+	background: transparent url(http://static.ytechie.com/theme/images/gravatar.gif) no-repeat;
+	}
+	img.gravatar {
+		margin: 7px 0 0 7px;
+		border: none;
+		}
+
+.comment-title,
+.comment-meta,
+.comment-text {
+	margin: 0 0 0 80px;
+	}
+
+.comment-title,
+.comment-title a,
+.comment-title a:hover{
+	color: #030612;
+	}
+.comment-meta,
+.comment-meta a,
+.comment-meta a:hover {
+	color: #2f63b3;
+	}
+
+h2#postcomment {
+	margin: 30px 0 0 0;
+	padding: 0 0 10px 0;
+	background: transparent url(http://static.ytechie.com/theme/images/separator_green.gif) repeat-x center bottom;
+	}
+
+.postcomment {
+	clear: both;
+	margin: 20px 0 0 0;
+	padding: 20px;
+	background: #dce6ff url(http://static.ytechie.com/theme/images/separator_blue.gif) repeat-x center top;
+	}
+
+.postcomment input,
+.postcomment textarea {
+	border: 1px solid #b0c5ff;
+	}
+.postcomment input:hover,
+.postcomment textarea:hover {
+	border: 1px solid #fec02a;
+	}
+.postcomment input#author,
+.postcomment input#email,
+.postcomment input#url {
+	width: 100% !important;
+	width: 435px; /* Fuck IE */
+	height: 18px;
+	}
+.postcomment textarea#comment {
+	width: 100% !important;
+	width: 435px; /* Fuck IE */
+	height: 200px;
+	}
+
+.postcomment input#submit {
+	width: auto;
+	height: 25px;
+	padding: 2px 10px 3px 10px;
+	background: #e5edff url(http://static.ytechie.com/theme/images/submit.gif) repeat 0 0;
+	}
+.postcomment input#submit:hover {
+	background: #e5edff url(http://static.ytechie.com/theme/images/submit_hover.gif) repeat 0 0;
+	}	
+
+
+
+/**********************
+*   Sidebar           *
+***********************/
+
+#sidebar {
+	float: right;
+	width: 240px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	}
+
+#sidebar .rssfeeds {
+		height: 140px;
+		margin: 0;
+		padding: 0;
+		background: transparent url(http://static.ytechie.com/theme/images/feeds.gif) no-repeat right bottom;
+		}
+#sidebar h2.feed-title {
+		margin: 0;
+		padding: 20px 0 0 3px;
+		background: none !important;
+		font-size: 1.4em;
+		}
+	.rssfeeds a.rss  {
+		padding: 0 0 0 25px;
+		background: transparent url(http://static.ytechie.com/theme/images/icon_rss.gif) no-repeat 5px 0;
+		}
+
+#sidebar h2 {
+	display: block;
+	margin: 16px 0 6px 0;
+	padding: 0 0 10px 3px;
+	background: url(http://static.ytechie.com/theme/images/separator_green.gif) repeat-x center bottom;
+	font-size: 1.4em;
+	}
+
+#sidebar ul {
+	clear: both;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	color: #bbb;
+	}
+
+#sidebar ul.blc {
+	padding: 0 5px;
+	}
+#sidebar ul.blc li a {
+	margin: 0;
+	padding: 0;
+	background: none;
+	}
+
+#sidebar ul ul li {
+	padding: 0;
+	}
+#sidebar ul ul li a {
+	background: transparent url(http://static.ytechie.com/theme/images/dot.gif) no-repeat 4px 3px;
+	padding: 0 0 0 20px;
+	}
+#sidebar ul ul ul li {
+	margin: 0 0 0 0;
+	}
+
+
+
+/**********************
+*   Bottom            *
+***********************/
+
+#bottom {
+	clear: both;
+	float: left !important;
+	float: none;
+	width: 760px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: #031545 url(http://static.ytechie.com/theme/images/separator_green.gif) repeat-x 0 0;
+	border-top: 20px solid #fff;
+	text-align: left;
+	color: #fff;
+	}
+
+#bottom-left,
+#bottom-mid,
+#bottom-right {
+	width: 30%;
+	padding: 20px 5px 20px 15px;
+	float: left;
+	}
+#bottom h2 {
+	margin: 0 0 10px 0;
+	padding: 0 8px;
+	font-size: 1.6em;
+	color: #fff;
+	}
+#bottom h2 span {
+	color: #508fd2;
+	}
+#bottom ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	border-top: 1px solid #031c5d;
+	}
+#bottom ul li {
+	line-height: 26px;
+	border-bottom: 1px solid #031c5d;
+	}
+#bottom ul li a {
+	display: block;
+	padding: 0 10px;
+	color: #fff;
+	text-decoration: none;
+	}
+#bottom ul li a:hover {
+	background: #010b32;
+	}
+
+/**********************
+*   Footer            *
+***********************/
+
+#footer {
+	width: 100%;
+	height: 74px;
+	clear: both;
+	background: #010b32;
+	border-top: 1px solid #000;
+	color: #fff;
+	}
+
+#footer .validate {
+	background: url(http://static.ytechie.com/theme/images/icon_valid.gif) no-repeat 0 0;
+	padding: 0 5px 0 20px;
+	}
+
+#footer .credits {
+	float: right;
+	margin: 0;
+	padding: 0;
+	border: none;
+	}
+
+#footer p {
+	margin: 0;
+	padding: 12px 25px;
+	line-height: 200%;
+	}
+#footer p a:link,
+#footer p a:visited {
+	color: #a8cbff;
+	}
+#footer p a:hover {
+	color: #fff;
+	}
+#footer p a:active {
+	color: #9ad202;
+	}

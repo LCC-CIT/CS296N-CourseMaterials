@@ -1,0 +1,114 @@
+#bit {
+	
+}
+#bit * {
+	
+}
+#bit {
+	font: 13px/normal "Helvetica Neue", sans-serif; font-size-adjust: none; font-stretch: normal; _display: none;
+}
+.loggedout-follow-shelf {
+	right: 40%; bottom: -300px; position: fixed; z-index: 999999;
+}
+.loggedout-follow-normal {
+	right: 10px; bottom: -300px; position: fixed; z-index: 999999;
+}
+.loggedout-follow-typekit {
+	right: 10px; bottom: -300px; margin-right: 4.5em; position: fixed; z-index: 999999;
+}
+#bit a.bsub {
+	font: 13px/28px "Helvetica Neue", sans-serif; padding: 0px 10px 0px 8px; border: 0px currentColor; color: rgb(204, 204, 204); letter-spacing: normal; overflow: hidden; text-decoration: none !important; float: right; display: block; outline-width: 0px; outline-style: none; font-size-adjust: none; font-stretch: normal; box-shadow: 0px -1px 5px rgba(0,0,0,0.2); background-color: rgb(70, 70, 70); text-shadow: #444 0px -1px 0px; -webkit-box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.20); -moz-box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.20); -o-box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.20); -ms-box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.20);
+}
+#bit a.bsub {
+	-moz-border-radius: 2px 2px 0 0; -webkit-border-radius: 2px 2px 0 0; -o-border-radius: 2px 2px 0 0; -ms-border-radius: 2px 2px 0 0;
+}
+#bit a.bsub span {
+	background: url("../../mu-plugins/admin-bar/wpcom-admin-bar-icons.png") no-repeat 0px -77px; padding-left: 19px;
+}
+#bit a:hover span {
+	background-position: 0px -117px; color: rgb(255, 255, 255) !important;
+}
+#bit a.open.bsub span {
+	background-position: 0px -117px; color: rgb(255, 255, 255) !important;
+}
+#bit a.open.bsub {
+	background: rgb(51, 51, 51);
+}
+#bitsubscribe {
+	background: rgb(70, 70, 70); padding: 15px; border-radius: 2px 0px 0px; width: 200px; color: rgb(255, 255, 255); margin-top: 27px; -moz-border-radius: 2px 0 0 0; -webkit-border-radius: 2px 0 0 0; -o-border-radius: 2px 0 0 0; -ms-border-radius: 2px 0 0 0;
+}
+div.open#bitsubscribe {
+	box-shadow: 0px 0px 8px rgba(0,0,0,0.5); -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); -o-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); -ms-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+#bitsubscribe div {
+	overflow: hidden;
+}
+#bit h3 {
+	margin: 0px 0px 0.5em !important; text-align: left; color: rgb(255, 255, 255); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 300; text-shadow: 0 1px 0 #333;
+}
+#bit #bitsubscribe h3 {
+	margin: 0px 0px 0.5em !important; text-align: left; color: rgb(255, 255, 255); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 300; text-shadow: 0 1px 0 #333;
+}
+#bit #bitsubscribe p {
+	font: 300 15px/1.3em "Helvetica Neue", Helvetica, Arial, sans-serif; margin: 0px 0px 1em; color: rgb(255, 255, 255); font-size-adjust: none; font-stretch: normal; text-shadow: 0 1px 0 #333;
+}
+#bitsubscribe p a {
+	margin: 20px 0px 0px; color: rgb(255, 255, 255); text-decoration: underline;
+}
+#bit #bitsubscribe p.bit-follow-count {
+	font-size: 13px;
+}
+#bitsubscribe input[type=submit] {
+	background: rgb(51, 51, 51); padding: 2px 20px; border-radius: 11px; border: 1px solid rgb(40, 40, 40); color: rgb(204, 204, 204); text-decoration: none; box-shadow: inset 0px 1px 0px #444; text-shadow: 0 1px 0 #000; -moz-border-radius: 11px; -webkit-border-radius: 11px; -webkit-box-shadow: inset 0 1px 0 #444; -moz-box-shadow: inset 0 1px 0 #444; -webkit-transition: all 0.25s ease-in-out; -moz-transition: all 0.25s ease-in-out; -o-transition: all 0.25s ease-in-out; transition: all 0.25s ease-in-out;
+}
+#bitsubscribe input[type=submit]:hover {
+	background: rgb(34, 34, 34); color: rgb(255, 255, 255); text-decoration: none; box-shadow: inset 0px 1px 0px #4f4f4f; -webkit-box-shadow: inset 0 1px 0 #4f4f4f; -moz-box-shadow: inset 0 1px 0 #4f4f4f;
+}
+#bitsubscribe input[type=submit]:active {
+	background: rgb(17, 17, 17); color: rgb(170, 170, 170); text-decoration: none; box-shadow: inset 0px -1px 0px #333; -webkit-box-shadow: inset 0 -1px 0 #333; -moz-box-shadow: inset 0 -1px 0 #333;
+}
+#bitsubscribe input[type=text] {
+	font: 300 15px/normal "Helvetica Neue", Helvetica, Arial, sans-serif; border-radius: 3px; font-size-adjust: none; font-stretch: normal; -moz-border-radius: 3px; -webkit-border-radius: 3px; -o-border-radius: 3px; -ms-border-radius: 3px;
+}
+#bitsubscribe input[type=text]:focus {
+	border: 1px solid rgb(0, 0, 0);
+}
+.open#bitsubscribe {
+	display: block;
+}
+#bsub-subscribe-button {
+	margin: 0px auto; text-align: center;
+}
+#bitsubscribe #lof-readerpromo p {
+	color: rgb(204, 204, 204);
+}
+#bitsubscribe #lof-followpublicize {
+	margin-bottom: 0.5em; border-top-color: rgb(60, 60, 60); border-top-width: 1px; border-top-style: solid;
+}
+#bitsubscribe #lof-followpublicize h3 {
+	padding-top: 1em; font-size: 13px; margin-bottom: 1em !important;
+}
+#bitsubscribe #lof-followpublicize p.lof-followpublicize-twitter {
+	background: rgb(85, 85, 85); border-radius: 3px; overflow: hidden; margin-bottom: 0.5em; box-shadow: inset 0px 1px 1px #333; -moz-border-radius: 3px; -webkit-border-radius: 3px; -webkit-box-shadow: inset 0 1px 1px #333; -moz-box-shadow: inset 0 1px 1px #333; -o-box-shadow: inset 0 1px 1px #333; -ms-box-shadow: inset 0 1px 1px #333; -o-border-radius: 3px; -ms-border-radius: 3px;
+}
+#bitsubscribe #lof-followpublicize p.lof-followpublicize-facebook {
+	background: rgb(85, 85, 85); border-radius: 3px; overflow: hidden; margin-bottom: 0.5em; box-shadow: inset 0px 1px 1px #333; -moz-border-radius: 3px; -webkit-border-radius: 3px; -webkit-box-shadow: inset 0 1px 1px #333; -moz-box-shadow: inset 0 1px 1px #333; -o-box-shadow: inset 0 1px 1px #333; -ms-box-shadow: inset 0 1px 1px #333; -o-border-radius: 3px; -ms-border-radius: 3px;
+}
+#bitsubscribe #lof-followpublicize p.lof-followpublicize-twitter {
+	padding: 10px 10px 5px;
+}
+#bitsubscribe #bsub-credit {
+	font: 11px/normal "Helvetica Neue", sans-serif; margin: 0px 0px -15px; padding: 7px 0px; text-align: center; border-top-color: rgb(60, 60, 60); border-top-width: 1px; border-top-style: solid; font-size-adjust: none; font-stretch: normal;
+}
+#bitsubscribe #bsub-credit a {
+	color: rgb(170, 170, 170); text-decoration: none; text-shadow: 0 1px 0 #262626;
+}
+#bitsubscribe #bsub-credit a:hover {
+	color: rgb(255, 255, 255);
+}
+#bit {
+	display: none;
+}
+#bit a.bsub {
+	display: none;
+}

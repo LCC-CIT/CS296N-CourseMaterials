@@ -1,0 +1,889 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" id="sixapart-standard"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Functions are values: explore C# lambda types in Visual Studio - O'Reilly Broadcast</title>
+    <meta name="generator" content="Movable Type Pro 4.21-en">
+<!-- metas7 -->
+
+
+<meta name="keywords" content=".net, c#, csharp, dotnet, microsoft, programming">
+
+<meta name="description" content="I love that a college professor of mine from long ago, Bob Harper, is &lt;a href=&quot;http://existentialtype.wordpress.com/2011/04/02/functions-are-values/&quot;&gt;tackling the tricky issue of how to teach students about the nature of functions&lt;/a&gt; in his new &lt;a href=&quot;http://existentialtype.wordpress.com/&quot;&gt;Existential Type&lt;/a&gt; blog. His post got me thinking about how you'd go about teaching this concept to a learner&amp;mdash;specifically, in my case, a C# learner. I've given it a bit of thought, and here's what I've come up with.">
+
+
+<meta name="search_date" content="2011-04-09">
+<meta name="author" content="Andrew Stellman">
+
+<!-- metas7 -->
+
+<link rel="alternate" type="application/atom+xml" title="O'Reilly News" href="http://feeds.oreilly.com/oreilly/news">
+
+
+<link rel="alternate" type="application/atom+xml" title="Andrew Stellman" href="http://broadcast.oreilly.com/andrew-stellman/atom.xml">
+
+	<script src="functions-are-values-exploring_files/ga.js" async="" type="text/javascript"></script><script src="functions-are-values-exploring_files/jquery.htm" type="text/javascript" charset="utf-8"></script>
+	<script src="functions-are-values-exploring_files/main.htm" type="text/javascript" charset="utf-8"></script>
+<!-- removed -->
+
+<script language="JavaScript" type="text/javascript" src="functions-are-values-exploring_files/mt.js"></script>
+<script language="JavaScript" type="text/javascript" src="functions-are-values-exploring_files/engine.js"></script>
+
+
+
+	<script type="text/javascript" src="functions-are-values-exploring_files/highslide.htm"></script>
+	<script type="text/javascript" src="functions-are-values-exploring_files/highslide-html.htm"></script>
+
+<script type="text/javascript">    
+    hs.graphicsDir = 'http://blogs.oreilly.com/scripts/highslide/graphics/';
+    hs.outlineType = 'rounded-white';
+    hs.outlineWhileAnimating = true;
+</script>
+<script language="javascript" src="functions-are-values-exploring_files/rave.js"></script>
+<script language="javascript" src="functions-are-values-exploring_files/menutest.js"></script>
+<!-- readspeak -->
+<script>
+<!--
+function readspeaker(rs_call, rs_file_name)
+{
+savelink=rs_call+"&save=1&audiofilename="+rs_file_name; /* Build the save link by adding the required parameters */
+rs_call=rs_call+"&output=audio";			/* build the ReadSpeaker Enterprise call */
+rs_call=escape(rs_call);				/* URL Encode the url since it will be used as a query string parameter */
+
+start_rs_table="<table style='border:1px solid #aeaeae; font-size: 10px; padding-right: 4px;'><tr><td>"; /* Create the table for the inserted player etc */
+
+/* create the embedded flash player that uses the ReadSpeaker Enterprise call */
+
+rs_embed="<object type='application/x-shockwave-flash' data='http://app.readspeaker.com/wr/dewplayer.swf?mp3="+rs_call+"&bgcolor=FFFFFF&showtime=1&autoplay=1' height='20' width='170'><param name='movie' value='http://app.readspeaker.com/wr/dewplayer.swf?mp3="+rs_call+"&autoplay=1'><param name='quality' value='high'><param name='SCALE' value='exactfit'><param name='wmode' value='transparent'><embed wmode='transparent' src='http://app.readspeaker.com/wr/dewplayer.swf?mp3="+rs_call+"' quality='high' pluginspage='http://www.macromedia.com/go/getflashplayer' type='application/x-shockwaveflash' autostart=1 scale='exactfit' height='20' width='170'></embed></object>";
+rs_downloadlink="<br><a href='"+savelink+"'>Download audio</a><br />powered by <a href='http://www.voice-corp.com/'>Readspeaker</a>";		/* create the download link */
+close_rs=" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          <a href='#' onclick='close_rs_div();'>[X]</a>"; /* create the "close window" link */
+end_rs_table="</td></tr></table>";					/* create the end of the table */
+
+var x=document.getElementById('rs_div');	/* get hold of the DIV with the ID "rs_div" see in the body of this page */
+x.innerHTML=start_rs_table+rs_embed+rs_downloadlink+close_rs+end_rs_table;	/* write the HTML code that was created above into the page */
+}
+
+function close_rs_div()
+{
+var x=document.getElementById('rs_div');	/* get hold of the DIV with the ID "rs_div" see in the body of this page */
+x.innerHTML="";					/* fill it with nothing */
+}
+//-->
+</script>
+
+
+<link rel="stylesheet" href="functions-are-values-exploring_files/styles.css" type="text/css">
+<!--Auto Complete -->
+<script type="text/javascript" src="functions-are-values-exploring_files/autocomplete.js"></script>
+<link rel="stylesheet" type="text/css" href="functions-are-values-exploring_files/autocompletestyles.css">
+
+<!-- MarketLive Head Elements -->
+<!--script type="text/javascript" src="http://shop.oreilly.com/includes/jquery/jquery-1.4.min.js"></script-->
+
+<script type="text/javascript" src="functions-are-values-exploring_files/jquery.js"></script>
+
+<script type="text/javascript" src="functions-are-values-exploring_files/jquery_003.js"></script>
+
+<script type="text/javascript" src="functions-are-values-exploring_files/jquery_005.js"></script>
+
+<script type="text/javascript" src="functions-are-values-exploring_files/jquery_004.js"></script>
+<script src="functions-are-values-exploring_files/pqv.js"></script>
+
+
+<link href="functions-are-values-exploring_files/default.css" rel="stylesheet" type="text/css">
+
+<link href="functions-are-values-exploring_files/pqv.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="functions-are-values-exploring_files/stylesheet.css" title="style">
+
+<link rel="shortcut icon" href="http://shop.oreilly.com/images/oreilly/en_us/favicon.ico" type="image/vnd.microsoft.icon">
+
+<script type="text/javascript" src="functions-are-values-exploring_files/headerScripts.js"></script>
+
+<!-- MyBuys libraries and style sheet -->
+<link href="functions-are-values-exploring_files/mbstyles.css" type="text/css" rel="stylesheet" id="mybuysstyles">
+<script type="text/javascript" src="functions-are-values-exploring_files/mybuys3.js"></script><style type="text/css">.mblistrowleft{ cssFloat:;text-align:;} .mblistrowright{ cssFloat:;text-align:;} .mbsalerowleft{ cssFloat:;text-align:;} .mbsalerowright{ cssFloat:;text-align:;} .mbpricerowleft{ cssFloat:;text-align:;} .mbpricerowright{ cssFloat:;text-align:;} .mbdiscrowleft{ cssFloat:;text-align:;} .mbdiscrowright{ cssFloat:;text-align:;} </style>
+<script type="text/javascript" src="functions-are-values-exploring_files/setup.js"></script><style type="text/css">.mbpricerowleft{ cssFloat:;} .mbpricerowright{ cssFloat:;} .mbzone{ width:100%;padding:0 10px;} .mbitem{ width:100%;padding-right:0px;padding-left:0px;padding-top:5px;} .mbnamelink:link{ color:#0000ff;font-size:11px;font-weight:bold;text-decoration:none;font-family:verdana, arial, helvetica;} .mbnamelink:visited{ font-family:verdana, arial, helvetica;color:#551A8B;font-size:11px;font-weight:bold;text-decoration:none;} .mbnamelink:hover{ font-family:verdana, arial, helvetica;color:#0000ff;font-size:11px;font-weight:bold;text-decoration:none;} .mbnamerowspan{ margin-top:5px;} .mbpricelink:link{ font-family:verdana, arial, helvetica;color:#222222;font-size:11px;font-weight:normal;text-decoration:none;} .mbpricelink:visited{ font-family:verdana, arial, helvetica;color:#222222;font-size:11px;font-weight:normal;text-decoration:none;} .mbpricelink:hover{ font-family:verdana, arial, helvetica;color:#222222;font-size:11px;font-weight:normal;text-decoration:none;} .mbpricerowspan{ text-align:center;} .mbpricelinklabel:link{ font-family:verdana, arial, helvetica;color:#222222;font-size:11px;font-weight:normal;text-decoration:none;} .mbpricelinklabel:visited{ font-family:verdana, arial, helvetica;color:#222222;font-size:11px;font-weight:normal;text-decoration:none;} .mbpricelinklabel:hover{ font-family:verdana, arial, helvetica;color:#222222;font-size:11px;font-weight:normal;text-decoration:none;} } .mbpricerowleft_content1{ cssFloat:none;text-align:right;height:12px;} .mbpricerowright_content1{ cssFloat:none;text-align:center;height:12px;} .mbitem_content1{ font-size:11px;width:100%;padding-bottom:26px;text-align:left;} .mbnamerowspan_content1{ text-align:left;cssFloat:left;width:100%;display:block;margin-top:5px;} .mbpricerowspan_content1{ text-align:left;cssFloat:left;width:100%;display:block;height:16px;} .mbpricelink_content1:link{ font-family:verdana, arial, helvetica, sans-serif;color:#000000;font-size:11px;font-weight:normal;text-decoration:none;} .mbpricelink_content1:visited{ font-family:verdana, arial, helvetica, sans-serif;color:#000000;font-size:11px;font-weight:normal;text-decoration:none;} .mbpricelink_content1:hover{ font-family:verdana, arial, helvetica, sans-serif;color:#000000;font-size:11px;font-weight:normal;text-decoration:none;} .mbzone2 .mbzonetitle{ color:#333333;font-size:13px;font-weight:bold;font-family:arial, helvetica, verdana;} .mbzone2 .mblegend{ border-bottom:1px solid #D9D9D9;background-color:#d7d7d7;} .mbzone2 .mbitem{ margin:5px 0px 10px 0px;} .mbzone2 .mbnamelink:link{ color:#207CC1;font-size:14px;font-weight:bold;text-decoration:none;font-family:arial, helvetica, verdana;} .mbzone2 .mbnamelink:visited{ color:#207CC1;font-size:14px;font-weight:bold;text-decoration:none;font-family:arial, helvetica, verdana;} .mbzone2 .mbnamelink:hover{ color:#207CC1;font-size:14px;font-weight:bold;text-decoration:underline;font-family:arial, helvetica, verdana;} .mbzone2 .mbpricerowspan{ color:#333333;font-size:12px;font-weight:bold;} .mbzone2 .mbpricelink:link{ font-family:arial, helvetica, verdana;color:#333333;font-size:12px;font-weight:bold;text-decoration:none;} .mbzone2 .mbpricelink:visited{ font-family:arial, helvetica, verdana;color:#333333;font-size:12px;font-weight:bold;text-decoration:none;} .mbzone2 .mbpricelink:hover{ font-family:arial, helvetica, verdana;color:#333333;font-size:12px;font-weight:bold;text-decoration:none;} .mbzone2 .mbpricelinklabel:link{ font-family:arial, helvetica, verdana;color:#333333;font-size:12px;font-weight:normal;text-decoration:none;} .mbzone2 .mbpricelinklabel:visited{ font-family:arial, helvetica, verdana;color:#333333;font-size:12px;font-weight:normal;text-decoration:none;} .mbzone2 .mbpricelinklabel:hover{ font-family:arial, helvetica, verdana;color:#333333;font-size:12px;font-weight:normal;text-decoration:none;} </style>
+<!-- #MyBuys libraries and style sheet -->
+
+
+
+<link type="text/css" rel="stylesheet" href="functions-are-values-exploring_files/sharethis.css"></head>
+
+<body onclick="if(SHARETHIS.buttonClicked==false){SHARETHIS.stopClosing=false;SHARETHIS.openDuration=0;stClose(100);}" data-rendering="true" onload="setMenu();" id="community" class="mt-archive-listing mt-entry-archive layout-twt"><iframe src="functions-are-values-exploring_files/hub.htm" style="position: absolute; top: -9999em; width: 10px; height: 10px;" name="twttrHubFrame" tabindex="0" allowtransparency="true" id="twttrHubFrame" frameborder="0" scrolling="no"></iframe>
+<div id="page">
+
+	<script>
+	var iPop_imagePath='https://ormstore-prod.oreilly.com/images/oreilly/en_us/';//use this image path along with the IPop.js
+	</script>
+
+<script src="functions-are-values-exploring_files/lPop.js"></script>
+
+<script type="text/javascript" src="functions-are-values-exploring_files/jquery_002.js"></script>
+
+<div id="popdiv"></div>
+<noscript> 
+<a href=" http://www.quantcast.com/p-20l78bOOCbhcg " target="_blank"><img src=" http://pixel.quantserve.com/pixel/p-20l78bOOCbhcg.gif?tags=News " style="display: none;" border="0" height="1" width="1" alt="Quantcast"/></a> 
+</noscript><span id="mybuyscontainer" style="display:none"><script src="functions-are-values-exploring_files/wr.htm" id="mbTransportScript" type="text/javascript"></script></span><table class="mainLayoutTable" border="0" cellpadding="0" cellspacing="0" width="990">
+		<tbody><tr>
+			<td class="navheaderbg">
+				<div> <!--top-header-div-->
+					<!--TopNav Start-->
+					<script type="text/javascript">
+					  function checkIfDefault(keyword) {
+						var defaultSearchTerm = "Search";
+							if(keyword==defaultSearchTerm) {
+						  return '';
+						}
+						else {
+						  return keyword;
+		}
+						  }
+					</script>
+					<div id="header" style="width:990px;">
+						<div class="logo">
+							<a href="http://broadcast.oreilly.com/">
+							<img src="functions-are-values-exploring_files/ml-header-community.png" alt="Functions are values: explore C# lambda types in Visual Studio - O'Reilly Broadcast" border="0"></a>		
+						</div>
+						<div class="tools">
+							<p><a href="https://members.oreilly.com/" class="signInLinkmy">Your Account</a></p>
+							<div id="globalBasket" class="popDownWrapper globalCartWrapper" style=" margin:2px 0px 0px 0px; width:239px;">
+								<div class="popDownNav globalCartNav">
+									<div class="globalCartBasketImg" style="">
+										<img src="functions-are-values-exploring_files/basketicon.gif" alt="Shopping" cart="" border="0">
+									</div>
+									<div class="globalCartBasketInfo" style="">
+										<a href="http://shop.oreilly.com/basket.do"><span class="navHeader">Shopping Cart</span></a>
+									</div>
+								</div> <!--popDownNav-->
+							</div> <!--globalBaseket -->									
+						</div>	<!--tools-->
+						<div id="search-box" class="yui-skin-sam">
+							<form name="searchform" method="get" id="search-form" action="http://search.oreilly.com/">
+								<div class="search">
+									<fieldset>
+										<span id="search-input">
+											<div class="searchInput">
+												<span id="search-field"><input autocomplete="off" class="yui-ac-input" value="Search" name="q" maxlength="64" id="q" onfocus="this.value=checkIfDefault(this.value);" type="text"></span>			
+											</div>
+											<span id="search-button">
+												<input value="SEARCH" src="functions-are-values-exploring_files/search_btn.gif" style="float: left;" alt="Search" border="0" type="image" align="top">
+											</span>
+										</span>
+									<div class="yui-ac-container" id="autocomplete"><div style="display: none;" class="yui-ac-content"><div style="display: none;" class="yui-ac-hd"></div><div class="yui-ac-bd"><ul><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li><li style="display: none;"></li></ul></div><div style="display: none;" class="yui-ac-ft"></div></div></div>
+									</fieldset>
+								</div><!--search-->
+							</form>
+						</div><!--search-box-->
+					</div><!--header-->
+	
+					<ul id="primarynav">
+						<li><a href="http://oreilly.com/" title="">Home</a></li>
+					
+						<li><a href="http://shop.oreilly.com/" title="">Shop</a></li>
+					
+						<li><a href="http://radar.oreilly.com/" title="" "="">Radar: News &amp; Commentary</a></li>
+					
+						<li><a href="http://answers.oreilly.com/" title="">Answers</a></li>
+					
+						<li><a href="http://safari.oreilly.com/?cid=orm-nav-global" title="">Safari Books Online</a></li>
+					
+						<li><a href="http://conferences.oreilly.com/" title="">Conferences</a></li>
+					
+						<li><a href="http://training.oreilly.com/" title="">Training</a></li>
+					
+						<li><a href="http://www.oreillyschool.com/" title="">School of Technology</a></li>
+					
+						<li class="current" style="border-right:0;"><a href="http://people.oreilly.com/index.php?app=members&amp;section=view&amp;module=list" class="current title=">Community</a></li>
+					</ul>
+				</div>  <!--top-header-div-->
+				<div>  <!--bottom-header-div-->
+					<div id="sf-menu-text-nav">
+						<script type="text/javascript" src="functions-are-values-exploring_files/superfish.js"></script> 
+						<script type="text/javascript" src="functions-are-values-exploring_files/supersubs.js"></script>
+						<ul class="sf-menu">
+							<li>
+								<div id="tnc_100015"><a class="sf-top-level-link" href="http://oreilly.com/authors/"><span>Authors</span></a></div>
+							</li>
+							<li>
+								<div id="tnc_100164"><a class="sf-top-level-link current" href="http://oreilly.com/blogs/"><span>Blogs</span></a></div>
+							</li>
+							<li>
+								<div id="tnc_100165"><a class="sf-top-level-link" href="http://forums.oreilly.com/"><span>Forums</span></a></div>
+							</li>
+							<li>
+								<div id="tnc_100167"><a class="sf-top-level-link" href="http://ug.oreilly.com/"><span>User Groups</span></a></div>
+							</li><li>
+								<div id="tnc_100169"><a class="sf-top-level-link" href="http://members.oreilly.com/"><span>Membership</span></a></div>
+							</li>
+							<li>
+								<div id="tnc_100168"><a class="sf-top-level-link" href="http://oreilly.com/community/guidelines.html"><span>Community Guidelines</span></a></div>
+							</li>
+							<li class="GlobalNavInfo"><div>1-800-998-9938 / 707-827-7000 / accounts@oreilly.com</div>
+<div class="social"><a class="youtube" href="http://youtube.com/oreillymedia"><span class="hidden">YouTube</span></a>
+                            <a class="facebook" href="http://www.facebook.com/OReilly"><span class="hidden">Facebook</span></a>
+                            <a class="twitter" href="http://twitter.com/oreillymedia"><span class="hidden">Twitter</span></a>
+                            <a class="rss" href="http://feeds.feedburner.com/oreilly/news"><span class="hidden">RSS</span></a>
+                            </div>
+</li>	
+						</ul>
+						<script type="text/javascript">
+						
+							jQuery(document).ready(function($){
+								jQuery("ul.sf-menu").supersubs({ 
+						
+									minWidth:    12,   // minimum width of sub-menus in em units 
+						
+									maxWidth:    27,   // maximum width of sub-menus in em units 
+						
+									extraWidth:  1     										// extra width can ensure lines don't sometimes turn over 
+																											// due to slight rounding differences and font-family 
+								}).superfish({ 
+						
+									delay:       450,   // millisecond delay on mouseout 
+						
+									animation:   {opacity:'show'},							// animation style 
+						
+									speed:       1,															// animation speed 
+						
+									autoArrows:  false,                         // arrow mark-up config 
+						
+									dropShadows: true       // drop shadow config 
+						
+								}).find('ul').bgIframe({opacity:false});
+								// make top cats stay 'on' when hovering over their subs 
+								jQuery("ul.sf-menu").find("a[onmouseover]").each(function (i){
+									jQuery(this).parent("li").find("ul:first").hover(jQuery(this).attr("onmouseover"), jQuery(this).attr("onmouseout"));
+								});
+							});
+						</script>
+						<!-- dhtml menu end -->
+				</div> <!--sf-menu-text-nav-->
+			</div> <!--bottom-header-div-->	
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+            <div id="content-09" style="border:none;">
+				<div id="content">
+					<div id="content-inner">
+						<div id="alpha">
+							<div id="alpha-inner">
+
+
+
+<div id="entry-46111" class="entry-asset asset hentry">
+
+ <!-- toolbar -->
+<div class="floater" style="float: right; display:block; text-align:left;">
+
+<table class="navbar" width="180">
+<!-- print -->
+<tbody><tr height="20"><td align="right">
+<a href="#" style="text-decoration: none;" onclick="window.open('http://broadcast.oreilly.com/print/46111.html','print','width=800,height=600,menubar=no,status=no,location=yes,toolbar=yes,scrollbars=yes'); return false;"><img src="functions-are-values-exploring_files/printtag.jpg" style="padding-left: 90px; padding-right: 5px;" border="0">Print</a>
+</td></tr>
+<!--twitter button -->
+<!--tr height="26"><td align="right">
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="oreillymedia" data-related="radar:radar.oreilly.com">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+</td></tr-->
+<!-- listen -->
+<tr height="20"><td align="right">
+<a accesskey="L" href="http://app.readspeaker.com/cgi-bin/rsent?customerid=14&amp;lang=en_us&amp;url=http://broadcast.oreilly.com/2011/04/functions-are-values-exploring.html" onclick="readspeaker(this.href+'&amp;selectedhtml='+escape(selectedString), 'rs_46111'); return false;" style="text-decoration: none;"><img src="functions-are-values-exploring_files/listentag.jpg" style="padding-left: 90px; padding-right: 5px;" alt="Listen to the text content of this page" border="0">Listen</a><div class="readspeak"><div id="rs_46111" style="padding-right: 4px; text-align: right;"></div></div>
+		</td></tr>
+<!-- share -->
+    <tr height="20">
+      <td align="right">
+         <div id="share-options" style="padding:3px 0 3px 90px;">
+<script type="text/javascript" src="functions-are-values-exploring_files/sharethis.js"></script><span id="sharethis_0"><a st_page="home" href="javascript:void(0)" title="ShareThis via email, AIM, social bookmarking and networking sites, etc." class="stbutton stico_rotate"><span st_page="home" class="stbuttontext">ShareThis</span></a></span>
+           </div>
+</td></tr>      
+  </tbody></table>
+
+</div><!-- floater#-->
+
+
+<!-- #toolbar -->
+<div class="asset-header" style="float: left; display:block; width: 300px;">
+        <h1 id="page-title" class="asset-name entry-title"><!-- RSPEAK_START -->Functions are values: explore C# lambda types in Visual Studio<!-- RSPEAK_STOP --></h1>
+
+       <div class="asset-meta">
+	
+<img src="functions-are-values-exploring_files/andrew_stellman.jpg" style="padding-right: 5px; padding-top: 2px; float: left; border: medium none;" alt=""><!-- RSPEAK_START -->By <a href="http://www.oreillynet.com/pub/au/2454">Andrew Stellman</a><br>April  9, 2011<!-- RSPEAK_STOP --> <span class="separator">|</span> <a href="http://broadcast.oreilly.com/2011/04/functions-are-values-exploring.html#comments">Comments: 1</a><br>
+
+
+
+<p class="asset-meta"><span class="social-counters">
+<span class="retweet"><iframe title="Twitter Tweet Button" style="width: 110px; height: 20px;" class="twitter-share-button twitter-count-horizontal" src="functions-are-values-exploring_files/tweet_button.htm" allowtransparency="true" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="functions-are-values-exploring_files/widgets_002.js"></script></span>
+
+<span class="plus"><g:plusone href="http://broadcast.oreilly.com/2011/04/functions-are-values-exploring.html" size="medium" count="true"></g:plusone></span>
+
+<span class="like"><iframe src="functions-are-values-exploring_files/like.htm" style="border: medium none; overflow: hidden; width: 110px; height: 20px;" allowtransparency="true" frameborder="0" scrolling="no"></iframe></span>
+</span></p>
+</div>
+
+    </div>
+    <div class="asset-content entry-content">	
+        <div class="asset-body">
+
+
+
+       
+
+
+
+
+ 
+
+<!-- RSPEAK_START -->
+            <p>I love that a college professor of mine from long ago, Bob Harper, is <a href="http://existentialtype.wordpress.com/2011/04/02/functions-are-values/">tackling the tricky issue of how to teach students about the nature of functions</a> in his new <a href="http://existentialtype.wordpress.com/">Existential Type</a>
+ blog. It's been—wow—over two decades since I took his 15-212 course at 
+CMU. His post strikes a chord for me because I've spent a lot of time 
+over the last few years thinking a lot about how to teach complex 
+programming concepts to people who are learning from the ground up, 
+which is what my third book, <a id="aptureLink_jqkFmXmhpf" href="http://oreilly.com/catalog/0636920000679">Head First C#</a>,
+ does reasonably well (in my totally unbiased opinion). Dr. Harper was 
+an enormous influence and a real mentor to me when I was at CMU. He had a
+ strong influence how I thought, learned, and grew, probably more than 
+almost anyone else there during my student career.</p>
+
+<p>Anyway, his post got me thinking about how you'd go about teaching 
+this concept to a learner—specifically, in my case, a C# learner. I've 
+given it a bit of thought, and here's what I've come up with. Obviously,
+ it's <em>not</em> a complete guide to learning lambda expressions, but 
+it's a possible starting point for people who are confused. If you're 
+having trouble struggling with what exactly a lambda expression is, and 
+especially if the question, "What's the value of a lambda expression?" 
+seems bizarre, then this might be helpful.</p>
+
+<p>For anyone who hasn't seen it, C# has a <a href="http://msdn.microsoft.com/en-us/library/bb397687.aspx">pretty rich syntax for lambda expressions</a>.
+ We didn't tackle them when we were working on the book—they were mostly
+ out of scope for our readers, relegated to an appendix. But Dr. 
+Harper's post inspired me to give some thought about exactly how I'd 
+teach lambdas to people who are just learning programming concepts.<br>
+ <br>
+I think it's useful to start with the same problem that he started with.
+ It turned out that a lot of his students got an exam question wrong:<br>
+ <br>
+</p><blockquote>What are the type and value of the expression (fn (x : int) =&gt; x div 0)?</blockquote><br>
+ <br>
+After nearly every single student in the class got this question wrong, 
+the course staff had T-shirts made up that said, "Functions are values,"
+ and in his post Dr. Harper ponders the question of how to do a better 
+job teaching this concept. It's a very cool feeling for me to see him 
+work through some of the same problems of teaching tough programming 
+concepts, because I've spent many, many hours over the last few years 
+doing exactly the same thing.<p></p>
+
+<p><span class="mt-enclosure mt-enclosure-image" style="display: inline;class:mt-image-right"><a href="http://oreilly.com/catalog/0636920000679"><img alt="Head First C# Cover" src="functions-are-values-exploring_files/hfcsharp_cover_author.png" class="mt-image-right" style="float: right; margin: 0pt 0pt 20px 20px;" onclick="window.open('http://oreilly.com/catalog/9780596514822','popup'); return false" height="232" width="180"></a></span>It
+ definitely makes sense to me that this is a tough concept to teach, 
+even to very clever people (like CMU CS students). One of the things 
+that I tried to do over the course of <em>Head First C#</em> was to make
+ types "real" to our readers, through a combination of using them in 
+lots of different ways, illustrating and even personifying them, and 
+using the IDE to explore them.<br>
+ <br>
+That last bit is important. One big reason that I like C# as a teaching 
+platform is that Visual Studio 2010 is a fantastic IDE, and more 
+importantly, a great tool for exploring. It's also got an excellent 
+pre-compiler type inference system which, when combined with the 
+IntelliSense boxes that it displays when you hover over variables, can 
+be really useful in explaining things. The reason I think C# would be 
+useful for teaching students how to think about this particular problem 
+is that it's a strongly type language that uses declared types - and 
+lambdas are no exception.<br>
+ <br>
+So given all this, I gave some thought about the question Dr. Harper 
+raised about how to teach lambdas to someone relatively new to a lot of 
+these concepts. Specifically, I'd want to figure out how to make lambdas
+ seem more "real" to the learner.<br>
+ <br>
+I'd start by just having them create a new console application, add these two lines to the Main() method:</p>
+
+<p><code>int zero = 0;<br>
+Func<int, int=""> myFunction = (x) =&gt; x/zero;</int,></code></p>
+
+<p>So first of all, this is where C# being strongly typed and having 
+declared types makes it a good teaching tool. If you give a student a 
+line of code like this: <code>int myVariable = 123;</code> —and ask what
+ the type and value of that variable is, they'll tell you that it's an 
+integer with the value 123. So now if you give them a line of code like 
+this: <code>Func<int, int=""> myFunction = (x) =&gt; x/zero;</int,></code>
+ —and ask them what the type and value of the variable is, there's a 
+good chance that they'll at least have a good guess at the type.</p>
+
+<p>This is the first opportunity to use the IDE to explore types. If you go into the IDE and hover over <code>Func<int, int=""></int,></code>, you'll see an IntelliSense window pop up:</p>
+
+<p><span class="mt-enclosure mt-enclosure-image" style="display: inline;"><img alt="FunctionsAreValues screenshot 3.png" src="functions-are-values-exploring_files/FunctionsAreValues%2520screenshot%25203.png" class="mt-image-none" style="" height="93" width="560"></span></p>
+
+<p>So the type that we're dealing with a <a href="http://msdn.microsoft.com/en-us/library/ms173171.aspx">delegate</a>. A delegate is a type that references a method, and <em>Head First C#</em>
+ readers will recognize from chapter 11. That's another reason I like C#
+ for understanding these concepts: you get a specific name ("delegate") 
+for the type of a lambda expression. Now, that's a somewhat tangled 
+concept, and it took us a lot of trial and error to figure out a good 
+approach to teaching it. But somehow having something "real" that you 
+can play around with—and, more importantly, that you can explore with 
+the IDE—makes it easier to understand.</p>
+
+<p>The next thing I'd have the learner do—and I encourage you to follow 
+along yourself!—is stick a breakpoint on the closing bracket of the 
+method. If you're not a C# developer, here's a screenshot from <a href="http://www.microsoft.com/express/Downloads/">Visual Studio 2010 Express</a> (the free C# development IDE from Microsoft):<br>
+ <br>
+<span class="mt-enclosure mt-enclosure-image" style="display: inline;"><img alt="FunctionsAreValues screenshot 1.png" src="functions-are-values-exploring_files/FunctionsAreValues%2520screenshot%25201.png" class="mt-image-none" style="" height="328" width="460"></span></p>
+
+<p>(The breakpoint is indicated by the red dot and highlight.)</p>
+
+<p>For those of you who are following along, start debugging the 
+program. When the breakpoint breaks, hover over the myFunction variable.
+ This is what you'll see:</p>
+
+<p><span class="mt-enclosure mt-enclosure-image" style="display: inline;"><img alt="FunctionsAreValues screenshot 2.png" src="functions-are-values-exploring_files/FunctionsAreValues%2520screenshot%25202.png" class="mt-image-none" style="" height="23" width="335"></span></p>
+
+<p>Here's why I really like using the IDE as a learning and teaching 
+tool. By now, most learners have had a lot of repeated experiences where
+ they want to find out the value of a variable, and do so by hovering 
+over it and looking at that box. Well, now they've hovered over a 
+variable that's got a lambda expression—and its <em>value</em> shows up <em>in exactly the same place</em>. </p>
+
+<p>The reason that's an effective teaching tool is that it takes 
+advantage of an important learning principle: it's easy to learn 
+something if you group it with other, more familiar things visually. 
+When a learner sees a method in the IntelliSense box that shows variable
+ values, there's a good chance that he'll get that "a-ha" moment where 
+the idea that the method itself is a value, and that value is assigned 
+to a variable called myFunction.<br>
+ <br>
+Next, we'd break down exactly what that <code>{Method = {Int32 <main>b__0(Int32)}}</main></code> means. It looks odd at first, but it's easy to break it into pieces:<br>
+ <br>
+</p><ul><br>
+<li><code>Method = { ... }</code> - that means this value is a method</li><br>
+<li><code>Int32</code> - that's the return value, an int</li><br>
+<li><code>&lt;Main&gt;b__0</code> - hmm, not sure what's going on there</li><br>
+<li><code>(Int32)</code> - that's the argument, an int</li><br>
+</ul> <p></p>
+
+<p>So what about that <code>&lt;Main&gt;b__0</code> bit? Once you get 
+past the intimidating greater than, less than, and  underscores, there's
+ Main (the method where this thing lives), and b__0. And it's not hard 
+to figure out where b__0 comes from. Just add four more identical lambda
+ declarations, except call them myFunction2, myFunction3, myFunction4, 
+and myFunction5. Then debug the program again and hover over each of 
+them, and you'll see they're called b__1, b__2, b__3, and b__4. So 
+that's just a name that's automatically generated... which makes sense, 
+because all methods have names, and you never specified one, so the 
+compiler had to come up with one on its own.<br>
+ <br>
+So that's my starting point for how I'd use C# and experimentation with 
+the IDE to teach a novice or intermediate programmer that functions are 
+values.<br>
+ <br>
+There's one more thing I want to mention. I don't think I ever dropped 
+Dr. Harper a note about it, but one of the exercises he assigned to us 
+all those many years ago was the inspiration for an exercise that I 
+created for our <em>Head First C#</em> readers. It's the exercise in 
+chapter 8 where they create a Hide and Seek game and use it to explore a
+ virtual house. He had us doing something similar, except in Lisp. We 
+relied pretty heavily on <a href="http://www.stellman-greene.com/2007/12/11/building-video-games/">teaching our readers through building video games</a>,
+ because it really helped motivate them to learn. I can definitely thank
+ Bob Harper for helping show me that first hand all those years ago.</p>
+
+<p><em>Andrew Stellman is the author of  <a id="aptureLink_jqkFmXmhpf" href="http://oreilly.com/catalog/0636920000679">Head First C#</a> and other books from O'Reilly. You can read more from Andrew at <strong><a id="aptureLink_ErgwExjqiW" href="http://www.stellman-greene.com/">Building Better Software</a></strong>.</em></p>
+ 
+ 
+ 
+
+<!-- RSPEAK_STOP -->        
+
+
+    </div>
+    <br clear="left"><div class="asset-footer">
+        
+                
+        
+                <div class="entry-tags">
+    <h4 class="entry-tags-header">Tags<span class="delimiter">:</span></h4>
+    <ul class="entry-tags-list">
+        <li class="entry-tag"><a href="http://oreilly.com/blogs/tags.csp?tag=.net" rel="tag">.net</a><span class="delimiter">,</span></li> <li class="entry-tag"><a href="http://oreilly.com/blogs/tags.csp?tag=c#" rel="tag">c#</a><span class="delimiter">,</span></li> <li class="entry-tag"><a href="http://oreilly.com/blogs/tags.csp?tag=csharp" rel="tag">csharp</a><span class="delimiter">,</span></li> <li class="entry-tag"><a href="http://oreilly.com/blogs/tags.csp?tag=dotnet" rel="tag">dotnet</a><span class="delimiter">,</span></li> <li class="entry-tag"><a href="http://oreilly.com/blogs/tags.csp?tag=microsoft" rel="tag">microsoft</a><span class="delimiter">,</span></li> <li class="entry-tag"><a href="http://oreilly.com/blogs/tags.csp?tag=programming" rel="tag">programming</a></li>
+    </ul>
+</div>
+
+
+<br>
+
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+
+<div style="width: 100%; margin-right: 0px; margin-left: 0px; padding-right: 0px; padding-left: 0px;"><h3>You might also be interested in:</h3>
+<div style="width: 100%; margin-right: 0px; margin-left: 0px; padding-right: 0px; padding-left: 0px;">
+<!-- MyBuys Web Recommendation Zone -->
+<div id="mybuyspagezone4" mybuyszone="4"><table class="mbzone" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td> <table class="mbzone" border="0" cellpadding="0" cellspacing="0"> <tbody><tr>            <td valign="bottom" align="center"> <span class="mbrowspan"><span class="mbimgspan" style="width: 150px"> <a rel="nofollow" class="mbimglink" href="http://shop.oreilly.com/product/9780596520137.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-9780596520137.IP"><img class="mbimg" alt="Version Control with Git" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=8933869039&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')" src="functions-are-values-exploring_files/bkt_005.gif" height="112" width="85"></a></span></span></td>                    <td valign="bottom" align="center"> <span class="mbrowspan"><span class="mbimgspan" style="width: 150px"> <a rel="nofollow" class="mbimglink" href="http://shop.oreilly.com/product/0636920023234.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920023234.IP"><img class="mbimg" alt="Hacking and Securing iOS Applications" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=40945789739&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')" src="functions-are-values-exploring_files/bkt_002.gif" height="112" width="85"></a></span></span></td>                    <td valign="bottom" align="center"> <span class="mbrowspan"><span class="mbimgspan" style="width: 150px"> <a rel="nofollow" class="mbimglink" href="http://shop.oreilly.com/product/0636920016038.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920016038.IP"><img class="mbimg" alt="HTML5 Cookbook" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=23038906007&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')" src="functions-are-values-exploring_files/bkt_003.gif" height="112" width="85"></a></span></span></td>            </tr>	<tr>	    	        	<td valign="top" align="center"><div class="mbitem" style="width: 150px">  <span class="mbnamerowspan"> <a rel="nofollow" class="mbnamelink" href="http://shop.oreilly.com/product/9780596520137.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-9780596520137.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=8933869039&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Version Control with Git</a></span> <span>      <div align="center">          <a rel="nofollow" href="http://shop.oreilly.com/product/9780596520137.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-9780596520137.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=8933869039&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')" style="text-decoration: none; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color: rgb(0, 0, 0); font-weight: normal; text-align: center;">          <img src="functions-are-values-exploring_files/STARS-4-5.gif" alt="4.5 out of 5" title="4.5 out of 5" style="padding-top: 5px;" border="0">           </a></div>  </span>         <span class="mbpricerowspan">      <span class="mbpricerowleft"><a rel="nofollow" class="mbpricelinklabel" href="http://shop.oreilly.com/product/9780596520137.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-9780596520137.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=8933869039&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Print:</a>&nbsp;</span>      <span class="mbpricerowright"><a rel="nofollow" class="mbpricelink" href="http://shop.oreilly.com/product/9780596520137.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-9780596520137.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=8933869039&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">$34.99</a></span>    </span>        <span class="mbpricerowspan">      <span class="mbpricerowleft"><a rel="nofollow" class="mbpricelinklabel" href="http://shop.oreilly.com/product/9780596520137.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-9780596520137.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=8933869039&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Ebook:</a>&nbsp;</span>      <span class="mbpricerowright"><a rel="nofollow" class="mbpricelink" href="http://shop.oreilly.com/product/9780596520137.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-9780596520137.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=8933869039&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">$27.99</a></span>    </span>               		<span name="mbdbgspan" cl="OREILLY" cp="" cc="http://purl.oreilly.com/resource-center/none" pr="9780596520137.IP" re="6521443" po="5254976" cr="5254946" style="display:none;"></span>	 </div></td>	        	    	        	<td valign="top" align="center"><div class="mbitem" style="width: 150px">  <span class="mbnamerowspan"> <a rel="nofollow" class="mbnamelink" href="http://shop.oreilly.com/product/0636920023234.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920023234.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=40945789739&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Hacking and Securing iOS Applications</a></span> <span>  </span>         <span class="mbpricerowspan">      <span class="mbpricerowleft"><a rel="nofollow" class="mbpricelinklabel" href="http://shop.oreilly.com/product/0636920023234.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920023234.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=40945789739&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Print:</a>&nbsp;</span>      <span class="mbpricerowright"><a rel="nofollow" class="mbpricelink" href="http://shop.oreilly.com/product/0636920023234.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920023234.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=40945789739&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">$39.99</a></span>    </span>        <span class="mbpricerowspan">      <span class="mbpricerowleft"><a rel="nofollow" class="mbpricelinklabel" href="http://shop.oreilly.com/product/0636920023234.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920023234.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=40945789739&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Ebook:</a>&nbsp;</span>      <span class="mbpricerowright"><a rel="nofollow" class="mbpricelink" href="http://shop.oreilly.com/product/0636920023234.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920023234.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=40945789739&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">$19.99</a></span>    </span>               		<span name="mbdbgspan" cl="OREILLY" cp="" cc="http://purl.oreilly.com/resource-center/none" pr="0636920023234.IP" re="6521443" po="5254976" cr="5254946" style="display:none;"></span>	 </div></td>	        	    	        	<td valign="top" align="center"><div class="mbitem" style="width: 150px">  <span class="mbnamerowspan"> <a rel="nofollow" class="mbnamelink" href="http://shop.oreilly.com/product/0636920016038.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920016038.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=23038906007&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">HTML5 Cookbook</a></span> <span>  </span>         <span class="mbpricerowspan">      <span class="mbpricerowleft"><a rel="nofollow" class="mbpricelinklabel" href="http://shop.oreilly.com/product/0636920016038.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920016038.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=23038906007&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Print:</a>&nbsp;</span>      <span class="mbpricerowright"><a rel="nofollow" class="mbpricelink" href="http://shop.oreilly.com/product/0636920016038.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920016038.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=23038906007&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">$34.99</a></span>    </span>        <span class="mbpricerowspan">      <span class="mbpricerowleft"><a rel="nofollow" class="mbpricelinklabel" href="http://shop.oreilly.com/product/0636920016038.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920016038.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=23038906007&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Ebook:</a>&nbsp;</span>      <span class="mbpricerowright"><a rel="nofollow" class="mbpricelink" href="http://shop.oreilly.com/product/0636920016038.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920016038.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=23038906007&amp;wrid=2ddf6c00-8d13-4a4807-16a3-ab421bd4815b&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">$27.99</a></span>    </span>               		<span name="mbdbgspan" cl="OREILLY" cp="" cc="http://purl.oreilly.com/resource-center/none" pr="0636920016038.IP" re="6521443" po="5254976" cr="5254947" style="display:none;"></span>	 </div></td>	        	    	</tr></tbody></table> </td></tr> </tbody></table></div>
+<!-- End MyBuys Web Recommendation Zone -->
+</div>
+</div>
+
+<div class="linebreak">
+
+<div class="noindex">
+<div id="comments" class="comments">
+
+
+
+<h2 class="comments-header">1 Comment</h2>
+<div class="comments-content">
+    
+     <!-- If comment doesn't have a top-level-parent -->
+            <div id="comment-6937101" class="comment">
+<div class="inner">
+<div class="comment-header">
+<div class="asset-meta">
+<span class="byline">
+By 
+
+<span class="vcard author">tracy</span>
+
+on <a href="http://broadcast.oreilly.com/2011/04/functions-are-values-exploring.html#comment-6937101"><abbr class="published" title="2011-04-13T02:39:11-08:00">April 13, 2011  2:39 AM</abbr></a>
+
+</span>
+</div>
+</div>
+<div class="comment-content">
+<p>nice.</p>
+</div>
+</div>
+</div>
+
+
+        
+    
+    
+</div>
+
+    
+
+
+
+</div>
+</div>
+
+</div>
+
+
+
+</div>
+</div>
+
+<div id="beta">
+    <div id="beta-inner">
+ 
+    <div class="widget-left">
+<h3>News Topics</h3>
+<div id="default-cloud" class="widget-cloud">
+<iframe src="functions-are-values-exploring_files/newstagcloud.htm" name="related" marginwidth="0" marginheight="0" frameborder="0" height="300" scrolling="no" width="174"></iframe>
+</div>
+
+</div>
+	
+
+    </div>
+</div>
+
+<div id="gamma">
+    <div id="gamma-inner">
+    <div class="noindex"><div class="widget-right" style="margin-right: 0px; margin-left: 0px; padding-right: 0px; padding-left: 0px;"><h3>Recommended for You</h3>
+<div class="widget-content" style="margin-right: 0px; margin-left: 0px; padding-right: 0px; padding-left: 0px;">
+<!-- MyBuys Web Recommendation Zone -->
+<div id="mybuyspagezone3" mybuyszone="3"><table class="mbzone" border="0" cellpadding="0" cellspacing="0"> <tbody><tr>            <td valign="top"><div class="mbitem"> <span class="mbrowspan"><span class="mbimgspan"> <a rel="nofollow" class="mbimglink" href="http://shop.oreilly.com/product/0636920024774.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920024774.IP"><img class="mbimg" alt="McCullough and Berglund on Mastering Advanced Git" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=42139119229&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')" src="functions-are-values-exploring_files/bkt_004.gif" height="131" width="85"></a></span></span> <span class="mbnamerowspan"> <a rel="nofollow" class="mbnamelink" href="http://shop.oreilly.com/product/0636920024774.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920024774.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=42139119229&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">McCullough and Berglund on Mastering Advanced Git</a></span> <span>  </span>               <span class="mbpricerowspan">      <span class="mbpricerowleft"><a rel="nofollow" class="mbpricelinklabel" href="http://shop.oreilly.com/product/0636920024774.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920024774.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=42139119229&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Video:</a>&nbsp;</span>      <span class="mbpricerowright"><a rel="nofollow" class="mbpricelink" href="http://shop.oreilly.com/product/0636920024774.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920024774.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=42139119229&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">$39.99</a></span>    </span>           		<span name="mbdbgspan" cl="OREILLY" cp="" cc="http://purl.oreilly.com/resource-center/none" pr="0636920024774.IP" re="6521443" po="5254976" cr="5254946" style="display:none;"></span>	 </div></td>            </tr> <tr>            <td valign="top"><div class="mbitem"> <span class="mbrowspan"><span class="mbimgspan"> <a rel="nofollow" class="mbimglink" href="http://shop.oreilly.com/product/0636920023562.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920023562.IP"><img class="mbimg" alt="Programming iOS 5" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=41924191187&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')" src="functions-are-values-exploring_files/bkt.gif" height="112" width="85"></a></span></span> <span class="mbnamerowspan"> <a rel="nofollow" class="mbnamelink" href="http://shop.oreilly.com/product/0636920023562.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920023562.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=41924191187&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Programming iOS 5</a></span> <span>  </span>           <span class="mbpricerowspan">      <span class="mbpricerowleft"><a rel="nofollow" class="mbpricelinklabel" href="http://shop.oreilly.com/product/0636920023562.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920023562.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=41924191187&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Ebook:</a>&nbsp;</span>      <span class="mbpricerowright"><a rel="nofollow" class="mbpricelink" href="http://shop.oreilly.com/product/0636920023562.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920023562.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=41924191187&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">$39.99</a></span>    </span>               		<span name="mbdbgspan" cl="OREILLY" cp="" cc="http://purl.oreilly.com/resource-center/none" pr="0636920023562.IP" re="6521443" po="5254976" cr="5254946" style="display:none;"></span>	 </div></td>            </tr> <tr>            <td valign="top"><div class="mbitem"> <span class="mbrowspan"><span class="mbimgspan"> <a rel="nofollow" class="mbimglink" href="http://shop.oreilly.com/product/0636920017462.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920017462.IP"><img class="mbimg" alt="McCullough and Berglund on Mastering Git" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=20194791087&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')" src="functions-are-values-exploring_files/bkt_006.gif" height="131" width="85"></a></span></span> <span class="mbnamerowspan"> <a rel="nofollow" class="mbnamelink" href="http://shop.oreilly.com/product/0636920017462.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920017462.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=20194791087&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">McCullough and Berglund on Mastering Git</a></span> <span>      <div align="center">          <a rel="nofollow" href="http://shop.oreilly.com/product/0636920017462.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920017462.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=20194791087&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')" style="text-decoration: none; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color: rgb(0, 0, 0); font-weight: normal; text-align: center;">          <img src="functions-are-values-exploring_files/STARS-4-5.gif" alt="4.5 out of 5" title="4.5 out of 5" style="padding-top: 5px;" border="0">           </a></div>  </span>               <span class="mbpricerowspan">      <span class="mbpricerowleft"><a rel="nofollow" class="mbpricelinklabel" href="http://shop.oreilly.com/product/0636920017462.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920017462.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=20194791087&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">Video:</a>&nbsp;</span>      <span class="mbpricerowright"><a rel="nofollow" class="mbpricelink" href="http://shop.oreilly.com/product/0636920017462.do?green=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;cmp=af-mybuy-0636920017462.IP" onmousedown="mybuys.track('http://t.p.mybuys.com/webrec/wrClick.do?client=OREILLY&amp;consumerId=43F387BE-934E-5BD5-A016-A9DD323A3C91&amp;pid=20194791087&amp;wrid=2ddf6c00-8d13-4a3c4f-e260-c90a3a220a40&amp;sessionId=3F762801-8569-51FA-B629-D23963F00E45')">$49.99</a></span>    </span>           		<span name="mbdbgspan" cl="OREILLY" cp="" cc="http://purl.oreilly.com/resource-center/none" pr="0636920017462.IP" re="6521443" po="5254976" cr="5254947" style="display:none;"></span>	 </div></td>            </tr></tbody></table></div>
+<!-- End MyBuys Web Recommendation Zone -->
+</div>
+</div><div class="widget-right">
+<h3>Got a Question?</h3>
+<div class="widget-content">
+ <div id="gsfn_list_widget">
+    
+
+    <div class="sidebar-item-content"><img src="functions-are-values-exploring_files/satisfaction-icons.gif"><br>
+ <div class="gsfn_content">
+    <form id="gsfn_search_form" action="http://getsatisfaction.com/oreilly" method="get" accept-charset="utf-8" onsubmit="gsfn_search(this); return false;">
+      <input name="widget" value="" type="hidden">
+      <input name="limit" value="3" type="hidden">
+      <input name="style" value="" type="hidden">
+      <input name="callback" value="gsfnResultsCallback" type="hidden">
+      <input name="format" value="json" type="hidden">
+      <label for="gsfn_search_query" class="gsfn_label">
+
+Do you have a question about <strong>O'Reilly's products and services</strong>? Share an idea! Report a problem...</label><br><br>
+      <input size="16" name="query" id="gsfn_search_query" maxlength="120" style="padding-bottom: 6px;" type="text"><br>
+
+      <input id="continue" value="Continue" type="submit">
+    </form>
+
+    <div id="gsfn_search_results" style="height: auto;"></div>
+  </div>
+
+<br>
+
+<a href="http://getsatisfaction.com/oreilly" class="widget_title">Active discussions:</a><br><br>
+
+      <div id="gsfn_content">Loading... </div>
+
+       <div class="powered_by"><a href="http://getsatisfaction.com/"><img alt="Favicon" src="functions-are-values-exploring_files/favicon.gif" style="vertical-align: middle;"></a> <a href="http://getsatisfaction.com/">Service and support by Satisfaction</a></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+&nbsp;</div>
+</div>
+
+
+
+</div>
+</div>
+</div></td></tr><tr valign="bottom">
+		<td colspan="3" class="navfooterbg" align="center">
+
+    	<!--BottomNav Start-->
+<table class="emailSignUpTable" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td style="width: 516px;">
+        <form method="POST" id="emailSignUp" action="http://post.oreilly.com/client/o/oreilly/forms/quicksignup.cgi"> 
+          <table border="0" cellpadding="0" cellspacing="0" width="500"> 
+            <tbody> 
+              <tr> 
+				<td width="275"><div style="padding-left: 12px;">Sign up today to receive special discounts,<br> product alerts, and news from O'Reilly.</div></td>
+                <td width="172">
+				<input name="client_token" value="oreilly" type="hidden"><input name="subscribe" value="optin" type="hidden">
+                        	<input name="success_url" value="http://oreilly.com/store/newsletter-thankyou.html" type="hidden"> 
+                        	<input name="error_url" value="http://oreilly.com/store/newsletter-signup-error.html" type="hidden"> 
+                        	<input name="news_oreilly" value="1" type="hidden">
+				<input name="email_addr" value="Enter Email" maxlength="100" size="12" class="NavSearchBottom" type="text"></td>
+				<td width="53"><input alt="Submit" src="functions-are-values-exploring_files/emailsignup_btn.gif" name="submit" value="submit" border="0" type="image"></td></tr></tbody></table></form> 
+		</td>
+		<td>
+			<a href="http://oreilly.com/oreilly/privacy.html">Privacy Policy &gt;</a>
+			<br>
+			<a href="http://oreilly.com/pdf/sample-newsletter.pdf">View Sample Newsletter &gt;</a>
+		</td>
+		<td style="text-align: right;">
+</td><td style="text-align: right;">
+<ul class="utility social">
+<li><a class="youtube" href="http://youtube.com/oreillymedia" target="_blank"><span class="hidden">YouTube</span></a></li>
+<li><a class="facebook" href="http://www.facebook.com/OReilly" target="_blank"><span class="hidden">Facebook</span></a></li>
+<li><a class="twitter" href="http://twitter.com/oreillymedia" target="_blank"><span class="hidden">Twitter</span></a></li>
+<li><a class="rss" href="http://feeds.feedburner.com/oreilly/news" target="_blank"><span class="hidden">RSS</span></a></li>
+<li><a class="all-rss" href="http://oreilly.com/feeds">View All RSS Feeds &gt;</a></li>
+</ul>
+</td>
+	</tr></tbody>
+</table>
+
+
+<div id="multiColumnFooter">
+
+	<div id="footer-branding">
+		<img src="functions-are-values-exploring_files/logo02.gif" alt="O'Reilly">
+<p class="copyright">© 2011, O'Reilly Media, Inc.</p>
+		<p><span class="phone-number">(707) 827-7019</span><span class="phone-number">(800) 889-8969</span></p>
+<p class="trademarks">All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.</p>
+	</div>
+
+	
+	<div class="contentSectionBlock">
+		
+
+				<!-- style="width:25%;" -->
+
+				<div class="contentSectionContainer">
+					<span id="footerColumn-1" class="contentSection">
+						<h3>About O'Reilly</h3>
+						<ul>
+								<li><a class="footer" href="http://oreilly.com/academic/">Academic Solutions</a></li>
+								<li><a class="footer" href="http://oreilly.com/jobs/">Jobs</a></li>
+								<li><a class="footer" href="http://oreilly.com/contact.html">Contacts</a></li>
+								<li><a class="footer" href="http://oreilly.com/about/">Corporate Information</a></li>
+									
+								<li><a class="footer" href="http://press.oreilly.com/index.html">Press Room</a></li>
+								<li><a class="footer" href="http://oreilly.com/oreilly/privacy.csp">Privacy Policy</a></li>
+									
+								<li><a class="footer" href="http://oreilly.com/terms/">Terms of Service</a></li>
+								<li><a class="footer" href="http://oreilly.com/oreilly/author/intro.csp">Writing for O'Reilly</a></li>
+						
+						</ul>
+					</span>
+				</div>
+			
+
+				<!-- style="width:25%;" -->
+
+				<div class="contentSectionContainer">
+					<span id="footerColumn-2" class="contentSection">
+						<h3>Community</h3>
+						<ul>
+									
+								<li><a class="footer" href="http://oreilly.com/authors/">Authors</a></li>
+									
+								<li><a class="footer" href="http://oreilly.com/community/">Community &amp; Featured Users</a></li>
+								<li><a class="footer" href="http://forums.oreilly.com/">Forums</a></li>
+								<li><a class="footer" href="https://members.oreilly.com/">Membership</a></li>
+								<li><a class="footer" href="http://elists.oreilly.com/">Newsletters</a></li>
+								<li><a class="footer" href="http://answers.oreilly.com/">O'Reilly Answers</a></li>
+								<li><a class="footer" href="http://oreilly.com/feeds/">RSS Feeds</a></li>
+								<li><a class="footer" href="http://ug.oreilly.com/">User Groups</a></li>
+						
+						</ul>
+					</span>
+				</div>
+			
+
+				<!-- style="width:25%;" -->
+
+				<div class="contentSectionContainer">
+					<span id="footerColumn-3" class="contentSection">
+						<h3>More O'Reilly Sites</h3>
+						<ul>
+						
+								<li><a class="footer" href="http://igniteshow.com/">igniteshow.com</a></li>
+								<li><a class="footer" href="http://makerfaire.com/">makerfaire.com</a></li>
+								<li><a class="footer" href="http://makezine.com/">makezine.com</a></li>
+								<li><a class="footer" href="http://craftzine.com/">craftzine.com</a></li>
+								<li><a class="footer" href="http://labs.oreilly.com/">labs.oreilly.com</a></li>
+									<li><h2>Partner Sites</h2></li>
+									
+								<li><a class="footer" href="https://www.x.com/community/ppx/devzone">PayPal Developer Zone</a></li>
+								<li><a class="footer" href="http://blogs.forbes.com/oreillymedia/">O'Reilly Insights on Forbes.com</a></li>
+
+						</ul>
+					</span>
+				</div>
+			
+
+				<!-- style="width:24%;" -->
+
+				<div class="contentSectionContainer">
+					<span id="footerColumn-4" class="contentSection">
+						<h3>Shop O'Reilly</h3>
+						<ul>
+								<li><a class="footer" href="http://shop.oreilly.com/category/customer-service.do">Customer Service</a></li>
+								<li><a class="footer" href="http://shop.oreilly.com/category/customer-service.do">Contact Us</a></li>
+								<li><a class="footer" href="http://shop.oreilly.com/category/customer-service/shipping-information.do">Shipping Information</a></li>
+								<li><a class="footer" href="http://shop.oreilly.com/category/customer-service/ordering-payment.do">Ordering &amp; Payment</a></li>
+								<li><a class="footer" href="http://shop.oreilly.com/category/customer-service/oreilly-guarantee.do">The O'Reilly Guarantee</a></li>
+						</ul>
+					</span>
+				</div>
+			
+		
+		<div style="clear:both;"></div>
+	</div>
+
+	
+</div>
+<!--BottomNav End-->
+
+</td>
+</tr>
+
+	
+<!-- Satisfaction Widget JS -->
+<script src="functions-are-values-exploring_files/widgets.js" type="text/javascript"></script><script src="functions-are-values-exploring_files/topics.json" type="text/javascript"></script>
+<!-- End Satisfaction Widget JS -->
+
+<!-- MyBuys Page Parameters -->
+<script type="text/javascript">
+mybuys.setPageType("CONTENT_ITEM");
+mybuys.set("categoryid","http://purl.oreilly.com/resource-center/none");
+</script>
+<!-- #MyBuys Page Parameters -->
+<!-- analytics -->
+
+<!-- Start Quantcast tag --> 
+<script type="text/javascript" src="functions-are-values-exploring_files/quant.js"></script> 
+<script type="text/javascript">_qoptions = { tags:"News" }; _qacct="p-20l78bOOCbhcg";quantserve();</script> 
+ 
+<!-- End Quantcast tag --> 
+
+<script type="text/javascript">
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-4591498-1']);
+_gaq.push(['_setDomainName', 'oreilly.com']);
+_gaq.push(['_addIgnoredRef', 'oreilly.com']);
+_gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+<!-- #analytics --> 
+<script language="JavaScript" type="text/javascript">
+var s_account="ororeilly,orglobal"  // change report suite ID accordingly
+</script>
+<!-- SiteCatalyst code version: H.20.3. Copyright 1997-2009 Omniture, Inc. More info available at http://www.omniture.com -->
+<script language="JavaScript" type="text/javascript" src="functions-are-values-exploring_files/s_code.js"></script>
+<script language="JavaScript" type="text/javascript">
+s.pageName="oreilly:broadcast:functions are values explore c lambda types in visual studio"
+s.channel="oreilly"
+s.prop1="oreilly:broadcast"
+s.prop2="oreilly:broadcast:broadcast"
+s.prop3="oreilly:broadcast:broadcast:broadcast"
+s.prop4="article"
+s.hier1="oreilly,broadcast,broadcast,broadcast"
+s.prop5="functions are values explore c lambda types in visual studio"
+s.prop6="BC46111" 
+s.prop7="04/09/2011" // publish date
+//s.prop15=""
+//These props should be set when a blog/article is read, post or reply made. 
+s.prop21="andrew stellman" // author name
+s.prop22="broadcast" // blog name
+s.prop23="functions are values explore c lambda types in visual studio" // entry title
+s.prop24="04/09/2011" // post date
+//s.prop25="" // days since last post
+s.prop26="thursday" // day of week
+/* Conversion Variables */
+s.campaign=""
+s.events=""
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)//--></script>
+<!-- End SiteCatalyst code version: H.20.2. -->
+
+
+
+
+<!-- MyBuys Page Initialization -->
+<script type="text/javascript">
+  mybuys.initPage();
+</script>
+<!-- #MyBuys Page Initialization -->
+
+
+<!-- chartbeat -->
+<script type="text/javascript">
+var cbjspath = "static.chartbeat.com/js/chartbeat.js?uid=1632&domain=broadcast.oreilly.com";
+var cbjsprotocol = (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://");
+document.write(unescape("%3Cscript src='"+cbjsprotocol+cbjspath+"' type='text/javascript'%3E%3C/script%3E"))
+</script><script src="functions-are-values-exploring_files/chartbeat.js" type="text/javascript"></script>
+<!-- #chartbeat -->
+
+<script type="text/javascript" src="functions-are-values-exploring_files/utilities.js"></script>
+<script type="text/javascript" src="functions-are-values-exploring_files/datasource-min.js"></script> 
+<script type="text/javascript" src="functions-are-values-exploring_files/autocomplete-min.js"></script>
+<script type="text/javascript" src="functions-are-values-exploring_files/autocomplete_data.js"></script>
+
+
+
+</tbody></table>
+
+
+</div><iframe style="display: none;" src="functions-are-values-exploring_files/getSegment.htm" name="stSegmentFrame" id="stSegmentFrame" frameborder="0" height="0px" scrolling="no" width="0px"></iframe><div style="visibility: hidden; top: -999px; left: -999px;" class="stwrapper" id="stwrapper"><div class="stclose"></div><iframe src="functions-are-values-exploring_files/index.htm" style="top: 0px; left: 0px;" name="stframe" class="stframe" id="stframe" allowtransparency="true" frameborder="0" height="450px" scrolling="no" width="350px"></iframe></div></body></html>

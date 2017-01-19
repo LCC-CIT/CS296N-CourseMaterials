@@ -1,0 +1,689 @@
+@import url(http://broadcast.oreilly.com/base.css?1);
+@import url(http://broadcast.oreilly.com/screen.css?2);
+
+body { 
+   	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+hr { display:none; }
+ol, ul { list-style: none; }
+
+a:link {
+	color: #0000ff;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #0000ff;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:active {}
+
+/*  Sidebar Widget Styles */
+
+.widget-left {
+	margin: 0 0 20px 20px;
+	
+}
+.widget-left h3 {
+	font-weight:normal;
+	margin:0;
+	padding:2px 0;
+	border-bottom:1px solid #666;
+	text-transform:uppercase;
+	font-size: 11px;
+	line-height: 15px;
+	width:170px;
+}
+
+.widget-left .widget-content {
+	margin:0;
+	padding:10px 0;
+}
+.widget-left .widget-content ul,
+.widget-right .widget-content ul { margin: 5px 0; }
+.widget-right .widget-content ul li,
+.widget-left .widget-content ul li { margin-bottom: 10px; }
+
+.widget-middle {
+	margin: 0 0 20px 0;
+	font-size:11px;
+	font-family:verdana,arial,sans-serif;
+	width:180px;
+}
+
+.widget-middle h2 {
+	border-bottom:1px solid #666666;
+	color:#990000;
+	font-size:11px;
+	font-weight:bold;
+	margin:0;
+	padding:0 0 5px 0;
+	text-transform:uppercase;
+	font-family:Verdana,helvetica,arial,sans-serif;
+}
+
+.widget-middle ul { padding:14px; }
+.widget-middle ul li { list-style-type:disc; }
+
+.widget-right {
+	margin: 0 0 20px 0;	
+	border: 1px solid #999;
+	font-family:verdana,arial,sans-serif;
+	position:relative;
+	width: 179px;
+}
+
+.widget-right h3 {
+	border-bottom: 1px solid #999;
+	font-weight: bold;
+	font-size: 11px;
+
+	text-align: center;
+	background: #eee url(http://blogs.oreilly.com/news/_ui/images/bg/box-item-header.gif) repeat-x 0 0;
+	padding:3px 0;
+}
+.widget-right .widget-content {
+}
+
+.widget-right ul.booklist { padding:10px; }
+.widget-right ul.booklist li { list-style-type:disc; }
+
+
+/* Widget Tag cloud */
+
+.cbox { text-align: left; }
+
+.widget-cloud a:link {
+	color: #990000;
+	text-decoration: none;
+}
+
+.widget-cloud a:visited {
+	color:#990000;
+	text-decoration: none;
+}
+
+.widget-cloud a:hover {
+	text-decoration: underline;
+}
+
+.widget-cloud .widget-list {
+margin: 10px 0;
+}
+
+.rightbox .widget-list {
+padding-bottom: 10px;
+}
+.widget-cloud .widget-list-item {
+display: inline;
+margin: 0 5px 0 0;
+padding: 0;
+line-height: 22px;
+background: none;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.widget-cloud .rank-1 { font-size: 22px; }
+.widget-cloud .rank-2 { font-size: 20px; }
+.widget-cloud .rank-3 { font-size: 18px; }
+.widget-cloud .rank-4 { font-size: 18px; }
+.widget-cloud .rank-5 { font-size: 15px; }
+.widget-cloud .rank-6 { font-size: 11px; }
+.widget-cloud .rank-7 { font-size: 10px; }
+.widget-cloud .rank-8 { font-size: 10px; }
+.widget-cloud .rank-9 { font-size: 10px; }
+.widget-cloud .rank-10 { font-size: 10px; display: none;}
+
+
+.asset-body { padding-top: 10px; }
+
+.asset-body p { margin: 12px 0px; }
+
+
+
+/* Layout styles */
+/* ------------------------- */
+
+#container,
+/*
+#container-inner,
+*/
+
+.layout-twt #alpha {
+    left: 190px;
+    width: 600px;
+    margin:0px;
+}
+
+.layout-twt #beta {
+    left: -600px;    
+    width: 190px;
+}
+
+.layout-twt #gamma {
+    width: 190px;
+}
+
+#sb1 { float:left; width:180px; }
+#center-body { float:left; width:360px; padding: 0 20px 0 0; }
+/*
+#container-inner {
+    width: 990px;
+    min-height: 100%;
+    margin: 0px auto 11px;
+    text-align: left;
+    border-left: 1px solid #d4d4d4;    
+    border-right: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+    overflow: hidden;
+}
+*/
+
+#content-09 {
+border: none;
+}
+#content-inner,
+#footer-inner {
+    position: relative;
+    width: 990px;
+}
+
+
+#content,
+#content-inner,
+#alpha,
+#alpha-inner { margin:0px; }
+
+#content { 
+    margin: 20px 0;  
+}
+
+
+/* Front Page Entry Styles */
+
+.top_stories {
+	border-bottom:1px solid #666666;
+	color:#990000;
+	font-size:11px;
+	font-weight:bold;
+	margin-bottom:10px;
+	padding:0 0 5px 0;
+	text-transform:uppercase;
+	font-family:Verdana,helvetica,arial,sans-serif;
+}
+
+/*.archive-title,*/
+.archive-title h3 {
+	border-bottom: 1px solid rgb(102, 102, 102);
+	padding: 10px 0;
+	color: rgb(153, 0, 0);
+	font-size:11px;
+	font-weight:bold;
+	margin-bottom:10px;
+	text-transform:uppercase;
+	font-family:verdana,helvetica,arial,sans-serif;
+}
+.entry-title { color:#444444;font-size:14px; }
+
+.entry-asset { padding:0px; margin:0 0 10px 0; }
+
+.asset-header h2 a {
+	color:#444444;
+	text-decoration:none;
+}
+.asset-header h2 a:hover {
+	color:#990000;
+	text-decoration:none;
+}
+.asset-header h2 a:visited {
+	color: #444444;
+}
+
+.asset-body ul { list-style:disc; }
+.asset-body ol { list-style:decimal; }
+
+.entry-tags-header,
+.entry-tag {
+	font-size:11px;
+}
+.asset-footer { border:0px; }
+
+#front-page-list {
+	font-family:Verdana,helvetica,arial,sans-serif;
+	font-size:11px;
+	line-height:12px;
+	text-align:left;
+}
+#front-page-list a {
+	text-decoration: none;
+}
+#front-page-list h2 {
+	text-transform: none;
+	color:#0033CC;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;
+	line-height: 17px;
+}
+
+#front-page-list img {
+	border: none;
+}
+
+.asset-meta {
+	font-size: 11px;
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+.asset-body {
+	font-size: 11px;
+	line-height: 14px;
+	margin-top:-15px;
+        font-family: Verdana;
+}
+
+* html .asset-body { margin-top:-10px; }
+
+.asset-body a { font-weight:bold; }
+
+.more {
+	text-align:left;
+	padding-left: 11px;
+	background: url(http://oreilly.com/images/icons/arrow.gif) no-repeat 0 3px;
+}
+
+.ap_r_front {
+	clear:right;
+	float:right;
+	margin-bottom:4px;
+	margin-left:10px;
+}
+.highslide a:link {
+	color:#0000FF;
+	text-decoration:none;
+}
+.highslide {
+	cursor:url(http://digitalmedia.oreilly.com/scripts/highslide/graphics/zoomin.cur), pointer;
+	outline-color:invert;
+	outline-style:none;
+	outline-width:medium;
+}
+.highslide img {
+	margin:0px;
+	padding:0px;
+	border: none;
+}
+.highslide-html {
+    	background-color: #FFFFFF;
+}
+.highslide-html-blur {
+}
+.highslide-html-content {
+	position: absolute;
+    	display: none;
+	width: 120px;
+}
+.highslide-loading {
+    	display: block;
+	color: #000000;
+	font-size: 8pt;
+	font-family: sans-serif;
+	font-weight: bold;
+    	text-decoration: none;
+	padding: 2px;
+	border: 1px solid #000000;
+    	background-color: #ffffff;
+    
+    /*padding-left: 22px;
+    background-image: url(highslide/graphics/loader.white.gif);
+    background-repeat: no-repeat;
+    background-position: 3px 1px;*/   
+}
+.highslide-display-block {
+    	display: block;
+}
+.highslide-display-none {
+    	display: none;
+}
+
+.control {
+	float: right;
+    	display: block;
+    /*position: relative;*/
+	margin: 0 5px;
+	font-size: 9pt;
+    	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #999;
+}
+.control:hover {
+	color: black !important;
+}
+.highslide-move {
+    	cursor: move;
+}
+
+
+.ap_r {
+	float: right;
+	/*clear: right;*/
+	padding: 0px;
+	margin: 8px;
+}
+
+.ap_c {
+	padding: 0;
+	clear: right;
+	margin-top: 15px;
+	width: 400px;
+   	display:block;
+   	clear:both;
+   	margin:0 auto;	
+}
+
+.apcaption {
+	background-color: #FFFFFF;
+	font-style: italic;
+	font-size: 12px;
+	text-align: left;
+	padding: 8px;
+}
+
+
+
+/* Comment Styles */
+
+.comments-header,
+.comments-open-header { font-size:14px; }
+
+.comment-content { 
+	font-size:11px;
+}
+.comment-header .asset-meta {
+	font-size:11px;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+
+#footer {
+	border-top: 1px solid #d4d4d4;
+}
+#footer-inner,
+#footer-content {
+	color:#000000;
+	background-color: #ffffff;
+	text-align:center;
+        padding: 0;
+}
+#footer-content p { font-size:11px; }
+#footer-content a {
+	color: #0000ff;
+	text-decoration: none;
+	font-size:11px;
+}
+#footer-content a:hover {
+	text-decoration: underline;
+}
+
+.clear {
+clear:both;
+display:block;
+font-size:0pt;
+line-height:0pt;
+}
+/* TEST BLOCK FOR LAURA START */
+table.navbar
+{font-size: 8pt;
+margin: 0px;
+padding: 0px; 
+border: 0px; 
+font-weight: bold;
+/*border: 1px solid #444444;*/}
+
+table.menu
+{font-size: 8pt;
+margin: 0px;
+padding: 0px;
+font-weight: normal;}
+
+td.menuNormal
+{padding: 0px;
+color: black;
+font-weight: normal;
+vertical-align: top;
+background-color: white;}
+
+td.menuHover
+{padding: 0px;
+color: black;
+font-weight: normal;
+vertical-align: top;
+/*remove the following line for drop-down menu with images*/
+background-color: white;}
+
+div.menuNormal
+{display: none;
+position: static;}
+
+div.menuHover
+{
+/*border: 1px solid #444444; */
+background-color: white;
+display: inline;
+position: absolute;
+}
+
+a.menuitem:link
+{
+text-decoration: none;
+color: #444444;
+background-color: white;
+display: block;}
+
+a.menuitem:visited
+{text-decoration: none;
+color: #444444;
+background-color: white;
+display: block;}
+
+a.menuitem:hover
+{text-decoration: none;
+color: #444444;
+background-color: white;
+display: block;}
+
+a.menuitem:active
+{text-decoration: none;
+color: black;
+background-color: white;
+}
+/* TEST BLOCK FOR LAURA END */
+
+
+/* code_beautify.css */
+.acode {
+border: 1px #cccccc solid;
+padding: 2px;
+clear: right;
+margin-top: 15px;
+width: 500px;
+   display:block;
+   clear:both;
+   margin:0 auto 1em;	
+   text-align: left;
+   background-color: #FFFFFF;
+   overflow: auto;
+
+   }
+.linecomment { color: #FF8000; }
+.blockcomment { color: #FF8000; }
+.prepro { color: #0000BB; }
+.select {}
+.quote { color: #DD0000; }
+.category1 { color: #007700; }
+.category2 { color: #0000BB; }
+.category3 { color: #0000BB; }
+
+
+pre {
+overflow-x:auto;
+}
+code, pre {
+background:white none repeat scroll 0%;
+color:black;
+font-family:Courier,monospace;
+font-weight:normal;
+line-height:1em;
+margin:0pt;
+padding:0pt;
+}
+
+.acode2 {
+overflow-x: visible;
+}
+.sidebar-item-content {
+overflow: hidden;
+}
+.asset-body blockquote {
+margin: .5em 0 .4em 0;
+padding: 0 0 .5em 28px;
+display: block;
+background: transparent url(http://radar.oreilly.com/images/quotes.gif) left 3px no-repeat;
+line-height: 1.4em;
+}
+
+.pullquote {
+border: thin black solid; padding: 20px 12px;
+}
+
+/* new subhead */
+.subhead{
+margin-left:0px;
+margin-right:0px;
+margin-top:0px;
+color: #444444;
+font-size: 12px;
+font-weight: bold;
+}
+
+#comments-open-challenge {
+color: red;
+font-weight: bold;
+font-style:italic;
+}
+#tweetmeme_button {
+margin-top:3px;
+}
+
+h3 {
+font-weight: bold;
+}
+
+/*social sprites */
+
+#sf-menu-text-nav .GlobalNavInfo .social {
+float:right;
+padding: 0;
+line-height:19px;
+overflow:hidden;
+text-align:right;
+}
+
+#sf-menu-text-nav .GlobalNavInfo .social a {
+border:none;
+float:left;
+list-style:none outside none;
+height: 20px;
+width: 20px;
+margin: 0 7px 0 0;
+display: block;
+padding: 0;
+}
+
+#sf-menu-text-nav .GlobalNavInfo .social a.youtube {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll 0 0;
+}
+
+#sf-menu-text-nav .GlobalNavInfo .social a.slideshare {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll -22px 0;
+}
+
+#sf-menu-text-nav .GlobalNavInfo .social a.facebook {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll -44px 0;
+}
+
+#sf-menu-text-nav .GlobalNavInfo .social a.twitter {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll -66px 0;
+}
+
+#sf-menu-text-nav .GlobalNavInfo .social a.plancast {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll -88px 0;
+}
+
+#sf-menu-text-nav .GlobalNavInfo .social a.rss {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll -110px 0;
+margin-right: 0px;
+}
+
+#sf-menu-text-nav .GlobalNavInfo .social a.rss {
+margin: 0 7px 0 0;
+}
+
+.navfooterbg .social {
+float:right;
+padding:6px 0;
+line-height:19px;
+overflow:hidden;
+text-align:right;
+}
+.navfooterbg .social ul, .navfooterbg .social li {
+float: left;
+}
+
+.navfooterbg .social a {
+border:none;
+float:left;
+list-style:none outside none;
+height: 20px;
+width: 20px;
+margin: 0;
+display: block;
+padding: 0;
+}
+
+.navfooterbg .social a.youtube {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll 0 -22px;
+}
+
+.navfooterbg .social a.slideshare {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll -22px -22px;
+}
+
+.navfooterbg .social a.facebook {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll -44px -22px;
+}
+
+.navfooterbg .social a.twitter {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll -66px -22px;
+}
+
+.navfooterbg .social a.rss {
+background: transparent url(http://cdn.oreilly.com/images/sitewide-headers/social-icons.gif) no-repeat scroll -110px -22px;
+}
+
+.navfooterbg .social a.all-rss {
+width: auto;
+margin-right: 10px;
+}
+
+.hidden {
+display: none;
+}

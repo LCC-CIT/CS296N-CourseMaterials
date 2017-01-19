@@ -1,0 +1,1278 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0112)http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><HTML 
+lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><!--
+	generated in 0.396 seconds
+	80786 bytes batcached for 300 seconds
+--><HEAD>
+<META content="text/html; charset=UTF-8" http-equiv="Content-Type"><TITLE>Entity 
+Framework: Queries involving many to many relationship tables « Mehroz’s 
+Experiments</TITLE><LINK rel="pingback" href="http://smehrozalam.wordpress.com/xmlrpc.php">
+<STYLE type="text/css" media="screen">
+@import "http://s1.wp.com/wp-content/themes/pub/garland/style.css?m=1352691612g";
+</STYLE>
+
+<META name="google-site-verification" content="bR3pKqEkkFBnao9NFZaHSSz2zvnO_Nic-UKrbwJ3XJM">
+<META name="y_key" content="18d81bf10478e287">
+<META name="msvalidate.01" content="4AF0C3F0808CC4C99DFE5DC08567A1E6"><LINK 
+title="Mehroz's Experiments » Feed" rel="alternate" type="application/rss+xml" 
+href="http://smehrozalam.wordpress.com/feed/"><LINK title="Mehroz's Experiments » Comments Feed" 
+rel="alternate" type="application/rss+xml" href="http://smehrozalam.wordpress.com/comments/feed/">
+<LINK title="Mehroz's Experiments » Entity Framework: Queries involving many to many relationship&nbsp;tables Comments Feed" 
+rel="alternate" type="application/rss+xml" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/feed/">
+<SCRIPT type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</SCRIPT>
+<LINK rel="stylesheet" type="text/css" href="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/global.css">
+<LINK id="loggedout-subscribe-css" rel="stylesheet" type="text/css" href="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/widget.css" 
+media="all"><LINK id="post-reactions-css" rel="stylesheet" type="text/css" href="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/style(1).css" 
+media="all">
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/jquery.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/widget.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/comment-reply.js"></SCRIPT>
+<LINK id="highlander-comments-css" rel="stylesheet" type="text/css" href="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/style(2).css" 
+media="all"><!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1352186683g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<LINK title="RSD" rel="EditURI" type="application/rsd+xml" href="http://smehrozalam.wordpress.com/xmlrpc.php?rsd">
+<LINK rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://smehrozalam.wordpress.com/wp-includes/wlwmanifest.xml"><LINK 
+title="Cannot access all microsoft.com domain&nbsp;websites" rel="prev" href="http://smehrozalam.wordpress.com/2010/06/29/cannot-access-all-microsoft-com-domain-websites/">
+<LINK title="TSQL: Some interesting usages of&nbsp;Coalesce" rel="next" href="http://smehrozalam.wordpress.com/2010/07/29/tsql-some-interesting-usages-of-coalesce/">
+<META name="GENERATOR" content="MSHTML 9.00.8112.16441"><LINK rel="canonical" 
+href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/">
+<LINK rel="shortlink" href="http://wp.me/pj3dG-fW"><LINK rel="alternate" type="application/json+oembed" 
+href="http://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=http%3A%2F%2Fsmehrozalam.wordpress.com%2F2010%2F06%2F29%2Fentity-framework-queries-involving-many-to-many-relationship-tables%2F&amp;for=wpcom-auto-discovery"><LINK 
+rel="alternate" type="application/xml+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=http%3A%2F%2Fsmehrozalam.wordpress.com%2F2010%2F06%2F29%2Fentity-framework-queries-involving-many-to-many-relationship-tables%2F&amp;for=wpcom-auto-discovery">
+<META content="article" property="og:type">
+<META content="Entity Framework: Queries involving many to many relationship&nbsp;tables" 
+property="og:title">
+<META content="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/" 
+property="og:url">
+<META content="Entity framework handles tables participating in Many to Many relationship in a nice manner. If the junction table (sometimes called bridge table, association table, link table, etc) only consists ..." 
+property="og:description">
+<META content="Mehroz's Experiments" property="og:site_name">
+<META content="http://smehrozalam.files.wordpress.com/2010/06/erd-many-to-many-1.jpg?w=300&amp;h=300" 
+property="og:image">
+<META content="http://smehrozalam.files.wordpress.com/2010/06/entity-model-many-to-many-1.jpg?w=300&amp;h=300" 
+property="og:image">
+<META content="http://smehrozalam.files.wordpress.com/2010/06/erd-many-to-many-2.jpg?w=300&amp;h=300" 
+property="og:image">
+<META content="http://smehrozalam.files.wordpress.com/2010/06/entity-model-many-to-many-2.jpg?w=300&amp;h=300" 
+property="og:image"><LINK rel="shortcut icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311976022g" 
+sizes="16x16 24x24 32x32 48x48"><LINK rel="icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311976022g" 
+sizes="16x16 24x24 32x32 48x48"><LINK rel="apple-touch-icon-precomposed" href="http://s0.wp.com/i/webclip.png?m=1352312491g">
+<LINK rel="openid.server" href="http://smehrozalam.wordpress.com/?openidserver=1">
+<LINK rel="openid.delegate" href="http://smehrozalam.wordpress.com/"><LINK 
+title="Mehroz's Experiments" rel="search" type="application/opensearchdescription+xml" 
+href="http://smehrozalam.wordpress.com/osd.xml"><LINK title="WordPress.com" rel="search" 
+type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml">
+<STYLE type="text/css">
+	/* <![CDATA[ */
+			/* ]]> */
+	</STYLE>
+
+<META name="application-name" content="Mehroz's Experiments">
+<META name="msapplication-window" content="width=device-width;height=device-height">
+<META name="msapplication-tooltip" content="My computational experiments, mostly related to .Net and SQL server, to be posted here">
+<META name="msapplication-task" content="name=Subscribe;action-uri=http://smehrozalam.wordpress.com/feed/;icon-uri=http://s2.wp.com/i/favicon.ico">
+<META name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico">
+<META name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico">
+<META name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico">
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/google_service.js">
+</SCRIPT>
+
+<SCRIPT type="text/javascript">
+GS_googleAddAdSenseService("ca-pub-3443918307802676");
+GS_googleEnableAllServices();
+</SCRIPT>
+
+<SCRIPT type="text/javascript">
+GA_googleAddSlot("ca-pub-3443918307802676", "wpcom_sharethrough");
+</SCRIPT>
+
+<SCRIPT type="text/javascript">
+GA_googleFetchAds();
+</SCRIPT>
+
+<SCRIPT type="text/javascript"> 
+	window.google_analytics_uacct = "UA-52447-2"; 
+</SCRIPT>
+
+<SCRIPT type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'wordpress.com']);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</SCRIPT>
+</HEAD>
+<BODY class="sidebars highlander-enabled highlander-light">
+<DIV id="navigation"></DIV>
+<DIV id="wrapper">
+<DIV id="container" class="clear-block">
+<DIV id="header">
+<DIV id="logo-floater">
+<H1><A href="http://smehrozalam.wordpress.com/">Mehroz’s 
+Experiments</A></H1></DIV>
+<UL class="links primary-links">
+  <LI class="page_item page-item-2"><A href="http://smehrozalam.wordpress.com/about/">About</A></LI>
+  <LI class="page_item page-item-442"><A href="http://smehrozalam.wordpress.com/disclaimer/">Disclaimer</A></LI>
+</UL></DIV> <!-- /header -->
+<DIV id="sidebar-left" class="sidebar">
+<UL class="menu">
+  <LI id="pages-2" class="widget widget_pages">
+  <H2 class="widgettitle">Pages</H2>
+  <UL>
+    <LI class="page_item page-item-2"><A href="http://smehrozalam.wordpress.com/about/">About</A></LI>
+    <LI class="page_item page-item-442"><A href="http://smehrozalam.wordpress.com/disclaimer/">Disclaimer</A></LI></UL></LI>
+  <LI id="linkcat-18909" class="widget widget_links">
+  <H2 class="widgettitle">My stuff</H2>
+  <UL class="xoxo blogroll">
+    <LI><A title="Articles I have written on CodeProject" href="http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=778360">Articles</A></LI>
+    <LI><A title="My CodeProject Profile" href="http://www.codeproject.com/Members/Syed-Mehroz-Alam">CodeProject 
+    Profile</A></LI>
+    <LI><A title="My Linked-In Profile" href="http://pk.linkedin.com/in/smehrozalam">Linked-In 
+    Profile</A></LI>
+    <LI><A title="My MSDN profile" href="http://social.msdn.microsoft.com/profile/syed%20mehroz%20alam">MSDN 
+    Profile</A></LI>
+    <LI><A title="My Silverlight Forums’ Profile" href="http://forums.silverlight.net/members/mehroz.aspx">Silverlight 
+    Profile</A></LI></UL></LI>
+  <LI id="categories-324563431" class="widget widget_categories">
+  <H2 class="widgettitle">Categories</H2>
+  <UL>
+    <LI class="cat-item cat-item-30656"><A title="View all posts filed under Achievements" 
+    href="http://smehrozalam.wordpress.com/category/achievements/">Achievements</A> 
+    (10)</LI>
+    <LI class="cat-item cat-item-2425"><A title="View all posts filed under ASP.NET" 
+    href="http://smehrozalam.wordpress.com/category/aspnet/">ASP.NET</A> (2)
+</LI>
+    <LI class="cat-item cat-item-14969"><A title="View all posts filed under Dotnet" 
+    href="http://smehrozalam.wordpress.com/category/dotnet/">Dotnet</A> (10)
+</LI>
+    <LI class="cat-item cat-item-1047186"><A title="View all posts filed under Entity Framework" 
+    href="http://smehrozalam.wordpress.com/category/entity-framework/">Entity 
+    Framework</A> (8)</LI>
+    <LI class="cat-item cat-item-25398"><A title="View all posts filed under Excel" 
+    href="http://smehrozalam.wordpress.com/category/excel/">Excel</A> (1)</LI>
+    <LI class="cat-item cat-item-114227"><A title="View all posts filed under Linq" 
+    href="http://smehrozalam.wordpress.com/category/linq/">Linq</A> (7)</LI>
+    <LI class="cat-item cat-item-6270"><A title="View all posts filed under Publications" 
+    href="http://smehrozalam.wordpress.com/category/publications/">Publications</A> 
+    (6)</LI>
+    <LI class="cat-item cat-item-18129608"><A title="View all posts filed under RIA Services" 
+    href="http://smehrozalam.wordpress.com/category/ria-services/">RIA 
+    Services</A> (4)</LI>
+    <LI class="cat-item cat-item-984139"><A title="View all posts filed under Silverlight" 
+    href="http://smehrozalam.wordpress.com/category/silverlight/">Silverlight</A> 
+    (21)</LI>
+    <LI class="cat-item cat-item-6407"><A title="View all posts filed under SQL Server" 
+    href="http://smehrozalam.wordpress.com/category/sql-server/">SQL Server</A> 
+    (6)</LI>
+    <LI class="cat-item cat-item-106112"><A title="View all posts filed under SSIS" 
+    href="http://smehrozalam.wordpress.com/category/ssis/">SSIS</A> (3)</LI>
+    <LI class="cat-item cat-item-274144"><A title="View all posts filed under SSRS" 
+    href="http://smehrozalam.wordpress.com/category/ssrs/">SSRS</A> (3)</LI>
+    <LI class="cat-item cat-item-31191"><A title="View all posts filed under T-SQL" 
+    href="http://smehrozalam.wordpress.com/category/t-sql/">T-SQL</A> (18)</LI>
+    <LI class="cat-item cat-item-1"><A title="View all posts filed under Uncategorized" 
+    href="http://smehrozalam.wordpress.com/category/uncategorized/">Uncategorized</A> 
+    (4)</LI>
+    <LI class="cat-item cat-item-4851"><A title="View all posts filed under University" 
+    href="http://smehrozalam.wordpress.com/category/university/">University</A> 
+    (2)</LI>
+    <LI class="cat-item cat-item-46648"><A title="View all posts filed under wcf" 
+    href="http://smehrozalam.wordpress.com/category/wcf/">wcf</A> (2)</LI>
+    <LI class="cat-item cat-item-1798956"><A title="View all posts filed under Windows7" 
+    href="http://smehrozalam.wordpress.com/category/windows7/">Windows7</A> (3)
+    </LI>
+    <LI class="cat-item cat-item-46652"><A title="View all posts filed under WPF" 
+    href="http://smehrozalam.wordpress.com/category/wpf/">WPF</A> (1)</LI></UL>
+  </LI>
+  <LI id="wp_tag_cloud" class="widget wp_widget_tag_cloud">
+  <H2 class="widgettitle">Tags</H2>
+  <DIV style="overflow: hidden;"><A style="font-size: 11.5pt;" class="tag-link-3867" 
+  title="4 topics" 
+  href="http://smehrozalam.wordpress.com/tag/article/">article</A><A style="font-size: 8pt;" 
+  class="tag-link-2425" title="2 topics" href="http://smehrozalam.wordpress.com/tag/aspnet/">ASP.NET</A>
+  <A style="font-size: 9.909pt;" class="tag-link-18822" title="3 topics" href="http://smehrozalam.wordpress.com/tag/association/">association</A>
+  <A style="font-size: 8pt;" class="tag-link-44620" title="2 topics" href="http://smehrozalam.wordpress.com/tag/authentication/">Authentication</A>
+  <A style="font-size: 16.272pt;" class="tag-link-2426" title="9 topics" href="http://smehrozalam.wordpress.com/tag/c/">c#</A>
+  <A style="font-size: 13.886pt;" class="tag-link-977578" title="6 topics" href="http://smehrozalam.wordpress.com/tag/codeproject/">codeproject</A>
+  <A style="font-size: 9.909pt;" class="tag-link-472" title="3 topics" href="http://smehrozalam.wordpress.com/tag/competition/">competition</A>
+  <A style="font-size: 13.886pt;" class="tag-link-270080" title="6 topics" href="http://smehrozalam.wordpress.com/tag/cte/">cte</A>
+  <A style="font-size: 8pt;" class="tag-link-539943" title="2 topics" href="http://smehrozalam.wordpress.com/tag/custom-control/">custom 
+  control</A><A style="font-size: 8pt;" class="tag-link-14165616" title="2 topics" 
+  href="http://smehrozalam.wordpress.com/tag/dataset-field/">Dataset field</A><A 
+  style="font-size: 8pt;" class="tag-link-1588" title="2 topics" href="http://smehrozalam.wordpress.com/tag/data-warehouse/">data 
+  warehouse</A><A style="font-size: 9.909pt;" class="tag-link-14969" title="3 topics" 
+  href="http://smehrozalam.wordpress.com/tag/dotnet/">Dotnet</A><A style="font-size: 8pt;" 
+  class="tag-link-2510842" title="2 topics" href="http://smehrozalam.wordpress.com/tag/enterprise-application/">enterprise 
+  application</A><A style="font-size: 15.477pt;" class="tag-link-1047186" title="8 topics" 
+  href="http://smehrozalam.wordpress.com/tag/entity-framework/">Entity 
+  Framework</A><A style="font-size: 8pt;" class="tag-link-2157764" title="2 topics" 
+  href="http://smehrozalam.wordpress.com/tag/extension-methods/">extension 
+  methods</A><A style="font-size: 8pt;" class="tag-link-5357" title="2 topics" 
+  href="http://smehrozalam.wordpress.com/tag/header/">Header</A><A style="font-size: 9.909pt;" 
+  class="tag-link-34129" title="3 topics" href="http://smehrozalam.wordpress.com/tag/hierarchy/">hierarchy</A>
+  <A style="font-size: 9.909pt;" class="tag-link-313803" title="3 topics" href="http://smehrozalam.wordpress.com/tag/join/">join</A>
+  <A style="font-size: 16.272pt;" class="tag-link-114227" title="9 topics" href="http://smehrozalam.wordpress.com/tag/linq/">Linq</A>
+  <A style="font-size: 11.5pt;" class="tag-link-1139887" title="4 topics" href="http://smehrozalam.wordpress.com/tag/linq-to-sql/">linq 
+  to sql</A><A style="font-size: 8pt;" class="tag-link-3582" title="2 topics" 
+  href="http://smehrozalam.wordpress.com/tag/mathematics/">mathematics</A><A 
+  style="font-size: 8pt;" class="tag-link-14458800" title="2 topics" href="http://smehrozalam.wordpress.com/tag/maze-solver/">maze 
+  solver</A><A style="font-size: 9.909pt;" class="tag-link-3869" title="3 topics" 
+  href="http://smehrozalam.wordpress.com/tag/memories/">memories</A><A style="font-size: 11.5pt;" 
+  class="tag-link-9258762" title="4 topics" href="http://smehrozalam.wordpress.com/tag/mvvm/">mvvm</A>
+  <A style="font-size: 8pt;" class="tag-link-702696" title="2 topics" href="http://smehrozalam.wordpress.com/tag/ned/">ned</A>
+  <A style="font-size: 8pt;" class="tag-link-234390" title="2 topics" href="http://smehrozalam.wordpress.com/tag/parent-child/">parent-child</A>
+  <A style="font-size: 8pt;" class="tag-link-242390" title="2 topics" href="http://smehrozalam.wordpress.com/tag/path-finder/">path 
+  finder</A><A style="font-size: 8pt;" class="tag-link-19758517" title="2 topics" 
+  href="http://smehrozalam.wordpress.com/tag/ranking-functions/">ranking 
+  functions</A><A style="font-size: 12.772pt;" class="tag-link-426624" title="5 topics" 
+  href="http://smehrozalam.wordpress.com/tag/recursion/">recursion</A><A style="font-size: 9.909pt;" 
+  class="tag-link-5388" title="3 topics" href="http://smehrozalam.wordpress.com/tag/relationship/">relationship</A>
+  <A style="font-size: 8pt;" class="tag-link-17573" title="2 topics" href="http://smehrozalam.wordpress.com/tag/report/">Report</A>
+  <A style="font-size: 8pt;" class="tag-link-801" title="2 topics" href="http://smehrozalam.wordpress.com/tag/security/">Security</A>
+  <A style="font-size: 8pt;" class="tag-link-566122" title="2 topics" href="http://smehrozalam.wordpress.com/tag/serialization/">serialization</A>
+  <A style="font-size: 22pt;" class="tag-link-984139" title="22 topics" href="http://smehrozalam.wordpress.com/tag/silverlight/">Silverlight</A>
+  <A style="font-size: 11.5pt;" class="tag-link-6135952" title="4 topics" href="http://smehrozalam.wordpress.com/tag/speed-programming/">speed 
+  programming</A><A style="font-size: 16.909pt;" class="tag-link-10346" title="10 topics" 
+  href="http://smehrozalam.wordpress.com/tag/sql/">sql</A><A style="font-size: 9.909pt;" 
+  class="tag-link-106112" title="3 topics" href="http://smehrozalam.wordpress.com/tag/ssis/">SSIS</A>
+  <A style="font-size: 9.909pt;" class="tag-link-274144" title="3 topics" href="http://smehrozalam.wordpress.com/tag/ssrs/">SSRS</A>
+  <A style="font-size: 8pt;" class="tag-link-6735406" title="2 topics" href="http://smehrozalam.wordpress.com/tag/table-variable/">table 
+  variable</A><A style="font-size: 20.727pt;" class="tag-link-477470" title="18 topics" 
+  href="http://smehrozalam.wordpress.com/tag/tsql/">tsql</A><A style="font-size: 14.681pt;" 
+  class="tag-link-24368853" title="7 topics" href="http://smehrozalam.wordpress.com/tag/tsql-challenge/">tsql 
+  challenge</A><A style="font-size: 8pt;" class="tag-link-4851" title="2 topics" 
+  href="http://smehrozalam.wordpress.com/tag/university/">University</A><A 
+  style="font-size: 8pt;" class="tag-link-11066" title="2 topics" href="http://smehrozalam.wordpress.com/tag/vb/">vb</A>
+  <A style="font-size: 12.772pt;" class="tag-link-46648" title="5 topics" href="http://smehrozalam.wordpress.com/tag/wcf/">wcf</A>
+  <A style="font-size: 12.772pt;" class="tag-link-8372936" title="5 topics" 
+  href="http://smehrozalam.wordpress.com/tag/wcf-service/">wcf 
+  service</A></DIV></LI></UL></DIV>
+<DIV id="center">
+<DIV id="squeeze">
+<DIV class="right-corner">
+<DIV class="left-corner"><!-- begin content -->
+<DIV class="node">
+<DIV class="post-988 post type-post status-publish format-standard hentry category-entity-framework category-linq tag-ef tag-entity-framework-4 tag-linq tag-linq-to-sql tag-query">
+<H2>Entity Framework: Queries involving many to many 
+relationship&nbsp;tables</H2><SPAN class="submitted">June 29, 2010 — Syed Mehroz 
+Alam </SPAN>
+<DIV class="content">
+<P>Entity framework handles tables participating in Many to Many relationship in 
+a nice manner. If the junction table (sometimes called bridge table, association 
+table, link table, etc) only consists of the foreign keys and no other columns, 
+then that table is abstracted by EF and the two sides get a navigational 
+property exposing a collection of the other side. If the junction table contains 
+other fields as well (e.g. the table has its own primary key column), then that 
+junction table is included in the model with many-to-one relationships with both 
+the participating tables. This post will present some common LINQ queries 
+involving the many to many relationship tables in both scenarios: when the 
+junction table is abstracted by EF, and when it is exposed.<SPAN 
+id="more-988"></SPAN></P>
+<P>Consider the following scenario having a many to many relationship between 
+Student and Course:</P>
+<P><A href="http://smehrozalam.files.wordpress.com/2010/06/erd-many-to-many-1.jpg"><IMG 
+class="alignnone size-full wp-image-992" title="erd-many-to-many-1" alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/erd-many-to-many-1.jpg"></A></P>
+<P>The generated Entity Model will look something like:</P>
+<P><A href="http://smehrozalam.files.wordpress.com/2010/06/entity-model-many-to-many-1.jpg"><IMG 
+class="alignnone size-full wp-image-989" title="entity-model-many-to-many-1" 
+alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/entity-model-many-to-many-1.jpg"></A></P>
+<P>However, if the junction table contains any other field other than the two 
+foreign keys, then EF will create a separate entity for it. E.g. lets assume 
+that the StudentCourseEnrollment table has its own ID and some fields like 
+EnrolledFrom and EnrolledTo, like:</P>
+<P><A href="http://smehrozalam.files.wordpress.com/2010/06/erd-many-to-many-2.jpg"><IMG 
+class="alignnone size-full wp-image-991" title="erd-many-to-many-2" alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/erd-many-to-many-2.jpg"></A></P>
+<P>The generated Entity Model for the above tables will look like:</P>
+<P><A href="http://smehrozalam.files.wordpress.com/2010/06/entity-model-many-to-many-2.jpg"><IMG 
+class="alignnone size-full wp-image-990" title="entity-model-many-to-many-2" 
+alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/entity-model-many-to-many-2.jpg"></A></P>
+<P>Now, we will see how to write some typical LINQ queries involving the two 
+tables participating in many to many relationship for both cases (with and 
+without the junction table exposed in EF model):</P>
+<P><STRONG>Get students enrolled in a particular course<BR></STRONG></P>
+<UL>
+  <LI>For case 1, when there is no junction table, and we have the required 
+  CourseID to look for, we may write:</LI></UL>
+<P><PRE class="brush: csharp;">dc.Students.Where(s =&gt; s.Courses.Any(c =&gt; c.CourseID == courseID))
+
+//or without the Any method
+from s in dc.Students
+from c in s.Courses
+where c.CourseID == courseID
+select s;
+</PRE>
+<P></P>
+<UL>
+  <LI>For case 2, when the junction table is included in the entity model, we 
+  may need to write:</LI></UL>
+<P><PRE class="brush: csharp;">dc.Students.Where(s =&gt; s.StudentCourseEnrollments.Any(e =&gt; e.Course.CourseID == courseID)
+
+//or without the any method
+from s in dc.Students
+from e in s.StudentCourseEnrollments
+where e.Course.CourseID == courseID
+select s;
+</PRE>
+<P></P>
+<P>If the foreign keys are also included in the model (applicable only for  
+EF4), we can also directly refer to the <CODE>CourseID</CODE> property in the 
+<CODE>StudentCourseEnrollment</CODE> table, like:</P>
+<P><PRE class="brush: csharp;">dc.Students.Where(s =&gt; s.StudentCourseEnrollments.Any(e =&gt; e.CourseID == courseID)
+
+//or without the any method
+from s in dc.Students
+from e in s.StudentCourseEnrollments
+where e.CourseID == courseID
+select s;
+</PRE>
+<P></P>
+<P>In the above situations, the <CODE>Any()</CODE> method is translated to 
+<CODE>where exists()</CODE> expression while the other <CODE>SelectMany</CODE> 
+methods are translated to <CODE>join</CODE> expression.</P>
+<P>However, an interesting twist for such queries is to start our query with the 
+junction table and use navigational properties for filtering and selecting. This 
+leaves us with a more compact query:</P>
+<P><PRE class="brush: csharp;">dc.StudentCourseEnrollments.Where(e =&gt; e.Course.CourseID == courseID).Select(e=&gt;e.Student);
+
+//the verbose query 
+from e in s.StudentCourseEnrollments
+where e.Course.CourseID == courseID
+select e.Student;
+</PRE>
+<P></P>
+<P><STRONG>Get students enrolled in any course from a list of 
+courses</STRONG></P>
+<P>Notice that such query will use the <CODE>Contains</CODE> methodology that is 
+only available with Entity Framework 4. For similar queries with EF1 (EF3.5) we 
+can use the <CODE>BuildContainsExpression</CODE>() extension method described <A 
+href="http://social.msdn.microsoft.com/Forums/en-US/adodotnetentityframework/thread/095745fe-dcf0-4142-b684-b7e4a1ab59f0">here</A>.</P>
+<UL>
+  <LI>For case 1, when the bridge table is abstracted by EF, this can be written 
+  as:</LI></UL>
+<P><PRE class="brush: csharp;">int[,] courseIDs = new int[,] { 1,2,3 };
+var students =
+ from s in dc.Students
+&nbsp;from c in s.Courses
+&nbsp;where courseIDs.Contains(c.CourseID)
+ select s;
+
+//similarly, such query can be written with the any method
+var students =
+ from s in dc.Students
+ where (
+   from c in s.Courses
+   where courseIDs.Contains(c.CourseID)
+   select c
+   ).Any()
+ select s;
+</PRE>
+<P></P>
+<UL>
+  <LI>For case 2, when the bridge table is included in the entity model, we  may 
+  write:</LI></UL>
+<P><PRE class="brush: csharp;">int[,] courseIDs = new int[,] { 1,2,3 };
+var students =
+ from s in dc.Students
+ from e in s.StudentCourseEnrollments
+ where courseIDs.Contains(e.Course.CourseID)
+ select s;
+
+//starting with the bridge table
+var students =
+ from e in dc.StudentCourseEnrollments
+ where courseIDs.Contains(e.Course.CourseID)
+ select e.Student;
+
+//with the any method
+var students =
+ from s in dc.Students
+ where (
+   from e in s.StudentCourseEnrollments
+   where courseIDs.Contains(e.Course.CourseID)
+   select e
+   ).Any()
+ select s;
+</PRE>
+<P></P>
+<P><STRONG>Get students enrolled in ALL courses from a list of 
+courses</STRONG></P>
+<UL>
+  <LI>For case 1, when the bridge table is abstracted by EF, we can write the 
+  query as:</LI></UL>
+<P><PRE class="brush: csharp;">int[,] courseIDs = new int[,] { 1,2,3 };
+var students =
+ from s in dc.Students
+ where
+  (
+   from c in s.Courses
+   where courseIDs.Contains(c.CourseID)
+   select c
+  ).Count() == courseIDs.Count
+ select s;
+</PRE>
+<P></P>
+<UL>
+  <LI>For case 2, when the bridge table is included in the entity model, we may 
+  query as:</LI></UL>
+<P><PRE class="brush: csharp;">int[,] courseIDs = new int[,] { 1,2,3 };
+var students =
+ from s in dc.Students
+ where
+  (
+   from e in s.StudentCourseEnrollments
+   where courseIDs.Contains(e.Course.CourseID)
+   select e
+  ).Count() == courseIDs.Count
+ select s;
+</PRE>
+<P></P>
+<P>Thats’s all. I will include some more queries in case I find interesting. 
+Notice that same queries can be written for LINQ To SQL also. The only 
+difference is that the bridge table is always included in the model, so always 
+we need to refer to case 2 from this discussion.</P>
+<DIV style="margin: 10px auto; padding: 5px; width: 410px; text-align: center;" 
+class="wpadvert">
+<SCRIPT type="text/javascript">
+GA_googleAddAttr("AdOpt", "1");
+GA_googleAddAttr("Origin", "other");
+GA_googleAddAttr("theme_bg", "ffffff"); 
+GA_googleAddAttr("theme_text", "494949"); 
+GA_googleAddAttr("theme_link", "0062A0"); 
+GA_googleAddAttr("theme_border", "0072b9"); 
+GA_googleAddAttr("theme_url", "0062A0"); 
+GA_googleAddAttr("LangId", "1");
+GA_googleAddAttr("Autotag", "education");
+GA_googleAddAttr("Autotag", "technology");
+GA_googleAddAttr("Tag", "entity-framework");
+GA_googleAddAttr("Tag", "linq");
+GA_googleAddAttr("Tag", "ef");
+GA_googleAddAttr("Tag", "entity-framework-4");
+GA_googleAddAttr("Tag", "linq");
+GA_googleAddAttr("Tag", "linq-to-sql");
+GA_googleAddAttr("Tag", "query");
+
+GA_googleFillSlot("wpcom_sharethrough");
+</SCRIPT>
+</DIV>
+<DIV class="sharedaddy sd-like-enabled sd-sharing-enabled">
+<DIV class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing">
+<H3 class="sd-title">Share this:</H3>
+<DIV class="sd-content">
+<UL>
+  <LI class="share-twitter"><A id="sharing-twitter-988" class="share-twitter sd-button share-icon" 
+  title="Click to share on Twitter" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/?share=twitter" 
+  rel="nofollow"><SPAN>Twitter</SPAN></A></LI>
+  <LI class="share-email"><A class="share-email sd-button share-icon" title="Click to email this to a friend" 
+  href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/?share=email" 
+  rel="nofollow"><SPAN>Email</SPAN></A></LI>
+  <LI class="share-print"><A class="share-print sd-button share-icon" title="Click to print" 
+  href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#print" 
+  rel="nofollow"><SPAN>Print</SPAN></A></LI>
+  <LI class="share-end"></LI></UL>
+<DIV class="sharing-clear"></DIV></DIV></DIV>
+<DIV id="wpl-likebox" class="sd-block sd-like">
+<H3 class="sd-title">Like this:</H3>
+<DIV class="sd-content">
+<DIV id="wpl-button"><A class="like needs-login sd-button" title="I like this post" 
+href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/?like=1&amp;_wpnonce=8a63a91b64" 
+rel="nofollow"><SPAN>Like</SPAN></A></DIV>
+<DIV id="wpl-count" class="sd-like-count">Be the first to like this 
+post.</DIV></DIV></DIV></DIV></DIV>
+<DIV class="meta">Posted in <A title="View all posts in Entity Framework" href="http://smehrozalam.wordpress.com/category/entity-framework/" 
+rel="category tag">Entity Framework</A>, <A title="View all posts in Linq" href="http://smehrozalam.wordpress.com/category/linq/" 
+rel="category tag">Linq</A>. Tags: <A href="http://smehrozalam.wordpress.com/tag/ef/" 
+rel="tag">ef</A>, <A href="http://smehrozalam.wordpress.com/tag/entity-framework-4/" 
+rel="tag">entity framework 4</A>, <A href="http://smehrozalam.wordpress.com/tag/linq/" 
+rel="tag">Linq</A>, <A href="http://smehrozalam.wordpress.com/tag/linq-to-sql/" 
+rel="tag">linq to sql</A>, <A href="http://smehrozalam.wordpress.com/tag/query/" 
+rel="tag">query</A>. <A title="Comment on Entity Framework: Queries involving many to many relationship&nbsp;tables" 
+href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comments">19 
+Comments »</A></DIV></DIV>
+<H3 id="comments">19 Responses to “Entity Framework: Queries involving many to 
+many relationship&nbsp;tables”</H3>
+<OL class="commentlist">
+  <LI id="comment-660" class="trackback even thread-even depth-1 highlander-comment">
+  <DIV id="div-comment-660"><SPAN class="comment-author vcard"><CITE 
+  class="fn"><A class="url" href="http://dotnetshoutout.com/Entity-Framework-Queries-involving-many-to-many-relationship-tables-Mehrozs-Experiments" 
+  rel="external nofollow">DotNetShoutout</A></CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-660">June 
+  29, 2010 at 8:06 PM</A> </SMALL>
+  <P><STRONG>Entity Framework: Queries involving many to many relationship 
+  tables « Mehroz’s Experiments…</STRONG></P>
+  <P>Thank you for submitting this cool story – Trackback from 
+  DotNetShoutout…</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-661" class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment">
+  <DIV id="div-comment-661"><SPAN class="comment-author vcard"><CITE 
+  class="fn"><A class="url" href="http://imagik.org/programming/?p=10088" rel="external nofollow">Entity 
+  Framework: Queries involving many to many relationship … | Programming Blog 
+  Imagik.org</A></CITE> Says:	</SPAN><BR><SMALL class="comment-meta commentmetadata"><A 
+  title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-661">June 
+  30, 2010 at 6:06 AM</A> </SMALL>
+  <P>[...] the original post here: Entity Framework: Queries involving many to 
+  many relationship …      No [...]</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-663" class="comment byuser comment-author-advanceddotnettutorial even thread-even depth-1 highlander-comment">
+  <DIV id="div-comment-663"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu.gif" 
+  width="32" height="32">	<CITE class="fn"><A class="url" href="http://advanceddotnettutorial.wordpress.com/" 
+  rel="external nofollow">advanceddotnettutorial</A></CITE> 
+  Says:	</SPAN><BR><SMALL class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-663">June 
+  30, 2010 at 11:04 AM</A> </SMALL>
+  <P>To learn .net, C#, Java, J2EE, Silverlight, Visual Basic, Asp .net with 
+  advanced concepts, you can visit <A href="http://advanceddotnettutorial.blogspot.com/" 
+  rel="nofollow">http://advanceddotnettutorial.blogspot.com/</A></P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-754" class="comment odd alt thread-odd thread-alt depth-1 highlander-comment">
+  <DIV id="div-comment-754"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(1).gif" 
+  width="32" height="32">	<CITE class="fn"><A class="url" href="http://nan/" 
+  rel="external nofollow">Abubakar</A></CITE> Says:	</SPAN><BR><SMALL class="comment-meta commentmetadata"><A 
+  title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-754">October 
+  30, 2010 at 4:39 AM</A> </SMALL>
+  <P>this is great ,i love it!</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-755" class="comment even thread-even depth-1 highlander-comment">
+  <DIV id="div-comment-755"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(2).gif" 
+  width="32" height="32">	<CITE class="fn">Greg P</CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-755">November 
+  3, 2010 at 10:47 PM</A> </SMALL>
+  <P>What are the “dc” and “s” objects above.  I was thinking dc was your 
+  context but then you use S in the next line.  I’m sure this is a newby 
+  question but I’m struggling with this and using it in MVC2.</P>
+  <P>Thanks,<BR>Greg</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-756" class="comment odd alt thread-odd thread-alt depth-1 highlander-comment">
+  <DIV id="div-comment-756"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(3).gif" 
+  width="32" height="32">	<CITE class="fn">Nick</CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-756">November 
+  4, 2010 at 11:26 AM</A> </SMALL>
+  <P>Nice write up <IMG class="wp-smiley" alt=":)" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/icon_smile.gif"><BR>
+  But how do you save to such a relationship?</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-762" class="comment even thread-even depth-1 highlander-comment">
+  <DIV id="div-comment-762"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(4).gif" 
+  width="32" height="32">	<CITE class="fn">Dave</CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-762">November 
+  9, 2010 at 10:03 PM</A> </SMALL>
+  <P>I’m trying to implement exactly your 1st scenario I have 2 tables that are 
+  linked with a junction table. But when I run the project I get all employees 
+  returned instead of just from the single department.<BR>var employees = (from 
+  employee in projectDB.Employees<BR>                   from department in 
+  projectDB.Departments<BR>                   where department.DepartmentPK == 
+  2<BR>                   select employee);<BR>            return employees;<BR>
+  Any idea why this would not work? This is in VS 2010 express using the 
+  repository method similar to the nerdDiner sample project.</P>
+  <P>Thanks.</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-764" class="comment odd alt thread-odd thread-alt depth-1 highlander-comment">
+  <DIV id="div-comment-764"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(4).gif" 
+  width="32" height="32">	<CITE class="fn">Dave</CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-764">November 
+  11, 2010 at 5:59 PM</A> </SMALL>
+  <P>Nevermind, I found my mistake:<BR>it is “from c in s.Courses” not “from c 
+  in dc.Courses”<BR>or in my case: “department in employee.Departments”</P>
+  <P>Thanks</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-868" class="comment even thread-even depth-1 highlander-comment">
+  <DIV id="div-comment-868"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(5).gif" 
+  width="32" height="32">	<CITE class="fn">Mike</CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-868">January 
+  30, 2011 at 2:13 PM</A> </SMALL>
+  <P>I’m trying to implement your first scenario but in reverse: I’m looking for 
+  all the students NOT enrolled in a particular class.<BR>I have everything 
+  written up exactly the same except:<BR>where c.CourseID != courseID<BR>yet it 
+  pulls back no resuts. Any help?</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-869" class="comment odd alt thread-odd thread-alt depth-1 highlander-comment">
+  <DIV id="div-comment-869"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(6).gif" 
+  width="32" height="32">	<CITE class="fn">Cleyton</CITE> 
+  Says:	</SPAN><BR><SMALL class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-869">February 
+  1, 2011 at 7:02 AM</A> </SMALL>
+  <P>And how can I update this?</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-870" class="comment even thread-even depth-1 highlander-comment">
+  <DIV id="div-comment-870"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(5).gif" 
+  width="32" height="32">	<CITE class="fn">Mike</CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-870">February 
+  1, 2011 at 7:08 AM</A> </SMALL>
+  <P>Cleyton<BR>you use:<BR>De.SaveChanges();<BR>where De is whatever you named 
+  the database entity</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-871" class="comment byuser comment-author-smehrozalam bypostauthor odd alt thread-odd thread-alt depth-1 highlander-comment">
+  <DIV id="div-comment-871"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/12d4d94c607dcfa4dfc7b8ea307b3c64.jpg" 
+  width="32" height="32">	<CITE class="fn"><A class="url" href="http://smehrozalam.wordpress.com/" 
+  rel="external nofollow">Syed Mehroz Alam</A></CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-871">February 
+  1, 2011 at 12:31 PM</A> </SMALL>
+  <P>Hi Mike, </P>
+  <P><CODE>where c.CourseID != courseID</CODE> doesn’t make any sense. You need 
+  to query like this(Notice the negation <STRONG>‘!’</STRONG> is on 
+  <STRONG>Any</STRONG>:</P><PRE class="brush: csharp;">from s in dc.Students
+where !s.StudentCourseEnrollments.Any(e=&gt;e.CourseID == courseID)
+select s
+
+//or
+dc.Students.Where(s =&gt; !s.StudentCourseEnrollments.Any(e =&gt; e.CourseID == courseID)
+</PRE>
+  <P>Alternatively, you can query your database for students enrolled in a 
+  particular course and then use the Except method: <A href="http://msdn.microsoft.com/en-us/library/bb907956.aspx" 
+  rel="nofollow">http://msdn.microsoft.com/en-us/library/bb907956.aspx</A></P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-872" class="comment byuser comment-author-smehrozalam bypostauthor even thread-even depth-1 highlander-comment">
+  <DIV id="div-comment-872"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/12d4d94c607dcfa4dfc7b8ea307b3c64.jpg" 
+  width="32" height="32">	<CITE class="fn"><A class="url" href="http://smehrozalam.wordpress.com/" 
+  rel="external nofollow">Syed Mehroz Alam</A></CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-872">February 
+  1, 2011 at 12:43 PM</A> </SMALL>
+  <P>Hi Cleyton,</P>
+  <P>For updating relationships, you might need to remove and then add a new 
+  relationship. Have a look here:<BR><A href="http://stackoverflow.com/questions/1175251/entity-framework-many-to-many-crud" 
+  rel="nofollow">http://stackoverflow.com/questions/1175251/entity-framework-many-to-many-crud</A></P>
+  <P>Also, for inserting such relationships, have a look at this detailed 
+  article by Julie Lerman: <A href="http://thedatafarm.com/blog/data-access/inserting-many-to-many-relationships-in-ef-with-or-without-a-join-entity/" 
+  rel="nofollow">http://thedatafarm.com/blog/data-access/inserting-many-to-many-relationships-in-ef-with-or-without-a-join-entity/</A></P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-892" class="comment odd alt thread-odd thread-alt depth-1 highlander-comment">
+  <DIV id="div-comment-892"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(7).gif" 
+  width="32" height="32">	<CITE class="fn">Olivia</CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-892">March 
+  4, 2011 at 7:19 AM</A> </SMALL>
+  <P>I am trying something similar to this and cannot figure it out. I will show 
+  my lack of knowledge first and say I do not know what Entity Framework is. 
+  Looks maybe like a newer version of Access? Anyhow I have 2 simple main 
+  tables. 1st is Clients Table with CID(PK), CFirstName, CLastName. 2nd is 
+  Skills Table with SkillID(PK) and Skills. The 3rd table is a join table with 
+  CID &amp; SkillID.  It sounded simple to me in the beginning, but all I want 
+  is to return a query/report to tell me which clients have at least X number of 
+  selected skills. I work in public service and we need a way to match clients 
+  to jobs that come in. So an employer may call and ask for  people who have 
+  experience with welding, carpentry, and plumbing.  I need to return 
+  individuals who have at least those 3 skills. Or if the employer just wants 
+  welding, I need to pull individuals who at least have the welding skill. 
+  Everything I have tried to this point returns results of individuals who match 
+  any of the skills and the last thing i tried was a listbox that ended up 
+  making me select all of the skills that a client had before they would come 
+  up. so if someone had 3 skills and I only asked for one they wouldnt come 
+  up.</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-905" class="comment byuser comment-author-itelc even thread-even depth-1 highlander-comment">
+  <DIV id="div-comment-905"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/8168d223b7f004e96b7f4d83f1c493e6.jpg" 
+  width="32" height="32">	<CITE class="fn"><A class="url" href="http://itelc.wordpress.com/" 
+  rel="external nofollow">Wikki Pa</A></CITE> Says:	</SPAN><BR><SMALL class="comment-meta commentmetadata"><A 
+  title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-905">March 
+  26, 2011 at 3:07 PM</A> </SMALL>
+  <P>Hi,</P>
+  <P>I have exactly the same scenario and following Entities:</P>
+  <P>Customer and Site are two tables where joining table is CustomerSites. All 
+  i want is to fetch the list of site for a particular customer which are not 
+  yet joined into the CustomerSites entity.</P>
+  <P>as well as, I want to fetch all the sites which are not yet mapped to a 
+  customer in customersites.</P>
+  <P>regards,<BR>WK</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-928" class="comment odd alt thread-odd thread-alt depth-1 highlander-comment">
+  <DIV id="div-comment-928"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(8).gif" 
+  width="32" height="32">	<CITE class="fn">Eyad</CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-928">May 
+  23, 2011 at 4:07 PM</A> </SMALL>
+  <P>Thank You <IMG class="wp-smiley" alt=":)" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/icon_smile.gif">…</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-1043" class="pingback even thread-even depth-1 highlander-comment">
+  <DIV id="div-comment-1043"><SPAN class="comment-author vcard"><CITE 
+  class="fn"><A class="url" href="http://www.gsmith.co/code-first-many-to-many/" 
+  rel="external nofollow">Code First – Many To Many | GSmith</A></CITE> 
+  Says:	</SPAN><BR><SMALL class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-1043">January 
+  1, 2012 at 11:38 AM</A> </SMALL>
+  <P>[...] addition this is a great post about querying many to many 
+  relationships in Entity Framework   This entry was posted in Uncategorized. 
+  Bookmark the [...]</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-1048" class="comment odd alt thread-odd thread-alt depth-1 highlander-comment">
+  <DIV id="div-comment-1048"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/50f9955bc78da57730dd77d33601f350.jpg" 
+  width="32" height="32">	<CITE class="fn"><A class="url" href="http://gravatar.com/rjbullock" 
+  rel="external nofollow">Robert J. Bullock</A></CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-1048">January 
+  18, 2012 at 10:07 PM</A> </SMALL>
+  <P>That is like one of the clearest explanations of this I’ve seen. Thanks so 
+  much!</P>
+  <DIV class="reply"></DIV></DIV></LI>
+  <LI id="comment-1060" class="comment even thread-even depth-1 highlander-comment">
+  <DIV id="div-comment-1060"><SPAN class="comment-author vcard"><IMG class="avatar avatar-32" 
+  alt="" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/mu(9).gif" 
+  width="32" height="32">	<CITE class="fn"><A class="url" href="http://relationshipscansurvive.com/" 
+  rel="external nofollow">save a relationship</A></CITE> Says:	</SPAN><BR><SMALL 
+  class="comment-meta commentmetadata"><A title="" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-1060">March 
+  8, 2012 at 11:17 PM</A> </SMALL>
+  <P>A quick red</P>
+  <DIV class="reply"></DIV></DIV></LI></OL>
+<DIV class="navigation">
+<DIV class="alignleft"></DIV>
+<DIV class="alignright"></DIV></DIV><BR>
+<DIV id="respond">
+<H3 id="reply-title">Leave a Reply <SMALL><A style="display: none;" id="cancel-comment-reply-link" 
+href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#respond" 
+rel="nofollow">Cancel reply</A></SMALL></H3>
+<FORM id="commentform" method="post" action="http://smehrozalam.wordpress.com/wp-comments-post.php"><INPUT 
+id="hc_post_as" name="hc_post_as" value="guest" type="hidden">
+<DIV class="comment-form-field comment-textarea"><LABEL for="comment">Enter your 
+comment here...</LABEL>
+<DIV 
+id="comment-form-comment"><TEXTAREA id="comment" name="comment"></TEXTAREA></DIV>
+</DIV>
+<DIV id="comment-form-identity">
+<DIV id="comment-form-nascar">
+<P>Fill in your details below or click an icon to log in:</P>
+<UL>
+  <LI style="display: none;" class="selected"><A id="postas-guest" title="Guest" 
+  href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-form-guest"><SPAN></SPAN></A></LI>
+  <LI><A id="postas-wordpress" title="WordPress.com" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-form-load-service:WordPress.com"><SPAN></SPAN></A></LI>
+  <LI><A id="postas-twitter" title="Twitter" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-form-load-service:Twitter"><SPAN></SPAN></A></LI>
+  <LI><A id="postas-facebook" title="Facebook" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#comment-form-load-service:Facebook"><SPAN></SPAN></A></LI></UL></DIV>
+<DIV id="comment-form-guest" class="comment-form-service selected">
+<DIV class="comment-form-padder">
+<DIV class="comment-form-avatar"><A href="https://gravatar.com/site/signup/" 
+target="_blank"><IMG class="no-grav" alt="Gravatar" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/none.jpg" 
+width="25"></A></DIV>
+<DIV class="comment-form-fields">
+<DIV class="comment-form-field comment-form-email"><LABEL for="email">Email 
+<SPAN class="required">(required)</SPAN> <SPAN class="nopublish">(Address never 
+made public)</SPAN></LABEL>
+<DIV class="comment-form-input"><INPUT id="email" name="email" 
+type="text"></DIV></DIV>
+<DIV class="comment-form-field comment-form-author"><LABEL for="author">Name 
+<SPAN class="required">(required)</SPAN></LABEL>
+<DIV class="comment-form-input"><INPUT id="author" name="author" 
+type="text"></DIV></DIV>
+<DIV class="comment-form-field comment-form-url"><LABEL 
+for="url">Website</LABEL>
+<DIV class="comment-form-input"><INPUT id="url" name="url" 
+type="text"></DIV></DIV></DIV></DIV></DIV>
+<DIV id="comment-form-wordpress" class="comment-form-service">
+<DIV class="comment-form-padder">
+<DIV class="comment-form-avatar"><IMG class="no-grav" alt="WordPress.com Logo" 
+src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/wplogo.png" 
+width="25"></DIV>
+<DIV class="comment-form-fields"><INPUT id="wordpress-avatar" class="comment-meta-wordpress" 
+name="wp_avatar" type="hidden"><INPUT id="wordpress-user_id" class="comment-meta-wordpress" 
+name="wp_user_id" type="hidden"><INPUT id="wordpress-access_token" class="comment-meta-wordpress" 
+name="wp_access_token" type="hidden">
+<P class="comment-form-posting-as pa-wordpress"><STRONG></STRONG> You are 
+commenting using your WordPress.com account. <SPAN 
+class="comment-form-log-out">(&nbsp;<A href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</A>&nbsp;/&nbsp;<A 
+onclick="javascript:HighlanderComments.switchAccount();return false;" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#">Change</A>&nbsp;)</SPAN></P></DIV></DIV></DIV>
+<DIV id="comment-form-twitter" class="comment-form-service">
+<DIV class="comment-form-padder">
+<DIV class="comment-form-avatar"><IMG class="no-grav" alt="Twitter picture" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/ad516503a11cd5ca435acc9bb6523536.png" 
+width="25"></DIV>
+<DIV class="comment-form-fields"><INPUT id="twitter-avatar" class="comment-meta-twitter" 
+name="twitter_avatar" type="hidden"><INPUT id="twitter-user_id" class="comment-meta-twitter" 
+name="twitter_user_id" type="hidden"><INPUT id="twitter-access_token" class="comment-meta-twitter" 
+name="twitter_access_token" type="hidden">
+<P class="comment-form-posting-as pa-twitter"><STRONG></STRONG> You are 
+commenting using your Twitter account. <SPAN 
+class="comment-form-log-out">(&nbsp;<A href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</A>&nbsp;/&nbsp;<A 
+onclick="javascript:HighlanderComments.switchAccount();return false;" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#">Change</A>&nbsp;)</SPAN></P></DIV></DIV></DIV>
+<DIV id="comment-form-facebook" class="comment-form-service">
+<DIV class="comment-form-padder">
+<DIV class="comment-form-avatar"><IMG class="no-grav" alt="Facebook photo" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/ad516503a11cd5ca435acc9bb6523536.png" 
+width="25"></DIV>
+<DIV class="comment-form-fields"><INPUT id="facebook-avatar" class="comment-meta-facebook" 
+name="fb_avatar" type="hidden"><INPUT id="facebook-user_id" class="comment-meta-facebook" 
+name="fb_user_id" type="hidden"><INPUT id="facebook-access_token" class="comment-meta-facebook" 
+name="fb_access_token" type="hidden">
+<P class="comment-form-posting-as pa-facebook"><STRONG></STRONG> You are 
+commenting using your Facebook account. <SPAN 
+class="comment-form-log-out">(&nbsp;<A href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</A>&nbsp;/&nbsp;<A 
+onclick="javascript:HighlanderComments.switchAccount();return false;" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#">Change</A>&nbsp;)</SPAN></P></DIV></DIV></DIV>
+<DIV id="comment-form-load-service" class="comment-form-service">
+<DIV class="comment-form-posting-as-cancel"><A href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</A></DIV>
+<P>Connecting to %s</P></DIV></DIV>
+<DIV id="comment-form-subscribe">
+<P class="comment-subscription-form"><INPUT style="width: auto;" id="subscribe" 
+tabIndex="6" name="subscribe" value="subscribe" type="checkbox"> <LABEL id="subscribe-label" 
+class="subscribe-label" for="subscribe">Notify me of follow-up comments via 
+email.</LABEL></P></DIV>
+<P class="form-submit"><INPUT id="comment-submit" name="submit" value="Post Comment" type="submit"><INPUT 
+id="comment_post_ID" name="comment_post_ID" value="988" type="hidden"><INPUT id="comment_parent" 
+name="comment_parent" value="0" type="hidden"></P><INPUT name="genseq" value="1331869492" 
+type="hidden">
+<P style="display: none;"><INPUT id="akismet_comment_nonce" name="akismet_comment_nonce" 
+value="54f8166ecc" type="hidden"></P>
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/form.js"></SCRIPT>
+
+<P style="display: none;"><INPUT id="ak_js" name="ak_js" value="244" type="hidden"></P></FORM></DIV><!-- #respond -->
+<DIV style="clear: both;"></DIV>
+<DIV class="nextprev">
+<DIV class="alignleft"> « <A href="http://smehrozalam.wordpress.com/2010/06/29/cannot-access-all-microsoft-com-domain-websites/" 
+rel="prev">Cannot access all microsoft.com domain&nbsp;websites</A></DIV><BR>
+<DIV class="alignright"> <A href="http://smehrozalam.wordpress.com/2010/07/29/tsql-some-interesting-usages-of-coalesce/" 
+rel="next">TSQL: Some interesting usages of&nbsp;Coalesce</A> »</DIV>
+</DIV></DIV><!-- end content --><SPAN class="clear"></SPAN>
+<DIV id="footer"><A href="http://wordpress.com/?ref=footer" rel="generator">Blog 
+at WordPress.com</A>. Theme: <A href="http://theme.wordpress.com/themes/garland/">Garland</A> 
+by Stefan Nagtegaal and <A href="http://acko.net/" rel="designer">Steven 
+Wittens</A>.</DIV></DIV></DIV></DIV></DIV> <!-- /.left-corner, /.right-corner, /#squeeze, /#center -->
+<DIV id="sidebar-right" class="sidebar">
+<UL class="menu">
+  <LI id="search-2" class="widget widget_search">
+  <FORM id="searchform" role="search" method="get" action="http://smehrozalam.wordpress.com/">
+  <DIV><LABEL class="screen-reader-text" for="s">Search for:</LABEL><INPUT id="s" 
+  name="s" 
+  type="text"><INPUT id="searchsubmit" value="Search" type="submit"></DIV></FORM></LI>
+  <LI id="rss_links-3" class="widget widget_rss_links">
+  <H2 class="widgettitle">RSS Feeds</H2>
+  <UL>
+    <LI><A title="Subscribe to Posts" href="http://smehrozalam.wordpress.com/feed/">RSS 
+    - Posts</A></LI>
+    <LI><A title="Subscribe to Comments" href="http://smehrozalam.wordpress.com/comments/feed/">RSS 
+    - Comments</A></LI></UL></LI>
+  <LI id="blog_subscription-3" class="widget widget_blog_subscription">
+  <H2 class="widgettitle"><LABEL for="subscribe-field">Email 
+  Subscription</LABEL></H2>
+  <FORM id="subscribe-blog" accept-charset="utf-8" method="post" action="https://subscribe.wordpress.com">
+  <P>Enter your email address to subscribe to this blog and receive 
+  notifications of new posts by email.</P>
+  <P>Join 35 other followers</P>
+  <P><INPUT style="padding: 1px 2px; width: 95%;" id="subscribe-field" name="email" 
+  type="text"></P>
+  <P><INPUT name="action" value="subscribe" type="hidden"><INPUT name="blog_id" 
+  value="4540612" type="hidden"><INPUT name="source" value="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/" 
+  type="hidden"><INPUT name="sub-type" value="widget" type="hidden"><INPUT name="redirect_fragment" 
+  value="blog_subscription-3" type="hidden"><INPUT id="_wpnonce" name="_wpnonce" 
+  value="09215cbc83" 
+  type="hidden"><INPUT value="Sign me up!" type="submit"></P></FORM></LI>
+  <LI id="recent-posts-2" class="widget widget_recent_entries">
+  <H2 class="widgettitle">Recent Posts</H2>
+  <UL>
+    <LI><A title="Goodbye GoodCore, Welcome&nbsp;DevEnhanced" href="http://smehrozalam.wordpress.com/2011/06/30/goodbye-goodcore-welcome-devenhanced/">Goodbye 
+    GoodCore, Welcome&nbsp;DevEnhanced</A></LI>
+    <LI><A title="WCF RIA Service adding extra Required attribute on generated&nbsp;classes" 
+    href="http://smehrozalam.wordpress.com/2011/04/27/wcf-ria-service-adding-extra-required-attribute-on-generated-classes/">WCF 
+    RIA Service adding extra Required attribute on 
+    generated&nbsp;classes</A></LI>
+    <LI><A title="Silverlight (and WPF): How to make items stretch horizontally in a&nbsp;ListBox" 
+    href="http://smehrozalam.wordpress.com/2011/01/31/silverlight-and-wpf-how-to-make-items-stretch-horizontally-in-a-listbox/">Silverlight 
+    (and WPF): How to make items stretch horizontally in a&nbsp;ListBox</A></LI>
+    <LI><A title="C#: Fun with&nbsp;Indexers" href="http://smehrozalam.wordpress.com/2010/12/29/c-fun-with-indexers/">C#: 
+    Fun with&nbsp;Indexers</A></LI>
+    <LI><A title="RIA Services: Sending complex types to the&nbsp;client" href="http://smehrozalam.wordpress.com/2010/11/24/ria-services-sending-complex-types-to-the-client/">RIA 
+    Services: Sending complex types to the&nbsp;client</A></LI></UL></LI>
+  <LI id="top-posts" class="widget widget_stats_topposts">
+  <H2 class="widgettitle">Top Posts</H2>
+  <UL>
+    <LI><A href="http://smehrozalam.wordpress.com/2009/06/10/c-left-outer-joins-with-linq/">C#: 
+    Left outer joins with LINQ</A></LI>
+    <LI><A href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/">Entity 
+    Framework: Queries involving many to many relationship tables</A></LI>
+    <LI><A href="http://smehrozalam.wordpress.com/2009/10/14/t-sql-using-result-of-a-dynamic-sql-query-in-a-variable-or-table/">T-SQL: 
+    Using result of a dynamic SQL query in a variable or table</A></LI>
+    <LI><A href="http://smehrozalam.wordpress.com/2009/05/12/c-executing-batch-t-sql-scripts-with-go-statements/">C#: 
+    Executing batch T-SQL Scripts containing GO statements</A></LI>
+    <LI><A href="http://smehrozalam.wordpress.com/2009/12/29/linq-how-to-get-the-latest-last-record-with-a-group-by-clause/">LINQ: 
+    How to get the latest/last record with a group by clause</A></LI></UL></LI>
+  <LI id="archives-2" class="widget widget_archive">
+  <H2 class="widgettitle">Archives</H2>
+  <UL>
+    <LI><A title="June 2011" 
+    href="http://smehrozalam.wordpress.com/2011/06/">June 2011</A>&nbsp;(1)</LI>
+    <LI><A title="April 2011" 
+    href="http://smehrozalam.wordpress.com/2011/04/">April 
+2011</A>&nbsp;(1)</LI>
+    <LI><A title="January 2011" 
+    href="http://smehrozalam.wordpress.com/2011/01/">January 
+    2011</A>&nbsp;(1)</LI>
+    <LI><A title="December 2010" href="http://smehrozalam.wordpress.com/2010/12/">December 
+    2010</A>&nbsp;(1)</LI>
+    <LI><A title="November 2010" href="http://smehrozalam.wordpress.com/2010/11/">November 
+    2010</A>&nbsp;(1)</LI>
+    <LI><A title="October 2010" 
+    href="http://smehrozalam.wordpress.com/2010/10/">October 
+    2010</A>&nbsp;(1)</LI>
+    <LI><A title="September 2010" href="http://smehrozalam.wordpress.com/2010/09/">September 
+    2010</A>&nbsp;(1)</LI>
+    <LI><A title="August 2010" 
+    href="http://smehrozalam.wordpress.com/2010/08/">August 
+    2010</A>&nbsp;(1)</LI>
+    <LI><A title="July 2010" 
+    href="http://smehrozalam.wordpress.com/2010/07/">July 2010</A>&nbsp;(1)</LI>
+    <LI><A title="June 2010" 
+    href="http://smehrozalam.wordpress.com/2010/06/">June 2010</A>&nbsp;(2)</LI>
+    <LI><A title="May 2010" href="http://smehrozalam.wordpress.com/2010/05/">May 
+    2010</A>&nbsp;(2)</LI>
+    <LI><A title="April 2010" 
+    href="http://smehrozalam.wordpress.com/2010/04/">April 
+2010</A>&nbsp;(3)</LI>
+    <LI><A title="March 2010" 
+    href="http://smehrozalam.wordpress.com/2010/03/">March 
+2010</A>&nbsp;(2)</LI>
+    <LI><A title="February 2010" href="http://smehrozalam.wordpress.com/2010/02/">February 
+    2010</A>&nbsp;(2)</LI>
+    <LI><A title="January 2010" 
+    href="http://smehrozalam.wordpress.com/2010/01/">January 
+    2010</A>&nbsp;(2)</LI>
+    <LI><A title="December 2009" href="http://smehrozalam.wordpress.com/2009/12/">December 
+    2009</A>&nbsp;(2)</LI>
+    <LI><A title="November 2009" href="http://smehrozalam.wordpress.com/2009/11/">November 
+    2009</A>&nbsp;(3)</LI>
+    <LI><A title="October 2009" 
+    href="http://smehrozalam.wordpress.com/2009/10/">October 
+    2009</A>&nbsp;(3)</LI>
+    <LI><A title="September 2009" href="http://smehrozalam.wordpress.com/2009/09/">September 
+    2009</A>&nbsp;(1)</LI>
+    <LI><A title="August 2009" 
+    href="http://smehrozalam.wordpress.com/2009/08/">August 
+    2009</A>&nbsp;(6)</LI>
+    <LI><A title="July 2009" 
+    href="http://smehrozalam.wordpress.com/2009/07/">July 2009</A>&nbsp;(4)</LI>
+    <LI><A title="June 2009" 
+    href="http://smehrozalam.wordpress.com/2009/06/">June 2009</A>&nbsp;(6)</LI>
+    <LI><A title="May 2009" href="http://smehrozalam.wordpress.com/2009/05/">May 
+    2009</A>&nbsp;(3)</LI>
+    <LI><A title="April 2009" 
+    href="http://smehrozalam.wordpress.com/2009/04/">April 
+2009</A>&nbsp;(2)</LI>
+    <LI><A title="March 2009" 
+    href="http://smehrozalam.wordpress.com/2009/03/">March 
+2009</A>&nbsp;(1)</LI>
+    <LI><A title="February 2009" href="http://smehrozalam.wordpress.com/2009/02/">February 
+    2009</A>&nbsp;(3)</LI>
+    <LI><A title="January 2009" 
+    href="http://smehrozalam.wordpress.com/2009/01/">January 
+    2009</A>&nbsp;(6)</LI>
+    <LI><A title="December 2008" href="http://smehrozalam.wordpress.com/2008/12/">December 
+    2008</A>&nbsp;(3)</LI>
+    <LI><A title="November 2008" href="http://smehrozalam.wordpress.com/2008/11/">November 
+    2008</A>&nbsp;(3)</LI>
+    <LI><A title="October 2008" 
+    href="http://smehrozalam.wordpress.com/2008/10/">October 
+    2008</A>&nbsp;(2)</LI>
+    <LI><A title="September 2008" href="http://smehrozalam.wordpress.com/2008/09/">September 
+    2008</A>&nbsp;(2)</LI>
+    <LI><A title="August 2008" 
+    href="http://smehrozalam.wordpress.com/2008/08/">August 
+    2008</A>&nbsp;(3)</LI>
+    <LI><A title="July 2008" 
+    href="http://smehrozalam.wordpress.com/2008/07/">July 2008</A>&nbsp;(3)</LI>
+    <LI><A title="January 2006" 
+    href="http://smehrozalam.wordpress.com/2006/01/">January 
+    2006</A>&nbsp;(1)</LI>
+    <LI><A title="March 2005" 
+    href="http://smehrozalam.wordpress.com/2005/03/">March 
+2005</A>&nbsp;(2)</LI>
+    <LI><A title="February 2005" href="http://smehrozalam.wordpress.com/2005/02/">February 
+    2005</A>&nbsp;(3)</LI>
+    <LI><A title="January 2005" 
+    href="http://smehrozalam.wordpress.com/2005/01/">January 
+    2005</A>&nbsp;(1)</LI>
+    <LI><A title="December 2004" href="http://smehrozalam.wordpress.com/2004/12/">December 
+    2004</A>&nbsp;(6)</LI></UL></LI></UL></DIV></DIV> <!-- /container --></DIV><!-- /layout -->
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/gprofiles.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/wpgroho.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+var _qevents = _qevents || [], wpcomQuantcastData = {"qacct":"p-18-mFEk4J448M","labels":",language.en,type.wpcom,posttag.ef,posttag.entity-framework-4,posttag.linq,posttag.linq-to-sql,posttag.query,as"};
+function wpcomQuantcastPixel( labels, options ) {
+	var i, defaults = wpcomQuantcastData, data = { event: 'ajax' };
+
+	labels  = labels  || '';
+	options = options || {};
+
+	if ( typeof labels != 'string' )
+		options = labels;
+
+	for ( i in defaults ) {
+		data[i] = defaults[i];
+	}
+
+	for ( i in options ) {
+		data[i] = options[i];
+	}
+
+	if ( data.labels ) {
+		data.labels += ',' + labels;
+	} else {
+		data.labels = labels;
+	}
+
+	_qevents.push( data );
+};
+(function() {var elem = document.createElement('script');elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";elem.async = true;elem.type = "text/javascript";var scpt = document.getElementsByTagName('script')[0];scpt.parentNode.insertBefore(elem, scpt);  })();
+_qevents.push( wpcomQuantcastData );
+</SCRIPT>
+<NOSCRIPT>&lt;div style="display: none;"&gt;&lt;img 
+src="//pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=%2Clanguage.en%2Ctype.wpcom%2Cposttag.ef%2Cposttag.entity-framework-4%2Cposttag.linq%2Cposttag.linq-to-sql%2Cposttag.query%2Cas" 
+height="1" width="1" alt="" /&gt;&lt;/div&gt;</NOSCRIPT>
+<SCRIPT type="text/javascript">
+	/* <![CDATA[ */
+		jQuery(document).ready( function($) {
+
+			// Remove the login box when clicking the page
+			$( document ).mousedown( function( e ) {
+				if ( null == $( e.target ).closest( '#wpl-mustlogin' ).get( 0 ) ) {
+					$( '#wpl-mustlogin' ).remove();
+				}
+			});
+
+			// Handle clicking the like button itself
+			$('#wpl-button > a.like').click( function(e) {
+				e.preventDefault();
+				
+				$.post( 'http://smehrozalam.wordpress.com/wp-admin/admin-ajax.php', {
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_like_click'
+				} );
+
+				var tenMins = new Date();
+				tenMins.setTime( tenMins.getTime() + 600000 );
+				document.cookie = 'wpl_rand=b78497141a; expires=' + tenMins.toGMTString() + '; domain=wordpress.com; path=/;';
+
+				$('#wpl-count').after( '\
+					<div id="wpl-mustlogin"> \
+						<form action="https://smehrozalam.wordpress.com/wp-login.php" method="post"> \
+							<p>Just one more step to like this post:</p> \
+							<label><span>Username</span> <input type="text" name="log" id="user_login" class="input" value="" size="20" tabindex="80" /></label> \
+							<label><span>Password</span> <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" tabindex="81" /></label> \
+							<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log In" tabindex="82" /> \
+							<input type="hidden" name="redirect_to" value="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/?like=1" /> \
+							<input type="hidden" name="wpl_rand" value="b78497141a" /> \
+							<p>Not a member yet? <a href="http://wordpress.com/signup/?ref=likebox" id="wpl-signup-link">Sign up with WordPress.com</a></p> \
+						</form> \
+					</div> \
+				');
+
+				$('#wpl-mustlogin').hide().slideDown('fast');
+			} );
+			
+			$('#wpl-mustlogin input.input').live( 'focus', function() {
+				$(this).prev().hide();
+			}).live( 'blur', function() {
+				if ( $(this).val() == '' )
+					$(this).prev().show();
+			});
+			
+			$('#wpl-mustlogin input#wp-submit').live( 'click', function(e) {
+				e.preventDefault();
+				
+				$.post( 'http://smehrozalam.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_login_submit'
+				}, function() {
+					$('#wpl-mustlogin form').submit();
+				} );
+			});			
+			
+			$('#wpl-mustlogin a#wpl-signup-link').live( 'click', function(e) {
+				e.preventDefault();
+				
+				var link = $(this).attr('href');
+				
+				$.post( 'http://smehrozalam.wordpress.com/wp-admin/admin-ajax.php', { 
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_signup_click'
+				}, function() {
+					location.href = link;
+				} );
+			});					
+			
+		});
+	/* ]]> */
+	</SCRIPT>
+
+<SCRIPT>jQuery(document).ready(function($){ Gravatar.profile_cb = function( h, d ) { WPGroHo.syncProfileData( h, d );	}; Gravatar.my_hash = WPGroHo.my_hash; Gravatar.init( 'body', '#wp-admin-bar-my-account' ); });</SCRIPT>
+	
+<DIV style="display: none;">
+<DIV class="grofile-hash-map-a30a488582f9916411261798b859dde2"></DIV>
+<DIV class="grofile-hash-map-a22aa9facf7c0e12abb7272a9ffbdd0b"></DIV>
+<DIV class="grofile-hash-map-c8d4dff802d837cc84a1962cbad94cf8"></DIV>
+<DIV class="grofile-hash-map-2b08829b93161bc6d161b053cc4d33d8"></DIV>
+<DIV class="grofile-hash-map-d6c72d312f91764fa74ec78bab632c1f"></DIV>
+<DIV class="grofile-hash-map-d3eea5b58ce33f81205cc981459afdcc"></DIV>
+<DIV class="grofile-hash-map-5f4ccf69be781e62bbe2f027a13fa588"></DIV>
+<DIV class="grofile-hash-map-12d4d94c607dcfa4dfc7b8ea307b3c64"></DIV>
+<DIV class="grofile-hash-map-f37ad7f29efa72ee4233e6674cdbe636"></DIV>
+<DIV class="grofile-hash-map-8168d223b7f004e96b7f4d83f1c493e6"></DIV>
+<DIV class="grofile-hash-map-0bc1d478118a9989995e9598b295bfef"></DIV>
+<DIV class="grofile-hash-map-50f9955bc78da57730dd77d33601f350"></DIV>
+<DIV class="grofile-hash-map-8dd7433546dca4631b309f8ed81506f9"></DIV></DIV>
+<STYLE type="text/css">
+			
+				.reblog-from img                   { margin: 0 10px 0 0; vertical-align: middle; padding: 0; border: 0; }
+				.reblogger-note img.avatar         { float: left; padding: 0; border: 0; }
+				.reblogger-note-content            { margin: 0 0 20px 35px; }
+				.reblog-post                       { border-left: 3px solid #eee; padding-left: 15px; }
+				.reblog-post ul.thumb-list         { display: block; list-style: none; margin: 2px 0; padding: 0; clear: both; }
+				.reblog-post ul.thumb-list li      { display: inline; margin: 0; padding: 0 1px; border: 0; }
+				.reblog-post ul.thumb-list li a    { margin: 0; padding: 0; border: 0; }
+				.reblog-post ul.thumb-list li img  { margin: 0; padding: 0; border: 0; }
+				.reblog-post                       { border-left: 3px solid #eee; padding-left: 15px; }
+					</STYLE>
+
+<SCRIPT type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"http:\/\/smehrozalam.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"http:\/\/smehrozalam.wordpress.com\/wp-login.php?action=logout&_wpnonce=7540d5ac79","homeURL":"http:\/\/smehrozalam.wordpress.com\/","postID":"988","gravDefault":"blank","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":""};
+/* ]]> */
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/script.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+	WPCOM_sharing_counts = {'http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/':'988'};
+	</SCRIPT>
+
+<DIV id="bit" class="loggedout-follow-normal"><A class="bsub" href="javascript:void(0)"><SPAN 
+id="bsub-text">Follow</SPAN></A>
+<DIV id="bitsubscribe">
+<H3><LABEL for="loggedout-follow-field">Follow “Mehroz's 
+Experiments”</LABEL></H3>
+<FORM id="loggedout-follow" accept-charset="utf-8" method="post" action="https://subscribe.wordpress.com">
+<P>Get every new post delivered to your Inbox.</P>
+<P style="display: none;" id="loggedout-follow-error"></P>
+<P class="bit-follow-count">Join 35 other followers</P>
+<P><INPUT onblur='this.value=(this.value=="") ? "Enter email address" : this.value;' 
+style="padding: 1px 2px; width: 95%;" id="loggedout-follow-field" onfocus='this.value=(this.value=="Enter your email address") ? "" : this.value;' 
+name="email" value="Enter your email address" type="text"></P><INPUT name="action" 
+value="subscribe" type="hidden"><INPUT name="blog_id" value="4540612" type="hidden"><INPUT 
+name="source" value="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/" 
+type="hidden"><INPUT name="sub-type" value="loggedout-follow" 
+type="hidden"><INPUT id="_wpnonce" name="_wpnonce" value="09215cbc83" type="hidden"><INPUT 
+name="_wp_http_referer" value="/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/" 
+type="hidden">
+<P 
+id="bsub-subscribe-button"><INPUT value="Sign me up" type="submit"></P></FORM>
+<DIV id="bsub-credit"><A href="http://wordpress.com/signup/?ref=lof">Powered by 
+WordPress.com</A></DIV></DIV><!-- #bitsubscribe --></DIV><!-- #bit -->
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/sharing.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" charset="utf-8">
+		jQuery(document).ready(function(){
+			jQuery( '.share-twitter' ).click(function(){
+				window.open( jQuery(this).attr( 'href' ), 'wpcom-twitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</SCRIPT>
+
+<DIV style="display: none;" id="sharing_email">
+<FORM method="post" action=""><LABEL for="target_email">Send to Email 
+Address</LABEL><INPUT id="target_email" name="target_email" type="text"><LABEL 
+for="source_name">Your Name</LABEL><INPUT id="source_name" name="source_name" 
+type="text"><LABEL for="source_email">Your Email Address</LABEL><INPUT id="source_email" 
+name="source_email" type="text">
+<DIV id="sharing_recaptcha" class="recaptcha"></DIV><IMG style="float: right; display: none;" 
+class="loading" alt="loading" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/loading.gif" 
+width="16" height="16"><INPUT class="sharing_send" value="Send Email" type="submit"><A 
+class="sharing_cancel" href="http://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/#cancel">Cancel</A>
+<DIV style="display: none;" class="errors errors-1">				Post was not sent - 
+check your email addresses!			</DIV>
+<DIV style="display: none;" class="errors errors-2">				Email check failed, 
+please try again			</DIV>
+<DIV style="display: none;" class="errors errors-3">				Sorry, your blog cannot 
+share posts by email.			</DIV></FORM></DIV>
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/beacon.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">try{COMSCORE.beacon({c1:2,c2:7518284});}catch(e){}</SCRIPT>
+<NOSCRIPT>&lt;p class="robots-nocontent"&gt;&lt;img 
+src="http://b.scorecardresearch.com/p?cj=1c1=2&amp;c2=7518284" alt="" 
+style="display:none" width="1" height="1" /&gt;&lt;/p&gt;</NOSCRIPT>
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/shCore.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/shBrushCSharp.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var themecssurl = "http://s0.wp.com/wp-content/plugins/syntaxhighlighter-wpcom/shThemeDefault.css?m=1349269507g&amp;ver=2.1.364b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.getElementsByTagName("head")[0].appendChild(themecss);
+	})();
+	SyntaxHighlighter.config.clipboardSwf = 'http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1305259332g';
+	SyntaxHighlighter.config.strings.expandSource = 'show source';
+	SyntaxHighlighter.config.strings.viewSource = 'view source';
+	SyntaxHighlighter.config.strings.copyToClipboard = 'copy to clipboard';
+	SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'The code is in your clipboard now';
+	SyntaxHighlighter.config.strings.print = 'print';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.all();
+</SCRIPT>
+
+<SCRIPT type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="Entity%20Framework%20Queries%20involving%20many%20to%20many%20relationship%20tables%20«%20Mehroz’s%20Experiments_files/w.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+st_go({'blog':'4540612','v':'wpcom','user_id':'0','post':'988','subd':'smehrozalam'});
+ex_go({'crypt':'UE5XaGUuOTlwaD85flAmcm1mcmZsaDhkV11YdWFnNncxc1tjZG9XVXhRVz1bVXJlWWRQcV18bW5ZZTlbKz1BTnZLQnM3UnQyZD0vfHFjbHoyV2dicTAlYltkYUI1M3NWNlU4SWFbNCwuM202WjhxeWJCTFBbYXJaZzVqTkx0RlkyYS9xTn5mbytiayt2ajYvOGFMYkdhJl80Wz1SRSxvM3NTQz1UNU9NYVJSSndVQ1dldTFXeWI3MCxDTUZXZjlyWnErMUU9RXwxQ1N1dFdyfHhjJnl+a0Q9ekRyUVttaUlSQ20xPzJ6SFNoLXN8eVBBcms9UVE5V2p5cWFNVEw9NkQsRTFkLCt8bDJydQ=='});
+addLoadEvent(function(){linktracker_init('4540612',988);});
+	</SCRIPT>
+<NOSCRIPT>&lt;img src="http://stats.wordpress.com/b.gif?v=noscript" 
+style="height:0px;width:0px;overflow:hidden" alt="" 
+/&gt;</NOSCRIPT></BODY></HTML>

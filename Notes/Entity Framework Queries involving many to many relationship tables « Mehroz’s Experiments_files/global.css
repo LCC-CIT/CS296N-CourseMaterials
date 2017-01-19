@@ -1,0 +1,39 @@
+img.latex {
+	border: currentColor; vertical-align: middle;
+}
+.video-player {
+	margin: auto; padding: 5px; border: 0px currentColor; text-align: center;
+}
+.wpvidavee_title {
+	padding: 2px 5px; text-align: left; line-height: 12px; font-family: Tahoma,Arial,sans-serif; font-size: 10px; font-weight: bold;
+}
+.wpvidavee_footer {
+	padding: 2px 5px; text-align: right; line-height: 11px; font-family: Tahoma,Arial,sans-serif; font-size: 9px;
+}
+.wpvidavee_footer a {
+	text-decoration: none;
+}
+.wpvidavee_p {
+	color: red;
+}
+.hidden {
+	display: none;
+}
+.possibly-related {
+	clear: both;
+}
+.screen-reader-text {
+	left: -1000em; position: absolute;
+}
+.comment object {
+	max-width: 100%;
+}
+.comment embed {
+	max-width: 100%;
+}
+.embed-vimeo iframe {
+	max-width: 100%;
+}
+.embed-youtube iframe {
+	max-width: 100%;
+}

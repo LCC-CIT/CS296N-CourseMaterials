@@ -1,0 +1,1447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://gmpg.org/xfn/11">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="generator" content="WordPress 3.2.1"> <!-- leave this for stats -->
+	<link rel="stylesheet" href="using-c-yield-for-readability-and-performance_files/style.css" type="text/css" media="screen">
+	<link rel="alternate" type="application/rss+xml" title="YTechie.com RSS 2.0" href="http://feeds.feedburner.com/Ytechie">
+	<link rel="alternate" type="application/atom+xml" title="YTechie.com Atom 0.3" href="http://feeds.feedburner.com/Ytechie">
+	<link rel="pingback" href="http://www.ytechie.com/xmlrpc.php">
+	<!-- MS Live Webmaster Tools -->
+	<meta name="msvalidate.01" content="3809515B9FC247F8A041EC9A307EF08F">
+	<!-- Google webmaster tools -->
+	<meta name="verify-v1" content="0k0rwRBgZRWDUSilsYJJQcWpvMvxrLYY9ejQmwwj/O0=">
+	<title>Using C# Yield for Readability and Performance</title>
+	<link rel="shortcut icon" href="http://www.ytechie.com/wp-content/themes/fresh-compact/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="http://www.ytechie.com/wp-content/themes/fresh-compact/images/favicon.ico" type="image/x-icon">
+
+<!-- Syntax Highlighter -->
+<link href="using-c-yield-for-readability-and-performance_files/SyntaxHighlighter.css" rel="stylesheet" type="text/css">
+<script src="using-c-yield-for-readability-and-performance_files/s.js" type="text/javascript"></script>
+<!-- Syntax Highlighter -->
+
+
+<link rel="alternate" type="application/rss+xml" title="YTechie.com » Using C# Yield for Readability and Performance Comments Feed" href="http://www.ytechie.com/2009/02/using-c-yield-for-readability-and-performance.html/feed">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.ytechie.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.ytechie.com/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="YTechie.com" href="http://www.ytechie.com/">
+<link rel="start" title="Disabling GridView Validation" href="http://www.ytechie.com/2008/03/disabling-gridview-validation.html">
+<link rel="prev" title="Tip for success – Track your accomplishments" href="http://www.ytechie.com/2009/01/tip-for-success-track-your-accomplishments.html">
+<link rel="next" title="Is Quality Important?" href="http://www.ytechie.com/2009/02/is-quality-important.html">
+<meta name="generator" content="WordPress 3.2.1">
+<link rel="canonical" href="http://www.ytechie.com/2009/02/using-c-yield-for-readability-and-performance.html">
+<link rel="shortlink" href="http://www.ytechie.com/?p=347">
+
+<!-- All in One SEO Pack 1.6.13.4 by Michael Torbert of Semper Fi Web Design[1033,1113] -->
+<meta name="description" content="I must have read about &quot;yield&quot; a dozen times. Only recently have I began to understand what it does, and the real power that comes along with it. I'm">
+<meta name="keywords" content="c#">
+<!-- /all in one seo pack -->
+<style type="text/css">.dp-c .vars { color: #d00; }</style><style type="text/css">.dp-c .vars { color: #d00; }</style></head>
+
+<body>
+
+<div id="outline">
+
+	<div id="header">
+		<div class="blogtitle">
+			<h1><a href="http://www.ytechie.com/" title="YTechie.com"><img src="using-c-yield-for-readability-and-performance_files/ytechie_trans.gif" style="border: medium none;" alt="YTechie Homepage"></a></h1>
+		</div>
+	</div> <!-- end of #header -->
+
+	<div id="navbar">
+		<ul class="menu">
+			<li class="current_page_item"><a href="http://www.ytechie.com/">Home</a></li>
+			<li class="page_item page-item-2"><a href="http://www.ytechie.com/about" title="About">About</a></li>
+<li class="page_item page-item-241"><a href="http://www.ytechie.com/popular-posts" title="Popular Posts">Popular Posts</a></li>
+<li class="page_item page-item-192"><a href="http://www.ytechie.com/svn-vm" title="Subversion VM">Subversion VM</a></li>
+					</ul>
+
+		<div class="searchbar">
+			<form method="get" id="searchform" action="http://www.ytechie.com/">
+	<div>
+	<input name="s" id="s" type="text">
+	</div>
+</form>
+		</div>
+	</div> <!-- end of #navbar -->
+
+
+<div id="wrapper">
+
+<div id="content">
+			
+		<div class="post" id="post-347">
+	
+			<h2 class="posttitle">
+				<a href="http://www.ytechie.com/2009/02/using-c-yield-for-readability-and-performance.html" rel="bookmark" title="Permanent link to Using C# Yield for Readability and Performance">Using C# Yield for Readability and Performance</a>
+			</h2>
+			
+			<p class="postmeta"> 
+				<span class="post-date">3 Feb, 2009</span>&nbsp;
+				<span class="post-filed"><a href="http://www.ytechie.com/category/c" title="View all posts in c#" rel="category tag">c#</a></span>
+							</p>
+		
+			<div class="postentry">
+			<p>I must have read about "yield" a dozen times. Only recently have I
+ began to understand what it does, and the real power that comes along 
+with it. I’m going to show you some examples of where it can make your 
+code more readable, and potentially more efficient.</p>
+<p>To give you a <strong>very</strong> quick overview of how the yield 
+functionality works, I first want to show you an example without it. The
+ following code is simple, yet it’s a common pattern in the latest 
+project I’m working on.</p>
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:ae5f77da-9134-4a5a-90b8-136ccbf440b4" style="padding-right: 0px; display: inline; padding-left: 0px; float: none; padding-bottom: 0px; margin: 0px; padding-top: 0px">
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="#" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a href="#" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="#" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol class="dp-c" start="1"><li class="alt"><span><span>IList&lt;</span><span class="keyword">string</span><span>&gt;&nbsp;FindBobs(IEnumerable&lt;</span><span class="keyword">string</span><span>&gt;&nbsp;names)&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;bobs&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;List&lt;</span><span class="keyword">string</span><span>&gt;();&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">foreach</span><span>(var&nbsp;currName&nbsp;</span><span class="keyword">in</span><span>&nbsp;names)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(currName&nbsp;==&nbsp;</span><span class="string">"Bob"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bobs.Add(currName);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;bobs;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" class="c#" name="code">IList&lt;string&gt; FindBobs(IEnumerable&lt;string&gt; names)
+{
+	var bobs = new List&lt;string&gt;();
+
+	foreach(var currName in names)
+	{
+		if(currName == "Bob")
+			bobs.Add(currName);
+	}
+
+	return bobs;
+}</pre>
+</div>
+<p>Notice that I take in an IEnumerable&lt;string&gt;, and return an 
+IList&lt;string&gt;. My general rule of thumb has been to be as lenient 
+as possible with my input, and as strict as possible with my output. For
+ the input, it clearly makes sense to use IEnumerable if you’re just 
+going to be looping through it with a <em>foreach</em>. For the output, I
+ try to use an interface so that the implementation can be changed. 
+However, I chose to return the list because the caller may be able to 
+take advantage of the fact that I already went through the work of 
+making it a list.</p>
+<p>The problem is, my design isn’t chainable, and it’s creating lists 
+all over the place. In reality, this probably doesn’t add up to much, 
+but it’s there nonetheless.</p>
+<p>Now, let’s take a look at the "yield" way of doing it, and then I’ll explain how and why it works:</p>
+<div class="wlWriterSmartContent" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:a25345cb-149d-46f3-be0e-9061a7092d62" style="padding-right: 0px; display: inline; padding-left: 0px; padding-bottom: 0px; margin: 0px; padding-top: 0px">
+<div class="dp-highlighter"><div class="bar"><div class="tools"><a href="#" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a href="#" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="#" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol class="dp-c" start="1"><li class="alt"><span><span>IEnumerable&lt;</span><span class="keyword">string</span><span>&gt;&nbsp;FindBobs(IEnumerable&lt;</span><span class="keyword">string</span><span>&gt;&nbsp;names)&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">foreach</span><span>(var&nbsp;currName&nbsp;</span><span class="keyword">in</span><span>&nbsp;names)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(currName&nbsp;==&nbsp;</span><span class="string">"Bob"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yield&nbsp;<span class="keyword">return</span><span>&nbsp;currName;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" class="c#" name="code">IEnumerable&lt;string&gt; FindBobs(IEnumerable&lt;string&gt; names)
+{
+	foreach(var currName in names)
+	{
+		if(currName == "Bob")
+			yield return currName;
+	}
+}</pre>
+</div>
+<p>In this version, we have changed the return type to 
+IEnumerable&lt;string&gt;, and we’re using "yield return". Notice that 
+I’m no longer creating a list. What’s happening is a little confusing, 
+but I promise it’s actually incredibly simple once you understand it.</p>
+<p>When you use the "yield return" keyphrase, .NET is wiring up a whole 
+bunch of plumbing code for you, but for now you can pretend it’s magic. 
+When you start to loop in the calling code (not listed here), this 
+function actually gets called over and over again, but each time it 
+resumes execution where it left off.</p>
+<table border="0" cellpadding="2" cellspacing="0" width="400">
+<tbody>
+<tr>
+<td>
+<p><strong>Typical Implementation</strong></p>
+</td>
+<td><strong>Yield Implementation</strong></td>
+</tr>
+<tr>
+<td>
+<ol>
+<li>Caller calls function<br>
+            </li>
+<li>Function executes and returns list<br>
+            </li>
+<li>Caller uses list </li>
+</ol>
+</td>
+<td>
+<ol>
+<li>Caller calls function<br>
+            </li>
+<li>Caller requests item<br>
+            </li>
+<li>Next item returned<br>
+            </li>
+<li>Goto step #2 </li>
+</ol>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Although the execution of the yield implementation is a little more complicated, what we end up with is an implementation that <strong>"pulls"</strong> items one at a time instead of having to build an entire list before returning to the client.</p>
+<p>In regards to the syntax, I personally think the yield syntax is 
+simpler, and does a better job conveying what the method is actually 
+doing. Even the fact that I’m returning IEnumerable tells the caller 
+that its only concern should be that it can "foreach" over the return 
+data. <strong>The caller can now make their own decision</strong> if they want to put it in a list, possibly at the expense of performance.</p>
+<p>In the simple example I provided, you might not see much of an 
+advantage. However, you’ll avoid unnecessary work when the caller can 
+"short-circuit" or cancel looping through all of the items that the 
+function will provide. When you start chaining methods using this 
+technique together, this becomes more likely, and the amount of work 
+saved can possibly multiply.</p>
+<p>Ayende has a great example of <a href="http://ayende.com/Blog/archive/2008/01/05/Pipes-and-filters-The-IEnumerable-appraoch.aspx" target="_blank" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/ayende.com/Blog/archive/2008/01/05/Pipes-and-filters-The-IEnumerable-appraoch.aspx?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">using yield for a slick pipes &amp; filters implementation</a>. He even has a <a href="http://ayende.com/Blog/archive/2008/01/06/Pipes-and-filters-The-multi-threaded-version.aspx" target="_blank" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/ayende.com/Blog/archive/2008/01/06/Pipes-and-filters-The-multi-threaded-version.aspx?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">version that is multi-threaded</a> which I find very intriguing.</p>
+<p>One of my first reservations with using yield was that there is a 
+potential performance implication. Since c# is keeping track of what is 
+going on in what is essentially a state machine, there is a bit of 
+overhead. Unfortunately, I can’t find any information that demonstrates 
+the performance impact. I do think that the potential advantages I 
+mentioned should outweigh the overhead concerns.</p>
+<p><strong>Conclusion</strong></p>
+<p>Yield can make your code more efficient and more readable. It’s been 
+around since .NET 2.0, so there’s not much reason to avoid understanding
+ and using it.</p>
+<p>You can find detailed information about <a href="http://startbigthinksmall.wordpress.com/2008/06/09/behind-the-scenes-of-the-c-yield-keyword/" target="_blank" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/startbigthinksmall.wordpress.com/2008/06/09/behind-the-scenes-of-the-c-yield-keyword/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">how the yield keyword works under the hood here</a>.</p>
+<p>Have you been using yield in interesting ways? Have you ever been bitten by using it? Leave a comment and let me know!</p>
+			
+				
+<p>
+<a href="http://www.dotnetkicks.com/submit/?url=http%3A%2F%2Fwww.ytechie.com%2F2009%2F02%2Fusing-c-yield-for-readability-and-performance.html&amp;title=Using%20C#%20Yield%20for%20Readability%20and%20Performance" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.dotnetkicks.com/submit/?url=http_3A_2F_2Fwww.ytechie.com_2F2009_2F02_2Fusing-c-yield-for-readability-and-performance.html_amp_title=Using_C_Yield_for_Readability_and_Performance&amp;referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');"><img alt="Kick It!" src="using-c-yield-for-readability-and-performance_files/KickItImageGenerator.png"></a>
+</p>
+			</div>
+
+		</div>
+				
+		<div class="post">
+			
+<!-- You can start editing here. -->
+
+
+	<h2 class="comments-num">
+		42 Comments					 so far <a href="#postcomment" title="Jump to the comments form">»</a>
+			</h2>
+	
+	<ol id="commentlist">
+
+	
+		<li class="alt" id="comment-1322">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_003.png" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://blog.robustsoftware.co.uk/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/blog.robustsoftware.co.uk?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Garry Shutler</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1322">
+				February 4, 2009				 @ 9:01 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>Have you included the “yield return break” for any reason? As far as I know it is superfluous in this case.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1323">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_004.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">admin said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1323">
+				February 4, 2009				 @ 9:22 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>Great catch Garry!</p>
+<p>I updated the post and removed it. That statement was wrong either way, it should have been “yield break”.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1324">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://www.codethinked.com/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/www.codethinked.com?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Justin Etheredge</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1324">
+				February 4, 2009				 @ 11:15 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>I think the performance implications are 
+going to vary depending on what you are doing. If you are dealing with 
+very large lists then you could very well improve performance because 
+you don’t have to deal with a bunch of items being in memory at the same
+ time.</p>
+<p>Another important consideration is in lists where you don’t enumerate
+ the entire thing. In which case using yield could be faster since you 
+aren’t going to waste time spinning through the entire list.</p>
+<p>And lastly, you also have to consider infinite series, which would 
+not be possible at all using your original code. Perhaps I’ll write up a
+ blog post discussing this topic. Hmmmmm. <img src="using-c-yield-for-readability-and-performance_files/icon_smile.gif" alt=":-)" class="wp-smiley"> </p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1325">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_003.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://blogs.dotnethell.it/windowsvista" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/blogs.dotnethell.it/windowsvista?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Licantrop0</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1325">
+				February 4, 2009				 @ 11:19 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>A Linq2Entities solution could be clearer?</p>
+<p>return names.Where(n =&gt; n == “Bob”);</p>
+<p>you get rid also of the foreach cycle.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1326">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_004.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">admin said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1326">
+				February 4, 2009				 @ 11:32 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>@Justin<br>
+Yes, those reasons were part of the point I was trying to make. As far 
+as the infinite series, people have mentioned that before, but it’s 
+honestly not something I’ve actually seen a common need for. I wrote 
+this post because I was only seeing the examples showing me how to get x
+ digits of PI which isn’t terribly useful.</p>
+<p>@Licantrop0<br>
+Yes, you could do that as well. In my actual code, I’m doing a little 
+more advanced filtering. I simplified it to make the example easy to 
+digest.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1327">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_016.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Tom said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1327">
+				February 4, 2009				 @ 12:49 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>Great information! Thanks!</p>
+<p>One caveat is that you cannot use YieldingFunction().Count. that would clearly defeat the point of the yield, anyway.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1328">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_002.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Petar Repac said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1328">
+				February 4, 2009				 @ 2:41 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>yield return statement essentially makes the method a coroutine (<a href="http://en.wikipedia.org/wiki/Coroutine" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/en.wikipedia.org/wiki/Coroutine?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">http://en.wikipedia.org/wiki/Coroutine</a>). It makes deferred query execution possible and is a basis for LINQ.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1330">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar.png" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Judah Himango said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1330">
+				February 4, 2009				 @ 8:56 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>Yield return allocates a new class in the background, so it can be more expensive in terms of memory usage.</p>
+<p>Like Justin said, it depends on how you’re using it.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1331">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_007.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://mosesofegypt.net/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/mosesofegypt.net?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Muhammad Mosa</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1331">
+				February 4, 2009				 @ 8:56 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>I found something interesting about yield too when working with Entity Framework.<br>
+For example if you have and Entity with called Category and You wished to make it implement interface called ICategory.<br>
+Using ObjectContext.CreateQuery.Cast() would through an exception.<br>
+I made a workaround this issue by using yield.</p>
+<p>I made something the below wrapped in a method<br>
+foreach(var cateogry in context.CategorySet)<br>
+ yield return category as ICategory</p>
+<p>This is not going to be evaluated immediatly,<br>
+for example if you put this in a method called GetEnumerable() and called this method like this<br>
+var x = context.GetEnumerable();<br>
+this will not hit the database and evaulate your query.<br>
+What will hit the database is when you start iterating.<br>
+Thought to share it here on this cool post</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1333">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_020.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">sgwong said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1333">
+				February 5, 2009				 @ 8:27 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>It looks like ruby yield statement. In ruby, yields is everywhere and straight forward, easy to use.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1335">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_005.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://progblog.ru/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/progblog.ru?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">trendbender</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1335">
+				February 5, 2009				 @ 11:37 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>very interesting, thx)</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1336">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_007.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://www.moorwebsoftware.com/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/www.moorwebsoftware.com?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Timeless</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1336">
+				February 5, 2009				 @ 2:15 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>Excellent post, thanks. Like yourself, I 
+read several times about the yield topic but never really graspt the 
+idea and therefore never used it so far. I can surely see areas where 
+yield can be quite useful, thanks again for the clear example and 
+explanation.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1338">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_009.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://micaleel.wordpress.com/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/micaleel.wordpress.com?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">micaleel</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1338">
+				February 8, 2009				 @ 9:12 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>really nice. Thanks</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1340">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_010.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://rtipton.wordpress.com/2009/02/08/weekly-link-post-80/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/rtipton.wordpress.com/2009/02/08/weekly-link-post-80/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Weekly Link Post 80 « Rhonda Tipton’s WebLog</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1340">
+				February 8, 2009				 @ 9:47 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>[...] Jason Young tells us about Using C# Yield for Readability and Performance. [...]</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1342">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_010.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://weblogs.asp.net/yuanjian/archive/2009/02/09/interesting-finds-2009-02-10.aspx" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/weblogs.asp.net/yuanjian/archive/2009/02/09/interesting-finds-2009-02-10.aspx?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Interesting Finds: 2009.02.10 - gOODiDEA.NET</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1342">
+				February 9, 2009				 @ 9:04 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>[...] Using C# Yield for Readability and Performance [...]</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1419">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_011.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Tuan Jinn said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1419">
+				April 27, 2009				 @ 8:52 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>Awesome,<br>
+Interesting information and I have been usin’ yield for awhile now.<br>
+Thanks,</p>
+<p>Tuan Jinn</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1420">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_011.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Tuan Jinn said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1420">
+				April 27, 2009				 @ 9:14 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>I encountered some problems (logical) while refactoring my code, which I am in doubt of using Yield.<br>
+I googled up and found this:<br>
+<a href="http://www.c-sharpcorner.com/UploadFile/dhiren.i.patel/Yield02092009234408PM/Yield.aspx" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.c-sharpcorner.com/UploadFile/dhiren.i.patel/Yield02092009234408PM/Yield.aspx?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">http://www.c-sharpcorner.com/UploadFile/dhiren.i.patel/Yield02092009234408PM/Yield.aspx</a></p>
+<p>pretty disappointed about that post and clue less about whose is the original post. </p>
+<p>Words are almost the same, except the method names are different.</p>
+<p>Can you report or explain that? I’m quite allergic to this.</p>
+<p>Tuan Jinn</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1421">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_004.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">admin said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1421">
+				April 27, 2009				 @ 9:23 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>Tuan, I have contacted that site to have that removed. This post was copied without my permission.</p>
+<p>Thank you for reporting that.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1445">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_015.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">t4 said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1445">
+				May 14, 2009				 @ 4:40 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>I found the same article as Tuan (along 
+with your own article, which looks to be the true source), and the 
+article mentioned by Tuan still seems to be active. The author 
+(patel.dhiren.i@gmail.com) doesn’t seem to have any reservations about 
+copying your article for his own uses…</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1455">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_010.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://vasubalakrishnan.wordpress.com/2009/05/20/c-yield-keyword/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/vasubalakrishnan.wordpress.com/2009/05/20/c-yield-keyword/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">C# Yield Keyword « Vasu Balakrishnan’s Blog</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1455">
+				May 20, 2009				 @ 2:36 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>[...] Using C# Yield for Readability and Performance [...]</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1498">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_008.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://blog.jonschneider.com/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/blog.jonschneider.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Jon Schneider</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1498">
+				June 22, 2009				 @ 12:14 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>This was helpful, thanks!</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1510">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_019.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Matthew said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1510">
+				June 25, 2009				 @ 11:06 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>I haven’t checked memory usage, but yield appears to be awesome speed-wise, at least in this simple little test I ran.</p>
+<p>Say I want to return a list of 20 items to process.  The fastest way 
+to allocate such a list should be a single allocation of a fixed size 
+array, but it turns out that allocation, copying, and processing takes 
+about 20% longer than creating an IEnumerable to directly iterate 
+through the items.  The advantage of the second case of course is 
+there’s no need to copy the elements.  You just allocate and access.</p>
+<p>// elapsed: 00:00:03.4531250<br>
+static IEnumerable GetNumbers()<br>
+{<br>
+    for(int i = 0; i &lt; 20; i++)<br>
+    {<br>
+        yield return i;<br>
+    }<br>
+}</p>
+<p>// elapsed: 00:00:04.2500000<br>
+static IEnumerable GetNumbersArray()<br>
+{<br>
+    int[] retval = new int[20];</p>
+<p>    for(int i = 0; i &lt; 20; i++)<br>
+    {<br>
+        retval[i] = i;<br>
+    }</p>
+<p>    return retval;<br>
+}</p>
+<p>static void Main(string[] args)<br>
+{<br>
+    int sum = 0;<br>
+    DateTime begin = DateTime.Now;<br>
+    for(int i = 0; i &lt; (1 &lt;&lt; 24); i++)<br>
+    {<br>
+        foreach(int j in<br>
+/*<br>
+            GetNumbers()<br>
+*/<br>
+            GetNumbersArray()<br>
+        )<br>
+        {<br>
+            sum += j;<br>
+        }<br>
+    }<br>
+    DateTime end = DateTime.Now;<br>
+    Console.WriteLine(<br>
+        “elapsed: ” +<br>
+        (end – begin).ToString()<br>
+    );<br>
+    Console.WriteLine(sum);<br>
+}</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1511">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_019.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Matthew said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1511">
+				June 25, 2009				 @ 11:09 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>I hate these web-based interfaces.  That 
+was supposed to be the typed version, IEnumerable&amp;ltT&gt;, not 
+IEnumerable which is much slower.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1585">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_008.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Ed said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1585">
+				September 12, 2009				 @ 10:19 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>Why not just have a count property and a 
+getItem(int index) method. Perfect clarity, less overhead and no 
+surprises (also totality thread safe).</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1589">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_010.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://www.ytechie.com/2009/09/understanding-linq-and-linq-to-sql-and-ef.html" rel="external nofollow" class="url">Understanding LINQ and LINQ to SQL (and EF)</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1589">
+				September 17, 2009				 @ 10:18 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>[...] For a moment, forget that LINQ 
+exists. Let’s say that you wanted to filter a list of names, to only get
+ names that start with the letter “J”. You could write the following 
+“utility” function: (if you don’t understand “yield return”, see this 
+post on that topic). [...]</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1605">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_006.jpg" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://www.onpreinit.com/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/www.onpreinit.com?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Nariman</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1605">
+				September 30, 2009				 @ 9:12 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>There are definite performance gains to be had – here’s a good sample:<br>
+<a href="http://flimflan.com/blog/ThePowerOfYieldReturn.aspx" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/flimflan.com/blog/ThePowerOfYieldReturn.aspx?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">http://flimflan.com/blog/ThePowerOfYieldReturn.aspx</a></p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1682">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_010.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://proglab.freevar.com/blog/?p=361" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/proglab.freevar.com/blog/?p=361&amp;referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">yield的使用及原理 « 宅爸爸的天空</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1682">
+				January 16, 2010				 @ 3:37 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>[...]  [...]</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1716">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://www.dimpu.com/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/www.dimpu.com?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">dimpu</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1716">
+				April 7, 2010				 @ 6:29 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>yes it is</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1719">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_010.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://www.dbnet.co.il/blog/2010/04/domain-events-dont-observe-us-well-observe-you/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/www.dbnet.co.il/blog/2010/04/domain-events-dont-observe-us-well-observe-you/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Domain Events – Don’t observe us, we’ll observe you - db@net blog site</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1719">
+				April 13, 2010				 @ 3:04 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>[...] Until now the dominating pattern 
+regarding sequential input was the IEnumarable interface and the “yield”
+ keyword in C#. Since the advent of LINQ and the deferred execution 
+mechanism, this Design Pattern has received a [...]</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1733">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_010.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://vincentpoon.wordpress.com/2010/05/21/c-yield-keyword/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/vincentpoon.wordpress.com/2010/05/21/c-yield-keyword/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">C# yield keyword « Vincentpoon's Blog</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1733">
+				May 20, 2010				 @ 10:55 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>[...] <a href="http://www.ytechie.com/2009/02/using-c-yield-for-readability-and-performance.html" rel="nofollow">http://www.ytechie.com/2009/02/using-c-yield-for-readability-and-performance.html</a> [...]</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1741">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_006.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">User said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1741">
+				July 7, 2010				 @ 1:49 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>public IEnumerable Comment()<br>
+{<br>
+yield return “Good post!!”;<br>
+}</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1798">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_002.png" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Niels R. said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1798">
+				November 19, 2010				 @ 8:29 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>At the above user: Too bad, but this will not work. “yield” must be used inside an iteration… ;o)</p>
+<p>I like the idea of your comment, though!</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1811">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_005.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Runcust said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1811">
+				December 21, 2010				 @ 1:07 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>Good job explaining this topic. Great!!! I
+ have been looking at so many other examples etc. and was still a little
+ confused. THANKS!!!!</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1825">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_012.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Chuck Norris said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1825">
+				February 7, 2011				 @ 11:12 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>omfg, I misread “FindBobs” and thought of something inappropriate for a moment =)<br>
+other than that excellent example!</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1831">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_017.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://patolisa.wordpress.com/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/patolisa.wordpress.com?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Sanjay Patolia</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1831">
+				February 18, 2011				 @ 7:17 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>Nice post.</p>
+<p>Thanks</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1845">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_014.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Sunil Chitrapu said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1845">
+				May 2, 2011				 @ 9:41 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>Very useful information</p>
+<p>Thanks for the post</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1855">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_009.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Pete said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1855">
+				June 16, 2011				 @ 8:12 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>Thanks for this I too read about yield a 
+few times in the past and didn’t understand it although that was before I
+ was using lots of Generics and Linq. This example makes it easy to 
+understand.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1872">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_002.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">jayasuthan said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1872">
+				July 22, 2011				 @ 5:36 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>The purpose of the yield is only to 
+inform to the compiler that the foreach loop in the function called from
+ inside the foreach loop is not finished. </p>
+<p>   Other wise it will execute the whole coding in that function</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1873">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_018.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">shefeek said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1873">
+				July 26, 2011				 @ 7:08 am			</a>
+					</p>
+		
+		<div class="comment-text"><p>Good post dude..<br>
+I dont know why you put the conclusion on performance in agnostic way.<br>
+Just like justin said there are  areas that we need to use to improve the performance.<br>
+Thanks,<br>
+shef</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1912">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_003.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title"><a href="http://www.blog.ingenuitynow.net/" rel="external nofollow" class="url" onclick="pageTracker._trackPageview('/outgoing/www.blog.ingenuitynow.net?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">Andy</a> said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1912">
+				September 23, 2011				 @ 10:20 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>Thanks! I wish I found this post 2.5 
+years ago when you wrote it, but I am glad I found it now.  You 
+explained this quite simply!</p>
+</div>
+		</li>
+
+		
+	
+		<li class="alt" id="comment-1924">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_013.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">Matt said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1924">
+				January 19, 2012				 @ 2:42 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>Still don’t understand what yield is 
+supposed to do.  Sounds terribly inefficient, why would I want to pull 
+records 1 at a time?  I can’t more forward until I have all the results 
+anyway.</p>
+</div>
+		</li>
+
+		
+	
+		<li class="" id="comment-1927">
+
+		<!-- Gravatar -->
+				<div class="comment-gravatar">
+			<a href="http://www.gravatar.com/" title="Gravatar" rel="nofollow" onclick="pageTracker._trackPageview('/outgoing/www.gravatar.com/?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');">
+				<img src="using-c-yield-for-readability-and-performance_files/avatar_004.gif" class="gravatar" alt="&nbsp;">
+			</a>
+		</div>
+				
+		<h3 class="comment-title">zul said,</h3>
+		
+		<p class="comment-meta">
+			Wrote on 			<a href="#comment-1927">
+				February 19, 2012				 @ 10:23 pm			</a>
+					</p>
+		
+		<div class="comment-text"><p>Thank you, easy to understand, thanks a lot..</p>
+</div>
+		</li>
+
+		
+	
+	</ol>
+	
+	<p class="small">
+		<a href="http://www.ytechie.com/2009/02/using-c-yield-for-readability-and-performance.html/feed">Comment <abbr title="Really Simple Syndication">RSS</abbr></a>				· <a href="http://www.ytechie.com/2009/02/using-c-yield-for-readability-and-performance.html/trackback" rel="trackback">TrackBack <abbr title="Uniform Resource Identifier">URI</abbr></a>
+			</p>
+
+
+
+	<h2 id="postcomment">Leave a Comment</h2>
+	<div class="postcomment">
+	
+		
+		<form action="http://www.ytechie.com/wp-comments-post.php" method="post" id="commentform">
+		
+			
+			<p>
+				<strong>Name: (Required)</strong><br>
+				<input name="author" id="author" tabindex="1" type="text">
+			</p>
+			
+			<p>
+				<strong>E-mail: (Required)</strong><br>
+				<input name="email" id="email" tabindex="2" type="text">
+			</p>
+			
+			<p>
+				<strong>Website:</strong><br>
+				<input name="url" id="url" tabindex="3" type="text">
+			</p>
+
+		
+			<p>
+				<strong>Comment:</strong><br>
+				<textarea name="comment" id="comment" rows="" cols="" tabindex="4"></textarea>
+			</p>
+	
+			<p>
+				<input name="submit" id="submit" tabindex="5" value="Say it" type="submit">
+				<input name="comment_post_ID" value="347" type="hidden">
+			</p>
+	
+		<p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="04f2030cb1" type="hidden"></p>	
+		</form>
+
+		</div>
+
+		</div>
+
+	
+</div> <!-- end of #content -->
+
+<div id="sidebar">
+
+<ul>
+<li id="text-111092551" class="widget widget_text"><h2 class="widgettitle">Background</h2>
+			<div class="textwidget"><span style="color: #000000;">
+Practical ideas, examples, and answers by <a href="http://www.ytechie.com/about">Jason Young</a>, CTO with a background in software development.</span></div>
+		</li>
+<li id="text-99415231" class="widget widget_text"><h2 class="widgettitle">Subscribe!</h2>
+			<div class="textwidget"><a href="http://feedproxy.google.com/Ytechie" rel="alternate, nofollow" type="application/rss+xml" onclick="pageTracker._trackPageview('/outgoing/feedproxy.google.com/Ytechie?referer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D3%26sqi%3D2%26ved%3D0CD4QFjAC%26url%3Dhttp%253A%252F%252Fwww.ytechie.com%252F2009%252F02%252Fusing-c-yield-for-readability-and-performance.html%26ei%3DJPRDT6CwGaLo2AWv08SnCA%26usg%3DAFQjCNEGhi6JbkBI8LDZFpy4cO0kdEWhJw%26sig2%3DsRaeKIYN-nq1vwqcAMwwYA');"><img src="using-c-yield-for-readability-and-performance_files/Ytechie.gif" style="border: 0pt none;" alt="" height="26" width="88"></a></div>
+		</li>
+<li id="categories-99380491" class="widget widget_categories"><h2 class="widgettitle">Categories</h2>
+		<ul>
+	<li class="cat-item cat-item-25"><a href="http://www.ytechie.com/category/net" title="View all posts filed under .net">.net</a> (5)
+</li>
+	<li class="cat-item cat-item-9"><a href="http://www.ytechie.com/category/actionscript" title="View all posts filed under actionscript">actionscript</a> (2)
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.ytechie.com/category/aspnet" title="View all posts filed under asp.net">asp.net</a> (22)
+</li>
+	<li class="cat-item cat-item-16"><a href="http://www.ytechie.com/category/blogger" title="View all posts filed under blogger">blogger</a> (3)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.ytechie.com/category/blogging" title="View all posts filed under blogging">blogging</a> (7)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.ytechie.com/category/c" title="View all posts filed under c#">c#</a> (16)
+</li>
+	<li class="cat-item cat-item-15"><a href="http://www.ytechie.com/category/ecommerce" title="View all posts filed under ecommerce">ecommerce</a> (3)
+</li>
+	<li class="cat-item cat-item-22"><a href="http://www.ytechie.com/category/entity-framwork" title="View all posts filed under entity framwork">entity framwork</a> (5)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://www.ytechie.com/category/flex" title="View all posts filed under flex">flex</a> (4)
+</li>
+	<li class="cat-item cat-item-17"><a href="http://www.ytechie.com/category/hardware" title="View all posts filed under hardware">hardware</a> (7)
+</li>
+	<li class="cat-item cat-item-23"><a href="http://www.ytechie.com/category/iphone" title="View all posts filed under iPhone">iPhone</a> (1)
+</li>
+	<li class="cat-item cat-item-24"><a href="http://www.ytechie.com/category/linq" title="View all posts filed under LINQ">LINQ</a> (5)
+</li>
+	<li class="cat-item cat-item-21"><a href="http://www.ytechie.com/category/mvc" title="View all posts filed under mvc">mvc</a> (3)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.ytechie.com/category/productivity" title="View all posts filed under productivity">productivity</a> (26)
+</li>
+	<li class="cat-item cat-item-11"><a href="http://www.ytechie.com/category/seo" title="View all posts filed under seo">seo</a> (7)
+</li>
+	<li class="cat-item cat-item-10"><a href="http://www.ytechie.com/category/simpletracking" title="View all posts filed under simpletracking">simpletracking</a> (3)
+</li>
+	<li class="cat-item cat-item-13"><a href="http://www.ytechie.com/category/software" title="View all posts filed under software">software</a> (22)
+</li>
+	<li class="cat-item cat-item-7"><a href="http://www.ytechie.com/category/software-development" title="View all posts filed under software development">software development</a> (37)
+</li>
+	<li class="cat-item cat-item-18"><a href="http://www.ytechie.com/category/sql" title="View all posts filed under sql">sql</a> (7)
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.ytechie.com/category/uncategorized" title="View all posts filed under Uncategorized">Uncategorized</a> (8)
+</li>
+	<li class="cat-item cat-item-12"><a href="http://www.ytechie.com/category/unit-testing" title="View all posts filed under unit testing">unit testing</a> (10)
+</li>
+	<li class="cat-item cat-item-19"><a href="http://www.ytechie.com/category/usability" title="View all posts filed under usability">usability</a> (1)
+</li>
+	<li class="cat-item cat-item-14"><a href="http://www.ytechie.com/category/virtualization" title="View all posts filed under virtualization">virtualization</a> (5)
+</li>
+	<li class="cat-item cat-item-20"><a href="http://www.ytechie.com/category/wpf" title="View all posts filed under wpf">wpf</a> (1)
+</li>
+		</ul>
+</li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">Archives</h2>
+		<ul>
+			<li><a href="http://www.ytechie.com/2010/10" title="October 2010">October 2010</a>&nbsp;(1)</li>
+	<li><a href="http://www.ytechie.com/2009/11" title="November 2009">November 2009</a>&nbsp;(1)</li>
+	<li><a href="http://www.ytechie.com/2009/10" title="October 2009">October 2009</a>&nbsp;(1)</li>
+	<li><a href="http://www.ytechie.com/2009/09" title="September 2009">September 2009</a>&nbsp;(2)</li>
+	<li><a href="http://www.ytechie.com/2009/08" title="August 2009">August 2009</a>&nbsp;(1)</li>
+	<li><a href="http://www.ytechie.com/2009/06" title="June 2009">June 2009</a>&nbsp;(2)</li>
+	<li><a href="http://www.ytechie.com/2009/05" title="May 2009">May 2009</a>&nbsp;(1)</li>
+	<li><a href="http://www.ytechie.com/2009/04" title="April 2009">April 2009</a>&nbsp;(5)</li>
+	<li><a href="http://www.ytechie.com/2009/03" title="March 2009">March 2009</a>&nbsp;(2)</li>
+	<li><a href="http://www.ytechie.com/2009/02" title="February 2009">February 2009</a>&nbsp;(5)</li>
+	<li><a href="http://www.ytechie.com/2009/01" title="January 2009">January 2009</a>&nbsp;(6)</li>
+	<li><a href="http://www.ytechie.com/2008/12" title="December 2008">December 2008</a>&nbsp;(3)</li>
+	<li><a href="http://www.ytechie.com/2008/11" title="November 2008">November 2008</a>&nbsp;(4)</li>
+	<li><a href="http://www.ytechie.com/2008/10" title="October 2008">October 2008</a>&nbsp;(6)</li>
+	<li><a href="http://www.ytechie.com/2008/09" title="September 2008">September 2008</a>&nbsp;(6)</li>
+	<li><a href="http://www.ytechie.com/2008/08" title="August 2008">August 2008</a>&nbsp;(2)</li>
+	<li><a href="http://www.ytechie.com/2008/07" title="July 2008">July 2008</a>&nbsp;(8)</li>
+	<li><a href="http://www.ytechie.com/2008/06" title="June 2008">June 2008</a>&nbsp;(14)</li>
+	<li><a href="http://www.ytechie.com/2008/05" title="May 2008">May 2008</a>&nbsp;(21)</li>
+	<li><a href="http://www.ytechie.com/2008/04" title="April 2008">April 2008</a>&nbsp;(35)</li>
+	<li><a href="http://www.ytechie.com/2008/03" title="March 2008">March 2008</a>&nbsp;(4)</li>
+		</ul>
+</li>
+
+</ul>
+
+</div> <!-- end of #sidebar -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="using-c-yield-for-readability-and-performance_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-342471-4");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+</div> <!-- end of #wrapper -->
+</div> <!-- end of #outline -->
+
+<!-- Syntax Highligter -->
+<script type="text/javascript">
+	dp.SyntaxHighlighter.ClipboardSwf = 'http://static.ytechie.com/syntax-highlighter/clipboard.swf';
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+<!-- Syntax Highligter -->
+
+
+
+
+
+
+</body></html>
+<!-- Dynamic page generated in 1.208 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2012-02-21 14:44:39 -->
+<!-- Compression = gzip -->
