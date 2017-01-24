@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FirstCoreMVCApp", "src\FirstCoreMVCApp\FirstCoreMVCApp.xproj", "{4D81CA6F-FD52-40E1-8316-9B06EADCAEE3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D4D30ECB-ABDF-44B4-BE3F-1A673312A015}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FirstCoreMVCApp.Tests", "FirstCoreMVCApp.Tests\FirstCoreMVCApp.Tests.xproj", "{4793939B-3A0E-42F9-BCD8-793A0D5DC197}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +26,16 @@ Global
 		{4D81CA6F-FD52-40E1-8316-9B06EADCAEE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D81CA6F-FD52-40E1-8316-9B06EADCAEE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D81CA6F-FD52-40E1-8316-9B06EADCAEE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4793939B-3A0E-42F9-BCD8-793A0D5DC197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4793939B-3A0E-42F9-BCD8-793A0D5DC197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4793939B-3A0E-42F9-BCD8-793A0D5DC197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4793939B-3A0E-42F9-BCD8-793A0D5DC197}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4D81CA6F-FD52-40E1-8316-9B06EADCAEE3} = {387FEBC9-9F31-4DD4-ADA4-47CCEAE0705B}
+		{4793939B-3A0E-42F9-BCD8-793A0D5DC197} = {D4D30ECB-ABDF-44B4-BE3F-1A673312A015}
 	EndGlobalSection
 EndGlobal
