@@ -1,0 +1,13 @@
+﻿@model FirstCoreMVCApp.Models.Movie
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h2>@Model.Title</h2>
+<h3>Release year: @Model.ReleaseDate</h3>
+<ul>
+    @foreach (string a in Model.Actors)
+    {
+        <li>@a</li>
+    }
+</ul>
