@@ -12,7 +12,7 @@ namespace BasicLambda
 
 		// Lambda read-only properties
 		public int Number2 => number2;
-		public int Quotient => number1 / number2;
+		public float Quotient => number1 / number2;
 
 		// Constructors
 		public MathOps() { }
@@ -24,16 +24,18 @@ namespace BasicLambda
 		}
 		               
 		// A normal method definition
-		public static int Sum(int a, int b)
+		public static float Sum(int a, int b)
 		{
 			return a + b;
 		}
 
 		// A lambda method difinition
-		public static int Product(int a, int b) => a * b;
+		public static float Product(int a, int b) => a * b;
 
 		// This method accepts another method as an argument
-		public static void DisplayResult(Func<int, int, int> MathOp, int num1, int num2)
+		// Func defines the signature of any method that will be passed in
+		// The first two types are the parameter types, the third is the return type
+		public static void DisplayResult(Func<int, int, float> MathOp, int num1, int num2)
 		{
 			Console.WriteLine(MathOp(num1, num2));
 		}
@@ -55,7 +57,7 @@ namespace BasicLambda
 			MathOps.DisplayResult((n1, n2) => n1 - n2, a, b);
 
 			Console.WriteLine("Using MathOps properties");
-			var math = new MathOps(110, 11);
+			var math = new MathOps(100, 11);
 			Console.WriteLine(String.Format("{0} / {1} = {2}",
 			               math.Number1, math.Number2, math.Quotient));
 		}
