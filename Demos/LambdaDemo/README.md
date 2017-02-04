@@ -1,4 +1,4 @@
-These .NET console apps demonstrates the use lambda expressions
+These .NET console apps demonstrate the use lambda expressions
 
 There are two projects in the solution:
 * BasicLambda - Shows you how to:
