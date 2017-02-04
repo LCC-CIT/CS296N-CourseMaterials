@@ -1,0 +1,18 @@
+﻿@model List<BookInfo.Models.Author>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Author List</title>
+</head>
+<body>
+    <h1>List of Authors</h1>
+    @foreach(var a in Model)
+    {
+        @:Name: @a.Name <br />
+        @:Birthday: @a.Birthday <br /><br />
+    }
+</body>
+
+</html>

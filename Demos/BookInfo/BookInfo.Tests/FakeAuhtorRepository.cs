@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace BookInfo.Tests
 {
-    public class FakeAuhtorRepository : IAuthor
+    public class FakeAuhtorRepository : IAuthorRepository
     {
         public List<Author> GetAllAuthorsAlphabetic()
         {
             var authors = new List<Author>();
-            authors.Add(new Author() { Name = "Jame Austen", Birthday = new DateTime(12, 16, 1775) });
-            authors.Add(new Author() { Name = "William Shakespere", Birthday = new DateTime(4, 1, 1564) });
+            authors.Add(new Author() { Name = "Jame Austen", Birthday = new DateTime(1775, 12, 16) }); 
+            authors.Add(new Author() { Name = "William Shakespere", Birthday = new DateTime(1564, 4, 1) }); 
             return authors;
         }
 

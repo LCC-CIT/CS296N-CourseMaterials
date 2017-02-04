@@ -11,14 +11,11 @@ namespace BookInfo.Controllers
 {
     public class HomeController : Controller
     {
-        private IAuthor authorRepo;
+        private IAuthorRepository authorRepo;
 
-        public HomeController(IAuthor repo)
+        public HomeController(IAuthorRepository repo)
         {
-            if (repo == null)
-                authorRepo = new AuthorRepository();
-            else
-                authorRepo = repo;
+             authorRepo = repo;
         }
 
         // GET: /<controller>/
@@ -27,7 +24,7 @@ namespace BookInfo.Controllers
             return View();
         }
 
-        public IActionResult Authors()
+        public ViewResult Authors()
         {
             var repo = new AuthorRepository();
             var authors = repo.GetAllAuthorsAlphabetic();
