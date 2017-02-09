@@ -42,5 +42,10 @@ namespace BookInfo.Tests
                     where b.Authors.Contains(author)
                     select b).ToList();
         }
+
+        public List<Author> GetAuthorsByBook(Book book)
+        {
+            return book.Authors;
+        }
     }
 }
