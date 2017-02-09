@@ -11,7 +11,7 @@
     @foreach(var a in Model)
     {
         @:Name: @a.Name <br />
-        @:Birthday: @a.Birthday <br /><br />
+        @:Birthday: @a.Birthday.ToString("MMMM dd, yyyy") <br /><br />
     }
 </body>
 
