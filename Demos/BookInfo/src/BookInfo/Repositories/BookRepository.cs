@@ -8,9 +8,12 @@ namespace BookInfo.Repositories
 {
     public class BookRepository : IBookRepository
     {
+        Book book = new Book() { Title = "Lord of the Rings", Date = DateTime.Parse("1937") };
+        
+
         public Book GetBookByTitle(string title)
         {
-            throw new NotImplementedException();
+            return book;
         }
 
         public List<Book> GetBooksByAuthor(Author author)
