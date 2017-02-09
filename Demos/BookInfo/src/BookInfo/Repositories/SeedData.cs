@@ -22,13 +22,20 @@ namespace BookInfo.Repositories
                 book.Authors.Add(author);
                 context.Books.Add(book);
 
+                author = new Author { Name = "C. S. Lewis" };
+                context.Authors.Add(author);
                 book = new Book { Title = "The Lion, the Witch, and the Wardrobe", Date = DateTime.Parse("1/1/1950") };
-                book.Authors.Add(new Author { Name = "C. S. Lewis" });
+                book.Authors.Add(author);
                 context.Books.Add(book);
 
+                author = new Author { Name = "Samuel Shellabarger" };
                 book = new Book { Title = "Prince of Foxes", Date = DateTime.Parse("1/1/1947") };
-                book.Authors.Add(new Author { Name = "Samuel Shellabarger" });
+                context.Authors.Add(author);
+                book.Authors.Add(author);
+                book.Authors.Add(author);
                 context.Books.Add(book);
+
+                context.SaveChanges();
             }
         }
     }

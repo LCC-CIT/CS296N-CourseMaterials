@@ -1,6 +1,7 @@
 ﻿using BookInfo.Controllers;
 using BookInfo.Models;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace BookInfo.Tests
@@ -16,7 +17,7 @@ namespace BookInfo.Tests
             // There is no state stored in the controller, so we can
             // do the arrange step once for all tests
             repository = new FakeBookRepository();
-            booksFromRepo = repository.GetAllBooks();
+            booksFromRepo = repository.GetAllBooks().ToList();
             controller = new BookController(repository);
         }
 

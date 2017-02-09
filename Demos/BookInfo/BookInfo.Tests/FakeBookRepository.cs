@@ -26,7 +26,7 @@ namespace BookInfo.Tests
             books.Add(book);
         }
 
-        public List<Book> GetAllBooks()
+        public IEnumerable<Book> GetAllBooks()
         {
             return books;
         }

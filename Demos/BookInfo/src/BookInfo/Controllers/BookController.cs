@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using BookInfo.Repositories;
 using BookInfo.Models;
@@ -22,7 +19,7 @@ namespace BookInfo.Controllers
         // GET: /<controller>/
         public ViewResult Index()
         {
-            return View(bookRepo.GetAllBooks());
+            return View(bookRepo.GetAllBooks().ToList());
         }
 
         public ViewResult AuthorsOfBook(Book book)
