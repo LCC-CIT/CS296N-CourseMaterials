@@ -19,9 +19,9 @@ namespace BookInfo.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            return View(bookRepo.GetAllBooks());
         }
     }
 }

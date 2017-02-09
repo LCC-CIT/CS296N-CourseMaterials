@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace BookInfo.Models
 {
@@ -9,5 +7,14 @@ namespace BookInfo.Models
     {
         public string Name { get; set; }
         public DateTime Birthday { get; set; }
+
+        public override bool Equals(object obj)
+        {
+                Author authorObj = obj as Author;
+            if (authorObj == null)
+                return false;
+            else
+                return Name == authorObj.Name && Birthday == authorObj.Birthday;
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace BookInfo.Tests
 {
     public class FakeAuhtorRepository : IAuthorRepository
     {
-        public List<Author> GetAllAuthorsAlphabetic()
+        public List<Author> GetAllAuthors()
         {
             var authors = new List<Author>();
             authors.Add(new Author() { Name = "Jame Austen", Birthday = new DateTime(1775, 12, 16) }); 

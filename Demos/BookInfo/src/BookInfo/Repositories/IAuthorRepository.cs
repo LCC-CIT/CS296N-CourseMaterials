@@ -9,7 +9,7 @@ namespace BookInfo.Repositories
     public interface IAuthorRepository
     {
         List<Author> GetAuthorsByBook(Book book);
-        List<Author> GetAllAuthorsAlphabetic();
+        List<Author> GetAllAuthors();
         Author GetAuthorByName(string name);
     }
 }

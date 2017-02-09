@@ -6,7 +6,7 @@ namespace BookInfo.Repositories
 {
     public class AuthorRepository : IAuthorRepository
     {
-        public List<Author> GetAllAuthorsAlphabetic()
+        public List<Author> GetAllAuthors()
         {
             // Temporary development implementation
             var authors = new List<Author>();

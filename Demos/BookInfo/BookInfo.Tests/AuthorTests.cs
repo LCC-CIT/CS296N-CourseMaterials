@@ -24,13 +24,13 @@ namespace BookInfo.Tests
             List<Author> authors = controller.Authors().ViewData.Model as List<Author>;
 
             // Assert
-            Assert.Equal(repository.GetAllAuthorsAlphabetic()[0].Name,
+            Assert.Equal(repository.GetAllAuthors()[0].Name,
                 authors[0].Name);
-            Assert.Equal(repository.GetAllAuthorsAlphabetic()[0].Birthday,
+            Assert.Equal(repository.GetAllAuthors()[0].Birthday,
                 authors[0].Birthday);
-            Assert.Equal(repository.GetAllAuthorsAlphabetic()[1].Name,
+            Assert.Equal(repository.GetAllAuthors()[1].Name,
                 authors[1].Name);
-            Assert.Equal(repository.GetAllAuthorsAlphabetic()[1].Birthday,
+            Assert.Equal(repository.GetAllAuthors()[1].Birthday,
                 authors[1].Birthday);
 
         }
