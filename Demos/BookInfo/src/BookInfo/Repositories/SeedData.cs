@@ -32,6 +32,22 @@ namespace BookInfo.Repositories
                 book = new Book { Title = "Prince of Foxes", Date = DateTime.Parse("1/1/1947") };
                 context.Authors.Add(author);
                 book.Authors.Add(author);
+                context.Books.Add(book);
+
+                author = new Author() { Name = "Jame Austen", Birthday = new DateTime(1775, 12, 16) };
+                context.Authors.Add(author);
+                author = new Author() { Name = "William Shakespere", Birthday = new DateTime(1564, 4, 1) };
+                context.Authors.Add(author);
+
+                author = new Author() { Name = "Kathy Sierra" };
+                context.Authors.Add(author);
+                book = new Book { Title = "Head First Design Patterns", Date = DateTime.Parse("10/1/2004") };
+                book.Authors.Add(author);
+                author = new Author() { Name = "Eric Freeman" };
+                context.Authors.Add(author);
+                book.Authors.Add(author);
+                author = new Author() { Name = "Bert Bates" };
+                context.Authors.Add(author);
                 book.Authors.Add(author);
                 context.Books.Add(book);
 
