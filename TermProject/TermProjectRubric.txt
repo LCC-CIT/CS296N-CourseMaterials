@@ -1,0 +1,15 @@
+
+Excellent work! Your site works well and looks good too!
+
+Interactive feature: 40/40
+rich media: 20/20
+data driven: 70/70
+minimum of 3 models & 8 properties: 30/30
+minimum of 8 views: 40/40
+Site navigation: 20/20
+Authentication: 50/50
+Authorization: 50/50
+Migrations & seed: 10/10
+Completed review: 10/10
+Overall functionality: 60/60
+Total: 400/400
