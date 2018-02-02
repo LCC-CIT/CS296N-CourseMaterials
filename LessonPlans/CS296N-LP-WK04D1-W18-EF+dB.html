@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Week 4, Day 1, EF + dB</title>
+    <style type="text/css">
+body {
+  font-family: "Arial", "Helvetica", "sans-serif";
+}
+
+#week04 {
+  background-color: #f8ff2e;
+}
+
+code {
+  display:block;
+  font-size: larger;
+  background-color: lightgoldenrodyellow;
+  max-height:400px;
+  width:75%;
+  overflow:scroll;
+}
+
+.exercise {
+  background-color: #c6ffe2;
+}
+
+</style> </head>
+  <body>
+    <header> <b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; January 30, 2018<br>
+      </b>
+      <div>Brian Bird</div>
+      <br>
+      <h1> <i><b>Entity Framework and Database<br>
+          </b></i></h1>
+      <h1><i><b> </b></i></h1>
+      <b>Topics by week<br>
+      </b>
+      <table style="width: 807px; height: 127px;" border="1">
+        <tbody>
+          <tr>
+            <td id="week01">1. Intro to MVC</td>
+            <td>6. Midterm</td>
+          </tr>
+          <tr>
+            <td id="week02">2. Views and controllers</td>
+            <td>7. Authorization</td>
+          </tr>
+          <tr>
+            <td id="week03">3. Repositories and Unit testing</td>
+            <td id="week08" style="width: 395.333px;">8. Authentication</td>
+          </tr>
+          <tr>
+            <td id="week04">4. Entity Framework + Database</td>
+            <td id="week09">9. Web API<br>
+            </td>
+          </tr>
+          <tr>
+            <td>5. Deploying to a Linux server</td>
+            <td id="week10">10. TBD<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <h2><b><b>Contents</b> </b></h2>
+      <div>
+        <ul>
+          <b>
+            <li><a href="#topic1">Introduction</a></li>
+            <li><a href="#topic2">Review<br>
+              </a></li>
+            <li><a href="#topic3">Registering a Repository</a></li>
+            <li><a href="#topic4">Repositories</a></li>
+            <li><a href="#topic5">Models</a></li>
+            <li><a href="#topic6">Example</a></li>
+            <li><a href="#topic7">Further Reading</a></li>
+            <li><a href="#topic8">Next Class</a></li>
+          </b>
+        </ul>
+      </div>
+    </header>
+    <section>
+      <article id="topic1">
+        <h2><br>
+        </h2>
+        <h2>Introduction</h2>
+        <ul>
+          <li>&nbsp;Review lab due dates on Moodle</li>
+          <li>Answer questions about lab 3</li>
+        </ul>
+        <h3>Announcements</h3>
+      </article>
+      <ul>
+        <li>Scholarship</li>
+        <li>Hack for a cause<br>
+        </li>
+      </ul>
+      <article id="topic1">
+        <h3>Main focus today</h3>
+        <ul>
+          <li>Registering repositories for dependency injection</li>
+          <li>Adding EF and a database to your web app</li>
+        </ul>
+        <ul>
+          <ul>
+          </ul>
+        </ul>
+      </article>
+      <article id="topic2">
+        <h2>Review - ?</h2>
+        <ul>
+          <ul>
+            <ul>
+            </ul>
+          </ul>
+        </ul>
+        <ul>
+        </ul>
+        <ul>
+          <li>?<br>
+          </li>
+        </ul>
+        <ul>
+        </ul>
+        <ul>
+          <ul>
+          </ul>
+          <ul>
+          </ul>
+        </ul>
+        <p></p>
+      </article>
+      <article id="topic3">
+        <h2>Unit Testing Overview </h2>
+        <ul>
+        </ul>
+        <span class="seoSummary" style="margin: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); font-family: &quot;Open Sans&quot;, arial, x-locale-body, sans-serif; font-style: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">We'll
+          cover more details of unit testing later, but here are some basic
+          concepts:<br>
+        </span><span style="color: rgb(51, 51, 51); font-family: &quot;Open Sans&quot;, arial, x-locale-body, sans-serif; font-size: medium; font-style: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;"></span>
+        <ul>
+          <li>MVC facilitates unit testing</li>
+          <ul>
+            <li>One reason to use the MVC pattern is that it facilitates unit
+              testing</li>
+          </ul>
+          <li>What to test?</li>
+          <ul>
+            <li>Business logic (in models, or in separate classes)</li>
+            <ul>
+              <li>If Models just contain simple C# properties, they don't really
+                need tests</li>
+            </ul>
+            <li>Controller methods</li>
+            <ul>
+              <li>This is what usually makes the most sense to test</li>
+            </ul>
+          </ul>
+          <li>Test using data from a real database? No!</li>
+          <ul>
+            <li>Why?</li>
+            <ul>
+              <li>The database may not contain optimal data for doing certain
+                tests. </li>
+              <li>It’s not advisable to put test data into a production database</li>
+              <li>The data can change over time and cause tests to fail.</li>
+              <li>The tests could cause unwanted changes to the real data.</li>
+            </ul>
+            <li>Solution - test against a "fake" repository</li>
+          </ul>
+          <li>xUnit</li>
+          <ul>
+            <li>Used by the .NET Core team to test their own code.</li>
+            <li>Test runner integrated in Visuals Studio</li>
+            <li>Note: Assert.Equal method uses the Equal method of .NET objects
+              for comparison. Primitive .NET types and many classes in the .NET
+              library have fully implemented this method. You only need to write
+              a Compare class (as shown in the textbook) if you are using a
+              class that doesn't already have a comparator implemented for the
+              Equals method.</li>
+          </ul>
+          <li>Reference - <a href="https://xunit.github.io">xunit.github.io</a>
+          </li>
+        </ul>
+      </article>
+      <article id="topic4">
+        <h2><br>
+        </h2>
+        <h2>Repositories </h2>
+        <ul>
+        </ul>
+        Rather than accessing data directly through Entity Framework, the data
+        will be accessed through a repository.<br>
+        <ul>
+          <li>Reasons for using a repository:</li>
+          <ul>
+            <li>It facilitates unit testing since the repository can be replaced
+              by a fake for testing</li>
+            <li>It can facilitate a simple source of "hard coded" data for
+              integration testing during early development</li>
+            <li>It provides an additional layer of abstraction for implementing
+              common data operations</li>
+          </ul>
+          <li>Implementation</li>
+          <ul>
+            <li>Real and Fake repositories both inherit from an interface</li>
+            <ul>
+              <li>This supports dependency injection so that the fake repository
+                can be easily injected when testing.</li>
+            </ul>
+          </ul>
+          <li>Fake repositories</li>
+          <ul>
+            <li>Just used for unit testing</li>
+            <li>Contain hard-coded test data</li>
+            <li>Different test data can be supplied for different tests</li>
+            <ul>
+            </ul>
+          </ul>
+        </ul>
+      </article>
+      <article id="topic5">
+        <h2><br>
+        </h2>
+        <h2>Models</h2>
+        <h3>Object Relationships</h3>
+        <ul>
+          <li> Inheritance: is-a, triangle</li>
+          <ul>
+            <li> Example: A student is a person</li>
+          </ul>
+          <li> Composition: has-a, black diamond</li>
+          <ul>
+            <li> Example: A student has an address</li>
+          </ul>
+          <li> Aggregation: whole-part, open diamond</li>
+          <ul>
+            <li> A student is a part of a class</li>
+          </ul>
+        </ul>
+        <h3>Types of Models</h3>
+        <ul>
+          <li>Domain Model</li>
+          <ul>
+            <li>Represents things in the application domain</li>
+            <li>Usually represents the entities stored in the database and / or
+              repositories</li>
+            <li>Used by the Controller and possibly Views</li>
+          </ul>
+          <li>View Model</li>
+          <ul>
+            <li>Just used to pass data from a controller method to a View</li>
+          </ul>
+        </ul>
+        <h3> </h3>
+      </article>
+      <article id="topic6">
+        <h2>Example</h2>
+        <p>Design the domain model for a Book Information web site that provides
+          information about Books and Authors. Store the following information:</p>
+        <p>Author</p>
+        <ul>
+          <li>Name</li>
+          <li>Birth date</li>
+        </ul>
+        <p>Book</p>
+        <ul>
+          <li>Title</li>
+          <li>Author or authors</li>
+          <li>Publication date</li>
+        </ul>
+        <p><br>
+        </p>
+      </article>
+      <article id="topic7">
+        <h2>Further Reading</h2>
+        <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/testing">Testing
+          Controller Logic in ASP.NET Core</a><span style="color: #0000ee;"></span><br>
+        <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/testing">
+        </a> <br>
+        <a href="http://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html">Dependency
+          Injection Demystified</a><br>
+        <br>
+      </article>
+      <article id="topic8">
+        <h2><br>
+        </h2>
+        <h2>Next Class</h2>
+        <p>We will go into more detail on unit testing</p>
+        <p><br>
+        </p>
+      </article>
+    </section>
+  </body>
+</html>
