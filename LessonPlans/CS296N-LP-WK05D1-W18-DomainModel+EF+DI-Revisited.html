@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Week 5, Day 2, EF + dB</title>
+    <style type="text/css">
+        body {
+          font-family: "Arial", "Helvetica", "sans-serif";
+        }
+
+        #week05 {
+          background-color: #f8ff2e;
+        }
+
+        code {
+          display:block;
+          font-size: larger;
+          background-color: lightgoldenrodyellow;
+          max-height:400px;
+          width:75%;
+          overflow:scroll;
+        }
+
+        .exercise {
+          background-color: #c6ffe2;
+        }
+		</style>
+  </head>
+  <body>
+    <header> <b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; February 8, 2018<br>
+      </b>
+      <div>Brian Bird</div>
+      <br>
+      <h1> <i><b>Domain Model, EF, and DI Revisited<br>
+          </b></i></h1>
+      <h1><i><b> </b></i></h1>
+      <b>Topics by week<br>
+      </b>
+      <table style="width: 807px; height: 127px;" border="1">
+        <tbody>
+          <tr>
+            <td id="week01">1. Intro to MVC</td>
+            <td>6. Bower, Bootstrap and Front-End Libraries<br>
+              &nbsp;&nbsp;&nbsp; Midterm</td>
+          </tr>
+          <tr>
+            <td id="week02">2. Views and controllers</td>
+            <td>7. Deploying to a Linux server</td>
+          </tr>
+          <tr>
+            <td id="week03">3. Repositories and Unit testing</td>
+            <td id="week08" style="width: 395.333px;">8. Authorization</td>
+          </tr>
+          <tr>
+            <td id="week04">4. Entity Framework + Database</td>
+            <td id="week09">9. Authentication </td>
+          </tr>
+          <tr>
+            <td id="week05">5. Domain Model, EF, and DI revisited</td>
+            <td id="week10">10. TBD<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <h2><b><b>Contents</b> </b></h2>
+      <div>
+        <ul>
+          <b>
+            <li><a href="#topic1">Introduction</a></li>
+            <li><a href="#topic2">Review<br>
+              </a></li>
+          </b>
+        </ul>
+      </div>
+    </header>
+    <section>
+      <article id="topic1">
+        <hr>
+        <h2>Introduction</h2>
+        <ul>
+          <li>Review lab due dates on Moodle</li>
+        </ul>
+        <br>
+      </article>
+      <article id="topic1">
+        <h3>Main focus today</h3>
+        <ul>
+          <li>BookInfo example issues In our last class session we discovered
+            that the books and authors weren't getting stored as we thought they
+            were</li>
+          <li>EF wasn't putting a foreign key in the tables </li>
+          <li>We should revisit our domain model and see if it is really the
+            best for what we want to do</li>
+          <li>This will result in some refactoring, which means we will also
+            need</li>
+          <ul>
+            <li>A new EF migration</li>
+            <li>New unit tests</li>
+            <li>Changes to the repositories</li>
+            <li>Will we need to change any controller methods or views? </li>
+          </ul>
+        </ul>
+        <hr>
+        <ul>
+        </ul>
+        <ul>
+          <ul>
+          </ul>
+        </ul>
+      </article>
+      <article id="topic2">
+        <h2>Review - EF and Databases</h2>
+        <ul>
+          <ul>
+            <ul>
+            </ul>
+          </ul>
+        </ul>
+        <ul>
+        </ul>
+        <ul>
+          <li>BookInfo example issues -- In our last class session we discovered
+            that the books and authors weren't getting stored correctly</li>
+          <ul>
+            <li>EF wasn't generating a foreign key field to make an association
+              between Book and Author</li>
+            <li>We added a foreign key to the Book model -- but was that the
+              right place for a foreign key? We need to rethink this.</li>
+            <li>I created two new versions of BookInfo to address this:</li>
+            <ul>
+              <li>FKAuthorID</li>
+              <ul>
+                <li>Book has a foreign key property, AuthorID</li>
+                <li>A new migration has been added named FK_AuthorID</li>
+                <li>The SeedData method adds foreign key values to Book objects</li>
+                <li>The Book Repository GetAllBooks method retrieves author
+                  objects along with book objects</li>
+              </ul>
+              <li>AddBook</li>
+              <ul>
+                <li>The previous version had the foreign key in the wrong model.
+                  Now Author has a BookID.</li>
+                <li>&nbsp;I added a&nbsp; AddBook method to BookController.</li>
+              </ul>
+            </ul>
+            <li>New BookInfo repository: <a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/FKAuthorID"
+                target="_blank">https://github.com/LCC-CIT/CS296N-BookInfo-Core-2</a></li>
+          </ul>
+          <li>Questions came up about exactly how DI is being done by the
+            services we configured in the Startup class</li>
+          <ul>
+            <li>Textbook Ch. 18, page 588, section on Configuring the Service
+              Provider</li>
+            <ul>
+              <li>AddTransient method</li>
+              <ul>
+                <li>services.AddTransient&lt;IRepository,
+                  MemoryRepository&gt;();</li>
+                <ul>
+                  <li>This statement tells the service provider to resolve
+                    dependencies on the IRepository interface by<br>
+                    creating a MemoryRepository object.</li>
+                </ul>
+                <li>services.AddTransient&lt;ProductTotalizer&gt;();</li>
+                <ul>
+                  <li>There is no mapping between a service type and an
+                    implementation type in this situation, so there is<br>
+                    an override of the AddTransient extension method that
+                    accepts a single type parameter that tells the service<br>
+                    provider that it should instantiate the ProductTotalizer
+                    class to resolve a dependency on this type.</li>
+                </ul>
+              </ul>
+            </ul>
+          </ul>
+        </ul>
+        <ul>
+        </ul>
+        <ul>
+        </ul>
+        <ul>
+          <ul>
+          </ul>
+          <ul>
+          </ul>
+        </ul>
+        <p></p>
+      </article>
+      <article id="topic3">
+        <hr><br>
+      </article>
+    </section>
+  </body>
+</html>
