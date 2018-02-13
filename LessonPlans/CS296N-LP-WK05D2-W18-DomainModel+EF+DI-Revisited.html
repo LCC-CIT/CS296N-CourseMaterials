@@ -1,199 +1,1 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Week 5, Day 2, EF + dB</title>
-    <style type="text/css">
-        body {
-          font-family: "Arial", "Helvetica", "sans-serif";
-        }
-
-        #week05 {
-          background-color: #f8ff2e;
-        }
-
-        code {
-          display:block;
-          font-size: larger;
-          background-color: lightgoldenrodyellow;
-          max-height:400px;
-          width:75%;
-          overflow:scroll;
-        }
-
-        .exercise {
-          background-color: #c6ffe2;
-        }
-		</style>
-  </head>
-  <body>
-    <header> <b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp; February 8, 2018<br>
-      </b>
-      <div>Brian Bird</div>
-      <br>
-      <h1> <i><b>Domain Model, EF, and DI Revisited<br>
-          </b></i></h1>
-      <h1><i><b> </b></i></h1>
-      <b>Topics by week<br>
-      </b>
-      <table style="width: 807px; height: 127px;" border="1">
-        <tbody>
-          <tr>
-            <td id="week01">1. Intro to MVC</td>
-            <td>6. Bower, Bootstrap and Front-End Libraries<br>
-              &nbsp;&nbsp;&nbsp; Midterm</td>
-          </tr>
-          <tr>
-            <td id="week02">2. Views and controllers</td>
-            <td>7. Deploying to a Linux server</td>
-          </tr>
-          <tr>
-            <td id="week03">3. Repositories and Unit testing</td>
-            <td id="week08" style="width: 395.333px;">8. Authorization</td>
-          </tr>
-          <tr>
-            <td id="week04">4. Entity Framework + Database</td>
-            <td id="week09">9. Authentication </td>
-          </tr>
-          <tr>
-            <td id="week05">5. Domain Model, EF, and DI revisited</td>
-            <td id="week10">10. TBD<br>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <br>
-      <h2><b><b>Contents</b> </b></h2>
-      <div>
-        <ul>
-          <b>
-            <li><a href="#topic1">Introduction</a></li>
-            <li><a href="#topic2">Review<br>
-              </a></li>
-          </b>
-        </ul>
-      </div>
-    </header>
-    <section>
-      <article id="topic1">
-        <hr>
-        <h2>Introduction</h2>
-        <ul>
-          <li>Review lab due dates on Moodle</li>
-        </ul>
-        <br>
-      </article>
-      <article id="topic1">
-        <h3>Main focus today</h3>
-        <ul>
-          <li>BookInfo example issues In our last class session we discovered
-            that the books and authors weren't getting stored as we thought they
-            were</li>
-          <li>EF wasn't putting a foreign key in the tables </li>
-          <li>We should revisit our domain model and see if it is really the
-            best for what we want to do</li>
-          <li>This will result in some refactoring, which means we will also
-            need</li>
-          <ul>
-            <li>A new EF migration</li>
-            <li>New unit tests</li>
-            <li>Changes to the repositories</li>
-            <li>Will we need to change any controller methods or views? </li>
-          </ul>
-        </ul>
-        <hr>
-        <ul>
-        </ul>
-        <ul>
-          <ul>
-          </ul>
-        </ul>
-      </article>
-      <article id="topic2">
-        <h2>Review - EF and Databases</h2>
-        <ul>
-          <ul>
-            <ul>
-            </ul>
-          </ul>
-        </ul>
-        <ul>
-        </ul>
-        <ul>
-          <li>BookInfo example issues -- In our last class session we discovered
-            that the books and authors weren't getting stored correctly</li>
-          <ul>
-            <li>EF wasn't generating a foreign key field to make an association
-              between Book and Author</li>
-            <li>We added a foreign key to the Book model -- but was that the
-              right place for a foreign key? We need to rethink this.</li>
-            <li>I created two new versions of BookInfo to address this:</li>
-            <ul>
-              <li>FKAuthorID</li>
-              <ul>
-                <li>Book has a foreign key property, AuthorID</li>
-                <li>A new migration has been added named FK_AuthorID</li>
-                <li>The SeedData method adds foreign key values to Book objects</li>
-                <li>The Book Repository GetAllBooks method retrieves author
-                  objects along with book objects</li>
-              </ul>
-              <li>AddBook</li>
-              <ul>
-                <li>The previous version had the foreign key in the wrong model.
-                  Now Author has a BookID.</li>
-                <li>&nbsp;I added a&nbsp; AddBook method to BookController.</li>
-              </ul>
-            </ul>
-            <li>New BookInfo repository: <a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/FKAuthorID"
-                target="_blank">https://github.com/LCC-CIT/CS296N-BookInfo-Core-2</a></li>
-          </ul>
-          <li>Questions came up about exactly how DI is being done by the
-            services we configured in the Startup class</li>
-          <ul>
-            <li>Textbook Ch. 18, page 588, section on Configuring the Service
-              Provider</li>
-            <ul>
-              <li>AddTransient method</li>
-              <ul>
-                <li>services.AddTransient&lt;IRepository,
-                  MemoryRepository&gt;();</li>
-                <ul>
-                  <li>This statement tells the service provider to resolve
-                    dependencies on the IRepository interface by<br>
-                    creating a MemoryRepository object.</li>
-                </ul>
-                <li>services.AddTransient&lt;ProductTotalizer&gt;();</li>
-                <ul>
-                  <li>There is no mapping between a service type and an
-                    implementation type in this situation, so there is<br>
-                    an override of the AddTransient extension method that
-                    accepts a single type parameter that tells the service<br>
-                    provider that it should instantiate the ProductTotalizer
-                    class to resolve a dependency on this type.</li>
-                </ul>
-              </ul>
-            </ul>
-          </ul>
-        </ul>
-        <ul>
-        </ul>
-        <ul>
-        </ul>
-        <ul>
-          <ul>
-          </ul>
-          <ul>
-          </ul>
-        </ul>
-        <p></p>
-      </article>
-      <article id="topic3">
-        <hr><br>
-      </article>
-    </section>
-  </body>
-</html>
+<!DOCTYPE html><html>  <head>    <meta http-equiv="content-type" content="text/html; charset=UTF-8">    <title>Week 5, Day 2, EF + dB</title>    <style type="text/css">        body {          font-family: "Arial", "Helvetica", "sans-serif";        }        #week05 {          background-color: #f8ff2e;        }        code {          display:block;          font-size: larger;          background-color: lightgoldenrodyellow;          max-height:400px;          width:75%;          overflow:scroll;        }        .exercise {          background-color: #c6ffe2;        }		</style>  </head>  <body>    <header> <b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp;        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;        &nbsp;&nbsp;&nbsp; February 8, 2018<br>      </b>      <div>Brian Bird</div>      <br>      <h1> <i><b>Domain Model, EF, and DI Revisited<br>          </b></i></h1>      <h1><i><b> </b></i></h1>      <b>Topics by week<br>      </b>      <table style="width: 807px; height: 127px;" border="1">        <tbody>          <tr>            <td id="week01">1. Intro to MVC</td>            <td>6. Bower, Bootstrap and Front-End Libraries<br>              &nbsp;&nbsp;&nbsp; Midterm</td>          </tr>          <tr>            <td id="week02">2. Views and controllers</td>            <td>7. Deploying to a Linux server</td>          </tr>          <tr>            <td id="week03">3. Repositories and Unit testing</td>            <td id="week08" style="width: 395.333px;">8. Authorization</td>          </tr>          <tr>            <td id="week04">4. Entity Framework + Database</td>            <td id="week09">9. Authentication </td>          </tr>          <tr>            <td id="week05">5. Domain Model, EF, and DI revisited</td>            <td id="week10">10. TBD<br>            </td>          </tr>        </tbody>      </table>      <br>      <h2><b><b>Contents</b> </b></h2>      <div>        <ul>          <b>            <li><a href="#topic1">Introduction</a></li>            <li><a href="#topic2">Review</a></li>            <li><b><a href="#topic3">New version of BookInfo</a></b></li>            <li><b><b><a href="#topic4">Notes on DI</a></b></b></li>            <li><b><b><b><a href="#topic4">Notes on Configuration</a></b></b></b></li>          </b>        </ul>      </div>    </header>    <section>      <article id="topic1">        <hr>        <h2>Introduction</h2>        <ul>          <li>Review lab due dates on Moodle</li>        </ul>        <br>      </article>      <article id="topic1">        <h3>Main focus today</h3>        <ul>          <li>BookInfo example issues In our last class session we discovered            that the books and authors weren't getting stored as we thought they            were</li>          <li>EF wasn't putting a foreign key in the tables </li>          <li>We needed to refactor the models</li>          <li>This will result in some refactoring, which means we will also            need</li>          <ul>            <li>A new EF migration</li>            <li>New unit tests</li>            <li>Changes to the repositories</li>            <li>Will we need to change any controller methods or views? </li>          </ul>        </ul>        <hr>        <ul>        </ul>        <ul>          <ul>          </ul>        </ul>      </article>      <article id="topic2">        <h2>Review - EF and Databases</h2>        <ul>          <ul>            <ul>            </ul>          </ul>        </ul>        <ul>        </ul>        <ul>          <li>BookInfo example issues -- In our last class session we discovered            that the books and authors weren't getting stored correctly</li>          <ul>            <li>EF wasn't generating a foreign key field to make an association              between Book and Author</li>            <li>We added a foreign key to the Book model -- but was that the              right place for a foreign key? We need to rethink this.</li>          </ul>        </ul>      </article>      <article id="topic3">        <hr>        <h2>New Version of BookInfo </h2>        <ul>        </ul>        I created two new versions of BookInfo to address this. They are in a        new BookInfo repository: <a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/FKAuthorID"          target="_blank">https://github.com/LCC-CIT/CS296N-BookInfo-Core-2<br>        </a>        <ul>          <li>FKAuthorID</li>          <ul>            <li>Book has a foreign key property, AuthorID</li>            <li>A new migration has been added named FK_AuthorID</li>            <li>The SeedData method adds foreign key values to Book objects</li>            <li>The Book Repository GetAllBooks method retrieves author objects              along with book objects</li>          </ul>          <li>AddBook</li>          <ul>            <li>The previous version had the foreign key in the wrong model. Now              Author has a BookID.</li>            <li>&nbsp;I added a&nbsp; AddBook method to BookController.</li>          </ul>          <br>        </ul>        <ul>        </ul>      </article>      <article id="topic4">        <hr>        <h2>Notes on DI</h2>        Questions came up about exactly how DI is being done by the services we        configured in the Startup class        <ul>          <li>Textbook Ch. 18, page 588, section on Configuring the Service            Provider</li>          <ul>            <li>AddTransient method</li>            <ul>              <li>services.AddTransient&lt;IRepository, MemoryRepository&gt;();</li>              <ul>                <li>This statement tells the service provider to resolve                  dependencies on the IRepository interface by<br>                  creating a MemoryRepository object.</li>              </ul>              <li>services.AddTransient&lt;ProductTotalizer&gt;();</li>              <ul>                <li>There is no mapping between a service type and an                  implementation type in this situation, so there is<br>                  an override of the AddTransient extension method that accepts                  a single type parameter that tells the service<br>                  provider that it should instantiate the ProductTotalizer class                  to resolve a dependency on this type.</li>              </ul>            </ul>          </ul>        </ul>      </article>      <article id="topic5">        <hr>        <h2>Notes on configuration</h2>        Based on Ch.14 in Freeman, Configuring Applications<br>        <br>        <h3>Program class</h3>        <ul>          <li>All .NET programs start by executing the Main method in the            Program class.</li>          <li>The BuildWebHost method is responsible for configuring ASP.NET            Core.</li>          <ul>            <li>the CreateDefaultBuilder method configures ASP.NET Core using              settings that are likely to suit most projects.</li>          </ul>          <li>The UseStartup method is called to identify the class that will            provide application-specific configuration.</li>          <ul>            <li>the convention is to use a class named Startup.</li>          </ul>        </ul>        <h3>Startup class</h3>        An object of this class is instantiated when the web application starts        and the ConfigureServices method is called.<br>        <ul>          <li>ConfigureServices method</li>          <ul>            <li>Creates service objects which provide functionality to other              parts of the application</li>            <li>MVC service</li>            <ul>              <li>Actually a complete set of services needed by MVC apps</li>            </ul>          </ul>          <li>Configure method</li>          <ul>            <li>Sets up the request pipeline which handles incoming HTTP              requests and produces responses for them</li>            <li>The ASP.NET Core platform inspects the Configure method before              it is invoked and gets a list of its<br>              arguments, which it provides using the services set up in the              ConfigureServices method or using one of the<br>              special services shown below:</li>            <ul>              <li>IApplicationBuilder - This interface defines the functionality                required to set up an application’s<br>                middleware pipeline.</li>              <li>IHostingEnvironment - This interface defines the functionality                required to differentiate between<br>                different types of environment, such as development and                production.</li>            </ul>            <li><br>            </li>          </ul>        </ul>      </article>    </section>  </body></html>
