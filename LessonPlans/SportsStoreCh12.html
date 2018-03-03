@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>SportsStore Ch. 12</title>
+    <style>
+      body {
+	font-family: Verdana;
+        font-size: large;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Notes on the Sports Store App</h1>
+    <h2>Chapter 12 - Security<br>
+    </h2>
+    <p>In Ch. 12 of <i>Pro ASP.NET Core MVC 2.0</i>, Adam Freeman
+      describes adding the following to the Sports Store app:<br>
+    </p>
+    <ul>
+      <li>Identity and an Identity database</li>
+      <ul>
+        <li>Note: when running <span style="font-family: Courier
+            New,Courier,monospace;">dotnet ef database update</span>,
+          you must specify a context since there is more than one.
+          Example:</li>
+        <ul>
+          <li><span style="font-family: Courier New,Courier,monospace;">dotnet
+              ef database update --context AppIdentityDbContext<br>
+            </span></li>
+        </ul>
+      </ul>
+      <li>Admin controller - Action methods for:</li>
+      <ul>
+        <li>Add user</li>
+        <li>Delete user</li>
+        <li>Edit user</li>
+        <li>List users<br>
+        </li>
+      </ul>
+      <li>Seed data class for Admin role and credentials</li>
+      <li>Account controller - Action methods for:</li>
+      <ul>
+        <li>Login</li>
+        <li>Logout</li>
+      </ul>
+    </ul>
+    <p>Note that only the only users managed by Identity are the admins<br>
+      <br>
+    </p>
+    <ul>
+      <ul>
+      </ul>
+    </ul>
+  </body>
+</html>

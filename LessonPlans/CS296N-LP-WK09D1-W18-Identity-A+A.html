@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Wk 8 Identity Administration</title>
+    <title>Authentication + Authorization</title>
     <style>
         body {
           font-family: "Arial", "Helvetica", "sans-serif";
         }
 
-        #week08 {
+        #week09 {
           background-color: #f8ff2e;
         }
 
@@ -27,14 +27,14 @@
 		</style>
   </head>
   <body>
-    <header> <b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;</b>
-      <div>Brian Bird</div>
-      <br>
-      <h1> <i><b>Identity Authentication </b></i></h1>
+    <b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;</b> <br>
+    <header>
+      <h1> <i><b>Identity Authentication and Authorization<br>
+          </b></i></h1>
       <b>Topics by week </b>
       <table style="width: 807px; height: 127px;" border="1">
         <tbody>
@@ -67,23 +67,27 @@
         <ul>
           <li><a href="#topic1">Introduction</a></li>
           <li><a href="#topic2">Review </a></li>
-          <li><a href="#topic3">Identity</a></li>
-          <li><a href="#topic4">Authentication</a></li>
+          <li><a href="#topic3">Login</a></li>
+          <li><a href="#topic4">Sign-up</a></li>
           <li><a href="#topic5">Role Management</a></li>
+          <li><a
+href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-LP-WK09D1-W18-Identity-A+A.html#topic7">Book
+
+
+              Info Web App Example</a></li>
           <li><a href="#topic6">Further Reading</a></li>
-          <li><a href="#topic7">Book Info Web App Example</a></li>
           <li><a href="#topic8">Next Class</a></li>
         </ul>
       </div>
     </header>
     <section>
-      <h2> Topics </h2>
       <hr>
       <article id="topic1">
         <h2>Introduction</h2>
         <ul>
           <li>Review lab due dates on Moodle</li>
-          <li>Answer questions about lab 5</li>
+          <li>Answer questions about lab 6 - Identity Administration<br>
+          </li>
         </ul>
         <h3>Announcements</h3>
         <ul>
@@ -92,62 +96,45 @@
         </ul>
         <h3>Main focus today</h3>
         <ul>
-          <li>Identity</li>
+          <li>Registration and login<br>
+          </li>
         </ul>
       </article>
       <hr>
       <article id="topic2">
-        <h2>Review - Domain Models</h2>
+        <h2>Review - Identity</h2>
         <ul>
-          <li>What are the differences between a <i>domain model</i>
-            and a <i>view model?</i></li>
-          <li>How is the user related to other parts of our domain
-            models?</li>
-          <li>Compare our domain models to the one in the Sports Store</li>
+          <li><i>TBD</i></li>
         </ul>
       </article>
       <hr>
       <article id="topic3">
-        <h2>Identity </h2>
-        <h3> Identity is an API for managing users</h3>
+        <h2>Login<br>
+        </h2>
         <ul>
-          <li> ASP.NET Core Identity is an API for managing users and
-            storing user data in<br>
-            repositories such as relational databases through Entity
-            Framework Core. - Freeman</li>
-        </ul>
-        <h3>What Identity does</h3>
-        <ul>
-          <li>Authentication</li>
-          <li>Authorization</li>
-          <li>Role management</li>
-        </ul>
-        <h3>Setting up Identity</h3>
-        <ul>
-          <li> Add it to an ASP.NET Core MVC project</li>
-          <li> Follow the steps in Freeman, Ch. 28 through the end of
-            "Setting up the User Classes".</li>
-          <li>
-            <ul>
-              <li>Skip "Creating a Controller and View"</li>
-            </ul>
-          </li>
-          <li>Inspect the database using SQL Server Object Explorer and
-            note the new tables added by Identity</li>
-        </ul>
-        <h3>Using&nbsp; Identity in administrative pages</h3>
-        <ul>
-          <li>Add an admin controller and views:</li>
+          <li>Add an account controller with:</li>
           <ul>
-            <li>Create a user account</li>
-            <li>Show all user accounts</li>
-            <li>Delete a user account</li>
+            <li>Login and logout action methods</li>
+          </ul>
+          <li>Add Login and logout views</li>
+          <li>Add the<span style="font-family: Courier
+              New,Courier,monospace;">[Authorize]</span> attributes to
+            methods that require authorization</li>
+          <ul>
+            <li>This will cause a redirect to <span style="font-style:
+                italic;">Account/Login</span></li>
+            <li>And will have a paramter for the return URL. For
+              example:<br>
+              <span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span><br>
+            </li>
           </ul>
         </ul>
+        <br>
       </article>
       <hr>
       <article id="topic4">
-        <h2>Authentication</h2>
+        <h2>Sign-up<br>
+        </h2>
         ... </article>
       <hr>
       <article id="topic5">
@@ -155,27 +142,28 @@
         ... </article>
       <hr>
       <article id="topic6">
-        <h2>Additional Reading</h2>
-        We added Identity to our web app by following the example in
-        Freeman Ch. 28. This chapter showed us how to add an
-        administration feature to our web app.<br>
+        <article id="topic7">
+          <h2>BookInfo Web App Example</h2>
+          <a
+href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity"
+            target="_blank">GitHub Repository: <br>
+            CS296N-BookInfo-Core-2<br>
+            AddLogin branch</a> </article>
         <br>
-        <a
-href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/"
-          target="_blank">ASP.NET Core tutorial on authentication</a> </article>
+      </article>
       <hr>
       <article id="topic7">
-        <h2>Book Info Web App Example</h2>
-        <a
-href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity"
-          target="_blank">GitHub Repository: <br>
-          CS296N-BookInfo-Core-2<br>
-          AddIdentity branch</a> </article>
+        <h2>Reading</h2>
+        <p>Freeman Ch. 12 SportsStore: Sections on Identity - <a
+            href="SportsStoreCh12.html" target="_blank">Notes</a></p>
+      </article>
       <hr>
       <article id="topic8">
         <h2>Next Class</h2>
         <p>We will...</p>
       </article>
     </section>
+    <hr>
+    <footer>Written by Brian Bird, Winter 2018 </footer>
   </body>
 </html>
