@@ -127,13 +127,30 @@
           <li> Add it to an ASP.NET Core MVC project</li>
           <li> Follow the steps in Freeman, Ch. 28 through the end of
             "Setting up the User Classes".</li>
-          <li>
-            <ul>
-              <li>Skip "Creating a Controller and View"</li>
-            </ul>
-          </li>
+          <ul>
+            <li>Skip "Creating a Controller and View"</li>
+            <li>Note: I had to add an ID property to my User class in
+              order for EF to generate the identity tables in my
+              applicaiton database. I shouldn't have to do this. It
+              seems like a bug in EF or something.<br>
+            </li>
+          </ul>
           <li>Inspect the database using SQL Server Object Explorer and
-            note the new tables added by Identity</li>
+            note the new tables added by Identity. The tables listed
+            below should have been created.<br>
+            Note: AspNetUsers is your user table, it contains the fields
+            you added in your user class.<br>
+          </li>
+          <ul>
+            <li>AspNetRoleClaims</li>
+            <li>AspNetRoles</li>
+            <li>AspNetUserClaims</li>
+            <li>AspNetUserLogins</li>
+            <li>AspNetUserRoles</li>
+            <li>AspNetUsers</li>
+            <li>AspNetUserTokens<br>
+            </li>
+          </ul>
         </ul>
         <h3>Using&nbsp; Identity in administrative pages</h3>
         <ul>
