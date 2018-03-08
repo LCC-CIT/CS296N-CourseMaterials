@@ -71,12 +71,8 @@
           <li><a href="#topic4">Authorization</a></li>
           <li><a href="#topic5">Role Management</a></li>
           <li><a
-href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-LP-WK09D1-W18-Identity-A+A.html#topic7">Book
-
-
-
-
-              Info Web App Example</a></li>
+href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-LP-WK09D1-W18-Identity-A+A.html#topic7">BookInfo
+              Web App Example</a></li>
           <li><a href="#topic6">Further Reading</a></li>
           <li><a href="#topic8">Next Class</a></li>
         </ul>
@@ -114,19 +110,21 @@ href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-L
             <li>in the Configure method:<br>
             </li>
             <ul>
-              <li>app.UseAuthentication must precede app.UseMvc !!!<span
-                  style=" font-style: italic;"></span></li>
+              <li><span style="font-weight: bold;">app.UseAuthentication
+                  must precede app.UseMvc !!!</span><span style="
+                  font-style: italic;"></span></li>
             </ul>
           </ul>
           <li>In a controller used to manage users:<span style="
               font-style: italic;"></span></li>
           <ul>
             <li>Add a constructor parameter for dependency injection of
-              a UserManager object<span style=" font-style: italic;"></span></li>
+              a <span style="font-style: italic;">UserManager</span>
+              object<span style=" font-style: italic;"></span></li>
           </ul>
           <li>&nbsp;To restrict access to only allow authenticated users,
-            add the [Authorize] attribute to:<span style=" font-style:
-              italic;"></span></li>
+            add the <span style="font-style: italic;">[Authorize]</span>
+            attribute to:<span style=" font-style: italic;"></span></li>
           <ul>
             <li>Controllers</li>
             <li>Action methods<span style=" font-style: italic;"><br>
@@ -162,6 +160,7 @@ href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-L
       <article id="topic4">
         <h2>Authorization<br>
         </h2>
+        <br>
         [Authorize]<br>
         The ASP.NET Core platform provides information about the user
         through the HttpContext object,<br>
@@ -172,7 +171,12 @@ href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-L
       <hr>
       <article id="topic5">
         <h2>Role Management</h2>
-        ... </article>
+        Create and edit user roles using the <span style="font-style:
+          italic;">Role</span><span style="font-style: italic;">Manager</span>
+        class<br>
+        Edit user roles to add a user<br>
+        <br>
+      </article>
       <hr>
       <article id="topic6">
         <article id="topic7">
