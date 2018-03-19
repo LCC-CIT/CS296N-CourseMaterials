@@ -1,2 +1,379 @@
-<!DOCTYPE html><html>  <head>    <meta http-equiv="content-type" content="text/html; charset=UTF-8">    <title>Week 2, Day 2, Controllers</title>    <style type="text/css">body {  font-family: "Arial", "Helvetica", "sans-serif";}#week02 {  background-color: #f8ff2e;}code {  display:block;  font-size: larger;  background-color: lightgoldenrodyellow;  max-height:400px;  width:95%;  overflow:scroll;}.exercise {  background-color: #c6ffe2;}</style> </head>  <body>    <header> <b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp;        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;        &nbsp;&nbsp;&nbsp; January 18, 2018<br>      </b>      <div>Brian Bird</div>      <br>      <h1> <i><b>Topic: Controllers</b></i></h1>      <h1><i><b> </b></i></h1>    </header>    <section> <b>Topics by week<br>      </b>      <table style="width: 807px; height: 127px;" border="1">        <tbody>          <tr>            <td id="week01">1. Intro to MVC</td>            <td>6. Midterm</td>          </tr>          <tr>            <td id="week02">2. Views and controllers</td>            <td>7. Authorization</td>          </tr>          <tr>            <td style="width: 395.667px;">3. Unit testing, publishing to Azure</td>            <td id="week08" style="width: 395.333px;">8. Authentication</td>          </tr>          <tr>            <td>4. Models and dependency injection</td>            <td id="week09">9. Web API<br>            </td>          </tr>          <tr>            <td>5. Entity Framework</td>            <td id="week10">10. TBD<br>            </td>          </tr>        </tbody>      </table>      <br>      <h2><b><b>Contents</b> </b></h2>      <div>        <ul>          <b>            <li><a href="#topic1">Introduction</a></li>            <li><a href="#topic2">Review<br>              </a></li>            <li><a href="#topic3">Action Method Return Types</a></li>            <li><a href="#topic5">Context Data</a></li>            <li><b><a href="#topic6">Example - Radio Buttons</a></b></li>          </b>        </ul>      </div>    </section>    <section>      <article id="topic1">        <h2><b> Introduction</b></h2>        <h2> </h2>        <ul>          <li>Announcements: </li>          <ul>            <li>Scholarship</li>            <li>Startup weekend</li>            <li>Hack for a cause<br>            </li>          </ul>          <li>Review lab due dates on Moodle</li>          <ul>          </ul>        </ul>      </article>      <article id="topic2">        <h2> Review<u><b><br>            </b></u></h2>        <ul>          <ul>            <ul>            </ul>          </ul>        </ul>        <ul>        </ul>        <ul>          <li>Controller classes must have a name that ends in <i>Controller</i></li>          <li>Controllers can be POCO classes, but usually they will be            sub-classes of the ASP.NET Core Controller class.</li>          <li>Controllers respond to HTTP requests</li>          <ul>            <li>Requests are received by the routing module and sent to the              appropriate controller</li>            <li>The controller name corresponds to the first segment of the path              portion of the URL</li>            <li>The controller action method corresponds to the second segment              of the path portion of the URL</li>            <li>A C# attribute determines whether an action method responds to a              GET or POST request</li>            <li>A new controller object is created for each request</li>          </ul>        </ul>        <ul>        </ul>        <ul>          <ul>          </ul>          <ul>          </ul>        </ul>        <p></p>      </article>      <article id="topic3">        <h2>Action Method Return Types </h2>        <ul>        </ul>        <span class="seoSummary" style="margin: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); font-family: &quot;Open Sans&quot;, arial, x-locale-body, sans-serif; font-style: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">These
-          are some of the types that can be returned by a controller method:<br>        </span><span style="color: rgb(51, 51, 51); font-family: &quot;Open Sans&quot;, arial, x-locale-body, sans-serif; font-size: medium; font-style: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;"></span>        <ul>          <li>String </li>          <ul>            <li>No view is associated with a method of this type. The string is              just sent directly to the browser.</li>            <li>Not used very often</li>          </ul>          <li>ViewResult</li>          <ul>            <li>A Razor view is associated with this method. Data is sent to              view which is then rendered and sent to the browser.</li>            <li>The View method of the Controller class can be used to generate              a view. </li>            <ul>              <li>The view can be specified as an argument or by the naming                convention</li>              <li>Model data can be passed as an argument</li>            </ul>          </ul>          <li>Redirection Action Results</li>          <ul>            <li>RedirectResult</li>            <li>LocalRedirectResult</li>            <li>RedirectToActionResult</li>            <li>RedirectToRouteResult</li>          </ul>          <li>Content Action Results</li>          <ul>            <li>JsonResult</li>            <li>ContentResult</li>            <li>ObjectResult</li>            <li>OkObjectResult</li>            <li>NotFoundObjectResult</li>          </ul>          <li>File Action Reslts</li>          <ul>            <li>FileContentResult</li>            <li>FileStreamResult</li>            <li>VirtualFileResult</li>            <li>PhysicalFileResult</li>          </ul>          <li>Status Codes</li>        </ul>      </article>      <article id="topic5">        <h2>Context Data </h2>        <ul>        </ul>        Context data is any data that comes from the incoming HTTP request and        provided to the controller by the ASP.NET routing system. Context data        can be accessed through:<br>        <ul>          <li>Context objects that are members of the Controller class and            accessed through the following properties:</li>          <ul>            <li><i>Request</i> - This property returns an HttpRequest object</li>            <ul>              <li><i>Path</i> - This property returns the path section of the                request URL.</li>              <li><i>QueryString</i> - This property returns the query string                section of the request URL.</li>              <li><i>Headers</i> - This property returns a dictionary of the                request headers, indexed by name.</li>              <li><i>Body</i> - This property returns a stream that can be used                to read the request body.</li>              <li><i>Form</i> - This property returns a dictionary of the form                data in the request, indexed by name.</li>              <li><i>Cookies</i> - This property returns a dictionary of the                request cookies, indexed by name.</li>            </ul>            <li><i>Response</i> - This property returns an HttpResponse object </li>            <li><i>HttpContext</i> - This property returns an HttpContext              object, which is the source of many of the<br>              objects returned by other properties, such as Request and              Response. It also provides<br>              information about the HTTP features available and access to              lower-level features like<br>              web sockets.</li>            <li><i>RouteData</i> - This property returns the RouteData object              produced by the routing system</li>            <li><i>ModelState</i> - This property returns a ModelStateDictionary              object, which is used to validate data<br>              sent by the client</li>            <li><i>User</i> - This property returns a ClaimsPrincipal object              that describes the user who has made<br>              the request,</li>          </ul>          <li>Arguments passed to an action method in the controller</li>          <ul>            <li>From form input element values</li>            <li>Action method parameter names must match the form field names</li>            <li>Example:</li>            <ul>              <li>&nbsp;In the Razor view:<br>                <code>form method="post" asp-action="ReceiveForm"&gt; <br>                  &nbsp; &lt;label for="name"&gt;Name:&lt;/label&gt;<br>                  &nbsp; &lt;input name="name"&gt; <br>                  &nbsp; &lt;label for="name"&gt;City:&lt;/label&gt;<br>                  &nbsp; &lt;input name="city"&gt; <br>                  &nbsp;&nbsp; &lt;button type="submit"&gt;Submit&lt;/button&gt;<br>                  &lt;/form&gt;</code><br>              </li>              <li>In the corresponding controller method: <code>[HttpPost]<br>                  public ViewResult ReceiveForm(string name, string city) {<br>                  &nbsp;&nbsp; return View("Result", $"{name} lives in {city}");                  <br>                  }</code></li>              <br>            </ul>          </ul>          <li>The ASP.NET Core MVC model binding feature</li>          <ul>            <li>Example:</li>            <ul>              <li>Given this model:<code>public class Person {<br>                  &nbsp;&nbsp; public String Name {get; set;}<br>                  &nbsp;&nbsp; public String City {get; set;}<br>                  }</code></li>              <br>              <li>In the Razor view:<br>                Note that instead of the HTML <i>for</i> attribute the <i>asp-for</i>                Tag Helper is used<br>                <code>@model Person<br>                  <br>                  &lt;form method="post" asp-action="ReceiveForm"&gt; <br>                  &nbsp; &lt;label asp-for="name"&gt;Name:&lt;/label&gt;<br>                  &nbsp; &lt;input name="name"&gt; <br>                  &nbsp; &lt;label asp-for="name"&gt;City:&lt;/label&gt;<br>                  &nbsp; &lt;input name="city"&gt; <br>                  &nbsp;&nbsp; &lt;button type="submit"&gt;Submit&lt;/button&gt;<br>                  &lt;/form&gt;</code></li>              <br>              <li>In the corresponding controller method: <code>[HttpPost]<br>                  public ViewResult ReceiveForm(Person person) {<br>                  &nbsp;&nbsp; return View("Result", $"{person.Name} lives in                  {Person.city}"); <br>                  }</code> </li>            </ul>          </ul>        </ul>        <p><br>        </p>        <ul>        </ul>      </article>      <article id="topic6"><br>        <h2> Sending data from a view using radio buttons </h2>        <p>This example demonstrates:</p>        <ul>          <li>The use of HTML radio buttons in a view</li>          <li>Sending a form field value to a controller method</li>          <li>Sending data in a model to a view</li>        </ul>        <p>The model:</p>        <p><code> &nbsp;&nbsp; public class Choice<br>            &nbsp;&nbsp;&nbsp; {<br>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public string Mascot {            get; set; }<br>            &nbsp;&nbsp;&nbsp; }</code></p>        <p> The controller:</p>        <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public IActionResult          Radio(string mascot)<br>          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          Choice c = new Choice { Mascot = mascot };<br>          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          return View(c);<br>          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code>        <p>The view:</p>        <code>@model Choice<br>          &lt;form&gt;<br>          &nbsp;&nbsp;&nbsp; &lt;label&gt;I'm a Titan fan&lt;/label&gt;<br>          &nbsp;&nbsp;&nbsp; &lt;input type="radio" name="mascot"          value="Titan"&gt;<br>          &nbsp;&nbsp;&nbsp; &lt;label&gt;I'm a Duck fan&lt;/label&gt;<br>          &nbsp;&nbsp;&nbsp; &lt;input type="radio" name="mascot"          value="Duck"&gt;<br>          &nbsp;&nbsp;&nbsp; &lt;input type="submit"&gt;<br>          &lt;/form&gt;<br>          <br>          &lt;p&gt;You are a @Model.Mascot fan&lt;/p&gt;</code> </article>    </section>  </body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Week 2, Day 2, Controllers</title>
+    <style type="text/css">
+body {
+  font-family: "Arial", "Helvetica", "sans-serif";
+}
+
+#week02 {
+  background-color: #f8ff2e;
+}
+
+code {
+  display:block;
+  font-size: larger;
+  background-color: lightgoldenrodyellow;
+  max-height:400px;
+  width:95%;
+  overflow:scroll;
+}
+
+.exercise {
+  background-color: #c6ffe2;
+}
+
+</style>
+  </head>
+  <body>
+    <header> <b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; January 18, 2018<br>
+      </b>
+      <div>Brian Bird</div>
+      <br>
+      <h1> <i><b>Topic: Controllers</b></i></h1>
+      <h1><i><b> </b></i></h1>
+    </header>
+    <section> <b>Topics by week<br>
+      </b>
+      <table style="width: 807px; height: 127px;" border="1">
+        <tbody>
+          <tr>
+            <td id="week01">1. Intro to MVC</td>
+            <td>6. Midterm</td>
+          </tr>
+          <tr>
+            <td id="week02">2. Views and controllers</td>
+            <td>7. Authorization</td>
+          </tr>
+          <tr>
+            <td style="width: 395.667px;">3. Unit testing, publishing to
+              Azure</td>
+            <td id="week08" style="width: 395.333px;">8. Authentication</td>
+          </tr>
+          <tr>
+            <td>4. Models and dependency injection</td>
+            <td id="week09">9. Web API<br>
+            </td>
+          </tr>
+          <tr>
+            <td>5. Entity Framework</td>
+            <td id="week10">10. TBD<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <h2><b><b>Contents</b> </b></h2>
+      <div>
+        <ul>
+          <b>
+            <li><a href="#topic1">Introduction</a></li>
+            <li><a href="#topic2">Review<br>
+              </a></li>
+            <li><a href="#topic3">Action Method Return Types</a></li>
+            <li><a href="#topic5">Context Data</a></li>
+            <li><b><a href="#topic6">Example - Radio Buttons</a></b></li>
+          </b>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <article id="topic1">
+        <h2><b> Introduction</b></h2>
+        <h2> </h2>
+        <ul>
+          <li>Announcements: </li>
+          <ul>
+            <li>Scholarship</li>
+            <li>Startup weekend</li>
+            <li>Hack for a cause<br>
+            </li>
+          </ul>
+          <li>Review lab due dates on Moodle</li>
+          <ul>
+          </ul>
+        </ul>
+      </article>
+      <article id="topic2">
+        <h2> Review<u><b><br>
+            </b></u></h2>
+        <ul>
+          <ul>
+            <ul>
+            </ul>
+          </ul>
+        </ul>
+        <ul>
+        </ul>
+        <ul>
+          <li>Controller classes must have a name that ends in <i>Controller</i></li>
+          <li>Controllers can be POCO classes, but usually they will be
+            sub-classes of the ASP.NET Core Controller class.</li>
+          <li>Controllers respond to HTTP requests</li>
+          <ul>
+            <li>Requests are received by the routing module and sent to
+              the appropriate controller</li>
+            <li>The controller name corresponds to the first segment of
+              the path portion of the URL</li>
+            <li>The controller action method corresponds to the second
+              segment of the path portion of the URL</li>
+            <li>A C# attribute determines whether an action method
+              responds to a GET or POST request</li>
+            <li>A new controller object is created for each request</li>
+          </ul>
+        </ul>
+        <ul>
+        </ul>
+        <ul>
+          <ul>
+          </ul>
+          <ul>
+          </ul>
+        </ul>
+      </article>
+      <article id="topic3">
+        <h2>Action Method Return Types </h2>
+        <ul>
+        </ul>
+        <span class="seoSummary" style="margin: 0px; padding: 0px;
+          border: 0px; color: rgb(51, 51, 51); font-family: &quot;Open
+          Sans&quot;, arial, x-locale-body, sans-serif; font-style:
+          normal; font-variant-caps: normal; font-weight: normal;
+          letter-spacing: normal; orphans: auto; text-align: start;
+          text-indent: 0px; text-transform: none; white-space: normal;
+          widows: auto; word-spacing: 0px; -webkit-text-size-adjust:
+          auto; -webkit-text-stroke-width: 0px;">These are some of the
+          types that can be returned by a controller method:<br>
+        </span><span style="color: rgb(51, 51, 51); font-family:
+          &quot;Open Sans&quot;, arial, x-locale-body, sans-serif;
+          font-size: medium; font-style: normal; font-variant-caps:
+          normal; font-weight: normal; letter-spacing: normal; orphans:
+          auto; text-align: start; text-indent: 0px; text-transform:
+          none; white-space: normal; widows: auto; word-spacing: 0px;
+          -webkit-text-size-adjust: auto; -webkit-text-stroke-width:
+          0px; background-color: rgb(255, 255, 255); display: inline
+          !important; float: none;"></span>
+        <ul>
+          <li>String </li>
+          <ul>
+            <li>No view is associated with a method of this type. The
+              string is just sent directly to the browser.</li>
+            <li>Not used very often</li>
+          </ul>
+          <li>ViewResult</li>
+          <ul>
+            <li>A Razor view is associated with this method. Data is
+              sent to view which is then rendered and sent to the
+              browser.</li>
+            <li>The View method of the Controller class can be used to
+              generate a view. </li>
+            <ul>
+              <li>The view can be specified as an argument or by the
+                naming convention</li>
+              <li>Model data can be passed as an argument</li>
+            </ul>
+          </ul>
+          <li>Redirection Action Results</li>
+          <ul>
+            <li>RedirectResult</li>
+            <li>LocalRedirectResult</li>
+            <li>RedirectToActionResult</li>
+            <li>RedirectToRouteResult</li>
+          </ul>
+          <li>Content Action Results</li>
+          <ul>
+            <li>JsonResult</li>
+            <li>ContentResult</li>
+            <li>ObjectResult</li>
+            <li>OkObjectResult</li>
+            <li>NotFoundObjectResult</li>
+          </ul>
+          <li>File Action Reslts</li>
+          <ul>
+            <li>FileContentResult</li>
+            <li>FileStreamResult</li>
+            <li>VirtualFileResult</li>
+            <li>PhysicalFileResult</li>
+          </ul>
+          <li>Status Codes</li>
+        </ul>
+      </article>
+      <article id="topic5">
+        <h2>Context Data </h2>
+        <ul>
+        </ul>
+        Context data is any data that comes from the incoming HTTP
+        request and provided to the controller by the ASP.NET routing
+        system. Context data can be accessed through:<br>
+        <ul>
+          <li>Context objects that are members of the Controller class
+            and accessed through the following properties:</li>
+          <ul>
+            <li><i>Request</i> - This property returns an HttpRequest
+              object</li>
+            <ul>
+              <li><i>Path</i> - This property returns the path section
+                of the request URL.</li>
+              <li><i>QueryString</i> - This property returns the query
+                string section of the request URL.</li>
+              <li><i>Headers</i> - This property returns a dictionary of
+                the request headers, indexed by name.</li>
+              <li><i>Body</i> - This property returns a stream that can
+                be used to read the request body.</li>
+              <li><i>Form</i> - This property returns a dictionary of
+                the form data in the request, indexed by name.</li>
+              <li><i>Cookies</i> - This property returns a dictionary of
+                the request cookies, indexed by name.</li>
+            </ul>
+            <li><i>Response</i> - This property returns an HttpResponse
+              object </li>
+            <li><i>HttpContext</i> - This property returns an
+              HttpContext object, which is the source of many of the<br>
+              objects returned by other properties, such as Request and
+              Response. It also provides<br>
+              information about the HTTP features available and access
+              to lower-level features like<br>
+              web sockets.</li>
+            <li><i>RouteData</i> - This property returns the RouteData
+              object produced by the routing system</li>
+            <li><i>ModelState</i> - This property returns a
+              ModelStateDictionary object, which is used to validate
+              data<br>
+              sent by the client</li>
+            <li><i>User</i> - This property returns a ClaimsPrincipal
+              object that describes the user who has made<br>
+              the request,</li>
+          </ul>
+          <li>Arguments passed to an action method in the controller</li>
+          <ul>
+            <li>From form input element values</li>
+            <li>Action method parameter names must match the form field
+              names</li>
+            <li>Example:</li>
+            <ul>
+              <li>&nbsp;In the Razor view:<br>
+                <code>form method="post" asp-action="ReceiveForm"&gt; <br>
+                  &nbsp; &lt;label for="name"&gt;Name:&lt;/label&gt;<br>
+                  &nbsp; &lt;input name="name"&gt; <br>
+                  &nbsp; &lt;label for="name"&gt;City:&lt;/label&gt;<br>
+                  &nbsp; &lt;input name="city"&gt; <br>
+                  &nbsp;&nbsp; &lt;button
+                  type="submit"&gt;Submit&lt;/button&gt;<br>
+                  &lt;/form&gt;</code><br>
+              </li>
+              <li>In the corresponding controller method: <code>[HttpPost]<br>
+                  public ViewResult ReceiveForm(string name, string
+                  city) {<br>
+                  &nbsp;&nbsp; return View("Result", $"{name} lives in
+                  {city}"); <br>
+                  }</code></li>
+              <br>
+            </ul>
+          </ul>
+          <li>The ASP.NET Core MVC model binding feature</li>
+          <ul>
+            <li>Example:</li>
+            <ul>
+              <li>Given this model:<code>public class Person {<br>
+                  &nbsp;&nbsp; public String Name {get; set;}<br>
+                  &nbsp;&nbsp; public String City {get; set;}<br>
+                  }</code></li>
+              <br>
+              <li>In the Razor view:<br>
+                Note that instead of the HTML <i>for</i> attribute the
+                <i>asp-for</i> Tag Helper is used<br>
+                <code>@model Person<br>
+                  <br>
+                  &lt;form method="post" asp-action="ReceiveForm"&gt; <br>
+                  &nbsp; &lt;label asp-for="name"&gt;Name:&lt;/label&gt;<br>
+                  &nbsp; &lt;input name="name"&gt; <br>
+                  &nbsp; &lt;label asp-for="name"&gt;City:&lt;/label&gt;<br>
+                  &nbsp; &lt;input name="city"&gt; <br>
+                  &nbsp;&nbsp; &lt;button
+                  type="submit"&gt;Submit&lt;/button&gt;<br>
+                  &lt;/form&gt;</code></li>
+              <br>
+              <li>In the corresponding controller method: <code>[HttpPost]<br>
+                  public ViewResult ReceiveForm(Person person) {<br>
+                  &nbsp;&nbsp; return View("Result", $"{person.Name}
+                  lives in {Person.city}"); <br>
+                  }</code> </li>
+            </ul>
+          </ul>
+        </ul>
+        <p><br>
+        </p>
+        <ul>
+        </ul>
+      </article>
+      <article id="topic6"><br>
+        <h2> Sending data from a view using radio buttons </h2>
+        <p>This example demonstrates:</p>
+        <ul>
+          <li>The use of HTML radio buttons in a view</li>
+          <li>Sending a form field value to a controller method</li>
+          <li>Sending data in a model to a view</li>
+        </ul>
+        <p>The model:</p>
+        <p><code> &nbsp;&nbsp; public class Choice<br>
+            &nbsp;&nbsp;&nbsp; {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public string
+            Mascot { get; set; }<br>
+            &nbsp;&nbsp;&nbsp; }</code></p>
+        <p> The controller:</p>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public
+          IActionResult Radio(string mascot)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+          Choice c = new Choice { Mascot = mascot };<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+          return View(c);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code>
+        <p>The view:</p>
+        <code>@model Choice<br>
+          &lt;form&gt;<br>
+          &nbsp;&nbsp;&nbsp; &lt;label&gt;I'm a Titan fan&lt;/label&gt;<br>
+          &nbsp;&nbsp;&nbsp; &lt;input type="radio" name="mascot"
+          value="Titan"&gt;<br>
+          &nbsp;&nbsp;&nbsp; &lt;label&gt;I'm a Duck fan&lt;/label&gt;<br>
+          &nbsp;&nbsp;&nbsp; &lt;input type="radio" name="mascot"
+          value="Duck"&gt;<br>
+          &nbsp;&nbsp;&nbsp; &lt;input type="submit"&gt;<br>
+          &lt;/form&gt;<br>
+          <br>
+          &lt;p&gt;You are a @Model.Mascot fan&lt;/p&gt;</code> </article>
+    </section>
+    <br>
+    <hr>
+    <footer> <a rel="license"
+        href="http://creativecommons.org/licenses/by/4.0/"><img
+          alt="Creative Commons License" style="border-width:0"
+          src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>
+      <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET
+
+
+        Core MVC Lecture Notes</span> by <a
+        xmlns:cc="http://creativecommons.org/ns#"
+        href="https://birdsbits.blog" property="cc:attributionName"
+        rel="cc:attributionURL">Brian Bird</a> is licensed under a <a
+        rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative
+
+
+        Commons Attribution 4.0 International License</a>. </footer>
+    <hr>
+  </body>
+</html>

@@ -68,8 +68,6 @@
           <li><a href="#topic1">Introduction</a></li>
           <li><a href="#topic2">Review </a></li>
           <li><a href="#topic3">Identity</a></li>
-          <li><a href="#topic4">Authentication</a></li>
-          <li><a href="#topic5">Role Management</a></li>
           <li><a href="#topic6">Further Reading</a></li>
           <li><a href="#topic7">Book Info Web App Example</a></li>
           <li><a href="#topic8">Next Class</a></li>
@@ -124,20 +122,66 @@
         </ul>
         <h3>Setting up Identity</h3>
         <ul>
-          <li> Add it to an ASP.NET Core MVC project</li>
+          <li> Add it to an existing ASP.NET Core MVC project</li>
           <li> Follow the steps in Freeman, Ch. 28 through the end of
             "Setting up the User Classes".</li>
           <ul>
             <li>Skip "Creating a Controller and View"</li>
-            <li>Note: I had to add an ID property to my User class in
-              order for EF to generate the identity tables in my
-              applicaiton database. I shouldn't have to do this. It
-              seems like a bug in EF or something.<br>
+            <li>Notes on Freeman Ch 28: <br>
             </li>
+            <ul>
+              <li>in the Configure method<span style="font-weight:
+                  bold;">, </span><span style="font-weight: bold;">app.UseAuthentication
+
+
+
+                  must precede app.UseMvc !!!</span></li>
+              <li>The app doesn't have much on it's home page. Go to
+                /Admin to see the important stuff<br>
+              </li>
+              <li>It's OK to directly delete the IdentityUsers database
+                using SQL Server Object Explorer</li>
+              <li>There are special domain names defined for testing and
+                examples. These are defined by the <a
+                  href="https://www.ietf.org" target="_blank">Internet
+                  Engineering Task Force</a><br>
+              </li>
+              <ul>
+                <li>These are the reserved domains, they are invalid for
+                  actual use:</li>
+                <ul>
+                  <li>.test</li>
+                  <li>.example</li>
+                  <li>.invalid</li>
+                  <li>.localhost<br>
+                  </li>
+                </ul>
+                <li>Reference: <a
+                    href="https://tools.ietf.org/html/rfc2606"
+                    target="_blank">Reserved Top Level Doman Names
+                    (TLDs)</a><br>
+                </li>
+              </ul>
+            </ul>
           </ul>
-          <li>Inspect the database using SQL Server Object Explorer and
-            note the new tables added by Identity. The tables listed
-            below should have been created.<br>
+          <ul>
+            <li>Notes on implementing Identity in my own code:<br>
+            </li>
+            <ul>
+              <li>I had to add an ID property to my User class in order
+                for EF to generate the identity tables in my application
+                database. I shouldn't have to do this. It seems like a
+                bug in EF or something.</li>
+            </ul>
+          </ul>
+        </ul>
+        <ul>
+          <ul>
+          </ul>
+          <li>After adding Identity to your project, Inspect the
+            database using SQL Server Object Explorer and note the new
+            tables added by Identity. The tables listed below should
+            have been created.<br>
             Note: AspNetUsers is your user table, it contains the fields
             you added in your user class.<br>
           </li>
@@ -163,14 +207,6 @@
         </ul>
       </article>
       <hr>
-      <article id="topic4">
-        <h2>Authentication</h2>
-        ... </article>
-      <hr>
-      <article id="topic5">
-        <h2>Role Management</h2>
-        ... </article>
-      <hr>
       <article id="topic6">
         <h2>Additional Reading</h2>
         We added Identity to our web app by following the example in
@@ -194,5 +230,26 @@ href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity"
         <p>We will...</p>
       </article>
     </section>
+    <hr style="width: 100%; height: 2px;">
+    <footer>
+      <a rel="license"
+        href="http://creativecommons.org/licenses/by/4.0/"><img
+          alt="Creative Commons License" style="border-width:0"
+          src="https://i.creativecommons.org/l/by/4.0/80x15.png"></a><span
+        xmlns:dct="http://purl.org/dc/terms/" property="dct:title">&nbsp;
+ASP.NET
+
+Core
+        MVC Lecture Notes</span> by <a
+        xmlns:cc="http://creativecommons.org/ns#"
+        href="https://birdsbits.blog" property="cc:attributionName"
+        rel="cc:attributionURL">Brian Bird</a> is licensed under a <a
+        rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative
+Commons
+
+Attribution
+        4.0 International License</a>. <br>
+    </footer>
+    <hr>
   </body>
 </html>

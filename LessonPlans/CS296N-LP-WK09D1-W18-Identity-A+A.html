@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Authentication + Authorization</title>
+    <title>Wk 9, Authentication + Authorization</title>
     <style>
         body {
           font-family: "Arial", "Helvetica", "sans-serif";
@@ -67,11 +67,19 @@
         <ul>
           <li><a href="#topic1">Introduction</a></li>
           <li><a href="#topic2">Review </a></li>
+          <li><a href="#topic2"><span style="color: rgb(0, 0, 238);"><span
+                  style="text-decoration: underline;">Textbook Example</span></span></a><br>
+          </li>
           <li><a href="#topic3">Login</a></li>
           <li><a href="#topic4">Authorization</a></li>
           <li><a href="#topic5">Role Management</a></li>
           <li><a
 href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-LP-WK09D1-W18-Identity-A+A.html#topic7">BookInfo
+
+
+
+
+
               Web App Example</a></li>
           <li><a href="#topic6">Further Reading</a></li>
           <li><a href="#topic8">Next Class</a></li>
@@ -122,8 +130,8 @@ href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-L
               a <span style="font-style: italic;">UserManager</span>
               object<span style=" font-style: italic;"></span></li>
           </ul>
-          <li>&nbsp;To restrict access to only allow authenticated users,
-            add the <span style="font-style: italic;">[Authorize]</span>
+          <li>&nbsp;To restrict access to only allow authenticated
+            users, add the <span style="font-style: italic;">[Authorize]</span>
             attribute to:<span style=" font-style: italic;"></span></li>
           <ul>
             <li>Controllers</li>
@@ -134,10 +142,46 @@ href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-L
       </article>
       <hr>
       <article id="topic3">
+        <h2>Textbook Example (Freeman, Ch. 29)</h2>
+        <p>The example MVC app has the following features<br>
+        </p>
+        <ul>
+          <li>/Home - Shows details on the currently logged in user</li>
+          <ul>
+            <li>Index - requires login, has [Authorize] attribute</li>
+            <li>OtherAction - same as above, has
+              [Authorize(Roles="Users")] attribute<br>
+            </li>
+          </ul>
+          <li>/Admin - Shows a list of users and has buttons for:</li>
+          <ul>
+            <li>Create</li>
+            <li>Edit</li>
+            <li>Delete</li>
+          </ul>
+          <li>/Account<br>
+          </li>
+          <ul>
+            <li>/Login</li>
+            <li>/Logout</li>
+          </ul>
+          <li>/RoleAdmin - Shows roles and the users in them and has
+            buttons for:</li>
+          <ul>
+            <li>Create</li>
+            <li>Edit - use this to add a user to a role<br>
+            </li>
+            <li>Delete</li>
+          </ul>
+          <li><br>
+          </li>
+        </ul>
+        <hr style="width: 100%; height: 2px;">
         <h2>Login<br>
         </h2>
         <ul>
-          <li>Add an account controller with:</li>
+          <li>In your existing MVC application, add an account
+            controller with:</li>
           <ul>
             <li>Login and logout action methods</li>
           </ul>
@@ -150,8 +194,11 @@ href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-L
                 italic;">Account/Login</span></li>
             <li>And will have a parameter for the return URL. For
               example:<br>
-              <span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span><br>
-            </li>
+              <span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span></li>
+            <ul>
+              <li>Note: %2F is the hex code for the forward slash, /<br>
+              </li>
+            </ul>
           </ul>
         </ul>
         <br>
@@ -160,7 +207,6 @@ href="file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LessonPlans/CS296N-L
       <article id="topic4">
         <h2>Authorization<br>
         </h2>
-        <br>
         [Authorize]<br>
         The ASP.NET Core platform provides information about the user
         through the HttpContext object,<br>
@@ -202,6 +248,11 @@ href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity"
         <h2>Reading</h2>
         <span style="font-weight: bold;">Freeman, </span><span
           style="font-weight: bold;"><span style="font-style: italic;">Pro
+
+
+
+
+
             ASP.NET Core MVC 2</span></span>
         <ul>
           <li>Ch. 12 - SportsStore: Sections on Identity - <a
@@ -224,7 +275,20 @@ href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/"
         <p>We will...</p>
       </article>
     </section>
+    <hr style="width: 100%; height: 2px;">
+    <footer> <a rel="license"
+        href="http://creativecommons.org/licenses/by-sa/4.0/"><img
+          alt="Creative Commons License" style="border-width:0"
+          src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a><br>
+      <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET
+        Core MVC Lecture Notes</span> by <a
+        xmlns:cc="http://creativecommons.org/ns#"
+        href="https://birdsbits.blog" property="cc:attributionName"
+        rel="cc:attributionURL">Brian Bird</a> is licensed under a <a
+        rel="license"
+        href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>.<br>
+    </footer>
     <hr>
-    <footer>Written by Brian Bird, Winter 2018 </footer>
   </body>
 </html>
