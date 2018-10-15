@@ -62,3 +62,8 @@ _ReSharper*/
 
 #Test files
 *.testsettings
+Demos/LambdaDemo/.vs/LambdaDemo/xs/sqlite3/db.lock
+Demos/LambdaDemo/.vs/LambdaDemo/xs/sqlite3/storage.ide
+Demos/LambdaDemo/.vs/LambdaDemo/xs/sqlite3/storage.ide-shm
+Demos/LambdaDemo/.vs/LambdaDemo/xs/sqlite3/storage.ide-wal
+Demos/LambdaDemo/.vs/LambdaDemo/xs/UserPrefs.xml
