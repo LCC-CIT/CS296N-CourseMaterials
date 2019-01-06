@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Course Intro</title>
+    <style>
+        body {
+          font-family: "Arial", "Helvetica", "sans-serif";
+        }
+
+        #week01 {
+          background-color: #f8ff2e;
+        }
+
+        code {
+          display:block;
+          font-size: larger;
+          background-color: lightgoldenrodyellow;
+          max-height:400px;
+          width:75%;
+          overflow:scroll;
+        }
+
+        .exercise {
+          background-color: #c6ffe2;
+        }
+		</style>
+  </head>
+  <body>
+    <header> <b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;</b>
+      <div>Brian Bird</div>
+      <br>
+      <h1> <i><b>Intro to the Course and ASP.NET Identity<br>
+          </b></i></h1>
+      <b>Topics by week </b>
+      <table style="width: 807px; height: 127px;" border="1">
+        <tbody>
+          <tr>
+            <td id="week01">1. Intro to course and Identity<br>
+            </td>
+            <td id="week06">6. Creating a Web Service<br>
+            </td>
+          </tr>
+          <tr>
+            <td id="week02">2. Authorization and Role Management<br>
+            </td>
+            <td>7. Consuming a Web Service, Async / Await<br>
+            </td>
+          </tr>
+          <tr>
+            <td id="week03">3. Security<br>
+            </td>
+            <td id="week08" style="width: 395.333px;">8. Docker
+              Containers<br>
+            </td>
+          </tr>
+          <tr>
+            <td id="week04">4. Load Testing and Performance<br>
+            </td>
+            <td id="week09">9. Microservices<br>
+            </td>
+          </tr>
+          <tr>
+            <td id="week05">5. Midterm, Bootstrap and Front-End
+              Libraries</td>
+            <td id="week10">10. TBD<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <h2><b><b>Contents</b> </b></h2>
+      <div>
+        <ul>
+          <li><a href="#topic2">Review </a></li>
+          <li><a href="#topic2a">Course Overview</a></li>
+          <li><a href="#topic3">ASP.NET Core Identity</a></li>
+          <li><a href="#topic6">Further Reading</a></li>
+          <li><a href="#topic7">Book Info Web App Example</a></li>
+          <li><a href="#topic8">Next Class</a></li>
+        </ul>
+      </div>
+    </header>
+    <section>
+      <hr>
+      <article id="topic1">
+        <h2>Intro and Announcements</h2>
+        <ul>
+          <li><a
+href="https://www.meetup.com/eugenewebdevs/events/257692027/?rv=ea1_v2&amp;_xtd=gatlbWFpbF9jbGlja9oAJDNkYjk4OGE4LTY4OTMtNGRkMi1hOGViLWRmODA0NDVmZGFiMw"
+              target="_blank">Microservices workshop at IDX</a> this
+            Saturday, 1/12/19<br>
+          </li>
+        </ul>
+      </article>
+      <hr>
+      <article id="topic2">
+        <h2>Review</h2>
+        <h3>The Model-View-Controller Architectural Pattern<br>
+        </h3>
+        <ul>
+          <li>What is the MVC pattern? <i><br>
+            </i></li>
+          <ul>
+            <li>Explain dependencies in MVC<br>
+            </li>
+          </ul>
+          <li>What are it's advantages?</li>
+          <li>What MVC frameworks are popular besides ASP.NET MVC?<br>
+          </li>
+          <li>What are some alternative web architectures<i>?</i></li>
+        </ul>
+        <h3>Server and Browser interaction<br>
+        </h3>
+        <ul>
+          <li>Explain the "statelessness of HTTP"</li>
+          <ul>
+            <li>Where can state be stored?<br>
+            </li>
+          </ul>
+          <li>What kind of code runs on the server, the browser?<br>
+          </li>
+          <li>What happens in the browser, what happens on the server?</li>
+          <ul>
+            <li>A cshtml view is rendered into HTML</li>
+            <li>C# code in a cshtml page is executed</li>
+            <li>Code in a controller is executed</li>
+            <li>Data entered into an HTML form is stored in a model<br>
+            </li>
+            <li>Data from a model is diplayed in a view</li>
+          </ul>
+        </ul>
+        <h3>Entity Framework</h3>
+        <ul>
+          <li>What is an ORM? What does it do for us?</li>
+          <li>What is the relationship between the domain models and the
+            database tables?</li>
+          <li>What are the three different cardinalities in entity
+            relationships?<br>
+          </li>
+          <ul>
+            <li>Does EF Core currently support the many-to-many
+              relationship?</li>
+          </ul>
+          <li>What kind of data stores are supported by EF Core?</li>
+        </ul>
+        <ul>
+        </ul>
+      </article>
+      <hr>
+      <h2 id="topic2a">Course Overview</h2>
+      <ul>
+        <li>Syllabus</li>
+        <li>Changes to teaching and learning approach<br>
+        </li>
+        <ul>
+          <li>More coding demonstrations pre-recorecorded</li>
+          <li>More lab time in class</li>
+          <li>Use Git for submissions and use pull requests for code
+            reviews<br>
+          </li>
+          <li>Quizzes-- more acountability to do the weekly reading</li>
+          <li>Midterm and final<br>
+          </li>
+          <li>Tightening up on timeliness this term (mine and yours)<br>
+          </li>
+        </ul>
+      </ul>
+      <hr>
+      <article id="topic3">
+        <h2>ASP.NET Core Identity </h2>
+        <h3> Identity is an API for managing users</h3>
+        <ul>
+          <li> ASP.NET Core Identity is an API for:</li>
+          <ul>
+            <li>&nbsp;managing users <br>
+            </li>
+            <li>Storing user data in repositories such as relational
+              databases<br>
+            </li>
+          </ul>
+        </ul>
+        <h3>What Identity does</h3>
+        <ul>
+          <li>Authentication</li>
+          <li>Authorization</li>
+          <li>Role management</li>
+        </ul>
+      </article>
+      <hr>
+      <article id="topic6">
+        <h2>Reading</h2>
+        <h4> Basic</h4>
+        <a
+href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/"
+          target="_blank">Introduction to Identity in ASP.NET Core</a><br>
+        <h4>Advanced</h4>
+        <a href="https://code-maze.com/http-series-part-4/"
+          target="_blank">HTTP Authentication Mechanisms</a><br>
+        <a
+href="https://andrewlock.net/exploring-the-asp-net-core-identity-passwordhasher/"
+          target="_blank"><span style="color: rgb(0, 0, 238);"><span
+              style="text-decoration: underline;">Exploring the ASP.NET
+              Core Identity Password Hasher</span></span></a><br>
+        <br>
+      </article>
+      <hr>
+      <article id="topic7">
+        <h2>Book Info Web App Example</h2>
+        <a
+href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity"
+          target="_blank">GitHub Repository: <br>
+          CS296N-BookInfo-Core-2<br>
+          AddIdentity branch</a> </article>
+      <hr>
+      <article id="topic8">
+        <h2>Next Class</h2>
+        <p>We will create administrative pages that use Identity to
+          manage users<br>
+        </p>
+      </article>
+    </section>
+    <hr style="width: 100%; height: 2px;">
+    <footer> <a rel="license"
+        href="http://creativecommons.org/licenses/by/4.0/"><img
+          alt="Creative Commons License" style="border-width:0"
+          src="https://i.creativecommons.org/l/by/4.0/80x15.png"></a><span
+        xmlns:dct="http://purl.org/dc/terms/" property="dct:title">&nbsp;
+ASP.NET
+
+Core
+
+
+
+
+
+
+        MVC Lecture Notes</span> by <a
+        xmlns:cc="http://creativecommons.org/ns#"
+        href="https://birdsbits.blog" property="cc:attributionName"
+        rel="cc:attributionURL">Brian Bird</a> is licensed under a <a
+        rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative
+Commons
+
+Attribution
+
+
+
+
+
+
+        4.0 International License</a>. <br>
+    </footer>
+    <hr>
+  </body>
+</html>

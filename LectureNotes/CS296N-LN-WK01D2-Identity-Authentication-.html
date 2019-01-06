@@ -84,21 +84,16 @@
       </div>
     </header>
     <section>
-      <h2> Topics </h2>
       <hr>
       <article id="topic1">
         <h2>Introduction</h2>
         <ul>
-          <li>Review ldue dates on Moodle</li>
+          <li>Review due dates on Moodle</li>
         </ul>
         <h3>Announcements</h3>
         <ul>
           <li>Microservices workshop<br>
           </li>
-        </ul>
-        <h3>Main focus today</h3>
-        <ul>
-          <li>Identity</li>
         </ul>
       </article>
       <hr>
@@ -117,10 +112,14 @@
         <h2>Identity </h2>
         <h3> Identity is an API for managing users</h3>
         <ul>
-          <li> ASP.NET Core Identity is an API for managing users and
-            storing user data in<br>
-            repositories such as relational databases through Entity
-            Framework Core. - Freeman</li>
+          <li> ASP.NET Core Identity is an API for:</li>
+          <ul>
+            <li>&nbsp;managing users <br>
+            </li>
+            <li>Storing user data in repositories such as relational
+              databases<br>
+            </li>
+          </ul>
         </ul>
         <h3>What Identity does</h3>
         <ul>
@@ -192,19 +191,21 @@
             database using SQL Server Object Explorer and note the new
             tables added by Identity. The tables listed below should
             have been created.<br>
-            Note: AspNetUsers is your user table, it contains the fields
-            you added in your user class.<br>
+            <br>
           </li>
+          <li>AspNetRoleClaims</li>
+          <li>AspNetRoles</li>
+          <li>AspNetUserClaims</li>
+          <li>AspNetUserLogins</li>
+          <li>AspNetUserRoles</li>
+          <li>AspNetUsers</li>
           <ul>
-            <li>AspNetRoleClaims</li>
-            <li>AspNetRoles</li>
-            <li>AspNetUserClaims</li>
-            <li>AspNetUserLogins</li>
-            <li>AspNetUserRoles</li>
-            <li>AspNetUsers</li>
-            <li>AspNetUserTokens<br>
+            <li>This is your user table, it contains the fields you
+              added in your user class.<br>
             </li>
           </ul>
+          <li>AspNetUserTokens<br>
+          </li>
         </ul>
         <h3>Using&nbsp; Identity in administrative pages</h3>
         <ul>
