@@ -138,6 +138,38 @@ code {
 		<h2>Adding Identity to a web app</h2>
 		<p>Follow the steps in Freeman, Ch. 28 through the end of "Setting up 
 		the User Classes", but skip "Creating a Controller and View"</p>
+		<ol>
+			<li>Modify your application's DbContext class to inherit from 
+			IdentityDbContext<ul>
+				<li>All you need to do is change the inheritance</li>
+				<li>Don't add a new DbSet for Identity, that will be done by the 
+				parent class</li>
+			</ul>
+			</li>
+			<li>In Startup.cs, ConfigureServices, add:<br>
+			<code style="width: 80%; height: 92px">services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+			</code>
+			<ul>
+				<li>The AddIdentity method has generic type specifiers for my 
+				user class and thethe built-in IdentityRole class for roles.
+				</li>
+				<li>The AddEntityFrameworkStores method specifies that Identity should use Entity
+Framework Core to store and retrieve its data, using the application's database context class. 
+				</li>
+				<li>The
+AddDefaultTokenProviders method uses the default configuration to support operations that require a
+token, such as changing a password.</li>
+			</ul>
+			</li>
+			<li>In Startup.cs, ConfigureServices, add:<br>
+			<code>app.UseAuthentication();</code></li>
+			<li><code>Modify your user model so that the class inherits from 
+			IdentityUser</code></li>
+			<li><code>Add a migration for the new user model and update the 
+			database</code></li>
+		</ol>
 		<p>After adding Identity to your project, Inspect the database using SQL 
 		Server Object Explorer and note the new tables added by Identity. The 
 		tables listed below should have been created.</p>
