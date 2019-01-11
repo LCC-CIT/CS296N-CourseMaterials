@@ -22,16 +22,6 @@ code {
 .exercise {
 	background-color: #c6ffe2;
 }
-.auto-style1 {
-	text-decoration: line-through;
-}
-.auto-style2 {
-	background-color: #FFFF00;
-}
-.auto-style3 {
-	text-decoration: line-through;
-	background-color: #FFFF00;
-}
 .auto-style4 {
 	text-decoration: underline;
 }
@@ -88,16 +78,8 @@ code {
 	<hr>
 	<article id="topic1">
 		<h2>Introduction</h2>
-		<h3>This week's objectives</h3>
-		<p>1. Review of key concepts from last term<br>2. Overview of this course<br>
-		3. Introduction to ASP.NET Core Identity and how to use it fo<span class="auto-style2">r</span><span class="auto-style3"> 
-		user authentication </span><strong><em><span class="auto-style2">user management</span></em></strong>, 
-		including:<br></p>
-		<ul>
-			<li class="auto-style1">Registration</li>
-			<li class="auto-style1">Login</li>
-			<li class="auto-style2">User management</li>
-		</ul>
+		<h3>Today's objective</h3>
+		<p>How to use ASP.NET Core Identity to create and manage user accounts<br></p>
 		<h3>Announcements</h3>
 		<ul>
 			<li>
@@ -123,14 +105,10 @@ code {
 		<h3>ASP.NET Core Identity</h3>
 		A class library (an API) for:
 		<ul>
-			<li>Managing users</li>
-			<li>Storing user data in repositories such as relational databases</li>
-		</ul>
-		Primary uses:
-		<ul>
 			<li>Authentication</li>
 			<li>Authorization</li>
 			<li>Role management</li>
+			<li>User account management</li>
 		</ul>
 		<hr>
 	</article>
@@ -143,7 +121,7 @@ code {
 			IdentityDbContext<ul>
 				<li>All you need to do is change the inheritance</li>
 				<li>Don't add a new DbSet for Identity, that will be done by the 
-				parent class</li>
+				parent class<br></li>
 			</ul>
 			</li>
 			<li>In Startup.cs, ConfigureServices, add:<br>
@@ -160,15 +138,36 @@ Framework Core to store and retrieve its data, using the application's database 
 				</li>
 				<li>The
 AddDefaultTokenProviders method uses the default configuration to support operations that require a
-token, such as changing a password.</li>
+token, such as changing a password.<br></li>
 			</ul>
 			</li>
-			<li>In Startup.cs, ConfigureServices, add:<br>
-			<code>app.UseAuthentication();</code></li>
-			<li><code>Modify your user model so that the class inherits from 
-			IdentityUser</code></li>
-			<li><code>Add a migration for the new user model and update the 
-			database</code></li>
+			<li>In Startup.cs, Configure, add:<br>
+			<code>app.UseAuthentication();</code><br/></li>
+			<li>Modify your user model so that the class inherits from 
+			IdentityUser<br>The IdentityUser has these properties:<ul>
+				<li>Id - This property contains the unique ID for the user. </li>
+				<li>UserName - This property returns the user’s username. </li>
+				<li>Claims - This property returns the collection of claims for 
+				the user, which I describe in Chapter 30. </li>
+				<li>Email - This property contains the user’s e-mail address.
+				</li>
+				<li>Logins - This property returns a collection of logins for 
+				the user, which is used for third-party authentication, as 
+				described in Chapter 30. </li>
+				<li>PasswordHash - This property returns a hashed form of the 
+				user password, which I use in the “Implementing the Edit 
+				Feature” section. </li>
+				<li>Roles - This property returns the collection of roles that 
+				the user belongs to, which I describe in Chapter 29. </li>
+				<li>PhoneNumber - This property returns the user’s phone number.
+				</li>
+				<li>SecurityStamp - This property returns a value that is 
+				changed when the user identity is altered, such as by a password 
+				change. <br> </li>
+			</ul>
+			</li>
+			<li>Add a migration for the new user model and update the 
+			database</li>
 		</ol>
 		<p>After adding Identity to your project, Inspect the database using SQL 
 		Server Object Explorer and note the new tables added by Identity. The 
