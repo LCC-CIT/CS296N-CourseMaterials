@@ -25,6 +25,9 @@ code {
 .auto-style4 {
 	text-decoration: underline;
 }
+.auto-style5 {
+	font-family: "Courier New", Courier, monospace;
+}
 </style>
 </head>
 
@@ -194,6 +197,14 @@ token, such as changing a password.<br></li>
 	<article id="topic4">
 		<h2>Notes on Freeman Ch. 28</h2>
 		<ul>
+			<li>If you are using .NET Core 2.1 or later, you don't need to add 
+			this line to the .csproj file:<br><span class="auto-style5">
+			&lt;DotNetCliToolReference 
+			Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" 
+			/&gt;</span><br>
+			In fact, according to
+			<a href="https://docs.microsoft.com/en-us/dotnet/core/migration/20-21" target="_blank">
+			Micrososft's documentation</a> you should not add this line.</li>
 			<li>In Startup.cs, in the Configure method, <strong>
 			app.UseAuthentication <span class="auto-style4">must precede</span> 
 			app.UseMvc !!!</strong></li>
