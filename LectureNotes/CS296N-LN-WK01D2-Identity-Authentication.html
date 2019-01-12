@@ -228,10 +228,9 @@ token, such as changing a password.<br></li>
 			</ul>
 			</li>
 			<li>Notes on implementing Identity in my own code:<ul>
-				<li>I had to add an ID property to my User class in order for EF 
-				to generate the identity tables in my application database. I 
-				shouldn't have to do this. It seems like a bug in EF or 
-				something.</li>
+				<li>When targeting .NET Core 2.0, I had to add an ID property to my User class in order for EF 
+				to generate the identity tables in my application database. In 
+				.NET Core 2.2, I don't need to do this.</li>
 			</ul>
 			</li>
 		</ul>
