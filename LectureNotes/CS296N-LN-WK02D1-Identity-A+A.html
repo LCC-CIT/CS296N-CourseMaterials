@@ -146,25 +146,18 @@ pre {
 		</article>
 		<hr style="width: 100%; height: 2px;">
 		<article id="topic3a">
-			<h2>Login <br></h2>
+			<h2>Adding Authentication and Authorization to Your Web App</h2>
+			<h3>Login <br></h3>
 			<ul>
-				<li>In your existing MVC application, add an account controller 
-				with:</li>
+				<li>In an account controller, add:</li>
 				<ul>
 					<li>Login and logout action methods</li>
 				</ul>
 				<li>Add Login and logout views</li>
-				<li>Add the
-				<span style="font-family: Courier New,Courier,monospace;">[Authorize]</span> 
-				attributes to methods that require authorization</li>
-				<ul>
-					<li>This will cause a redirect to
-					<span style="font-style: italic;">Account/Login</span> </li>
-					<li>And will have a parameter for the return URL. For example:
-					<br><span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span>
-					</li>
+				<li>A<ul>
+					<li>
 					<ul>
-						<li>Note: %2F is the hex code for the forward slash, /
+						<li>
 						<br></li>
 					</ul>
 				</ul>
@@ -173,11 +166,38 @@ pre {
 		</article>
 		<hr>
 		<article id="topic4">
-			<h2>Authorization <br></h2>
-			[Authorize] <br>The ASP.NET Core platform provides information about 
-			the user through the HttpContext object, <br>which is used by the Authorize 
+			<h3>Authorization</h3>
+			The ASP.NET Core platform provides information about 
+			the user through the HttpContext object, which is used by the Authorize 
 			attribute to check the status of the current request and see whether 
-			the user <br>has been authenticated. <br>
+			the user has been authenticated. <br><br>
+			Add the <span style="font-family: Courier New,Courier,monospace;">[Authorize]</span> 
+				attributes to methods that require authorization
+				<ul>
+					<li>This will cause a redirect to
+					<span style="font-style: italic;">Account/Login</span> </li>
+					<li>And&nbsp; a parameter for the return URL will be passed 
+					automatically. For example:
+					<br><span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span>
+					</li>
+					<ul>
+						<li>NNote: %2F is the hex code for the forward slash, /
+						</li>
+					</ul>
+				</ul>
+			<h3>Authorization by Role</h3>
+			<ol>
+				<li>Create default roles<ul>
+					<li>In the application's DbContext class, add code to create the roles 
+					you want:<br><br><pre>
+string role = configuration["Data:AdminUser:Role"];
+if (await roleManager.FindByNameAsync(role) == null)
+{
+    await roleManager.CreateAsync(new IdentityRole(role));
+}</pre></li>
+				</ul>
+				</li>
+			</ol>
 		</article>
 		<hr>
 		<article id="topic5">
