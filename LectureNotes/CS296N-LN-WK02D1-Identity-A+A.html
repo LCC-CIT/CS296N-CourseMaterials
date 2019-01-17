@@ -147,7 +147,7 @@ pre {
 		<hr style="width: 100%; height: 2px;">
 		<article id="topic3a">
 			<h2>Adding Authentication and Authorization to Your Web App</h2>
-			<h3>Login <br></h3>
+			<h3>Login and Logout<br></h3>
 			<ul>
 				<li>In your existing MVC application, add an account controller 
 				with:</li>
@@ -199,11 +199,20 @@ pre {
 					<li>In the application's DbContext class, add code to create 
 					the roles you want:<br><br>
 					<pre>
-string role = configuration["Data:AdminUser:Role"];
-if (await roleManager.FindByNameAsync(role) == null)
-{
-    await roleManager.CreateAsync(new IdentityRole(role));
+const string ADMIN = "Admin";
+const string MEMBER = "Member";
+if (await roleManager.FindByNameAsync(ADMIN) == null)  {
+    await roleManager.CreateAsync(new IdentityRole(ADMIN));
+}
+if (await roleManager.FindByNameAsync(MEMBER) == null)  {
+    await roleManager.CreateAsync(new IdentityRole(MEMBER));
 }</pre>
+					<br>Note: In the example I used constants for the role names. 
+					You may want to get the role names from your appsettings.json 
+					file, like the author of the textobook does:
+					<pre>
+configuration["Data:AdminUser:Role"]
+</pre>
 					</li>
 				</ul>
 				</li>
