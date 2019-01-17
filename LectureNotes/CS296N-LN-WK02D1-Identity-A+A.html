@@ -35,7 +35,7 @@ pre {
 <body>
 
 <div class="container-fluid">
-	<b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+	<b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 	<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 	</b><br>
 	<header>
@@ -44,7 +44,8 @@ pre {
 		<table border="1" style="width: 807px; height: 127px;">
 			<tr>
 				<td id="week01">1. Intro to course and Identity<br></td>
-				<td id="week06">6. Creating a Web Service, Async / Await<br></td>
+				<td id="week06">6. Creating a Web Service, Async / Await<br>
+				</td>
 			</tr>
 			<tr>
 				<td id="week02">2. Authentication and Authorization</td>
@@ -52,8 +53,7 @@ pre {
 			</tr>
 			<tr>
 				<td id="week03">3. Security<br></td>
-				<td id="week08" style="width: 395.333px;">8. Front-End 
-				Frameworks<br>
+				<td id="week08" style="width: 395.333px;">8. Front-End Frameworks<br>
 				</td>
 			</tr>
 			<tr>
@@ -149,52 +149,62 @@ pre {
 			<h2>Adding Authentication and Authorization to Your Web App</h2>
 			<h3>Login <br></h3>
 			<ul>
+				<li>In your existing MVC application, add an account controller 
+				with:</li>
 				<li>In an account controller, add:</li>
 				<ul>
 					<li>Login and logout action methods</li>
 				</ul>
 				<li>Add Login and logout views</li>
-				<li>A<ul>
+				<li>Add the
+				<span style="font-family: Courier New,Courier,monospace;">[Authorize]</span> 
+				attributes to methods that require authorization</li>
+				<ul>
+					<li>This will cause a redirect to
+					<span style="font-style: italic;">Account/Login</span> </li>
+					<li>And will have a parameter for the return URL. For example:
+					<br><span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span>
+					</li>
 					<li>
 					<ul>
-						<li>
-						<br></li>
+						<li>Note: %2F is the hex code for the forward slash, /
+						</li>
 					</ul>
+					</li>
 				</ul>
 			</ul>
-			<br>
 		</article>
 		<hr>
 		<article id="topic4">
 			<h3>Authorization</h3>
-			The ASP.NET Core platform provides information about 
-			the user through the HttpContext object, which is used by the Authorize 
-			attribute to check the status of the current request and see whether 
-			the user has been authenticated. <br><br>
-			Add the <span style="font-family: Courier New,Courier,monospace;">[Authorize]</span> 
-				attributes to methods that require authorization
+			The ASP.NET Core platform provides information about the user through 
+			the HttpContext object, which is used by the Authorize attribute to 
+			check the status of the current request and see whether the user has 
+			been authenticated. <br><br>Add the
+			<span style="font-family: Courier New,Courier,monospace;">[Authorize]</span> 
+			attributes to methods that require authorization
+			<ul>
+				<li>This will cause a redirect to
+				<span style="font-style: italic;">Account/Login</span> </li>
+				<li>And&nbsp; a parameter for the return URL will be passed automatically. 
+				For example: <br><span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span>
+				</li>
 				<ul>
-					<li>This will cause a redirect to
-					<span style="font-style: italic;">Account/Login</span> </li>
-					<li>And&nbsp; a parameter for the return URL will be passed 
-					automatically. For example:
-					<br><span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span>
-					</li>
-					<ul>
-						<li>NNote: %2F is the hex code for the forward slash, /
-						</li>
-					</ul>
+					<li>NNote: %2F is the hex code for the forward slash, / </li>
 				</ul>
+			</ul>
 			<h3>Authorization by Role</h3>
 			<ol>
 				<li>Create default roles<ul>
-					<li>In the application's DbContext class, add code to create the roles 
-					you want:<br><br><pre>
+					<li>In the application's DbContext class, add code to create 
+					the roles you want:<br><br>
+					<pre>
 string role = configuration["Data:AdminUser:Role"];
 if (await roleManager.FindByNameAsync(role) == null)
 {
     await roleManager.CreateAsync(new IdentityRole(role));
-}</pre></li>
+}</pre>
+					</li>
 				</ul>
 				</li>
 			</ol>
@@ -224,7 +234,7 @@ if (await roleManager.FindByNameAsync(role) == null)
 			<br><span style="font-weight: bold;">Note:</span><br>&nbsp;I discovered 
 			I needed to comment out the last two lines in Startup.Cofigure like 
 			this:<br><br>
-<pre>
+			<pre>
 // SeedData.EnsurePopulated(app); 
 // ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
 </pre>
