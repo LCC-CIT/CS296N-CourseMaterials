@@ -13,16 +13,16 @@
 #week02 {
 	background-color: #f8ff2e;
 }
-/*
 code {
 	display: block;
-	font-size: larger;
+	color: black;
 	background-color: lightgoldenrodyellow;
 	max-height: 400px;
-	width: 75%;
-	overflow: scroll;
+	width: 95%;
+	overflow: auto;
+	white-space:nowrap;
 }
-*/
+
 pre {
 	background-color: lightgoldenrodyellow;
 }
@@ -72,7 +72,7 @@ pre {
 				<li><a href="#topic1">Introduction</a> </li>
 				<li><a href="#topic2">Review </a></li>
 				<li><a href="#topic3">Textbook Example</a></li>
-				<li><a href="#topic3a">Login</a> </li>
+				<li><a href="#topic3a">Authentication</a> </li>
 				<li><a href="#topic4">Authorization</a> </li>
 				<li><a href="#topic5">Role Management</a> </li>
 				<li><a href="#topic7">BookInfo Web App Example</a> </li>
@@ -138,34 +138,67 @@ pre {
 				<li>/RoleAdmin - Shows roles and the users in them and has buttons 
 				for:</li>
 				<ul>
-					<li>Create</li>
+					<li>Create - will only be useful after adding claims (Ch. 
+					29)</li>
 					<li>Edit - use this to add a user to a role <br></li>
-					<li>Delete</li>
+					<li>Delete - will only be useful after adding claims (Ch. 
+					29)</li>
 				</ul>
 			</ul>
 		</article>
 		<hr style="width: 100%; height: 2px;">
 		<article id="topic3a">
 			<h2>Adding Authentication and Authorization to Your Web App</h2>
-			<h3>Login and Logout<br></h3>
+			<h3>Authorization: Login and Logout<br></h3>
+			<p>In an account controller, add:</p>
 			<ul>
-				<li>In your existing MVC application, add an account controller 
-				with:</li>
-				<li>In an account controller, add:</li>
-				<ul>
-					<li>Login and logout action methods</li>
-				</ul>
-				<li>Add Login and logout views</li>
+				<li>Login methods:<br><br><code>[AllowAnonymous]<br>public IActionResult Login(string 
+					returnUrl)<br>{<br>&nbsp; ViewBag.returnUrl = returnUrl;<br>&nbsp; return 
+					View();<br>}</code> <br><code>[HttpPost]<br>[AllowAnonymous]<br>[ValidateAntiForgeryToken]<br>public async 
+					Task&lt;IActionResult&gt; Login(LoginViewModel model, string 
+					returnUrl)<br>{<br>&nbsp; if (ModelState.IsValid) { <br>&nbsp;&nbsp;&nbsp;
+					User 
+					user = await userManager.FindByEmailAsync(model.Email);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (user != null) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; await 
+					signInManager.SignOutAsync();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var result = await 
+					signInManager.PasswordSignInAsync(user, model.Password, 
+					false, false);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (result.Succeeded) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 
+					Redirect(returnUrl ?? "/");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					ModelState.AddModelError(nameof(LoginViewModel.Email),
+					"Invalid user or password");<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; return View(model);<br>
+					}<br>
+					</code>
+					<br>
+					</li>
+				<li>logout method:<br>&nbsp;<code>[Authorize]<br>public async Task&lt;IActionResult&gt; Logout()<br>{<br>
+				await signInManager.SignOutAsync();<br>return 
+				RedirectToAction("Index", "Home");<br>}</code></li>
+			</ul>
+			In views, add:
+			<ul>
+				<li>A login view<br><code>@model LoginViewModel<br>&lt;h4&gt;Log In&lt;/h4&gt;<br>&lt;div 
+					class="text-danger" asp-validation-summary="All"&gt;&lt;/div&gt;<br>&lt;form asp-action="Login" method="post"&gt;<br>&nbsp; &lt;input 
+					type="hidden" name="returnUrl" value="@ViewBag.returnUrl" /&gt;<br>
+				<br>&nbsp; &lt;label asp-for="Email"&gt;&lt;/label&gt;<br>&nbsp; &lt;input 
+					asp-for="Email" /&gt;<br><br>&nbsp; &lt;label 
+					asp-for="Password"&gt;&lt;/label&gt;<br>&nbsp; &lt;input 
+					asp-for="Password" /&gt;<br><br>&nbsp; &lt;button 
+					type="submit"&gt;Log In&lt;/button&gt;<br>&lt;/form&gt;</code><br>
+				</li>
+				<li>A logout view
+				<code>
+				x
+				</code>
+				</li>
+			</ul>
+			<ul>
 				<li>Add the
 				<span style="font-family: Courier New,Courier,monospace;">[Authorize]</span> 
-				attributes to methods that require authorization</li>
+				attribute to methods that require authorization</li>
 				<ul>
 					<li>This will cause a redirect to
 					<span style="font-style: italic;">Account/Login</span> </li>
 					<li>And will have a parameter for the return URL. For example:
 					<br><span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span>
-					</li>
-					<li>
 					<ul>
 						<li>Note: %2F is the hex code for the forward slash, /
 						</li>
@@ -188,10 +221,10 @@ pre {
 				<span style="font-style: italic;">Account/Login</span> </li>
 				<li>And&nbsp; a parameter for the return URL will be passed automatically. 
 				For example: <br><span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span>
-				</li>
 				<ul>
 					<li>NNote: %2F is the hex code for the forward slash, / </li>
 				</ul>
+				</li>
 			</ul>
 			<h3>Authorization by Role</h3>
 			<ol>
