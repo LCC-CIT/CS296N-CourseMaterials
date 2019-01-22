@@ -105,11 +105,11 @@ work, their birthdate, licenses they have, date of hire, degrees. The username
 and role are even claims. In addition, claims include the atuhority that issued 
 them. Claims can come from sources other than the web app itself, such as some 
 third-party authentication provider.</p>
-<p>Claims do not directly equate to permissions. Permissions (auhtorization) is 
-determined by applying policies.</p>
 <p>Note: Freeman doesn't explain the concepts behind claims until page 960 - after 
 describing how to make the app!</p>
 <h3>Policies</h3>
+<p>Claims do not directly equate to permissions. Permissions (auhtorization) is 
+determined by applying policies.</p>
 <p><em>Exmaple of a policy</em> <code>services.AddAuthorization(opts =&gt; {<br />
 &nbsp; opts.AddPolicy("DCUsers", policy =&gt; {<br />
 &nbsp;&nbsp;&nbsp; policy.RequireRole("Users");<br />
@@ -169,7 +169,8 @@ that this is not the only way to create claims!</p>
 			<h2>Resources</h2>
 			<h3>Textbook</h3>
 			<p class="auto-style1">Freeman, <span style="font-style: italic;">Pro 
-			ASP.NET Core MVC 2<br>Ch. 30 - Advanced ASP.NET Core Identity</span></p>
+			ASP.NET Core MVC 2<br></span> Ch. 30 - Advanced ASP.NET Core 
+			Identity</p>
 			<h3>Tutorials<br></h3>
 			<ul>
 				<li>
@@ -205,7 +206,7 @@ that this is not the only way to create claims!</p>
 		<span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">ASP.NET 
 		Core MVC Lecture Notes</span> by
 		<a href="https://birdsbits.blog" property="cc:attributionName" rel="cc:attributionURL" xmlns:cc="http://creativecommons.org/ns#">
-		Brian Bird</a> is licensed under a
+		Brian Bird</a> are licensed under a
 		<a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">Creative 
 		Commons Attribution-ShareAlike 4.0 International License</a>. <br>
 	</footer>
