@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Untitled 1</title>
+</head>
+
+<body>
+
+<h2>The Claims Concept</h2>
+<h3>Claims</h3>
+<p>A claim is some item of information about a user. For example: where they 
+work, their birthdate, licenses they have, date of hire, degrees. The username 
+and role are even claims. In addition, claims include the atuhority that issued 
+them. Claims can come from sources other than the web app itself, such as some 
+third-party authentication provider.</p>
+<p>Claims do not directly equate to permissions. Instead they are used </p>
+<p>&nbsp;</p>
+<p>Note: the Freeman doesn't explain the concept until page 960 - after 
+describing how to make the app!</p>
+<h3>Policies</h3>
+<p>Exmaple of a policy
+
+</p>
+<p><code>services.AddAuthorization(opts =&gt; {<br />
+&nbsp; opts.AddPolicy("DCUsers", policy =&gt; {<br />
+&nbsp;&nbsp;&nbsp; policy.RequireRole("Users");<br />
+&nbsp;&nbsp;&nbsp; policy.RequireClaim(ClaimTypes.StateOrProvince, "DC");<br />
+&nbsp; });<br />
+});</code></p>
+<p>Authorizing using a policy<br>
+<code>[Authorize(Policy = "DCUsers")]<br />
+public IActionResult OtherAction() =&gt; View("Index",<br />
+GetData(nameof(OtherAction)));</code></p>
+
+
+
+<h2>Textbook example (Ch. 30)</h2>
+<p><strong>Note</strong>: This version of the Users web app does not seed the 
+Identity database with an Admin accout. All the code is ther to do it except the 
+line in <em>Startup.Configure </em>that calls <em>
+AppIdentityDbContext.CreateAdminAccount</em></p>
+<p>Comment: In order to demonstrate a source of claims other than the local 
+authority, the author simulates messages coming from a central HR database in 
+the form of a ClaimsPrinciple object which is passed to 
+LocationClaimsProvider.TransformAsync, that transforms it into a claim. Note 
+that this is not the only way to create claims!</p>
+<ul>
+	<li>/Home - Shows details on the currently logged in user 	<ul>
+		<li>Index - requires login, has [Authorize] attribute</li>
+		<li>OtherAction - same as above, has [Authorize(Roles="Users")] 
+		attribute</li>
+		<li>NotBob - used to test a policy which blocks the user named Bob</li>
+		<li>UserProps - allows editing city and qualifications</li>
+	</ul>
+	</li>
+	<li>/Admin - shows a list of users with buttons for: 	<ul>
+		<li>Create - create user account</li>
+		<li>Edit</li>
+		<li>Delete/li>
+	</ul>
+	</li>
+	<li>//Account<ul>
+		<li>Login</li>
+		<li>Logout</li>
+	</ul>
+	</li>
+	<li>/RoleAdmin - show all roles and the users with buttons for:
+	<ul>
+		<li>Create - create a role</li>
+		<li>Edit - add users to roles</li>
+		<li>Delete</li>
+	</ul>
+	</li>
+	<li>/Document - show all documents</li>
+	<li>/Claims - show all claims</li>
+</ul>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

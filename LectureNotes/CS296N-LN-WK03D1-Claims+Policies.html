@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<title>Authentication + Authorization</title>
+<style>
+#week03 {
+	background-color: #f8ff2e;
+}
+
+code {
+	display: block;
+	color: black;
+	background-color: lightgoldenrodyellow;
+	max-height: 400px;
+	width: 95%;
+	overflow: auto;
+	white-space:nowrap;
+}
+
+
+pre {
+	background-color: lightgoldenrodyellow;
+}
+
+.exercise {
+	background-color: #c6ffe2;
+}
+.auto-style1 {
+	margin-left: 40px;
+}
+</style>
+<base target="_blank">
+</head>
+
+<body>
+
+<div class="container-fluid">
+	<b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+	<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+	</b><br>
+	<header>
+		<h1><b>Claims Based Authentication</b></h1>
+		<b>Topics by week </b>
+		<table border="1" style="width: 807px; height: 127px;">
+			<tr>
+				<td id="week01">1. Intro to course and Identity<br></td>
+				<td id="week06">6. Performance and Load testing<br></td>
+			</tr>
+			<tr>
+				<td id="week02">2. Authentication and Authorization</td>
+				<td>7. Creating a Web Service<br></td>
+			</tr>
+			<tr>
+				<td id="week03">3. Claims Authentication / 3rd Party 
+				Authentication<br></td>
+				<td id="week08" style="width: 395.333px;">8. Consuming a Web 
+				Service, Async / Await<br>
+				</td>
+			</tr>
+			<tr>
+				<td id="week04">4. Security and Security Testing<br></td>
+				<td id="week09">9. Docker Containers<br></td>
+			</tr>
+			<tr>
+				<td id="week05">5. Midterm, Publishing to a Linux Server</td>
+				<td id="week10">10. Microservices<br></td>
+			</tr>
+		</table>
+		<br>
+		<h2>Contents</h2>
+		<div>
+			<ul>
+				<li><a href="#topic1">Introduction</a> </li>
+				<li><a href="#topic2">Claims and Policies - Overview </a></li>
+				<li><a href="#topic3">Textbook Example</a></li>
+				<li><a href="#topic7">BookInfo Web App Example</a> </li>
+				<li><a href="#topic6">Further Reading</a> </li>
+				<li><a href="#topic8">Conclusion</a> </li>
+			</ul>
+		</div>
+	</header>
+	<section>
+		<hr>
+		<article id="topic1">
+			<h2>Introduction</h2>
+			<ul>
+				<li>Discuss lab 2 PRs and code reviews</li>
+				<li>Review quiz 2</li>
+			</ul>
+		</article>
+		<hr>
+		<article id="topic2">
+			<h2>Claims and Policies - Overview</h2>
+			
+<h3>Claims</h3>
+<p>A claim is some item of information about a user. For example: where they 
+work, their birthdate, licenses they have, date of hire, degrees. The username 
+and role are even claims. In addition, claims include the atuhority that issued 
+them. Claims can come from sources other than the web app itself, such as some 
+third-party authentication provider.</p>
+<p>Claims do not directly equate to permissions. Permissions (auhtorization) is 
+determined by applying policies.</p>
+<p>Note: Freeman doesn't explain the concepts behind claims until page 960 - after 
+describing how to make the app!</p>
+<h3>Policies</h3>
+<p><em>Exmaple of a policy</em> <code>services.AddAuthorization(opts =&gt; {<br />
+&nbsp; opts.AddPolicy("DCUsers", policy =&gt; {<br />
+&nbsp;&nbsp;&nbsp; policy.RequireRole("Users");<br />
+&nbsp;&nbsp;&nbsp; policy.RequireClaim(ClaimTypes.StateOrProvince, "DC");<br />
+&nbsp; });<br />
+});</code></p>
+<p><em>Authorizing using a policy</em><br>
+<code>[Authorize(Policy = "DCUsers")]<br />
+public IActionResult OtherAction() =&gt; View("Index",<br />
+GetData(nameof(OtherAction)));</code></p>
+
+		</article>
+		<hr>
+		<article id="topic7">
+			<h2>Textbook Example (Freeman, Ch. 30)</h2>
+<p><strong>Note</strong>: This version of the Users web app does not seed the 
+Identity database with an Admin accout. All the code is ther to do it except the 
+line in <em>Startup.Configure </em>that calls <em>
+AppIdentityDbContext.CreateAdminAccount</em></p>
+<p>Comment: In order to demonstrate a source of claims other than the local 
+authority, the author simulates messages coming from a central HR database in 
+the form of a ClaimsPrinciple object which is passed to 
+LocationClaimsProvider.TransformAsync, that transforms it into a claim. Note 
+that this is not the only way to create claims!</p>
+<ul>
+	<li>/Home - Shows details on the currently logged in user 	<ul>
+		<li>Index - requires login, has [Authorize] attribute</li>
+		<li>OtherAction - same as above, has [Authorize(Roles="Users")] 
+		attribute</li>
+		<li>NotBob - used to test a policy which blocks the user named Bob</li>
+		<li>UserProps - allows editing city and qualifications</li>
+	</ul>
+	</li>
+	<li>/Admin - shows a list of users with buttons for: 	<ul>
+		<li>Create - create user account</li>
+		<li>Edit</li>
+		<li>Delete/li>
+	</ul>
+	</li>
+	<li>//Account<ul>
+		<li>Login</li>
+		<li>Logout</li>
+	</ul>
+	</li>
+	<li>/RoleAdmin - show all roles and the users with buttons for:
+	<ul>
+		<li>Create - create a role</li>
+		<li>Edit - add users to roles</li>
+		<li>Delete</li>
+	</ul>
+	</li>
+	<li>/Document - show all documents</li>
+	<li>/Claims - show all claims</li>
+</ul>
+			<h2>BookInfo Example</h2>
+			<p>TBD</p>
+			<h2>Resources</h2>
+			<h3>Textbook</h3>
+			<p class="auto-style1">Freeman, <span style="font-style: italic;">Pro 
+			ASP.NET Core MVC 2<br>Ch. 30 - Advanced ASP.NET Core Identity</span></p>
+			<h3>Tutorials<br></h3>
+			<ul>
+				<li>
+				<a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims?view=aspnetcore-2.2">
+				Claims-based authorization in ASP.NET Core</a></li>
+				<li>
+				<a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-2.2">
+				Policy-based authorization in ASP.NET Core</a></li>
+				<li>
+				<a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/?view=aspnetcore-2.2">
+				Facebook, Google, and external provider authentication in 
+				ASP.NET Core</a></li>
+				<li>
+				<a href="https://www.jerriepelser.com/blog/authenticate-oauth-aspnet-core-2">
+				Authenticate with OAuth 2.0 in ASP.NET Core 2.0</a></li>
+			</ul>
+		</article>
+		<hr>
+		<article id="topic8">
+			<h2>Conclusion</h2>
+			<ul>
+				<li>Review lab due dates on Moodle</li>
+				<li>Next time we will look at the HTTP concepts underlying 
+				Identity and how to test our sites to see how secure they are.</li>
+			</ul>
+		</article>
+	</section>
+	<hr style="width: 100%; height: 2px;">
+	<footer>
+		<a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">
+		<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" style="border-width: 0">
+		</a><br>
+		<span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">ASP.NET 
+		Core MVC Lecture Notes</span> by
+		<a href="https://birdsbits.blog" property="cc:attributionName" rel="cc:attributionURL" xmlns:cc="http://creativecommons.org/ns#">
+		Brian Bird</a> is licensed under a
+		<a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">Creative 
+		Commons Attribution-ShareAlike 4.0 International License</a>. <br>
+	</footer>
+	<hr></div>
+<!-- End of containter-flud for whole page -->
+
+</body>
+
+</html>
