@@ -126,14 +126,17 @@ GetData(nameof(OtherAction)));</code></p>
 		<article id="topic7">
 			<h2>Textbook Example (Freeman, Ch. 30)</h2>
 <p><strong>Note</strong>: This version of the Users web app does not seed the 
-Identity database with an Admin accout. All the code is ther to do it except the 
+Identity database with an Admin accout. All the code is there to do it except the 
 line in <em>Startup.Configure </em>that calls <em>
-AppIdentityDbContext.CreateAdminAccount</em></p>
-<p>Comment: In order to demonstrate a source of claims other than the local 
-authority, the author simulates messages coming from a central HR database in 
+AppIdentityDbContext.CreateAdminAccount. </em>You can refer to the Ch. 29 
+version of this app to see that line of code.</p>
+<p>Comment: In order to demonstrate a source of claims other than the app itself 
+(the local 
+authority), the author simulates messages coming from a central HR database in 
 the form of a ClaimsPrinciple object which is passed to 
 LocationClaimsProvider.TransformAsync, that transforms it into a claim. Note 
 that this is not the only way to create claims!</p>
+			<h3>Structure of the Textbook Web App</h3>
 <ul>
 	<li>/Home - Shows details on the currently logged in user 	<ul>
 		<li>Index - requires login, has [Authorize] attribute</li>
@@ -165,7 +168,13 @@ that this is not the only way to create claims!</p>
 	<li>/Claims - show all claims</li>
 </ul>
 			<h2>BookInfo Example</h2>
-			<p>TBD</p>
+			<p>I will add the following claims:</p>
+			<ul>
+				<li>Type: PostedBooks, Value: number of books</li>
+				<li>Type: Age, Value: birthdate</li>
+				<li></li>
+			</ul>
+		<hr>
 			<h2>Resources</h2>
 			<h3>Textbook</h3>
 			<p class="auto-style1">Freeman, <span style="font-style: italic;">Pro 
