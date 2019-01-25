@@ -127,13 +127,13 @@ pre {
 				</ul>
 				<li>/Admin - Shows a list of users and has buttons for:</li>
 				<ul>
-					<li>Create</li>
+					<li>Create - create a user account</li>
 					<li>Edit</li>
 					<li>Delete</li>
 				</ul>
 				<li>/Account</li><ul>
-					<li>/Login</li>
-					<li>/Logout</li>
+					<li>Login</li>
+					<li>Logout</li>
 				</ul>
 				<li>/RoleAdmin - Shows roles and the users in them and has buttons 
 				for:</li>
@@ -149,6 +149,7 @@ pre {
 		<hr style="width: 100%; height: 2px;">
 		<article id="topic3a">
 			<h2>Adding Authentication and Authorization to Your Web App</h2>
+			
 			<h3>Authorization: Login and Logout<br></h3>
 			<p>In an account controller, add:</p>
 			<ul>
@@ -205,6 +206,7 @@ pre {
 					</ul>
 					</li>
 				</ul>
+				</li>
 			</ul>
 		</article>
 		<hr>
@@ -240,16 +242,56 @@ if (await roleManager.FindByNameAsync(ADMIN) == null)  {
 if (await roleManager.FindByNameAsync(MEMBER) == null)  {
     await roleManager.CreateAsync(new IdentityRole(MEMBER));
 }</pre>
-					<br>Note: In the example I used constants for the role names. 
+					Note: In this example, I used constants for the role names. 
 					You may want to get the role names from your appsettings.json 
 					file, like the author of the textobook does:
 					<pre>
-configuration["Data:AdminUser:Role"]
-</pre>
+configuration["Data:AdminUser:Role"]</pre>
 					</li>
 				</ul>
 				</li>
 			</ol>
+			<h3>Seed the database with a temporary admin account</h3>
+			<p>In order to avoid the chicken and egg problem of how do you 
+			create an admin accout if you have to be an admin to craet the 
+			accout, you can seed your Identity database with an admin account 
+			that you would remove or change as soon as you deploy your web app.</p>
+			<p>One way to do this is by storing the account credentials in 
+			appsettings.json, and then using them to create a user account at 
+			startup. For example:</p>
+			
+			<p><em>appsettings.json</em> - The account settings are stored here<br><code>
+			"Data": {<br>&nbsp; "AdminUser": {<br>&nbsp;&nbsp;&nbsp; "Name": 
+			"Admin",<br>&nbsp;&nbsp;&nbsp; "Email": "<a href="mailto:admin@example.com">admin@example.com</a>",<br>&nbsp;&nbsp;&nbsp; 
+			"Password": "secret",<br>&nbsp;&nbsp;&nbsp; "Role": "Admins"<br>},</code></p>
+			
+			<p><em>AppDbContext.cs</em> - The role and account are created here
+			<code>
+			public static async Task CreateAdminAccount(IServiceProvider 
+			serviceProvider, IConfiguration configuration) {<br>&nbsp; 
+			UserManager&lt;User&gt; userManager = 
+			serviceProvider.GetRequiredService&lt;UserManager&lt;User&gt;&gt;();<br>&nbsp; 
+			RoleManager&lt;IdentityRole&gt; roleManager = 
+			serviceProvider.GetRequiredService&lt;RoleManager&lt;IdentityRole&gt;&gt;();<br>&nbsp; 
+			string username = configuration["Data:AdminUser:Name"];<br>&nbsp; 
+			string email = configuration["Data:AdminUser:Email"];<br>&nbsp; 
+			string password = configuration["Data:AdminUser:Password"];<br>&nbsp; 
+			string role = configuration["Data:AdminUser:Role"];<br>&nbsp; if 
+			(await userManager.FindByNameAsync(username) == null) {<br>&nbsp;&nbsp;&nbsp; 
+			if (await roleManager.FindByNameAsync(role) == null) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			await roleManager.CreateAsync(new IdentityRole(role));<br>&nbsp;&nbsp;&nbsp; 
+			}<br>&nbsp;&nbsp;&nbsp; User user = new User {UserName = username, 
+			Email = email};<br>&nbsp;&nbsp;&nbsp; IdentityResult result = await 
+			userManager.CreateAsync(user, password);<br>&nbsp;&nbsp;&nbsp; if 
+			(result.Succeeded) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; await 
+			userManager.AddToRoleAsync(user, role);<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp; 
+			}<br>}</code></p>
+			<p><em>Startup.cs</em> - The method defined above is called here<code>public 
+			void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+			ILoggerFactory loggerFactory)<br>{<br>&nbsp; . . . <br>&nbsp; // 
+			lines of code omitted, the line below is at the end of the method<br>&nbsp; 
+			ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, 
+			Configuration).Wait();<br>}</code></p>
 		</article>
 		<hr>
 		<article id="topic5">
@@ -269,7 +311,6 @@ configuration["Data:AdminUser:Role"]
 				GitHub Repository: CS296N-BookInfo-Core-2 - AddLogin branch</a>
 				<br><br>
 				<h3>Role management and authorization based on roles</h3>
-				<h3></h3>
 			</article>
 			<a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity" target="_blank">
 			GitHub Repository: CS296N-BookInfo-Core-2 - UserRoles branch</a><br>
