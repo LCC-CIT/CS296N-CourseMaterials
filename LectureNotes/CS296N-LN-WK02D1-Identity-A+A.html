@@ -195,17 +195,6 @@ pre {
 				<li>Add the
 				<span style="font-family: Courier New,Courier,monospace;">[Authorize]</span> 
 				attribute to methods that require authorization</li>
-				<ul>
-					<li>This will cause a redirect to
-					<span style="font-style: italic;">Account/Login</span> </li>
-					<li>And will have a parameter for the return URL. For example:
-					<br><span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span>
-					<ul>
-						<li>Note: %2F is the hex code for the forward slash, /
-						</li>
-					</ul>
-					</li>
-				</ul>
 				</li>
 			</ul>
 		</article>
@@ -292,6 +281,12 @@ configuration["Data:AdminUser:Role"]</pre>
 			lines of code omitted, the line below is at the end of the method<br>&nbsp; 
 			ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, 
 			Configuration).Wait();<br>}</code></p>
+			<h3>Authorize a controller or method by role</h3>
+			<p>Add the attribute [Authorize(Role="SomeRole")] to a class or 
+			method.</p>
+			<p>If a user who is authenticated, but not in the correct role 
+			attempts to access this, they will be redirected to 
+			/Account/AccessDenied</p>
 		</article>
 		<hr>
 		<article id="topic5">
