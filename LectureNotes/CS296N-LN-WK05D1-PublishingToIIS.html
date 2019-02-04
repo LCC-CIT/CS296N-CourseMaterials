@@ -1,307 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Publish to Linux</title>
-    <style>
-        body {
-            font-family: "Arial", "Helvetica", "sans-serif";
-        }
-        
-        #week10 {
-            background-color: #f8ff2e;
-        }
-        
-        code {
-            display: block;
-            font-size: larger;
-            background-color: lightgoldenrodyellow;
-            max-height: 400px;
-            width: 90%;
-            overflow: scroll;
-        }
-        
-        .exercise {
-            background-color: #c6ffe2;
-        }
-    .auto-style1 {
-		background-color: #FFFF00;
-	}
-	</style>
-    <base target="_blank">
-  </head>
-  <body> <b><a href="http://lcc-cit.github.io/CS296N-CourseMaterials/CS296N_Syllabus.pdf"
-        target="_blank">CS296N
-        Web Development 2: ASP.NET</a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </b> <br>
-    <header>
-      <h1> <i> Deploying a Web App<b> to IIS Shared Hosting </b> </i> </h1>
-      <b>Topics by week </b>
-      <table style="width: 807px; height: 127px;" border="1">
-        <tbody>
-          <tr>
-            <td id="week01">1. Intro to MVC</td>
-            <td id="week06">6. Bower, Bootstrap and Front-End Libraries</td>
-          </tr>
-          <tr>
-            <td id="week02">2. Views and controllers</td>
-            <td>7. No new topic</td>
-          </tr>
-          <tr>
-            <td id="week03">3. Repositories and Unit testing</td>
-            <td id="week08" style="width: 395.333px;">8. User Management with
-              Identity</td>
-          </tr>
-          <tr>
-            <td id="week04">4. Entity Framework + Database</td>
-            <td id="week09">9. Authentication and Authorization</td>
-          </tr>
-          <tr>
-            <td id="week05">5. DomainModel + EF + DI - Revisited</td>
-            <td id="week10">10. Deploying to a Linux server </td>
-          </tr>
-        </tbody>
-      </table>
-      <br>
-      <h2>Contents</h2>
-      <div>
-        <ul>
-          <li> <a href="#topic1">Overview</a> </li>
-          <li> <a href="#topic2">Detailed Instructions</a> </li>
-          <li> <a href="#topic6">References</a> </li>
-        </ul>
-      </div>
-    </header>
-    <section>
-      <hr>
-      <article id="topic1">
-        <h2>Overview </h2>
-        <p>These are the steps to publish an ASP.NET Core web app to Smarter 
-		ASP.NET</p>
-        <ol>
-          <li>Create an account</li>
-			<li>Set up a database</li>
-			<li>Publish your web app from Visual Studio</li>
-			<li></li>
-        </ol>
-      </article>
-      <hr>
-      <article id="topic2">
-        <h2>Detailed Instructions</h2>
-        <h3>1. Create an Account</h3>
-          <a href="https://www.smarterasp.net/">Smarter ASP.NET</a> offers a 
-		  free 60 day account without a credit card.<ul>
-			  <li>Free account requires a phone number for an sms</li>
-			  <li>60 days free (instead of 30) supposedly requires posting to Facebook and 
-			  Google+.<br>Although, I didn't and I still got 60 days!</li>
-			  <li>You can give your database a name other than <em>site1</em>, I 
-			  named mine <em>home</em>.</li>
-			  <li>Select ASP.NET as the account type</li>
-			  <li>Test the account by going to the URL for the temporary domain 
-			  name. For example:<br><em>http://brainbird-001-site1.htempurl.com/</em></li>
-		  </ul>
-		  <h3>2. Create a Database</h3>
-          <ol type="a">
-          <li>
-          In the control panel, create a MSSQL database<ul>
-			  <li>I chose MSSQL 2016, but it probably doesn't matter which 
-			  version you use</li>
-			  <li>I named it the same as my web site.</li>
-			  <li>Example database name and info:<br><em>DB_A452B1_home <br>
-			  MSSQL: sql5030.site4now.net <br>Username: DB_A452B1_home_admin
-			  </em></li>
-		  </ul>
-          </li>
-			  <li>Get the connection string by clicking on "Connection String 
-			  Examples" at the bottom of the database page in the control panel<ul>
-				  <li>Choose ASP.NET connection string. Mine looks like this:<br>
-				  <em>"Data Source=SQL5030.site4now.net;Initial 
-				  Catalog=DB_A452B1_home;User 
-				  Id=DB_A452B1_home_admin;Password=YOUR_DB_PASSWORD;"</em></li>
-			  </ul>
-			  </li>
-        </ol>
-        <p>Note: a useful cross-platform free, open-source database manager is <a
-            href="https://dbeaver.io"
-            target="_blank">DBeaver</a></p>
-        <ol type="a">
-        </ol>
-        <h3>3. Deploying a web app</h3>
-          <h4>Create a publish profile in VS 2017</h4>
-		  <p>Follow the instructions in the knowledge base article,
-		  <a href="https://www.smarterasp.net/support/kb/a1910/how-to-publish-asp_net-core-web-application-via-visual-studio-2017.aspx"
-              target="_blank">How to publish ASP.NET Core web application via Visual Studio 2017</a>.</p>
-		  <ul>
-			  <li>Connection page<ul>
-				  <li>Warning! For <em>Server URL, d</em>on't use the control panel's 
-		  "Show Web Deploy Info", Service URL. Use the one from the knowledge 
-		  base article that looks like this:<br><em>https://<strong><span class="auto-style1">brianbrd</span></strong>-001-site1.<strong><span class="auto-style1">h</span></strong>tempurl.com:8172/msdeploy.axd?site=<strong>brianbird</strong>-001-site1<br>
-				  </em>Replace the highlighted sections with your own details</li>
-				  <li>Test the connection using the Validate Connection button<br>When the connection succeeds, you will get a warning about the 
-				  security certificate.<br>Check the checkbox to have Visual 
-				  Studio remember the certificate and accept the certificate.</li>
-			  </ul>
-			  </li>
-
-				  <li>Settings page<ul>
-					  <li>Choose the options shown in the knowledge base article 
-					  instrucitons</li>
-					  <li>Use the connection string you got from the control 
-					  panel in the previous sectuion, don't include the quotes, 
-					  and replace
-				  <em>YOUR_DB_PASSWORD</em> with your own password, like this:<br>
-				  <em>Data Source=SQL5030.site4now.net;Initial 
-					  Catalog=DB_A452B1_home;User 
-					  Id=DB_A452B1_home_admin;Password=Secret-1;</em></li>
-				  </ul>
-			  </li>
-			  </ul>
-		  <h4>Publish the Web App!</h4>
-		  <ul>
-			  <li>Click the publish button to publish the files to your web 
-			  site!</li>
-			  <li>Open the site page to see your web app. For example:<br>
-			  http://brainbird-001-site1.htempurl.com/</li>
-			  <li></li>
-		  </ul>
-		  <h4>Troubleshooting</h4>
-		  <p>The first time I published, I got this error page:</p>
-		  <p><strong>An error occurred while starting the application. </strong>
-		  <br>.NET Core 4.6.27110.04 X64 v4.0.0.0 | Microsoft.AspNetCore.Hosting 
-		  version 2.2.0-rtm-35687 | Microsoft Windows 6.3.9600 | 		  <a href="http://go.microsoft.com/fwlink/?LinkId=517394">NNeed help? </a>
-		  </p>
-		  <p>I changed the target framework to 2.1, and tried again.<br>I got 
-		  the same message, except showing a diffrent version of AspNetCore: &nbsp;<em>Microsoft.AspNetCore.Hosting 
-		  version 2.1.1-rtm-30846 </em></p>
-		  <p>I chenage the target framweork to 2.1.3 (which is supported on the 
-		  hosting service. See:
-		  <a href="https://www.smarterasp.net/support/kb/a1986/supported-versions-of-_net-core.aspx?KBSearchID=525458">
-		  Supported Versions of Dot Net Core</a>) and tried again.</p>
-		  <p>I got build errors:</p>
-		  <ul>
-			  <li>The type or namespace name 'ValueConversion' does not exist in 
-			  the namespace 'Microsoft.EntityFrameworkCore.Storage' 
-			  20190125020101_NewStart.Designer.cs</li>
-			  <li>And the same error again for 
-			  ApplicationDbContextModelSnapshot.cs <br></li>
-		  </ul>
-		  <p>Since these were unused using statements, I simply removed them.<br>
-		  Now the solution builds with this error:</p>
-		  <ul>
-			  <li>Assets file BookInfo\obj\project.assets.json doesn't have a 
-			  target for '.NETCoreApp,Version=v2.1'</li>
-		  </ul>
-		  <p>To resolve this, I used the NuGet package manager to roll back the 
-		  version of Microsoft.AspNetCore.All to 2.1.2<br>It builds fine, but 
-		  now I get a publish error:</p>
-		  <p>Assets file 
-		  'C:\Users\Brian\source\repos\CS296N-BookInfo-Core-2\BookInfo\obj\project.assets.json' 
-		  doesn't have a target for '.NETCoreApp,Version=v2.1'.</p>
-		  <p>Check to see which version of the SDK goes with which runtime 
-		  version: .<a href="https://dotnet.microsoft.com/download/dotnet-core/2.1">NET 
-		  Core 2.1 Downloads</a><br>For example, SDK version 2.1.400 goes with 
-		  runtime version 2.1.2</p>
-		  <p>In the console, I ran dotnet --info and got output that included 
-		  the following:<br>.NET Core SDKs installed: <br>2.1.2 [C:\Program 
-		  Files\dotnet\sdk] <br>2.1.4 [C:\Program Files\dotnet\sdk] <br>2.1.100 
-		  [C:\Program Files\dotnet\sdk] <br>2.1.104 [C:\Program 
-		  Files\dotnet\sdk] <br>2.1.202 [C:\Program Files\dotnet\sdk] <br>
-		  2.1.400 [C:\Program Files\dotnet\sdk] <br>2.1.402 [C:\Program 
-		  Files\dotnet\sdk] <br>2.1.502 [C:\Program Files\dotnet\sdk] <br>
-		  2.1.503 [C:\Program Files\dotnet\sdk] <br>2.2.101 [C:\Program 
-		  Files\dotnet\sdk] <br>2.2.102 [C:\Program Files\dotnet\sdk] </p>
-		  <p>NET Core runtimes installed: <br>Microsoft.AspNetCore.All 2.1.2 
-		  [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All] <br>
-		  Microsoft.AspNetCore.All 2.1.4 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.All] <br>
-		  Microsoft.AspNetCore.All 2.1.6 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.All] <br>
-		  Microsoft.AspNetCore.All 2.1.7 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.All] <br>
-		  Microsoft.AspNetCore.All 2.2.0 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.All] <br>
-		  Microsoft.AspNetCore.All 2.2.1 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.All] <br>
-		  Microsoft.AspNetCore.App 2.1.2 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.App] <br>
-		  Microsoft.AspNetCore.App 2.1.4 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.App] <br>
-		  Microsoft.AspNetCore.App 2.1.6 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.App] <br>
-		  Microsoft.AspNetCore.App 2.1.7 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.App] <br>
-		  Microsoft.AspNetCore.App 2.2.0 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.App] <br>
-		  Microsoft.AspNetCore.App 2.2.1 [C:\Program 
-		  Files\dotnet\shared\Microsoft.AspNetCore.App] <br>
-		  Microsoft.NETCore.App 2.0.3 [C:\Program 
-		  Files\dotnet\shared\Microsoft.NETCore.App] <br>Microsoft.NETCore.App 
-		  2.0.5 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] <br>
-		  Microsoft.NETCore.App 2.0.6 [C:\Program 
-		  Files\dotnet\shared\Microsoft.NETCore.App] <br>Microsoft.NETCore.App 
-		  2.0.9 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] <br>
-		  Microsoft.NETCore.App 2.1.2 [C:\Program 
-		  Files\dotnet\shared\Microsoft.NETCore.App] <br>Microsoft.NETCore.App 
-		  2.1.4 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] <br>
-		  Microsoft.NETCore.App 2.1.6 [C:\Program 
-		  Files\dotnet\shared\Microsoft.NETCore.App] <br>Microsoft.NETCore.App 
-		  2.1.7 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] <br>
-		  Microsoft.NETCore.App 2.2.0 [C:\Program 
-		  Files\dotnet\shared\Microsoft.NETCore.App] <br>Microsoft.NETCore.App 
-		  2.2.1 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] <br></p>
-		  <p>Check the database</p>
-		  <p>Use the online database manager:
-		  <a href="https://mssql.smarterasp.net/default.asp" target="_blank">
-		  Webbase MS SQL Server Manager</a></p>
-        <h3>4. Configuring a Reverse Proxy </h3>
-          <p>A reverse proxy has already been set up on citstudent to forward
-              HTTP requests to 
-		  a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&amp;tabs=aspnetcore2x#kestrel"
-                target="_blank">Kestral</a>
-              port 5000. The proxy listens for requests at:<a target="_blank" class="moz-txt-link-freetext"
-                href="http://citstudent.lanecc.edu/dotnet/">
-                http://citstudent.lanecc.edu/dotnet/</a> </p>
-        <a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-2.1&amp;tabs=aspnetcore2x"
-          target="_blank">
-        </a>
-        <ul>
-        </ul>
-        <a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-2.1&amp;tabs=aspnetcore2x"
-          target="_blank">
-        </a></article>
-      <hr>
-      <article id="topic7">
-        <h2>References</h2>
-        <ul>
-          <li> <a href="https://www.smarterasp.net/support/kb/a1910/how-to-publish-asp_net-core-web-application-via-visual-studio-2017.aspx"
-              target="_blank">How to publish ASP.NET Core web application via Visual Studio 2017</a><br>
-		  Smarter ASP.NET Knowledge base article</li>
-          <li>
-		  <a href="https://www.smarterasp.net/support/kb/a1775/asp_net-core-hosting.aspx?KBSearchID=525417">ASP.NET Core Hosting</a><br>
-		  Smarter ASP.NET Knowledge base article</li>
-          <li><a href="https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd"
-              target="_blank"><span
-                style="color: #0000ee;">.NET
-                Core Application Deployment</span></a></li>
-          <li><span style=" color: #0000ee;"><a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&amp;tabs=aspnetcore2x"
-                target="_blank">WWeb
-                Server Implementations in .NET Core</a></span></li>
-        </ul>
-      	<p>&nbsp;</p>
-      </article>
-      <hr></section>
-    <footer> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
-      </a> <br>
-      <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET
-        Core MVC Lecture Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#"
-        href="https://birdsbits.blog"
-        property="cc:attributionName"
-        rel="cc:attributionURL">Brian
+<!DOCTYPE html><html>  <head>    <meta http-equiv="content-type" content="text/html; charset=UTF-8">    <title>Publish to Linux</title>    <style>        body {            font-family: "Arial", "Helvetica", "sans-serif";        }                #week05 {            background-color: #f8ff2e;        }                code {            display: block;            font-size: larger;            background-color: lightgoldenrodyellow;            max-height: 400px;            width: 90%;            overflow: scroll;        }                .exercise {            background-color: #c6ffe2;        }    .auto-style1 {		background-color: #FFFF00;	}	</style> <base target="_blank">  </head>  <body> <b><a href="http://lcc-cit.github.io/CS296N-CourseMaterials/CS296N_Syllabus.pdf"        target="_blank">CS296N
+        Web Development 2: ASP.NET</a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </b> <br>    <header>      <h1> <i> Deploying a Web App<b> to IIS Shared Hosting </b> </i> </h1>      <b>Topics by week </b>      <table style="width: 807px; height: 127px;" border="1">        <tbody>          <tr>            <td id="week01">1. Intro to course and Identity<br>            </td>            <td id="week06">6. Midterm, Load Testing and Performance<br>            </td>          </tr>          <tr>            <td id="week02">2. Authentication and Authorization</td>            <td>7. Creating a Web Service<br>            </td>          </tr>          <tr>            <td id="week03">3. Claims and Third Party Authentication<br>            </td>            <td id="week08" style="width: 395.333px;">8. Consuming a Web              Service, Async / Await<br>            </td>          </tr>          <tr>            <td id="week04" style="height: 27px">4. Web Security<br>            </td>            <td id="week09" style="height: 27px">9. Docker Containers<br>            </td>          </tr>          <tr>            <td id="week05">5. Publishing to a production server</td>            <td id="week10">10.&nbsp; Microservices<br>            </td>          </tr>        </tbody>      </table>      <br>      <h2>Contents</h2>      <div>        <ul>          <li> <a href="#topic1">Overview</a> </li>          <li> <a href="#topic2">Detailed Instructions</a> </li>          <li> <a href="#topic6">References</a> </li>        </ul>      </div>    </header>    <section>      <hr>      <article id="topic1">        <h2>Overview </h2>        <p>These are the steps to publish an ASP.NET Core web app to Smarter          ASP.NET</p>        <ol>          <li>Create an account</li>          <li>Set up a database</li>          <li>Prepare your app for production</li>          <li>Publish your web app</li>        </ol>      </article>      <hr>      <article id="topic2">        <h2>Detailed Instructions</h2>        <h3>1. Create an Account</h3>        <a href="https://www.smarterasp.net/">Smarter ASP.NET</a> offers a free        60 day account without a credit card.        <ul>          <li>Free account requires a phone number for an sms</li>          <li>60 days free (instead of 30) supposedly requires posting to            Facebook and Google+.<br>            Although, I didn't and I still got 60 days!</li>          <li>You can give your database a name other than <em>site1</em>, I            named mine <em>home</em>.</li>          <li>Select ASP.NET as the account type</li>          <li>Test the account by going to the URL for the temporary domain            name. For example:<br>            <em>http://brainbird-001-site1.htempurl.com/</em></li>        </ul>        <h3>2. Prepare the Web App</h3>        <h3>3. Create a Database</h3>        <ol type="a">          <li> In the control panel, create a MSSQL database            <ul>              <li>I chose MSSQL 2016, but it probably doesn't matter which                version you use</li>              <li>I named it the same as my web site.</li>              <li>Example database name and info:<br>                <em>DB_A452B1_home <br>                  MSSQL: sql5030.site4now.net <br>                  Username: DB_A452B1_home_admin </em></li>            </ul>          </li>          <li>Get the connection string by clicking on "Connection String            Examples" at the bottom of the database page in the control panel            <ul>              <li>Choose ASP.NET connection string. Mine looks like this:<br>                <em>"Data Source=SQL5030.site4now.net;Initial                  Catalog=DB_A452B1_home;User                  Id=DB_A452B1_home_admin;Password=YOUR_DB_PASSWORD;"</em></li>            </ul>          </li>          <li> Check the database using one of these tools:</li>          <ul>            <li>The online database manager: <a href="https://mssql.smarterasp.net/default.asp"                target="_blank">                Webbase MS SQL Server Manager</a> </li>            <li>Microsoft SQL Server Management Studio</li>            <li>Visual Studio Server Explorer</li>            <li> <a href="https://dbeaver.io" target="_blank">DBeaver</a>, a              useful cross-platform free, open-source database manager. </li>          </ul>        </ol>        <ol type="a">        </ol>        <h3>4. Deploy the Web App</h3>        <h4>Create a publish profile in VS 2017</h4>        <p>Follow the instructions in the knowledge base article, <a href="https://www.smarterasp.net/support/kb/a1910/how-to-publish-asp_net-core-web-application-via-visual-studio-2017.aspx"            target="_blank">How
+            to publish ASP.NET Core web application via Visual Studio 2017</a>.</p>        <ul>          <li>Connection page            <ul>              <li>Warning! For <em>Server URL, d</em>on't use the control                panel's "Show Web Deploy Info", Service URL. Use the one from                the knowledge base article that looks like this:<br>                <em>https://<strong><span class="auto-style1">brianbrd</span></strong>-001-site1.<strong><span                      class="auto-style1">h</span></strong>tempurl.com:8172/msdeploy.axd?site=<strong>brianbird</strong>-001-site1<br>                </em>Replace the highlighted sections with your own details</li>              <li>Test the connection using the Validate Connection button<br>                When the connection succeeds, you will get a warning about the                security certificate.<br>                Check the checkbox to have Visual Studio remember the                certificate and accept the certificate.</li>            </ul>          </li>          <li>Settings page            <ul>              <li>Choose the options shown in the knowledge base article                instrucitons</li>              <li>Use the connection string you got from the control panel in                the previous sectuion, don't include the quotes, and replace <em>YOUR_DB_PASSWORD</em>                with your own password, like this:<br>                <em>Data Source=SQL5030.site4now.net;Initial                  Catalog=DB_A452B1_home;User                  Id=DB_A452B1_home_admin;Password=Secret-1;</em></li>            </ul>          </li>        </ul>        <h4>Publish the Web App!</h4>        <ul>          <li>Click the publish button to publish the files to your web site!</li>          <li>Open the site page to see your web app. For example:<br>            http://brainbird-001-site1.htempurl.com/</li>          <li><br>          </li>        </ul>        <h4>Troubleshooting</h4>        <p>The first time I published, I got this error page:</p>        <p><strong>An error occurred while starting the application. </strong>          <br>          .NET Core 4.6.27110.04 X64 v4.0.0.0 | Microsoft.AspNetCore.Hosting          version 2.2.0-rtm-35687 | Microsoft Windows 6.3.9600 | <a href="http://go.microsoft.com/fwlink/?LinkId=517394">NNeed
+            help? </a> </p>        <p>I changed the target framework to 2.1, and tried again.<br>          I got the same message, except showing a diffrent version of          AspNetCore: &nbsp;<em>Microsoft.AspNetCore.Hosting version            2.1.1-rtm-30846 </em></p>        <p>I chenage the target framweork to 2.1.3 (which is supported on the          hosting service. See: <a href="https://www.smarterasp.net/support/kb/a1986/supported-versions-of-_net-core.aspx?KBSearchID=525458">            Supported Versions of Dot Net Core</a>) and tried again.</p>        <p>I got build errors:</p>        <ul>          <li>The type or namespace name 'ValueConversion' does not exist in the            namespace 'Microsoft.EntityFrameworkCore.Storage'            20190125020101_NewStart.Designer.cs</li>          <li>And the same error again for ApplicationDbContextModelSnapshot.cs          </li>        </ul>        <p>Since these were unused using statements, I simply removed them.<br>          Now the solution builds with this error:</p>        <ul>          <li>Assets file BookInfo\obj\project.assets.json doesn't have a target            for '.NETCoreApp,Version=v2.1'</li>        </ul>        <p>To resolve this, I used the NuGet package manager to roll back the          version of Microsoft.AspNetCore.All to 2.1.2<br>          It builds fine, but now I get a publish error:</p>        <p>Assets file          'C:\Users\Brian\source\repos\CS296N-BookInfo-Core-2\BookInfo\obj\project.assets.json'
+          doesn't have a target for '.NETCoreApp,Version=v2.1'.</p>        <p>Check to see which version of the SDK goes with which runtime          version: .<a href="https://dotnet.microsoft.com/download/dotnet-core/2.1">NET
+            Core 2.1 Downloads</a><br>          For example, SDK version 2.1.400 goes with runtime version 2.1.2</p>        <p>In the console, I ran dotnet --info and got output that included the          following:<br>          .NET Core SDKs installed: <br>          2.1.2 [C:\Program Files\dotnet\sdk] <br>          2.1.4 [C:\Program Files\dotnet\sdk] <br>          2.1.100 [C:\Program Files\dotnet\sdk] <br>          2.1.104 [C:\Program Files\dotnet\sdk] <br>          2.1.202 [C:\Program Files\dotnet\sdk] <br>          2.1.400 [C:\Program Files\dotnet\sdk] <br>          2.1.402 [C:\Program Files\dotnet\sdk] <br>          2.1.502 [C:\Program Files\dotnet\sdk] <br>          2.1.503 [C:\Program Files\dotnet\sdk] <br>          2.2.101 [C:\Program Files\dotnet\sdk] <br>          2.2.102 [C:\Program Files\dotnet\sdk] </p>        <p>NET Core runtimes installed: <br>          Microsoft.AspNetCore.All 2.1.2 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.All] <br>          Microsoft.AspNetCore.All 2.1.4 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.All] <br>          Microsoft.AspNetCore.All 2.1.6 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.All] <br>          Microsoft.AspNetCore.All 2.1.7 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.All] <br>          Microsoft.AspNetCore.All 2.2.0 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.All] <br>          Microsoft.AspNetCore.All 2.2.1 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.All] <br>          Microsoft.AspNetCore.App 2.1.2 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.App] <br>          Microsoft.AspNetCore.App 2.1.4 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.App] <br>          Microsoft.AspNetCore.App 2.1.6 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.App] <br>          Microsoft.AspNetCore.App 2.1.7 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.App] <br>          Microsoft.AspNetCore.App 2.2.0 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.App] <br>          Microsoft.AspNetCore.App 2.2.1 [C:\Program          Files\dotnet\shared\Microsoft.AspNetCore.App] <br>          Microsoft.NETCore.App 2.0.3 [C:\Program          Files\dotnet\shared\Microsoft.NETCore.App] <br>          Microsoft.NETCore.App 2.0.5 [C:\Program          Files\dotnet\shared\Microsoft.NETCore.App] <br>          Microsoft.NETCore.App 2.0.6 [C:\Program          Files\dotnet\shared\Microsoft.NETCore.App] <br>          Microsoft.NETCore.App 2.0.9 [C:\Program          Files\dotnet\shared\Microsoft.NETCore.App] <br>          Microsoft.NETCore.App 2.1.2 [C:\Program          Files\dotnet\shared\Microsoft.NETCore.App] <br>          Microsoft.NETCore.App 2.1.4 [C:\Program          Files\dotnet\shared\Microsoft.NETCore.App] <br>          Microsoft.NETCore.App 2.1.6 [C:\Program          Files\dotnet\shared\Microsoft.NETCore.App] <br>          Microsoft.NETCore.App 2.1.7 [C:\Program          Files\dotnet\shared\Microsoft.NETCore.App] <br>          Microsoft.NETCore.App 2.2.0 [C:\Program          Files\dotnet\shared\Microsoft.NETCore.App] <br>          Microsoft.NETCore.App 2.2.1 [C:\Program          Files\dotnet\shared\Microsoft.NETCore.App] </p>      </article>      <hr>      <article id="topic7">        <h2>References</h2>        <ul>          <li> <a href="https://www.smarterasp.net/support/kb/a1910/how-to-publish-asp_net-core-web-application-via-visual-studio-2017.aspx"              target="_blank">How
+              to publish ASP.NET Core web application via Visual Studio 2017</a><br>            Smarter ASP.NET Knowledge base article</li>          <li> <a href="https://www.smarterasp.net/support/kb/a1775/asp_net-core-hosting.aspx?KBSearchID=525417">ASP.NET
+              Core Hosting</a><br>            Smarter ASP.NET Knowledge base article</li>          <li><a href="https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd"              target="_blank"><span                style="color: #0000ee;">.NET
+                Core Application Deployment</span></a></li>          <li><span style=" color: #0000ee;"><a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&amp;tabs=aspnetcore2x"                target="_blank">WWeb
+                Server Implementations in .NET Core</a></span></li>        </ul>        <p>&nbsp;</p>      </article>      <hr></section>    <footer> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">      </a> <br>      <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET        Core MVC Lecture Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#"        href="https://birdsbits.blog"        property="cc:attributionName"        rel="cc:attributionURL">Brian
         Bird</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-        Commons Attribution-ShareAlike 4.0 International License</a>. </footer>
-    <hr>
-  </body>
-</html>
+        Commons Attribution-ShareAlike 4.0 International License</a>. </footer>    <hr>  </body></html>
