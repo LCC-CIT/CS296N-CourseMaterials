@@ -1,182 +1,174 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>REST Web API</title>
-    <style type="text/css">
-body {
-  font-family: "Arial", "Helvetica", "sans-serif";
-}
 
-#week07 {
-  background-color: #f8ff2e;
-}
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>REST Web API</title>
+  <style type="text/css">
+    body {
+      font-family: "Arial", "Helvetica", "sans-serif";
+    }
 
-code {
-  display:block;
-  font-size: larger;
-  background-color: lightgoldenrodyellow;
-  max-height:400px;
-  width:75%;
-  overflow:scroll;
-}
+    #week07 {
+      background-color: #f8ff2e;
+    }
 
-.exercise {
-  background-color: #c6ffe2;
-}
+    code {
+      display: block;
+      font-size: larger;
+      background-color: lightgoldenrodyellow;
+      max-height: 400px;
+      width: 75%;
+      overflow: scroll;
+    }
 
-</style> </head>
-  <body>
-    <header> <b>CS295N Web Development 1: ASP.NET&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; November 20, 2017<br>
-      </b>
-      <div>Brian Bird</div>
+    .exercise {
+      background-color: #c6ffe2;
+    }
+  </style>
+</head>
+
+<body>
+  <header> <b>CS295N Web Development 1: ASP.NET&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; November 20, 2017<br>
+    </b>
+    <div>Brian Bird</div>
+    <br>
+    <i><b>Topic: Creating a REST Web API<br>
+      </b></i>
+  </header>
+  <section>
+    <article> <br>
+      <b>Topics</b> <br>
+      <table style="width: 807px; height: 127px;" border="1">
+        <tbody>
+          <tr>
+            <td id="week01">1. Intro to course and Identity<br>
+            </td>
+            <td id="week06">6. Load Testing and Performance, Midterm Quiz<br>
+            </td>
+          </tr>
+          <tr>
+            <td id="week02">2. Authentication and Authorization</td>
+            <td id="week07">7. Creating a Web Service<br>
+            </td>
+          </tr>
+          <tr>
+            <td id="week03">3. Claims and Third Party Authentication<br>
+            </td>
+            <td id="week08" style="width: 395.333px;">8. Consuming a Web
+              Service, Async / Await<br>
+            </td>
+          </tr>
+          <tr>
+            <td id="week04">4. Web Security<br>
+            </td>
+            <td id="week09">9. Docker Containers<br>
+            </td>
+          </tr>
+          <tr>
+            <td id="week05">5. Publishing to a Production Server</td>
+            <td id="week10">10.&nbsp; Microservices<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <br>
-      <i><b>Topic: Creating a REST Web API<br>
-        </b></i></header>
-    <section>
-      <article> <br>
-        <b>Topics</b> <br>
-        <table style="width: 807px; height: 127px;" border="1">
-          <tbody>
-            <tr>
-              <td id="week01">1. Intro to course and Identity<br>
-              </td>
-              <td id="week06">6. Load Testing and Performance, Midterm Quiz<br>
-              </td>
-            </tr>
-            <tr>
-              <td id="week02">2. Authentication and Authorization</td>
-              <td id="week07">7. Creating a Web Service<br>
-              </td>
-            </tr>
-            <tr>
-              <td id="week03">3. Claims and Third Party Authentication<br>
-              </td>
-              <td id="week08" style="width: 395.333px;">8. Consuming a Web
-                Service, Async / Await<br>
-              </td>
-            </tr>
-            <tr>
-              <td id="week04">4. Web Security<br>
-              </td>
-              <td id="week09">9. Docker Containers<br>
-              </td>
-            </tr>
-            <tr>
-              <td id="week05">5. Publishing to a Production Server</td>
-              <td id="week10">10.&nbsp; Microservices<br>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
-        <br>
-        <b>Introduction</b><br>
+      <br>
+      <b>Announcements</b><br>
+      <ul>
+        <li>Review due dates on Moodle</li>
+        <li>Term Project</li>
+        <li>Capstone projects<br>
+          Request from Heath Professions</li>
+      </ul>
+    </article>
+    <article>
+      <div><b>Term Project Due Dates</b></div>
+      <div>
+
+      </div>
+      <div><b>Overview</b></div>
+      <div>
         <ul>
-          <ul>
-          </ul>
-        </ul>
-      </article>
-      <article>
-        <div><b>Term Project Due Dates</b></div>
-        <div>
-          <ul>
-          </ul>
-        </div>
-        <div><b>Overview</b></div>
-        <div>
-          <ul>
-            <b>
-              <li><a href="#topic1">Web Services</a></li>
-              <li><a href="#topic2">REST Protocol<br>
-                </a></li>
-              <li><a href="#topic3">Consuming a REST Service<br>
-                </a></li>
-              <br>
-            </b>
-          </ul>
-        </div>
-      </article>
-    </section>
-    <section>
-      <article id="topic1">
-        <p> <u><b>Web Services</b></u></p>
-        <ul>
-          <ul>
-            <ul>
-            </ul>
-          </ul>
-        </ul>
-        Think of a web service as a web site that doesn't have a UI, it is meant
-        to be accessed by a computer not a person.
-        <ul>
-          <li>You can also think of it as an API that contains methods that can
-            be called over a network or over the internet.</li>
-          <li>Advantages of using web services:</li>
-          <ul>
-            <li>Allows computing services to be distributed across:</li>
-            <ul>
-              <li>Multiple machines</li>
-              <li>Any distance</li>
-            </ul>
-            <li>Provides a service that is:</li>
-            <ul>
-              <li>OS independent</li>
-              <li>Language independent</li>
-            </ul>
-          </ul>
-          <li>Types of Web Services</li>
-          <ul>
-            <li>SOAP - Simple Object Access Protocol</li>
-            <ul>
-              <li>An older protocol that is more difficult to implement and
-                consume</li>
-            </ul>
-            <li>REST - Representational State Transfer</li>
-            <ul>
-              <li>A newer type of web service that is being used for most new
-                web service implementations</li>
-            </ul>
-          </ul>
-        </ul>
-        <ul>
-          <ul>
-          </ul>
-          <ul>
-          </ul>
-        </ul>
-        <p></p>
-      </article>
-      <article id="topic2">
-        <p><u><b>REST Architecture </b></u></p>
-        <ul>
-          <li>Reference: <a href="http://www.drdobbs.com/web-development/restful-web-services-a-tutorial/240169069"
-              target="_blank">RESTful
-              Web Services: A Tutorial - Dr. Dobb's</a></li>
-          <li>Not really a new protocol - just uses HTTP</li>
-          <ul>
-            <li>Example: <a href="https://www.wunderground.com/weather/api/d/docs"
-                target="_blank">Weather
-                Underground REST API</a><br>
-              <br>
-              <code>http://api.wunderground.com/api/0e3e69302fba4e56/conditions/q/CA/San_Francisco.json</code>
-            </li>
+          <b>
+            <li><a href="#topic1">Web Services</a></li>
+            <li><a href="#topic2">REST Protocol<br>
+              </a></li>
+            <li><a href="#topic3">Consuming a REST Service<br>
+              </a></li>
             <br>
-          </ul>
-          <li>Representations</li>
+          </b>
+        </ul>
+      </div>
+    </article>
+  </section>
+  <section>
+    <article id="topic1">
+      <p> <u><b>Web Services</b></u></p>
+
+      Think of a web service as a web site that doesn't have a UI, it is meant
+      to be accessed by a computer not a person.
+      <ul>
+        <li>You can also think of it as an API that contains methods that can
+          be called over a network or over the internet.</li>
+        <li>Advantages of using web services:</li>
+        <ul>
+          <li>Allows computing services to be distributed across:</li>
           <ul>
-            <li>Resources - a REST service provides access to resources, which
-              can be any kind of digital object: image, video, text, etc.</li>
-            <li>There is no restriction on the way resources can be represented,
-              but the two most common means are:</li>
+            <li>Multiple machines</li>
+            <li>Any distance</li>
+          </ul>
+          <li>Provides a service that is:</li>
+          <ul>
+            <li>OS independent</li>
+            <li>Language independent</li>
+          </ul>
+        </ul>
+        <li>Types of Web Services</li>
+        <ul>
+          <li>SOAP - Simple Object Access Protocol</li>
+          <ul>
+            <li>An older protocol that is more difficult to implement and
+              consume</li>
+          </ul>
+          <li>REST - Representational State Transfer</li>
+          <ul>
+            <li>A newer type of web service that is being used for most new
+              web service implementations</li>
+          </ul>
+        </ul>
+      </ul>
+
+    </article>
+    <article id="topic2">
+      <p><u><b>REST Architecture </b></u></p>
+      <ul>
+        <li>Reference: <a href="http://www.drdobbs.com/web-development/restful-web-services-a-tutorial/240169069"
+            target="_blank">RESTful
+            Web Services: A Tutorial - Dr. Dobb's</a></li>
+        <li>Not really a new protocol - just uses HTTP</li>
+        <ul>
+          <li>Example: <a href="https://www.wunderground.com/weather/api/d/docs" target="_blank">Weather
+              Underground REST API</a><br>
+            <br>
+            <code>http://api.wunderground.com/api/0e3e69302fba4e56/conditions/q/CA/San_Francisco.json</code>
+          </li>
+          <br>
+        </ul>
+        <li>Representations</li>
+        <ul>
+          <li>Resources - a REST service provides access to resources, which
+            can be any kind of digital object: image, video, text, etc.</li>
+          <li>There is no restriction on the way resources can be represented,
+            but the two most common means are:</li>
+          <ul>
+            <li>JSON - JavaScript Object Notation</li>
             <ul>
-              <li>JSON - JavaScript Object Notation</li>
-              <ul>
-                <li>Example:<br>
-                  <code>{ &nbsp; "response": {<br>
+              <li>Example:<br>
+                <code>{ &nbsp; "response": {<br>
                     &nbsp; "version": "0.1",<br>
                     &nbsp; "termsofService":
                     "http://www.wunderground.com/weather/api/d/terms.html",<br>
@@ -277,90 +269,88 @@ code {
                     &nbsp; }<br>
                     }<br>
                   </code></li>
-              </ul>
-              <br>
-              <li>XML - eXtensible Markup Language</li>
-              <li>Example:</li>
-              <iframe src="San_Francisco.xml" height="400" width="75%"> </iframe><br>
             </ul>
-          </ul>
-          <br>
-          <li>Messages</li>
-          <ul>
-            <li>Messages from the client are <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_message"
-                target="_blank">HTTP
-                Requests</a></li>
-            <ul>
-              <li>Verbs can be: GET, PUT, POST, DELETE, OPTIONS, HEAD.</li>
-            </ul>
-            <li>Messages from the service are <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Response_message"
-                target="_blank">HTTP
-                Responses</a></li>
-            <li>A request should only affect one resource. (Each resource should
-              have at least one URI.)</li>
-            <li>Each message is independent - RESTful services are stateless</li>
+            <br>
+            <li>XML - eXtensible Markup Language</li>
+            <li>Example:</li>
+            <iframe src="San_Francisco.xml" height="400" width="75%"> </iframe><br>
           </ul>
         </ul>
-      </article>
-      <article id="topic3">
-        <p><u><b>Consuming a REST Service<br>
-            </b></u></p>
+        <br>
+        <li>Messages</li>
         <ul>
-          <li>Web Service Clients</li>
+          <li>Messages from the client are <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_message"
+              target="_blank">HTTP
+              Requests</a></li>
           <ul>
-            <li>Can be written in any programming language</li>
-            <li>Can run on any OS</li>
-            <li>Can run on any type of platform - server, browser, mobile app,
-              etc.</li>
-            <ul>
-              <li>Server-side client code can be written in any language that
-                runs on the server</li>
-              <li>Browser client code is written in JavaScript and my use a
-                framework like jQuery</li>
-            </ul>
-            <li>Can be integrated with other software (any app can include code
-              to call a web service)</li>
+            <li>Verbs can be: GET, PUT, POST, DELETE, OPTIONS, HEAD.</li>
           </ul>
-          <li>Web Service Testing</li>
-          <ul>
-            <li><a href="https://www.soapui.org" target="_blank">SoapUI </a>-
-              for testing both SOAP and REST</li>
-            <li><a href="https://www.getpostman.com" target="_blank">Postman</a>
-              - primarily for REST, but can also be used for SOAP</li>
-            <li><a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/curl.1.html"
-                target="_blank">curl</a>
-              - Linux command to transfer a URL. Can be to test both SOAP and
-              REST</li>
-            <li><br>
-            </li>
-          </ul>
+          <li>Messages from the service are <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Response_message"
+              target="_blank">HTTP
+              Responses</a></li>
+          <li>A request should only affect one resource. (Each resource should
+            have at least one URI.)</li>
+          <li>Each message is independent - RESTful services are stateless</li>
         </ul>
-      </article>
-    </section>
-    <hr>
-    <article id="topic7">
-      <h2>References</h2>
-      <ul>
-        <li> Freeman, <span style="font-style: italic;">Pro ASP.NET Core MVC 2<br>
-          </span> Ch. 20, Web API</li>
-        <li> <a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&amp;tabs=visual-studio"
-            target="_blank">
-            Tutorial: Create a web API with ASP.NET Core MVC</a></li>
-        
       </ul>
-      <p>&nbsp;</p>
     </article>
-    <hr>
-    <footer> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
-      </a> <br>
-      <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET
-        Core MVC Lecture Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#"
-        href="https://birdsbits.blog"
-        property="cc:attributionName"
-        rel="cc:attributionURL">Brian
-        Bird</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-        Commons Attribution-ShareAlike 4.0 International License</a>. </footer>
-    <hr>
-  </body>
+    <article id="topic3">
+      <p><u><b>Consuming a REST Service<br>
+          </b></u></p>
+      <ul>
+        <li>Web Service Clients</li>
+        <ul>
+          <li>Can be written in any programming language</li>
+          <li>Can run on any OS</li>
+          <li>Can run on any type of platform - server, browser, mobile app,
+            etc.</li>
+          <ul>
+            <li>Server-side client code can be written in any language that
+              runs on the server</li>
+            <li>Browser client code is written in JavaScript and my use a
+              framework like jQuery</li>
+          </ul>
+          <li>Can be integrated with other software (any app can include code
+            to call a web service)</li>
+        </ul>
+        <li>Web Service Testing</li>
+        <ul>
+          <li><a href="https://www.soapui.org" target="_blank">SoapUI </a>-
+            for testing both SOAP and REST</li>
+          <li><a href="https://www.getpostman.com" target="_blank">Postman</a>
+            - primarily for REST, but can also be used for SOAP</li>
+          <li><a href="http://manpages.ubuntu.com/manpages/trusty/en/man1/curl.1.html" target="_blank">curl</a>
+            - Linux command to transfer a URL. Can be to test both SOAP and
+            REST</li>
+          <li><br>
+          </li>
+        </ul>
+      </ul>
+    </article>
+  </section>
+  <hr>
+  <article id="topic7">
+    <h2>References</h2>
+    <ul>
+      <li> Freeman, <span style="font-style: italic;">Pro ASP.NET Core MVC 2<br>
+        </span> Ch. 20, Web API</li>
+      <li> <a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&amp;tabs=visual-studio"
+          target="_blank">
+          Tutorial: Create a web API with ASP.NET Core MVC</a></li>
+
+    </ul>
+    <p>&nbsp;</p>
+  </article>
+  <hr>
+  <footer> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
+    </a> <br>
+    <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET
+      Core MVC Lecture Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://birdsbits.blog"
+      property="cc:attributionName" rel="cc:attributionURL">Brian
+      Bird</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+      Commons Attribution-ShareAlike 4.0 International License</a>. </footer>
+  <hr>
+</body>
+
 </html>
