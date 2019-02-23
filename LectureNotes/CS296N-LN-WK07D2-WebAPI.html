@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Web API Implementation</title>
+    <style type="text/css">
+body {
+  font-family: "Arial", "Helvetica", "sans-serif";
+}
+
+#week09 {
+  background-color: #f8ff2e;
+}
+
+code {
+  display:block;
+  font-size: larger;
+  background-color: lightgoldenrodyellow;
+  max-height:400px;
+  width:75%;
+  overflow:scroll;
+}
+
+.exercise {
+  background-color: #c6ffe2;
+}
+
+</style>
+  </head>
+  <body>
+    <header> <b>CS295N Web Development 1: ASP.NET</b>
+      <div>Brian Bird</div>
+      <br>
+      <i><b>Topic: Implementing a REST Web API in ASP.NET Core </b></i></header>
+    <section>
+      <article> <br>
+        <b>Topics </b>
+        <table style="width: 807px; height: 127px;" border="1">
+          <tbody>
+            <tr>
+              <td>1. Intro to Razor Pages</td>
+              <td>6. More EF and Publishing to Azure</td>
+            </tr>
+            <tr>
+              <td>2. Code-behind, session state, and page layout files</td>
+              <td>7. Async Programming and More Azure</td>
+            </tr>
+            <tr>
+              <td>3. Tag Helpers, model binding, and unit testing</td>
+              <td id="week08">8. LINQ and Validation</td>
+            </tr>
+            <tr>
+              <td>4. More on session state and form input</td>
+              <td id="week09">9. Web API<br>
+              </td>
+            </tr>
+            <tr>
+              <td>5. Entity Framework and SQL Databases</td>
+              <td>10. Web API and JavaScript<br>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <b> </b>
+        <h2><b> Introduction</b></h2>
+        Last time we talked about web services in general. Today, we'll
+        look at how to implement one using ASP.NET Core.<br>
+        <br>
+        <div>
+          <ul>
+          </ul>
+        </div>
+      </article>
+    </section>
+    <section>
+      <h2>Implementation</h2>
+      <h3>Controller</h3>
+      <p>Each action method should have the route annotation below so
+        that the method names don't need to be included in the URL<br>
+        <font face="Courier New, Courier, monospace">[Route("api/[controller]")]<br>
+          <font face="Helvetica, Arial, sans-serif">URL will be: <i>http://localhost:5000/api/Book/</i></font><br>
+        </font></p>
+      <h3>&gt;Controller Methods</h3>
+      There will be one method for each HTTP verb. The verb, an example
+      HTTP request and the code are shown below for the primary command
+      verbs.
+      <ul>
+        <li><b>GET</b><br>
+          <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book</font>
+          (to get all Book items.)<br>
+          <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/3</font>
+          (to get the item specified by the id number, no code shown for
+          this.)<br>
+          <br>
+          <code> [HttpGet]<br>
+            public IActionResult GetBooks() {<br>
+            &nbsp;&nbsp; var books = bookRepo.GetAllBooks();<br>
+            &nbsp;&nbsp; if (books.Count == 0) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return NotFound();<br>
+            &nbsp;&nbsp; }<br>
+            &nbsp;&nbsp; else {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Ok(books);<br>
+            &nbsp;&nbsp; }<br>
+            }</code> </li>
+      </ul>
+      <ul>
+        <li><b><font face="Helvetica, Arial, sans-serif">POST</font></b><br>
+          <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book<br>
+            <font face="Helvetica, Arial, sans-serif">Request body:</font><br>
+            title:Tom Sawyer<br>
+            date:1/1/1876<br>
+            author:Mark Twain<br>
+            birthdate:11/30/1835</font><br>
+          <br>
+          <code>[HttpPost]<br>
+            public IActionResult AddBook(string title, string date,
+            string author, string birthdate) {<br>
+            &nbsp;&nbsp;&nbsp; Book book = new Book { Title = title,
+            Date = DateTime.Parse(date) };<br>
+            &nbsp;&nbsp;&nbsp; if (author != null) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            book.Authors.Add(new Author { Name = author, Birthday =
+            DateTime.Parse(birthdate)});<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            bookRepo.AddBook(book);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Ok(book);<br>
+            &nbsp;&nbsp;&nbsp; }<br>
+            &nbsp;&nbsp;&nbsp; else {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+            NotFound();&nbsp; //&nbsp; TODO: Use a better error method<br>
+            &nbsp;&nbsp;&nbsp; }<br>
+            }</code><br>
+        </li>
+        <li><font face="Helvetica, Arial, sans-serif"><b>PUT</b><br>
+          </font><font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5<br>
+            <font face="Helvetica, Arial, sans-serif">Request body:</font><br>
+            title:Oliver Twist<br>
+            date:1/1/1839<br>
+            author:Charles Dickens<br>
+            birthdate:6/8/1870</font><br>
+          <br>
+          <code>[HttpPut("{id}")]<br>
+            public IActionResult Replace(int id, string title, string
+            date, string author, string birthdate) {<br>
+            &nbsp;&nbsp;&nbsp; Book book = new Book { Title = title,
+            Date = DateTime.Parse(date) };<br>
+            &nbsp;&nbsp;&nbsp; book.BookID = id;<br>
+            &nbsp;&nbsp;&nbsp; if (author != null) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            book.Authors.Add(new Author { Name = author, Birthday =
+            DateTime.Parse(birthdate) });<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            bookRepo.Edit(book);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Ok(book);<br>
+            &nbsp;&nbsp;&nbsp; }<br>
+            &nbsp;&nbsp;&nbsp; else {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+            NotFound();&nbsp; //&nbsp; TODO: Use a better error method<br>
+            &nbsp;&nbsp;&nbsp; }<br>
+            }<br>
+          </code>&nbsp;<br>
+        </li>
+        <li><font face="Helvetica, Arial, sans-serif"><b>PATCH</b><br>
+          </font><font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5<br>
+            <font face="Helvetica, Arial, sans-serif">Request body:</font><br>
+            op:replace<br>
+            path:title<br>
+            value:David Copperfield</font><br>
+          <br>
+          <code>[HttpPatch("{id}")]&nbsp; &nbsp;&nbsp;&nbsp; // TODO:
+            Add support for more ops: remove, copy, move, test<br>
+            public IActionResult UpdateBook(int id, string op, string
+            path, string value) {<br>
+            &nbsp;&nbsp;&nbsp; Book book = bookRepo.GetBookById(id);<br>
+            &nbsp;&nbsp;&nbsp; switch(path) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "title":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; book.Title =
+            value;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            break;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "date":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            book.Date = Convert.ToDateTime(value);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            break;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "author":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            book.Authors[0].Name = value;&nbsp;&nbsp; // TODO: manage
+            author collection<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            break;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "birthdate":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            book.Authors[0].Birthday = Convert.ToDateTime(value);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            break;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            return NotFound();&nbsp; //&nbsp; TODO: Use a better error
+            method<br>
+            &nbsp;&nbsp;&nbsp; }<br>
+            &nbsp;&nbsp;&nbsp; bookRepo.Edit(book);<br>
+            &nbsp;&nbsp;&nbsp; return Ok(book);<br>
+            }<br>
+          </code><br>
+        </li>
+        <li><b><font face="Helvetica, Arial, sans-serif">DELETE</font></b><b><font
+              face="Helvetica, Arial, sans-serif"><font face="Helvetica,
+                Arial, sans-serif"><br>
+              </font></font></b><font face="Helvetica, Arial,
+            sans-serif"><font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5</font></font><b><font
+              face="Helvetica, Arial, sans-serif"><br>
+            </font></b><br>
+          <code>[HttpDelete("{id}")]<br>
+            public IActionResult DeleteBook(int id) {<br>
+            &nbsp;&nbsp;&nbsp; Book book = bookRepo.GetBookById(id);<br>
+            &nbsp;&nbsp;&nbsp; if (book != null) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            bookRepo.Delete(id);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Ok();<br>
+            &nbsp;&nbsp;&nbsp; }<br>
+            &nbsp;&nbsp;&nbsp; else {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+            NotFound();<br>
+            &nbsp;&nbsp;&nbsp; }<br>
+            }<br>
+          </code><br>
+          <br>
+        </li>
+      </ul>
+      <br>
+      Notes: <br>
+      <ol>
+        <li>In version 2.1 and newer, use the <font face="Courier New,
+            Courier, monospace">[ApiController]</font> annotation is no
+          longer needed on a controller class that will provide API
+          endpoints.</li>
+        <li>Your controller can be a subclass of Controller, but it is
+          better to make it a subclass of ControllerBase (Controller
+          inherits from this) since Controller contains View related
+          members that you don't need.</li>
+        <li> <br>
+        </li>
+      </ol>
+    </section>
+  </body>
+</html>
