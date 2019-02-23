@@ -1,98 +1,114 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Web API Implementation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style type="text/css">
-body {
-  font-family: "Arial", "Helvetica", "sans-serif";
-}
+        #week07 {
+            background-color: #f8ff2e;
+        }
+        
+        code {
+            display: block;
+            color: darkblue;
+            background-color: lightgoldenrodyellow;
+        }
+        
+        .exercise {
+            background-color: #c6ffe2;
+        }
+    </style>
+</head>
 
-#week09 {
-  background-color: #f8ff2e;
-}
+<body>
+    <div class="container-fluid">
+        <header> <b>CS295N Web Development 1: ASP.NET</b>
+            <div>Brian Bird</div>
+            <br>
+            <i><b>Topic: Implementing a REST Web API in ASP.NET Core </b></i></header>
+        <section>
+            <article> <br>
+                <b>Topics </b>
+                <table class="table-bordered">
+                    <tbody>
+                        <tr>
+                            <td id="week01">1. Intro to course and Identity<br>
+                            </td>
+                            <td id="week06">6. Load Testing and Performance, Midterm Quiz<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="week02">2. Authentication and Authorization</td>
+                            <td id="week07">7. Creating a Web Service<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="week03">3. Claims and Third Party Authentication<br>
+                            </td>
+                            <td id="week08" style="width: 395.333px;">8. Consuming a Web Service, Async / Await<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="week04">4. Web Security<br>
+                            </td>
+                            <td id="week09">9. Docker Containers<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="week05">5. Publishing to a Production Server</td>
+                            <td id="week10">10.&nbsp; Microservices<br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <h2>Introduction</h2>
+                Last time we talked about web services in general. Today, we'll look at how to implement one using ASP.NET Core. The approach we're using follows the example in our textbook (Freeman, 2017). It's a little different from the approach shown in the Microsoft
+                Tutorial
+                <br>
+                <br>
 
-code {
-  display:block;
-  font-size: larger;
-  background-color: lightgoldenrodyellow;
-  max-height:400px;
-  width:75%;
-  overflow:scroll;
-}
+            </article>
+        </section>
+        <section>
+            <h2>Implementation</h2>
+            <h3>Controller</h3>
+            <p>Each action method should have the route annotation below so that the method names don't need to be included in the URL<br>
+                <font face="Courier New, Courier, monospace">[Route("api/[controller]")]<br>
+                    <font face="Helvetica, Arial, sans-serif">URL will be: <i>http://localhost:5000/api/Book/</i></font><br>
+                </font>
+            </p>
+            <h3>Controller Methods</h3>
 
-.exercise {
-  background-color: #c6ffe2;
-}
+            There will be one method for each HTTP verb.
+            <h4>Status Codes</h4>
+            Each of the methods returns an IActionResult which allows the ues of StatusCode helper method. Status codes, along with the available status code helper methods are shown below:<br>
+            <ul>
+                <li>200: Ok</li>
+                <li>204: NoContent</li>
+                <li>400: BadRequest</li>
+                <li>401: Unauthorized</li>
+                <li>404: NotFound</li>
+                <li>409: Conflict</li>
+                <li>415: UnsupportedMediaType</li>
+                <li>422: UnprocessableEntity</li>
+                <li>500: InternalServerError</li>
+            </ul>
 
-</style>
-  </head>
-  <body>
-    <header> <b>CS295N Web Development 1: ASP.NET</b>
-      <div>Brian Bird</div>
-      <br>
-      <i><b>Topic: Implementing a REST Web API in ASP.NET Core </b></i></header>
-    <section>
-      <article> <br>
-        <b>Topics </b>
-        <table style="width: 807px; height: 127px;" border="1">
-          <tbody>
-            <tr>
-              <td>1. Intro to Razor Pages</td>
-              <td>6. More EF and Publishing to Azure</td>
-            </tr>
-            <tr>
-              <td>2. Code-behind, session state, and page layout files</td>
-              <td>7. Async Programming and More Azure</td>
-            </tr>
-            <tr>
-              <td>3. Tag Helpers, model binding, and unit testing</td>
-              <td id="week08">8. LINQ and Validation</td>
-            </tr>
-            <tr>
-              <td>4. More on session state and form input</td>
-              <td id="week09">9. Web API<br>
-              </td>
-            </tr>
-            <tr>
-              <td>5. Entity Framework and SQL Databases</td>
-              <td>10. Web API and JavaScript<br>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <b> </b>
-        <h2><b> Introduction</b></h2>
-        Last time we talked about web services in general. Today, we'll
-        look at how to implement one using ASP.NET Core.<br>
-        <br>
-        <div>
-          <ul>
-          </ul>
-        </div>
-      </article>
-    </section>
-    <section>
-      <h2>Implementation</h2>
-      <h3>Controller</h3>
-      <p>Each action method should have the route annotation below so
-        that the method names don't need to be included in the URL<br>
-        <font face="Courier New, Courier, monospace">[Route("api/[controller]")]<br>
-          <font face="Helvetica, Arial, sans-serif">URL will be: <i>http://localhost:5000/api/Book/</i></font><br>
-        </font></p>
-      <h3>&gt;Controller Methods</h3>
-      There will be one method for each HTTP verb. The verb, an example
-      HTTP request and the code are shown below for the primary command
-      verbs.
-      <ul>
-        <li><b>GET</b><br>
-          <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book</font>
-          (to get all Book items.)<br>
-          <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/3</font>
-          (to get the item specified by the id number, no code shown for
-          this.)<br>
-          <br>
-          <code> [HttpGet]<br>
+            <h4>Examples</h4>
+            The verb, an example HTTP request and the code are shown below for the primary command verbs.
+            <ul>
+                <li><b>GET</b><br>
+                    <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book</font>
+                    (to get all Book items.)<br>
+                    <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/3</font>
+                    (to get the item specified by the id number, no code shown for this.)
+                    <br>
+                    <br>
+                    <code> [HttpGet]<br>
             public IActionResult GetBooks() {<br>
             &nbsp;&nbsp; var books = bookRepo.GetAllBooks();<br>
             &nbsp;&nbsp; if (books.Count == 0) {<br>
@@ -102,17 +118,15 @@ code {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Ok(books);<br>
             &nbsp;&nbsp; }<br>
             }</code> </li>
-      </ul>
-      <ul>
-        <li><b><font face="Helvetica, Arial, sans-serif">POST</font></b><br>
-          <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book<br>
-            <font face="Helvetica, Arial, sans-serif">Request body:</font><br>
-            title:Tom Sawyer<br>
-            date:1/1/1876<br>
-            author:Mark Twain<br>
-            birthdate:11/30/1835</font><br>
-          <br>
-          <code>[HttpPost]<br>
+            </ul>
+            <ul>
+                <li><b><font face="Helvetica, Arial, sans-serif">POST</font></b><br>
+                    <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book<br>
+                        <font face="Helvetica, Arial, sans-serif">Request body:</font><br> title:Tom Sawyer<br> date:1/1/1876
+                        <br> author:Mark Twain<br> birthdate:11/30/1835
+                    </font><br>
+                    <br>
+                    <code>[HttpPost]<br>
             public IActionResult AddBook(string title, string date,
             string author, string birthdate) {<br>
             &nbsp;&nbsp;&nbsp; Book book = new Book { Title = title,
@@ -127,19 +141,19 @@ code {
             &nbsp;&nbsp;&nbsp; }<br>
             &nbsp;&nbsp;&nbsp; else {<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
-            NotFound();&nbsp; //&nbsp; TODO: Use a better error method<br>
+            BadRequest();&nbsp; <br>
             &nbsp;&nbsp;&nbsp; }<br>
             }</code><br>
-        </li>
-        <li><font face="Helvetica, Arial, sans-serif"><b>PUT</b><br>
-          </font><font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5<br>
-            <font face="Helvetica, Arial, sans-serif">Request body:</font><br>
-            title:Oliver Twist<br>
-            date:1/1/1839<br>
-            author:Charles Dickens<br>
-            birthdate:6/8/1870</font><br>
-          <br>
-          <code>[HttpPut("{id}")]<br>
+                </li>
+                <li>
+                    <font face="Helvetica, Arial, sans-serif"><b>PUT</b><br>
+                    </font>
+                    <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5<br>
+                        <font face="Helvetica, Arial, sans-serif">Request body:</font><br> title:Oliver Twist<br> date:1/1/1839
+                        <br> author:Charles Dickens<br> birthdate:6/8/1870
+                    </font><br>
+                    <br>
+                    <code>[HttpPut("{id}")]<br>
             public IActionResult Replace(int id, string title, string
             date, string author, string birthdate) {<br>
             &nbsp;&nbsp;&nbsp; Book book = new Book { Title = title,
@@ -155,19 +169,20 @@ code {
             &nbsp;&nbsp;&nbsp; }<br>
             &nbsp;&nbsp;&nbsp; else {<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
-            NotFound();&nbsp; //&nbsp; TODO: Use a better error method<br>
+            BadRequest();&nbsp; //&nbsp;<br>
             &nbsp;&nbsp;&nbsp; }<br>
             }<br>
           </code>&nbsp;<br>
-        </li>
-        <li><font face="Helvetica, Arial, sans-serif"><b>PATCH</b><br>
-          </font><font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5<br>
-            <font face="Helvetica, Arial, sans-serif">Request body:</font><br>
-            op:replace<br>
-            path:title<br>
-            value:David Copperfield</font><br>
-          <br>
-          <code>[HttpPatch("{id}")]&nbsp; &nbsp;&nbsp;&nbsp; // TODO:
+                </li>
+                <li>
+                    <font face="Helvetica, Arial, sans-serif"><b>PATCH</b><br>
+                    </font>
+                    <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5<br>
+                        <font face="Helvetica, Arial, sans-serif">Request body:</font><br> op:replace
+                        <br> path:title
+                        <br> value:David Copperfield</font><br>
+                    <br>
+                    <code>[HttpPatch("{id}")]&nbsp; &nbsp;&nbsp;&nbsp; // TODO:
             Add support for more ops: remove, copy, move, test<br>
             public IActionResult UpdateBook(int id, string op, string
             path, string value) {<br>
@@ -204,22 +219,24 @@ code {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-            return NotFound();&nbsp; //&nbsp; TODO: Use a better error
-            method<br>
+            return BadRequest();<br>
             &nbsp;&nbsp;&nbsp; }<br>
             &nbsp;&nbsp;&nbsp; bookRepo.Edit(book);<br>
             &nbsp;&nbsp;&nbsp; return Ok(book);<br>
             }<br>
           </code><br>
-        </li>
-        <li><b><font face="Helvetica, Arial, sans-serif">DELETE</font></b><b><font
+                </li>
+                <li><b><font face="Helvetica, Arial, sans-serif">DELETE</font></b><b><font
               face="Helvetica, Arial, sans-serif"><font face="Helvetica,
                 Arial, sans-serif"><br>
-              </font></font></b><font face="Helvetica, Arial,
-            sans-serif"><font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5</font></font><b><font
+              </font></font></b>
+                    <font face="Helvetica, Arial,
+            sans-serif">
+                        <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5</font>
+                    </font><b><font
               face="Helvetica, Arial, sans-serif"><br>
             </font></b><br>
-          <code>[HttpDelete("{id}")]<br>
+                    <code>[HttpDelete("{id}")]<br>
             public IActionResult DeleteBook(int id) {<br>
             &nbsp;&nbsp;&nbsp; Book book = bookRepo.GetBookById(id);<br>
             &nbsp;&nbsp;&nbsp; if (book != null) {<br>
@@ -232,24 +249,50 @@ code {
             NotFound();<br>
             &nbsp;&nbsp;&nbsp; }<br>
             }<br>
-          </code><br>
-          <br>
-        </li>
-      </ul>
-      <br>
-      Notes: <br>
-      <ol>
-        <li>In version 2.1 and newer, use the <font face="Courier New,
-            Courier, monospace">[ApiController]</font> annotation is no
-          longer needed on a controller class that will provide API
-          endpoints.</li>
-        <li>Your controller can be a subclass of Controller, but it is
-          better to make it a subclass of ControllerBase (Controller
-          inherits from this) since Controller contains View related
-          members that you don't need.</li>
-        <li> <br>
-        </li>
-      </ol>
-    </section>
-  </body>
+          </code>
+
+                </li>
+            </ul>
+            <br> Notes: <br>
+            <ol>
+                <li>In ASP.NET Core version 2.1 and later, use of the
+                    <font face="Courier New,
+            Courier, monospace">[ApiController]</font> annotation is no longer needed on a controller class that will provide API endpoints.
+                </li>
+                <li>Your controller can be a subclass of Controller, but it is better to make it a subclass of ControllerBase (Controller inherits from this) since Controller contains View related members that you don't need.</li>
+
+            </ol>
+            <article id="references">
+                <h2>References</h2>
+                <ul>
+                    <li> Freeman, Adam. (2017). Ch. 20, "Web API," in <span style="font-style: italic;">Pro ASP.NET Core MVC 2.
+          </span></li>
+                    <li>Anderson, Rick & Wasson Mike. (2019). "<a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&amp;tabs=visual-studio" target="_blank">Tutorial: Create a web API with ASP.NET Core MVC</a>,"
+                        in
+                        <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>. Microsoft.
+                    </li>
+                    <li>Addie, Scott. (2019). "<a href="https://docs.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-2.2" target="_blank">Controller action return types in ASP.NET Core Web API</a>," in <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>.
+                        Microsoft.
+                    </li>
+                    <li>"<a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.statuscoderesult?view=aspnetcore-2.2" target="_blank">StatusCodeResult Class</a>," in <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>.
+                        Microsoft.
+                    </li>
+                </ul>
+            </article>
+        </section>
+        <hr>
+        <footer>
+            <div style="float:left; padding-right:5px;">
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                    <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            </div>
+
+            <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">These ASP.NET
+      Core MVC Lecture Notes</span> are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+      Commons Attribution-ShareAlike 4.0 International License</a>.<br>Written by <a xmlns:cc="http://creativecommons.org/ns#" href="https://profbird.online" property="cc:attributionName" rel="cc:attributionURL">Brian
+        Bird</a>, winter 2019</footer>
+        <hr>
+    </div>
+</body>
+
 </html>
