@@ -85,7 +85,7 @@
 
             There will be one method for each HTTP verb.
             <h4>Status Codes</h4>
-            Each of the methods returns an IActionResult which allows the ues of StatusCode helper method. Status codes, along with the available status code helper methods are shown below:<br>
+            Each of the methods returns an IActionResult which allows the ues of StatusCode helper methods. HTTP Status codes, along with the available status code helper methods are shown below:<br>
             <ul>
                 <li>200: Ok</li>
                 <li>204: NoContent</li>
@@ -99,7 +99,7 @@
             </ul>
 
             <h4>Examples</h4>
-            The verb, an example HTTP request and the code are shown below for the primary command verbs.
+            The HTTP verb, an example HTTP request and a controller method are shown below.
             <ul>
                 <li><b>GET</b><br>
                     <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book</font>
@@ -260,7 +260,9 @@
             Courier, monospace">[ApiController]</font> annotation is no longer needed on a controller class that will provide API endpoints.
                 </li>
                 <li>Your controller can be a subclass of Controller, but it is better to make it a subclass of ControllerBase (Controller inherits from this) since Controller contains View related members that you don't need.</li>
-
+                <li>Source code on GitHub: <a href="https://github.com/ProfBird/BookInfo-Core-2-WebAPI" target="_blank">ProfBird/BookInfo-Core-2-WebAPI</a></li>
+                <li>Web service running online: <a href="https://profbird.online/BookService/Api/Book/" target="_blank">
+                  BookInfo Service</a></li>
             </ol>
             <article id="references">
                 <h2>References</h2>
