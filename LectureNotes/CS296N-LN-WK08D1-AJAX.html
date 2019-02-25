@@ -25,18 +25,12 @@
 
 <body>
     <div class="container-fluid">
-        <header> <b>CS296N Web Development 2: ASP.NET<br>
-      </b>
-            <div>Brian Bird</div>
+        <header>
+            <a href="../index.html" target="_blank"><b>CS296N Web Development 2: ASP.NET</b></a>
             <br>
-            <i><b>Topic: Using AJAX to consume a REST web API<br>
-        </b></i>
-        </header>
-        <section>
-            <article> <br>
-                <b>Topics<br>
-        </b>
+            <div class="table-responsive">
                 <table class="table-bordered">
+                    <caption style="caption-side:top;">Weekly Topics</caption>
                     <tbody>
                         <tr>
                             <td id="week01">1. Intro to course and Identity<br>
@@ -68,26 +62,26 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <br>
+        </header>
+        <section>
+            <article>
+                <h1>Using AJAX to Consume a REST Web API</h1>
 
-                <br>
-                <h2>Introduction</h2>
+                <h2>Announcements</h2>
                 <ul>
-
-                    <li>Term Project Due Dates</li>
-
-                    <div><b>Overview</b></div>
-                    <div>
-                        <ul>
-                            <b>
+                    <li>Term Project</li>
+                </ul>
+            </article>
+            <h2>Overview</h2>
+            <ul>
                 <li><a href="#topic1">AJAX</a></li>
-                <li><a href="#topic2">XMLHttpRequest<br>
-                  </a></li>
+                <li><a href="#topic2">XMLHttpRequest</a></li>
                 <li><a href="#topic3">Consuming a REST Service</a></li>
                 <li><a href="#topic4">Development Tips</a></li>
-              </b>
-                        </ul>
-                    </div>
-                </ul>
+            </ul>
+
             </article>
         </section>
         <section>
@@ -98,7 +92,6 @@
                     <li>AJAX (Asynchronous JavaScript and XML) lets you:</li>
                     <ul>
                         <li>Update a web page without reloading the page</li>
-                        <li>Request data from a server - after the page has loaded</li>
                         <li>Receive data from a server - after the page has loaded</li>
                         <li>Send data to a server - in the background</li>
                     </ul>
@@ -113,7 +106,6 @@
             <article id="topic2">
                 <u><b>XMLHttpRequest </b></u>
                 <p>
-
                     XMLHttpRequest function, which is available in all modern browsers, lets you retrieve data from a URL without having to do a full page refresh. XMLHttpRequest was originally designed by Microsoft around 1999 and later adopted by Mozilla, Apple, and Google.
                     Since October 2014, it has been made part of the standard. Despite its name, XMLHttpRequest can be used to retrieve any type of data, not just XML, and it supports protocols other than HTTP (including file and ftp).</p>
                 <ul>
