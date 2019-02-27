@@ -20,7 +20,14 @@
         .exercise {
             background-color: #c6ffe2;
         }
+    .auto-style1 {
+	font-family: "Courier New", Courier, monospace;
+}
+.auto-style2 {
+	font-family: Arial, Helvetica, sans-serif;
+}
     </style>
+	<base target="_blank">
 </head>
 
 <body>
@@ -82,10 +89,10 @@
                 </font>
             </p>
             <h3>Controller Methods</h3>
-
-            There will be one method for each HTTP verb.
+            There will be one method for each HTTP verb. You can write the method using an ActionMethod or IActionMethod return type, but just return a POCO object and MVC will figure out the correct format for the returned data--including the HTTP status code. But,
+            you can also explicitly determine the status code.
             <h4>Status Codes</h4>
-            Each of the methods returns an IActionResult which allows the ues of StatusCode helper methods. HTTP Status codes, along with the available status code helper methods are shown below:<br>
+            Each of the methods returns an IActionResult which allows the use of StatusCode helper methods. HTTP Status codes, along with the available status code helper methods are shown below:<br>
             <ul>
                 <li>200: Ok</li>
                 <li>204: NoContent</li>
@@ -121,39 +128,35 @@
             </ul>
             <ul>
                 <li><b><font face="Helvetica, Arial, sans-serif">POST</font></b><br>
-                    <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book<br>
-                        <font face="Helvetica, Arial, sans-serif">Request body:</font><br> title:Tom Sawyer<br> date:1/1/1876
-                        <br> author:Mark Twain<br> birthdate:11/30/1835
+                    <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book</font><br>
+                    <font face="Helvetica, Arial, sans-serif">Request Body:</font>
+
+                    <font face="Courier New, Courier, monospace">
+                        <br>content-type:application/json<br> {
+                        <br> &nbsp;&nbsp; "title ": "Tom Sawyer ",<br> &nbsp;&nbsp; "date ": "1/1/1876 ",<br> &nbsp;&nbsp; "author ": "Mark Twain ",<br> &nbsp;&nbsp; "birthdate ": "11/30/1835 "<br> }
                     </font><br>
-                    <br>
-                    <code>[HttpPost]<br>
-            public IActionResult AddBook(string title, string date,
-            string author, string birthdate) {<br>
-            &nbsp;&nbsp;&nbsp; Book book = new Book { Title = title,
-            Date = DateTime.Parse(date) };<br>
-            &nbsp;&nbsp;&nbsp; if (author != null) {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="auto-style2"><br>Controller Method:</span><br>
+				This method uses the<span class="auto-style1"> [FromBody]</span>
+				<a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-2.2#customize-model-binding-behavior-with-attributes">
+				model binding behavior attribute</a> which tells MVC to&nbsp; 
+				bind data from the request body to an object of the specified 
+				type--see Appel (2018).<br><br><code>[HttpPost]<br>public IActionResult AddBook(string title, string date,
+            string author, string birthdate) {<br>&nbsp;&nbsp;&nbsp; Book book = new Book { Title = title,
+            Date = DateTime.Parse(date) };<br>&nbsp;&nbsp;&nbsp; if (author != null) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             book.Authors.Add(new Author { Name = author, Birthday =
-            DateTime.Parse(birthdate)});<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            bookRepo.AddBook(book);<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Ok(book);<br>
-            &nbsp;&nbsp;&nbsp; }<br>
-            &nbsp;&nbsp;&nbsp; else {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
-            BadRequest();&nbsp; <br>
-            &nbsp;&nbsp;&nbsp; }<br>
-            }</code><br>
+            DateTime.Parse(birthdate)});<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            bookRepo.AddBook(book);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Ok(book);<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; else {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return
+            BadRequest();&nbsp; <br>&nbsp;&nbsp;&nbsp; }<br>}</code><br>
                 </li>
                 <li>
-                    <font face="Helvetica, Arial, sans-serif"><b>PUT</b><br>
+                    <font face="Helvetica, Arial, sans-serif "><b>PUT</b><br>
                     </font>
-                    <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5<br>
-                        <font face="Helvetica, Arial, sans-serif">Request body:</font><br> title:Oliver Twist<br> date:1/1/1839
+                    <font face="Courier New, Courier, monospace ">http://localhost:5000/api/Book/5<br>
+                        <font face="Helvetica, Arial, sans-serif ">Request body:</font><br> title:Oliver Twist<br> date:1/1/1839
                         <br> author:Charles Dickens<br> birthdate:6/8/1870
                     </font><br>
                     <br>
-                    <code>[HttpPut("{id}")]<br>
+                    <code>[HttpPut("{id} ")]<br>
             public IActionResult Replace(int id, string title, string
             date, string author, string birthdate) {<br>
             &nbsp;&nbsp;&nbsp; Book book = new Book { Title = title,
@@ -175,33 +178,33 @@
           </code>&nbsp;<br>
                 </li>
                 <li>
-                    <font face="Helvetica, Arial, sans-serif"><b>PATCH</b><br>
+                    <font face="Helvetica, Arial, sans-serif "><b>PATCH</b><br>
                     </font>
-                    <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5<br>
-                        <font face="Helvetica, Arial, sans-serif">Request body:</font><br> op:replace
+                    <font face="Courier New, Courier, monospace ">http://localhost:5000/api/Book/5<br>
+                        <font face="Helvetica, Arial, sans-serif ">Request body:</font><br> op:replace
                         <br> path:title
                         <br> value:David Copperfield</font><br>
                     <br>
-                    <code>[HttpPatch("{id}")]&nbsp; &nbsp;&nbsp;&nbsp; // TODO:
+                    <code>[HttpPatch("{id} ")]&nbsp; &nbsp;&nbsp;&nbsp; // TODO:
             Add support for more ops: remove, copy, move, test<br>
             public IActionResult UpdateBook(int id, string op, string
             path, string value) {<br>
             &nbsp;&nbsp;&nbsp; Book book = bookRepo.GetBookById(id);<br>
             &nbsp;&nbsp;&nbsp; switch(path) {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "title":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "title ":<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; book.Title =
             value;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             break;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "date":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "date ":<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             book.Date = Convert.ToDateTime(value);<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             break;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "author":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "author ":<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             book.Authors[0].Name = value;&nbsp;&nbsp; // TODO: manage
@@ -209,7 +212,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             break;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "birthdate":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "birthdate ":<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             book.Authors[0].Birthday = Convert.ToDateTime(value);<br>
@@ -226,17 +229,15 @@
             }<br>
           </code><br>
                 </li>
-                <li><b><font face="Helvetica, Arial, sans-serif">DELETE</font></b><b><font
-              face="Helvetica, Arial, sans-serif"><font face="Helvetica,
-                Arial, sans-serif"><br>
+                <li><b><font face="Helvetica, Arial, sans-serif ">DELETE</font></b><b><font
+              face="Helvetica, Arial, sans-serif "><font face="Helvetica, Arial, sans-serif "><br>
               </font></font></b>
-                    <font face="Helvetica, Arial,
-            sans-serif">
-                        <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/5</font>
+                    <font face="Helvetica, Arial, sans-serif ">
+                        <font face="Courier New, Courier, monospace ">http://localhost:5000/api/Book/5</font>
                     </font><b><font
-              face="Helvetica, Arial, sans-serif"><br>
+              face="Helvetica, Arial, sans-serif "><br>
             </font></b><br>
-                    <code>[HttpDelete("{id}")]<br>
+                    <code>[HttpDelete("{id} ")]<br>
             public IActionResult DeleteBook(int id) {<br>
             &nbsp;&nbsp;&nbsp; Book book = bookRepo.GetBookById(id);<br>
             &nbsp;&nbsp;&nbsp; if (book != null) {<br>
@@ -256,21 +257,24 @@
             <h4> Notes</h4>
             <ol>
                 <li>In ASP.NET Core version 2.1 and later, use of the
-                    <font face="Courier New,
-            Courier, monospace">[ApiController]</font> annotation is no longer needed on a controller class that will provide API endpoints.
+                    <font face="Courier New, Courier, monospace ">[ApiController]</font> annotation is no longer needed on a controller class that will provide API endpoints.
                 </li>
                 <li>Your controller can be a subclass of Controller, but it is better to make it a subclass of ControllerBase (Controller inherits from this) since Controller contains View related members that you don't need.</li>
-                <li>Source code on GitHub: <a href="https://github.com/ProfBird/BookInfo-Core-2-WebAPI" target="_blank">ProfBird/BookInfo-Core-2-WebAPI</a></li>
-                <li>Web service running online: <a href="https://profbird.online/BookService/Api/Book/" target="_blank">
+                <li>Source code on GitHub: <a href="https://github.com/ProfBird/BookInfo-Core-2-WebAPI " target="_blank ">ProfBird/BookInfo-Core-2-WebAPI</a></li>
+                <li>Web service running online: <a href="https://profbird.online/BookService/Api/Book/ " target="_blank ">
                   BookInfo Service</a></li>
             </ol>
 
             <hr>
-            <article id="references">
+            <article id="references ">
                 <h2>References</h2>
                 <ul>
-                    <li> Freeman, Adam. (2017). Ch. 20, "Web API," in <span style="font-style: italic;">Pro ASP.NET Core MVC 2.
+                    <li> Freeman, Adam. (2017). Ch. 20, "Web API, " in <span style="font-style: italic; ">Pro ASP.NET Core MVC 2.
           </span></li>
+					<li> Appel, Rachel. (2018). "<a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-2.2">Model 
+					Binding in ASP.NET Core</a>", in
+                        <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>. Microsoft.
+                    </li>
                     <li>Anderson, Rick & Wasson Mike. (2019). "<a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&amp;tabs=visual-studio" target="_blank">Tutorial: Create a web API with ASP.NET Core MVC</a>,"
                         in
                         <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>. Microsoft.
@@ -280,6 +284,8 @@
                     </li>
                     <li>"<a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.statuscoderesult?view=aspnetcore-2.2" target="_blank">StatusCodeResult Class</a>," in <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>.
                         Microsoft.
+                    </li>
+                    <li>"<a href="https://www.json.org">Introducing JSON</a>
                     </li>
                 </ul>
             </article>

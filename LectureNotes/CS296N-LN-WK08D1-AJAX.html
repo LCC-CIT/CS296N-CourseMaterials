@@ -68,26 +68,31 @@
         <section>
             <article>
                 <h1>Using AJAX to Consume a REST Web API</h1>
-
+                <hr>
                 <h2>Announcements</h2>
                 <ul>
                     <li>Term Project</li>
                 </ul>
             </article>
-            <h2>Overview</h2>
-            <ul>
-                <li><a href="#topic1">AJAX</a></li>
-                <li><a href="#topic2">XMLHttpRequest</a></li>
-                <li><a href="#topic3">Consuming a REST Service</a></li>
-                <li><a href="#topic4">Development Tips</a></li>
-            </ul>
-
+            <hr>
+            <article>
+                <h2>Overview</h2>
+                <p>This week you will learn how to create a web page that serves as a client to a REST web service. Your web page will use JavaScript and the DOM's XMLHttpRequest object to intereact with the web API.
+                </p>
+                <ul>
+                    <li><a href="#topic1">AJAX</a></li>
+                    <li><a href="#topic2">XMLHttpRequest</a></li>
+                    <li><a href="#topic3">Consuming a REST Service</a></li>
+                    <li><a href="#topic4">Development Tips</a></li>
+                    <li><a href="#examples">Examples</a></li>
+                    <li><a href="#references">References</a></li>
+                </ul>
             </article>
         </section>
+        <hr>
         <section>
             <article id="topic1">
                 <u><b>AJAX</b></u><br>
-
                 <ul>
                     <li>AJAX (Asynchronous JavaScript and XML) lets you:</li>
                     <ul>
@@ -106,8 +111,8 @@
             <article id="topic2">
                 <u><b>XMLHttpRequest </b></u>
                 <p>
-                    XMLHttpRequest function, which is available in all modern browsers, lets you retrieve data from a URL without having to do a full page refresh. XMLHttpRequest was originally designed by Microsoft around 1999 and later adopted by Mozilla, Apple, and Google.
-                    Since October 2014, it has been made part of the standard. Despite its name, XMLHttpRequest can be used to retrieve any type of data, not just XML, and it supports protocols other than HTTP (including file and ftp).</p>
+                    The XMLHttpRequest JavaScript object, which is part of the DOM in all modern browsers, lets you retrieve data from a URL without having to do a full page refresh. XMLHttpRequest was originally designed by Microsoft around 1999 and later adopted by Mozilla,
+                    Apple, and Google. Since October 2014, it has been part of the standard. Despite its name, XMLHttpRequest can be used to retrieve any type of data, not just XML, and it supports protocols other than HTTP (including file and ftp).</p>
                 <ul>
                     <li>Reference: <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank">MDN,
               XMLHttpRequest<br>
@@ -127,13 +132,13 @@
 
                 </ul>
             </article>
-            <article id="topic4">
+            <article id="topic3">
                 <u><b>Consuming a REST Service </b></u>
                 <p>
                     Follow the strategy for writing a REST client in JavaScript described in the tutorial by Geoffey Liu (2016).
                 </p>
             </article>
-            <article id="topic3">
+            <article id="topic4">
                 <u><b>Development Tips
             </b></u>
                 <ul>
@@ -184,6 +189,14 @@
                     </li>
                 </ul>
 
+            </article>
+            <hr>
+            <article id="examples">
+                <h2>Examples</h2>
+                <ul>
+                    <li><a href="https://github.com/ProfBird/ASP.NET-Core-Demos/tree/master/WebApiMovie" target="_blank">Movie Catalog</a>--Git repository<br>Source code for both a REST web API and a client web page using AJAX.</li>
+                    <li><a href="https://profbird.github.io/ASP.NET-Core-Demos/ajax/OpenWeatherMapClient.html" target="_blank">OpenWeatherMap Client</a>--running online<br> Web page with AJAX that gets current weather conditions from OpenWeatherMap.</li>
+                </ul>
             </article>
             <hr>
             <article id="references">

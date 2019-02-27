@@ -27,8 +27,9 @@ What is meant by a closed application in terms of data access?\
 \pard\pardeftab720\partightenfactor0
 
 \f1\fs18 \cf0 the data in the model can be accessed only through the actions provided by the Home controller\
+\pard\pardeftab720\partightenfactor0
 
-\fs24 \
+\fs24 \cf0 \
 \pard\pardeftab720\partightenfactor0
 
 \f0 \cf0 Is there a detailed specification for REST? \
@@ -57,8 +58,9 @@ What is the default route for reaching an API controller?\
 
 \f1\fs18 \cf0 api/controller\
 \
+\pard\pardeftab720\partightenfactor0
 
-\fs24 What does this mean: [HttpGet("\{id\}")]
+\fs24 \cf0 What does this mean: [HttpGet("\{id\}")]
 \fs18 \
 Annotation that specifies the HHTP verb that the method will respond to and specifies that it could(should?) have an id that represents the object to be retrieved.
 \f0\fs24 \
@@ -84,13 +86,15 @@ Describe the purpose of the parts of this HTTP PATCH data:\
 ]
 \f0 \
 \
+\pard\pardeftab720\partightenfactor0
 
-\f1\fs18 Each operation has an op property,\
+\f1\fs18 \cf0 Each operation has an op property,\
 which specifies the type of operation, and a path property, which specifies where the operation will be\
 applied.\
 \
+\pard\pardeftab720\partightenfactor0
 
-\fs24 What determines the type of data returned by an action method?
+\fs24 \cf0 What determines the type of data returned by an action method?
 \fs18 \
 If the action method returns a string, the string is sent unmodified to the client, and\
 the Content-Type header of the response is set to text/plain.\
@@ -108,11 +112,30 @@ application/json.\
 \fs18 \
 The browser will include an Accept header in the HTTP request. Here\'92s an example from Chrome:\
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\
+\
+
+\fs24 How do asynchronous calls solve the \'93speed problem\'94?\
+
+\fs20 It removes the waiting period between a request and response so that the UI isn\'92t frozen.\
+\
+When and why would you use the \'93network throttling\'94 feature in Chrome?\
+To simulate a slow network and test the responsiveness of your JS code.\
+\
+
+\fs24 How does Ajax solve the \'93efficiency problem\'94?
+\fs20 \
+Entire pages (including libraries like Bootstrap and jQuery) don\'92t need to be re-downloaded every time information on the page changes. Instead things like table rows can be updated independent of the rest of the page.\
+\
+
+\fs24 In what way is a web application that is based on a web service more \'93open\'94 then an MVC app or other web app where pages are only rendered on the server?
+\fs20 \
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 The data in a server based web app is not accessible to any other app. In an app using Ajax, the data can be accessed by other components of the system or by third parties.\
 \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf0 \
-\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
-\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97 \
 Nice REST API Tutorial: https://restfulapi.net/rest-architectural-constraints/\
 \
 JSON Info: 
