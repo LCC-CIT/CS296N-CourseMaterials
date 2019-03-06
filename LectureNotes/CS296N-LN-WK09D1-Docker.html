@@ -1,215 +1,132 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Week 4, Day 1, EF + dB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AJAX REST Client</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style type="text/css">
-body {
-  font-family: "Arial", "Helvetica", "sans-serif";
-}
+        #week09 {
+            background-color: #f8ff2e;
+        }
+        
+        code {
+            display: block;
+            color: darkblue;
+            background-color: lightgoldenrodyellow;
+        }
+        
+        .exercise {
+            background-color: #c6ffe2;
+        }
+    </style>
+	<base target="_blank">
+</head>
 
-#week07 {
-  background-color: #f8ff2e;
-}
+<body>
+    <div class="container-fluid">
+        <header>
+            <a href="../index.html" target="_blank"><b>CS296N Web Development 2: ASP.NET</b></a>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table-bordered">
+                    <caption style="caption-side:top;">Weekly Topics</caption>
+                    <tbody>
+                        <tr>
+                            <td id="week01">1. Intro to course and Identity<br>
+                            </td>
+                            <td id="week06">6. Load Testing and Performance, Midterm Quiz<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="week02">2. Authentication and Authorization</td>
+                            <td id="week07">7. Creating a Web Service<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="week03">3. Claims and Third Party Authentication<br>
+                            </td>
+                            <td id="week08" style="width: 395.333px;">8. 
+							Consuming a Web Service<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="week04">4. Web Security<br>
+                            </td>
+                            <td id="week09">9. Docker Containers<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="week05">5. Publishing to a Production Server</td>
+                            <td id="week10">10.&nbsp; Microservices<br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <br>
+        </header>
+        <section>
+            <article>
+                <h1>Using Docker Containers</h1>
+                <hr>
+                <h2>Announcements</h2>
+                <ul>
+                    <li>Term Project</li>
+                </ul>
+            </article>
+            <hr>
+            <article>
+                <h2>Overview</h2>
+                <p>This week you will learn how to...</p>
+                <ul>
+                    <li><a href="#examples">Examples</a></li>
+                    <li><a href="#references">References</a></li>
+                </ul>
+            </article>
+        </section>
+        <hr>
+        <section>
+            <hr>
+            <article id="examples">
+                <h2>Examples</h2>
+            </article>
+            <hr>
+            <article id="references">
+                <h2>References</h2>
+                <ul>
+                    <li>Addie, S. &amp; Anderson, R. (2018).
+					<a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-2.2">
+					Host ASP.NET Core in Docker Containers</a> in
+                        <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>.</li>
+					<li>
+					<a href="https://docs.docker.com/engine/examples/dotnetcore/">
+					Dockerize a .NET Core Application</a> in
+					<a href="https://docs.docker.com/engine/examples/dotnetcore/">
+					Docker Docs</a>, Sample Applications</li>
+                    <li>Fernandez, D., Lyalin, D. &amp; Kaim L. (2015). "
+                    <a href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers" target="_blank">
+                      Docker Overview for .NET Developers</a>," on 
+					<a href="https://channel9.msdn.com/" target="_blank">Channel 9</a></li>
+                </ul>
+            </article>
+        </section>
+        <hr>
+        <footer>
+            <div style="float:left; padding-right:5px;">
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                    <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            </div>
 
-code {
-  display:block;
-  font-size: larger;
-  background-color: lightgoldenrodyellow;
-  max-height:400px;
-  width:75%;
-  overflow:scroll;
-}
+            <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">These ASP.NET
+        Core MVC Lecture Notes</span> are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>. Written by <a xmlns:cc="http://creativecommons.org/ns#" href="https://profbird.online" property="cc:attributionName" rel="cc:attributionURL">Brian
+        Bird</a>, winter 2019.</footer>
+        <hr>
+    </div>
+</body>
 
-.exercise {
-  background-color: #c6ffe2;
-}
-
-</style>
-  </head>
-  <body>
-    <header> <b>CS296N Web Development 2: ASP.NET<br>
-      </b>
-      <div>Brian Bird</div>
-      <br>
-      <h1> <i><b>Docker<br>
-          </b></i></h1>
-      <h1><i><b> </b></i></h1>
-      <b>Topics by week<br>
-      </b>
-      <table style="width: 807px; height: 127px;" border="1">
-        <tbody>
-          <tr>
-            <td id="week01">1. Authorization<br>
-            </td>
-            <td>6. Midterm</td>
-          </tr>
-          <tr>
-            <td id="week02">2.Authentication</td>
-            <td id="week07" =""="">7. Docker<br>
-            </td>
-          </tr>
-          <tr>
-            <td id="week03">3. <br>
-            </td>
-            <td id="week08" style="width: 395.333px;">8. <br>
-            </td>
-          </tr>
-          <tr>
-            <td id="week04">4. <br>
-            </td>
-            <td id="week09">9. <br>
-            </td>
-          </tr>
-          <tr>
-            <td>5. <br>
-            </td>
-            <td id="week10">10. TBD<br>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <br>
-      <h2><b><b>Contents</b> </b></h2>
-      <div>
-        <ul>
-          <b>
-            <li><a href="#topic1">Introduction</a></li>
-            <li><a href="#topic2">Review<br>
-              </a></li>
-            <li><a href="#topic3">Topic3</a></li>
-            <li><a href="#topic4">Topic4</a></li>
-            <li><a href="#topic5">Topic5</a></li>
-            <li><a href="#topic6">Topic6</a></li>
-            <li><a href="#topic7">References</a></li>
-            <li><a href="#topic8">Next Class</a></li>
-          </b>
-        </ul>
-      </div>
-    </header>
-    <section>
-      <article id="topic1">
-        <h2><br>
-        </h2>
-        <h2>Introduction</h2>
-        <ul>
-          <li>&nbsp;Review lab due dates on Moodle</li>
-          <li>Answer questions about lab 4</li>
-        </ul>
-        <h3>Announcements</h3>
-      </article>
-      <ul>
-        <li>Scholarship</li>
-        <li>Hack for a cause<br>
-        </li>
-      </ul>
-      <article id="topic1">
-        <h3>Main focus today</h3>
-        <ul>
-          <li>Bower Package Manager</li>
-          <li>Bootstrap</li>
-        </ul>
-        <ul>
-          <ul>
-          </ul>
-        </ul>
-      </article>
-      <article id="topic2">
-        <h2>Review - EF and Database</h2>
-        <ul>
-          <ul>
-            <ul>
-            </ul>
-          </ul>
-        </ul>
-        <ul>
-        </ul>
-        <ul>
-          <li>?</li>
-        </ul>
-        <ul>
-        </ul>
-        <ul>
-        </ul>
-        <ul>
-          <ul>
-          </ul>
-          <ul>
-          </ul>
-        </ul>
-      </article>
-      <article id="topic3">
-        <h2>Topic3 </h2>
-        <ul>
-        </ul>
-        <span class="seoSummary" style="margin: 0px; padding: 0px;
-          border: 0px; color: rgb(51, 51, 51); font-family: &quot;Open
-          Sans&quot;, arial, x-locale-body, sans-serif; font-style:
-          normal; font-variant-caps: normal; font-weight: normal;
-          letter-spacing: normal; orphans: auto; text-align: start;
-          text-indent: 0px; text-transform: none; white-space: normal;
-          widows: auto; word-spacing: 0px; -webkit-text-size-adjust:
-          auto; -webkit-text-stroke-width: 0px;">Topic 3&nbsp;</span></article>
-      <article id="topic4">
-        <h2><br>
-        </h2>
-        <h2>Topic4 </h2>
-        <ul>
-        </ul>
-        Topic 4<br>
-        <ul>
-        </ul>
-        <ul>
-        </ul>
-      </article>
-      <article id="topic5">
-        <h2><br>
-        </h2>
-        <h2>Topic5</h2>
-        Topic 5<br>
-        <br>
-        <h3> </h3>
-      </article>
-      <article id="topic6">
-        <h2>Topic6</h2>
-        Topic 6
-        <p><br>
-        </p>
-      </article>
-      <article id="topic7">
-        <h2>References<br>
-        </h2>
-        <a
-href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers"
-          target="_blank">Video series on Docker for Windows</a><br>
-      </article>
-      <article id="topic8">
-        <h2>Next Class</h2>
-        <p>We will...</p>
-        <p><br>
-        </p>
-      </article>
-    </section>
-    <hr style="width: 100%; height: 2px;">
-    <footer> <a rel="license"
-        href="http://creativecommons.org/licenses/by-sa/4.0/"><img
-          alt="Creative Commons License" style="border-width:0"
-          src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"></a><br>
-      <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET
-
-
-
-
-        Core MVC Lecture Notes</span> by <a
-        xmlns:cc="http://creativecommons.org/ns#"
-        href="https://birdsbits.blog" property="cc:attributionName"
-        rel="cc:attributionURL">Brian Bird</a> is licensed under a <a
-        rel="license"
-        href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-        Commons Attribution-ShareAlike 4.0 International License</a>. <br>
-      <!-- larger CC image
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET Core MVC Lecture Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://birdsbits.blog" property="cc:attributionName" rel="cc:attributionURL">Brian Bird</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.-->
-    </footer>
-    <hr>
-  </body>
 </html>
