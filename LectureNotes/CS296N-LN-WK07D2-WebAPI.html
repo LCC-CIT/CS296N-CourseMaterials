@@ -87,10 +87,9 @@ code {
       <ul>
         <li><b>GET</b><br>
           <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book</font>
-          (to get all Book items.)<br>
+          (get all items.)<br>
           <font face="Courier New, Courier, monospace">http://localhost:5000/api/Book/3</font>
-          (to get the item specified by the id number, no code shown for
-          this.)<br>
+          (get the item specified by the id number)<br>
           <br>
           <code> [HttpGet]<br>
             public IActionResult GetBooks() {<br>
@@ -102,6 +101,22 @@ code {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Ok(books);<br>
             &nbsp;&nbsp; }<br>
             }</code> </li>
+        <br>
+        <code>[HttpGet("{id}")]<br>
+          public IActionResult GetBook(int id) { <br>
+          &nbsp; var book = bookRepo.GetBookById(id);<br>
+          &nbsp; if (book == null) { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp; return NotFound();<br>
+          &nbsp; }<br>
+          &nbsp; else {<br>
+          &nbsp;&nbsp;&nbsp; return Ok(book);<br>
+          &nbsp; }<br>
+          }</code> <br>
+      </ul>
+      <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+      <meta name="GENERATOR" content="Mono Text Editor">
+      <ul>
+        <br>
       </ul>
       <ul>
         <li><b><font face="Helvetica, Arial, sans-serif">POST</font></b><br>
@@ -178,31 +193,55 @@ code {
             value;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+
+
+
             break;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "date":<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+
+
+
             book.Date = Convert.ToDateTime(value);<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
             break;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "author":<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+
+
+
             book.Authors[0].Name = value;&nbsp;&nbsp; // TODO: manage
             author collection<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
             break;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "birthdate":<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+
+
+
             book.Authors[0].Birthday = Convert.ToDateTime(value);<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
             break;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
             return NotFound();&nbsp; //&nbsp; TODO: Use a better error
             method<br>
