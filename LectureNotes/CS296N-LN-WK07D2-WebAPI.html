@@ -20,14 +20,16 @@
         .exercise {
             background-color: #c6ffe2;
         }
-    .auto-style1 {
-	font-family: "Courier New", Courier, monospace;
-}
-.auto-style2 {
-	font-family: Arial, Helvetica, sans-serif;
-}
+        
+        .auto-style1 {
+            font-family: "Courier New", Courier, monospace;
+        }
+        
+        .auto-style2 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
     </style>
-	<base target="_blank">
+    <base target="_blank">
 </head>
 
 <body>
@@ -135,12 +137,9 @@
                         <br>content-type:application/json<br> {
                         <br> &nbsp;&nbsp; "title ": "Tom Sawyer ",<br> &nbsp;&nbsp; "date ": "1/1/1876 ",<br> &nbsp;&nbsp; "author ": "Mark Twain ",<br> &nbsp;&nbsp; "birthdate ": "11/30/1835 "<br> }
                     </font><br>
-                    <span class="auto-style2"><br>Controller Method:</span><br>
-				This method uses the<span class="auto-style1"> [FromBody]</span>
-				<a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-2.2#customize-model-binding-behavior-with-attributes">
-				model binding behavior attribute</a> which tells MVC to&nbsp; 
-				bind data from the request body to an object of the specified 
-				type--see Appel (2018).<br><br><code>[HttpPost]<br>public IActionResult AddBook(string title, string date,
+                    <span class="auto-style2"><br>Controller Method:</span><br> This method uses the<span class="auto-style1"> [FromBody]</span>
+                    <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-2.2#customize-model-binding-behavior-with-attributes">
+				model binding behavior attribute</a> which tells MVC to&nbsp; bind data from the request body to an object of the specified type--see Appel (2018).<br><br><code>[HttpPost]<br>public IActionResult AddBook(string title, string date,
             string author, string birthdate) {<br>&nbsp;&nbsp;&nbsp; Book book = new Book { Title = title,
             Date = DateTime.Parse(date) };<br>&nbsp;&nbsp;&nbsp; if (author != null) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             book.Authors.Add(new Author { Name = author, Birthday =
@@ -196,27 +195,48 @@
             value;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+
+
+
             break;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "date ":<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+
+
+
             book.Date = Convert.ToDateTime(value);<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
             break;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "author ":<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+
+
+
             book.Authors[0].Name = value;&nbsp;&nbsp; // TODO: manage
             author collection<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
             break;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "birthdate ":<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+
+
+
             book.Authors[0].Birthday = Convert.ToDateTime(value);<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
             break;<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
@@ -271,7 +291,7 @@
                 <ul>
                     <li> Freeman, Adam. (2017). Ch. 20, "Web API, " in <span style="font-style: italic; ">Pro ASP.NET Core MVC 2.
           </span></li>
-					<li> Appel, Rachel. (2018). "<a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-2.2">Model 
+                    <li> Appel, Rachel. (2018). "<a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-2.2">Model 
 					Binding in ASP.NET Core</a>", in
                         <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>. Microsoft.
                     </li>
