@@ -122,12 +122,12 @@
               Using XMLHttpRequest</a><br>
                     </li>
                     <li>Example:<br>
-                        <code>function reqListener () {<br>
+                        <code>function responseListener () {<br>
               &nbsp; console.log(this.responseText);<br>
               }<br>
               <br>
               var oReq = new XMLHttpRequest();<br>
-              oReq.addEventListener("load", reqListener);<br>
+              oReq.addEventListener("load", responseListener);<br>
               oReq.open("GET", "http://www.example.org/example.txt");<br>
               oReq.send();</code> </li>
 
