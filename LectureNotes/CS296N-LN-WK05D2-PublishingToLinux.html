@@ -30,10 +30,7 @@
 
 <body> <b><a href="http://lcc-cit.github.io/CS296N-CourseMaterials/CS296N_Syllabus.pdf"
         target="_blank">CS296N
-        Web Development 2: ASP.NET</a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </b> <br>
+        Web Development 2: ASP.NET</a></b><br>
     <header>
         <h1> <i> Deploying a Web App<b> to a Linux Server </b> </i> </h1>
         <b>Topics by week </b>
@@ -121,8 +118,8 @@
             <h3>2. Configuring an App to use MariaDB</h3>
             <p>The current version of MariaDB on citstudent as of 6/12/18 is 5.5.56</p>
             <ol type="a">
-                <li>Add an EntityFramework provider for MariaDB. Since MariaDB is binary compatibility with MySQL we can use a MySQL provider. One of the better providers is <a href="https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql" target="_blank">Pomelo.EntityFrameworkCore.MySQL</a>.
-                    Add a reference to this to your project.</li>
+                <li>In your ASP.NET Core project, add an EntityFramework provider for MariaDB. Since MariaDB is binary compatibility with MySQL we can use a MySQL provider. One of the better providers is <a href="https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql"
+                        target="_blank">Pomelo.EntityFrameworkCore.MySQL</a>. Add a reference to this to your project.</li>
                 <li>Add code to Startup.cs in the ConfigureServices method to add a service for MySQL<br>
                     <code> services.AddDbContext&lt;ApplicationDbContext&gt;(options
               =&gt;<br>
@@ -130,8 +127,7 @@
               options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));</code>
                 </li>
                 <li>In appsettings.json, add a connection string similar to this one:<br>
-                    <code>"MySqlConnection": "Server=localhost;User
-              Id=mydbusername;Password=password;Database=mydatabase"</code></li>
+                    <code>"MySqlConnection": "server=localhost;user id=brian;password=xxxxxxxx;database=MyDatabase;"</code></li>
                 <li>If you haven't already added migrations to your project, do it now:
                     <br>
                     <span style="font-family: Courier New,Courier,monospace;">dotnet ef
@@ -148,7 +144,7 @@
             </ol>
             <h3>3. Deploying a web app</h3>
             <p>We will be doing a <a href="https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd" target="_blank">Framework
-            Dependent Deployment</a>. This means that in the previous step we installed the .NET Core runtime, which contains the .NET Framework, system-wide so that any applications running on the system have access to the .NET Core runtime.</p>
+            Dependent Deployment</a>. This means that in a previous step we installed the .NET Core runtime so the it is available system-wide.</p>
             <ol>
                 <li>Deploying the App
                     <ol type="a">
@@ -181,19 +177,17 @@ app.ApplicationServices.GetRequiredService&lt;IServiceScopeFactory&gt;().CreateS
                 </li>
                 <li>Testing the App<br> This test will just be run on the server itself, the web pages won't be delivered over the internet
                     <ol type="a">
-                        <li>From the command line, run the app: <span style="font-family: Courier New,Courier,monospace;">dotnet
-                  myapp.dll</span>
+                        <li>From the command line, run the app: <span style="font-family: Courier New,Courier,monospace;">
+                            dotnet myapp.dll</span>
                             <ol>
-                                <li><span style=" font-family: Courier New,Courier,monospace;"><span
-                        style="font-family: &quot;Arial&quot;,&quot;Helvetica&quot;,&quot;sans-serif&quot;;">A
-                        typical response will be: </span>Hosting environment: Production
+                                <li>A typical response will be: <span style="font-family: Courier New,Courier,monospace;">Hosting environment: Production
                                     <br> Content root path: /home//apps/myapp<br> Now listening on: http://localhost:5000<br> Application started. Press Ctrl+C to shut down.</span>
                                 </li>
                             </ol>
                         </li>
-                        <li>Use the text based browser, elinks, to view the web page:<span style="font-family: Courier New,Courier,monospace;"></span><br>
-                            <span style="font-family: Courier New,Courier,monospace;"></span><span style="  font-family: Courier New,Courier,monospace;">elinks
-                  http://localhost:5000 </span></li>
+                        <li>Use the text based browser, elinks, to view the web page:<br>
+                            <span style="  font-family: Courier New,Courier,monospace;">
+                                elinks http://localhost:5000 </span></li>
                     </ol>
                 </li>
             </ol>
@@ -247,39 +241,14 @@ app.ApplicationServices.GetRequiredService&lt;IServiceScopeFactory&gt;().CreateS
         <article id="topic7">
             <h2>References</h2>
             <ul>
-                <li> <a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-2.1&amp;tabs=aspnetcore2x#configure-apache" target="_blank">Host
-              ASP.NET Core on Linux with Apache </a></li>
-                <li><a href="https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd" target="_blank"><span
-                style="color: #0000ee;">.NET
-                Core Application Deployment</span></a></li>
-                <li><span style=" color: #0000ee;"><a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&amp;tabs=aspnetcore2x"
-                target="_blank">Web
-                Server Implementations in .NET Core</a></span></li>
-                <li><span style="   color: #0000ee;"><a href="https://www.jerriepelser.com/blog/using-mariadb-with-aspnet-core"
-                target="_blank">Using
-                MariaDB with ASP.NET Core 2.0</a></span></li>
-                <li><span style="    color: #0000ee;"><a href="https://access.redhat.com/documentation/en-us/net_core/2.0/"
-                target="_blank">Redhat
-                documentation for .NET Core 2.0</a></span></li>
-                <li>Open Issues on the <a href="https://github.com/aspnet" target="_blank">ASP.NET
-              GitHub repositories</a><span style="     color: #0000ee;">:</span>
-                    <ul>
-                        <li><span style="  color: #0000ee;"><a href="https://github.com/dotnet/coreclr/issues/13542"
-                    target="_blank">Issue
-                    #13542: An assembly specified in the application
-                    dependencies manifest (RhWeb.deps.json) was not found</a></span><br>
-                            <span style="      color: #0000ee;"></span></li>
-                        <li><span style="      color: #0000ee;"><a href="https://github.com/aspnet/Hosting/issues/1120"
-                    target="_blank">Issue
-                    #1120: Add support for specifying the PathBase for all
-                    requests</a></span></li>
-                        <li><span style="       color: #0000ee;"><a href="https://github.com/aspnet/Home/issues/2302"
-                    target="_blank">Issue
-                    #2302: Hosting behind reverse proxy with sub-directory</a></span></li>
-                    </ul>
-                    <ul>
-                    </ul>
-                </li>
+                <li>Boyer, Shayne. 2019. <a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-2.1&amp;tabs=aspnetcore2x#configure-apache" target="_blank">
+                    Host ASP.NET Core on Linux with Apache </a>. Microsoft.</li>
+                <li>Contributors. 2018. <a href="https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd" target="_blank">
+                    .NET Core Application Deployment</a>. Microsoft.</li>
+                <li>Dykstra, Smith, Halter, and Ross. 2019. <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&amp;tabs=aspnetcore2x" target="_blank">
+                    Web Server Implementations in .NET Core</a>. Microsoft.</li>
+                <li>Pelser, Jerrie. 2017. <a href="https://www.jerriepelser.com/blog/using-mariadb-with-aspnet-core" target="_blank">Using MariaDB with ASP.NET Core 2.0</a>. Personal Blog.</li>
+                <li>Customer Content Services. <a href="https://access.redhat.com/documentation/en-us/net_core/2.2/" target="_blank">Product documentation for .NET Core 2.2</a>. Redhat.</li>
             </ul>
         </article>
         <hr>
@@ -289,8 +258,8 @@ app.ApplicationServices.GetRequiredService&lt;IServiceScopeFactory&gt;().CreateS
             <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
         </a> <br>
         <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET
-        Core MVC Lecture Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://birdsbits.blog" property="cc:attributionName" rel="cc:attributionURL">Brian
-        Bird</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+        Core MVC Lecture Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://profbird.online" property="cc:attributionName" rel="cc:attributionURL">Brian
+        Bird</a>, 2019, is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
         Commons Attribution-ShareAlike 4.0 International License</a>. </footer>
     <hr>
 </body>

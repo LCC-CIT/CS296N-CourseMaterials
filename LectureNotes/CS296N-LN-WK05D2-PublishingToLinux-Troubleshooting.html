@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Troubleshooting Linux Deployment</title>
+    <style>
+        body {
+            font-family: "Arial", "Helvetica", "sans-serif";
+        }
+        
+        #week05 {
+            background-color: #f8ff2e;
+        }
+        
+        code {
+            display: block;
+            font-size: larger;
+            background-color: lightgoldenrodyellow;
+            max-height: 400px;
+            width: 90%;
+            overflow: scroll;
+        }
+        
+        .exercise {
+            background-color: #c6ffe2;
+        }
+    </style>
+    <base target="_blank">
+</head>
+
+<body> <b>
+  <a href="http://lcc-cit.github.io/CS296N-CourseMaterials/index.html" target="_blank">CS296N
+        Web Development 2: ASP.NET</a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </b> <br>
+    <header>
+        <h1> <i> Troubleshooting<b> Deployment to Linux</b> </i> </h1>
+        <b>Topics by week </b>
+        <table style="width: 807px; height: 127px;" border="1">
+            <tbody>
+                <tr>
+                    <td id="week01">1. Intro to course and Identity<br>
+                    </td>
+                    <td id="week06">6. Midterm, Load Testing and Performance<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="week02">2. Authentication and Authorization</td>
+                    <td>7. Creating a Web Service<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="week03">3. Claims and Third Party Authentication<br>
+                    </td>
+                    <td id="week08" style="width: 395.333px;">8. Consuming a Web Service, Async / Await<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="week04" style="height: 27px">4. Web Security<br>
+                    </td>
+                    <td id="week09" style="height: 27px">9. Docker Containers<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="week05">5. Publishing to a production server</td>
+                    <td id="week10">10.&nbsp; Microservices<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+    </header>
+    <section>
+        <article id="forwarding">
+            <h2>Forwarding requests to Kestral from Apache</h2>
+            <h3>For a single web site</h3>
+            Apache Configuration files are in the /etc/httpd/conf.d/ directory. Any files with the .conf extension are processed in alphabetical order in addition to the module configuration files in the /etc/httpd/conf.modules.d/ directory.
+            <ol>
+                <li>Create a configuration file for your app.<br><i>Note that the example conf file below could be improved by using variables for the request type and log file names, and by specifying a domain.</i><br> myapp.conf:
+                    <pre>
+&lt;VirtualHost *:*&gt;
+  RequestHeader set X-Forwarded-Proto "http"
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:80&gt;
+  ProxyPreserveHost On
+  ProxyPass / http://127.0.0.1:5000/
+  ProxyPassReverse / http://127.0.0.1:5000/
+  ErrorLog /var/log/apache2/myapp-error.log
+  CustomLog /var/log/apache2/myapp-access.log common
+&lt;/VirtualHost&gt;
+                    </pre>
+                    <ul>
+                        <li><b>ProxyPreserveHost</b> - Instructs Apache mod_proxy, when acting as a reverse proxy, to preserve the original host header from the client browser when constructing the proxied request to send to the backend server.</li>
+                        <li><b>ProxyPass</b> - Specifies the mapping of incoming requests to a backend server.</li>
+                        <li><b>ProxyPassReverse</b> - Ensures that Location headers generated from the backend are modified to point to the reverse proxy, instead of back to itself.</li>
+                    </ul>
+                    <br>
+                </li>
+                <li>Restart Apache:<br>
+                    <pre>
+sudo systemctl restart httpd
+sudo systemctl enable httpd
+                </pre></li>
+            </ol>
+        </article>
+        <article id="notes">
+            <h2>Notes:</h2>
+            <h3>Find the Apache Web Roots</h3>
+            On CentOs:
+            <pre> 
+# grep -i 'DocumentRoot' /etc/httpd/conf/httpd.conf
+            </pre>
+        </article>
+        <article id="references">
+            <h2>References</h2>
+            <ul>
+                <li>Staff. 2019. <a href="https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html" target="_blank">
+                  Reverse Proxy Guide</a>. Apache HTTP Server Project.</li>
+                <li>osterik. 2017. <a href="https://superuser.com/questions/739736/apache-as-reverse-proxy-for-multiple-destinations-and-one-default-destination" target="_blank">
+                  Apache as reverse proxy for multiple destinations and one default destination</a>. Superuser</li>
+                <li>H., Chris. 2018. <a href="https://stackoverflow.com/questions/50361316/conditional-reverse-proxy-in-apache" target="_blank">Conditional reverse proxy in apache</a>. Stack Overflow.</li>
+                <li>Contributors. 2018. <a href="https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd" target="_blank">.NET Core Application Deployment</a>. Microsoft.</li>
+                <li>Dykstra, Halter, Smith, and Ross. 2019. <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&amp;tabs=aspnetcore2x" target="_blank">Web Server Implementations in .NET Core</a>. Microsoft.</li>
+                <li>Fritz, Jeffery T. 2017. <a href="https://www.telerik.com/blogs/build-deploy-asp-net-core-application-apache" target="_blank">Build and Deploy Your ASP.NET Core Application with Apache</a>. Telerik.</li>
+            </ul>
+        </article>
+        <hr>
+    </section>
+    <footer>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
+        </a> <br>
+        <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET
+        Core MVC Lecture Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://birdsbits.blog" property="cc:attributionName" rel="cc:attributionURL">Brian
+        Bird</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>. </footer>
+    <hr>
+</body>
+
+</html>
