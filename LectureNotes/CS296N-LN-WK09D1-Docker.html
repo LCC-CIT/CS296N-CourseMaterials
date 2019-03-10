@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AJAX REST Client</title>
+    <title>Docker</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style type="text/css">
         #week09 {
@@ -21,7 +21,7 @@
             background-color: #c6ffe2;
         }
     </style>
-	<base target="_blank">
+    <base target="_blank">
 </head>
 
 <body>
@@ -48,8 +48,7 @@
                         <tr>
                             <td id="week03">3. Claims and Third Party Authentication<br>
                             </td>
-                            <td id="week08" style="width: 395.333px;">8. 
-							Consuming a Web Service<br>
+                            <td id="week08" style="width: 395.333px;">8. Consuming a Web Service<br>
                             </td>
                         </tr>
                         <tr>
@@ -83,34 +82,73 @@
                 <h2>Overview</h2>
                 <p>This week you will learn how to...</p>
                 <ul>
+                    <li><a href="#setup">Set up Docker</a></li>
+                    <li><a href="#howto">How to Deploy a Web App in a Container</a></li>
                     <li><a href="#examples">Examples</a></li>
                     <li><a href="#references">References</a></li>
                 </ul>
             </article>
+            <article>
+                Solving the "but it worked on my machine" problem.
+            </article>
         </section>
-        <hr>
+        <section id="setup">
+            <h2>Set up Docker</h2>
+            You will need to install the Docker developer environment on your development machine and the Docker run-time on the server. There are several versions of the development environment. You need to choose the one that matches your operating system:
+            <ul>
+                <li>
+                    Windows 7&mdash;<a>Docker Tools for Windows</a>
+                    <br>Installs VirtualBox on your system so you can run your choice of host operating system for the container.
+                </li>
+                <li>
+                    Windows 10&mdash;<a>Docker Desktop for Windows 10</a>
+                    <br>Lets you choose whether to use Windows as the container OS or Linux</li>
+                <li>
+                    Mac OS&mdash;<a>Docker Desktop for Mac OS</a>
+                    <br>Containers use Linux as the OS.
+                </li>
+            </ul>
+        </section>
+        <section id="howto">
+            <hr>
+            <h2>Deploy a Web App in a Container</h2>
+            We will deploy a framework-dependent ASP.NET Core web app to Linux in a Docker container.
+            <ol>
+                <li>
+                    First...
+                </li>
+            </ol>
+        </section>
         <section>
             <hr>
             <article id="examples">
                 <h2>Examples</h2>
+                <ul>
+                    <li><a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/Docker" target="_blank">
+                        BookInfo&mdash;Docker branch</a><br> Web app with Dockerfile and MariaDB connection string
+                    </li>
+                </ul>
             </article>
             <hr>
             <article id="references">
                 <h2>References</h2>
                 <ul>
                     <li>Addie, S. &amp; Anderson, R. (2018).
-					<a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-2.2">
+                        <a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-2.2">
 					Host ASP.NET Core in Docker Containers</a> in
-                        <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>.</li>
-					<li>
-					<a href="https://docs.docker.com/engine/examples/dotnetcore/">
+                        <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>. Microsoft.</li>
+                    <li>
+                        2019. <a href="https://docs.docker.com/get-started/" target="_blank">Get Started with Docker</a>. Docker.
+                    </li>
+                    <li>
+                        <a href="https://docs.docker.com/engine/examples/dotnetcore/">
 					Dockerize a .NET Core Application</a> in
-					<a href="https://docs.docker.com/engine/examples/dotnetcore/">
-					Docker Docs</a>, Sample Applications</li>
+                        <a href="https://docs.docker.com/engine/examples/dotnetcore/">
+					Docker Docs</a>, Sample Applications. Docker.</li>
                     <li>Fernandez, D., Lyalin, D. &amp; Kaim L. (2015). "
-                    <a href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers" target="_blank">
-                      Docker Overview for .NET Developers</a>," on 
-					<a href="https://channel9.msdn.com/" target="_blank">Channel 9</a></li>
+                        <a href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers" target="_blank">
+                      Docker Overview for .NET Developers</a>," on
+                        <a href="https://channel9.msdn.com/" target="_blank">Channel 9</a> Microsoft.</li>
                 </ul>
             </article>
         </section>
