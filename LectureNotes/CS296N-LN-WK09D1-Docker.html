@@ -94,7 +94,7 @@
         </section>
         <section id="setup">
             <h2>Set up Docker</h2>
-            You will need to install the Docker developer environment on your development machine and the Docker run-time on the server. There are several versions of the development environment. You need to choose the one that matches your operating system:
+            You will need to install the Docker environment on your development machine and on the server. There are several versions of the development environment. You need to choose the one that matches your operating system:
             <ul>
                 <li>
                     Windows 7&mdash;<a>Docker Tools for Windows</a>
@@ -107,16 +107,48 @@
                     Mac OS&mdash;<a>Docker Desktop for Mac OS</a>
                     <br>Containers use Linux as the OS.
                 </li>
+                <li>
+                    Linux&mdash;<a>Packages are available for all major distributions</a>
+                </li>
             </ul>
         </section>
         <section id="howto">
             <hr>
             <h2>Deploy a Web App in a Container</h2>
+            <h3>On your development machine:</h3>
             We will deploy a framework-dependent ASP.NET Core web app to Linux in a Docker container.
             <ol>
                 <li>
-                    First...
+                    Create a file named <i>Dockerfile</i> in the folder with your web app project.<br> Example:
+                    <br>
+                    <code>
+                            FROM mcr.microsoft.com/dotnet/core/sdk:2.2<br>
+                            WORKDIR /root/<br>
+                            COPY bin/pub/ /root/<br>
+                            RUN dotnet restore<br>
+                            ENV ASPNETCORE_URLS="http://*:80"<br>
+                            EXPOSE 80/tcp<br>
+                            ENTRYPOINT ["dotnet", "BookInfo.dll"]<br>
+                    </code>
+                    <br>
+                    <ul>
+                        <li>FROM&mdash;initializes a new build stage and sets the Base Image for the remaining instructions.</li>
+                        <li>WORKDIR&mdash;sets the working directory for any remaining RUN, CMD, ENTRYPOINT, COPY, and ADD Dockerfile instructions.</li>
+                        <li>COPY&mdash;copies new files or directories from the source path and adds them to the destination container filesystem. </li>
+                        <li>RUN&mdash;executes any commands and commits the results. The resulting committed image is used for the next step.</li>
+                        <li>ENTRYPOINT&mdash;allows the container to run as an executable.</li>
+                    </ul>
+                    <br>
                 </li>
+                <li>Build and run your containerized app<br>
+                    <pre>
+docker build -t dotnetapp-dev .
+docker run --rm dotnetapp-dev BookInfo from Docker
+                </pre></li>
+            </ol>
+            <h3>On the server:</h3>
+            <ol>
+                <li>Blah blah</li>
             </ol>
         </section>
         <section>
@@ -135,20 +167,19 @@
                 <ul>
                     <li>Addie, S. &amp; Anderson, R. (2018).
                         <a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-2.2">
-					Host ASP.NET Core in Docker Containers</a> in
-                        <a href="https://docs.microsoft.com/en-us/aspnet/?view=aspnetcore-2.2#pivot=core&panel=core_overview">ASP.NET Core 2.2 Documentation</a>. Microsoft.</li>
+					        Host ASP.NET Core in Docker Containers</a>. ASP.NET Core 2.2 Documentation, Microsoft.</li>
+                    <li>Contributors. 2018. <a href="https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-core" target="_blank">
+                            How to containerize a .NET Core application</a>. .NET Core Guide, Microsoft</li>
                     <li>
-                        2019. <a href="https://docs.docker.com/get-started/" target="_blank">Get Started with Docker</a>. Docker.
+                        Staff. 2019. <a href="https://docs.docker.com/get-started/" target="_blank">
+                            Get Started with Docker</a>. Docker.
                     </li>
-                    <li>
+                    <li>Staff. 2019.
                         <a href="https://docs.docker.com/engine/examples/dotnetcore/">
-					Dockerize a .NET Core Application</a> in
-                        <a href="https://docs.docker.com/engine/examples/dotnetcore/">
-					Docker Docs</a>, Sample Applications. Docker.</li>
-                    <li>Fernandez, D., Lyalin, D. &amp; Kaim L. (2015). "
+					Dockerize a .NET Core Application</a>. Sample Applications, Docker.</li>
+                    <li>Fernandez, D., Lyalin, D. &amp; Kaim L. 2015.
                         <a href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers" target="_blank">
-                      Docker Overview for .NET Developers</a>," on
-                        <a href="https://channel9.msdn.com/" target="_blank">Channel 9</a> Microsoft.</li>
+                      Docker Overview for .NET Developers</a> Channel 9, Microsoft.</li>
                 </ul>
             </article>
         </section>
