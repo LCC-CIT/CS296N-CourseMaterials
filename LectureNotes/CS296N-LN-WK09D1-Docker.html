@@ -2,202 +2,191 @@
 <html>
 
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="content-type">
-<meta content="width=device-width, initial-scale=1" name="viewport">
-<title>Docker</title>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-#week09 {
-	background-color: #f8ff2e;
-}
-code {
-	display: block;
-	color: darkblue;
-	background-color: lightgoldenrodyellow;
-}
-.exercise {
-	background-color: #c6ffe2;
-}
-</style>
-<base target="_blank">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Docker</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        #week09 {
+            background-color: #f8ff2e;
+        }
+        
+        code {
+            display: block;
+            color: darkblue;
+            background-color: lightgoldenrodyellow;
+        }
+        
+        .exercise {
+            background-color: #c6ffe2;
+        }
+    </style>
+    <base target="_blank">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<header>
-		<a href="../index.html" target="_blank"><b>CS296N Web Development 2: ASP.NET</b></a>
-		<br><br>
-		<div class="table-responsive">
-			<table class="table-bordered">
-				<caption style="caption-side: top;">Weekly Topics</caption>
-				<tr>
-					<td id="week01">1. Intro to course and Identity<br></td>
-					<td id="week06">6. Load Testing and Performance, Midterm Quiz<br>
-					</td>
-				</tr>
-				<tr>
-					<td id="week02">2. Authentication and Authorization</td>
-					<td id="week07">7. Creating a Web Service<br></td>
-				</tr>
-				<tr>
-					<td id="week03">3. Claims and Third Party Authentication<br>
-					</td>
-					<td id="week08" style="width: 395.333px;">8. Consuming a Web 
-					Service<br></td>
-				</tr>
-				<tr>
-					<td id="week04">4. Web Security<br></td>
-					<td id="week09">9. Docker Containers<br></td>
-				</tr>
-				<tr>
-					<td id="week05">5. Publishing to a Production Server</td>
-					<td id="week10">10.&nbsp; Microservices<br></td>
-				</tr>
-			</table>
-		</div>
-		<br>
-	</header>
-	<section>
-		<article>
-			<h1>Using Docker Containers</h1>
-			<hr>
-			<h2>Announcements</h2>
-			<ul>
-				<li>Term Project</li>
-			</ul>
-		</article>
-		<hr>
-		<article>
-			<h2>Overview</h2>
-			<p>This week you will learn how to...</p>
-			<ul>
-				<li><a href="#setup">Set up Docker</a></li>
-				<li><a href="#howto">How to Deploy a Web App in a Container</a></li>
-				<li><a href="#examples">Examples</a></li>
-				<li><a href="#references">References</a></li>
-			</ul>
-		</article>
-		<article>
-			Solving the "but it worked on my machine" problem.
-		</article>
-	</section>
-	<section id="setup">
-		<h2>Set up Docker</h2>
-		You will need to install the Docker environment on your development machine 
-		and on the server. There are several versions of the development environment. 
-		You need to choose the one that matches your operating system:
-		<ul>
-			<li>Windows 7&mdash;<a>Docker Tools for Windows</a> <br>Installs VirtualBox 
-			on your system so you can run your choice of host operating system for 
-			the container. </li>
-			<li>Windows 10&mdash;<a>Docker Desktop for Windows 10</a> <br>Lets you 
-			choose whether to use Windows as the container OS or Linux</li>
-			<li>Mac OS&mdash;<a>Docker Desktop for Mac OS</a> <br>Containers use 
-			Linux as the OS. </li>
-			<li>Linux&mdash;<a>Packages are available for all major distributions</a>
-			</li>
-		</ul>
-	</section>
-	<section id="howto">
-		<hr>
-		<h2>Deploy a Web App in a Container</h2>
-		<h3>On your development machine:</h3>
-		We will deploy a framework-dependent ASP.NET Core web app to Linux in a 
-		Docker container.
-		<ol>
-			<li>Create a file named <i>Dockerfile</i> in the folder with your web 
-			app project.<br>Example: <br><code># download a base image from the 
+    <div class="container-fluid">
+        <header>
+            <a href="../index.html" target="_blank"><b>CS296N Web Development 2: ASP.NET</b></a>
+            <br><br>
+            <div class="table-responsive">
+                <table class="table-bordered">
+                    <caption style="caption-side: top;">Weekly Topics</caption>
+                    <tr>
+                        <td id="week01">1. Intro to course and Identity<br></td>
+                        <td id="week06">6. Load Testing and Performance, Midterm Quiz<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="week02">2. Authentication and Authorization</td>
+                        <td id="week07">7. Creating a Web Service<br></td>
+                    </tr>
+                    <tr>
+                        <td id="week03">3. Claims and Third Party Authentication<br>
+                        </td>
+                        <td id="week08" style="width: 395.333px;">8. Consuming a Web Service
+                            <br></td>
+                    </tr>
+                    <tr>
+                        <td id="week04">4. Web Security<br></td>
+                        <td id="week09">9. Docker Containers<br></td>
+                    </tr>
+                    <tr>
+                        <td id="week05">5. Publishing to a Production Server</td>
+                        <td id="week10">10.&nbsp; Microservices<br></td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+        </header>
+        <section>
+            <article>
+                <h1>Using Docker Containers</h1>
+                <hr>
+                <h2>Announcements</h2>
+                <ul>
+                    <li>Term Project</li>
+                </ul>
+            </article>
+            <hr>
+            <article>
+                <h2>Overview</h2>
+                <p>This week you will learn how to...</p>
+                <ul>
+                    <li><a href="#setup">Set up Docker</a></li>
+                    <li><a href="#howto">How to Deploy a Web App in a Container</a></li>
+                    <li><a href="#examples">Examples</a></li>
+                    <li><a href="#references">References</a></li>
+                </ul>
+            </article>
+            <article>
+                Solving the "but it worked on my machine" problem.
+            </article>
+        </section>
+        <section id="setup">
+            <h2>Set up Docker</h2>
+            You will need to install the Docker environment on your development machine and on the server. There are several versions of the development environment. You need to choose the one that matches your operating system:
+            <ul>
+                <li>Windows 7&mdash;<a>Docker Tools for Windows</a> <br>Installs VirtualBox on your system so you can run your choice of host operating system for the container. </li>
+                <li>Windows 10&mdash;<a>Docker Desktop for Windows 10</a> <br>Lets you choose whether to use Windows as the container OS or Linux</li>
+                <li>Mac OS&mdash;<a>Docker Desktop for Mac OS</a> <br>Containers use Linux as the OS. </li>
+                <li>Linux&mdash;<a>Packages are available for all major distributions</a>
+                </li>
+            </ul>
+        </section>
+        <section id="howto">
+            <hr>
+            <h2>Deploy a Web App in a Container</h2>
+            <h3>On your development machine:</h3>
+            We will deploy a framework-dependent ASP.NET Core web app to Linux in a Docker container.
+            <ol>
+                <li>Create a file named <i>Dockerfile</i> in the folder with your web app project.<br>Example: <br><code># download a base image from the 
 			repository<br>FROM mcr.microsoft.com/dotnet/core/sdk:2.2<br> 
 			# set the working directory for the Docker image<br>
 			WORKDIR /app<br><br># copy the project file into the image and restore dependencies<br>COPY BookInfo.csproj ./<br>RUN dotnet restore<br>
 			<br># copy the source code and build it<br>COPY . ./<br>RUN dotnet publish -c Release -o out<br>
 			<br># run the web app<br>ENTRYPOINT ["dotnet", "out/BookInfo.dll"] </code>
-			<br>
-			<ul>
-				<li>FROM&mdash;initializes a new build stage and sets the Base Image 
-				for the remaining instructions.</li>
-				<li>WORKDIR&mdash;sets the working directory for any remaining RUN, 
-				CMD, ENTRYPOINT, COPY, and ADD Dockerfile instructions.</li>
-				<li>COPY&mdash;copies new files or directories from the source path 
-				and adds them to the destination container filesystem. </li>
-				<li>RUN&mdash;executes any commands and commits the results. The 
-				resulting committed image is used for the next step.</li>
-				<li>ENTRYPOINT&mdash;allows the container to run as an executable.</li>
-			</ul>
-			<br></li>
-			<li>Build the image in the current folder and give it a name, but no 
-			tag. (The tag is optional and could be given in the ‘name:tag’ format.)<br>
-			<pre>docker build -t dotnetapp-dev .       </pre>
-			</li>
-			<li>Run the containerized app
-			<pre> docker run --rm dotnetapp-dev BookInfo from Docker  
+                    <br>
+                    <ul>
+                        <li>FROM&mdash;initializes a new build stage and sets the Base Image for the remaining instructions.</li>
+                        <li>WORKDIR&mdash;sets the working directory for any remaining RUN, CMD, ENTRYPOINT, COPY, and ADD Dockerfile instructions.</li>
+                        <li>COPY&mdash;copies new files or directories from the source path and adds them to the destination container filesystem. </li>
+                        <li>RUN&mdash;executes any commands and commits the results. The resulting committed image is used for the next step.</li>
+                        <li>ENTRYPOINT&mdash;allows the container to run as an executable.</li>
+                    </ul>
+                    <br></li>
+                <li>Build the image in the current folder and give it a name, but no tag. (The tag is optional and could be given in the ‘name:tag’ format.)<br>
+                    <pre>docker build -t dotnetapp-dev .       </pre>
+                </li>
+                <li>Run the containerized app
+                    <pre> docker run --rm dotnetapp-dev BookInfo from Docker  
                 </pre>
-			</li>
-			<li>Upload the image to a registry</li>
-		</ol>
-		<h3>On the server:</h3>
-		<ol>
-			<li>Blah blah</li>
-		</ol>
-	</section>
-	<section>
-		<hr>
-		<article id="examples">
-			<h2>Examples</h2>
-			<ul>
-				<li>
-				<a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/Docker" target="_blank">
-				BookInfo&mdash;Docker branch</a><br>Web app with Dockerfile and 
-				MariaDB connection string </li>
-			</ul>
-		</article>
-		<hr>
-		<article id="references">
-			<h2>References</h2>
-			<ul>
-				<li>Addie, S. &amp; Anderson, R. (2018).
-				<a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-2.2">
-				Host ASP.NET Core in Docker Containers</a>. ASP.NET Core 2.2 Documentation, 
-				Microsoft.</li>
-				<li>Contributors. 2018.
-				<a href="https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-core" target="_blank">
-				How to containerize a .NET Core application</a>. .NET Core Guide, 
-				Microsoft</li>
-				<li>Staff. 2019.
-				<a href="https://docs.docker.com/get-started/" target="_blank">Get 
+                </li>
+                <li>Upload the image to a registry</li>
+            </ol>
+            <h3>On the server:</h3>
+            <ol>
+                <li>Blah blah</li>
+            </ol>
+        </section>
+        <section>
+            <hr>
+            <article id="examples">
+                <h2>Examples</h2>
+                <ul>
+                    <li>
+                        <a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/Docker" target="_blank">
+				BookInfo&mdash;Docker branch</a><br>Web app with Dockerfile and MariaDB connection string </li>
+                </ul>
+            </article>
+            <hr>
+            <article id="references">
+                <h2>References</h2>
+                <ul>
+                    <li>Addie, S. &amp; Anderson, R. (2018).
+                        <a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-2.2">
+				Host ASP.NET Core in Docker Containers</a>. ASP.NET Core 2.2 Documentation, Microsoft.
+                    </li>
+                    <li>Contributors. 2018.
+                        <a href="https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-core" target="_blank">
+				How to containerize a .NET Core application</a>. .NET Core Guide, Microsoft
+                    </li>
+                    <li>Staff. 2019.
+                        <a href="https://docs.docker.com/get-started/" target="_blank">Get 
 				Started with Docker</a>. Docker. </li>
-				<li>Staff. 2019.
-				<a href="https://docs.docker.com/engine/examples/dotnetcore/">Dockerize 
+                    <li>Staff. 2019.
+                        <a href="https://docs.docker.com/engine/examples/dotnetcore/">Dockerize 
 				a .NET Core Application</a>. Sample Applications, Docker.</li>
-				<li>Fernandez, D., Lyalin, D. &amp; Kaim L. 2015.
-				<a href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers" target="_blank">
+                    <li>Fernandez, D., Lyalin, D. &amp; Kaim L. 2015.
+                        <a href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers" target="_blank">
 				Docker Overview for .NET Developers</a>. Video. Channel 9, Microsoft.</li>
-				<li>Dharmapuri, Likhit. 2017. 
-				<a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e">ASP.NET core and MySQL with 
+                    <li>Dharmapuri, Likhit. 2017.
+                        <a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e">ASP.NET core and MySQL with 
 				Docker</a>. Medium.<br>
-				<a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e" target="_blank">
+                        <a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e" target="_blank">
 				Part 1</a>,
-				<a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-2-ee7fba1fc508">
+                        <a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-2-ee7fba1fc508">
 				Part 2</a>, and
-				<a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-3-e3827e006e3">
+                        <a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-3-e3827e006e3">
 				Part 3</a>.</li>
-			</ul>
-		</article>
-	</section>
-	<hr>
-	<footer>
-		<div style="float: left; padding-right: 5px;">
-			<a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">
-			<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" style="border-width: 0"></a>
-		</div>
-		<span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">These ASP.NET 
+                </ul>
+            </article>
+        </section>
+        <hr>
+        <footer>
+            <div style="float: left; padding-right: 5px;">
+                <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">
+                    <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" style="border-width: 0"></a>
+            </div>
+            <span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">These ASP.NET 
 		Core MVC Lecture Notes</span> are licensed under a
-		<a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">Creative 
+            <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">Creative 
 		Commons Attribution-ShareAlike 4.0 International License</a>. Written by
-		<a href="https://profbird.online" property="cc:attributionName" rel="cc:attributionURL" xmlns:cc="http://creativecommons.org/ns#">
+            <a href="https://profbird.online" property="cc:attributionName" rel="cc:attributionURL" xmlns:cc="http://creativecommons.org/ns#">
 		Brian Bird</a>, winter 2019.</footer>
-	<hr></div>
+        <hr>
+    </div>
 
 </body>
 
