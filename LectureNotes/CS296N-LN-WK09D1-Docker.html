@@ -133,6 +133,24 @@ name, but no tag. (The tag is optional and could be given in the
             <ol>
                 <li>Blah blah</li>
             </ol>
+        	<h3>Notes</h3>
+			<h4>Docker Toolbox for Windows</h4>
+			<ul>
+				<li>Start by running the Docker Quickstart Terminal, this will 
+				open a console on a Linux VM. It's uname is MINGW64. </li>
+				<li>The Windows Users folder is mounted in the Docker Linux VM 
+				at /c/Users</li>
+				<li>Build the Docker image in step 2 above by first navigating 
+				to the web app's project folder, for example:<br>
+				<pre>cd c/Users/Student/Documents/GitHub/CS296N-BookInfo-Core-2/BookInfo</pre>
+				Be sure to use forward slashes.</li>
+				<li>After building your image, you may get this warning:<br><pre>SECURITY WARNING: You are building a
+dows Docker host. All files and dire
+wxr-xr-x' permissions. It is recomme
+or sensitive files and directories.</pre>
+This is becuase the files you copied from Windows to the Linux VM have permissions that are considered a security risk. 
+You should change the permissions to improve security, but the image will still work even if you don't.</li>
+			</ul>
         </section>
         <section>
             <hr>
