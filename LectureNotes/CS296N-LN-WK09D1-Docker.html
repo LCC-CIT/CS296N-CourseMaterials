@@ -3,7 +3,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Docker</title>
-    <link href="CS296N-LN-WK09D1-Docker_files/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style type="text/css">
         #week09 {
             background-color: #f8ff2e;
@@ -19,7 +19,6 @@
             background-color: #c6ffe2;
         }
     </style>
-    <!-- base href="file:///C:/Users/Student/Documents/GitHub/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK09D1-Docker.html" -->
 </head>
 
 <body>
@@ -89,10 +88,10 @@ development machine and on the server. There are several versions of the
  development environment. You need to choose the one that matches your 
 operating system:
             <ul>
-                <li>Windows 7, Windows 10 Home—<a>Docker Tools for Windows</a> <br>Installs VirtualBox on your system so you can run your choice of host operating system for the container. </li>
-                <li>Windows 10 Pro, Enterprise, or Education—<a>Docker Desktop for Windows 10</a> <br>Lets you choose whether to use Windows as the container OS or Linux</li>
-                <li>Mac OS—<a>Docker Desktop for Mac OS</a> <br>Containers use Linux as the OS. </li>
-                <li>Linux—<a>Packages are available for all major distributions</a>
+                <li>Windows 7, Windows 10 Home—<a href="https://docs.docker.com/toolbox/toolbox_install_windows/">Docker Toolbox for Windows</a> <br>Installs VirtualBox on your system so you can run your choice of host operating system for the container. </li>
+                <li>Windows 10 Pro, Enterprise, or Education—<a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docker Desktop for Windows 10</a> <br>Lets you choose whether to use Windows as the container OS or Linux</li>
+                <li>Mac OS 10.12 or newer—<a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac">Docker Desktop for Mac OS</a><br>Containers use Linux as the OS. </li>
+                <li>Linux—Packages are available for all major distributions
                 </li>
             </ul>
         </section>
@@ -102,7 +101,8 @@ operating system:
             <h3>On your development machine:</h3>
             We will deploy a framework-dependent ASP.NET Core web app to Linux in a Docker container.
             <ol>
-                <li>Create a file named <i>Dockerfile</i> in the folder with your web app project.<br>Example: <br><code># download a base image from the 
+                <li>Create a file named <i>Dockerfile</i> in the folder with your web app project.<br>Example: <br>
+                <code># download a base image from the 
 			repository<br>FROM mcr.microsoft.com/dotnet/core/sdk:2.2<br> 
 			# set the working directory for the Docker image<br>
 			WORKDIR /app<br><br># copy the project file into the image and restore dependencies<br>COPY BookInfo.csproj ./<br>RUN dotnet restore<br>
@@ -114,7 +114,8 @@ operating system:
                         <li>WORKDIR—sets the working directory for any remaining RUN, CMD, ENTRYPOINT, COPY, and ADD Dockerfile instructions.</li>
                         <li>COPY—copies new files or directories from the source path and adds them to the destination container filesystem. </li>
                         <li>RUN—executes any commands and commits the results. The resulting committed image is used for the next step.</li>
-                        <li>ENTRYPOINT—allows the container to run as an executable.</li>
+                        <li>ENTRYPOINT—specifies the command to run when the 
+						container starts, dotnet, and any arguments.</li>
                     </ul>
                     <br></li>
                 <li>Build the image in the current folder and give it a 
@@ -123,8 +124,8 @@ name, but no tag. (The tag is optional and could be given in the
                     <pre>docker build -t dotnetapp-dev .       </pre>
                 </li>
                 <li>Run the containerized app
-                    <pre> docker run --rm dotnetapp-dev BookInfo from Docker  
-                </pre>
+                    <pre> docker run --rm dotnetapp-dev BookInfo from Docker</pre>
+                Note that we have not provided a database for the app, so any database operations will fail at this point.
                 </li>
                 <li>Upload the image to a registry</li>
             </ol>
