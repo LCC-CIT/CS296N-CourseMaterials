@@ -134,12 +134,41 @@ name, but no tag. (The tag is optional and could be given in the
                 <li>Blah blah</li>
             </ol>
         	<h3>Notes</h3>
+			<h4>Testing an App that Requires a Database</h4>
+			<p>The Docker base image for the ASP.NET Core SDK, which is the one 
+			we are using, does not include a database engine, so our app will 
+			fail at startup when it tires to set up a database connection. To 
+			solve this, I added code to check for the environment variable, 
+			ASPNETCORE_ENVIRONMENT is set to Development_NoDB which causes EF to 
+			simulate a database in memory.</p>
+			<code>public class Startup<br>{<br>&nbsp;&nbsp; private 
+			IHostingEnvironment hostingEnvironment;<br>&nbsp;&nbsp; // 
+			Additional code omitted<br><br>&nbsp;&nbsp; public void 
+			Configure(IApplicationBuilder app, IHostingEnvironment env, 
+			ILoggerFactory loggerFactory)<br>&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			hostingEnvironment = env; // set instance variable for use in 
+			ConfigureServices<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Additional 
+			code omitted<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp; public void 
+			ConfigureServices(IServiceCollection services)<br>&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			if (hostingEnvironment.IsEnvironment("Development_NoDB")) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			services.AddDbContext&lt;ApplicationDbContext&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			options =&gt; options.UseInMemoryDatabase("TestDb"));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Additional code omitted</code>
+			<h4>&nbsp;</h4>
+			<p>To test this code in Windows, set the environment variable from 
+			the from a Windows console like this:</p>
+			<pre>C:\Users\Student&gt;set ASPNETCORE_ENVIRONMENT=Development_NoDB</pre>
+			<p>To set the environment variable in the container, add this line to the Dockerfile anywhere before the ENTRYPOINT 
+			command:</p>
+			<code>ENV ASPNETCORE_ENVIRONMENT Development_NoDB</code>
+			<br>
 			<h4>Docker Toolbox for Windows</h4>
 			<ul>
 				<li>Start by running the Docker Quickstart Terminal, this will 
 				open a console on a Linux VM. It's uname is MINGW64. </li>
 				<li>The Windows Users folder is mounted in the Docker Linux VM 
-				at /c/Users</li>
+				at /c/Users.<br>You can mount other Windows folders via the 
+				VirtualBox settings--see the Docker Toolbox documentation.</li>
 				<li>Build the Docker image in step 2 above by first navigating 
 				to the web app's project folder, for example:<br>
 				<pre>cd c/Users/Student/Documents/GitHub/CS296N-BookInfo-Core-2/BookInfo</pre>
