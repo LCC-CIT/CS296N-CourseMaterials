@@ -19,8 +19,8 @@
             background-color: #c6ffe2;
         }
     .auto-style1 {
-	font-family: "Courier New", Courier, monospace;
-}
+		font-family: "Courier New", Courier, monospace;
+	}
     </style>
 </head>
 
@@ -145,23 +145,23 @@ name, but no tag. (The tag is optional and could be given in the
 				</ul>
 				</li>
 				<li>Upload the image to Docker Hub or any other container 
-				registry.</li>
+				registry./li>
             </ol>
             <h3>On the server:</h3>
             <ol>
                 <li>Blah blah</li>
             </ol>
-        	<h3>Notes</h3>
+        	<h3>NNotes</h3>
 			<h4>Using an in-memory database for testing</h4>
 			<p>The Docker base image for the ASP.NET Core SDK, which is the one 
 			we are using, does not include a database engine, so our app will 
 			fail at startup when it tires to set up a database connection. To 
 			solve this, I added code to check an environment variable, 
 			ASPNETCORE_MEMDB, to see if it is set to "true" which causes EF to 
-			simulate a database in memory.<br>In the Startup class:</p>
+			simulate a database in memory.br>In the Startup class:</p>
 			<code>public void ConfigureServices(IServiceCollection services)<br>
-			{<br>&nbsp;&nbsp;&nbsp; if 
-			(Environment.GetEnvironmentVariable("ASPNETCORE_MEMDB").ToLower() 
+			{<br>&nbsp;&nbsp;&nbsp; 
+			if (Environment.GetEnvironmentVariable("ASPNETCORE_MEMDB").ToLower() 
 			=="true") {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 			services.AddDbContext&lt;ApplicationDbContext&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 			options =&gt; options.UseInMemoryDatabase("TestDb"));<br>&nbsp;&nbsp; }<br>&nbsp;&nbsp; 
@@ -196,7 +196,7 @@ You should change the permissions to improve security, but the image will still 
         <section>
             <hr>
             <article id="examples">
-                <h2>Examples</h2>
+                <h2>EExamples</h2>
                 <ul>
                     <li>
                         <a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/Docker" target="_blank">
@@ -213,7 +213,7 @@ You should change the permissions to improve security, but the image will still 
             </article>
             <hr>
             <article id="references">
-                <h2>References</h2>
+                <h2>References/h2>
                 <ul>
                     <li>Addie, S. &amp; Anderson, R. (2018).
                         <a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-2.2">
@@ -248,7 +248,7 @@ You should change the permissions to improve security, but the image will still 
         <footer>
             <div style="float: left; padding-right: 5px;">
                 <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">
-                    <img alt="Creative Commons License" src="CS296N-LN-WK09D1-Docker_files/88x31.png" style="border-width: 0"></a>
+                    <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" style="border-width: 0"></a>
             </div>
             <span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">These ASP.NET 
 		Core MVC Lecture Notes</span> are licensed under a
