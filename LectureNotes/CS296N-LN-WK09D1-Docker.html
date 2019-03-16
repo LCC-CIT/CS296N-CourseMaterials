@@ -101,34 +101,42 @@ operating system:
             <h3>On your development machine:</h3>
             We will deploy a framework-dependent ASP.NET Core web app to Linux in a Docker container.
             <ol>
-                <li>Create a file named <i>Dockerfile</i> in the folder with your web app project.<br>Example: <br>
-                <code># download a base image from the 
-			repository<br>FROM mcr.microsoft.com/dotnet/core/sdk:2.2<br> 
-			# set the working directory for the Docker image<br>
-			WORKDIR /app<br><br># copy the project file into the image and restore dependencies<br>COPY BookInfo.csproj ./<br>RUN dotnet restore<br>
-			<br># copy the source code and build it<br>COPY . ./<br>RUN dotnet publish -c Release -o out<br>
-			<br># run the web app<br>ENTRYPOINT ["dotnet", "out/BookInfo.dll"] </code>
-                    <br>
-                    <ul>
-                        <li>FROM—initializes a new build stage and sets the Base Image for the remaining instructions.</li>
-                        <li>WORKDIR—sets the working directory for any remaining RUN, CMD, ENTRYPOINT, COPY, and ADD Dockerfile instructions.</li>
-                        <li>COPY—copies new files or directories from the source path and adds them to the destination container filesystem. </li>
-                        <li>RUN—executes any commands and commits the results. The resulting committed image is used for the next step.</li>
-                        <li>ENTRYPOINT—specifies the command to run when the 
+                <li>Create a file named <i>Dockerfile</i> in the folder with your web app project.<br>Example: 
+				<br><code># download a base image from the 
+			repository<br>FROM mcr.microsoft.com/dotnet/core/sdk:2.2<br># set the working directory for the Docker image<br>WORKDIR /app<br>
+				<br># copy the project file into the image and restore dependencies<br>COPY BookInfo.csproj ./<br>RUN dotnet restore<br>
+				<br># copy the source code and build it<br>COPY . ./<br>RUN dotnet publish -c Release -o out<br>
+				<br># run the web app<br>ENTRYPOINT ["dotnet", "out/BookInfo.dll"] 
+				</code><br>
+				<ul>
+					<li>FROM—initializes a new build stage and sets the Base Image for the remaining instructions.</li>
+					<li>WORKDIR—sets the working directory for any remaining RUN, CMD, ENTRYPOINT, COPY, and ADD Dockerfile instructions.</li>
+					<li>COPY—copies new files or directories from the source path and adds them to the destination container filesystem. 
+					</li>
+					<li>RUN—executes any commands and commits the results. The resulting committed image is used for the next step.</li>
+					<li>ENTRYPOINT—specifies the command to run when the 
 						container starts, dotnet, and any arguments.</li>
-                    </ul>
-                    <br></li>
-                <li>Build the image in the current folder and give it a 
+				</ul>
+				<br></li>
+				<li>Build the image in the current folder and give it a 
 name, but no tag. (The tag is optional and could be given in the 
 ‘name:tag’ format.)<br>
-                    <pre>docker build -t dotnetapp-dev .       </pre>
-                </li>
-                <li>Run the containerized app
-                    <pre> docker run --rm dotnetapp-dev BookInfo from Docker</pre>
-                Note: Since there is no database application in the image, the 
-				web app will throw exceptions when it tries to access its 
-				database.<br>
-                </li>
+				<pre>docker build -t dotnetapp-dev .       </pre>
+				</li>
+				<li>Run the containerized app
+                    <pre> docker run --rm -p 80:5000 dotnetapp-dev BookInfo from Docker</pre>
+				Notes:
+				<ul>
+					<li>I set the port flag to map port 5000 inside the 
+					container to 80 outside the container since my web app is 
+					configured for port 5000.</li>
+					<li>Since there is no database application in the image, the 
+					web app will throw exceptions when it tries to access its 
+					database. But if you have an app that doesn't need a 
+					database, you can open your web browser and see the app's 
+					web page.<br></li>
+				</ul>
+				</li>
 				<li>Upload the image to Docker Hub or any other container 
 				registry.</li>
             </ol>
