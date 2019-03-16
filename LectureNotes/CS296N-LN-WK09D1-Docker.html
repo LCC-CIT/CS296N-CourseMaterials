@@ -125,9 +125,12 @@ name, but no tag. (The tag is optional and could be given in the
                 </li>
                 <li>Run the containerized app
                     <pre> docker run --rm dotnetapp-dev BookInfo from Docker</pre>
-                Note that we have not provided a database for the app, so any database operations will fail at this point.
+                Note: Since there is no database application in the image, the 
+				web app will throw exceptions when it tries to access its 
+				database.<br>
                 </li>
-                <li>Upload the image to a registry</li>
+				<li>Upload the image to Docker Hub or any other container 
+				registry.</li>
             </ol>
             <h3>On the server:</h3>
             <ol>
@@ -138,29 +141,23 @@ name, but no tag. (The tag is optional and could be given in the
 			<p>The Docker base image for the ASP.NET Core SDK, which is the one 
 			we are using, does not include a database engine, so our app will 
 			fail at startup when it tires to set up a database connection. To 
-			solve this, I added code to check for the environment variable, 
-			ASPNETCORE_ENVIRONMENT is set to Development_NoDB which causes EF to 
-			simulate a database in memory.</p>
-			<code>public class Startup<br>{<br>&nbsp;&nbsp; private 
-			IHostingEnvironment hostingEnvironment;<br>&nbsp;&nbsp; // 
-			Additional code omitted<br><br>&nbsp;&nbsp; public void 
-			Configure(IApplicationBuilder app, IHostingEnvironment env, 
-			ILoggerFactory loggerFactory)<br>&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-			hostingEnvironment = env; // set instance variable for use in 
-			ConfigureServices<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Additional 
-			code omitted<br>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp; public void 
-			ConfigureServices(IServiceCollection services)<br>&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-			if (hostingEnvironment.IsEnvironment("Development_NoDB")) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-			services.AddDbContext&lt;ApplicationDbContext&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-			options =&gt; options.UseInMemoryDatabase("TestDb"));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-			}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Additional code omitted</code>
+			solve this, I added code to check an environment variable, 
+			ASPNETCORE_MEMDB, to see if it is set to "true" which causes EF to 
+			simulate a database in memory.<br>In the Startup class:</p>
+			<code>public void ConfigureServices(IServiceCollection services)<br>
+			{<br>&nbsp;&nbsp;&nbsp; if 
+			(Environment.GetEnvironmentVariable("ASPNETCORE_MEMDB").ToLower() 
+			=="true") {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			services.AddDbContext&lt;ApplicationDbContext&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			options =&gt; options.UseInMemoryDatabase("TestDb"));<br>&nbsp;&nbsp; }<br>&nbsp;&nbsp; 
+			// Additional code omitted</code>
 			<h4>&nbsp;</h4>
 			<p>To test this code in Windows, set the environment variable from 
 			the from a Windows console like this:</p>
-			<pre>C:\Users\Student&gt;set ASPNETCORE_ENVIRONMENT=Development_NoDB</pre>
+			<pre>C:\Users\Student&gt;set ASPNETCORE_MEMDB=true</pre>
 			<p>To set the environment variable in the container, add this line to the Dockerfile anywhere before the ENTRYPOINT 
 			command:</p>
-			<code>ENV ASPNETCORE_ENVIRONMENT Development_NoDB</code>
+			<code>ENV ASPNETCORE_MEMDB true</code>
 			<br>
 			<h4>Docker Toolbox for Windows</h4>
 			<ul>
