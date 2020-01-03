@@ -1,10 +1,6 @@
-# Syllabus for CS296N
+# Syllabus for Web Development 2: ASP.NET
 
-Web Development 2: ASP.NET
-
-Winter 2020
-
-
+CS296N, winter 2020
 
 | Section   | CRN 32222             |      | Instructor   | Brian Bird            |
 | --------- | --------------------- | ---- | ------------ | --------------------- |
@@ -17,7 +13,7 @@ Winter 2020
 
 ### Course Description
 
-This course builds on the basic concepts of ASP.NET Core MVC web development covered in CS295N, to cover topics including security, web services, and DevOps.
+This course builds on the basic concepts of ASP.NET Core MVC web development covered in CS295N, to cover topics including security, web APIs, and DevOps.
 
 ### Learning Outcome
 
@@ -66,17 +62,16 @@ The additional resources are available on the following Microsoft web sites:
 
 #### Software
 
-The hardware and software required for the course are available to all students in the CIT Main Lab on campus. You paid a fee when you registered for this course that provides you with unlimited access to CIT lab facilities. 
+Visual Studio 2019 will be used for example code and lab assignments. You may obtain Visual Studio through Azure Dev Tools for Teaching, or use the Community Edition which is available for Windows or Mac OS as a free download from Microsoft at [www.visualstudio.com/en-us/products/visual-studio-community-vs](https://visualstudio.microsoft.com/vs/community/).
 
-Visual Studio 2017 will be the development environment provided in class and in the CIT Main Lab. This software can be obtained free of charge through your LCC Microsoft Imagine account (formerly Microsoft Dream Spark), [http://e5.onthehub.com/WebStore/Welcome.aspx?vsro=8&ws=EC37AD18-ED9B-E011-969D-0030487D8897](The hardware and software required for the course are available to all students in the CIT Main Lab on campus.  You paid a fee when you registered for this course that provides you with unlimited access to CIT lab facilities.   Visual Studio 2017 will be the development environment provided in class and in the CIT Main Lab.  This software can be obtained free of charge through your LCC Microsoft Imagine account (formerly Microsoft Dream Spark), http://e5.onthehub.com/WebStore/Welcome.aspx?vsro=8&ws=EC37AD18-ED9B-E011-969D-0030487D8897. You can download it or borrow the setup DVD from the CIT computer lab.  You may alternatively use Visual Studio 2017 Community edition which is a free download from Microsoft at www.visualstudio.com/en-us/products/visual-studio-community-vs. ). You can download it or borrow the setup DVD from the CIT computer lab. 
+####  Free and Discounted Software for Students
 
-You may alternatively use Visual Studio 2017 Community edition which is available for Windoes or Mac OS as a free download from Microsoft at [www.visualstudio.com/en-us/products/visual-studio-community-vs](https://visualstudio.microsoft.com/vs/community/).
-
-####  
+- **Azure Dev Tools for Teaching** (previously known as Microsoft Imagine Premium) is a subscription-based offering, paid for by the LCC CIT department, providing access to professional development and design tools, software, and services from Microsoft. 
+- [On The Hub](https://lanecc.onthehub.com/WebStore/ProductsByMajorVersionList.aspx?cmi_mnuMain=f189368a-f0a6-e811-8109-000d3af41938) has partnered with Microsoft, Adobe, IBM, Symantec, VmWare and other software publishers to offer discounted and free software for students and faculty.
 
 #### CIT Computer Lab
 
-The CIT Main lab (Bldg. 19, room 135) is equipped with computers which are available exclusively for students in the CIT department. There are tutors available in the lab to help you with your lab work. There is a schedule is posted on the large white board inside the lab which lists the tutors and the times they will be available.
+The CIT Main lab (Bldg. 19, room 135) is equipped with computers and software which are available exclusively for students in the CIT department. There are tutors available in the lab to help you with your lab work. There is a schedule is posted on the large white board inside the lab which lists the tutors and the times they will be available.
 
 ####  
 
@@ -115,27 +110,22 @@ Letter grades for the course will be determined by the following percentages:
 
 #### Late Work
 
-- The grade for assignments submitted after the due date will be reduced by 10%.
-- Quizzes and exams cannot be taken after the due date. Plan ahead!
-- Exceptions will only be made for illness or emergency situations
+- The grade for lab assignments submitted after the due date will be reduced by 10%.
+
+  Labs 1 through 7 won't be accepted late after week 9.
+
+- Quizzes cannot be taken after the due date.
+
+- Exceptions will only be made for illness or emergency situations.
+
+
 
 #### Weekly Learning Activities
 
-
-
-Wednesday
-
-
-
-- Finish the reading and take the quiz
--  The [code review](https://lcc-cit.github.io/CS296N-CourseMaterials/Labs/CodeReview.html) for your lab partner is due
-
-Sunday
-
-
-
-- Beta version of your lab assignment is due
-- Production version of last week's lab assignment is due
+| Week  |      | Tuesday     | Wednesday      | Thursday  |      | Saturday     | Sunday     |
+| ----- | ---- | ----------- | -------------- | --------- | ---- | ------------ | ---------- |
+| **1** |      |             | Reading quiz 1 |           |      |              | Beta 1 due |
+| **2** |      | Code review | Reading quiz 2 | Lab 1 due |      | Lab 1 Graded |            |
 
 
 
