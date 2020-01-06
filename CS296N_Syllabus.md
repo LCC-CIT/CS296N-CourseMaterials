@@ -125,7 +125,7 @@ Letter grades for the course will be determined by the following percentages:
 | Week  |      | Tuesday     | Wednesday      | Thursday  |      | Saturday     | Sunday     |
 | ----- | ---- | ----------- | -------------- | --------- | ---- | ------------ | ---------- |
 | **1** |      |             | Reading quiz 1 |           |      |              | Beta 1 due |
-| **2** |      | Code review | Reading quiz 2 | Lab 1 due |      | Lab 1 Graded |            |
+| **2** |      | Code review | Reading quiz 2 | Lab 1 due |      | Lab 1 Graded | Beta 2 due |
 
 
 
