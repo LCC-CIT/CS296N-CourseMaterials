@@ -25,7 +25,6 @@
 
 - This week, we will cover the "left over" topic from fall term, input validation.
 
-
 ------
 
 
@@ -42,38 +41,8 @@
 
   - Attributes are declarative.
 
-  - Attributes can be applied to assemblies (think DLLs), classes, methods, and properties. <!--Todo: clarify meaning of BindProperty-->
+  - Attributes can be applied to assemblies (think DLLs), classes, methods, and properties. 
 
-    ```C#
-    [BindProperty]
-    public Movie Movie { get; set; }
-    ```
-
-  - Attributes can accept arguments.
-
-    ```C#
-    [attribute(positional_parameters, name_parameter = value, ...)]
-    ```
-
-    - Example using positional parameters:
-
-    <!--Todo: clarify reason for using ObsoleteAttribute-->
-
-    ```C#
-    [ObsoleteAttribute("This method is deprecated", false)]
-    public void AnOutdatedMethod()
-    ```
-
-    - Example using named parameters:
-
-    <!--Todo: Explain the parts of this-->
-
-    ```C#
-    [ObsoleteAttribute(Message = "This method is deprecated", IsError = false)]public void AnOutdatedMethod()
-    ```
-
-    - API Reference: [ObsoleteAttribute](https://docs.microsoft.com/en-us/dotnet/api/system.obsoleteattribute?view=netcore-2.0)
-    
 
 ------
 
@@ -104,11 +73,9 @@
 
   - In HTTP Requests processed on the server (in case JavaScript is disabled in the browser).
 
-    <!--Todo: give instructions for this exercise  -->
-
     - Add a break-point to a request method to test this.
-    - Test this again after [disabling JavaScript](https://www.wikihow.com/Disable-JavaScript).
-
+- Test this again after [disabling JavaScript](https://www.wikihow.com/Disable-JavaScript).
+  
 - Validation Example:
   
   ```C#
