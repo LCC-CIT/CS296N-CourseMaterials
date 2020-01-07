@@ -17,7 +17,7 @@ Add validation using data annotations to your models. Use validation that makes 
 -   Add validation to at least six properties from any of your models.
 -   Use at least three different validation annotations.
 -   At least one property should have more than one validation annotation.
--   Write a Readme.md document that lists the model properties you validated and the controller methods where you did server-side validation. Put this in a Docs folder in the top level of your project.
+-   Write a Validation.md, or .txt, document that lists the model properties you validated and the controller methods where you did server-side validation. Put this in a Docs folder in the top level of your project.
 
 
 
