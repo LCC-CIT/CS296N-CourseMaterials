@@ -43,7 +43,6 @@
 
   - Attributes can be applied to assemblies (think DLLs), classes, methods, and properties. 
 
-
 ------
 
 
@@ -266,7 +265,7 @@ You will need to add a migration and update the database after adding validation
 
 - Textbook - *Pro ASP.NET Core MVC 2.0*, Adam Freeman, Apress, 2017.
   - Ch. 2 "Your First MVC Application", Adding Validation, pp. 38&ndash;45
-  - Ch. 27 "Model Validation"
+  - Ch. 27 "Model Validation", 
 - Microsoft tutorial, MVC Movies: [Model validation in ASP.NET Core MVC  and Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-3.1)
 - Reference: [System.ComponentModel.DataAnnotations Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netcore-2.1)&mdash;Contains a complete list of validation attributes.
 
