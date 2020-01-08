@@ -56,6 +56,8 @@ Reference: [HTML Helper Class](https://docs.microsoft.com/en-us/dotnet/api/micro
 
 ## Notes from reading Freeman (1/7/20)
 
+### Ch. 2
+
 - Validation based on validation attributes on the models is called *declarative validation*.
 
 - Custom error messages can be added to the validation attribute. For example:
@@ -93,5 +95,28 @@ Reference: [HTML Helper Class](https://docs.microsoft.com/en-us/dotnet/api/micro
 
   
 
+### Ch. 27
+
+Read: Specifying Validation Rules Using Metadata 864—868
+
+Skim 869–870, creating a custom validation attribute
+
+Read: 870—871, performing client side validation
 
 
+
+Javascript libraries need to be specified in the following order:
+
+```HTML
+@section scripts {
+<script asp-src-include="lib/jquery/dist/*.min.js"></script>
+<script asp-src-include="lib/jquery-validation/dist/jquery.*.min.js"></script>
+<script asp-src-include="lib/jquery-validation-unobtrusive/*.min.js"></script>
+}
+```
+
+
+
+## HTML data-* attribute
+
+The data-* attributes is used to store custom data. [w3Schools](https://www.w3schools.com/tags/att_global_data.asp)
