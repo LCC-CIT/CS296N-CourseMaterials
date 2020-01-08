@@ -141,7 +141,7 @@
 
 There are several ways you can perform validation in controller methods:
 
-- Explicit Validation: You add the validation code to a controller method yourself
+- Explicit Validation: You add the validation code to a controller method yourself and put values in the Modelstate dictionary.
 
   - Example: 
 
@@ -152,7 +152,7 @@ There are several ways you can perform validation in controller methods:
     }
     ```
 
-  - Model State Dictionary properties and methods:
+  - Modelstate dictionary properties and methods:
     - `AddModelError(property, message)`
     
       This method is used to record a model validation error for the specified property.
