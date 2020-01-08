@@ -51,3 +51,47 @@ To make this work, you need to use an HTML helper in the view:
 ```
 
 Reference: [HTML Helper Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.htmlhelper?view=aspnetcore-3.1)
+
+
+
+## Notes from reading Freeman (1/7/20)
+
+- Validation based on validation attributes on the models is called *declarative validation*.
+
+- Custom error messages can be added to the validation attribute. For example:
+
+  ```c#
+  [Required(ErrorMessage = "Please enter your name")]
+  ```
+
+- C# properties that have data types that are non-nullable by default will not automatically be treated as required by the validation tag-helpers in the browser or the Modelstate set in the controller.
+
+- If Modelstate is invalid in the controller, returning the view will provide the user with appropriate error messages.
+
+  ```C#
+    public ViewResult RsvpForm(GuestResponse guestResponse) {
+              if (ModelState.IsValid) {
+                  Repository.AddResponse(guestResponse);
+                  return View("Thanks", guestResponse);
+              } else {
+                  // there is a validation error
+                  return View();
+              }
+  ```
+
+  
+
+- CSS can be used to highlight fields based on the validation status:
+
+  ```css
+  .field-validation-error {color: #f00;}
+  .field-validation-valid { display: none;}
+  .input-validation-error { border: 1px solid #f00; background-color: #fee; }
+  .validation-summary-errors { font-weight: bold; color: #f00;}
+  .validation-summary-valid { display: none;}
+  ```
+
+  
+
+
+
