@@ -2,13 +2,13 @@
 
 # Validation of User Input
 
-| Topics by week                       |                                 |
-| ------------------------------------ | ------------------------------- |
-| 1. Input validation                  | 6. Load Testing and Performance |
-| 2. Intro to course and Identity      | 7. Creating a Web Service       |
-| 3. Authentication and authorization  | 8. Consuming a Web Service      |
-| 4. Publishing to a production server | 9. Docker containers            |
-| 5. Security                          | 10. Term project                |
+| Topics by week                          |                                 |
+| --------------------------------------- | ------------------------------- |
+| 1. Intro to course and Input validation | 6. Load Testing and Performance |
+| 2. Identity                             | 7. Creating a Web Service       |
+| 3. Authentication and authorization     | 8. Consuming a Web Service      |
+| 4. Publishing to a production server    | 9. Docker containers            |
+| 5. Security                             | 10. Term project                |
 
 
 
@@ -21,15 +21,13 @@
 
 ## Introduction
 
-- Announcements
-
 - This week, we will cover the "left over" topic from fall term, input validation.
 
 ------
 
 
 
-### Review
+### Review Concept for This Week's Topic
 
 #### C# Attributes
 
@@ -83,55 +81,75 @@
   public string Title { get; set; }
   ```
   
-- Common validation annotations:
 
-  - `[EmailAddress]` validates that a string property is formatted as an email address.
-  
-    ```c#
-    [EmailAddress]
-    public string Email { get; set; }
-    ```
-  
-  - `[Range]` validates that a property value is within a specified range.
-  
+
+
+#### Common validation annotations
+
+- `[EmailAddress]` validates that a string property is formatted as an email address.
+
+  ```c#
+  [EmailAddress]
+  public string Email { get; set; }
+  ```
+
+- `[Range]` validates that a property value is within a specified range.
+
+  ```C#
+  [Range(1, 10)]
+  public int Rating { get; set; }
+  ```
+
+- `[RegularExpression]` validates that a string matches a specified [regular expression](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions).
+
+  - Date example:
+
     ```C#
-    [Range(1, 10)]
-    public int Rating { get; set; }
+    [RegularExpression(@"^(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])/(20\d\d)$")]
+    public DateTime Birthday {get, set;}
     ```
-  
-  - `[RegularExpression]` validates that a string matches a specified [regular expression](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions).
-  
+
+    The regular expression above checks for date in *mm/dd/yyyy* format, for example, 01/19/2020.
+
+  - User name example: 
+
     ```c#
     [RegularExpression(@"^(([A-za-z]+[\s]{1}[A-za-z]+)|([A-Za-z]+))$")]
     public string UserName {get, set;}
     ```
-  
-    This regular expression checks for the following criteria:
-  
-    - UserName can contain the first and last name with a single space. 
-    - The last name is optional. If the last name is not present, then there shouldn’t be any space after the first name.
-    3. Only upper and lower case alphabets are allowed.
-    3. This example is from [Dot Net Tutorials, Regular Expression Attribute in ASP.NET MVC](https://dotnettutorials.net/lesson/regular-expression-attribute-mvc/)
-  
-  - `[Required]` validates that the property is not null.
-  
-    ```C#
-    [Required]
-    public string Name { get; set; }
-    ```
-  
-    
-  
-  - `[StringLength]`validates that a string property value doesn't exceed a specified length limit.
-  
-    ```C#
-    [StringLength(1000, MinimumLength = 10)]
-    public string ReviewText { get; set; }
-    ```
-  
-    
-  
-  For a complete list see:  [System.ComponentModel.DataAnnotations Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netcore-2.1)
+
+    The regular expression above checks for the following criteria:
+
+  - UserName can contain the first and last name with a single space. 
+  - The last name is optional. If the last name is not present, then there shouldn’t be any space after the first name.
+  3. Only upper and lower case alphabets are allowed.
+  3. This example is from [Dot Net Tutorials, Regular Expression Attribute in ASP.NET MVC](https://dotnettutorials.net/lesson/regular-expression-attribute-mvc/)
+
+- `[Required]` validates that the property is not null.
+
+  ```C#
+  [Required]
+  public string Name { get; set; }
+  ```
+
+- `[StringLength]`validates that a string property value doesn't exceed a specified length limit.
+
+  ```C#
+  [StringLength(1000, MinimumLength = 10)]
+  public string ReviewText { get; set; }
+  ```
+
+- For a complete list see:  [System.ComponentModel.DataAnnotations Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netcore-2.1)
+
+
+
+#### Custom error messages
+
+Custom error messages can be added to the validation attribute. For example:
+
+```c#
+[Required(ErrorMessage = "Please enter your name")]
+```
 
 
 
@@ -268,6 +286,7 @@ You will need to add a migration and update the database after adding validation
   - Ch. 27 "Model Validation", 
 - Microsoft tutorial, MVC Movies: [Model validation in ASP.NET Core MVC  and Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-3.1)
 - Reference: [System.ComponentModel.DataAnnotations Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netcore-2.1)&mdash;Contains a complete list of validation attributes.
+- Microsoft tutorial, Tag Helpers: [Validation Tag Helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-3.1#the-validation-tag-helpers)
 
 ------
 
