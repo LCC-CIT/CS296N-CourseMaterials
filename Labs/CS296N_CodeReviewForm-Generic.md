@@ -16,39 +16,28 @@ The developer will revise the beta version of their lab work and fill out the â€
 
 ### Review
 
+Add explanatory comments in the row following any "no" answers.
+
 | **Criteria**                                                 | **Beta** | **Release** |
 | ------------------------------------------------------------ | -------- | ----------- |
-| Does  it compile and run without errors?                     |          |             |
+| Does it compile and run without errors?                      |          |             |
 |                                                              |          |             |
-| Do  all the pages load correctly?                            |          |             |
+| Do all the pages load correctly?                             |          |             |
 |                                                              |          |             |
-| Does  the style conform to MVC conventions and our class standards? |          |             |
+| Does the style conform to MVC conventions and our class standards? |          |             |
 |                                                              |          |             |
-| Do  all the links, buttons or other UI elements work correctly? |          |             |
+| Do all the links, buttons or other UI elements work correctly? |          |             |
 |                                                              |          |             |
+| Do the design and implementation conform to OOP best practices? |          |             |
 |                                                              |          |             |
-| Do  the design and implementation conform to OOP best practices? |          |             |
+| Does the style conform to C# coding conventions?             |          |             |
 |                                                              |          |             |
+| Does the solution meet all the requirements?                 |          |             |
 |                                                              |          |             |
-| Does  the style conform to C# coding conventions?            |          |             |
+| Summary Comments:                                            |          |             |
 |                                                              |          |             |
-|                                                              |          |             |
-| Does  the solution meet all the requirements? (list any issues below) |          |             |
-|                                                              |          |             |
-|                                                              |          |             |
-|                                                              |          |             |
-|                                                              |          |             |
-|                                                              |          |             |
-
-#### Comments:
 
  
-
-
-
-
-
-------
 
  
 
@@ -63,6 +52,8 @@ The developer will revise the beta version of their lab work and fill out the â€
 - Do variable names use camelCase? 
 - Are properties, methods and classes named using PascalCase (aka TitleCase)?
 - Are constant names written using ALL_CAPS?
+
+
 
 ### Best practices in Object Oriented Programming
 
