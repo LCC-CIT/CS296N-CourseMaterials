@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Using Identity</title>
+    <style>
+body {
+	font-family: "Arial", "Helvetica", "sans-serif";
+}
+#week02 {
+	background-color: #f8ff2e;
+}
+code {
+	display: block;
+	font-size: larger;
+	background-color: lightgoldenrodyellow;
+	max-height: 400px;
+	width: 75%;
+	overflow: scroll;
+}
+.exercise {
+	background-color: #c6ffe2;
+}
+.auto-style4 {
+	text-decoration: underline;
+}
+.auto-style5 {
+	font-family: "Courier New", Courier, monospace;
+}
+</style>
+  </head>
+  <body>
+    <header> <b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;</b>
+      <div> Brian Bird</div>
+      <h1><i>User Management with ASP.NET Identity</i></h1>
+      <table width:="" 807px;="" height:="" 127px;"="" border="1">
+        <thead></thead><tbody>
+          <tr>
+            <td id="week01">1. Intro to course and Input validation</td>
+            <td id="week06">6. Load Testing and Performance</td>
+          </tr>
+          <tr>
+            <td id="week02">2.Identity</td>
+            <td><span>7. Creating a Web Service</span></td>
+          </tr>
+          <tr>
+            <td><span>3. Authentication and authorization</span></td>
+            <td><span>8. Consuming a Web Service</span></td>
+          </tr>
+          <tr>
+            <td><span>4. Publishing to a production server</span></td>
+            <td><span>9. Docker containers</span></td>
+          </tr>
+          <tr>
+            <td><span>5. Security</span></td>
+            <td><span>10. Term project</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <h2><b><b>Contents</b> </b></h2>
+      <div>
+        <ul>
+          <li><a href="#topic2">Introduction</a></li>
+          <li><a href="#topic2">Review </a></li>
+          <li><a href="#topic3">Adding Identity to a web app</a></li>
+          <li><a href="#topic4">Notes on Freeman Ch. 28</a></li>
+          <li><a href="#topic6">Reading</a></li>
+          <li><a href="#topic7">Example</a></li>
+          <li><a href="#topic8">Next Class</a></li>
+        </ul>
+      </div>
+    </header>
+    <section>
+      <hr>
+      <article id="topic1">
+        <h2>Introduction</h2>
+        <article id="topic2">
+          <h3>What is ASP.NET Core Identity?</h3>
+          &nbsp; It is a class library (an API) for:
+          <ul>
+            <li>Authentication.</li>
+            <li>Authorization.</li>
+            <li>Role management.</li>
+            <li>User account management.</li>
+          </ul>
+        </article>
+        <h3>This week's objective</h3>
+        This week you will be introduced to ASP.NET Core Identity and
+        learn to use it to manage user accounts. You will learn to write
+        the code to do the following operations on user accounts:
+        <ul>
+          <li>Create.</li>
+          <li>Delete.</li>
+          <li>Modify.</li>
+          <li>List user accounts and user information.</li>
+        </ul>
+        <p> </p>
+      </article>
+      <hr>
+      <article id="topic3">
+        <h2>Adding Identity to a web app</h2>
+        <p>Follow the steps in Freeman, Ch. 28 through the end of
+          "Setting up the User Classes", but skip "Creating a Controller
+          and View".</p>
+        <ol>
+          <li>Use the NuGet package manager to add the following
+            packages to your project:</li>
+          <ul>
+            <li>Microsoft.Extensions.Identity.Core</li>
+            <li>Microsoft.AspNetCore.Identity.EntityFramework<br>
+            </li>
+          </ul>
+          <li>Modify your application's DbContext class to inherit from
+            IdentityDbContext.
+            <ul>
+              <li>This provides a way for Identity to add tables for
+                storing user information to your database.<br>
+              </li>
+              <li>All you need to do is change the inheritance.</li>
+              <li>Don't add a new DbSet for Identity, that will be done
+                by the parent class.<br>
+              </li>
+            </ul>
+          </li>
+          <li>In Startup.cs, ConfigureServices, add:<br>
+            <code style="width: 80%; height: 92px">services.AddIdentity<appuser,
+                identityrole="">().AddEntityFrameworkStores<applicationdbcontext>().AddDefaultTokenProviders();</applicationdbcontext></appuser,></code>
+            The AddIdentity method has generic type specifiers for my
+            user class and thethe built-in IdentityRole class for roles.
+            <ul>
+              <li>The AddEntityFrameworkStores method specifies that
+                Identity should use Entity Framework Core to store and
+                retrieve its data, using the application's database
+                context class. </li>
+              <li>The AddDefaultTokenProviders method uses the default
+                configuration to support operations that require a
+                token, such as changing a password.<br>
+              </li>
+            </ul>
+          </li>
+          <li>In Startup.cs, Configure, add:<br>
+            <code>app.UseAuthentication();</code><br>
+          </li>
+          <li>Modify your user model so that the class inherits from
+            IdentityUser<br>
+            The IdentityUser has these properties:
+            <ul>
+              <li>Id - This property contains the unique ID for the
+                user. </li>
+              <li>UserName - This property returns the user’s username.
+              </li>
+              <li>Claims - This property returns the collection of
+                claims for the user, which I describe in Chapter 30. </li>
+              <li>Email - This property contains the user’s e-mail
+                address. </li>
+              <li>Logins - This property returns a collection of logins
+                for the user, which is used for third-party
+                authentication, as described in Chapter 30. </li>
+              <li>PasswordHash - This property returns a hashed form of
+                the user password, which I use in the “Implementing the
+                Edit Feature” section. </li>
+              <li>Roles - This property returns the collection of roles
+                that the user belongs to, which I describe in Chapter
+                29. </li>
+              <li>PhoneNumber - This property returns the user’s phone
+                number. </li>
+              <li>SecurityStamp - This property returns a value that is
+                changed when the user identity is altered, such as by a
+                password change. <br>
+              </li>
+            </ul>
+          </li>
+          <li>Add a migration for the new user model and update the
+            database</li>
+        </ol>
+        <p>After adding Identity to your project, Inspect the database
+          using SQL Server Object Explorer and note the new tables added
+          by Identity. The tables listed below should have been created.</p>
+        <ul>
+          <li>AspNetRoleClaims</li>
+          <li>AspNetRoles</li>
+          <li>AspNetUserClaims</li>
+          <li>AspNetUserLogins</li>
+          <li>AspNetUserRoles</li>
+          <li>AspNetUsers<br>
+            <em>This is your user table, it contains the fields you
+              added in your user class.</em></li>
+          <li>AspNetUserTokens</li>
+          <li>Using Identity in administrative pages</li>
+        </ul>
+        <p>Add an admin controller and views:</p>
+        <ul>
+          <li>Create a user account</li>
+          <li>Show all user accounts</li>
+          <li>Delete a user account</li>
+        </ul>
+        <hr> </article>
+      <article id="topic4">
+        <h2>Notes on Freeman Ch. 28</h2>
+        <ul>
+          <li>If you are using .NET Core 2.1 or later, you don't need to
+            add this line to the .csproj file:<br>
+            <span class="auto-style5"> &lt;DotNetCliToolReference
+              Include="Microsoft.EntityFrameworkCore.Tools.DotNet"
+              Version="2.0.0" /&gt;</span><br>
+            In fact, according to <a
+              href="https://docs.microsoft.com/en-us/dotnet/core/migration/20-21"
+              target="_blank"> Micrososft's documentation</a> you should
+            not add this line.</li>
+          <li>In Startup.cs, in the Configure method, <strong>
+              app.UseAuthentication <span class="auto-style4">must
+                precede</span> app.UseMvc !!!</strong></li>
+          <li>The app doesn't have links to the Admin pages on it's home
+            page. Ener the URL:&nbsp; /Admin to get there.</li>
+          <li>It's OK to directly delete the IdentityUsers database
+            using SQL Server Object Explorer</li>
+          <li>There are special domain names defined for testing and
+            examples. These are defined by the Internet Engineering Task
+            Force
+            <ul>
+              <li>These are the reserved domains, they are invalid for
+                actual use:
+                <ul>
+                  <li>.test</li>
+                  <li>.example</li>
+                  <li>.invalid</li>
+                  <li>.localhost</li>
+                </ul>
+              </li>
+              <li>Reference: <a
+                  href="https://tools.ietf.org/html/rfc2606"
+                  target="_blank"> Reserved Top Level Doman Names (TLDs)</a></li>
+            </ul>
+          </li>
+          <li>Notes on implementing Identity in my own code:
+            <ul>
+              <li>When targeting .NET Core 2.0, I had to add an ID
+                property to my User class in order for EF to generate
+                the identity tables in my application database. In .NET
+                Core 2.2, I don't need to do this.</li>
+            </ul>
+          </li>
+        </ul>
+        <hr> </article>
+      <article id="topic6">
+        <h2>References</h2>
+        <h3>Basic</h3>
+        <ul>
+          <li><span style="font-style: italic;">Pro ASP.NET Core 2,</span>
+            Adam Freeman, 2017
+            <ul>
+              <li>Ch. 28 – Getting Started with Identity<br>
+              </li>
+              <li>Ch. 12, pg. 321–330, SportsStore: Securing the
+                Administration Features</li>
+            </ul>
+          </li>
+          <li> <a
+href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/"
+              target="_blank"> Introduction to Identity in ASP.NET Core</a></li>
+          <li> <a
+href="https://www.bing.com/videos/search?q=GitHub%20Training%20&amp;%20Guides&amp;qft=+filterui:userpage-githubguides&amp;FORM=VQCHNL"
+              target="_blank"> <span style="color: rgb(0, 0, 238);"> <span
+                  style="text-decoration: underline;">GitHub Tutorial
+                  Videos</span></span></a><br>
+          </li>
+        </ul>
+        <h3>Advanced</h3>
+        <ul>
+          <li> <a href="https://code-maze.com/http-series-part-4/"
+              target="_blank"> HTTP Authentication Mechanisms</a></li>
+          <li> <a
+href="https://andrewlock.net/exploring-the-asp-net-core-identity-passwordhasher/"
+              target="_blank"> <span style="color: rgb(0, 0, 238);"> <span
+                  style="text-decoration: underline;">Exploring the
+                  ASP.NET Core Identity Password Hasher</span></span></a></li>
+        </ul>
+      </article>
+      <hr>
+      <article id="topic7">
+        <h2>Example</h2>
+        <a
+href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity"
+          target="_blank"> GitHub Repository: <br>
+          CS296N-BookInfo-Core-2<br>
+          AddIdentity branch</a> </article>
+      <hr>
+      <article id="topic8">
+        <h2>Next Class</h2>
+        <ul>
+          <li>We will add pages that use Identity for registration and
+            login (authentication)</li>
+          <li>We will restrict different parts of the web app based on
+            user role (authorization)<br>
+          </li>
+        </ul>
+      </article>
+    </section>
+    <hr style="width: 100%; height: 2px;">
+    <footer> <a href="http://creativecommons.org/licenses/by/4.0/"
+        rel="license"> <img alt="Creative Commons License"
+          src="https://i.creativecommons.org/l/by/4.0/80x15.png"
+          style="border-width: 0"></a><span property="dct:title"
+        xmlns:dct="http://purl.org/dc/terms/">&nbsp; <a
+          href="http://lcc-cit.github.io/CS296N-CourseMaterials/">ASP.NET
+
+
+
+
+
+
+          Core MVC Course Materials</a></span> by <a
+        href="https://birdsbits.blog" property="cc:attributionName"
+        rel="cc:attributionURL"
+        xmlns:cc="http://creativecommons.org/ns#"> Brian Bird</a> are
+      licensed under a <a
+        href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative
+
+
+
+
+
+
+        Commons Attribution 4.0 International License</a>. <br>
+    </footer>
+    <hr>
+  </body>
+</html>
