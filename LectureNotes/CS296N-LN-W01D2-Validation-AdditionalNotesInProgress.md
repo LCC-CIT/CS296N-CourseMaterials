@@ -1,3 +1,5 @@
+[TOC]
+
 ## C# Attribute examples
 
 - <!--Todo: clarify meaning of BindProperty-->
@@ -31,8 +33,22 @@
   ```
 
   - API Reference: [ObsoleteAttribute](https://docs.microsoft.com/en-us/dotnet/api/system.obsoleteattribute?view=netcore-2.0)
+  
+  
 
-#### Display formatting
+## DateTime Data Annotations
+
+### Validation
+
+Just adding the `[DataType(DataType.Date)]` annotation to a model property will enable a DateTime field in a form to be validated using the `asp-validation-for` tag helper. Validation will look for date to be entered in the m/d/y or mm/dd/yyyy formats (and allows years that go beyond four digits).
+
+Adding the `[DisplayFormat(DataFormatString = "blah blah")]` annotation to the model property will not change the validation criteria, nor will it change what DateTime will accept as a valid date entry.
+
+Adding `[RegularExpression("blah blah")]` annotation will add an additional validation, but won't  change the validation criteria, nor will it change what DateTime will accept as a valid date entry. It just adds an additional validation criteria which could conflict with the one coming from DataType.
+
+
+
+### Display formatting
 
 Format the publication date display for books in the BookInfo example app so that only the month, day, and year are displayed&mdash;not the time.
 
