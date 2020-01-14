@@ -30,19 +30,19 @@
 
 It is a class library (an API) for:          
 
-- Authentication.
-- Authorization.
-- Role management.
-- User account management.
+- Authentication
+- Authorization
+- Role management
+- User account management
 
 ### This week's objective
 
 This week you will be introduced to ASP.NET Core Identity and learn to use it to manage user accounts. You will learn to write the code to do the following operations on user accounts:        
 
-- Create.
-- Delete.
-- Modify.
-- List user accounts and user information.
+- Create
+- Delete
+- Modify
+- List user accounts and user information
 
 ------
 
@@ -55,15 +55,15 @@ Follow the steps in Freeman, Ch. 28 through the end of  "Setting up the User Cla
 1. Use the NuGet package manager to add the following packages to your project:
 
 2. - Microsoft.Extensions.Identity.Core
-   - Microsoft.AspNetCore.Identity.EntityFramework
+   - Microsoft.AspNetCore.Identity.EntityFrameworkCore
                  
 
 3. Modify your application's DbContext class to inherit from  IdentityDbContext.            
 
    - This provides a way for Identity to add tables for storing user information to your database.
-     
    - All you need to do is change the inheritance.
    - Don't add a new DbSet for Identity, that will be done by the parent class.
+   - Remove the DbSet for your user model. Identity that is also managed in the parent class.
 
 4. Modify your user model so that the class inherits from `IdentityUser`. 
 
@@ -80,9 +80,7 @@ Follow the steps in Freeman, Ch. 28 through the end of  "Setting up the User Cla
      - Roles - This property returns the collection of roles that the user belongs to.
      - PhoneNumber - This property returns the user’s phone number. 
      - SecurityStamp - This property returns a value that is changed when the user identity is altered, such as by a password change. 
-                     
-
-   ​         
+                              
 
 5. In Startup.cs, ConfigureServices, add:
 
@@ -127,11 +125,13 @@ After adding Identity to your project, Inspect the database using SQL Server Obj
 
 Add an admin controller and views to implement these features:
 
-- Create an user account.
-- Show all user accounts.
-- Delete an user account.
+- Create an user account
+- Show all user accounts
+- Delete an user account
 
 ------
+
+
 
 ## Notes on Freeman Ch. 28
 
@@ -178,17 +178,18 @@ Add an admin controller and views to implement these features:
 -  [ HTTP Authentication Mechanisms](https://code-maze.com/http-series-part-4/)
 -  [Exploring the  ASP.NET Core Identity Password Hasher](https://andrewlock.net/exploring-the-asp-net-core-identity-passwordhasher/)
 
+
+
 ------
 
 ## Example Code on GitHub
 
 - Pro ASP.NET Core MVC 2, Ch. 28: [Identity example](https://github.com/Apress/pro-asp.net-core-mvc-2/tree/master/28%20-%20Identity/Users)
 - Instructor's Demo Web App using ASP.NET Core 2.2: [BookInfo&mdash;AddIdentity branch](https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity)
-<div hidden>
-- Instructor's Demo Web App using ASP.NET Core 3.1: [BookInfo&mdash;Identity branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Identity)
-</div>
-
+- Instructor's Demo Web App using ASP.NET Core 3.1: [BookInfo&mdash;Identity branch](Instructor's Demo Web App using ASP.NET Core 2.2: [BookInfo&mdash;AddIdentity branch](https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity))
 ------
+
+
 
 ## Next Class
 
