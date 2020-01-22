@@ -2,7 +2,7 @@
 
  Brian Bird
 
-# *User Management with ASP.NET Identity*
+# *User Management with Identity*
 
 | Weekly topics                           |                                 |
 | --------------------------------------- | ------------------------------- |
@@ -12,15 +12,9 @@
 | 4. Publishing to a production server    | 9. Docker containers            |
 | 5. Security                             | 10. Term project                |
 
-## **Contents**
+**Contents**
 
-- [Introduction](file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic2)
-- [Review ](file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic2)
-- [Adding Identity to a web app](file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic3)
-- [Notes on Freeman Ch. 28](file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic4)
-- [Reading](file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic6)
-- [Example](file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic7)
-- [Next Class](file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic8)
+[TOC]
 
 ------
 
@@ -49,6 +43,8 @@ This week you will be introduced to ASP.NET Core Identity and learn to use it to
 
 
 ## Adding Identity to a web app
+
+### Adding the infrastructure
 
 Follow the steps in Freeman, Ch. 28 through the end of  "Setting up the User Classes", but skip "Creating a Controller and View".
 
@@ -123,11 +119,33 @@ After adding Identity to your project, Inspect the database using SQL Server Obj
 
 - Using Identity in administrative pages
 
-Add an admin controller and views to implement these features:
+### Adding an admin controller and views 
 
-- Create an user account
-- Show all user accounts
-- Delete an user account
+We will add the controller and views Freeman describes in Ch. 28 to implement the features shown below.
+
+#### Features
+
+- Creating users
+  -   Validating passwords
+  -   Validating user names
+  -   Validating e-mail addresses
+- Editing user information
+- Listing user
+- Deleting users
+
+#### Files
+
+##### UserViewModels.cs
+
+This file is intended to hold all the view models. I prefer to put each view model in it's own file. I will rename this file and class to *CreateUserViewModel*.
+
+##### AdminController.cs
+
+Note that there is **not** a *DbContext.AppUser* DbSet, we will be accessing the users table via *UserManager*, a class provided by Identity.
+
+##### Create.cshtml
+
+
 
 ------
 
@@ -191,7 +209,7 @@ Add an admin controller and views to implement these features:
 
 
 
-## Next Class
+## Next Week
 
 - We will add pages that use Identity for registration and login (authentication)
 - We will restrict different parts of the web app based on user role (authorization)
