@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-<meta content="text/html; charset=UTF-8" http-equiv="content-type">
-<meta content="width=device-width, initial-scale=1" name="viewport">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<title>Authentication + Authorization</title>
-<style>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link
+href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <title>Authentication + Authorization</title>
+    <style>
 #week02 {
 	background-color: #f8ff2e;
 }
@@ -30,200 +31,270 @@ pre {
 	background-color: #c6ffe2;
 }
 </style>
-</head>
-
-<body>
-
-<div class="container-fluid">
-	<b>CS296N Web Development 2: ASP.NET &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-	<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-	</b><br>
-	<header>
-		<h1><i><b>Authentication, Authorization and Role Management</b></i></h1>
-		<b>Topics by week </b>
-		<table border="1" style="width: 807px; height: 127px;">
-			<tr>
-				<td id="week01">1. Intro to course and Identity<br></td>
-				<td id="week06">6. Creating a Web Service, Async / Await<br>
-				</td>
-			</tr>
-			<tr>
-				<td id="week02">2. Authentication and Authorization</td>
-				<td>7. Consuming a Web Service<br></td>
-			</tr>
-			<tr>
-				<td id="week03">3. Security<br></td>
-				<td id="week08" style="width: 395.333px;">8. Front-End Frameworks<br>
-				</td>
-			</tr>
-			<tr>
-				<td id="week04">4. Load Testing and Performance<br></td>
-				<td id="week09">9. Docker Containers<br></td>
-			</tr>
-			<tr>
-				<td id="week05">5. Publishing to Linux, Midterm</td>
-				<td id="week10">10. Microservices<br></td>
-			</tr>
-		</table>
-		<br>
-		<h2>Contents</h2>
-		<div>
-			<ul>
-				<li><a href="#topic1">Introduction</a> </li>
-				<li><a href="#topic2">Review </a></li>
-				<li><a href="#topic3">Textbook Example</a></li>
-				<li><a href="#topic3a">Authentication</a> </li>
-				<li><a href="#topic4">Authorization</a> </li>
-				<li><a href="#topic5">Role Management</a> </li>
-				<li><a href="#topic7">BookInfo Web App Example</a> </li>
-				<li><a href="#topic6">Further Reading</a> </li>
-				<li><a href="#topic8">Next Class</a> </li>
-			</ul>
-		</div>
-	</header>
-	<section>
-		<hr>
-		<article id="topic1">
-			<h2>Introduction</h2>
-			<ul>
-				<li>Discuss lab 1 PRs and code reviews</li>
-				<li>Review quiz 1</li>
-			</ul>
-		</article>
-		<hr>
-		<article id="topic2">
-			<h2>Review - Identity</h2>
-			<ul>
-				<li>Run BookInfo</li>
-				<li>Add a user, list the accounts</li>
-				<li>
-				<a aria-controls="collapseExample" aria-expanded="false" data-toggle="collapse" href="#weneed">
-				What else do we need? </a>
-				<div id="weneed" class="collapse">
-					<div class="card card-body">
-						<ul>
-							<li>Registration</li>
-							<li>Login (for authentication)</li>
-							<li>Authorization (for particular controllers or controller 
-							methods)</li>
-							<li>Role management</li>
-							<li>Seed admin user</li>
-						</ul>
-					</div>
-				</div>
-				</li>
-			</ul>
-		</article>
-		<hr>
-		<article id="topic3">
-			<h2>Textbook Example (Freeman, Ch. 29)</h2>
-			<p>The example MVC app has the following features <br></p>
-			<ul>
-				<li>/Home - Shows details on the currently logged in user</li>
-				<ul>
-					<li>Index - requires login, has [Authorize] attribute</li>
-					<li>OtherAction - same as above, has [Authorize(Roles="Users")] 
-					attribute <br></li>
-				</ul>
-				<li>/Admin - Shows a list of users and has buttons for:</li>
-				<ul>
-					<li>Create - create a user account</li>
-					<li>Edit</li>
-					<li>Delete</li>
-				</ul>
-				<li>/Account</li><ul>
-					<li>Login</li>
-					<li>Logout</li>
-				</ul>
-				<li>/RoleAdmin - Shows roles and the users in them and has buttons 
-				for:</li>
-				<ul>
-					<li>Create - will only be useful after adding claims (Ch. 
-					29)</li>
-					<li>Edit - use this to add a user to a role <br></li>
-					<li>Delete - will only be useful after adding claims (Ch. 
-					29)</li>
-				</ul>
-			</ul>
-		</article>
-		<hr style="width: 100%; height: 2px;">
-		<article id="topic3a">
-			<h2>Adding Authentication and Authorization to Your Web App</h2>
-			
-			<h3>Authorization: Login and Logout<br></h3>
-			<p>In an account controller, add:</p>
-			<ul>
-				<li>Login methods:<br><br><code>[AllowAnonymous]<br>public IActionResult Login(string 
-					returnUrl)<br>{<br>&nbsp; ViewBag.returnUrl = returnUrl;<br>&nbsp; return 
-					View();<br>}</code> <br><code>[HttpPost]<br>[AllowAnonymous]<br>[ValidateAntiForgeryToken]<br>public async 
-					Task&lt;IActionResult&gt; Login(LoginViewModel model, string 
-					returnUrl)<br>{<br>&nbsp; if (ModelState.IsValid) { <br>&nbsp;&nbsp;&nbsp;
-					User 
-					user = await userManager.FindByEmailAsync(model.Email);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (user != null) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; await 
-					signInManager.SignOutAsync();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var result = await 
-					signInManager.PasswordSignInAsync(user, model.Password, 
-					false, false);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (result.Succeeded) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 
-					Redirect(returnUrl ?? "/");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					ModelState.AddModelError(nameof(LoginViewModel.Email),
-					"Invalid user or password");<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; return View(model);<br>
-					}<br>
-					</code>
-					<br>
-					</li>
-				<li>logout method:<br>&nbsp;<code>[Authorize]<br>public async Task&lt;IActionResult&gt; Logout()<br>{<br>
-				await signInManager.SignOutAsync();<br>return 
-				RedirectToAction("Index", "Home");<br>}</code></li>
-			</ul>
-			In views, add:
-			<ul>
-				<li>A login view<br><code>@model LoginViewModel<br>&lt;h4&gt;Log In&lt;/h4&gt;<br>&lt;div 
-					class="text-danger" asp-validation-summary="All"&gt;&lt;/div&gt;<br>&lt;form asp-action="Login" method="post"&gt;<br>&nbsp; &lt;input 
-					type="hidden" name="returnUrl" value="@ViewBag.returnUrl" /&gt;<br>
-				<br>&nbsp; &lt;label asp-for="Email"&gt;&lt;/label&gt;<br>&nbsp; &lt;input 
-					asp-for="Email" /&gt;<br><br>&nbsp; &lt;label 
-					asp-for="Password"&gt;&lt;/label&gt;<br>&nbsp; &lt;input 
-					asp-for="Password" /&gt;<br><br>&nbsp; &lt;button 
-					type="submit"&gt;Log In&lt;/button&gt;<br>&lt;/form&gt;</code><br>
-				</li>
-				<li>A logout view
-				<code>
-				x
-				</code>
-				</li>
-			</ul>
-			<ul>
-				<li>Add the
-				<span style="font-family: Courier New,Courier,monospace;">[Authorize]</span> 
-				attribute to methods that require authorization</li>
-				</li>
-			</ul>
-		</article>
-		<hr>
-		<article id="topic4">
-			<h3>Authorization</h3>
-			The ASP.NET Core platform provides information about the user through 
-			the HttpContext object, which is used by the Authorize attribute to 
-			check the status of the current request and see whether the user has 
-			been authenticated. <br><br>Add the
-			<span style="font-family: Courier New,Courier,monospace;">[Authorize]</span> 
-			attributes to methods that require authorization
-			<ul>
-				<li>This will cause a redirect to
-				<span style="font-style: italic;">Account/Login</span> </li>
-				<li>And&nbsp; a parameter for the return URL will be passed automatically. 
-				For example: <br><span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span>
-				<ul>
-					<li>NNote: %2F is the hex code for the forward slash, / </li>
-				</ul>
-				</li>
-			</ul>
-			<h3>Authorization by Role</h3>
-			<ol>
-				<li>Create default roles<ul>
-					<li>In the application's DbContext class, add code to create 
-					the roles you want:<br><br>
-					<pre>
-const string ADMIN = "Admin";
+  </head>
+  <body>
+    <div class="container-fluid"> <b>CS296N Web Development 2: ASP.NET
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </b><br>
+      <header>
+        <h1><i><b>Authentication, Authorization and Role Management</b></i></h1>
+        <b>Topics by week </b>
+        <table style="width: 807px; height: 127px;" border="1">
+          <tbody>
+            <tr>
+              <td id="week01">1. Intro to course and Identity<br>
+              </td>
+              <td id="week06">6. Creating a Web Service, Async / Await<br>
+              </td>
+            </tr>
+            <tr>
+              <td id="week02">2. Authentication and Authorization</td>
+              <td>7. Consuming a Web Service<br>
+              </td>
+            </tr>
+            <tr>
+              <td id="week03">3. Security<br>
+              </td>
+              <td id="week08" style="width: 395.333px;">8. Front-End
+                Frameworks<br>
+              </td>
+            </tr>
+            <tr>
+              <td id="week04">4. Load Testing and Performance<br>
+              </td>
+              <td id="week09">9. Docker Containers<br>
+              </td>
+            </tr>
+            <tr>
+              <td id="week05">5. Publishing to Linux, Midterm</td>
+              <td id="week10">10. Microservices<br>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <h2>Contents</h2>
+        <div>
+          <ul>
+            <li><a href="#topic1">Introduction</a> </li>
+            <li><a href="#topic2">Review </a></li>
+            <li><a href="#topic3">Textbook Example</a></li>
+            <li><a href="#topic3a">Authentication</a> </li>
+            <li><a href="#topic4">Authorization</a> </li>
+            <li><a href="#topic5">Role Management</a> </li>
+            <li><a href="#topic7">BookInfo Web App Example</a> </li>
+            <li><a href="#topic6">Further Reading</a> </li>
+            <li><a href="#topic8">Next Class</a> </li>
+          </ul>
+        </div>
+      </header>
+      <section>
+        <hr>
+        <article id="topic1">
+          <h2>Introduction</h2>
+          <ul>
+            <li>Discuss lab 1 PRs and code reviews</li>
+            <li>Review quiz 1</li>
+          </ul>
+        </article>
+        <hr>
+        <article id="topic2">
+          <h2>Review - Identity</h2>
+          <ul>
+            <li>Run BookInfo</li>
+            <li>Add a user, list the accounts</li>
+            <li> <a aria-controls="collapseExample"
+                aria-expanded="false" data-toggle="collapse"
+                href="#weneed"> What else do we need? </a>
+              <div id="weneed" class="collapse">
+                <div class="card card-body">
+                  <ul>
+                    <li>Registration</li>
+                    <li>Login (for authentication)</li>
+                    <li>Authorization (for particular controllers or
+                      controller methods)</li>
+                    <li>Role management</li>
+                    <li>Seed admin user</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </article>
+        <hr>
+        <article id="topic3">
+          <h2>Textbook Example (Freeman, Ch. 29)</h2>
+          <p>The example MVC app has the following features <br>
+          </p>
+          <ul>
+            <li>/Home - Shows details on the currently logged in user</li>
+            <ul>
+              <li>Index - requires login, has [Authorize] attribute</li>
+              <li>OtherAction - same as above, has
+                [Authorize(Roles="Users")] attribute <br>
+              </li>
+            </ul>
+            <li>/Admin - Shows a list of users and has buttons for:</li>
+            <ul>
+              <li>Create - create a user account</li>
+              <li>Edit</li>
+              <li>Delete</li>
+            </ul>
+            <li>/Account</li>
+            <ul>
+              <li>Login</li>
+              <li>Logout</li>
+            </ul>
+            <li>/RoleAdmin - Shows roles and the users in them and has
+              buttons for:</li>
+            <ul>
+              <li>Create - will only be useful after adding claims (Ch.
+                29)</li>
+              <li>Edit - use this to add a user to a role <br>
+              </li>
+              <li>Delete - will only be useful after adding claims (Ch.
+                29)</li>
+            </ul>
+          </ul>
+        </article>
+        <hr style="width: 100%; height: 2px;">
+        <article id="topic3a">
+          <h2>Adding Authentication and Authorization to Your Web App</h2>
+          <h3>Authorization: Login and Logout<br>
+          </h3>
+          <p>In an account controller, add:<br>
+          </p>
+          <p>TODO: Show code needed for dependency injection of Identity
+            objects into the constructor of the controller.<br>
+          </p>
+          <ul>
+            <li>Login methods:<br>
+              <br>
+              <code>[AllowAnonymous]<br>
+                public IActionResult Login(string returnUrl)<br>
+                {<br>
+                &nbsp; ViewBag.returnUrl = returnUrl;<br>
+                &nbsp; return View();<br>
+                }</code> <br>
+              <code>[HttpPost]<br>
+                [AllowAnonymous]<br>
+                [ValidateAntiForgeryToken]<br>
+                public async Task&lt;IActionResult&gt;
+                Login(LoginViewModel model, string returnUrl)<br>
+                {<br>
+                &nbsp; if (ModelState.IsValid) { <br>
+                &nbsp;&nbsp;&nbsp; User user = await
+                userManager.FindByEmailAsync(model.Email);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (user != null) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; await
+                signInManager.SignOutAsync();<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var result =
+                await signInManager.PasswordSignInAsync(user,
+                model.Password, false, false);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+                (result.Succeeded) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                return Redirect(returnUrl ?? "/");<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ModelState.AddModelError(nameof(LoginViewModel.Email),
+                "Invalid user or password");<br>
+                &nbsp;&nbsp;&nbsp; }<br>
+                &nbsp;&nbsp;&nbsp; return View(model);<br>
+                }<br>
+              </code> <br>
+            </li>
+            <li>logout method:<br>
+              &nbsp;<code>[Authorize]<br>
+                public async Task&lt;IActionResult&gt; Logout()<br>
+                {<br>
+                await signInManager.SignOutAsync();<br>
+                return RedirectToAction("Index", "Home");<br>
+                }</code></li>
+          </ul>
+          In views, add:
+          <ul>
+            <li>A login view<br>
+              <code>@model LoginViewModel<br>
+                &lt;h4&gt;Log In&lt;/h4&gt;<br>
+                &lt;div class="text-danger"
+                asp-validation-summary="All"&gt;&lt;/div&gt;<br>
+                &lt;form asp-action="Login" method="post"&gt;<br>
+                &nbsp; &lt;input type="hidden" name="returnUrl"
+                value="@ViewBag.returnUrl" /&gt;<br>
+                <br>
+                &nbsp; &lt;label asp-for="Email"&gt;&lt;/label&gt;<br>
+                &nbsp; &lt;input asp-for="Email" /&gt;<br>
+                <br>
+                &nbsp; &lt;label asp-for="Password"&gt;&lt;/label&gt;<br>
+                &nbsp; &lt;input asp-for="Password" /&gt;<br>
+                <br>
+                &nbsp; &lt;button type="submit"&gt;Log In&lt;/button&gt;<br>
+                &lt;/form&gt;</code><br>
+            </li>
+            <li>A logout view <code> x </code> </li>
+          </ul>
+          <ul>
+            <li>Add the <span style="font-family: Courier
+                New,Courier,monospace;">[Authorize]</span> attribute to
+              methods that require authorization</li>
+          </ul>
+        </article>
+        <hr>
+        <article id="topic4">
+          <h3>Authorization</h3>
+          The ASP.NET Core platform provides information about the user
+          through the HttpContext object, which is used by the Authorize
+          attribute to check the status of the current request and see
+          whether the user has been authenticated. <br>
+          <br>
+          Add the <span style="font-family: Courier
+            New,Courier,monospace;">[Authorize]</span> attributes to
+          methods that require authorization
+          <ul>
+            <li>This will cause a redirect to <span style="font-style:
+                italic;">Account/Login</span> </li>
+            <li>And a parameter for the return URL will be passed
+              automatically. For example: <br>
+              <span style="font-style: italic;">?ReturnUrl=%2FBook%2FAdd</span>
+              <ul>
+                <li>Note: %2F is the hex code for the forward slash, /</li>
+              </ul>
+            </li>
+          </ul>
+          <blockquote>
+            <blockquote>
+              <h5>Default Login URL<br>
+              </h5>
+              <blockquote>
+                <p>The URL /Account/Login is the default for ASP.NET
+                  Core MVC, but you can specify your own URL in
+                  Startup.cs, <i>ConfigureServices</i>, like this:<br>
+                  <code>services.ConfigureApplicationCookie(opts =&gt;
+                    opts.LoginPath =
+                    "/Users/Login"</code><br>
+                </p>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+          <h3>Authorization by Role</h3>
+          <ol>
+            <li>Create&nbsp; roles
+              <ul>
+                <li>In the application's <i>DbContext</i> class, add
+                  code to create the roles you want. The roles we are
+                  adding are:</li>
+                <ul>
+                  <li>Admin<br>
+                  </li>
+                </ul>
+                <ul>
+                  <li>Member<br>
+                    <br>
+                    <pre>const string ADMIN = "Admin";
 const string MEMBER = "Member";
 if (await roleManager.FindByNameAsync(ADMIN) == null)  {
     await roleManager.CreateAsync(new IdentityRole(ADMIN));
@@ -231,101 +302,132 @@ if (await roleManager.FindByNameAsync(ADMIN) == null)  {
 if (await roleManager.FindByNameAsync(MEMBER) == null)  {
     await roleManager.CreateAsync(new IdentityRole(MEMBER));
 }</pre>
-					Note: In this example, I used constants for the role names. 
-					You may want to get the role names from your appsettings.json 
-					file, like the author of the textobook does:
-					<pre>
-configuration["Data:AdminUser:Role"]</pre>
-					</li>
-				</ul>
-				</li>
-			</ol>
-			<h3>Seed the database with a temporary admin account</h3>
-			<p>In order to avoid the chicken and egg problem of how do you 
-			create an admin accout if you have to be an admin to craet the 
-			accout, you can seed your Identity database with an admin account 
-			that you would remove or change as soon as you deploy your web app.</p>
-			<p>One way to do this is by storing the account credentials in 
-			appsettings.json, and then using them to create a user account at 
-			startup. For example:</p>
-			
-			<p><em>appsettings.json</em> - The account settings are stored here<br><code>
-			"Data": {<br>&nbsp; "AdminUser": {<br>&nbsp;&nbsp;&nbsp; "Name": 
-			"Admin",<br>&nbsp;&nbsp;&nbsp; "Email": "<a href="mailto:admin@example.com">admin@example.com</a>",<br>&nbsp;&nbsp;&nbsp; 
-			"Password": "secret",<br>&nbsp;&nbsp;&nbsp; "Role": "Admins"<br>},</code></p>
-			
-			<p><em>AppDbContext.cs</em> - The role and account are created here
-			<code>
-			public static async Task CreateAdminAccount(IServiceProvider 
-			serviceProvider, IConfiguration configuration) {<br>&nbsp; 
-			UserManager&lt;User&gt; userManager = 
-			serviceProvider.GetRequiredService&lt;UserManager&lt;User&gt;&gt;();<br>&nbsp; 
-			RoleManager&lt;IdentityRole&gt; roleManager = 
-			serviceProvider.GetRequiredService&lt;RoleManager&lt;IdentityRole&gt;&gt;();<br>&nbsp; 
-			string username = configuration["Data:AdminUser:Name"];<br>&nbsp; 
-			string email = configuration["Data:AdminUser:Email"];<br>&nbsp; 
-			string password = configuration["Data:AdminUser:Password"];<br>&nbsp; 
-			string role = configuration["Data:AdminUser:Role"];<br>&nbsp; if 
-			(await userManager.FindByNameAsync(username) == null) {<br>&nbsp;&nbsp;&nbsp; 
-			if (await roleManager.FindByNameAsync(role) == null) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-			await roleManager.CreateAsync(new IdentityRole(role));<br>&nbsp;&nbsp;&nbsp; 
-			}<br>&nbsp;&nbsp;&nbsp; User user = new User {UserName = username, 
-			Email = email};<br>&nbsp;&nbsp;&nbsp; IdentityResult result = await 
-			userManager.CreateAsync(user, password);<br>&nbsp;&nbsp;&nbsp; if 
-			(result.Succeeded) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; await 
-			userManager.AddToRoleAsync(user, role);<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp; 
-			}<br>}</code></p>
-			<p><em>Startup.cs</em> - The method defined above is called here<code>public 
-			void Configure(IApplicationBuilder app, IHostingEnvironment env, 
-			ILoggerFactory loggerFactory)<br>{<br>&nbsp; . . . <br>&nbsp; // 
-			lines of code omitted, the line below is at the end of the method<br>&nbsp; 
-			ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, 
-			Configuration).Wait();<br>}</code></p>
-			<h3>Authorize a controller or method by role</h3>
-			<p>Add the attribute [Authorize(Role="SomeRole")] to a class or 
-			method.</p>
-			<p>If a user who is authenticated, but not in the correct role 
-			attempts to access this, they will be redirected to 
-			/Account/AccessDenied</p>
-		</article>
-		<hr>
-		<article id="topic5">
-			<h2>Role Management</h2>
-			Create and edit user roles using the
-			<span style="font-style: italic;">Role</span>
-			<span style="font-style: italic;">Manager</span> class <br>Edit user 
-			roles to add a user <br><br>
-		</article>
-		<hr>
-		<article id="topic6">
-			<article id="topic7">
-				<h2>Web App Examples - BookInfo <br></h2>
-				<h3>User login and logout and authorization of controller methods
-				<br></h3>
-				<a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity" target="_blank">
-				GitHub Repository: CS296N-BookInfo-Core-2 - AddLogin branch</a>
-				<br><br>
-				<h3>Role management and authorization based on roles</h3>
-			</article>
-			<a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity" target="_blank">
-			GitHub Repository: CS296N-BookInfo-Core-2 - UserRoles branch</a><br>
-			<br><span style="font-weight: bold;">Note:</span><br>&nbsp;I discovered 
-			I needed to comment out the last two lines in Startup.Cofigure like 
-			this:<br><br>
-			<pre>
-// SeedData.EnsurePopulated(app); 
+                    Note: In this example, I used constants for the role
+                    names. You may want to get the role names from your
+                    <i>appsettings.json</i> file, like the author of our
+                    textbook does:
+                    <pre>configuration["Data:AdminUser:Role"]</pre>
+                  </li>
+                </ul>
+              </ul>
+            </li>
+          </ol>
+          <h3>Seed the database with a temporary admin account</h3>
+          <p>In order to avoid the chicken and egg problem of how do you
+            create an admin accout if you have to be an admin to craet
+            the accout, you can seed your Identity database with an
+            admin account that you would remove or change as soon as you
+            deploy your web app.</p>
+          <p>One way to do this is by storing the account credentials in
+            appsettings.json, and then using them to create a user
+            account at startup. For example:</p>
+          <p><em>appsettings.json</em> - The account settings are stored
+            here<br>
+            <code> "Data": {<br>
+              &nbsp; "AdminUser": {<br>
+              &nbsp;&nbsp;&nbsp; "Name": "Admin",<br>
+              &nbsp;&nbsp;&nbsp; "Email": "<a
+                href="mailto:admin@example.com">admin@example.com</a>",<br>
+              &nbsp;&nbsp;&nbsp; "Password": "secret",<br>
+              &nbsp;&nbsp;&nbsp; "Role": "Admins"<br>
+              },</code></p>
+          <p><em>AppDbContext.cs</em> - The role and account are created
+            here <code> public static async Task
+              CreateAdminAccount(IServiceProvider serviceProvider,
+              IConfiguration configuration) {<br>
+              &nbsp; UserManager&lt;User&gt; userManager =
+              serviceProvider.GetRequiredService&lt;UserManager&lt;User&gt;&gt;();<br>
+              &nbsp; RoleManager&lt;IdentityRole&gt; roleManager =
+serviceProvider.GetRequiredService&lt;RoleManager&lt;IdentityRole&gt;&gt;();<br>
+              &nbsp; string username =
+              configuration["Data:AdminUser:Name"];<br>
+              &nbsp; string email =
+              configuration["Data:AdminUser:Email"];<br>
+              &nbsp; string password =
+              configuration["Data:AdminUser:Password"];<br>
+              &nbsp; string role = configuration["Data:AdminUser:Role"];<br>
+              &nbsp; if (await userManager.FindByNameAsync(username) ==
+              null) {<br>
+              &nbsp;&nbsp;&nbsp; if (await
+              roleManager.FindByNameAsync(role) == null) {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; await
+              roleManager.CreateAsync(new IdentityRole(role));<br>
+              &nbsp;&nbsp;&nbsp; }<br>
+              &nbsp;&nbsp;&nbsp; User user = new User {UserName =
+              username, Email = email};<br>
+              &nbsp;&nbsp;&nbsp; IdentityResult result = await
+              userManager.CreateAsync(user, password);<br>
+              &nbsp;&nbsp;&nbsp; if (result.Succeeded) {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; await
+              userManager.AddToRoleAsync(user, role);<br>
+              &nbsp;&nbsp;&nbsp; }<br>
+              &nbsp; }<br>
+              }</code></p>
+          <p><em>Startup.cs</em> - The method defined above is called
+            here<code>public void Configure(IApplicationBuilder app,
+              IHostingEnvironment env, ILoggerFactory loggerFactory)<br>
+              {<br>
+              &nbsp; . . . <br>
+              &nbsp; // lines of code omitted, the line below is at the
+              end of the method<br>
+              &nbsp;
+              ApplicationDbContext.CreateAdminAccount(app.ApplicationServices,
+              Configuration).Wait();<br>
+              }</code></p>
+          <h3>Authorize a controller or method by role</h3>
+          <p>Add the attribute [Authorize(Role="SomeRole")] to a class
+            or method.</p>
+          <p>If a user who is authenticated, but not in the correct role
+            attempts to access this, they will be redirected to
+            /Account/AccessDenied</p>
+        </article>
+        <hr>
+        <article id="topic5">
+          <h2>Role Management</h2>
+          Create and edit user roles using the <span style="font-style:
+            italic;">Role</span> <span style="font-style: italic;">Manager</span>
+          class.<br>
+          Edit user roles to add a user <br>
+          <br>
+        </article>
+        <hr>
+        <article id="topic6">
+          <article id="topic7">
+            <h2>Web App Examples - BookInfo <br>
+            </h2>
+            <h3>User login and logout and authorization of controller
+              methods <br>
+            </h3>
+            <a
+href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity"
+              target="_blank"> GitHub Repository: CS296N-BookInfo-Core-2
+              - AddLogin branch</a> <br>
+            <br>
+            <h3>Role management and authorization based on roles</h3>
+          </article>
+          <a
+href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity"
+            target="_blank"> GitHub Repository: CS296N-BookInfo-Core-2 -
+            UserRoles branch</a><br>
+          <br>
+          <span style="font-weight: bold;">Note:</span><br>
+          &nbsp;I discovered I needed to comment out the last two lines
+          in Startup.Cofigure like this:<br>
+          <br>
+          <pre>// SeedData.EnsurePopulated(app); 
 // ApplicationDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
 </pre>
-			Then I could run dotnet ef database update successfully<br><br>After 
-			updating the database, I uncommented the lines and ran the app. When 
-			I ran the app the database was seeded and the Admin account created.<br>
-			<br>
-			<h2>Web App Examples - App from the VS MVC project template</h2>
-			<h3>Getting the Current User</h3>
-			Example from the default Visual Studio MVC project with authentication, 
-			from the Manage controller:<br>
-			<pre>
-[HttpGet]<br>public async Task&lt;IActionResult&gt; Index()
+          Then I could run dotnet ef database update successfully<br>
+          <br>
+          After updating the database, I uncommented the lines and ran
+          the app. When I ran the app the database was seeded and the
+          Admin account created.<br>
+          <br>
+          <h2>Web App Examples - App from the VS MVC project template</h2>
+          <h3>Getting the Current User</h3>
+          Example from the default Visual Studio MVC project with
+          authentication, from the Manage controller:<br>
+          <pre>[HttpGet]<br>public async Task&lt;IActionResult&gt; Index()
 {
   var user = await _userManager.GetUserAsync(User); 
   if (user == null)
@@ -341,51 +443,52 @@ configuration["Data:AdminUser:Role"]</pre>
   return View(model);
 }
 </pre>
-		</article>
-		<hr>
-		<article id="topic7">
-			<h2>Reading</h2>
-			<span style="font-weight: bold;">Freeman, </span>
-			<span style="font-weight: bold;"><span style="font-style: italic;">Pro 
-			ASP.NET Core MVC 2</span> </span>
-			<ul>
-				<li>Ch. 12 - SportsStore: Sections on Identity -
-				<a href="SportsStoreCh12.html" target="_blank">Notes</a> </li>
-				<li>Ch. 29 - Applying ASP.NET Core Identity: Authorizing users with 
-				roles <br></li>
-			</ul>
-			<span style="font-weight: bold;">Microsoft ASP.NET Core MVC Tutorial
-			</span>
-			<ul>
-				<li>
-				<a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/" target="_blank">
-				Authorization in ASP.NET Core</a> </li>
-			</ul>
-		</article>
-		<hr>
-		<article id="topic8">
-			<h2>Conclusion</h2>
-			<ul>
-				<li>Review due dates on Moodle</li>
-				<li>Next time we will cover security</li>
-			</ul>
-		</article>
-	</section>
-	<hr style="width: 100%; height: 2px;">
-	<footer>
-		<a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">
-		<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" style="border-width: 0">
-		</a><br>
-		<span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">ASP.NET 
-		Core MVC Lecture Notes</span> by
-		<a href="https://birdsbits.blog" property="cc:attributionName" rel="cc:attributionURL" xmlns:cc="http://creativecommons.org/ns#">
-		Brian Bird</a> is licensed under a
-		<a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">Creative 
-		Commons Attribution-ShareAlike 4.0 International License</a>. <br>
-	</footer>
-	<hr></div>
-<!-- End of containter-flud for whole page -->
-
-</body>
-
+        </article>
+        <hr>
+        <article id="topic7">
+          <h2>Reading</h2>
+          <span style="font-weight: bold;">Freeman, </span> <span
+            style="font-weight: bold;"><span style="font-style: italic;">Pro
+              ASP.NET Core MVC 2</span> </span>
+          <ul>
+            <li>Ch. 12 - SportsStore: Sections on Identity - <a
+                href="SportsStoreCh12.html" target="_blank">Notes</a> </li>
+            <li>Ch. 29 - Applying ASP.NET Core Identity: Authorizing
+              users with roles <br>
+            </li>
+          </ul>
+          <span style="font-weight: bold;">Microsoft ASP.NET Core MVC
+            Tutorial </span>
+          <ul>
+            <li> <a
+href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/"
+                target="_blank"> Authorization in ASP.NET Core</a> </li>
+          </ul>
+        </article>
+        <hr>
+        <article id="topic8">
+          <h2>Conclusion</h2>
+          <ul>
+            <li>Review due dates on Moodle</li>
+          </ul>
+        </article>
+      </section>
+      <hr style="width: 100%; height: 2px;">
+      <footer> <a href="http://creativecommons.org/licenses/by-sa/4.0/"
+          rel="license"> <img alt="Creative Commons License"
+            src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"
+            style="border-width: 0"> </a><br>
+        <span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">ASP.NET
+          Core MVC Lecture Notes</span> by <a
+          href="https://birdsbits.blog" property="cc:attributionName"
+          rel="cc:attributionURL"
+          xmlns:cc="http://creativecommons.org/ns#"> Brian Bird</a> is
+        licensed under a <a
+          href="http://creativecommons.org/licenses/by-sa/4.0/"
+          rel="license">Creative Commons Attribution-ShareAlike 4.0
+          International License</a>. <br>
+      </footer>
+      <hr></div>
+    <!-- End of containter-flud for whole page -->
+  </body>
 </html>
