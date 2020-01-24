@@ -6,7 +6,7 @@ CS296N, winter 2020
 | --------- | --------------------- | ---- | ------------ | --------------------- |
 | Credits   | 4                     |      | Email        | birdb@lanecc.edu      |
 | Time      | Tu, Th, 10:00 – 11:50 |      | Office       | Building 19, Room 152 |
-| Classroom | Building 19, Room 120 |      | Office Hours | T, Th: 1:00 – 1:50    |
+| Classroom | Building 19, Room 120 |      | Office Hours | T, Th: 2:00 – 2:50    |
 | Lab       | Building 19, Room 135 |      |              | M, W: 4:00 – 4:50     |
 
 
