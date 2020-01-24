@@ -6,11 +6,11 @@
 
 | Weekly topics                           |                                 |
 | --------------------------------------- | ------------------------------- |
-| 1. Intro to course and Input validation | 6. Load Testing and Performance |
-| 2. Identity                             | 7. Creating a Web Service       |
-| **3. Authentication and Authorization** | 8. Consuming a Web Service      |
-| 4. Publishing to a production server    | 9. Docker containers            |
-| 5. Security                             | 10. Term project                |
+| 1. Intro to course and input validation | 6. Load testing and performance |
+| 2. Identity                             | 7. Creating a web service       |
+| **3. Authentication and authorization** | 8. Consuming a web service      |
+| 4. Security                             | 9. Docker containers            |
+| 5. Publishing to a production server    | 10. Term project                |
 
 
 
@@ -21,6 +21,8 @@
 
 ------
 
+
+
 ## Review - Identity
 
 - Run BookInfo
@@ -28,6 +30,8 @@
 - [What else do we need? ](#weneed)
 
 ------
+
+
 
 ## Textbook Example (Freeman, Ch. 29)
 
@@ -57,9 +61,11 @@ The example MVC app has the following features
 
 ------
 
-## Adding Authorization to Your Web App
 
-### Authorization: Login and Logout 
+
+## Adding Authentication to Your Web App
+
+### Authentication: Login and Logout 
 
 In an account controller, add:
 
@@ -67,11 +73,42 @@ TODO: Show code needed for dependency injection of Identity objects into the con
 
 - Login methods:
 
-  `[AllowAnonymous]public IActionResult Login(string returnUrl){ ViewBag.returnUrl = returnUrl; return View();}`
-  `[HttpPost][AllowAnonymous][ValidateAntiForgeryToken]public async Task Login(LoginViewModel model, string returnUrl){ if (ModelState.IsValid) {   User user = await userManager.FindByEmailAsync(model.Email);   if (user != null) {    await signInManager.SignOutAsync();    var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);    if (result.Succeeded) {     return Redirect(returnUrl ?? "/");    }   }   ModelState.AddModelError(nameof(LoginViewModel.Email), "Invalid user or password");  }  return View(model);}`
+  ```C#
+  [AllowAnonymous]
+  public IActionResult Login(string returnUrl) { 
+    ViewBag.returnUrl = returnUrl; return View();
+  }
+  
+  [HttpPost]
+  [AllowAnonymous]
+  [ValidateAntiForgeryToken]
+  public async Task Login(LoginViewModel model, string returnUrl) { 
+    if (ModelState.IsValid) {   
+      User user = await userManager.FindByEmailAsync(model.Email);
+      if (user != null) {
+        await signInManager.SignOutAsync();
+        var result = await signInManager.PasswordSignInAsync(user, 
+                                             model.Password, false, false);
+        if (result.Succeeded) {
+          return Redirect(returnUrl ?? "/");
+        }
+      }
+      ModelState.AddModelError(nameof(LoginViewModel.Email), 
+                                        "Invalid user or password");
+    }
+    return View(model);
+  }
+  ```
 
 - logout method:
-   `[Authorize]public async Task Logout(){await signInManager.SignOutAsync();return RedirectToAction("Index", "Home");}`
+  
+```C#
+[Authorize]
+public async Task Logout() {
+   await signInManager.SignOutAsync();
+   return RedirectToAction("Index", "Home");
+}
+```
 
 In views, add:
 
@@ -83,7 +120,9 @@ In views, add:
 
 ------
 
-### Authorization
+
+
+### Redirection to Login
 
 The ASP.NET Core platform provides information about the user through the HttpContext object, which is used by the Authorize attribute to check the status of the current request and see whether the user has been authenticated. 
 
@@ -104,19 +143,19 @@ Add the [Authorize] attributes to methods that require authentication.
 
 ------
 
-## Web App Examples - BookInfo  
 
-### User login and logout and authorization of controller methods
 
-[GitHub Repository: CS296N-BookInfo-Core-2 - AddLogin branch](https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity) 
+## Example Code Repositories
 
-## Web App Examples - App from the VS MVC project template
+[BookInfo, Core 2.2, AddLogin branch](https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity) &mdash;User login and logout and authorization of controller methods.
+
+[BookInfo, Core 3.1, Authentication branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authentication) &mdash;User login and logout controller methods and views.
 
 ### Getting the Current User
 
 Example from the default Visual Studio MVC project with authentication, from the Manage controller:
 
-```
+```C#
 [HttpGet]
 public async Task<IActionResult> Index()
 {
@@ -137,6 +176,8 @@ public async Task<IActionResult> Index()
 
 ------
 
+
+
 ## Reading
 
 **Freeman,** ***Pro ASP.NET Core MVC 2***
@@ -150,11 +191,15 @@ public async Task<IActionResult> Index()
 
 ------
 
+
+
 ## Conclusion
 
 - Review due dates on Moodle
 
 ------
+
+
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
 ASP.NET Core MVC Lecture Notes by [Brian Bird](https://birdsbits.blog) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
