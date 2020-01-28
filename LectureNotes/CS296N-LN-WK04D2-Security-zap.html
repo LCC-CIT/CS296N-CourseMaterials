@@ -106,27 +106,71 @@ pre {
             <li>Passive scanning: ZAP watches your web app while you
               navigate between pages and enter data.&nbsp; ZAP scans all
               HTTP messages (requests and responses) sent to the web app
-              for vulnerabilities.</li>
+              for vulnerabilities. <br>
+              Note: manual, passive scanning is the most effective form
+              of security testing.<br>
+            </li>
           </ul>
           <h5>How to do an automated, passive&nbsp; scan<br>
           </h5>
           <ol>
-            <li>Start ZAP</li>
+            <li>Start ZAP.</li>
             <li>In the dialog that asks about persisting a session,
-              select no.</li>
-            <li>Start your web app in Visual Studio</li>
-            <li>In ZAP, on the Quick Start tab</li>
+              select no. (Yes, will record the scan session to a
+              database file.)<br>
+            </li>
+            <li>Start your web app in Visual Studio.</li>
+            <li>In ZAP, on the Quick Start tab:</li>
             <ul>
-              <li>enter the URL</li>
-              <li>Check the "Use traditional spider" check box</li>
+              <li>Click on "Automated Scan".<br>
+              </li>
+              <li>Enter your site's URL.</li>
+              <li>Check the "Use traditional spider" check box.</li>
             </ul>
             <li>Click attack. <br>
               ZAP will passively scan all HTTP requests and responses as
               the spider navigates your site.<br>
             </li>
           </ol>
-          <h3><br>
-          </h3>
+          <h5>How to do a manual, passive&nbsp; scan<br>
+          </h5>
+          <ol>
+            <li>Start your web app in Visual Studio.</li>
+            <li>In ZAP, on the Quick Start tab:</li>
+            <ul>
+              <li>Click on "Manual Explore".<br>
+              </li>
+              <li>Enter the URL.</li>
+              <li>Check the "Enable HUD" check box. (Heads Up Display--provides
+                access to ZAP through a launched browser.)<br>
+              </li>
+            </ul>
+            <li>Click "Launch Browser". <br>
+              As you navigate your site and enter data in forms, ZAP
+              will passively scan all HTTP requests and responses.</li>
+          </ol>
+          <br>
+          <h5>How to do an active scan<br>
+          </h5>
+          You need to have done a passive scan first and either saved
+          your passive scan session or not close ZAP.<br>
+          <br>
+          <ol>
+            <li>Start your web app in Visual Studio.</li>
+            <li>In ZAP, select the Active Scan tab in the bottom pane:</li>
+            <ul>
+              <li>Click on "New Scan".<br>
+              </li>
+              <li>To the right of "Starting Point", click "Select" and
+                choose the URL where you want to start the scan.<br>
+              </li>
+              <li>Click "Start Scan"</li>
+            </ul>
+          </ol>
+          The scan could take several minutes or more. You can see the
+          progress at the top of the bottom pane.<br>
+          <br>
+          <h3> </h3>
           <h3>Result of passive scan of BookInfo2</h3>
           <span style="color:#ff0000; background-color:black;">High
             priority</span> <b>Path Traversal</b> (2) <br>
@@ -146,6 +190,7 @@ pre {
             priority</span> <b>Web Browser XSS Protection Not Enabled </b>(7)<br>
           <span style="color:#ffff00; background-color:black;">Low
             priority</span> <b>X-Content-Type-Options Header Missing </b>(9)
+
 
           <br>
           <br>
@@ -208,6 +253,7 @@ href="https://blogs.msdn.microsoft.com/ieinternals/2010/03/30/combating-clickjac
             src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"
             style="border-width: 0"> </a><br>
         <span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">ASP.NET
+
 
 
           Core MVC Lecture Notes</span> by <a
