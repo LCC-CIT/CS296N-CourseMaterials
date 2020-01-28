@@ -67,17 +67,7 @@ pre {
             </tr>
           </tbody>
         </table>
-        <h2>Contents</h2>
-        <div>
-          <ul>
-            <li><a href="#topic1">Introduction</a> </li>
-            <li><a href="#topic2">Review </a></li>
-            <li><a href="#topic3">Testing with Zap </a></li>
-            <li><a href="#topic7">BookInfo Web App Example</a> </li>
-            <li><a href="#topic6">Further Reading</a> </li>
-            <li><a href="#topic8">Next Class</a> </li>
-          </ul>
-        </div>
+        <br>
       </header>
       <section>
         <hr>
@@ -88,9 +78,6 @@ pre {
           </ul>
         </article>
         <hr>
-        <article id="topic2">
-          <h2 style="background-color: white;">Review </h2>
-        </article>
         <hr>
         <article id="topic7">
           <h2>Testing with ZAP</h2>
@@ -99,13 +86,47 @@ pre {
               target="_blank">OWASP Zed Attack Proxy Project</a><span
               style="color: rgb(0, 0, 238);"><span
                 style="text-decoration: underline;"> <br>
+              </span></span>Official Open Web Application Security
+            Project, ZAP web site.<span style="color: rgb(0, 0, 238);"><span
+                style="text-decoration: underline;"><br>
               </span></span> </p>
-          <p><a href="https://www.zaproxy.org/docs/desktop/"
-              target="_blank">User Guide for ZAP</a></p>
-          <p>1) Start your web app project in Visual Studio<br>
-            2) In your browser, log in to your web app as a member (not
-            an admin).<br>
-            3) Run a passive scan in ZAP. </p>
+          <p><a href="https://www.zaproxy.org/getting-started/"
+              target="_blank">Getting Started with ZAP<br>
+            </a>Introduction to security testing and to installing and
+            using the Zed Attack Proxy.<a
+              href="https://www.zaproxy.org/getting-started/"
+              target="_blank"><br>
+            </a></p>
+          <h4>Overview of ZAP</h4>
+          <h5>Two modes of operation<br>
+          </h5>
+          <ul>
+            <li>Active scanning: ZAP fires HTTP requests at your web app
+              using known attack techniques and scans the responses.</li>
+            <li>Passive scanning: ZAP watches your web app while you
+              navigate between pages and enter data.&nbsp; ZAP scans all
+              HTTP messages (requests and responses) sent to the web app
+              for vulnerabilities.</li>
+          </ul>
+          <h5>How to do an automated, passive&nbsp; scan<br>
+          </h5>
+          <ol>
+            <li>Start ZAP</li>
+            <li>In the dialog that asks about persisting a session,
+              select no.</li>
+            <li>Start your web app in Visual Studio</li>
+            <li>In ZAP, on the Quick Start tab</li>
+            <ul>
+              <li>enter the URL</li>
+              <li>Check the "Use traditional spider" check box</li>
+            </ul>
+            <li>Click attack. <br>
+              ZAP will passively scan all HTTP requests and responses as
+              the spider navigates your site.<br>
+            </li>
+          </ol>
+          <h3><br>
+          </h3>
           <h3>Result of passive scan of BookInfo2</h3>
           <span style="color:#ff0000; background-color:black;">High
             priority</span> <b>Path Traversal</b> (2) <br>
@@ -142,6 +163,8 @@ pre {
           </ul>
           <ul>
           </ul>
+          <h3><br>
+          </h3>
           <h3>Discussion of Alerts</h3>
           <h4>X-Frame-Options Header Not Set</h4>
           <p>X-Frame-Options header is not included in the HTTP response
@@ -169,31 +192,6 @@ href="https://dotnetcoretutorials.com/2017/01/08/set-x-frame-options-asp-net-cor
 href="https://blogs.msdn.microsoft.com/ieinternals/2010/03/30/combating-clickjacking-with-x-frame-options/"
               target="_blank">Combating ClickJacking With
               X-Frame-Options</a></p>
-          <h2>Resources</h2>
-          <h3>Tutorials </h3>
-          <ul>
-            <li> <a
-href="https://docs.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-2.2#common-vulnerabilities-in-software"
-                target="_blank"> Overview of ASP.NET Core Security:
-                Common Vulnerabilities</a>
-              <ul>
-                <li>Cross-site scripting attacks</li>
-                <li>SQL injection attacks</li>
-                <li>Cross-Site Request Forgery (CSRF)</li>
-                <li>Open redirect attacks</li>
-              </ul>
-            </li>
-            <li> <a
-href="https://dotnetcoretutorials.com/2017/01/08/set-x-frame-options-asp-net-core/"
-                target="_blank">Set X-FRAME OPTIONS in ASP.NET Core</a>
-            </li>
-          </ul>
-          <h3>OWASP ZAP</h3>
-          <ul>
-            <li> <a
-                href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project"
-                target="_blank">OWASP Zed Attack Proxy Project</a></li>
-          </ul>
         </article>
         <hr>
         <article id="topic8">
