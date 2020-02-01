@@ -39,13 +39,13 @@ Report what you did for this exercise by entering the appropriate phrase in the 
 -   Add the same administrative pages as those added in the Part 1 exercise. These are the pages for:
 
     -   Creating users
--   Validating passwords
+        -   Validating passwords
         -   Validating user names
--   Validating e-mail addresses
+        -   Validating e-mail addresses
     -   Editing user information
--   Listing user
+    -   Listing users
     -   Deleting users
-
+    
 - Add links to navigate between your admin pages. 
 
 - Write a document titled *lab2-Identity.md*, or .txt that lists the model properties you validated and the controller methods where you did server-side validation. Put this in a folder named *docs* in the top level of your lab repository.

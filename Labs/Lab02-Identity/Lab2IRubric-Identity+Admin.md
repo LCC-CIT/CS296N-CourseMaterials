@@ -2,26 +2,31 @@
 
 ## Part 1: Textbook Tutorial
 
-10 points possible
+Points are based on self-reporting:
 
-- Validation: 3
-- Edit users: 3
-- List users: 3
-- Delete users: 3
+Ran it: 7 points
+
+Studied it and ran it: 9 points
+
+Coded it (and studied it) and ran it:  10 points
 
 ## Part 2: Add Identity to a Web Site
 
-30 points possible.
+40 points possible.
 
+- Correct documents, git lab branch,  merge into master: 2
+- Project builds and runs without throwing unhandled exceptions: 3
 - Identity added, using the app's database: 5
 - User model inherits from IdentityUser, adds properties: 2
 - Admin pages
   - Add user with validation: 10
-  - List users: 6
-  - Delete user: 4
+  - Edit user info: 5
+  - List users: 3
+  - Delete user: 2
 - Navigation links: 3
+- Code quality and style: 5
 
-**A total of 40 points is possible.**
+**A total of 50 points is possible.**
 
 
 
