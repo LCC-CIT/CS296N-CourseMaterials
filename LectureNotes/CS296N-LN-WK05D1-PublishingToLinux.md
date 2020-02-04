@@ -39,7 +39,7 @@ These are the steps to publish an ASP.NET Core web app to a Linux server:
 
 ### 1. Install the .NET Core SDK on the server
 
-***Note: Version 3.1.1 (as of 2/4/2020) of the dotnet SDK has already been installed*** on the CIT department's server, citweb, which is running the Linux [CentOS](https://www.centos.org/) operating system.
+***Note: Version 3.1.1 (as of 2/4/2020) of the dotnet SDK has already been installed*** on the CIT department's server, citweb, which is running the Linux [CentOS](https://www.centos.org/) 7 operating system.
 
  The .NET Core runtime is a package that provides the resources to run any kind of .NET Core app, from console apps to web  apps, on the server. We are installing the SDK, which includes the runtime as well as command line tools for development.         
 
@@ -77,8 +77,7 @@ The current version of [MariaDB](https://mariadb.com) on citweb is 15.1 (as of 2
   - At the MariaDB prompt type: 
     `CREATE DATABASE databasename;`
 
-
-Note: a useful cross-platform free, open-source database manager is [DBeaver](https://dbeaver.io)
+*Note: a useful cross-platform free, open-source database manager is [DBeaver](https://dbeaver.io)*
 
 ### 3. Using a Reverse Proxy 
 
@@ -99,6 +98,7 @@ Note: a useful cross-platform free, open-source database manager is [DBeaver](ht
 ### 4. Deploying a web app
 
 We will be doing a [Framework Dependent Deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd). This means that in a previous step we installed the .NET Core runtime so the it is available system-wide.
+See this article for instructions
 
 1. Preparing the app for deployment                
 
@@ -153,11 +153,12 @@ We will be doing a [Framework Dependent Deployment](https://docs.microsoft.com/e
 
 ## References
 
-- Boyer, Shayne. 2019. [Host ASP.NET Core on Linux with Apache ](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-2.1&tabs=aspnetcore2x#configure-apache). Microsoft.
+- Boyer, Shayne. 2020. [Host ASP.NET Core on Linux with Apache ](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-2.1&tabs=aspnetcore2x#configure-apache). Microsoft.
 - Contributors. 2018. [.NET Core Application Deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd). Microsoft.
 - Dykstra, Smith, Halter, and Ross. 2019. [Web Server Implementations in .NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&tabs=aspnetcore2x). Microsoft.
 - Pelser, Jerrie. 2017. [Using MariaDB with ASP.NET Core 2.0](https://www.jerriepelser.com/blog/using-mariadb-with-aspnet-core). Personal Blog.
-- Customer Content Services. [Product documentation for .NET Core 2.2](https://access.redhat.com/documentation/en-us/net_core/2.2/). Redhat.
+- Customer Content Services. [Using .NET Core 3.1 on RHEL](https://access.redhat.com/documentation/en-us/net_core/3.1/html/getting_started_guide/gs_install_dotnet). Redhat.
+  *Note that RHEL (Red Hat Enterprise Linux) is identical to CentOS.*
 
 ------
 
