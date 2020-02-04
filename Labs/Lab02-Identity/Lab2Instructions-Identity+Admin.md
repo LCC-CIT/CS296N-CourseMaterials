@@ -10,7 +10,7 @@ Learn how to:
 
 -   Add Identity to a web app.
 
--   Set up administrative pages for managing users and 
+-   Set up administrative pages for managing users.
 
 ## Instructions
 
