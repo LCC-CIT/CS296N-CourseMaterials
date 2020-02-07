@@ -1,35 +1,56 @@
 # Lab 4 – Web Security Testing and Countermeasures
 
-**Objectives**
+## Objectives
 
 Get practice:
 
-- Testing your web app using the Zed Attack Proxy
+- Testing your web app using the Zed Attack Proxy using:
   - Passive testing
   - Active testing
-- Reducing or eliminating security vulnerabilities in your app’s code.
+- Mitigating (reducing or eliminating) security vulnerabilities in your app by changing your app’s code.
 
-**Instructions**
+## Instructions
 
-Use OWASP ZAP to do both passive and active testing of your web app, then fix at least three of the security vulnerabilities identified in the alerts. Preferably, solve the highest priority issues. Only solve issues that can be fixed in your app’s code, not issues that require changes to the server.
+#### Testing with ZAP
 
-In order to solve the security issues, you will first need to do some research. Work with one or two other students and choose one issue to research. Post a description of the issue you are researching in the course Moodle forum. Try to choose issues that others haven't chosen. When you have finished your research, share it with the class in the forum.
+Use OWASP ZAP to scan your code for security vulnerabilities.
+
+1. Do a manual passive scan.
+   Before doing the scan, log in as a registered user, but not as an admin. Navigate to every page of your web site and enter data in all the forms.  
+2. Without closing the app, or after loading the webctive testing of your web app, then fix at least three of the security vulnerabilities identified in the alerts. Preferably, solve the highest priority issues. Only solve issues that can be fixed in your app’s code, not issues that require changes to the web server.
+
+#### Research
+
+In order to solve the security issues, you will first need to do some research. Work with one or two other students and choose one issue each to research. Each of you will post a description of the issue you are researching in the course Moodle forum. Focus on high risk issues, and try to choose issues that others haven't chosen. When you have finished your research, share it with the class in the forum.
 
 See the instructor’s example posts at the end of this document for an idea of what to include in your posts.
 
-**Submission to Git and Moodle**
+#### Security Risk Mitigation in Code
 
-   **Code Review**
+Based on the research you, your team and the rest of the class have done, gix three of the highest priority issues that ZAP found in your app.
+
+#### Reporting
+
+In the docs folder, on the Lab4-Security branch of your Git repository, add a markdown document containing:
+
+1. A list of the high, medium and low priority issues that came up in the initial passive and active scans of your app.
+2. The issues you chose to mitigate and the classes and methods that you changed to  implement the mitigation.
+3. A list of the issues that come up in passive and active scans after making the code changes.
+
+## Submission to Git and Moodle
+
+####  Code Review
 
    1. Using GitHub, send a pull request to another student asking them to review your code. After you have gotten a review, and finished revising your code, merge it into the master branch. Keep the lab branch, don't delete it.
-   2. You should get a pull request from the other student. Review their code and paste the review form into the comments of their pull request.
-   3. In the "online text" field of the Code Review assignment on Moodle, enter the URL of the pull request you responded to and which contains the review you gave.
+      2. You should get a pull request from the other student. Review their code and forum posts. You don't need to run ZAP against their web app--just verify that the app still works, that they have used best practices, and fulfilled the lab requirements.
+   3. Paste the review form into the comments of the other student's pull request.
+   4. In the "online text" field of the Code Review assignment on Moodle, enter the URL of the pull request you responded to and which contains the review you gave.
 
    **Production Version**
 
 1. In the "online text" for the Moodle assignment, paste a link to your GitHub repository and branch for this lab.
-2. Upload a copy of the security research you posted in the forum.
-3. Upload a code review document containing a review of your code.
+2. Upload a document with copies of the security research you posted in the forum. Just copy and paste the text, no screen shots are needed.
+3. Upload a code review document containing the review done on your code.
 
 
 
@@ -57,7 +78,7 @@ How to fix this in ASP.NET Core: [Set X-FRAME OPTIONS in ASP.NET Core](https://d
 
 ------
 
-Written by Brian Bird, Lane Community College, winter 2019
+Written by Brian Bird, Lane Community College, winter 2019, revised winter 2020.
 
 CS296N, Web Development 2: ASP.NET
 
