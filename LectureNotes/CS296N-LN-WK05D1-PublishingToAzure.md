@@ -81,7 +81,7 @@ Microsoft offers a free Azure subscription for students and gives you $100 in cr
 
 ## References
 
-- Anderson, Rick. 2020. [Host ASP.NET Core on Linux with Apache](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-3.1). Microsoft.
+- Anderson, Rick. 2020. [Publish an ASP.NET Core app to Azure with Visual Studio&mdash;Deploy the App to Azure](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-3.1#deploy-the-app-to-azure). Microsoft.
 - [Azure for Students FAQ](https://azure.microsoft.com/en-us/free/free-account-students-faq/)
 
 ------
