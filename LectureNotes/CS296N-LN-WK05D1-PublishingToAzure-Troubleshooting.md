@@ -1,6 +1,6 @@
 **[CS296N Web Development 2: ASP.NET](http://lcc-cit.github.io/CS296N-CourseMaterials/)**
 
-#   Deploying a Web App to Azure   
+#   Troubleshooting Deployment to Azure   
 
 | Weekly topics                            |                                              |
 | ---------------------------------------- | -------------------------------------------- |
@@ -14,66 +14,62 @@
 
 ## Contents
 
-[TOC]
-## Overview
-
-**Microsoft Azure** is a [cloud computing](https://en.wikipedia.org/wiki/Cloud_computing) service created by [Microsoft](https://en.wikipedia.org/wiki/Microsoft) for building, testing, deploying, and managing applications and services through Microsoft-managed [data centers](https://en.wikipedia.org/wiki/Data_center). It provides [software as a service (SaaS)](https://en.wikipedia.org/wiki/Software_as_a_service), [platform as a service (PaaS)](https://en.wikipedia.org/wiki/Platform_as_a_service) and [infrastructure as a service (IaaS)](https://en.wikipedia.org/wiki/Infrastructure_as_a_service) and supports many different [programming languages](https://en.wikipedia.org/wiki/Programming_language), tools and frameworks, including both Microsoft-specific and third-party software and systems. ([Wikipedia](https://en.wikipedia.org/wiki/Microsoft_Azure))
 
 
+## Problems with the Publish Process
 
-## Azure for Students
+#### Database Connection String
 
-Microsoft offers a free Azure subscription for students and gives you $100 in credit on to spend on Azure services. The subscription is good for 12 moths <u>or</u> until you use up your credit&mdash;whichever comes first. There are many [services that are free](https://azure.microsoft.com/en-us/free/students/) with this subscription. We will not use Azure for anything that requires you to use your Azure credit in this class, so you should be able to use your account for the full 12 months. If you are still a student when the 12 months end, you can renew your free subscription.
+- **Database(s) not showing up in the settings dialog**
+  The publish tool finds the databases used in your app by scanning appsettings.json. It looks for an object named "ConnectionStrings" as a top-level object in the file. Make sure the connection string(s) are there.
 
-### Get a Free *Azure for Students* Account 
+- **Error when trying to open the Entity Framework Migrations drop-down in the Publish dialog box.**
+  I installed the .NET Core 3.1.1 SDK. I don't know why I had to add this SDK. Perhaps, even though my project is targeting .NET Core 3.1, the publish wizard wants me to use the latest version in the 3.1 series? I don't know. Weird!
 
-1. If you haven't already [signed up for a personal Microsoft account](https://account.microsoft.com/) using your LCC e-mail address, do it now. Be sure to select the "Personal" account option **not** the "Work or Scool" option.
-2. Sign up for [Azure Dev Tools for Teaching](https://signup.azure.com/studentverification?offerType=3) using your LCC e-mail address&mdash;if you haven't already done this.
-3. On the [Azure Dev Tools for Teaching](https://portal.azure.com/?Microsoft_Azure_Education_correlationId=bbe97574-470e-4568-b0db-4d73ba7adfd2#blade/Microsoft_Azure_Education/EducationMenuBlade/overview) page, click the blue button with the title "Claim your Azure Credit Now"
-4. On the following page, [Start building the future with Azure for Students](https://azure.microsoft.com/en-us/free/students/), click the green button with the title "Activate now".
+## Problems with the SQL Database on Azure
 
-​    
+- **Database migration not applied**
+  If you get a [TODO: *add error page message*] error page, it could be caused by the migration not being applied when your app was published. To check for this, look at the event log. If you see an error message about missing tables, then this is probably the cause.
+  Solutions:
+  - **Add code to your app to apply the migration on startup.**
+    Add the line of code below to Startup.cs and republished your site. 
 
-## Deploy a Web App to Azure
+  ```C#
+  context.Database.Migrate();
+  ```
+  
+  - **Unblock the database TCP/IP connection through firewalls.**
+    There are two firewalls that could block Visual Studio's connection to your database on Azure:
+    1. A firewall on your end (the college firewall, your how firewall, etc.)
+       You will need to follow whatever procedures apply to unblock the database IP address and port, 1433.
+    2. The Azure database server firewall.
+       On Azure, open the SQL Server service, then open the Firewalls and Virtual Networks page, add your local IP address so it is allowed through the firewall.
 
-### Create a database via the Azure Web Portal         
+- **Viewing your database tables**
+  You can use any database management tool, such as:
 
-- Log into the [Azure portal](https://portal.azure.com).
+  1.  The Server Explorer in Visual Studio.
+  2. The Query Editor on the Azure Portal, SQL database page.
 
-- Select SQL databases from the menu of services.
+  Note: You will need to be sure that the database IP connection isn't blocked by a firewall for either of these options.
 
-- Click on +Add, then fill in the required fields.
+## Problems with the App on Azure App Service
 
-- - Create a resource group if you don't already have one.
+- **View the log files**
+  The best place to start troubleshooting problems with your app not running or not running correctly is by looking at the event log. First, you need to enable error logging by following these instructions:
 
-  - Create a server. You are only allowed to have one free database per region. You select the region when you set up your  server.
+  https://docs.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs
+  [*TODO: provide the steps for viewing the error log on the Azure portal*]
 
-  - Select a pricing tier
+- **Use the VS Debugger**
+  Use the Visual Studio 2019 debugger to debug your app while running on an Azure App Service. See these instructions: https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs
 
-  - - If you are using a free student subscription, select the "Standard" option. (You will be charged for any of the others, including "Basic").
+## Problems with the Azure for Students Account
 
-- Copy the ADO.NET connection string for your database. You will need to add it to the publish profile in Visual Studio.
-   Example connection string:
-   `Server=tcp:practiceserver.database.windows.net,1433;Initial Catalog=Movie; Persist Security Info=False; User ID={your_username}; Password={your_password}; MultipleActiveResultSets=False; Encrypt=True; TrustServerCertificate=False; Connection Timeout=30;`
-
-
-
-### Publish Your App from Visual Studio         
-
-
--  In Visual Studio, run the publish wizard by right-clicking on the project and selecting publish.
-
-- Click on configure to change the settings in your publish profile
-
-- Select the Settings page
-
--  - In the *Databases* section, check the checkbox for your SQL Server connection string and paste the connection string for your Azure SQL Database.
-
-    - Be sure to put the <u>user name and password</u> for your Azure SQL Database in place of your_username and your_password and delete the curly braces.
-
-  - In the *Entity Framework Migrations* section, check the check box for AppDbContext and add the connection string again.
-
-- Now you can publish your web app.
+- **Checking your credit balance**
+  https://www.microsoftazuresponsorships.com/Usage
+- **Charges for using an App Service.**
+  If you used the publish wizard to create your App Service, be sure to go to your Azure portal and change the service plan from Standard to Free. This way you won't spend any of your $100 credit on your App Service.
 
 ------
 
@@ -81,8 +77,10 @@ Microsoft offers a free Azure subscription for students and gives you $100 in cr
 
 ## References
 
-- Anderson, Rick. 2020. [Publish an ASP.NET Core app to Azure with Visual Studio&mdash;Deploy the App to Azure](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs?view=aspnetcore-3.1#deploy-the-app-to-azure). Microsoft.
-- [Azure for Students FAQ](https://azure.microsoft.com/en-us/free/free-account-students-faq/)
+- Anderson, Rick. 2020. [Publish an ASP.NET Core app to Azure with Visual Studio](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vs). Microsoft.
+- Latham, Luke and Kotalik, Justin. 2020. [Troubleshoot ASP.NET Core on Azure App Service and IIS](https://docs.microsoft.com/en-us/aspnet/core/test/troubleshoot-azure-iis?view=aspnetcore-3.1). Microsoft.
+- Jones, Mike, et al. 2018. [Remote Debug ASP.NET Core on an Azure App Service](https://docs.microsoft.com/en-us/visualstudio/debugger/remote-debugging-azure?view=vs-2019#remote_debug_azure_app_service). Microsoft.
+- Lin, Cephas, et al. 2019. [Enable diagnostics logging for apps in Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs). Microsoft.
 
 ------
 
