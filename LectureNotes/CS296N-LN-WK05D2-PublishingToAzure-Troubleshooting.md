@@ -14,6 +14,8 @@
 
 ## Contents
 
+[TOC]
+
 
 
 ## Problems with the Publish Process
