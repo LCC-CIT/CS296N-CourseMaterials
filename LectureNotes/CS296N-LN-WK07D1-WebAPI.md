@@ -24,7 +24,7 @@
 
 
 
-## Web Services
+## Web APIs
 
 
 An ASP.NET Core Web API (aka web service) can be used in several ways: 	
@@ -36,9 +36,10 @@ An ASP.NET Core Web API (aka web service) can be used in several ways:
 
    - Think of a web service as a web site that doesn't have a UI, it is meant to be accessed by a computer not a human. 
 - You can also think of it as an API that contains methods that can be called over a network or over the Internet. 		
-   
+  
+
 There are two main scenarios in which web services are used: 		
-   
+
 1. To facilitate a [Service Oriented Architecture](https://en.wikipedia.org/wiki/Service-oriented_architecture) in which different components of a system communicate over a network.
    2. To provide a service that can be used by third parties or subscribers.
 
@@ -51,135 +52,93 @@ There are two main scenarios in which web services are used:
     - Language independent
 - Types of Web Services 		
   - SOAP - Simple Object Access Protocol 			
+    
     - An older protocol that is more difficult to implement and consume.
+    
   - REST - Representational State Transfer 			
+    
     - A newer type of web service that is easier to implement and consume. It is being used for most new web service implementations.
+    
+------
+
+​    
 
 ## REST Architecture
 
-- Not really a new protocol - just uses HTTP
-  Example: [Weather Underground REST API](https://www.wunderground.com/weather/api/d/docs)
+REST is not really a new protocol&mdash;it is just HTTP
 
-  `http://api.wunderground.com/api/0e3e69302fba4e56/conditions/q/CA/San_Francisco.json` 		
+Examples from [OpenWeather](https://openweathermap.org):
 
-  ### Representations
+-  [List of OpenWeather REST APIs](https://openweathermap.org/api)
+  
+- [Documentation for the current weather API](https://openweathermap.org/current)
+  
+- Rest Query for the current weather:
+  [api.openweathermap.org/data/2.5/weather?q=London](http://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22)
 
-- Resources - a REST service provides access to resources, which can be any kind of digital object: image, video, text, etc.
-
-- There is no restriction on the way resources can be represented, but the two most common means are:
-
-  - JSON - JavaScript Object Notation
-  Example:
-    
-    ```json
-      {
-            "response": {
-              "version": "0.1",
-                "termsofService": "http://www.wunderground.com/weather/api/d/terms.html",
-                "features": {
-                    "conditions": 1
-                }
-            },
-            "current_observation": {
-                "image": {
-                    "url": "http://icons-ak.wxug.com/graphics/wu2/logo_130x80.png",
-                    "title": "Weather Underground",
-                    "link": "http://www.wunderground.com"
-                },
-                "display_location": {
-                    "full": "San Francisco, CA",
-                    "city": "San Francisco",
-                    "state": "CA",
-                    "state_name": "California",
-                    "country": "US",
-                    "country_iso3166": "US",
-                    "zip": "94101",
-                    "latitude": "37.77500916",
-                    "longitude": "-122.41825867",
-                    "elevation": "47.00000000"
-                },
-                "observation_location": {
-                    "full": "SOMA - Near Van Ness, San Francisco, California",
-                    "city": "SOMA - Near Van Ness, San Francisco",
-                    "state": "California",
-                    "country": "US",
-                    "country_iso3166": "US",
-                    "latitude": "37.773285",
-                    "longitude": "-122.417725",
-                    "elevation": "49 ft"
-                },
-                "estimated": {},
-                "station_id": "KCASANFR58",
-                "observation_time": "Last Updated on June 27, 5:27 PM PDT",
-                "observation_time_rfc822": "Wed, 27 Jun 2012 17:27:13 -0700",
-                "observation_epoch": "1340843233",
-                "local_time_rfc822": "Wed, 27 Jun 2012 17:27:14 -0700",
-                "local_epoch": "1340843234",
-                "local_tz_short": "PDT",
-                "local_tz_long": "America/Los_Angeles",
-                "local_tz_offset": "-0700",
-                "weather": "Partly Cloudy",
-                "temperature_string": "66.3 F (19.1 C)",
-                "temp_f": 66.3,
-                "temp_c": 19.1,
-                "relative_humidity": "65%",
-                "wind_string": "From the NNW at 22.0 MPH Gusting to 28.0 MPH",
-                "wind_dir": "NNW",
-                "wind_degrees": 346,
-                "wind_mph": 22.0,
-                "wind_gust_mph": "28.0",
-                "wind_kph": 35.4,
-                "wind_gust_kph": "45.1",
-                "pressure_mb": "1013",
-                "pressure_in": "29.93",
-                "pressure_trend": "+",
-                "dewpoint_string": "54 F (12 C)",
-                "dewpoint_f": 54,
-                "dewpoint_c": 12,
-                "heat_index_string": "NA",
-                "heat_index_f": "NA",
-                "heat_index_c": "NA",
-                "windchill_string": "NA",
-                "windchill_f": "NA",
-                "windchill_c": "NA",
-                "feelslike_string": "66.3 F (19.1 C)",
-                "feelslike_f": "66.3",
-                "feelslike_c": "19.1",
-                "visibility_mi": "10.0",
-                "visibility_km": "16.1",
-                "solarradiation": "",
-                "UV": "5",
-                "precip_1hr_string": "0.00 in ( 0 mm)",
-                "precip_1hr_in": "0.00",
-                "precip_1hr_metric": " 0",
-                "precip_today_string": "0.00 in (0 mm)",
-                "precip_today_in": "0.00",
-                "precip_today_metric": "0",
-                "icon": "partlycloudy",
-                "icon_url": "http://icons-ak.wxug.com/i/c/k/partlycloudy.gif",
-                "forecast_url": "http://www.wunderground.com/US/CA/San_Francisco.html",
-                "history_url": "http://www.wunderground.com/history/airport/KCASANFR58/2012/6/27/DailyHistory.html",
-                "ob_url": "http://www.wunderground.com/cgi-bin/findweather/getForecast?query=37.773285,-122.417725"
-            }
-        }
-    }
-    ```
-    
-    
-
-  - XML - eXtensible Markup Language
-    Example:
-    [Weather forecast for San Francisco](San_Francisco.xml)
-### Messages
+###   HTTP Messages
 
 
-- Messages from the client are [HTTP Requests](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_message)
+- Each message is independent - RESTful services are stateless.
+- Messages from the client are [HTTP Requests](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_message). 
+- Messages from the service are [HTTP Responses](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Response_message).
 
-  - Verbs can be: GET, PUT, POST, DELETE, OPTIONS, HEAD.
+#### HTTP requests
+Requests have these parts:
 
-- A request should only affect one resource. (Each resource should have at least one URI.)
-- Messages from the service are [HTTP Responses](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Response_message)
-- Each message is independent - RESTful services are stateless
+  1. Start line&mdash;this includes the URL and things that are appended to it.
+
+     - An [HTTP Method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) (a verb)
+       Common methods are: GET, POST, PUT, PATCH, DELETE.
+
+     - Request target&mdash;normally a URL.
+
+     - HTTP version.
+
+     - Example: 
+
+       ```http
+       POST /api/Book HTTP/1.1
+       Host: localhost:5000
+       ```
+
+  2. Header&mdash;this is optional and provides information about the request; such as the source of the request, the format of the body, etc. The information included depends on the type and content of the request. For requests that have a body, you can specify its format here.
+
+     - Example: 
+
+       ```http
+       Content-Type:application/json
+       ```
+
+  3. Body&mdash;Not all requests have a body, but request methods that send data to be stored (POST, PUT, etc.) will have a body.
+
+     - Example:
+
+       ```json
+       {
+           "title": "Huckleberry Finn",
+           "date": "4/3/1875",
+           "name": "Mark Twain",
+           "birthday": "11/30/1835"
+       }
+       ```
+
+
+### REST Resource Representation
+
+-  Resources - a REST service provides access to resources, which can be any kind of digital object: image, video, text, etc.
+
+-  There is no restriction on the way resources can be represented, but the two most common means are:
+
+   - JSON - JavaScript Object NotationExample:
+     [Weather forecast for San Francisco](San_Francisco.json)
+   - XML - eXtensible Markup Language
+     Example:
+     [Weather forecast for San Francisco](San_Francisco.xml)
+
+------
+
+
 
 ## Consuming a REST Service
 
@@ -198,7 +157,7 @@ There are two main scenarios in which web services are used:
   - In the past, browser extensions allowed client code in other languages; like Silverlight which was programmed in C#.
   - With the advent of [WebAssembly](https://webassembly.org/) (Wasm), client code can be written in any language that can be compile to Wasm; like C# and the client-side [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) framework.
 
-  ### Web Service Testing
+### Web Service Testing
 
 - [SoapUI ](https://www.soapui.org) - for testing both SOAP and REST
   
