@@ -77,7 +77,7 @@ The current version of [MariaDB](https://mariadb.com) on citweb is 15.1 (as of 2
   - At the MariaDB prompt type: 
     `CREATE DATABASE databasename;`
 
-*Note: a useful cross-platform free, open-source database manager is [DBeaver](https://dbeaver.io)*
+*Note: a useful cross-platform free, open-source database manager is [DBeaver](https://dbeaver.io)*.
 
 ### 3. Using a Reverse Proxy 
 
@@ -97,54 +97,52 @@ The current version of [MariaDB](https://mariadb.com) on citweb is 15.1 (as of 2
 
 ### 4. Deploying a web app
 
-We will be doing a [Framework Dependent Deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd). This means that in a previous step we installed the .NET Core runtime so the it is available system-wide.
-See this article for instructions
+We will be doing a [Framework Dependent Deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd). This means that in a previous step we installed the .NET Core runtime so it is available system-wide.
 
-1. Preparing the app for deployment                
+1. Preparing the app for deployment 
 
-   - Add code to create a database if it doesn't  exist and to apply any pending migrations. This code goes in Starup.cs,  in the Configure method, you need to add just the last line in the code snippet below:
+   - Add code to create a database if it doesn't exist and to apply any pending migrations. This code goes in Startup.cs,  in the Configure method, before calling the seed data method.
 
    ```C#
-   using ( var serviceScope = app.ApplicationServices
-         .GetRequiredService()
-         .CreateScope()) {
-       var context = serviceScope.ServiceProvider.GetService();
-       context.Database.Migrate();
-    }
+   context.Database.Migrate();
    ```
-
+   
    - Exclude Application Insights from the code in the release build's publish folder 
      Add the line below to your .csproj file:
      
      ```json
-     <PropertyGroup
+  <PropertyGroup
         <PublishWithAspNetCoreTargetManifest>
            false
         </PublishWithAspNetCoreTargetManifest>
      </PropertyGroup>
      ```
-
+   
 2. Deploying the app
-  - Run [dotnet  publish](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish?tabs=netcore21) from the development environment on your  local machine to package an app into a directory (folder) that will contain code that can run on the server. Example:
+  - Run [dotnet publish](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish?tabs=netcore21) from the development environment on your local machine to package an app into a directory (folder) that will contain code that can run on the server. Example:
     `dotnet  publish --configuration Release `
-
+Alternatively, you can publish your app from Visual Studio.
+    
   - Copy the directory above, which contains your application's executable code, to the server using a means of your choice such as *ftp*, *scp,* *rsync*, or a continuous integration server.
   
-    Note: You should create a sub-directory in your home directory for your web apps, in the example below I named it *apps*. Example (assuming you are in the project directory on your local machine):
+    Example (assuming you are in the project directory on your local machine):
      `rsync -avz bin/Release/netcoreapp2.0/publish/   myusername@citweb.lanecc.net:apps/bookinfo`
-  
+    
+    *Note: You should create a sub-directory in your home directory for your web apps, in the example below I named it apps. Here is the Linux command to create a directory:*
+    `mkdir apps`
+
 3. Testing the App
-  
-  - This test will just be run on the server itself, the web pages won't be delivered over the internet. From the command line, run the app: 
-  `dotnet myapp.dll`
-   A typical response will be:  
+
+  - This test will just be run on the server itself, the web pages won't be delivered over the Internet. From the command line, run the app: 
+    `dotnet myapp.dll`
+      A typical response will be:  
    ```
    Hosting environment: Production
    Content root path: /home//apps/myapp
    Now listening on: http://localhost:5000
    Application started. Press Ctrl+C to shut down.   
    ```
-  - Use the text based browser, elinks, to view the web page:
+  - Use the text based browser, [ELinks](http://elinks.or.cz/), to view the web page:
     `elinks http://localhost:5000 `
 
 ------
@@ -156,8 +154,9 @@ See this article for instructions
 - Boyer, Shayne. 2020. [Host ASP.NET Core on Linux with Apache ](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-2.1&tabs=aspnetcore2x#configure-apache). Microsoft.
 - Contributors. 2018. [.NET Core Application Deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd). Microsoft.
 - Dykstra, Smith, Halter, and Ross. 2019. [Web Server Implementations in .NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&tabs=aspnetcore2x). Microsoft.
-- Pelser, Jerrie. 2017. [Using MariaDB with ASP.NET Core 2.0](https://www.jerriepelser.com/blog/using-mariadb-with-aspnet-core). Personal Blog.
-- Customer Content Services. [Using .NET Core 3.1 on RHEL](https://access.redhat.com/documentation/en-us/net_core/3.1/html/getting_started_guide/gs_install_dotnet). Redhat.
+- [A Ten Minute MariaDB Primer](https://mariadb.com/kb/en/a-mariadb-primer/). Official MariaDB Documentation.
+- Pelser, Jerrie. 2017. [Using MariaDB with ASP.NET Core 2.0](https://www.jerriepelser.com/blog/using-mariadb-with-aspnet-core). Personal blog.
+- Customer Content Services. [Using .NET Core 3.1 on RHEL](https://access.redhat.com/documentation/en-us/net_core/3.1/html/getting_started_guide/gs_install_dotnet). Red Hat.
   *Note that RHEL (Red Hat Enterprise Linux) is identical to CentOS.*
 
 ------

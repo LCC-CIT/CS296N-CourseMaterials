@@ -48,7 +48,7 @@ Report what you did for this exercise by entering the appropriate phrase in the 
     
 - Add links to navigate between your admin pages. 
 
-- Write a document titled *lab2-Identity.md*, or .txt that lists the model properties you validated and the controller methods where you did server-side validation. Put this in a folder named *docs* in the top level of your lab repository.
+- Write a document titled *lab2-Identity.md*, or .txt that lists the features and web pages added Put this in a folder named *docs* in the top level of your lab repository.
 
   
 
