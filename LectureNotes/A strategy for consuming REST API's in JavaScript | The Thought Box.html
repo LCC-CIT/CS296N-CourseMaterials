@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+<html lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec" >
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<link rel="pingback" href="https://g-liu.com/blog/xmlrpc.php" />
+	<title>A strategy for consuming REST API&#039;s in JavaScript | The Thought Box</title>
+<!-- All in One SEO Pack 3.3.3 by Michael Torbert of Semper Fi Web Design[365,451] -->
+<meta name="description"  content="A few weeks ago, my students started learning how to make HTTP requests with JavaScript using AJAX. As a developer with plenty of experience interacting with" />
+<meta name="keywords"  content="rest,javascript,ajax,json,web development,coding,coding and web development" />
+<script type="application/ld+json" class="aioseop-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://g-liu.com/blog/#organization","url":"https://g-liu.com/blog/","name":"The Thought Box","sameAs":[]},{"@type":"WebSite","@id":"https://g-liu.com/blog/#website","url":"https://g-liu.com/blog/","name":"The Thought Box","publisher":{"@id":"https://g-liu.com/blog/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://g-liu.com/blog/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/#webpage","url":"https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/","inLanguage":"en-US","name":"A strategy for consuming REST API&#8217;s in JavaScript","isPartOf":{"@id":"https://g-liu.com/blog/#website"},"image":{"@type":"ImageObject","@id":"https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/#primaryimage","url":"https://g-liu.com/blog/wp-content/uploads/2016/07/Giant_Panda_Eating.jpg","width":2400,"height":1600,"caption":"Giant panda eating. Photo Credit: Chen Wu, Wikimedia Commons."},"primaryImageOfPage":{"@id":"https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/#primaryimage"},"datePublished":"2016-07-18T15:00:49-07:00","dateModified":"2016-07-18T18:53:34-07:00"},{"@type":"Article","@id":"https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/#article","isPartOf":{"@id":"https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/#webpage"},"author":{"@id":"https://g-liu.com/blog/author/admin/#author"},"headline":"A strategy for consuming REST API&#8217;s in JavaScript","datePublished":"2016-07-18T15:00:49-07:00","dateModified":"2016-07-18T18:53:34-07:00","commentCount":"1","mainEntityOfPage":{"@id":"https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/#webpage"},"publisher":{"@id":"https://g-liu.com/blog/#organization"},"articleSection":"Coding and web development","image":{"@type":"ImageObject","@id":"https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/#primaryimage","url":"https://g-liu.com/blog/wp-content/uploads/2016/07/Giant_Panda_Eating.jpg","width":2400,"height":1600,"caption":"Giant panda eating. Photo Credit: Chen Wu, Wikimedia Commons."}},{"@type":"Person","@id":"https://g-liu.com/blog/author/admin/#author","name":"Geoffrey Liu","sameAs":[],"image":{"@type":"ImageObject","@id":"https://g-liu.com/blog/#personlogo","url":"https://secure.gravatar.com/avatar/6512c8b15243cd8188cdfcf966e552d4?s=96&d=mm&r=g","width":96,"height":96,"caption":"Geoffrey Liu"}}]}</script>
+<link rel="canonical" href="https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/" />
+			<script type="text/javascript" >
+				window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+				ga('create', 'UA-44900312-1', 'auto');
+				// Plugins
+				ga('send', 'pageview');
+			</script>
+			<script async src="https://www.google-analytics.com/analytics.js"></script>
+			<!-- All in One SEO Pack -->
+<link rel='dns-prefetch' href='//s7.addthis.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//maxcdn.bootstrapcdn.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="The Thought Box &raquo; Feed" href="https://g-liu.com/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="The Thought Box &raquo; Comments Feed" href="https://g-liu.com/blog/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="The Thought Box &raquo; A strategy for consuming REST API&#8217;s in JavaScript Comments Feed" href="https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/g-liu.com\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.3"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://g-liu.com/blog/wp-includes/css/dist/block-library/style.min.css?ver=5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='parent-style-css'  href='https://g-liu.com/blog/wp-content/themes/fastr/style.css?ver=5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?ver=5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='fastr-style-css'  href='https://g-liu.com/blog/wp-content/themes/fastr-child/style.css?ver=5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='print-styles-css'  href='https://g-liu.com/blog/wp-content/themes/fastr-child/print.css?ver=5.3' type='text/css' media='print' />
+<link rel='stylesheet' id='slb_core-css'  href='https://g-liu.com/blog/wp-content/plugins/simple-lightbox/client/css/app.css?ver=2.7.1' type='text/css' media='all' />
+<link rel='stylesheet' id='addthis_all_pages-css'  href='https://g-liu.com/blog/wp-content/plugins/addthis-smart-layers/frontend/build/addthis_wordpress_public.min.css?ver=5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://g-liu.com/blog/wp-content/plugins/jetpack/css/jetpack.css?ver=7.9.1' type='text/css' media='all' />
+<script type='text/javascript' src='https://g-liu.com/blog/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='https://g-liu.com/blog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='https://g-liu.com/blog/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://g-liu.com/blog/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://g-liu.com/blog/wp-includes/wlwmanifest.xml" />
+<link rel='prev' title='China 2016, Days 6 and 7' href='https://g-liu.com/blog/2016/06/china-2016-days-6-and-7/' />
+<link rel='next' title='The top 10 things software engineers do that don&#8217;t involve writing code' href='https://g-liu.com/blog/2016/09/the-top-10-things-software-engineers-do-that-dont-involve-writing-code/' />
+<meta name="generator" content="WordPress 5.3" />
+<link rel='shortlink' href='https://wp.me/p2Zt3y-1tw' />
+<link rel="alternate" type="application/json+oembed" href="https://g-liu.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fg-liu.com%2Fblog%2F2016%2F07%2Fa-strategy-for-consuming-rest-apis-in-javascript%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://g-liu.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fg-liu.com%2Fblog%2F2016%2F07%2Fa-strategy-for-consuming-rest-apis-in-javascript%2F&#038;format=xml" />
+<link rel='dns-prefetch' href='//jetpack.wordpress.com'/>
+<link rel='dns-prefetch' href='//s0.wp.com'/>
+<link rel='dns-prefetch' href='//s1.wp.com'/>
+<link rel='dns-prefetch' href='//s2.wp.com'/>
+<link rel='dns-prefetch' href='//public-api.wordpress.com'/>
+<link rel='dns-prefetch' href='//0.gravatar.com'/>
+<link rel='dns-prefetch' href='//1.gravatar.com'/>
+<link rel='dns-prefetch' href='//2.gravatar.com'/>
+<style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style><style type="text/css">.removed_link, a.removed_link {
+	text-decoration: line-through;
+}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="A strategy for consuming REST API&#8217;s in JavaScript" />
+<meta property="og:url" content="https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/" />
+<meta property="og:description" content="A few weeks ago, my students started learning&nbsp;how to make HTTP requests with JavaScript using AJAX.&nbsp;As a developer with plenty of experience interacting with REST API&#8217;s on the Web, …" />
+<meta property="article:published_time" content="2016-07-18T15:00:49+00:00" />
+<meta property="article:modified_time" content="2016-07-18T18:53:34+00:00" />
+<meta property="og:site_name" content="The Thought Box" />
+<meta property="og:image" content="https://g-liu.com/blog/wp-content/uploads/2016/07/Giant_Panda_Eating.jpg" />
+<meta property="og:image:width" content="2400" />
+<meta property="og:image:height" content="1600" />
+<meta property="og:image:alt" content="Giant panda eating. Photo Credit: Chen Wu, Wikimedia Commons." />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:creator" content="@tboxblog" />
+<meta name="twitter:site" content="@geo_liu" />
+<meta name="twitter:text:title" content="A strategy for consuming REST API&#8217;s in JavaScript" />
+<meta name="twitter:image" content="https://g-liu.com/blog/wp-content/uploads/2016/07/Giant_Panda_Eating.jpg?w=640" />
+<meta name="twitter:image:alt" content="Giant panda eating. Photo Credit: Chen Wu, Wikimedia Commons." />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- End Jetpack Open Graph Tags -->
+</head>
+<body class="post-template-default single single-post postid-5674 single-format-standard group-blog">
+	<div id="page" class="hfeed site">
+		<div id="top-strip">
+							<div class="site-title">
+					<span>
+						<a href="https://g-liu.com/blog/" rel="home">The Thought Box</a>
+					</span>
+				</div>
+			<button id="menu-toggle"><span class="fa fa-bars fa-lg"></span></button>
+			<div id="sidebar-cover"></div>
+			<nav class="menu-custom-menu-container"><ul id="menu-custom-menu" class="menu"><li id="menu-item-mobile-only" class="menu-item menu-item-mobile-only"><span>Navigation</span></li><li id="menu-item-3001" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-3001"><a href="http://g-liu.com/blog/">Home</a></li>
+<li id="menu-item-5147" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5147"><a href="#">About</a>
+<ul class="sub-menu">
+	<li id="menu-item-2999" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2999"><a href="https://g-liu.com/blog/about/author/">The Author</a></li>
+	<li id="menu-item-2997" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2997"><a href="https://g-liu.com/blog/about/policy/">Privacy Policy</a></li>
+	<li id="menu-item-2998" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2998"><a href="https://g-liu.com/blog/about/comments-policy/">Commenting Policy</a></li>
+</ul>
+</li>
+<li id="menu-item-2987" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2987"><a href="https://g-liu.com/blog/citations/">Citations</a></li>
+<li id="menu-item-2986" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2986"><a href="https://g-liu.com/blog/sponsors/">Sponsors</a></li>
+<li id="menu-item-5148" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5148"><a href="#">Weblinks</a>
+<ul class="sub-menu">
+	<li id="menu-item-2992" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2992"><a href="https://g-liu.com/blog/links/articles/">Articles</a></li>
+	<li id="menu-item-2993" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2993"><a href="https://g-liu.com/blog/links/firefox/">Firefox</a></li>
+	<li id="menu-item-2994" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2994"><a href="https://g-liu.com/blog/links/twitter/">Twitter</a></li>
+	<li id="menu-item-4698" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4698"><a href="https://g-liu.com/blog/links/stackoverflow/">StackOverflow</a></li>
+	<li id="menu-item-2991" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2991"><a href="https://g-liu.com/blog/links/games/">Games</a></li>
+	<li id="menu-item-2995" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2995"><a href="https://g-liu.com/blog/links/mac-and-pc-evaluation/">Mac and PC Evaluation</a></li>
+</ul>
+</li>
+<li id="menu-item-2988" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2988"><a href="https://g-liu.com/blog/wish-list/">Bucket list</a></li>
+<li id="menu-item-search" class="menu-item menu-item-search"><form role="search" method="get" class="search-form" action="https://g-liu.com/blog/">
+	<span class="screen-reader-text">Search for:</span>
+	<div class="input-group">
+		<input type="search" class="search-field collapsed" placeholder="Search &hellip;" name="s" data-value="" />
+		<input type="submit" class="search-submit" value="&#xf002;" />
+	</div>
+</form>
+</li></ul></nav>		</div>
+		<header id="masthead" class="site-header" style="background-color:#333333;background-image:url('https://g-liu.com/blog/wp-content/uploads/2016/07/Giant_Panda_Eating.jpg');" role="banner">
+			<div class="container">
+														<h1 class="page-title">
+						 A strategy for consuming REST API&#8217;s in JavaScript					</h1><!-- #page-title -->
+					<div class="entry-meta">
+													<div class="meta-date">
+								<span class="posted-on"><span class="fa fa-clock-o"></span> <time class="entry-date published" datetime="2016-07-18T08:00:49-07:00">July 18, 2016 at 8:00 am</time><time class="updated" datetime="2016-07-18T11:53:34-07:00">July 18, 2016</time></span>							</div>
+															<div class="cat-links">
+									<span class="fa fa-folder-o"></span>
+									<a href="https://g-liu.com/blog/category/code-web-design/" rel="category tag">Coding and web development</a>								</div>
+					</div><!-- .entry-meta -->
+			</div><!-- .container.narrow -->
+		</header><!-- #masthead -->
+		<div id="content" class="site-content container">
+	<div id="primary" class="content-area">
+		<div id="main" class="site-main" role="main">
+<article id="post-5674" class="post-5674 post type-post status-publish format-standard has-post-thumbnail hentry category-code-web-design">
+	<div class="entry-content">
+		<div class="at-above-post addthis_tool" data-url="https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/"></div><p>A few weeks ago, my students started learning&nbsp;how to make HTTP requests with JavaScript using AJAX.&nbsp;As a developer with plenty of experience interacting with REST API&#8217;s on the Web, I wanted to make it easier for my students to ramp up on AJAX. As a result, I devised a five-step method and for the next few sections, walked them through how to use it.&nbsp;Then, I decided to take my own medicine and try my method. It turns out that this structured, detailed plan works out fairly well in a lot of situations!</p>
+<p>I thus present to you, Geoffrey&#8217;s Five-Step Method for (mostly) Painless API Consumption. Each step is accompanied by an example of how the step can be applied.</p>
+<p><span id="more-5674"></span></p>
+<h1>1. Identify the necessary API endpoint(s)</h1>
+<p>Here is where you&nbsp;ask most of the questions about the API you are using. What are the URIs of the API endpoints that you need? What output does the endpoint produce, if any? What request method does the endpoint accept? Do you need to pass any parameters? If so, what are the names of the parameters, and their accepted values?</p>
+<p>If you need to send any headers, what are they? Does the endpoint require any authentication? If so, what are the credentials? Last but not least, is there any additional data required by the endpoint?</p>
+<p><strong>Example</strong><strong>:</strong> I am using <a href="http://forecast.io" target="_blank">Forecast.io</a> to get weather data for my application. I&#8217;ll need the forecast at my current location for yesterday. Reading the <a href="https://developer.forecast.io/docs/v2" target="_blank">Dark Sky Forecast API documentation</a>, I see that the URI I need to hit is of the form:</p>
+<pre>https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE,TIME
+</pre>
+<p>This is a GET request, requiring no&nbsp;parameters (but also accepting some optional parameters), no headers, and requiring no authentication (besides an API key in the URI). Reading the documentation for accepted values of <code>APIKEY</code>, <code>LATITUDE</code>, <code>LONGITUDE</code>, and <code>TIME</code>, I form a request with an arbitrarily chosen latitude, longitude, time, and include two optional GET parameters whose names and values I read from the documentation:</p>
+<pre>https://api.forecast.io/forecast/354f6cf4139dec73e7400d2949cc2ba5/78.2253966,15.4178498,1468713382?units=ca&exclude=minutely,hourly
+</pre>
+<p>Of course, the latitude and longitude in this situation will eventually depend on the user&#8217;s real-world physical location. This is handled in Step 5.</p>
+<h1>2. Check the API endpoint(s) in a browser or REST client</h1>
+<p>Now that you have identified the necessary endpoint(s), it&#8217;s time to actually see how the endpoint(s) respond.</p>
+<p>To test REST APIs,&nbsp;I like to use a REST client whenever possible. A REST client is like a browser, but&nbsp;with extra features tailored for&nbsp;web development. Two of my favorite REST clients are <a href="http://insomnia.rest/" target="_blank">Insomnia</a> and <a href="https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo" target="_blank">Advanced Rest Client</a>. Using your browser will also work for simple GET requests, as your browser is inherently a GET client.</p>
+<p>For each endpoint, make sure it works&nbsp;as expected. If you expect an XML response, for example, and you receive something in plain text, then either the API is wrong or your assumption was wrong. In this case, you should revisit Step 1 and revise your assumptions about that specific API call.</p>
+<p>If there is ever a chance that the API endpoint can fail, see if you can reproduce the failure case. This will be important in a later step, as good application design requires you to effectively communicate any errors to the user in a non-technical manner.</p>
+<p><strong>Example:</strong> Hitting the endpoint above, in my browser, yields the following <code>application/json</code> response:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+{
+    &quot;latitude&quot;: 78.2253966,
+    &quot;longitude&quot;: 15.4178498,
+    &quot;timezone&quot;: &quot;Arctic/Longyearbyen&quot;,
+    &quot;offset&quot;: 2,
+    &quot;currently&quot;: {
+        &quot;time&quot;: 1468713382,
+        &quot;summary&quot;: &quot;Partly Cloudy&quot;,
+        &quot;icon&quot;: &quot;partly-cloudy-day&quot;,
+        &quot;precipIntensity&quot;: 0.0305,
+        &quot;precipProbability&quot;: 0.02,
+        &quot;precipType&quot;: &quot;rain&quot;,
+        &quot;temperature&quot;: 6.4,
+        &quot;apparentTemperature&quot;: 5.5,
+        &quot;dewPoint&quot;: 6.18,
+        &quot;humidity&quot;: 0.99,
+        &quot;windSpeed&quot;: 5.52,
+        &quot;windBearing&quot;: 236,
+        &quot;visibility&quot;: 8.42,
+        &quot;cloudCover&quot;: 0.54,
+        &quot;pressure&quot;: 1009.01,
+        &quot;ozone&quot;: 317.37
+    },
+    &quot;daily&quot;: {
+        &quot;data&quot;: [{
+            &quot;time&quot;: 1468706400,
+            &quot;summary&quot;: &quot;Partly cloudy throughout the day.&quot;,
+            &quot;icon&quot;: &quot;partly-cloudy-day&quot;,
+            &quot;moonPhase&quot;: 0.41,
+            &quot;precipIntensity&quot;: 0.0279,
+            &quot;precipIntensityMax&quot;: 0.0762,
+            &quot;precipIntensityMaxTime&quot;: 1468724400,
+            &quot;precipProbability&quot;: 0.09,
+            &quot;precipType&quot;: &quot;rain&quot;,
+            &quot;temperatureMin&quot;: 6.11,
+            &quot;temperatureMinTime&quot;: 1468724400,
+            &quot;temperatureMax&quot;: 9.52,
+            &quot;temperatureMaxTime&quot;: 1468778400,
+            &quot;apparentTemperatureMin&quot;: 5.49,
+            &quot;apparentTemperatureMinTime&quot;: 1468713600,
+            &quot;apparentTemperatureMax&quot;: 8.16,
+            &quot;apparentTemperatureMaxTime&quot;: 1468778400,
+            &quot;dewPoint&quot;: 7.55,
+            &quot;humidity&quot;: 0.99,
+            &quot;windSpeed&quot;: 3.25,
+            &quot;windBearing&quot;: 105,
+            &quot;visibility&quot;: 9.29,
+            &quot;cloudCover&quot;: 0.48,
+            &quot;pressure&quot;: 1009.26,
+            &quot;ozone&quot;: 311.25
+        }]
+    },
+    &quot;flags&quot;: {
+        &quot;sources&quot;: [&quot;gfs&quot;, &quot;cmc&quot;, &quot;fnmoc&quot;, &quot;metno_ne&quot;, &quot;isd&quot;, &quot;madis&quot;],
+        &quot;metno-license&quot;: &quot;Based on data from the Norwegian Meteorological Institute. (http://api.met.no/)&quot;,
+        &quot;isd-stations&quot;: [&quot;010050-99999&quot;, &quot;010070-99999&quot;, &quot;010080-99999&quot;, &quot;010170-99999&quot;, &quot;201070-99999&quot;],
+        &quot;madis-stations&quot;: [&quot;ENSB&quot;],
+        &quot;units&quot;: &quot;ca&quot;
+    }
+}
+</pre>
+<p>What could go wrong here? First of all, some of the forecast data may not be available. The <code>currently</code> object in the response may not exist, and <code>daily.data</code> could be an empty array. Secondly, the weather station might be offline, in which case a <code>darksky-unavailable</code> key will appear in <code>flags</code> (this is gleaned from the documentation). Last but not least, if your API key is on the free plan, you only get one thousand API calls per day. According to the <a href="https://developer.forecast.io/" target="_blank">developer dashboard</a>, your access to the Forecast API will be &#8220;cut off&#8221; after the one thousandth call. This is a hint that you&#8217;ll have to handle this edge case in a later step!</p>
+<h1>3. Hit the API endpoint(s) in JavaScript</h1>
+<p>In the previous step, you used your browser or a REST client to check the API response. Now it&#8217;s time to write some JavaScript to make the request. I like to start with this basic skeleton for an AJAX request for pure JavaScript:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+var ajax = new XMLHttpRequest();
+ajax.onload = functionName;
+ajax.onerror = errorFunctionName;
+ajax.open(&quot;GET&quot;, &quot;url&quot;, true);
+ajax.send();
+function functionName() {
+    console.log(this); // log the response
+    if (this.status == 200) { // request succeeded
+        // do something with this.responseText;
+    } else {
+        // handle more HTTP response codes here;
+    }
+}
+function errorFunctionName(e) {
+    console.log(this);
+    console.error(e);
+    // do something with this.status, this.statusText
+}
+</pre>
+<p>There are some replacements you will definitely want to make. First of all, substitute your API endpoint&#8217;s URI and request method in place of the <code>"GET"</code> and <code>"url"</code> placeholder strings. You should also give the <code>onload</code> and <code>onerror</code> handlers more descriptive names.</p>
+<p>Depending on the complexity of the API with which you are interacting, you may need to send additional parameters, headers, or authentication. Feel free to add to the skeleton as necessary.</p>
+<p>At this point, I don&#8217;t yet recommend writing any additional code in the <code>onload</code> and <code>onerror</code> handlers. Instead, notice the three <code>console.*</code> statements. Open up your browser, and see what is logged to the JavaScript console. Barring any AJAX errors, it should look like the response you received in Step 2. If not, go back a step, and check again.</p>
+<p>If you&#8217;re using a library or framework such as jQuery or Angular, there should be documentation that explains how to write a basic Ajax request. Use that, instead of the skeleton code provided above.</p>
+<p><strong>Example:</strong> I will replace <code>URL</code> with the mock URI from Step 1. I will also rename the event handler functions. Other than that, there is nothing else to do but to run the code!</p>
+<p>You may wonder &#8220;but what about substituting the user&#8217;s actual lat/long?&#8221; This is handled in Step 5; have patience young grasshopper.</p>
+<h1>4. Write the server response to the page</h1>
+<p>It is now time to&nbsp;fill in the function stubs for the <code>onload</code> and <code>onerror</code> events.&nbsp;You will replace all of the <code>console.*</code> statements with code to display the relevant data to the user. This step is very open-ended, and includes but is not limited to</p>
+<ul>
+<li>Parsing/preprocessing the received data as necessary</li>
+<li>Placing received data in the appropriate HTML/DOM element(s)</li>
+<li>Formatting received data as necessary with JavaScript and/or CSS</li>
+<li>Handling any possible server error(s) in a graceful manner</li>
+</ul>
+<p><strong>Exmaple:</strong> For the response above, I need to display the low temperature, high temperature, and the difference between the forecasted high/low and the temperature at the requested time. My first attempt to do that might look like this:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+function functionName() {
+    var json = JSON.parse(this.responseText);
+    var currentTemp = json.currently.temperature;
+    var forecastHi = json.daily.data[0].temperatureMin;
+    var forecastLo = json.daily.data[0].temperatureMax;
+    var diffHi = currentTemp - forecastHi;
+    var diffLo = currentTemp - forecastLo;
+    document.getElementById(&quot;hi-diff&quot;).innerHTML = diffHi + &quot;&amp;deg;&quot;;
+    document.getElementById(&quot;lo-diff&quot;).innerHTML = diffLo + &quot;&amp;deg;&quot;;
+}
+function errorFunctionName(e) {
+    window.alert(&quot;Could not retrieve yesterday's forecast. Please try again later.&quot;);
+}
+</pre>
+<p>However, I soon realize after some testing and perusing through the documentation that certain errors must be handled. For instance, there may be a &#8220;temporary error (such as a radar station being down for maintenance)&#8221; or the daily forecast data might not be available at all. I make the following amendments to my <code>onload</code> handler:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+if (this.status === 200) {
+    var json = JSON.parse(this.responseText);
+    if (json.flags.hasOwnProperty(&quot;darksky-unavailable&quot;)) {
+        document.getElementById(&quot;error-flash&quot;).classList.add(&quot;shown&quot;);
+        document.getElementById(&quot;error-flash&quot;).innerHTML = &quot;The weather station is malfunctioning, please contact your local news channel for more info.&quot;;
+    } else if (!json.hasOwnProperty(&quot;daily&quot;) || !json.daily.hasOwnProperty(&quot;data&quot;) || !(json.daily.data instanceof Array) || !json.daily.data.length) {
+        document.getElementById(&quot;error-flash&quot;).classList.add(&quot;shown&quot;);
+        document.getElementById(&quot;error-flash&quot;).innerHTML = &quot;Could not get forecast data for yesterday.&quot;;
+    } else {
+        document.getElementById(&quot;error-flash&quot;).classList.remove(&quot;shown&quot;);
+        // rest of code is as follows
+    }
+} else if (this.status === 400 || this.status === 403) {
+    document.getElementById(&quot;error-flash&quot;).classList.add(&quot;shown&quot;);
+    document.getElementById(&quot;error-flash&quot;).innerHTML = &quot;Oh no, this service is too popular and is no longer available for the day!&quot;;
+} else {
+    document.getElementById(&quot;error-flash&quot;).classList.add(&quot;shown&quot;);
+    document.getElementById(&quot;error-flash&quot;).innerHTML = &quot;The weather service is down, blame the weatherman not me.&quot;;
+}
+</pre>
+<h1>5. Attach all necessary request data</h1>
+<p>Step 1 was all about coming up with an example, representative request to the API endpoint. Step 3 was all about coding up the request. Now it is time to remove the hard-coded values in the API call, and replace them with the appropriate internally- or externally-dependent values. Any&nbsp;details of the request that may change between different requests should be handled in this step. This includes parameters sent to the server, authentication usernames and passwords, and headers.</p>
+<p>If the sending of your request depends on an event, such as a button click,&nbsp;handle&nbsp;the event&nbsp;in this step as well. This may be as simple as wrapping the AJAX code in a function, then assigning that function to the appropriate event.</p>
+<p><strong>Example:</strong> I need to get the actual location of the user and the current Unix time minus a&nbsp;day, instead of hard-coding the&nbsp;aforementioned parameters. After reading the JavaScript documentation on the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation">Geolocation API</a> and the <a href="http://www.electrictoolbox.com/unix-timestamp-javascript/">Date object</a>, my AJAX code looks like this:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+if (&quot;geolocation&quot; in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var yesterdayTime = Math.round((new Date()).getTime() / 1000) - 86400;
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        var ajax = new XMLHttpRequest();
+        ajax.onload = functionName;
+        ajax.onerror = errorFunctionName;
+        ajax.open(&quot;GET&quot;, &quot;https://api.forecast.io/forecast/354f6cf4139dec73e7400d2949cc2ba5/&quot; + lat + &quot;,&quot; + long + &quot;,&quot; + yesterdayTime + &quot;?units=ca&amp;exclude=minutely,hourly&quot;, true);
+        ajax.send();
+    }, function() {
+        alert(&quot;You must enable geolocation for the application to work!&quot;);
+    });
+} else {
+    alert(&quot;Sorry, your system does not support geolocation.&quot;);
+}
+</pre>
+<h1>&#8220;Step 6&#8221;</h1>
+<p>As any respectable developer should do, clean up and optimize your code after you are done verifying your code!</p>
+<h1>Some disclaimers</h1>
+<p>In order for this method to work for you, you must constantly check that each step is working and correct, before moving on to the next one. If something fails, go back a step and fix it before moving on.</p>
+<p>Why <em>mostly</em> painless? There&#8217;s only so much you can control, even if you are writing both the client and server code. Servers can be tricky beasts to handle, as they can go offline, throw rare but confusing errors, take forever to respond, and exhibit a wonderful spectrum of undocumented, migraine-inducing problems.</p>
+<!-- AddThis Advanced Settings above via filter on the_content --><!-- AddThis Advanced Settings below via filter on the_content --><!-- AddThis Advanced Settings generic via filter on the_content --><!-- AddThis Share Buttons above via filter on the_content --><!-- AddThis Share Buttons below via filter on the_content --><div class="at-below-post addthis_tool" data-url="https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/"></div><!-- AddThis Share Buttons generic via filter on the_content --><!-- AddThis Related Posts below via filter on the_content --><div class="at-below-post-recommended addthis_tool" ></div><!-- AddThis Related Posts generic via filter on the_content -->			</div><!-- .entry-content -->
+		<div class="author-info">
+		<h2 class="author-heading">Published by <cite class="author-title">Geoffrey Liu</cite></h2>
+		<div class="author-avatar">
+			<img src="https://g-liu.com/blog/wp-content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://secure.gravatar.com/avatar/6512c8b15243cd8188cdfcf966e552d4?s=128&#038;d=mm&#038;r=g" alt srcset="https://secure.gravatar.com/avatar/6512c8b15243cd8188cdfcf966e552d4?s=256&#038;d=mm&#038;r=g 2x" class="avatar avatar-128 photo" height="128" width="128"><noscript><img alt='' src='https://secure.gravatar.com/avatar/6512c8b15243cd8188cdfcf966e552d4?s=128&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6512c8b15243cd8188cdfcf966e552d4?s=256&#038;d=mm&#038;r=g 2x' class='avatar avatar-128 photo' height='128' width='128' /></noscript>		</div>
+		<div class="author-description">
+			<p class="author-bio">
+				A software engineer by trade and a classical musician at heart. Currently a software engineer at <a href="https://jobs.groupon.com/">Groupon</a> getting into iOS mobile development. Recently graduated from the <a href="http://uw.edu">University of Washington</a>, with a degree in Computer Science and a minor in Music. Web development has been my passion for many years. I am also greatly interested in UI/UX design, teaching, cooking, biking, and collecting posters.			</p>
+			<a class="author-link" href="https://g-liu.com/blog/author/admin/" rel="author">View all posts by Geoffrey Liu &rarr;</a>
+		</div>
+	</div><!-- .author-info -->
+</article><!-- #post-## -->
+				<nav class="navigation post-navigation" role="navigation">
+		<h3 class="screen-reader-text">Post navigation</h3>
+		<div class="nav-links">
+							<div class="nav-previous">
+					<div class="nav-previous-label">
+						<span>Previous post</span>
+					</div>
+					<a href="https://g-liu.com/blog/2016/06/china-2016-days-6-and-7/" rel="prev"><span class="meta-nav">&larr;</span> China 2016, Days 6 and 7</a>				</div>
+							<div class="nav-next">
+					<div class="nav-next-label">
+						<span>Next post</span>
+					</div>
+					<a href="https://g-liu.com/blog/2016/09/the-top-10-things-software-engineers-do-that-dont-involve-writing-code/" rel="next">The top 10 things software engineers do that don&#8217;t involve writing code <span class="meta-nav">&rarr;</span></a>				</div>
+					</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+<div id="comments" class="comments-area">
+			<h2 class="comments-title">
+			One thought on &ldquo;<span>A strategy for consuming REST API&#8217;s in JavaScript</span>&rdquo;		</h2>
+		<ol class="comment-list">
+	<li id="comment-29465" class="comment even thread-even depth-1">
+		<article id="div-comment-29465" class="comment-body">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img src="https://g-liu.com/blog/wp-content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://secure.gravatar.com/avatar/0ffd2a90eae9aac5ac0e538600103ed7?s=64&#038;d=mm&#038;r=g" alt srcset="https://secure.gravatar.com/avatar/0ffd2a90eae9aac5ac0e538600103ed7?s=128&#038;d=mm&#038;r=g 2x" class="avatar avatar-64 photo" height="64" width="64"><noscript><img alt='' src='https://secure.gravatar.com/avatar/0ffd2a90eae9aac5ac0e538600103ed7?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/0ffd2a90eae9aac5ac0e538600103ed7?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' /></noscript><cite class="fn">Trevor</cite>					<time datetime="2017-09-01T11:46:42-07:00">
+						<a href="https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/#comment-29465">
+							September 1, 2017 at 11:46 am						</a>
+					</time>
+				</div><!-- .comment-author -->
+							</footer><!-- .comment-meta -->
+			<div class="comment-content">
+				<p>How would you enter in the header authentication perimeters. </p>
+<p>The API I&#8217;m trying to gain access to is <a href="http://apidocs.inspectlet.com" rel="nofollow ugc">http://apidocs.inspectlet.com</a>  the authentication looks like this.</p>
+<p>// prep the header we need to send for HTTP Basic Auth<br />
+var username = &#8220;bob@example.com&#8221;;<br />
+var apitoken = &#8220;af9f27cd9c02b54a9bead349662dddf4a7ea1430&#8221;;<br />
+var headers = {&#8220;Authorization&#8221;: &#8220;Basic &#8221; + btoa(username + &#8220;:&#8221; + apitoken)};</p>
+<p>If you could help me out it would be greatly appreciated.</p>
+<p>Feel free to shoot me an email with your response code</p>
+			</div><!-- .comment-content -->
+			<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/?replytocom=29465#respond' data-commentid="29465" data-postid="5674" data-belowelement="div-comment-29465" data-respondelement="respond" aria-label='Reply to Trevor'>Reply &darr;</a></div>					</article><!-- #div-comment-##.comment-body -->
+	</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+		<div id="respond" class="comment-respond">
+							<h3 id="reply-title" class="comment-reply-title">Leave a Reply					<small><a rel="nofollow" id="cancel-comment-reply-link" href="/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/#respond" style="display:none;">Cancel reply</a></small>
+				</h3>
+						<form id="commentform" class="comment-form">
+				<iframe title="Comment Form" src="https://jetpack.wordpress.com/jetpack-comment/?blogid=44202376&#038;postid=5674&#038;comment_registration=0&#038;require_name_email=1&#038;stc_enabled=1&#038;stb_enabled=1&#038;show_avatars=1&#038;avatar_default=mystery&#038;greeting=Leave+a+Reply&#038;greeting_reply=Leave+a+Reply+to+%25s&#038;color_scheme=light&#038;lang=en_US&#038;jetpack_version=7.9.1&#038;show_cookie_consent=10&#038;has_cookie_consent=0&#038;token_key=%3Bnormal%3B&#038;sig=9968655c538980870e401795d564fe0c3517da94#parent=https%3A%2F%2Fg-liu.com%2Fblog%2F2016%2F07%2Fa-strategy-for-consuming-rest-apis-in-javascript%2F" style="width:100%; height: 430px; border:0;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment" sandbox="allow-same-origin allow-top-navigation allow-scripts allow-forms allow-popups"></iframe>
+									<!--[if !IE]><!-->
+					<script>
+						document.addEventListener('DOMContentLoaded', function () {
+							var commentForms = document.getElementsByClassName('jetpack_remote_comment');
+							for (var i = 0; i < commentForms.length; i++) {
+								commentForms[i].allowTransparency = false;
+								commentForms[i].scrolling = 'no';
+							}
+						});
+					</script>
+					<!--<![endif]-->
+							</form>
+		</div>
+		<input type="hidden" name="comment_parent" id="comment_parent" value="" />
+		<p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+		</div><!-- #main -->
+	</div><!-- #primary -->
+	</div><!-- #content -->
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<a class="back-to-top" href="#">&uarr;</a>
+					<div class="container wide row">
+									<div class="col col-1-4">
+						<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://g-liu.com/blog/">
+	<span class="screen-reader-text">Search for:</span>
+	<div class="input-group">
+		<input type="search" class="search-field collapsed" placeholder="Search &hellip;" name="s" data-value="" />
+		<input type="submit" class="search-submit" value="&#xf002;" />
+	</div>
+</form>
+</aside><aside id="blog_subscription-4" class="widget widget_blog_subscription jetpack_subscription_widget"><h3 class="widget-title">Subscribe to Blog via Email</h3>
+            <form action="#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-4">
+				                    <div id="subscribe-text"><p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+</div><p>Join 777 other subscribers</p>
+                    <p id="subscribe-email">
+                        <label id="jetpack-subscribe-label"
+                               class="screen-reader-text"
+                               for="subscribe-field-blog_subscription-4">
+							Email Address                        </label>
+                        <input type="email" name="email" required="required" class="required"
+                               value=""
+                               id="subscribe-field-blog_subscription-4"
+                               placeholder="Email Address"/>
+                    </p>
+                    <p id="subscribe-submit">
+                        <input type="hidden" name="action" value="subscribe"/>
+                        <input type="hidden" name="source" value="https://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/"/>
+                        <input type="hidden" name="sub-type" value="widget"/>
+                        <input type="hidden" name="redirect_fragment" value="blog_subscription-4"/>
+						                        <button type="submit"
+	                        		                    	                        name="jetpack_subscriptions_widget"
+	                    >
+	                        Subscribe                        </button>
+                    </p>
+				            </form>
+</aside>					</div>
+									<div class="col col-1-4">
+						<aside id="top-posts-2" class="widget widget_top-posts"><h3 class="widget-title">What&#8217;s popular</h3><ul>				<li>
+					<a href="https://g-liu.com/blog/2016/01/how-you-can-snoop-on-thousands-of-unsecured-webcams/" class="bump-view" data-bump-view="tp">How you can snoop on thousands of unsecured webcams</a>					</li>
+								<li>
+					<a href="https://g-liu.com/blog/2015/08/object-oriented-programming-javascript-using-pojos-for-good/" class="bump-view" data-bump-view="tp">Object-Oriented JavaScript: Using POJOs for good</a>					</li>
+								<li>
+					<a href="https://g-liu.com/blog/2009/10/t-h2lapigfs/" class="bump-view" data-bump-view="tp">Tutorial: How to land a plane in Google Earth Flight Simulator</a>					</li>
+								<li>
+					<a href="https://g-liu.com/blog/2012/02/font/" class="bump-view" data-bump-view="tp">What font is that?</a>					</li>
+								<li>
+					<a href="https://g-liu.com/blog/2014/02/if-you-could-un-invent-something-what-would-it-be/" class="bump-view" data-bump-view="tp">&quot;If you could un-invent something, what would it be?&quot;</a>					</li>
+				</ul></aside>					</div>
+									<div class="col col-1-4">
+						<aside id="tag_cloud-2" class="widget widget_tag_cloud"><h3 class="widget-title">Topics</h3><div class="tagcloud"><a href="https://g-liu.com/blog/category/announcements/" class="tag-cloud-link tag-link-68 tag-link-position-1" style="font-size: 22pt;" aria-label="Announcements (99 items)">Announcements</a>
+<a href="https://g-liu.com/blog/category/applications/" class="tag-cloud-link tag-link-2 tag-link-position-2" style="font-size: 18pt;" aria-label="Applications (39 items)">Applications</a>
+<a href="https://g-liu.com/blog/category/china-2014/" class="tag-cloud-link tag-link-1012 tag-link-position-3" style="font-size: 12.4pt;" aria-label="China 2014 (10 items)">China 2014</a>
+<a href="https://g-liu.com/blog/category/china-2016/" class="tag-cloud-link tag-link-1017 tag-link-position-4" style="font-size: 9pt;" aria-label="China 2016 (4 items)">China 2016</a>
+<a href="https://g-liu.com/blog/category/code-web-design/" class="tag-cloud-link tag-link-830 tag-link-position-5" style="font-size: 16.1pt;" aria-label="Coding and web development (25 items)">Coding and web development</a>
+<a href="https://g-liu.com/blog/category/facebook/" class="tag-cloud-link tag-link-538 tag-link-position-6" style="font-size: 9pt;" aria-label="Facebook (4 items)">Facebook</a>
+<a href="https://g-liu.com/blog/category/games/" class="tag-cloud-link tag-link-581 tag-link-position-7" style="font-size: 9pt;" aria-label="Games (4 items)">Games</a>
+<a href="https://g-liu.com/blog/category/google/" class="tag-cloud-link tag-link-97 tag-link-position-8" style="font-size: 14.8pt;" aria-label="Google (18 items)">Google</a>
+<a href="https://g-liu.com/blog/category/ideas/" class="tag-cloud-link tag-link-378 tag-link-position-9" style="font-size: 12.4pt;" aria-label="Ideas (10 items)">Ideas</a>
+<a href="https://g-liu.com/blog/category/lists/" class="tag-cloud-link tag-link-14 tag-link-position-10" style="font-size: 15.2pt;" aria-label="Lists (20 items)">Lists</a>
+<a href="https://g-liu.com/blog/category/music/" class="tag-cloud-link tag-link-1016 tag-link-position-11" style="font-size: 12pt;" aria-label="Music (9 items)">Music</a>
+<a href="https://g-liu.com/blog/category/news/" class="tag-cloud-link tag-link-25 tag-link-position-12" style="font-size: 17.9pt;" aria-label="News (38 items)">News</a>
+<a href="https://g-liu.com/blog/category/op-ed/" class="tag-cloud-link tag-link-28 tag-link-position-13" style="font-size: 18.1pt;" aria-label="Opinion/Editorial (40 items)">Opinion/Editorial</a>
+<a href="https://g-liu.com/blog/category/pet-peeves/" class="tag-cloud-link tag-link-806 tag-link-position-14" style="font-size: 9pt;" aria-label="Pet Peeves (4 items)">Pet Peeves</a>
+<a href="https://g-liu.com/blog/category/postaday/" class="tag-cloud-link tag-link-595 tag-link-position-15" style="font-size: 11pt;" aria-label="PostADay (7 items)">PostADay</a>
+<a href="https://g-liu.com/blog/category/questions/" class="tag-cloud-link tag-link-121 tag-link-position-16" style="font-size: 13.1pt;" aria-label="Questions (12 items)">Questions</a>
+<a href="https://g-liu.com/blog/category/quick-look/" class="tag-cloud-link tag-link-52 tag-link-position-17" style="font-size: 19.8pt;" aria-label="Quick Look (59 items)">Quick Look</a>
+<a href="https://g-liu.com/blog/category/random/" class="tag-cloud-link tag-link-19 tag-link-position-18" style="font-size: 16.5pt;" aria-label="Random (27 items)">Random</a>
+<a href="https://g-liu.com/blog/category/reblogs/" class="tag-cloud-link tag-link-188 tag-link-position-19" style="font-size: 15.6pt;" aria-label="Reblogs (22 items)">Reblogs</a>
+<a href="https://g-liu.com/blog/category/recipes/" class="tag-cloud-link tag-link-1018 tag-link-position-20" style="font-size: 8pt;" aria-label="Recipes (3 items)">Recipes</a>
+<a href="https://g-liu.com/blog/category/review/" class="tag-cloud-link tag-link-10 tag-link-position-21" style="font-size: 15.6pt;" aria-label="Review (22 items)">Review</a>
+<a href="https://g-liu.com/blog/category/social-networking/" class="tag-cloud-link tag-link-42 tag-link-position-22" style="font-size: 9pt;" aria-label="Social networking (4 items)">Social networking</a>
+<a href="https://g-liu.com/blog/category/stories/" class="tag-cloud-link tag-link-687 tag-link-position-23" style="font-size: 12pt;" aria-label="Stories (9 items)">Stories</a>
+<a href="https://g-liu.com/blog/category/technology/" class="tag-cloud-link tag-link-16 tag-link-position-24" style="font-size: 16.9pt;" aria-label="Technology (30 items)">Technology</a>
+<a href="https://g-liu.com/blog/category/tips/" class="tag-cloud-link tag-link-115 tag-link-position-25" style="font-size: 18.9pt;" aria-label="Tips (48 items)">Tips</a>
+<a href="https://g-liu.com/blog/category/twitter/" class="tag-cloud-link tag-link-87 tag-link-position-26" style="font-size: 15pt;" aria-label="Twitter (19 items)">Twitter</a>
+<a href="https://g-liu.com/blog/category/websites/" class="tag-cloud-link tag-link-36 tag-link-position-27" style="font-size: 16.9pt;" aria-label="Websites (30 items)">Websites</a>
+<a href="https://g-liu.com/blog/category/wordpress/" class="tag-cloud-link tag-link-58 tag-link-position-28" style="font-size: 17.3pt;" aria-label="Wordpress (33 items)">Wordpress</a></div>
+</aside>					</div>
+									<div class="col col-1-4">
+						<aside id="archives-3" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<label class="screen-reader-text" for="archives-dropdown-3">Archives</label>
+		<select id="archives-dropdown-3" name="archive-dropdown">
+			<option value="">Select Month</option>
+				<option value='https://g-liu.com/blog/2017/11/'> November 2017 </option>
+	<option value='https://g-liu.com/blog/2017/08/'> August 2017 </option>
+	<option value='https://g-liu.com/blog/2017/06/'> June 2017 </option>
+	<option value='https://g-liu.com/blog/2016/10/'> October 2016 </option>
+	<option value='https://g-liu.com/blog/2016/09/'> September 2016 </option>
+	<option value='https://g-liu.com/blog/2016/07/'> July 2016 </option>
+	<option value='https://g-liu.com/blog/2016/06/'> June 2016 </option>
+	<option value='https://g-liu.com/blog/2016/05/'> May 2016 </option>
+	<option value='https://g-liu.com/blog/2016/04/'> April 2016 </option>
+	<option value='https://g-liu.com/blog/2016/02/'> February 2016 </option>
+	<option value='https://g-liu.com/blog/2016/01/'> January 2016 </option>
+	<option value='https://g-liu.com/blog/2015/12/'> December 2015 </option>
+	<option value='https://g-liu.com/blog/2015/08/'> August 2015 </option>
+	<option value='https://g-liu.com/blog/2015/07/'> July 2015 </option>
+	<option value='https://g-liu.com/blog/2015/05/'> May 2015 </option>
+	<option value='https://g-liu.com/blog/2014/12/'> December 2014 </option>
+	<option value='https://g-liu.com/blog/2014/11/'> November 2014 </option>
+	<option value='https://g-liu.com/blog/2014/10/'> October 2014 </option>
+	<option value='https://g-liu.com/blog/2014/09/'> September 2014 </option>
+	<option value='https://g-liu.com/blog/2014/08/'> August 2014 </option>
+	<option value='https://g-liu.com/blog/2014/07/'> July 2014 </option>
+	<option value='https://g-liu.com/blog/2014/06/'> June 2014 </option>
+	<option value='https://g-liu.com/blog/2014/05/'> May 2014 </option>
+	<option value='https://g-liu.com/blog/2014/04/'> April 2014 </option>
+	<option value='https://g-liu.com/blog/2014/03/'> March 2014 </option>
+	<option value='https://g-liu.com/blog/2014/02/'> February 2014 </option>
+	<option value='https://g-liu.com/blog/2014/01/'> January 2014 </option>
+	<option value='https://g-liu.com/blog/2013/12/'> December 2013 </option>
+	<option value='https://g-liu.com/blog/2013/11/'> November 2013 </option>
+	<option value='https://g-liu.com/blog/2013/10/'> October 2013 </option>
+	<option value='https://g-liu.com/blog/2013/09/'> September 2013 </option>
+	<option value='https://g-liu.com/blog/2013/08/'> August 2013 </option>
+	<option value='https://g-liu.com/blog/2013/07/'> July 2013 </option>
+	<option value='https://g-liu.com/blog/2013/06/'> June 2013 </option>
+	<option value='https://g-liu.com/blog/2013/05/'> May 2013 </option>
+	<option value='https://g-liu.com/blog/2013/04/'> April 2013 </option>
+	<option value='https://g-liu.com/blog/2013/03/'> March 2013 </option>
+	<option value='https://g-liu.com/blog/2013/02/'> February 2013 </option>
+	<option value='https://g-liu.com/blog/2013/01/'> January 2013 </option>
+	<option value='https://g-liu.com/blog/2012/12/'> December 2012 </option>
+	<option value='https://g-liu.com/blog/2012/11/'> November 2012 </option>
+	<option value='https://g-liu.com/blog/2012/10/'> October 2012 </option>
+	<option value='https://g-liu.com/blog/2012/09/'> September 2012 </option>
+	<option value='https://g-liu.com/blog/2012/08/'> August 2012 </option>
+	<option value='https://g-liu.com/blog/2012/07/'> July 2012 </option>
+	<option value='https://g-liu.com/blog/2012/06/'> June 2012 </option>
+	<option value='https://g-liu.com/blog/2012/05/'> May 2012 </option>
+	<option value='https://g-liu.com/blog/2012/04/'> April 2012 </option>
+	<option value='https://g-liu.com/blog/2012/03/'> March 2012 </option>
+	<option value='https://g-liu.com/blog/2012/02/'> February 2012 </option>
+	<option value='https://g-liu.com/blog/2012/01/'> January 2012 </option>
+	<option value='https://g-liu.com/blog/2011/12/'> December 2011 </option>
+	<option value='https://g-liu.com/blog/2011/11/'> November 2011 </option>
+	<option value='https://g-liu.com/blog/2011/08/'> August 2011 </option>
+	<option value='https://g-liu.com/blog/2011/07/'> July 2011 </option>
+	<option value='https://g-liu.com/blog/2011/06/'> June 2011 </option>
+	<option value='https://g-liu.com/blog/2011/05/'> May 2011 </option>
+	<option value='https://g-liu.com/blog/2011/02/'> February 2011 </option>
+	<option value='https://g-liu.com/blog/2011/01/'> January 2011 </option>
+	<option value='https://g-liu.com/blog/2010/12/'> December 2010 </option>
+	<option value='https://g-liu.com/blog/2010/11/'> November 2010 </option>
+	<option value='https://g-liu.com/blog/2010/10/'> October 2010 </option>
+	<option value='https://g-liu.com/blog/2010/09/'> September 2010 </option>
+	<option value='https://g-liu.com/blog/2010/08/'> August 2010 </option>
+	<option value='https://g-liu.com/blog/2010/07/'> July 2010 </option>
+	<option value='https://g-liu.com/blog/2010/06/'> June 2010 </option>
+	<option value='https://g-liu.com/blog/2010/05/'> May 2010 </option>
+	<option value='https://g-liu.com/blog/2010/04/'> April 2010 </option>
+	<option value='https://g-liu.com/blog/2010/03/'> March 2010 </option>
+	<option value='https://g-liu.com/blog/2010/02/'> February 2010 </option>
+	<option value='https://g-liu.com/blog/2010/01/'> January 2010 </option>
+	<option value='https://g-liu.com/blog/2009/12/'> December 2009 </option>
+	<option value='https://g-liu.com/blog/2009/11/'> November 2009 </option>
+	<option value='https://g-liu.com/blog/2009/10/'> October 2009 </option>
+	<option value='https://g-liu.com/blog/2009/09/'> September 2009 </option>
+	<option value='https://g-liu.com/blog/2009/08/'> August 2009 </option>
+	<option value='https://g-liu.com/blog/2009/07/'> July 2009 </option>
+	<option value='https://g-liu.com/blog/2009/06/'> June 2009 </option>
+	<option value='https://g-liu.com/blog/2009/05/'> May 2009 </option>
+		</select>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "archives-dropdown-3" );
+	function onSelectChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value !== '' ) {
+			document.location.href = this.options[ this.selectedIndex ].value;
+		}
+	}
+	dropdown.onchange = onSelectChange;
+})();
+/* ]]> */
+</script>
+		</aside><aside id="text-2" class="widget widget_text"><h3 class="widget-title">Sponsored by</h3>			<div class="textwidget"><a href="http://www.blogsurfer.us/?url=http://www.g-liu.com/blog" target="_blank" rel="noopener noreferrer"><img alt="Promote this on BlogSurfer" src="http://www.blogsurfer.us/backlink/wp_blogsurfer_tab.php?url=http://www.g-liu.com/blog" /></a></div>
+		</aside>					</div>
+							</div><!-- .container.wide -->
+				<div class="container">
+			<div class="site-info text-center">
+								Proudly powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>			</div><!-- .site-info -->
+		</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+	<div style="display:none">
+	<div class="grofile-hash-map-6512c8b15243cd8188cdfcf966e552d4">
+	</div>
+	<div class="grofile-hash-map-0ffd2a90eae9aac5ac0e538600103ed7">
+	</div>
+	</div>
+<script type='text/javascript' src='https://g-liu.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b'></script>
+<script type='text/javascript' src='https://g-liu.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js?ver=3.0.9b'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://g-liu.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://g-liu.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script type='text/javascript' src='https://g-liu.com/blog/wp-admin/admin-ajax.php?action=addthis_global_options_settings&#038;ver=5.3'></script>
+<script type='text/javascript' src='https://s7.addthis.com/js/300/addthis_widget.js?ver=5.3#pubid=38af06710bd90b6176bd923742fb1780'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201950'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2019Decaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://g-liu.com/blog/wp-content/plugins/jetpack/modules/wpgroho.js?ver=5.3'></script>
+<script type='text/javascript' src='https://g-liu.com/blog/wp-content/themes/fastr-child/js/fastr-child.js?ver=5.3'></script>
+<script type='text/javascript' src='https://g-liu.com/blog/wp-includes/js/comment-reply.min.js?ver=5.3'></script>
+<script type='text/javascript' src='https://g-liu.com/blog/wp-content/plugins/lazy-load/js/jquery.sonar.min.js?ver=0.6.1'></script>
+<script type='text/javascript' src='https://g-liu.com/blog/wp-content/plugins/lazy-load/js/lazy-load.js?ver=0.6.1'></script>
+<script type='text/javascript' src='https://g-liu.com/blog/wp-includes/js/wp-embed.min.js?ver=5.3'></script>
+<script async="async" type='text/javascript' src='https://g-liu.com/blog/wp-content/plugins/akismet/_inc/form.js?ver=4.1.3'></script>
+<script type="text/javascript" id="slb_context">/* <![CDATA[ */if ( !!window.jQuery ) {(function($){$(document).ready(function(){if ( !!window.SLB ) { {$.extend(SLB, {"context":["public","user_guest"]});} }})})(jQuery);}/* ]]> */</script>
+
+		<!--[if IE]>
+		<script type="text/javascript">
+			if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+				// window.location.reload() doesn't respect the Hash in IE
+				window.location.hash = window.location.hash;
+			}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			(function () {
+				var comm_par_el = document.getElementById( 'comment_parent' ),
+					comm_par = ( comm_par_el && comm_par_el.value ) ? comm_par_el.value : '',
+					frame = document.getElementById( 'jetpack_remote_comment' ),
+					tellFrameNewParent;
+
+				tellFrameNewParent = function () {
+					if ( comm_par ) {
+						frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=44202376&postid=5674&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Leave+a+Reply&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=7.9.1&show_cookie_consent=10&has_cookie_consent=0&token_key=%3Bnormal%3B&sig=9968655c538980870e401795d564fe0c3517da94#parent=https%3A%2F%2Fg-liu.com%2Fblog%2F2016%2F07%2Fa-strategy-for-consuming-rest-apis-in-javascript%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+					} else {
+						frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=44202376&postid=5674&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Leave+a+Reply&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=7.9.1&show_cookie_consent=10&has_cookie_consent=0&token_key=%3Bnormal%3B&sig=9968655c538980870e401795d564fe0c3517da94#parent=https%3A%2F%2Fg-liu.com%2Fblog%2F2016%2F07%2Fa-strategy-for-consuming-rest-apis-in-javascript%2F";
+					}
+				};
+
+				
+				if ( 'undefined' !== typeof addComment ) {
+					addComment._Jetpack_moveForm = addComment.moveForm;
+
+					addComment.moveForm = function ( commId, parentId, respondId, postId ) {
+						var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ),
+							cancelClick, cancel;
+
+						if ( false === returnValue ) {
+							cancel = document.getElementById( 'cancel-comment-reply-link' );
+							cancelClick = cancel.onclick;
+							cancel.onclick = function () {
+								var cancelReturn = cancelClick.call( this );
+								if ( false !== cancelReturn ) {
+									return cancelReturn;
+								}
+
+								if ( ! comm_par ) {
+									return cancelReturn;
+								}
+
+								comm_par = 0;
+
+								tellFrameNewParent();
+
+								return cancelReturn;
+							};
+						}
+
+						if ( comm_par == parentId ) {
+							return returnValue;
+						}
+
+						comm_par = parentId;
+
+						tellFrameNewParent();
+
+						return returnValue;
+					};
+				}
+
+				
+				// Do the post message bit after the dom has loaded.
+				document.addEventListener( 'DOMContentLoaded', function () {
+					var iframe_url = "https:\/\/jetpack.wordpress.com";
+					if ( window.postMessage ) {
+						if ( document.addEventListener ) {
+							window.addEventListener( 'message', function ( event ) {
+								var origin = event.origin.replace( /^http:\/\//i, 'https://' );
+								if ( iframe_url.replace( /^http:\/\//i, 'https://' ) !== origin ) {
+									return;
+								}
+								jQuery( frame ).height( event.data );
+							});
+						} else if ( document.attachEvent ) {
+							window.attachEvent( 'message', function ( event ) {
+								var origin = event.origin.replace( /^http:\/\//i, 'https://' );
+								if ( iframe_url.replace( /^http:\/\//i, 'https://' ) !== origin ) {
+									return;
+								}
+								jQuery( frame ).height( event.data );
+							});
+						}
+					}
+				})
+
+			})();
+		</script>
+
+		<script type='text/javascript' src='https://stats.wp.com/e-201950.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.9.1',blog:'44202376',post:'5674',tz:'-7',srv:'g-liu.com'} ]);
+	_stq.push([ 'clickTrackerInit', '44202376', '5674' ]);
+</script>
+
+</body>
+</html>
+<!-- Dynamic page generated in 0.990 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2019-12-12 21:15:03 -->
+
+<!-- Compression = gzip -->
