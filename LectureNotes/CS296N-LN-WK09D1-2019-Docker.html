@@ -126,61 +126,49 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
         <h2>Deploy a Web App in a Container</h2>
         <h3>On your development machine:</h3>
         We will deploy a framework-dependent ASP.NET Core web app to
-        Linux in a Docker container.<br>
-        <br>
+        Linux in a Docker container.
         <ol>
-          <li>Publish your web app to a folder. Use your Azure database
-            connection string. Verify that the web app runs from the
-            folder:<font face="Courier New, Courier, monospace"> <br>
-              <font size="+1">dotnet run yourwebapp.dll</font><br>
-              <br>
-            </font></li>
-          <li>Create a file named <i>Dockerfile</i> in a folder named <i>docker-working</i>
-            in your web app solution folder.<br>
+          <li>Create a file named <i>Dockerfile</i> in the folder with
+            your web app project.<br>
             Example: <br>
-            <code># download the ASP.NET Core runtime<br>
-              FROM mcr.microsoft.com/dotnet/core/aspnet:3.1<br>
-              # download the .NET Core runtime<br>
-            </code><br>
+            <code># download a base image from the repository<br>
+              FROM mcr.microsoft.com/dotnet/core/sdk:2.2<br>
+              # set the working directory for the Docker image<br>
+              WORKDIR /app<br>
+              <br>
+              # copy the project file into the image and restore
+              dependencies<br>
+              COPY BookInfo.csproj ./<br>
+              RUN dotnet restore<br>
+              <br>
+              # copy the source code and build it<br>
+              COPY . ./<br>
+              RUN dotnet publish -c Release -o out<br>
+              <br>
+              # run the web app<br>
+              ENTRYPOINT ["dotnet", "out/BookInfo.dll"] </code><br>
             <ul>
               <li>FROM—initializes a new build stage and sets the Base
                 Image for the remaining instructions.</li>
+              <li>WORKDIR—sets the working directory for any remaining
+                RUN, CMD, ENTRYPOINT, COPY, and ADD Dockerfile
+                instructions.</li>
+              <li>COPY—copies new files or directories from the source
+                path and adds them to the destination container
+                filesystem. </li>
+              <li>RUN—executes any commands and commits the results. The
+                resulting committed image is used for the next step.</li>
+              <li>ENTRYPOINT—specifies the command to run when the
+                container starts, dotnet, and any arguments.</li>
             </ul>
             <br>
           </li>
           <li>Build the image in the current folder and give it a name,
-            following the -t (The tag is optional and could be given in
-            the ‘name:tag’ format.) The dot means that the Dockerfile is
-            in the current folder.<br>
-            <font size="+1"><br>
-            </font>
-            <pre><font face="Courier New, Courier, monospace" size="+1">docker build -t yourwebappimage . </font><br></pre>
+            but no tag. (The tag is optional and could be given in the
+            ‘name:tag’ format.)<br>
+            <pre>docker build -t dotnetapp-dev .       </pre>
           </li>
-          <li>Run the <font face="Courier New, Courier, monospace"
-              size="+1">docker images</font> command to see the images
-            currently installed.</li>
-          <li>Add commands to the Dockerfile to copy the web app into
-            the container and set an entry-point for the web app. This
-            will create new image layers.<code>COPY
-              app/bin/Release/netcoreapp3.1/publish/ app/</code><code>ENTRYPOINT
-              ["dotnet", "app/myapp.dll"</code></li>
-          <ul>
-            <li>COPY—copies new files or directories from the source
-              path and adds them to the destination container
-              filesystem. </li>
-          </ul>
-          <ul>
-            <li>ENTRYPOINT—specifies the command to run when the
-              container starts, dotnet, and any arguments.</li>
-          </ul>
-          <li>Build your images again as you did in step 3.</li>
-          <li>Create a container. See: <a
-href="https://docs.microsoft.com/en-us/dotnet/core/docker/build-container#create-a-container"
-              target="_blank">https://docs.microsoft.com/en-us/dotnet/core/docker/build-container#create-a-container</a></li>
-          <li>Run the containerized app </li>
-        </ol>
-        <ol>
-          <li>
+          <li>Run the containerized app
             <pre> docker run --rm -p 80:5000 dotnetapp-dev BookInfo from Docker</pre>
             Notes:
             <ul>
@@ -200,7 +188,7 @@ href="https://docs.microsoft.com/en-us/dotnet/core/docker/build-container#create
             </ul>
           </li>
           <li>Upload the image to Docker Hub or any other container
-            registry. </li>
+            registry./li&gt; </li>
         </ol>
         <h3>On the server:</h3>
         <ol>
