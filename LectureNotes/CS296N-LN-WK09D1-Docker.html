@@ -39,7 +39,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
               <tr>
                 <td id="week01">1. Intro to course and Identity<br>
                 </td>
-                <td id="week06">6. Load Testing and Performance<br>
+                <td id="week06">6. <strike>Load Testing and Performance</strike><br>
                 </td>
               </tr>
               <tr>
@@ -102,6 +102,8 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
           <li>Windows 7, Windows 10 Home—<a
               href="https://docs.docker.com/toolbox/toolbox_install_windows/">Docker
 
+
+
               Toolbox for Windows</a> <br>
             This version of Docker installs VirtualBox on your system so
             you can run your choice of host operating system for the
@@ -109,11 +111,15 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
           <li>Windows 10 Pro, Enterprise, or Education—<a
 href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docker
 
+
+
               Desktop for Windows 10</a> <br>
             This version lets you choose whether to use Windows as the
             container OS or Linux.</li>
           <li>Mac OS 10.12 or newer—<a
               href="https://hub.docker.com/editions/community/docker-ce-desktop-mac">Docker
+
+
 
               Desktop for Mac OS</a><br>
             This version only supports containers that use Linux as the
@@ -132,15 +138,16 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
           <li>Publish your web app to a folder. Use your Azure database
             connection string. Verify that the web app runs from the
             folder:<font face="Courier New, Courier, monospace"> <br>
-              <font size="+1">dotnet run yourwebapp.dll</font><br>
+              <font size="+1">dotnet yourwebapp.dll</font><br>
               <br>
             </font></li>
-          <li>Create a file named <i>Dockerfile</i> in a folder named <i>docker-working</i>
-            in your web app solution folder.<br>
+          <li>Create a file named <i>Dockerfile</i> in your web app
+            solution folder (the same folder as your .sln file).<br>
             Example: <br>
             <code># download the ASP.NET Core runtime<br>
               FROM mcr.microsoft.com/dotnet/core/aspnet:3.1<br>
               # download the .NET Core runtime<br>
+              FROM mcr.microsoft.com/dotnet/core/runtime:3.1<br>
             </code><br>
             <ul>
               <li>FROM—initializes a new build stage and sets the Base
@@ -163,7 +170,10 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
             the container and set an entry-point for the web app. This
             will create new image layers.<code>COPY
               app/bin/Release/netcoreapp3.1/publish/ app/</code><code>ENTRYPOINT
+
+
               ["dotnet", "app/myapp.dll"</code></li>
+          <br>
           <ul>
             <li>COPY—copies new files or directories from the source
               path and adds them to the destination container
@@ -171,7 +181,9 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
           </ul>
           <ul>
             <li>ENTRYPOINT—specifies the command to run when the
-              container starts, dotnet, and any arguments.</li>
+              container starts, dotnet, and any arguments.<br>
+              <br>
+            </li>
           </ul>
           <li>Build your images again as you did in step 3.</li>
           <li>Create a container. See: <a
@@ -294,6 +306,8 @@ href="https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-c
             <li>Staff. 2019. <a
                 href="https://docs.docker.com/engine/examples/dotnetcore/">Dockerize
 
+
+
                 a .NET Core Application</a>. Sample Applications,
               Docker.</li>
             <li>Fernandez, D., Lyalin, D. &amp; Kaim L. 2015. <a
@@ -302,6 +316,8 @@ href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview
               Video. Channel 9, Microsoft.</li>
             <li>Dharmapuri, Likhit. 2017. <a
 href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e">ASP.NET
+
+
 
                 core and MySQL with Docker</a>. Medium.<br>
               <a
@@ -322,6 +338,8 @@ href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-3-e382
               src="https://i.creativecommons.org/l/by/4.0/80x15.png"
               style="border-width: 0"></a> </div>
         <span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">ASP.NET
+
+
 
           Core MVC Lecture Notes,</span> licensed under a <a
           href="http://creativecommons.org/licenses/by-sa/4.0/"
