@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AJAX REST Client</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style type="text/css">
         #week08 {
             background-color: #f8ff2e;
@@ -20,217 +20,295 @@
         .exercise {
             background-color: #c6ffe2;
         }
-    </style>
-    <base target="_blank">
-</head>
-
-<body>
+    </style> <base target="_blank">
+  </head>
+  <body>
     <div class="container-fluid">
-        <header>
-            <a href="../index.html" target="_blank"><b>CS296N Web Development 2: ASP.NET</b></a>
-            <br>
-            <div class="table-responsive">
-                <table class="table-bordered">
-                    <caption style="caption-side:top;">Weekly Topics</caption>
-                    <tbody>
-                        <tr>
-                            <td id="week01">1. Intro to course and Identity<br>
-                            </td>
-                            <td id="week06">6. Load Testing and Performance, Midterm Quiz<br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="week02">2. Authentication and Authorization</td>
-                            <td id="week07">7. Creating a Web Service<br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="week03">3. Claims and Third Party Authentication<br>
-                            </td>
-                            <td id="week08" style="width: 395.333px;">8. Consuming a Web Service<br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="week04">4. Web Security<br>
-                            </td>
-                            <td id="week09">9. Docker Containers<br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="week05">5. Publishing to a Production Server</td>
-                            <td id="week10">10.&nbsp; Microservices<br>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br>
-        </header>
-        <section>
-            <article>
-                <h1>Using AJAX to Consume a REST Web API</h1>
-                <hr>
-                <h2>Announcements</h2>
-                <ul>
-                    <li>Term Project</li>
-                </ul>
-            </article>
-            <hr>
-            <article>
-                <h2>Overview</h2>
-                <p>This week you will learn how to create a web page that serves as a client to a REST web service. Your web page will use JavaScript and the DOM's XMLHttpRequest object to intereact with the web API.
-                </p>
-                <ul>
-                    <li><a href="#topic1">AJAX</a></li>
-                    <li><a href="#topic2">XMLHttpRequest</a></li>
-                    <li><a href="#topic3">Consuming a REST Service</a></li>
-                    <li><a href="#topic4">Development Tips</a></li>
-                    <li><a href="#examples">Examples</a></li>
-                    <li><a href="#references">References</a></li>
-                </ul>
-            </article>
-        </section>
+      <header> <a href="../index.html" target="_blank"><b>CS296N Web
+            Development 2: ASP.NET</b></a> <br>
+        <div class="table-responsive">
+          <table class="table-bordered">
+            <caption style="caption-side:top;">Weekly Topics</caption> <tbody>
+              <tr>
+                <td id="week01">1. Intro to course and Identity<br>
+                </td>
+                <td id="week06">6. <strike>Load Testing and
+                    Performance, Midterm Quiz</strike><br>
+                </td>
+              </tr>
+              <tr>
+                <td id="week02">2. Authentication and Authorization</td>
+                <td id="week07">7. Creating a Web Service<br>
+                </td>
+              </tr>
+              <tr>
+                <td id="week03">3. Claims and Third Party Authentication<br>
+                </td>
+                <td id="week08" style="width: 395.333px;">8. Consuming a
+                  Web Service<br>
+                </td>
+              </tr>
+              <tr>
+                <td id="week04">4. Web Security<br>
+                </td>
+                <td id="week09">9. Docker Containers<br>
+                </td>
+              </tr>
+              <tr>
+                <td id="week05">5. Publishing to a Production Server</td>
+                <td id="week10">10. Term Project<br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+      </header>
+      <section>
+        <article>
+          <h1>Using AJAX to Consume a REST Web API</h1>
+          <hr>
+          <h2>Announcements</h2>
+          <ul>
+            <li>How is the term project going?<br>
+            </li>
+          </ul>
+        </article>
         <hr>
-        <section>
-            <article id="topic1">
-                <u><b>AJAX</b></u><br>
-                <ul>
-                    <li>AJAX (Asynchronous JavaScript and XML) lets you:</li>
-                    <ul>
-                        <li>Update a web page without reloading the page</li>
-                        <li>Receive data from a server - after the page has loaded</li>
-                        <li>Send data to a server - in the background</li>
-                    </ul>
-                </ul>
-                <ul>
-                    <li>Tutorial: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started" target="_blank">MDN,
-              AJAX Getting Started Guide</a></li>
-                    <li>For Practice: <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap API Docs</a></li>
-                </ul>
-
-            </article>
-            <article id="topic2">
-                <u><b>XMLHttpRequest </b></u>
-                <p>
-                    The XMLHttpRequest JavaScript object, which is part of the DOM in all modern browsers, lets you retrieve data from a URL without having to do a full page refresh. XMLHttpRequest was originally designed by Microsoft around 1999 and later adopted by Mozilla,
-                    Apple, and Google. Since October 2014, it has been part of the standard. Despite its name, XMLHttpRequest can be used to retrieve any type of data, not just XML, and it supports protocols other than HTTP (including file and ftp).</p>
-                <ul>
-                    <li>Reference: <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank">MDN,
-              XMLHttpRequest<br>
-            </a></li>
-                    <li>Guide: <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest" target="_blank">MDN,
-              Using XMLHttpRequest</a><br>
-                    </li>
-                    <li>Example:<br>
-                        <code>function responseListener () {<br>
-              &nbsp; console.log(this.responseText);<br>
-              }<br>
-              <br>
-              var oReq = new XMLHttpRequest();<br>
-              oReq.addEventListener("load", responseListener);<br>
-              oReq.open("GET", "http://www.example.org/example.txt");<br>
-              oReq.send();</code> </li>
-
-                </ul>
-            </article>
-            <article id="topic3">
-                <u><b>Consuming a REST Service </b></u>
-                <p>
-                    Follow the strategy for writing a REST client in JavaScript described in the tutorial by Geoffey Liu (2016).
-                </p>
-            </article>
-            <article id="topic4">
-                <u><b>Development Tips
-            </b></u>
-                <ul>
-                    <li>Watch out for <u><i>cross-origin request</i> issues</u> - a potential "gotcha"!</li>
-                    <ul>
-                        <li>A cross-origin request is an HTTP request to a web service or web app that comes from some other domain than the one that hosts the service.<a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">
-                Wikipedia: Cross-Origin Resource Sharing</a>. Most web hosts will block Ajax requests (XMLHttpRequest) that come from another domain, but most hosting platforms provide a mechanism, CORS (Cross-Origin Resource Sharing), for selectively
-                            allowing requests from domains that you authorize.</li>
-                        <li>When testing your REST client against a Web API running on your development machine, you will need to put the client web page files into the wwwroot folder of your Web API project so that they will be served by your development
-                            server (IIS Express, Kestrel, etc.). Be sure to enable static files (see below).</li>
-                    </ul>
-
-                    <li><u>Enable static files</u> in your Web API project. </li>
-                    <ul>
-                        <li>To enable your server to serve your REST client's web page, you need to enable static files by adding the line of code below to the <i>Configure</i> method in <i>Startup.cs<br>
-              </i><code>app.UseStaticFiles();</code><br>
-                        </li>
-                    </ul>
-                    <li><u>Using a Web API running on Azure
-                      </u><br> When testing your REST client against a Web API running on Azure, you can run your web client on your development machine if you enable CORS for the Web App running on Azure. To do this:
-                        <ul>
-                            <ol>
-                                <li>Open the <a href="https://portal.azure.com" target="_blank">Azure
-                  Portal</a></li>
-                                <li>Click on A<i>pp Service</i></li>
-                                <li>Scroll down the list of settings until you see <i>CORS</i> and click on it. </li>
-                                <li>Set an <i>Allowed Origin</i>. <br> You can set the allowed origins to * so that your Web API can be called from any domain. (You may want to change this to be more restrictive when you have finished testing.)
-                                    <br>
-                                    <br>
-                                </li>
-                            </ol>
-
-                            <li> Check your Web API for <u>exceptions while running on Azure</u>.
-
-                                <br>To do this:</li>
-                            <ol>
-                                <li>&nbsp;open the <a href="https://portal.azure.com" target="_blank">Azure
-                  Portal</a></li>
-                                <li>Click on App Service</li>
-                                <li>Scroll down the list of settings until you see Application Insights and click on it</li>
-                                <li>At the bottom of the page click on <i>View more in
-                  Application Insights</i></li>
-                                <li>Scroll down in the new list on the left and click on<i>
-                  Failures</i></li>
-                                <li>Near the top of the page, click on<i> Exceptions</i></li>
-                            </ol>
-                        </ul>
-                    </li>
-                </ul>
-
-            </article>
-            <hr>
-            <article id="examples">
-                <h2>Examples</h2>
-                <ul>
-                    <li><a href="https://github.com/ProfBird/ASP.NET-Core-Demos/tree/master/WebApiMovie" target="_blank">Movie Catalog</a>--Git repository<br>Source code for both a REST web service and a client web page using AJAX.</li>
-                    <li><a href="https://profbird.github.io/ASP.NET-Core-Demos/ajax/OpenWeatherMapClient.html" target="_blank">OpenWeatherMap Client</a>--running online<br> Web page with AJAX that gets current weather conditions from OpenWeatherMap.</li>
-                    <li>
-                        <a href="https://github.com/ProfBird/BookInfo-Core-2-WebAPI" target="_blank">
-					BookInfo Web API and Client</a>--Git repository<br>Source code for both a REST web service and a client web page using AJAX.
-                    </li>
-                    <li><a href="https://profbird.online/BookService/">BookInfo 
-					Web API Client</a>--running online<br>Web page with AJAX that interacts with the BookInfo web service running online.</li>
-                </ul>
-            </article>
-            <hr>
-            <article id="references">
-                <h2>References</h2>
-                <ul>
-                    <li>"<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/" target="_blank">Ajax</a>," on
-                        <a href="https://developer.mozilla.org/en-US/">MDN Web Docs</a>. The Mozilla Foundation.</li>
-                    <li>Liu, Geoffrey. (2016). "<a href="http://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/" target="_blank">A strategy for consuming REST API’s in JavaScript</a>," on <a href="http://g-liu.com/blog/" target="_blank">The Thought Box</a></li>
-                    <li><a href="https://www.w3schools.com/js/js_ajax_intro.asp" target="_blank">JS AJAX</a> on <a href="https://www.w3schools.com" target="_blank">W3Schools</a>. Refsnes Data.</li>
-                    <li><a href="https://openweathermap.org/api" target="_blank">Weather API</a> on <a href="https://openweathermap.org">OpenWeatherMap</a>. OpenWeather Ltd.</li>
-                </ul>
-            </article>
-        </section>
+        <article>
+          <h2>Overview</h2>
+          <p>This week you will learn how to create a web page that
+            serves as a client to a REST web service. Your web page will
+            use JavaScript and the DOM's XMLHttpRequest object to
+            intereact with the web API. </p>
+          <ul>
+            <li><a href="#topic1">AJAX</a></li>
+            <li><a href="#topic2">XMLHttpRequest</a></li>
+            <li><a href="#topic3">Consuming a REST Service</a></li>
+            <li><a href="#topic4">Development Tips</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#Further_Exploration">Further Exploration</a><br>
+            </li>
+            <li><a href="#references">References</a></li>
+          </ul>
+        </article>
+      </section>
+      <hr>
+      <section>
+        <article id="topic1"> <u><b>AJAX</b></u><br>
+          <ul>
+            <li>AJAX (Asynchronous JavaScript and XML) lets you:</li>
+            <ul>
+              <li>Update a web page without reloading the page</li>
+              <li>Receive data from a server - after the page has loaded</li>
+              <li>Send data to a server - in the background</li>
+            </ul>
+          </ul>
+          <ul>
+            <li>Tutorial: <a
+href="https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started"
+                target="_blank">MDN, AJAX Getting Started Guide</a></li>
+            <li>For Practice: <a href="https://openweathermap.org/api"
+                target="_blank">OpenWeatherMap API Docs</a></li>
+          </ul>
+        </article>
+        <article id="topic2"> <u><b>XMLHttpRequest </b></u>
+          <p> The XMLHttpRequest JavaScript object, which is part of the
+            DOM in all modern browsers, lets you retrieve data from a
+            URL without having to do a full page refresh. XMLHttpRequest
+            was originally designed by Microsoft around 1999 and later
+            adopted by Mozilla, Apple, and Google. Since October 2014,
+            it has been part of the standard. Despite its name,
+            XMLHttpRequest can be used to retrieve any type of data, not
+            just XML, and it supports protocols other than HTTP
+            (including file and ftp).</p>
+          <ul>
+            <li>Reference: <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"
+                target="_blank">MDN, XMLHttpRequest<br>
+              </a></li>
+            <li>Guide: <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest"
+                target="_blank">MDN, Using XMLHttpRequest</a><br>
+            </li>
+            <li>Example:<br>
+              <code>function responseListener () {<br>
+                &nbsp; console.log(this.responseText);<br>
+                }<br>
+                <br>
+                var oReq = new XMLHttpRequest();<br>
+                oReq.addEventListener("load", responseListener);<br>
+                oReq.open("GET", "http://www.example.org/example.txt");<br>
+                oReq.send();</code> </li>
+          </ul>
+        </article>
+        <article id="topic3"> <u><b>Consuming a REST Service </b></u>
+          <p> Follow the strategy for writing a REST client in
+            JavaScript described in the tutorial by Geoffey Liu (2016).
+          </p>
+        </article>
+        <article id="topic4"> <u><b>Development Tips </b></u>
+          <ul>
+            <li>Watch out for <u><i>cross-origin request</i> issues</u>
+              - a potential "gotcha"!</li>
+            <ul>
+              <li>A cross-origin request is an HTTP request to a web
+                service or web app that comes from some other domain
+                than the one that hosts the service.<a
+                  href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">
+                  Wikipedia: Cross-Origin Resource Sharing</a>. Most web
+                hosts will block Ajax requests (XMLHttpRequest) that
+                come from another domain, but most hosting platforms
+                provide a mechanism, CORS (Cross-Origin Resource
+                Sharing), for selectively allowing requests from domains
+                that you authorize.</li>
+              <li>When testing your REST client against a Web API
+                running on your development machine, you will need to
+                put the client web page files into the wwwroot folder of
+                your Web API project so that they will be served by your
+                development server (IIS Express, Kestrel, etc.). Be sure
+                to enable static files (see below).</li>
+            </ul>
+            <li><u>Enable static files</u> in your Web API project. </li>
+            <ul>
+              <li>To enable your server to serve your REST client's web
+                page, you need to enable static files by adding the line
+                of code below to the <i>Configure</i> method in <i>Startup.cs<br>
+                </i><code>app.UseStaticFiles();</code><br>
+              </li>
+            </ul>
+            <li><u>Using a Web API running on Azure </u><br>
+              When testing your REST client against a Web API running on
+              Azure, you can run your web client on your development
+              machine if you enable CORS for the Web App running on
+              Azure. To do this:
+              <ul>
+                <ol>
+                  <li>Open the <a href="https://portal.azure.com"
+                      target="_blank">Azure Portal</a></li>
+                  <li>Click on A<i>pp Service</i></li>
+                  <li>Scroll down the list of settings until you see <i>CORS</i>
+                    and click on it. </li>
+                  <li>Set an <i>Allowed Origin</i>. <br>
+                    You can set the allowed origins to * so that your
+                    Web API can be called from any domain. (You may want
+                    to change this to be more restrictive when you have
+                    finished testing.) <br>
+                    <br>
+                  </li>
+                </ol>
+                <li> Check your Web API for <u>exceptions while running
+                    on Azure</u>. <br>
+                  To do this:</li>
+                <ol>
+                  <li>&nbsp;open the <a href="https://portal.azure.com"
+                      target="_blank">Azure Portal</a></li>
+                  <li>Click on App Service</li>
+                  <li>Scroll down the list of settings until you see
+                    Application Insights and click on it</li>
+                  <li>At the bottom of the page click on <i>View more
+                      in Application Insights</i></li>
+                  <li>Scroll down in the new list on the left and click
+                    on<i> Failures</i></li>
+                  <li>Near the top of the page, click on<i> Exceptions</i></li>
+                </ol>
+              </ul>
+            </li>
+          </ul>
+        </article>
         <hr>
-        <footer>
-            <div style="float:left; padding-right:5px;">
-                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-                    <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-            </div>
-
-            <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">These ASP.NET
-        Core MVC Lecture Notes</span> are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-        Commons Attribution-ShareAlike 4.0 International License</a>. Written by <a xmlns:cc="http://creativecommons.org/ns#" href="https://profbird.online" property="cc:attributionName" rel="cc:attributionURL">Brian
-        Bird</a>, fall 2017, revised winter 2019.
-        </footer>
+        <article id="examples">
+          <h2>Examples</h2>
+          <ul>
+            <li><a
+href="https://github.com/ProfBird/ASP.NET-Core-Demos/tree/master/WebApiMovie"
+                target="_blank">Movie Catalog</a>--Git repository<br>
+              Source code for both a REST web service and a client web
+              page using AJAX.</li>
+            <li><a
+href="https://profbird.github.io/ASP.NET-Core-Demos/ajax/OpenWeatherMapClient.html"
+                target="_blank">OpenWeatherMap Client</a>--running
+              online<br>
+              Web page with AJAX that gets current weather conditions
+              from OpenWeatherMap.</li>
+            <li> <a
+                href="https://github.com/ProfBird/BookInfo-Core-2-WebAPI"
+                target="_blank"> BookInfo Web API and Client</a>--Git
+              repository<br>
+              Source code for both a REST web service and a client web
+              page using AJAX. </li>
+            <li><a href="https://profbird.online/BookService/">BookInfo
+                Web API Client</a>--running online<br>
+              Web page with AJAX that interacts with the BookInfo web
+              service running online.</li>
+          </ul>
+        </article>
         <hr>
-    </div>
-</body>
-
+        <article id="references">
+          <h2><a name="Further_Exploration"></a>Further Exploration</h2>
+          <p></p>
+          <h3>Fetch vs. XHR</h3>
+          <p>Newer JavaScript web clients use the <a
+href="https://developers.google.com/web/updates/2015/03/introduction-to-fetch"
+              target="_blank">fetch() method</a> rather than the older
+            XMLHttpRequest() (XHR) method. Both methods are
+            asynchronous, but fetch uses promises rather than the older
+            style JavaScript call-backs.<br>
+          </p>
+          <h3>Newer protocols for communication over the web</h3>
+          <p>There are several modern alternatives to REST or SOAP for
+            communicating with a web API. Two of them are:<br>
+          </p>
+          <ul>
+            <li><a href="https://grpc.io" target="_blank">gRPC</a>—A
+              protocol developed by Google that is becoming an industry
+              standard.</li>
+            <li><a
+href="https://docs.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr"
+                target="_self">SignalR</a>—A protocol and
+              ASP.NET/ASP.NET Core library developed by Microsoft that
+              enables real-time communication between a web app and a
+              web API.<br>
+            </li>
+          </ul>
+          <h2>References</h2>
+          <ul>
+            <li>"<a
+                href="https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/"
+                target="_blank">Ajax</a>," on <a
+                href="https://developer.mozilla.org/en-US/">MDN Web Docs</a>.
+              The Mozilla Foundation.</li>
+            <li>Liu, Geoffrey. (2016). "<a
+href="http://g-liu.com/blog/2016/07/a-strategy-for-consuming-rest-apis-in-javascript/"
+                target="_blank">A strategy for consuming REST API’s in
+                JavaScript</a>," on <a href="http://g-liu.com/blog/"
+                target="_blank">The Thought Box</a></li>
+            <li><a href="https://www.w3schools.com/js/js_ajax_intro.asp"
+                target="_blank">JS AJAX</a> on <a
+                href="https://www.w3schools.com" target="_blank">W3Schools</a>.
+              Refsnes Data.</li>
+            <li><a href="https://openweathermap.org/api" target="_blank">Weather
+                API</a> on <a href="https://openweathermap.org">OpenWeatherMap</a>.
+              OpenWeather Ltd.</li>
+          </ul>
+        </article>
+      </section>
+      <hr>
+      <footer>
+        <div style="float:left; padding-right:5px;"> <a rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/"> <img
+              alt="Creative Commons License" style="border-width:0"
+              src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+        </div>
+        <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">These
+          ASP.NET Core MVC Lecture Notes</span> are licensed under a <a
+          rel="license"
+          href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+          Commons Attribution-ShareAlike 4.0 International License</a>.
+        Written by <a xmlns:cc="http://creativecommons.org/ns#"
+          href="https://profbird.online" property="cc:attributionName"
+          rel="cc:attributionURL">Brian Bird</a>, fall 2017, revised
+        winter 2019. </footer>
+      <hr> </div>
+  </body>
 </html>
