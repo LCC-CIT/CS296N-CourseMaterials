@@ -104,12 +104,14 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
 
 
+
               Toolbox for Windows</a> <br>
             This version of Docker installs VirtualBox on your system so
             you can run your choice of host operating system for the
             container. </li>
           <li>Windows 10 Pro, Enterprise, or Education—<a
 href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docker
+
 
 
 
@@ -121,10 +123,17 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
 
 
 
+
               Desktop for Mac OS</a><br>
             This version only supports containers that use Linux as the
             OS. </li>
           <li>Linux—Packages are available for all major distributions </li>
+        </ul>
+        <p>After setting up Docker, do the 20 minute <a
+            href="https://docs.docker.com/get-started/" target="_blank">Getting
+            Started with Docker</a> tutorial.<br>
+        </p>
+        <ul>
         </ul>
       </section>
       <section id="howto">
@@ -165,13 +174,15 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
           </li>
           <li>To see the images currently installed, type:<br>
             <font face="Courier New, Courier, monospace" size="+1">docker
+
               images</font> <br>
             <br>
           </li>
           <li>Add commands to the Dockerfile to copy the web app into
             the container and set an entry-point for the web app. This
-            will create new image layers.<code>COPY YourWebAppProject/bin/Release/netcoreapp3.1/publish/
-              app/</code><code>ENTRYPOINT ["dotnet", "app/myapp.dll"</code></li>
+            will create new image layers.<code>COPY
+              YourWebAppProject/bin/Release/netcoreapp3.1/publish/ app/</code><code>ENTRYPOINT
+              ["dotnet", "app/myapp.dll"</code></li>
           <br>
           <ul>
             <li>COPY—copies new files or directories from the source
@@ -188,10 +199,12 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
             again too.</li>
           <li>Create a container using the image you just created:<br>
             <font face="Courier New, Courier, monospace"><font size="+1">docker
+
                 create yourwebappimage</font><br>
             </font>The output of the command shows the ID of your new
             container. To see a list of all containers, type:<br>
             <font face="Courier New, Courier, monospace" size="+1">docker
+
               ps -a<br>
             </font><font face="Courier New, Courier, monospace"><font
                 face="Helvetica, Arial, sans-serif">You'll notice that
@@ -201,6 +214,7 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
           </li>
           <li>Start the container using it's name:<br>
             <font face="Courier New, Courier, monospace" size="+1">docker
+
               start some_name<br>
             </font><font face="Courier New, Courier, monospace"><font
                 face="Helvetica, Arial, sans-serif">FYI, you can use the<font
@@ -327,6 +341,7 @@ href="https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-c
 
 
 
+
                 a .NET Core Application</a>. Sample Applications,
               Docker.</li>
             <li>Fernandez, D., Lyalin, D. &amp; Kaim L. 2015. <a
@@ -335,6 +350,7 @@ href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview
               Video. Channel 9, Microsoft.</li>
             <li>Dharmapuri, Likhit. 2017. <a
 href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e">ASP.NET
+
 
 
 
@@ -357,6 +373,7 @@ href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-3-e382
               src="https://i.creativecommons.org/l/by/4.0/80x15.png"
               style="border-width: 0"></a> </div>
         <span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">ASP.NET
+
 
 
 
