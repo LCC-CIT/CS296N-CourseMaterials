@@ -163,16 +163,15 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
             </font>
             <pre><font face="Courier New, Courier, monospace" size="+1">docker build -t yourwebappimage . </font><br></pre>
           </li>
-          <li>Run the <font face="Courier New, Courier, monospace"
-              size="+1">docker images</font> command to see the images
-            currently installed.</li>
+          <li>To see the images currently installed, type:<br>
+            <font face="Courier New, Courier, monospace" size="+1">docker
+              images</font> <br>
+            <br>
+          </li>
           <li>Add commands to the Dockerfile to copy the web app into
             the container and set an entry-point for the web app. This
-            will create new image layers.<code>COPY
-              app/bin/Release/netcoreapp3.1/publish/ app/</code><code>ENTRYPOINT
-
-
-              ["dotnet", "app/myapp.dll"</code></li>
+            will create new image layers.<code>COPY YourWebAppProject/bin/Release/netcoreapp3.1/publish/
+              app/</code><code>ENTRYPOINT ["dotnet", "app/myapp.dll"</code></li>
           <br>
           <ul>
             <li>COPY—copies new files or directories from the source
@@ -185,11 +184,31 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
               <br>
             </li>
           </ul>
-          <li>Build your images again as you did in step 3.</li>
-          <li>Create a container. See: <a
-href="https://docs.microsoft.com/en-us/dotnet/core/docker/build-container#create-a-container"
-              target="_blank">https://docs.microsoft.com/en-us/dotnet/core/docker/build-container#create-a-container</a></li>
-          <li>Run the containerized app </li>
+          <li>Build your images again as you did in step 3 and view them
+            again too.</li>
+          <li>Create a container using the image you just created:<br>
+            <font face="Courier New, Courier, monospace"><font size="+1">docker
+                create yourwebappimage</font><br>
+            </font>The output of the command shows the ID of your new
+            container. To see a list of all containers, type:<br>
+            <font face="Courier New, Courier, monospace" size="+1">docker
+              ps -a<br>
+            </font><font face="Courier New, Courier, monospace"><font
+                face="Helvetica, Arial, sans-serif">You'll notice that
+                each container has a name that was assigned
+                automatically. </font></font><br>
+            <br>
+          </li>
+          <li>Start the container using it's name:<br>
+            <font face="Courier New, Courier, monospace" size="+1">docker
+              start some_name<br>
+            </font><font face="Courier New, Courier, monospace"><font
+                face="Helvetica, Arial, sans-serif">FYI, you can use the<font
+                  face="Courier New, Courier, monospace" size="+1">
+                  docker stop</font> command to stop the container.</font></font><br>
+          </li>
+          <li><br>
+          </li>
         </ol>
         <ol>
           <li>
@@ -262,7 +281,7 @@ href="https://docs.microsoft.com/en-us/dotnet/core/docker/build-container#create
 dows Docker host. All files and dire
 wxr-xr-x' permissions. It is recomme
 or sensitive files and directories.</pre>
-            This is becuase the files you copied from Windows to the
+            This is because the files you copied from Windows to the
             Linux VM have permissions that are considered a security
             risk. You should change the permissions to improve security,
             but the image will still work even if you don't.</li>
