@@ -16,7 +16,7 @@ Gain experience:
 
 ## Part 1. Docker Exercises
 
-Read the Docker [Getting Started](https://docs.docker.com/get-started/) guide, parts 1, 2, 3 and 5. Do all the steps that can be done on your development machine. 
+Read the Docker [Getting Started](https://docs.docker.com/get-started/) guide, parts 1, 2 and 3. Do all the steps that can be done on your development machine. 
 
 Your grade on this part will be based on self-reporting:
 
