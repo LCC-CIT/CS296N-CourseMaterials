@@ -100,31 +100,19 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
         one that matches your operating system:
         <ul>
           <li>Windows 7, Windows 10 Home—<a
-              href="https://docs.docker.com/toolbox/toolbox_install_windows/">Docker
-
-
-
-
-              Toolbox for Windows</a> <br>
+              href="https://docs.docker.com/toolbox/toolbox_install_windows/"
+              target="_blank">Docker Toolbox for Windows</a> <br>
             This version of Docker installs VirtualBox on your system so
             you can run your choice of host operating system for the
             container. </li>
           <li>Windows 10 Pro, Enterprise, or Education—<a
-href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docker
-
-
-
-
-              Desktop for Windows 10</a> <br>
+href="https://hub.docker.com/editions/community/docker-ce-desktop-windows"
+              target="_blank">Docker Desktop for Windows 10</a> <br>
             This version lets you choose whether to use Windows as the
             container OS or Linux.</li>
           <li>Mac OS 10.12 or newer—<a
-              href="https://hub.docker.com/editions/community/docker-ce-desktop-mac">Docker
-
-
-
-
-              Desktop for Mac OS</a><br>
+              href="https://hub.docker.com/editions/community/docker-ce-desktop-mac"
+              target="_blank">Docker Desktop for Mac OS</a><br>
             This version only supports containers that use Linux as the
             OS. </li>
           <li>Linux—Packages are available for all major distributions </li>
@@ -146,12 +134,14 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
         <ol>
           <li>Publish your web app to a folder. Use your Azure database
             connection string. Verify that the web app runs from the
-            folder:<font face="Courier New, Courier, monospace"> <br>
-              <font size="+1">dotnet yourwebapp.dll</font><br>
-              <br>
+            folder you published it to by executing this command:<font
+              face="Courier New, Courier, monospace"> <br>
+            </font><font face="Courier New, Courier, monospace"> <font
+                size="+1">dotnet yourwebappname.dll</font></font><br>
+            <font face="Courier New, Courier, monospace"> <br>
             </font></li>
           <li>Create a file named <i>Dockerfile</i> in your web app
-            solution folder (the same folder as your .sln file).<br>
+            solution folder (the same folder as your .sln file).
             Example: <br>
             <code># download the ASP.NET Core runtime<br>
               FROM mcr.microsoft.com/dotnet/core/aspnet:3.1<br>
@@ -159,18 +149,20 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
               FROM mcr.microsoft.com/dotnet/core/runtime:3.1<br>
             </code><br>
             <ul>
-              <li>FROM—initializes a new build stage and sets the Base
-                Image for the remaining instructions.</li>
+              <li>FROM—downloads an image from the Microsoft Docker
+                image repository, initializes a new build stage, and
+                sets the Base Image for the remaining instructions.</li>
             </ul>
             <br>
           </li>
-          <li>Build the image in the current folder and give it a name,
-            following the -t (The tag is optional and could be given in
-            the ‘name:tag’ format.) The dot means that the Dockerfile is
-            in the current folder.<br>
+          <li>Build the image and give it a name, following the -t (The
+            tag is optional and could be given in the ‘name:tag’
+            format.) The dot means that the Dockerfile is in the current
+            folder. Execute this command in the folder containing the
+            Dockerfile:<br>
             <font size="+1"><br>
             </font>
-            <pre><font face="Courier New, Courier, monospace" size="+1">docker build -t yourwebappimage . </font><br></pre>
+            <pre><font face="Courier New, Courier, monospace" size="+1">docker build -t yourwebappname . </font><br></pre>
           </li>
           <li>To see the images currently installed, type:<br>
             <font face="Courier New, Courier, monospace" size="+1">docker
@@ -200,7 +192,7 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
           <li>Create a container using the image you just created:<br>
             <font face="Courier New, Courier, monospace"><font size="+1">docker
 
-                create yourwebappimage</font><br>
+                create yourwebappname</font><br>
             </font>The output of the command shows the ID of your new
             container. To see a list of all containers, type:<br>
             <font face="Courier New, Courier, monospace" size="+1">docker
@@ -226,22 +218,16 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
         </ol>
         <ol>
           <li>
-            <pre> docker run --rm -p 80:5000 dotnetapp-dev BookInfo from Docker</pre>
+            <pre> docker run --rm -p 5001:8080 yourwebappname</pre>
             Notes:
             <ul>
-              <li>I set the port option to map port 5000 inside the
-                container to 80 outside the container since my web app
-                is configured for port 5000.</li>
+              <li>I set the port option to map port 5001 inside the
+                container to 8080 outside the container since my web app
+                is configured for HTTPS on port 5001.</li>
               <li>If you are specifying a port in <span
                   class="auto-style1">appsettings.json,</span> be sure
-                you don't specify localhost. use + to represent any
-                domain, like this: <span class="auto-style1">&nbsp;"http://+:5000"</span></li>
-              <li>Since there is no database application in the image,
-                the web app will throw exceptions when it tries to
-                access its database. But if you have an app that doesn't
-                need a database, you can open your web browser and see
-                the app's web page.<br>
-              </li>
+                you don't specify localhost. Use + to represent any
+                domain, like this: <span class="auto-style1">&nbsp;"http://+:5001"</span></li>
             </ul>
           </li>
           <li>Upload the image to Docker Hub or any other container
@@ -252,32 +238,7 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docke
           <li>Blah blah</li>
         </ol>
         <h3>Notes</h3>
-        <h4>Using an in-memory database for testing</h4>
-        <p>The Docker base image for the ASP.NET Core SDK, which is the
-          one we are using, does not include a database engine, so our
-          app will fail at startup when it tires to set up a database
-          connection. To solve this, I added code to check an
-          environment variable, ASPNETCORE_MEMDB, to see if it is set to
-          "true" which causes EF to simulate a database in
-          memory.br&gt;In the Startup class:</p>
-        <code>public void ConfigureServices(IServiceCollection services)<br>
-          {<br>
-          &nbsp;&nbsp;&nbsp; if
-          (Environment.GetEnvironmentVariable("ASPNETCORE_MEMDB").ToLower()
-          =="true") {<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          services.AddDbContext&lt;ApplicationDbContext&gt;(<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; options =&gt;
-          options.UseInMemoryDatabase("TestDb"));<br>
-          &nbsp;&nbsp; }<br>
-          &nbsp;&nbsp; // Additional code omitted</code>
-        <h4>&nbsp;</h4>
-        <p>To test this code in Windows, set the environment variable
-          from the from a Windows console like this:</p>
-        <pre>C:\Users\Student&gt;set ASPNETCORE_MEMDB=true</pre>
-        <p>To set the environment variable in the container, add this
-          line to the Dockerfile anywhere before the ENTRYPOINT command:</p>
-        <code>ENV ASPNETCORE_MEMDB true</code> <br>
+        <br>
         <h4>Docker Toolbox for Windows</h4>
         <ul>
           <li>Start by running the Docker Quickstart Terminal, this will
