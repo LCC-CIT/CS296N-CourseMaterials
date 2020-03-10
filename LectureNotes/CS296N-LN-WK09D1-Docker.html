@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Docker</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous">
     <style type="text/css">
         #week09 {
             background-color: #f8ff2e;
@@ -25,286 +27,361 @@
             font-family: "Courier New", Courier, monospace;
         }
     </style>
-</head>
-
-<body>
+  </head>
+  <body>
     <div class="container-fluid">
-        <header> <a href="../index.html" target="_blank"><b>CS296N Web
+      <header> <a href="../index.html" target="_blank"><b>CS296N Web
             Development 2: ASP.NET</b></a> <br>
-            <br>
-            <div class="table-responsive">
-                <table class="table-bordered">
-                    <caption style="caption-side: top;">Weekly Topics</caption>
-                    <tbody>
-                        <tr>
-                            <td id="week01">1. Intro to course and Identity<br>
-                            </td>
-                            <td id="week06">6. <strike>Load Testing and Performance</strike><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="week02">2. Authentication and Authorization</td>
-                            <td id="week07">7. Creating a Web Service<br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="week03">3. Claims and Third Party Authentication<br>
-                            </td>
-                            <td id="week08" style="width: 395.333px;">8. Consuming a Web Service <br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="week04">4. Web Security<br>
-                            </td>
-                            <td id="week09">9. Docker Containers<br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="week05">5. Publishing to a Production Server</td>
-                            <td id="week10">10.&nbsp; Term Project<br>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br>
-        </header>
-        <section>
-            <article>
-                <h1>Using Docker Containers</h1>
-                <hr>
-                <h2>Announcements</h2>
-                <ul>
-                    <li>Term Project</li>
-                </ul>
-            </article>
-            <hr>
-            <article>
-                <h2>Overview</h2>
-                <p>This week you will learn how to...</p>
-                <ul>
-                    <li><a href="#setup">Set up Docker</a></li>
-                    <li><a href="#howto">How to Deploy a Web App in a Container</a></li>
-                    <li><a href="#examples">Examples</a></li>
-                    <li><a href="#references">References</a></li>
-                </ul>
-            </article>
-            <article> Solving the "but it worked on my machine" problem. </article>
-        </section>
-        <section id="setup">
-            <h2>Set up Docker</h2>
-            You will need to install the Docker environment on your development machine and on the server. There are several versions of the development environment. You need to choose the one that matches your operating system:
-            <ul>
-                <li>Windows 7, Windows 10 Home—<a href="https://docs.docker.com/toolbox/toolbox_install_windows/" target="_blank">Docker Toolbox for Windows</a> <br> This version of Docker installs VirtualBox on your system so you can run your choice of host
-                    operating system for the container. </li>
-                <li>Windows 10 Pro, Enterprise, or Education—<a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows" target="_blank">Docker Desktop for Windows 10</a> <br> This version lets you choose whether to use Windows as the container
-                    OS or Linux.</li>
-                <li>Mac OS 10.12 or newer—<a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac" target="_blank">Docker Desktop for Mac OS</a><br> This version only supports containers that use Linux as the OS. </li>
-                <li>Linux—Packages are available for all major distributions </li>
-            </ul>
-        </section>
-        <section id="howto">
-            <hr>
-            <h2>Deploy a Web App in a Container</h2>
-            <h3>On your development machine:</h3>
-            We will deploy a framework-dependent ASP.NET Core web app to Linux in a Docker container.<br>
-            <br>
-            <ol>
-                <li>Publish your web app to a folder. Use your Azure database connection string. Verify that the web app runs from the folder you published it to by executing this command:
-                    <font face="Courier New, Courier, monospace"> <br>
-                    </font>
-                    <font face="Courier New, Courier, monospace">
-                        <font size="+1">dotnet yourwebappname.dll</font>
-                    </font><br>
-                    <font face="Courier New, Courier, monospace"> <br>
-                    </font>
-                </li>
-                <li>Create a file named <i>Dockerfile</i> in your web app solution folder (the same folder as your .sln file). Example: <br>
-                    <code># download the ASP.NET Core runtime<br>
+        <br>
+        <div class="table-responsive">
+          <table class="table-bordered">
+            <caption style="caption-side: top;">Weekly Topics</caption>
+            <tbody>
+              <tr>
+                <td id="week01">1. Intro to course and Identity<br>
+                </td>
+                <td id="week06">6. <strike>Load Testing and Performance</strike><br>
+                </td>
+              </tr>
+              <tr>
+                <td id="week02">2. Authentication and Authorization</td>
+                <td id="week07">7. Creating a Web Service<br>
+                </td>
+              </tr>
+              <tr>
+                <td id="week03">3. Claims and Third Party Authentication<br>
+                </td>
+                <td id="week08" style="width: 395.333px;">8. Consuming a
+                  Web Service <br>
+                </td>
+              </tr>
+              <tr>
+                <td id="week04">4. Web Security<br>
+                </td>
+                <td id="week09">9. Docker Containers<br>
+                </td>
+              </tr>
+              <tr>
+                <td id="week05">5. Publishing to a Production Server</td>
+                <td id="week10">10.&nbsp; Term Project<br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+      </header>
+      <section>
+        <article>
+          <h1>Using Docker Containers</h1>
+          <hr>
+          <h2>Announcements</h2>
+          <ul>
+            <li>Term Project</li>
+          </ul>
+        </article>
+        <hr>
+        <article>
+          <h2>Overview</h2>
+          <p>This week you will learn how to...</p>
+          <ul>
+            <li><a href="#setup">Set up Docker</a></li>
+            <li><a href="#howto">How to Deploy a Web App in a Container</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#references">References</a></li>
+          </ul>
+        </article>
+        <article> Solving the "but it worked on my machine" problem. </article>
+      </section>
+      <section id="setup">
+        <h2>Set up Docker</h2>
+        You will need to install the Docker environment on your
+        development machine and on the server. There are several
+        versions of the development environment. You need to choose the
+        one that matches your operating system:
+        <ul>
+          <li>Windows 7, Windows 10 Home—<a
+              href="https://docs.docker.com/toolbox/toolbox_install_windows/"
+              target="_blank">Docker Toolbox for Windows</a> <br>
+            This version of Docker installs VirtualBox on your system so
+            you can run your choice of host operating system for the
+            container. </li>
+          <li>Windows 10 Pro, Enterprise, or Education—<a
+href="https://hub.docker.com/editions/community/docker-ce-desktop-windows"
+              target="_blank">Docker Desktop for Windows 10</a> <br>
+            This version lets you choose whether to use Windows as the
+            container OS or Linux.</li>
+          <li>Mac OS 10.12 or newer—<a
+              href="https://hub.docker.com/editions/community/docker-ce-desktop-mac"
+              target="_blank">Docker Desktop for Mac OS</a><br>
+            This version only supports containers that use Linux as the
+            OS. </li>
+          <li>Linux—Packages are available for all major distributions </li>
+        </ul>
+      </section>
+      <section id="howto">
+        <hr>
+        <h2>Deploy a Web App in a Container</h2>
+        <h3>On your development machine:</h3>
+        We will deploy a framework-dependent ASP.NET Core web app to
+        Linux in a Docker container.<br>
+        <br>
+        <ol>
+          <li>Publish your web app to a folder. Use your Azure database
+            connection string. Verify that the web app runs from the
+            folder you published it to by executing this command: <font
+              face="Courier New, Courier, monospace"> <br>
+            </font> <font face="Courier New, Courier, monospace"> <font
+                size="+1">dotnet yourwebappname.dll</font> </font><br>
+            <font face="Courier New, Courier, monospace"> <br>
+            </font> </li>
+          <li>Create a file named <i>Dockerfile</i> in your web app
+            solution folder (the same folder as your .sln file).
+            Example: <br>
+            <code># download the ASP.NET Core runtime<br>
               FROM mcr.microsoft.com/dotnet/core/aspnet:3.1<br>
-              # download the .NET Core runtime<br>
-              FROM mcr.microsoft.com/dotnet/core/runtime:3.1<br>
             </code><br>
-                    <ul>
-                        <li>FROM—downloads an image from the Microsoft Docker image repository, initializes a new build stage, and sets the Base Image for the remaining instructions.</li>
-                    </ul>
-                    <br>
-                </li>
-                <li>Build the image and give it a name, following the -t (The tag is optional and could be given in the ‘name:tag’ format.) The dot means that the Dockerfile is in the current folder. Execute this command in the folder containing the Dockerfile:
-                    <br>
-                    <font size="+1"><br>
-                    </font>
-                    <pre><font face="Courier New, Courier, monospace" size="+1">docker build -t yourwebappname . </font><br></pre>
-                </li>
-                <li>To see the images currently installed, type:<br>
-                    <font face="Courier New, Courier, monospace" size="+1">docker images
-                    </font> <br>
-                    <br>
-                </li>
-                <li>Add commands to the Dockerfile to copy the web app into the container and set an entry-point for the web app. This will create new image layers.<code>COPY YourWebAppProject/bin/Release/netcoreapp3.1/publish/
-              app/</code><code>ENTRYPOINT ["dotnet", "app/myapp.dll"]</code></li>
-                <br>
-                <ul>
-                    <li>COPY—copies new files or directories from the source path and adds them to the destination container filesystem. </li>
-                </ul>
-                <ul>
-                    <li>ENTRYPOINT—specifies the command to run when the container starts, dotnet, and any arguments.<br>
-                        <br>
-                    </li>
-                </ul>
-                <li>Build your images again as you did in step 3 and view them again too.</li>
-                <li>Create a container using the image you just created:<br>
-                    <font face="Courier New, Courier, monospace">
-                        <font size="+1">docker create yourwebappname</font><br>
-                    </font>The output of the command shows the ID of your new container. To see a list of all containers, type:<br>
-                    <font face="Courier New, Courier, monospace" size="+1">docker ps -a<br>
-                    </font>
-                    <font face="Courier New, Courier, monospace">
-                        <font face="Helvetica, Arial, sans-serif">You'll notice that each container has a name that was assigned automatically. </font>
-                    </font><br>
-                    <br>
-                </li>
-                <li>Start the container using it's name:<br>
-                    <font face="Courier New, Courier, monospace" size="+1">docker start some_name<br>
-                    </font>
-                    <font face="Courier New, Courier, monospace">
-                        <font face="Helvetica, Arial, sans-serif">FYI, you can use the
-                            <font face="Courier New, Courier, monospace" size="+1">
-                                docker stop</font> command to stop the container.</font>
-                    </font><br>
-                </li>
-                <li><br>
-                </li>
-            </ol>
-            <ol>
-                <li>
-                    <pre> docker run --rm -p 5001:8080 yourwebappname</pre> Notes:
-                    <ul>
-                        <li>I set the port option to map port 5001 inside the container to 8080 outside the container since my web app is configured for HTTPS on port 5001.</li>
-                        <li>If you are specifying a port in <span class="auto-style1">appsettings.json,</span> be sure you don't specify localhost. Use + to represent any domain, like this: <span class="auto-style1">&nbsp;"http://+:5001"</span></li>
-                    </ul>
-                </li>
-                <li>Upload the image to Docker Hub or any other container registry. </li>
-            </ol>
-            <h3>On the server:</h3>
-            <ol>
-                <li>Blah blah</li>
-            </ol>
-            <h3>Troubleshooting</h3>
-            <p>You can connect a terminal to your container in order to see what's going on inside. <br>
-            </p>
-            <ol>
-                <li>Start the container using it's name:<br>
-                    <font face="Courier New, Courier, monospace" size="+1">docker start container_name<br>
-                    </font>
-                    <font face="Courier New, Courier, monospace">
-                        <font face="Helvetica, Arial, sans-serif">Notes:</font>
-                    </font>
-                    <font face="Courier New, Courier, monospace" size="+1"><br>
-                    </font>
-                </li>
-                <ul>
-                    <li>
-                        <font face="Courier New, Courier, monospace">
-                            <font face="Helvetica, Arial, sans-serif">You can stop your container using the command:
-                                <font face="Courier New,
-                    Courier, monospace" size="+1"> docker stop</font><br>
-                            </font>
-                        </font>
-                    </li>
-                    <li>
-                        <font face="Courier New, Courier, monospace">
-                            <font face="Helvetica, Arial, sans-serif">You can get the names of your containers using the command: </font>
-                        </font>
-                        <font face="Courier New, Courier, monospace" size="+1">docker ps -a
-                            <font face="Helvetica, Arial, sans-serif"><br>
-                            </font>
-                        </font>
-                    </li>
-                </ul>
-                <li>
-                    <font face="Courier New, Courier, monospace" size="+1">
-                        <font face="Helvetica, Arial, sans-serif">Use the docker attach command. <br>
-                            <font face="Courier New, Courier, monospace">docker attach --sig-proxy=false container_name</font><br> Notes:
-                            <br> The CTRL + C keystroke is used to detach from the running container. This keystroke may actually end the process in the container, which will stop the container. The --sig-proxy=false parameter ensures that CTRL + C won't
-                            stop the process in the container.<br>
-                        </font>
-                    </font>
-                </li>
-            </ol>
-            <h3>Notes</h3>
-            <br>
-            <h4>Docker Toolbox for Windows</h4>
             <ul>
-                <li>Start by running the Docker Quickstart Terminal, this will open a console on a Linux VM. It's uname is MINGW64. </li>
-                <li>The Windows Users folder is mounted in the Docker Linux VM at /c/Users.<br> You can mount other Windows folders via the VirtualBox settings--see the Docker Toolbox documentation.</li>
-                <li>Build the Docker image in step 2 above by first navigating to the web app's project folder, for example:<br>
-                    <pre>cd c/Users/Student/Documents/GitHub/CS296N-BookInfo-Core-2/BookInfo</pre> Be sure to use forward slashes.</li>
-                <li>After building your image, you may get this warning:<br>
-                    <pre>SECURITY WARNING: You are building a
+              <li>FROM—downloads an image from the Microsoft Docker
+                image repository, initializes a new build stage, and
+                sets the Base Image for the remaining instructions.</li>
+            </ul>
+            <br>
+          </li>
+          <li>Build the image and give it a name, following the -t (The
+            tag is optional and could be given in the ‘name:tag’
+            format.) The dot means that the Dockerfile is in the current
+            folder. Execute this command in the folder containing the
+            Dockerfile: <br>
+            <font size="+1"><br>
+            </font>
+            <pre><font face="Courier New, Courier, monospace" size="+1">docker build -t yourwebappname . </font><br></pre>
+          </li>
+          <li>To see the images currently installed, type:<br>
+            <font face="Courier New, Courier, monospace" size="+1">docker
+              images </font> <br>
+            <br>
+          </li>
+          <li>Add commands to the Dockerfile to copy the web app into
+            the container and set an entry-point for the web app. This
+            will create new image layers.<code># Copy files from the dev
+              machine to the container.<br>
+              COPY GoodBookNook/bin/Release/netcoreapp3.1/publish/ app/<br>
+              <br>
+              # Change directories, we need to run the app from the app
+              directory.<br>
+              WORKDIR app/<br>
+              <br>
+              # Start the web app when the container runs.<br>
+              ENTRYPOINT ["dotnet", "GoodBookNook.dll",
+              "--environment=Production"]</code><code></code></li>
+          <br>
+          <ol>
+            <li>COPY—copies new files or directories from the source
+              path and adds them to the destination container
+              filesystem. </li>
+          </ol>
+          <ol>
+            <li>ENTRYPOINT—specifies the command to run when the
+              container starts, dotnet, and any arguments.<br>
+              <br>
+            </li>
+          </ol>
+          <li>Build your images again as you did in step 3 and view them
+            again too.</li>
+          <li>Create a container using the image you just created:<br>
+            <font face="Courier New, Courier, monospace"> <font
+                size="+1">docker create yourwebappname</font><br>
+            </font>The output of the command shows the ID of your new
+            container. To see a list of all containers, type:<br>
+            <font face="Courier New, Courier, monospace" size="+1">docker
+              ps -a<br>
+            </font> <font face="Courier New, Courier, monospace"> <font
+                face="Helvetica, Arial, sans-serif">You'll notice that
+                each container has a name that was assigned
+                automatically. </font> </font><br>
+            <br>
+          </li>
+          <li>Start the container using it's name:<br>
+            <font face="Courier New, Courier, monospace" size="+1">docker
+              start some_name<br>
+            </font> <font face="Courier New, Courier, monospace"> <font
+                face="Helvetica, Arial, sans-serif">FYI, you can use the
+                <font face="Courier New, Courier, monospace" size="+1">
+                  docker stop</font> command to stop the container.<br>
+              </font> </font><br>
+          </li>
+          <li>Run the app<br>
+            <pre><font face="Courier New, Courier, monospace" size="+1">docker run --rm -p 5001:8080 yourwebappname</font></pre>
+            Notes:
+            <ul>
+              <li>I set the port option to map port 5001 inside the
+                container to 8080 outside the container since my web app
+                is configured for HTTPS on port 5001.</li>
+              <li>If you are specifying a port in <span
+                  class="auto-style1">appsettings.json,</span> be sure
+                you don't specify localhost. Use + to represent any
+                domain, like this: <span class="auto-style1">&nbsp;"http://+:5001"</span></li>
+            </ul>
+          </li>
+          <li>Upload the image to Docker Hub or any other container
+            registry. </li>
+        </ol>
+        <h3>On the server:</h3>
+        <ol>
+          <li>Blah blah</li>
+        </ol>
+        <h3>Troubleshooting</h3>
+        <p>You can connect a terminal to your container in order to see
+          what's going on inside. <br>
+        </p>
+        <ol>
+          <li>Start the container using it's name:<br>
+            <font face="Courier New, Courier, monospace" size="+1">docker
+              start container_name<br>
+            </font> <font face="Courier New, Courier, monospace"> <font
+                face="Helvetica, Arial, sans-serif">Notes:</font> </font>
+            <font face="Courier New, Courier, monospace" size="+1"><br>
+            </font> </li>
+          <ul>
+            <li> <font face="Courier New, Courier, monospace"> <font
+                  face="Helvetica, Arial, sans-serif">You can stop your
+                  container using the command: <font face="Courier New,
+                    Courier, monospace" size="+1"> docker stop</font><br>
+                </font> </font> </li>
+            <li> <font face="Courier New, Courier, monospace"> <font
+                  face="Helvetica, Arial, sans-serif">You can get the
+                  names of your containers using the command: </font> </font>
+              <font face="Courier New, Courier, monospace" size="+1">docker
+                ps -a <font face="Helvetica, Arial, sans-serif"><br>
+                </font> </font> </li>
+          </ul>
+          <li> <font face="Courier New, Courier, monospace" size="+1">
+              <font face="Helvetica, Arial, sans-serif">Use the docker
+                attach command. <br>
+                <font face="Courier New, Courier, monospace">docker
+                  attach --sig-proxy=false container_name</font><br>
+                Notes: <br>
+                The CTRL + C keystroke is used to detach from the
+                running container. This keystroke may actually end the
+                process in the container, which will stop the container.
+                The --sig-proxy=false parameter ensures that CTRL + C
+                won't stop the process in the container.<br>
+              </font> </font> </li>
+        </ol>
+        <h3>Notes</h3>
+        <br>
+        <h4>Docker Toolbox for Windows</h4>
+        <ul>
+          <li>Start by running the Docker Quickstart Terminal, this will
+            open a console on a Linux VM. It's uname is MINGW64. </li>
+          <li>The Windows Users folder is mounted in the Docker Linux VM
+            at /c/Users.<br>
+            You can mount other Windows folders via the VirtualBox
+            settings--see the Docker Toolbox documentation.</li>
+          <li>Build the Docker image in step 2 above by first navigating
+            to the web app's project folder, for example:<br>
+            <pre>cd c/Users/Student/Documents/GitHub/CS296N-BookInfo-Core-2/BookInfo</pre>
+            Be sure to use forward slashes.</li>
+          <li>After building your image, you may get this warning:<br>
+            <pre>SECURITY WARNING: You are building a
 dows Docker host. All files and dire
 wxr-xr-x' permissions. It is recomme
-or sensitive files and directories.</pre> This is because the files you copied from Windows to the Linux VM have permissions that are considered a security risk. You should change the permissions to improve security, but the image
-                    will still work even if you don't.</li>
-            </ul>
-        </section>
-        <section>
-            <hr>
-            <article id="examples">
-                <h2>Example</h2>
-                <ul>
-                    <li> <a href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/Docker" target="_blank"> BookInfo—Docker branch</a><br> Web app with:
-                        <ul>
-                            <li>&nbsp;Dockerfile</li>
-                            <li>Startup code for an optional in-memory DB selected by environment variable</li>
-                            <li>Connection string for MariaDB</li>
-                            <li>Other modifications to make the app containter friendly
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </article>
-            <hr>
-            <article id="references">
-                <h2>References</h2>
-                <ul>
-                    <li><a href="https://addons.mozilla.org/en-US/firefox/addon/jetbrains-toolbox/" target="_blank">Getting Started with Docker</a><br>
-                    </li>
-                    <li>Addie, S. &amp; Anderson, R. (2018). <a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-3.1">
-                Host ASP.NET Core in Docker Containers</a>. ASP.NET Core 3.1 Documentation, Microsoft. </li>
-                    <li>De George, Andy, et al. 2020. <a href="https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-core" target="_blank"> How to containerize a .NET Core
+or sensitive files and directories.</pre>
+            This is because the files you copied from Windows to the
+            Linux VM have permissions that are considered a security
+            risk. You should change the permissions to improve security,
+            but the image will still work even if you don't.</li>
+        </ul>
+      </section>
+      <section>
+        <hr>
+        <article id="examples">
+          <h2>Example</h2>
+          <ul>
+            <li> <a
+                href="https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/Docker"
+                target="_blank"> BookInfo—Docker branch</a><br>
+              Web app with:
+              <ul>
+                <li>&nbsp;Dockerfile</li>
+                <li>Startup code for an optional in-memory DB selected
+                  by environment variable</li>
+                <li>Connection string for MariaDB</li>
+                <li>Other modifications to make the app containter
+                  friendly </li>
+              </ul>
+            </li>
+          </ul>
+        </article>
+        <hr>
+        <article id="references">
+          <h2>References</h2>
+          <ul>
+            <li><a
+                href="https://addons.mozilla.org/en-US/firefox/addon/jetbrains-toolbox/"
+                target="_blank">Getting Started with Docker</a><br>
+            </li>
+            <li>Addie, S. &amp; Anderson, R. (2018). <a
+href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-3.1">
+                Host ASP.NET Core in Docker Containers</a>. ASP.NET Core
+              3.1 Documentation, Microsoft. </li>
+            <li>De George, Andy, et al. 2020. <a
+href="https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-core"
+                target="_blank"> How to containerize a .NET Core
                 application</a>. .NET Core Guide, Microsoft </li>
-                    <li>Staff. 2019. <a href="https://docs.docker.com/get-started/" target="_blank">Get Started with Docker</a>. Docker. </li>
-                    <li>Staff. 2019. <a href="https://docs.docker.com/engine/examples/dotnetcore/">Dockerize
+            <li>Staff. 2019. <a
+                href="https://docs.docker.com/get-started/"
+                target="_blank">Get Started with Docker</a>. Docker. </li>
+            <li>Staff. 2019. <a
+                href="https://docs.docker.com/engine/examples/dotnetcore/">Dockerize
 
 
 
-                a .NET Core Application</a>. Sample Applications, Docker.
-                    </li>
-                    <li>Fernandez, D., Lyalin, D. &amp; Kaim L. 2015. <a href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers" target="_blank"> Docker Overview for .NET Developers</a>. Video. Channel 9, Microsoft.</li>
-                    <li>Dharmapuri, Likhit. 2017. <a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e">ASP.NET
+
+                a .NET Core Application</a>. Sample Applications,
+              Docker. </li>
+            <li>Fernandez, D., Lyalin, D. &amp; Kaim L. 2015. <a
+href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers"
+                target="_blank"> Docker Overview for .NET Developers</a>.
+              Video. Channel 9, Microsoft.</li>
+            <li>Dharmapuri, Likhit. 2017. <a
+href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e">ASP.NET
+
 
 
 
                 core and MySQL with Docker</a>. Medium.<br>
-                        <a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e" target="_blank"> Part 1</a>, <a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-2-ee7fba1fc508">
-                Part 2</a>, and <a href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-3-e3827e006e3">
+              <a
+href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e"
+                target="_blank"> Part 1</a>, <a
+href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-2-ee7fba1fc508">
+                Part 2</a>, and <a
+href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-3-e3827e006e3">
                 Part 3</a>.</li>
-                </ul>
-            </article>
-        </section>
-        <hr>
-        <footer>
-            <div style="float: left; padding-right: 5px;">
-                <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license"> <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" style="border-width: 0"></a>
-            </div>
-            <span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">ASP.NET
+          </ul>
+        </article>
+      </section>
+      <hr>
+      <footer>
+        <div style="float: left; padding-right: 5px;"> <a
+            href="http://creativecommons.org/licenses/by-sa/4.0/"
+            rel="license"> <img alt="Creative Commons License"
+              src="https://i.creativecommons.org/l/by/4.0/80x15.png"
+              style="border-width: 0"></a> </div>
+        <span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">ASP.NET
 
 
 
-          Core MVC Lecture Notes,</span> licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">Creative Commons Attribution-ShareAlike 4.0
-          International License</a>, by <a href="https://profbird.online" property="cc:attributionName" rel="cc:attributionURL" xmlns:cc="http://creativecommons.org/ns#"> Brian Bird</a>, winter 2019, updated winter 2020.</footer>
-        <hr> </div>
-</body>
 
+          Core MVC Lecture Notes,</span> licensed under a <a
+          href="http://creativecommons.org/licenses/by-sa/4.0/"
+          rel="license">Creative Commons Attribution-ShareAlike 4.0
+          International License</a>, by <a
+          href="https://profbird.online" property="cc:attributionName"
+          rel="cc:attributionURL"
+          xmlns:cc="http://creativecommons.org/ns#"> Brian Bird</a>,
+        winter 2019, updated winter 2020.</footer>
+      <hr> </div>
+  </body>
 </html>
