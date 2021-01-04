@@ -90,24 +90,32 @@ Letter grades for the course will be determined by the following percentages:
 
 - Exceptions will only be made for illness or emergency situations.
 
+  
+
 #### Weekly Learning Activities
 
 *This cycle starts on the second week*
 
-Tuesday
+**Monday**
 
-- Take the reading quiz - before class.
-- Do a code review for your lab partner.
+- Finish the assigned reading.
+- Take the reading quiz.
 
-Thursday
+**Tuesday**
+
+- Do a code review of last week's lab for your lab partner.
+
+**Thursday**
 
 - Submit the production version of last week's lab.
 
-Saturday
+**Saturday**
 
 - Finish the beta version of this week's lab.
+
 - Send a PR for this week's lab to your lab partner.
-- 
+
+  
 
 ### Academic Honesty
 
