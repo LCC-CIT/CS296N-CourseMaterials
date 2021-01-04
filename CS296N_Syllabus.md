@@ -19,32 +19,6 @@ This course builds on the basic concepts of ASP.NET Core MVC web development cov
 
 To be able to develop a web application that uses the ASP.NET Core framework for a moderately complex web application.
 
-### Course Content
-
-#### Technologies
-
-- Git
-- C# (advanced features)
-- Unified Modeling Language (UML)
-- ASP.NET Core MVC
-- xUnit
-- Azure
-- SQL Database
-- LINQ
-- Entity Framework
-- Docker
-
-#### Themes and Issues
-
--  Web Standards
-- Security
-- Design Patterns
-- User Experience (UX)
-- Test Driven Development
-- DevOps
-
- 
-
 ### Learning Resources
 
 #### Textbook  
@@ -116,8 +90,6 @@ Letter grades for the course will be determined by the following percentages:
 
 - Exceptions will only be made for illness or emergency situations.
 
-
-
 #### Weekly Learning Activities
 
 *This cycle starts on the second week*
@@ -129,11 +101,13 @@ Tuesday
 
 Thursday
 
-- Finish the beta version of this week's lab.
-- Do a PR for this week's lab.
 - Submit the production version of last week's lab.
 
+Saturday
 
+- Finish the beta version of this week's lab.
+- Send a PR for this week's lab to your lab partner.
+- 
 
 ### Academic Honesty
 
