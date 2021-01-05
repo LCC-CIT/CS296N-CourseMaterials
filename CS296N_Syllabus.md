@@ -162,8 +162,8 @@ Please be aware that any accessible tables and chairs in this room should remain
 | 1    | Validation                                                   | - Read ch. 2, pg. 70&ndash;74, "How to validate user input"<br />- Skim ch. 11, "How to validate data" | Lab 1          |
 | 2    | ASP.NET Core Identity                                        | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 650&ndash;657, "An introduction to authentication"<br />- pg. 658&ndash;667, "How to get started with Identity" | Lab 2          |
 | 3    | Authentication and Authorization                             | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user"<br />- pg. 680&ndash;699, "More skills for working with identity" | Lab 3          |
-| 4    | Security: SSL, Cross-site scripting, SQL injection, man in the middle. | Online tutorials                                             | Lab 4          |
-| 5    | Scaffolding                                                  | Online tutorials                                             | Lab 5          |
+| 4    | A more complex data model                                    | TBD                                                          | Lab 4          |
+| 5    | Security: SSL, Cross-site scripting, SQL injection, man in the middle. | Online tutorials                                             | Lab 5          |
 | 6    | Load testing and performance                                 | Online tutorials                                             | Lab 6          |
 | 7    | Creating a REST web API                                      | Online tutorials                                             | Lab 7          |
 | 8    | Consuming a REST web service Async / Await                   | Online tutorials                                             | Lab 8          |
