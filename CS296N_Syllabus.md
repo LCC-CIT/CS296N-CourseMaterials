@@ -7,7 +7,7 @@ CS296N, Winter 2021
 | Sections  | CRNs 35649 and 37037                                 |      | Name         | Brian Bird                                                   |
 | Credits   | 4                                                    |      | Email        | birdb@lanecc.edu                                             |
 | Time      | Tu, Th, 10:00 – 11:50                                |      | Office       | [Zoom meeting](https://lanecc.zoom.us/j/965222036)           |
-| Classroom | [Zoom meeting](https://lanecc.zoom.us/j/93551339386) |      | Office Hours | M, W 2:00&ndash;2:50<br />Tu, Th 12:00&ndash;12:50<br />or by appointment |
+| Classroom | [Zoom meeting](https://lanecc.zoom.us/j/91287714915) |      | Office Hours | M, W 2:00&ndash;2:50<br />Tu, Th 12:00&ndash;12:50<br />or by appointment |
 
 
 
