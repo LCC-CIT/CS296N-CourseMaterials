@@ -64,13 +64,9 @@
 #### Entity Framework
 
 - What is an ORM? What does it do for us?
-
 - What is the relationship between the domain models and the database tables?
-
 - What are the three different types of entity relationships?
-  
 - Does EF Core 3.1 support the many-to-many relationship?
-
 - What kind of data stores are supported by EF Core?
 
 ------
@@ -83,7 +79,13 @@ Let's look at the syllabus together.
 
 ### Term Project
 
-Let's look at the term project requirements
+Let's look at the term project requirements.
+
+### Lab Assignments
+
+Fork last term's repository for use this term.
+
+Look at this week's lab assignment.
 
 
 
