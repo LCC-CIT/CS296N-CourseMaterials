@@ -20,11 +20,11 @@ Your web site should meet the following requirements:
 3. **Complexity**
    Be moderately complex&mdash;not too simple, but not too hard to build. Here are some criteria:
 
-   - The database should have  3 to 6 tables.
+   - The database should have  4 to 6 domain models.
 
-   - The total number of fields  in the database should be between 9 and 30.
-   - There should be between 8 and 12 web pages.
-   - The web site should have some kind of navigation that appears on each page.
+   - The total number of fields in the domain models should be between 12 and 30.
+   - There should be between 10 and 15 web pages.
+   - The web site should have some kind of consistent navigation that appears on each page.
 
 4. **Identity**
    Require authentication and authorization. This means there will be a way for users to register and log in. There should be at least three levels of authorization:
@@ -33,17 +33,23 @@ Your web site should meet the following requirements:
    - Member: these users can access anything except the pages/features that are only for administrators.
    - Administrator: these users can access everything.
 
-3. **Security**
-    Use Zap to test your app. Do these tests on your own machine, not on a public web server.
+5. **Consume a Web Service**
+
+   - At least one page of the site will pull data from a web API&mdash;like a weather forecast or stock prices.
+
+6. **Security**
+   Use Zap to test your app. Do these tests on your own machine, not on a public web server.
 
    - Be sure to test your app with yourself logged into the app in a non-admin role.
 
    - Mitigate any high-priority security risks.
    - Provide a document containing screen shots and notes on mitigation.
 
-6. Publish to a server
-   Deploy to the CIT departnent's Linux server.
-7. **Load testing**
+7. **Publish to a server**
+
+   - Publish your web app to Azure or some other web host.
+
+8. **Load testing**
    Use jMeter to load-test your app. Test your web app running on the internet, not   on your development machine.
 
    - The script should include login and search.
