@@ -1,13 +1,13 @@
 # Syllabus for Web Development 2: ASP.NET
 
-CS296N, winter 2020
+CS296N, Winter 2021
 
-| Section   | CRN 32222             |      | Instructor   | Brian Bird            |
-| --------- | --------------------- | ---- | ------------ | --------------------- |
-| Credits   | 4                     |      | Email        | birdb@lanecc.edu      |
-| Time      | Tu, Th, 10:00 – 11:50 |      | Office       | Building 19, Room 152 |
-| Classroom | Building 19, Room 120 |      | Office Hours | T, Th: 2:00 – 2:50    |
-| Lab       | Building 19, Room 135 |      |              | M, W: 4:00 – 4:50     |
+| Class     |                                                      |      | Instructor   |                                                              |
+| --------- | ---------------------------------------------------- | ---- | ------------ | ------------------------------------------------------------ |
+| Sections  | CRNs 35649 and 37037                                 |      | Name         | Brian Bird                                                   |
+| Credits   | 4                                                    |      | Email        | birdb@lanecc.edu                                             |
+| Time      | Tu, Th, 10:00 – 11:50                                |      | Office       | [Zoom meeting](https://lanecc.zoom.us/j/965222036)           |
+| Classroom | [Zoom meeting](https://lanecc.zoom.us/j/91287714915) |      | Office Hours | M, W 2:00&ndash;2:50<br />Tu, Th 12:00&ndash;12:50<br />or by appointment |
 
 
 
@@ -19,39 +19,11 @@ This course builds on the basic concepts of ASP.NET Core MVC web development cov
 
 To be able to develop a web application that uses the ASP.NET Core framework for a moderately complex web application.
 
-### Course Content
-
-#### Technologies
-
-- Git
-- C# (advanced features)
-- Unified Modeling Language (UML)
-- ASP.NET Core MVC
-- xUnit
-- Azure
-- SQL Database
-- LINQ
-- Entity Framework
-- Docker
-
-#### Themes and Issues
-
--  Web Standards
-- Security
-- Design Patterns
-- User Experience (UX)
-- Test Driven Development
-- DevOps
-
- 
-
 ### Learning Resources
 
 #### Textbook  
 
-*Pro ASP.NET Core MVC 2*, 7th Edition, by Adam Freeman, Apress, 2017 ISBN: 978-1-4842-3149-4. You can purchase the textbook from the [LCC bookstore](http://titanstore.lanecc.edu/Home.aspx). The source code for the sample programs in the text is available for download on [GitHub](https://github.com/apress/pro-asp.net-core-mvc-2).
-
-
+*Murach’s ASP.NET Core MVC*, 1st Edition, by Mary Delamater and Joel Murach, Murach Books, 2020. ISBN 978-1-943872-49-7. You can purchase the textbook from the [Titan Store](https://www.bkstr.com/laneccstore/home) or from the publisher, [Murach Books](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-detail). The publisher provides free download of [exercise starters and example code](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-detail) 
 
 #### Supplemental Materials
 
@@ -71,9 +43,9 @@ Visual Studio 2019 will be used for example code and lab assignments. You may ob
 
 #### CIT Computer Lab
 
-The CIT Main lab (Bldg. 19, room 135) is equipped with computers and software which are available exclusively for students in the CIT department. There are tutors available in the lab to help you with your lab work. There is a schedule is posted on the large white board inside the lab which lists the tutors and the times they will be available.
+The in-person computer lab and tutoring center is temporarily closed due to COVID-19, but tutoring is still available online. You can drop into the [Lane Support Hub Zoom Room](https://lanecc.zoom.us/j/98549544816) and request a CIT tutor, or make an appointment with a CIT tutor via the scheduling page at [lanecc.mywconline.com](https://lanecc.mywconline.com/). More information is available on the [LCC Tutoring Services](https://www.lanecc.edu/tutor) web page.
 
-####  
+<s>The CIT Main lab (Bldg. 19, room 135) is equipped with computers and software which are available exclusively for students in the CIT department. There are tutors available in the lab to help you with your lab work. There is a schedule is posted on the large white board inside the lab which lists the tutors and the times they will be available.</s>
 
 #### Web Resources
 
@@ -118,16 +90,32 @@ Letter grades for the course will be determined by the following percentages:
 
 - Exceptions will only be made for illness or emergency situations.
 
-
+  
 
 #### Weekly Learning Activities
 
-| Week  |      | Tuesday     | Wednesday      | Thursday  |      | Saturday     | Sunday         |
-| ----- | ---- | ----------- | -------------- | --------- | ---- | ------------ | -------------- |
-| **1** |      |             |                |           |      |              | Beta 1, Quiz 1 |
-| **2** |      | Code review | Reading quiz 2 | Lab 1 due |      | Lab 1 Graded | Beta 2 due     |
+*This cycle starts on the second week*
 
+**Monday**
 
+- Finish the assigned reading.
+- Take the reading quiz.
+
+**Tuesday**
+
+- Do a code review of last week's lab for your lab partner.
+
+**Thursday**
+
+- Submit the production version of last week's lab.
+
+**Saturday**
+
+- Finish the beta version of this week's lab.
+
+- Send a PR for this week's lab to your lab partner.
+
+  
 
 ### Academic Honesty
 
@@ -145,15 +133,15 @@ LCC has a [no-show drop](https://www.lanecc.edu/esfs/noshow-drops) policy which 
 
 #### Academic Calendar
 
-| Winter Term 2020              |                   |
-| ----------------------------- | ----------------- |
-| Term begins                   | 1/6/19            |
-| Last day to receive refund    | 1/12/20           |
-| MLK Holiday                   | 1/20/20           |
-| President's Day Holiday       | 2/17/20           |
-| Last day for schedule changes | 2/28/20           |
-| Last day for schedule changes | 2/28/20           |
-| Finals week                   | 3/16 through 3/21 |
+| Winter Term 2021              |                 |
+| ----------------------------- | --------------- |
+| Term begins                   | 1/4             |
+| Last day to receive refund    | 1/10            |
+| MLK Holiday                   | 1/18            |
+| President's Day Holiday       | 2/15            |
+| Last day for schedule changes | 2/26            |
+| Final Project Presentation    | 3/15            |
+| Spring Break                  | 3/21&ndash;3/28 |
 
 
 
@@ -169,15 +157,15 @@ Please be aware that any accessible tables and chairs in this room should remain
 
 (may be subject to change)
 
-| Week | Topic                                                        | Reading                                        | Lab Assignment |
-| ---- | ------------------------------------------------------------ | ---------------------------------------------- | -------------- |
-| 1    | Validation                                                   | Freeman Ch. 27, Model Validation               | Lab 1          |
-| 2    | Authentication                                               | Freeman Ch. 28, Getting Started with Identity  | Lab 2          |
-| 3    | Authorization                                                | Freeman Ch. 29, Applying ASP.NET Core Identity | Lab 3          |
-| 4    | Security: SSL, Cross-site scripting, SQL injection, man in the middle. | Freeman Ch. 19, Filters: section on SSL        | Lab 4          |
-| 5    | Publishing to a production server                            | Online tutorials                               | Lab 5          |
-| 6    | Load testing and performance                                 | Online tutorials                               | Lab 6          |
-| 7    | Creating a REST web API                                      | Freeman Ch. 20 - API Controllers               | Lab 7          |
-| 8    | Consuming a REST web service Async / Await                   | Online tutorials                               | Lab 8          |
-| 9    | Docker containers                                            | Online tutorials                               | Lab 9          |
-| 10   | Term Project                                                 |                                                |                |
+| Week | Topic                                                        | Reading in Murach & Delameter                                | Lab Assignment |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------- |
+| 1    | Validation                                                   | - Read ch. 2, pg. 70&ndash;74, "How to validate user input"<br />- Skim ch. 11, "How to validate data" | Lab 1          |
+| 2    | ASP.NET Core Identity                                        | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 650&ndash;657, "An introduction to authentication"<br />- pg. 658&ndash;667, "How to get started with Identity" | Lab 2          |
+| 3    | Authentication and Authorization                             | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user"<br />- pg. 680&ndash;699, "More skills for working with identity" | Lab 3          |
+| 4    | Security: SSL, Cross-site scripting, SQL injection, man in the middle. | Online tutorials                                             | Lab 4          |
+| 5    | Scaffolding                                                  | Online tutorials                                             | Lab 5          |
+| 6    | Load testing and performance                                 | Online tutorials                                             | Lab 6          |
+| 7    | Creating a REST web API                                      | Online tutorials                                             | Lab 7          |
+| 8    | Consuming a REST web service Async / Await                   | Online tutorials                                             | Lab 8          |
+| 9    | Docker containers                                            | Online tutorials                                             | Lab 9          |
+| 10   | Term Project                                                 |                                                              |                |
