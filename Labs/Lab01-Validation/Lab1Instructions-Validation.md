@@ -2,7 +2,7 @@
 
 For all three types of web sites, add validation using data annotations to your models. Use validation that makes sense for the properties you choose to validate.
 
--   Create a new branch named *Lab1* based on your master branch.
+-   Create a new branch named *Lab1* based on your main branch.
 -   Add validation to at least six properties from any of your models.
 -   Use at least three different validation attributes.
 -   At least one property should have more than one validation attribute.

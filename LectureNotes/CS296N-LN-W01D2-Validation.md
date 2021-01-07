@@ -15,15 +15,9 @@
 ## Contents
 
 [TOC]
-------
-
-
-
 ## Introduction
 
 - This week, we will cover the "left over" topic from fall term, input validation.
-
-------
 
 
 
@@ -36,14 +30,10 @@
 - Attributes are a means of associating metadata with code
 
   - Metadata is additional information about types defined in your program (and remember that classes are types).
-
-  - Attributes are declarative.
-
+- Attributes are declarative.
   - Attributes can be applied to assemblies (think DLLs), classes, methods, and properties. 
 
-------
-
-
+  
 
 ## Validation 
 
@@ -81,8 +71,6 @@
   public string Title { get; set; }
   ```
   
-
-
 
 #### Common validation annotations
 
@@ -141,8 +129,6 @@
 
 - For a complete list see:  [System.ComponentModel.DataAnnotations Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netcore-2.1)
 
-
-
 #### Custom error messages
 
 Custom error messages can be added to the validation attribute. For example:
@@ -151,6 +137,37 @@ Custom error messages can be added to the validation attribute. For example:
 [Required(ErrorMessage = "Please enter your name")]
 ```
 
+#### <mark>Exercises</mark>
+
+- Try adding a migration to your project. Has the schema changed?
+- Try running the web app. Can you enter invalid data? Are there any error messages?
+- Write a unit test for an HttpPost controller method that uses a data model with validation. Will the method accept the data and store it in the repository?
+
+### Displaying Validation Errors in the View
+
+- A strongly typed view with model-binding using asp-for tag helpers are required.
+
+- Tag Helpers that display validation errors
+
+  - Summary
+
+  ```html
+    <div asp-validation-summary="ModelOnly"></div>
+  ```
+
+  - Individual field
+
+    ```html
+    <label asp-for="ClientName">Your name:</label>
+    <span asp-validation-for="ClientName"></span>
+    <input asp-for="ClientName" />
+    ```
+
+#### <mark>Exercises</mark>
+
+- Try entering invalid data. Do you get error messages?
+- Put a break-point in the controller method that gets called with the data from the view with validation tag helpers. Does the method get called when you enter invalid data?
+
 
 
 
@@ -158,6 +175,16 @@ Custom error messages can be added to the validation attribute. For example:
 
 There are several ways you can perform validation in controller methods:
 
+- Make decisions based on model validation. 
+  
+  Example:
+  
+  ```C#
+  if (ModelState.IsValid) {
+     repo.AddBook(book);
+  }
+  ```
+  
 - Explicit Validation: You add the validation code to a controller method yourself and put values in the Modelstate dictionary.
 
   - Example: 
@@ -170,77 +197,38 @@ There are several ways you can perform validation in controller methods:
     ```
 
   - Modelstate dictionary properties and methods:
+
     - `AddModelError(property, message)`
-    
+
       This method is used to record a model validation error for the specified property.
+
     - `GetValidationState(property)`
-      
+
       This method is used to determine whether there are model validation errors for a specific property, expressed as a value from the `ModelValidationState` enumeration:
-      
+
       - *Unvalidated* 
-      
+
         This value means that no validation has been performed on the model property, usually because there was no value in the request that corresponded to the property name.
-        
+
       - *Valid* 
-        
-          This value means that the request value associated with the property is valid.
-      
+
+        This value means that the request value associated with the property is valid.
+
       - *Invalid* 
-      
+
         This value means that the request value associated with the property is invalid and should not be used.
+
       - *Skipped* 
-      
+
         This value means that the model property has not been processed, which usually means that there have been so many validation errors that there is no point continuing to perform validation checks.
+
     - `IsValid`
-    
+
       This property returns true if all the model properties are valid and returns false otherwise.
 
-- Make decisions based on model validation. 
-  
-  Example:
-  
-  ```C#
-  if (ModelState.IsValid) {
-     repo.AddBook(book);
-  }
-  ```
-  
-  
+#### <mark>Exercises</mark>
 
-### Displaying Validation Errors in the View
-
-- A strongly typed view and model-binding using asp-for tag helpers are required.
-
-- Special Microsoft jQuery functions must be included in the view:
-  
-```html
-<script src= "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
-
-<script src= "https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
-
-<script src= "https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
-```
-
-- Tag Helpers that display validation errors
-
-  - Summary
-    
-  ```html
-    <div asp-validation-summary="ModelOnly"></div>
-  ```
-  
-  - Individual field
-    
-    ```html
-    <label asp-for="ClientName">Your name:</label>
-    <div><span asp-validation-for="ClientName"></span></div>
-    <input asp-for="ClientName" />
-    ```
-    
-
-------
-
-
+- Run the unit test for the controller method which now checks `ModelState.isValid`
 
 ## Notes
 
