@@ -1,6 +1,6 @@
 # Code Review Checklist
 
-Refer to the <a href="StyleAndBestPractices.html" target="_blank">C# coding style and best practices guide</a> while doing code reviews. Add checkmarks for the items that are correct. For any items that are not checked, add a description of the problem.
+Refer to the <a href="http://lcc-cit.github.io/CS296N-CourseMaterials/Labs/StyleAndBestPractices.html" target="_blank">C# coding style and best practices guide</a> while doing code reviews. Add checkmarks for the items that are correct. For any items that are not checked, add a description of the problem.
 
 ### Checklist
 
