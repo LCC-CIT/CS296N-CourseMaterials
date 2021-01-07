@@ -2,13 +2,13 @@
 
 # Validation of User Input
 
-| Topics by week                          |                                 |
-| --------------------------------------- | ------------------------------- |
-| 1. Intro to course and Input validation | 6. Load Testing and Performance |
-| 2. Identity                             | 7. Creating a Web Service       |
-| 3. Authentication and authorization     | 8. Consuming a Web Service      |
-| 4. Publishing to a production server    | 9. Docker containers            |
-| 5. Security                             | 10. Term project                |
+| Topics by week                                       |                                 |
+| ---------------------------------------------------- | ------------------------------- |
+| 1. Intro to course and <mark>Input validation</mark> | 6. Load Testing and Performance |
+| 2. Identity                                          | 7. Creating a Web Service       |
+| 3. Authentication and authorization                  | 8. Consuming a Web Service      |
+| 4. Publishing to a production server                 | 9. Docker containers            |
+| 5. Security                                          | 10. Term project                |
 
 
 
@@ -145,23 +145,30 @@ Custom error messages can be added to the validation attribute. For example:
 
 ### Displaying Validation Errors in the View
 
-- A strongly typed view with model-binding using asp-for tag helpers are required.
+A strongly typed view with model-binding using asp-for tag helpers are required.
 
-- Tag Helpers that display validation errors
+There are tag helpers, for displaying a summary of validation errors and for displaying errors on individual fields
 
-  - Summary
+#### Summary
 
-  ```html
-    <div asp-validation-summary="ModelOnly"></div>
-  ```
+```html
+<form method="post">
+    <div asp-validation-summary="All"></div>
+```
 
-  - Individual field
+  Options for the value are:
 
-    ```html
-    <label asp-for="ClientName">Your name:</label>
-    <span asp-validation-for="ClientName"></span>
-    <input asp-for="ClientName" />
-    ```
+  - `All`
+  - `ModelOnly`
+  - `None`
+
+#### Individual field
+
+```html
+<label asp-for="ClientName">Your name:</label>
+<span asp-validation-for="ClientName"></span>
+<input asp-for="ClientName" />
+```
 
 #### <mark>Exercises</mark>
 
@@ -257,19 +264,24 @@ You will need to add a migration and update the database after adding validation
 
 ## Examples
 
-- Instructor's example, BookInfo: [Validation branch](https://github.com/LCC-CIT/CS295N-Bookinfo-Core-21/tree/Validation)
-- Pro ASP.NET Core MVC 2, Ch. 2: [PartyInvites](https://github.com/Apress/pro-asp.net-core-mvc-2/tree/master/02%20-%20Your%20First%20MVC%20Application/PartyInvites)
+- Instructor's 2020 example, [BookInfo: Validation branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Validation)
+
+- Instructor's 2021 example, [BookReviews: Lab01 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab01)
 
 - Pro ASP.NET Core MVC 2, Ch. 27: [Model validation example](https://github.com/Apress/pro-asp.net-core-mvc-2/tree/master/27%20-%20Model%20Validation/ModelValidation)
+
 - Microsoft Tutorial, MVC Movies: [Validation example](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples/2.x/ValidationSample)
 
-------
+  
 
 
 
 ## References
 
-- Textbook - *Pro ASP.NET Core MVC 2.0*, Adam Freeman, Apress, 2017.
+- Textbook - *Murach's ASP.NET Core MVC*, Delameter and Murach, Murach, 2020.
+  - Ch. 2, pg. 70–74, "How to validate user input"
+  - Ch. 11, "How to validate data"
+- *Pro ASP.NET Core MVC 2.0*, Adam Freeman, Apress, 2017.
   - Ch. 2 "Your First MVC Application", Adding Validation, pp. 38&ndash;45
   - Ch. 27 "Model Validation", 
 - Microsoft tutorial, MVC Movies: [Model validation in ASP.NET Core MVC  and Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-3.1)
@@ -280,5 +292,5 @@ You will need to add a migration and update the database after adding validation
 
 
 
-[![ccbysa88x31](ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.online) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![ccbysa88x31](ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written 2020, revised 2021, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
