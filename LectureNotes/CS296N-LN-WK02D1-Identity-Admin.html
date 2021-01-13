@@ -2,20 +2,22 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>CS296N-LN-WK02D1-Identity-Admin</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+<title>CS296N-LN-WK02D1-Identity-Admin</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
 .in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
 #write.first-line-indent p { text-indent: 2em; }
 #write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
 #write.first-line-indent li { margin-left: 2em; }
 .for-image #write { padding-left: 8px; padding-right: 8px; }
 body.typora-export { padding-left: 30px; padding-right: 30px; }
 .typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
 @media screen and (max-width: 500px) { 
   body.typora-export { padding-left: 0px; padding-right: 0px; }
   #write { padding-left: 20px; padding-right: 20px; }
@@ -24,14 +26,14 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
 button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
 p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
 p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
@@ -43,11 +45,11 @@ h6 { font-size: 1rem; }
 .hidden { display: none; }
 .md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
 a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.701961); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
 sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
 figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px !important; }
+figure > table { margin: 0px; }
 tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
@@ -76,28 +78,31 @@ div.hr:focus { cursor: none; }
 li div { padding-top: 0px; }
 blockquote { margin: 1rem 0px; }
 li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
 li { margin: 0px; position: relative; }
 blockquote > :last-child { margin-bottom: 0px; }
 blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
 @media print { 
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid-page; break-before: avoid-page; }
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
   #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
-  html.blink-to-pdf { font-size: 13px; }
-  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid-page; }
+  .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
 pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .md-math-block { width: 100%; }
 .md-math-block:not(:empty)::after { display: none; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
 .md-task-list-item { position: relative; list-style-type: none; }
 .task-list-item.md-task-list-item { padding-left: 0px; }
 .md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
@@ -141,21 +146,27 @@ a.md-print-anchor { white-space: pre !important; border: none !important; displa
 .MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
-[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
 [lang="mermaid"] .node text { font-size: 1rem; }
 table tr th { border-bottom-width: 0px; }
 video { max-width: 100%; display: block; margin: 0px auto; }
 iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
-svg[id^="mermaidChart"] { line-height: 1em; }
 mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); background-position: initial initial; background-repeat: initial initial; }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
 mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print { 
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignObject { font-size: var(--mermaid-font-zoom); }
 
 
 .CodeMirror { height: auto; }
 .CodeMirror.cm-s-inner { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
-.CodeMirror-scroll { overflow-y: hidden; overflow-x: auto; z-index: 3; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
 .CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
 .CodeMirror-gutters { border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; white-space: nowrap; background-position: inherit inherit; background-repeat: inherit inherit; }
 .CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
@@ -233,12 +244,16 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
 
 @include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
 
-html {
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
     font-size: 16px;
 }
 
 body {
-    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: rgb(51, 51, 51);
     line-height: 1.6;
 }
@@ -249,6 +264,19 @@ body {
   	padding: 30px;
     padding-bottom: 100px;
 }
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
 #write > ul:first-child,
 #write > ol:first-child{
     margin-top: 30px;
@@ -303,17 +331,33 @@ h6 code {
     font-size: inherit;
 }
 h1 {
-    padding-bottom: .3em;
     font-size: 2.25em;
     line-height: 1.2;
     border-bottom: 1px solid #eee;
 }
 h2 {
-   padding-bottom: .3em;
     font-size: 1.75em;
     line-height: 1.225;
     border-bottom: 1px solid #eee;
 }
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
 h3 {
     font-size: 1.5em;
     line-height: 1.43;
@@ -386,24 +430,24 @@ table tr:nth-child(2n),
 thead {
     background-color: #f8f8f8;
 }
-table tr th {
+table th {
     font-weight: bold;
     border: 1px solid #dfe2e5;
     border-bottom: 0;
     margin: 0;
     padding: 6px 13px;
 }
-table tr td {
+table td {
     border: 1px solid #dfe2e5;
     margin: 0;
     padding: 6px 13px;
 }
-table tr th:first-child,
-table tr td:first-child {
+table th:first-child,
+table td:first-child {
     margin-top: 0;
 }
-table tr th:last-child,
-table tr td:last-child {
+table th:last-child,
+table td:last-child {
     margin-bottom: 0;
 }
 
@@ -573,20 +617,17 @@ header, .context-menu, .megamenu-content, footer{
     background: #999;
 }
 
- .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+ :root {--mermaid-font-zoom:1em ;}  .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
 </style>
 </head>
-<body class='typora-export' >
-<div  id='write'  class = 'is-mac'><p><strong><span>CS296N Web Development 2: ASP.NET</span></strong><span>                                                        </span></p><p><span> Brian Bird</span></p><h1><a name="user-management-with-aspnet-identity" class="md-header-anchor"></a><em><span>User Management with ASP.NET Identity</span></em></h1><figure><table><thead><tr><th><span>Weekly topics</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>1. Intro to course and Input validation</span></td><td><span>6. Load Testing and Performance</span></td></tr><tr><td><strong><span>2. Identity</span></strong></td><td><span>7. Creating a Web Service</span></td></tr><tr><td><span>3. Authentication and authorization</span></td><td><span>8. Consuming a Web Service</span></td></tr><tr><td><span>4. Publishing to a production server</span></td><td><span>9. Docker containers</span></td></tr><tr><td><span>5. Security</span></td><td><span>10. Term project</span></td></tr></tbody></table></figure><h2><a name="contents" class="md-header-anchor"></a><strong><span>Contents</span></strong></h2><ul><li><a href='file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic2'><span>Introduction</span></a></li><li><a href='file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic2'><span>Review </span></a></li><li><a href='file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic3'><span>Adding Identity to a web app</span></a></li><li><a href='file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic4'><span>Notes on Freeman Ch. 28</span></a></li><li><a href='file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic6'><span>Reading</span></a></li><li><a href='file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic7'><span>Example</span></a></li><li><a href='file:///Volumes/DataCard/Repos/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK01D2-Identity-Admin.html#topic8'><span>Next Class</span></a></li></ul><hr /><h2><a name="introduction" class="md-header-anchor"></a><span>Introduction</span></h2><h3><a name="what-is-aspnet-core-identity" class="md-header-anchor"></a><span>What is ASP.NET Core Identity?</span></h3><p><span>It is a class library (an API) for:          </span></p><ul><li><span>Authentication.</span></li><li><span>Authorization.</span></li><li><span>Role management.</span></li><li><span>User account management.</span></li></ul><h3><a name="this-weeks-objective" class="md-header-anchor"></a><span>This week&#39;s objective</span></h3><p><span>This week you will be introduced to ASP.NET Core Identity and learn to use it to manage user accounts. You will learn to write the code to do the following operations on user accounts:        </span></p><ul><li><span>Create.</span></li><li><span>Delete.</span></li><li><span>Modify.</span></li><li><span>List user accounts and user information.</span></li></ul><hr /><p>&nbsp;</p><h2><a name="adding-identity-to-a-web-app" class="md-header-anchor"></a><span>Adding Identity to a web app</span></h2><p><span>Follow the steps in Freeman, Ch. 28 through the end of  &quot;Setting up the User Classes&quot;, but skip &quot;Creating a Controller and View&quot;.</span></p><ol start='' ><li><p><span>Use the NuGet package manager to add the following packages to your project:</span></p></li><li><ul><li><span>Microsoft.Extensions.Identity.Core</span></li><li><span>Microsoft.AspNetCore.Identity.EntityFramework</span>
-<span>            </span></li></ul></li><li><p><span>Modify your application&#39;s DbContext class to inherit from  IdentityDbContext.            </span></p><ul><li><span>This provides a way for Identity to add tables for storing user information to your database.</span></li><li><span>All you need to do is change the inheritance.</span></li><li><span>Don&#39;t add a new DbSet for Identity, that will be done by the parent class.</span></li></ul></li><li><p><span>Modify your user model so that the class inherits from </span><code>IdentityUser</code><span>. </span></p><ul><li><p><span>If your current user class is named &quot;User&quot;, you should change it to something else, like &quot;AppUser&quot; so that you don&#39;t have a conflict with a library class named &quot;User&quot;.</span></p></li><li><p><span>If your  user class has user name or email properties, you should remove them since they are in the new base class (see below).</span></p></li><li><p><span>Remove the ID property from your user class. The ID is in the base class.</span></p></li><li><p><span>The IdentityUser class has these properties:            </span></p><ul><li><span>Id - This property contains the unique ID for the user. </span></li><li><span>UserName - This property returns the user’s username.              </span></li><li><span>Claims - This property returns the collection of claims for the user.</span></li><li><span>Email - This property contains the user’s e-mail address. </span></li><li><span>Logins - This property returns a collection of logins for the user, which can be used for third-party authentication.</span></li><li><span>PasswordHash - This property returns a hashed form of the user password.</span></li><li><span>Roles - This property returns the collection of roles that the user belongs to.</span></li><li><span>PhoneNumber - This property returns the user’s phone number. </span></li><li><span>SecurityStamp - This property returns a value that is changed when the user identity is altered, such as by a password change. </span>
-<span>              </span></li></ul></li></ul><p><span>         </span></p></li><li><p><span>In Startup.cs, ConfigureServices, add:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="C#"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">services</span>.<span class="cm-variable">AddIdentity</span><span class="cm-operator">&lt;</span><span class="cm-variable">AppUser</span>, <span class="cm-variable">IdentityRole</span><span class="cm-operator">&gt;</span>().<span class="cm-variable">AddEntityFrameworkStores</span><span class="cm-operator">&lt;</span><span class="cm-variable">AppDbContext</span><span class="cm-operator">&gt;</span>()</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .<span class="cm-variable">AddDefaultTokenProviders</span>();</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 45px;"></div></div></div></pre><p><span>The AddIdentity method has generic type specifiers for the user class and the built-in IdentityRole class for roles.            </span></p><ul><li><span>The AddEntityFrameworkStores method specifies that Identity should use Entity Framework Core to store and retrieve its data, using the application&#39;s database  context class. </span></li><li><span>The AddDefaultTokenProviders method uses the default configuration to support operations that require a token, such as changing a password.</span>
-<span>              </span></li></ul></li><li><p><span>In Startup.cs, Configure, add:</span>
+<body class='typora-export'>
+<div id='write'  class=''><p><strong><span>CS296N Web Development 2: ASP.NET</span></strong><span>                                                        </span></p><p><span> Brian Bird</span></p><h1><a name="user-management-with-identity" class="md-header-anchor"></a><em><span>User Management with Identity</span></em></h1><figure><table><thead><tr><th><span>Weekly topics</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>1. Intro to course and Input validation</span></td><td><span>6. Load Testing and Performance</span></td></tr><tr><td><strong><span>2. Identity</span></strong></td><td><span>7. Creating a Web Service</span></td></tr><tr><td><span>3. Authentication and authorization</span></td><td><span>8. Consuming a Web Service</span></td></tr><tr><td><span>4. Publishing to a production server</span></td><td><span>9. Docker containers</span></td></tr><tr><td><span>5. Security</span></td><td><span>10. Term project</span></td></tr></tbody></table></figure><p><strong><span>Contents</span></strong></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n3"><a class="md-toc-inner" style="" href="#user-management-with-identity"><em>User Management with Identity</em></a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n26"><a class="md-toc-inner" style="" href="#introduction">Introduction</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n27"><a class="md-toc-inner" style="" href="#what-is-aspnet-core-identity">What is ASP.NET Core Identity?</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n51"><a class="md-toc-inner" style="" href="#adding-identity-to-a-web-app">Adding Identity to a web app</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n52"><a class="md-toc-inner" style="" href="#adding-the-infrastructure">Adding the infrastructure</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n161"><a class="md-toc-inner" style="" href="#"></a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n195"><a class="md-toc-inner" style="" href="#references">References</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n196"><a class="md-toc-inner" style="" href="#basic">Basic</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n209"><a class="md-toc-inner" style="" href="#advanced">Advanced</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n217"><a class="md-toc-inner" style="" href="#example-code-on-github">Example Code on GitHub</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n227"><a class="md-toc-inner" style="" href="#next-class">Next Class</a></span></p></div><hr /><h2><a name="introduction" class="md-header-anchor"></a><span>Introduction</span></h2><h3><a name="what-is-aspnet-core-identity" class="md-header-anchor"></a><span>What is ASP.NET Core Identity?</span></h3><p><span>It is a class library (an API) for:          </span></p><ul><li><span>Authentication</span></li><li><span>Authorization</span></li><li><span>Role management</span></li><li><span>User account management</span></li></ul><p>&nbsp;</p><hr /><p>&nbsp;</p><h2><a name="adding-identity-to-a-web-app" class="md-header-anchor"></a><span>Adding Identity to a web app</span></h2><h3><a name="adding-the-infrastructure" class="md-header-anchor"></a><span>Adding the infrastructure</span></h3><ol start='' ><li><p><span>Use the NuGet package manager to add the following packages to your project:</span></p><ul><li><span>Microsoft.AspNetCore.Identity.EntityFrameworkCore</span>
+<span>            </span></li></ul></li><li><p><span>Modify your application&#39;s DbContext class to inherit from  IdentityDbContext.            </span></p><ul><li><span>This provides a way for Identity to add tables for storing user information to your database.</span></li><li><span>All you need to do is change the inheritance.</span></li><li><span>Don&#39;t add a new DbSet for Identity, that will be done by the parent class.</span></li><li><span>Remove the DbSet for your user model, that is also managed in the parent class.</span></li></ul></li><li><p><span>Modify your </span><em><span>user</span></em><span> model so that the class inherits from </span><code>IdentityUser</code><span>. </span></p><ul><li><p><span>If your current user class is named &quot;User&quot;, you should change it to something else, like &quot;AppUser&quot; so that you don&#39;t have a conflict with a library class named &quot;User&quot;.</span></p></li><li><p><span>If your user class has user name or email properties, you should remove them since they are in the new base class (see below).</span></p></li><li><p><span>Remove the ID property from your user class. The ID is in the base class.</span></p></li><li><p><span>The </span><code>IdentityUser</code><span> class has these properties:            </span></p><ul><li><span>Id - This property contains the unique ID for the user. </span></li><li><span>UserName - This property returns the user’s username.              </span></li><li><span>Claims - This property returns the collection of claims for the user.</span></li><li><span>Email - This property contains the user’s e-mail address. </span></li><li><span>Logins - This property returns a collection of logins for the user, which can be used for third-party authentication.</span></li><li><span>PasswordHash - This property returns a hashed form of the user password.</span></li><li><span>Roles - This property returns the collection of roles that the user belongs to.</span></li><li><span>PhoneNumber - This property returns the user’s phone number. </span></li><li><span>SecurityStamp - This property returns a value that is changed when the user identity is altered, such as by a password change. </span>
+<span>                       </span></li></ul></li></ul></li><li><p><span>In Startup.cs, </span><code>ConfigureServices</code><span>, add:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="C#"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.627838134765625px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">services</span>.<span class="cm-variable">AddIdentity</span><span class="cm-operator">&lt;</span><span class="cm-variable">AppUser</span>, <span class="cm-variable">IdentityRole</span><span class="cm-operator">&gt;</span>()</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  .<span class="cm-variable">AddEntityFrameworkStores</span><span class="cm-operator">&lt;</span><span class="cm-variable">AppDbContext</span><span class="cm-operator">&gt;</span>()</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  .<span class="cm-variable">AddDefaultTokenProviders</span>();</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 68px;"></div><div class="CodeMirror-gutters" style="display: none; height: 68px;"></div></div></div></pre><p><span>The </span><code>AddIdentity</code><span> method has generic type specifiers for the user class and the built-in </span><code>IdentityRole</code><span> class for roles.            </span></p><ul><li><span>The </span><code>AddEntityFrameworkStores</code><span> method specifies that Identity should use Entity Framework Core to store and retrieve its data, using the application&#39;s database context class. </span></li><li><span>The </span><code>AddDefaultTokenProviders</code><span> method uses the default configuration to support operations that require a token, such as changing a password.</span>
+<span>              </span></li></ul></li><li><p><span>In Startup.cs, </span><code>Configure</code><span>, add:</span>
 <code>app.UseAuthentication();</code>
-<span>         </span></p></li><li><p><span>Add a migration for the new user model and update the database.</span></p><p><code>dotnet ef migrations add Identity</code></p><p><code>dotnet ef database update</code></p></li></ol><p><span>After adding Identity to your project, Inspect the database using SQL Server Object Explorer and note the new tables added by Identity. The tables listed below should have been created.</span></p><ul><li><span>AspNetRoleClaims</span></li><li><span>AspNetRoles</span></li><li><span>AspNetUserClaims</span></li><li><span>AspNetUserLogins</span></li><li><span>AspNetUserRoles</span></li><li><span>AspNetUsers</span>&mdash;<span>this is your user table, it contains the fields you added in your own user class.</span></li><li><span>AspNetUserTokens</span></li><li><span>Using Identity in administrative pages</span></li></ul><p><span>Add an admin controller and views to implement these features:</span></p><ul><li><span>Create an user account.</span></li><li><span>Show all user accounts.</span></li><li><span>Delete an user account.</span></li></ul><hr /><h2><a name="notes-on-freeman-ch-28" class="md-header-anchor"></a><span>Notes on Freeman Ch. 28</span></h2><ul><li><p><span>If you are using .NET Core 2.1 or later, you don&#39;t need to add this line to the .csproj file:</span>
-<span>    </span><code>&lt;DotNetCliToolReference Include=&quot;Microsoft.EntityFrameworkCore.Tools.DotNet&quot; Version=&quot;2.0.0&quot; /&gt;</code></p><p><span>In fact, according to </span><a href='https://docs.microsoft.com/en-us/dotnet/core/migration/20-21'><span> Micrososft&#39;s documentation</span></a><span> you should not add this line.</span></p></li><li><p><span>In Startup.cs, in the Configure method,  </span><strong><code>app.UseAuthentication</code><span> must precede app.UseMvc !!!</span></strong></p></li><li><p><span>The app doesn&#39;t have links to the Admin pages on its home page. Ener the URL: /Admin to get there.</span></p></li><li><p><span>It&#39;s OK to directly delete the IdentityUsers database using SQL Server Object Explorer</span></p></li><li><p><span>There are special internet domain names defined for testing and examples. These are defined by the Internet Engineering Task Force. These are the reserved domains, they are invalid for actual use:                </span></p><ul><li><span>.test</span></li><li><span>.example</span></li><li><span>.invalid</span></li><li><span>.localhost</span></li></ul><p><span>Reference: </span><a href='https://tools.ietf.org/html/rfc2606'><span> Reserved Top Level Doman Names (TLDs)</span></a></p></li><li><p><span>Notes on implementing Identity in my own code:            </span></p><ul><li><span>When targeting .NET Core 2.0, I had to add an ID property to my AppUser class in order for EF to generate the identity tables in my application database. In .NET Core 2.2, I don&#39;t need to do this.</span></li></ul></li></ul><hr /><p>&nbsp;</p><h2><a name="references" class="md-header-anchor"></a><span>References</span></h2><h3><a name="basic" class="md-header-anchor"></a><span>Basic</span></h3><ul><li><p><span>Pro ASP.NET Core 2, Adam Freeman, 2017            </span></p><ul><li><span>Ch. 28 – Getting Started with Identity</span></li><li><span>Ch. 12, pg. 321–330, SportsStore: Securing the Administration Features</span></li></ul></li><li><p><a href='https://docs.microsoft.com/en-us/aspnet/core/security/authentication/'><span>Introduction to Identity in ASP.NET Core</span></a></p></li><li><p><a href='https://www.bing.com/videos/search?q=GitHub Training &amp; Guides&amp;qft=+filterui:userpage-githubguides&amp;FORM=VQCHNL'><span>GitHub Tutorial  Videos</span></a></p></li></ul><h3><a name="advanced" class="md-header-anchor"></a><span>Advanced</span></h3><ul><li><a href='https://code-maze.com/http-series-part-4/'><span> HTTP Authentication Mechanisms</span></a></li><li><a href='https://andrewlock.net/exploring-the-asp-net-core-identity-passwordhasher/'><span>Exploring the  ASP.NET Core Identity Password Hasher</span></a></li></ul><hr /><h2><a name="example-code-on-github" class="md-header-anchor"></a><span>Example Code on GitHub</span></h2><ul><li><span>Pro ASP.NET Core MVC 2, Ch. 28: </span><a href='https://github.com/Apress/pro-asp.net-core-mvc-2/tree/master/28%20-%20Identity/Users'><span>Identity example</span></a></li><li><span>Instructor&#39;s Demo Web App using ASP.NET Core 2.2: </span><a href='https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity'><span>BookInfo</span>&mdash;<span>AddIdentity branch</span></a></li></ul><div hidden="">
-- Instructor's Demo Web App using ASP.NET Core 3.1: [BookInfo—Identity branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Identity)
-</div><hr /><h2><a name="next-class" class="md-header-anchor"></a><span>Next Class</span></h2><ul><li><span>We will add pages that use Identity for registration and login (authentication)</span></li><li><span>We will restrict different parts of the web app based on user role (authorization)</span>
-<span>          </span></li></ul><hr /><p><a href='http://creativecommons.org/licenses/by/4.0/'><span> </span><img src="https://i.creativecommons.org/l/by/4.0/80x15.png" referrerpolicy="no-referrer" alt="Creative Commons License"></a><span> </span><a href='http://lcc-cit.github.io/CS296N-CourseMaterials/'><span>ASP.NET Core MVC Course Materials</span></a><span> by </span><a href='https://profbird.online'><span> Brian Bird</span></a><span> are licensed under a </span><a href='http://creativecommons.org/licenses/by/4.0/'><span>Creative Commons Attribution 4.0 International License</span></a><span>. </span>
-<span>    </span></p><hr /></div>
+<span>         </span></p></li><li><p><span>Add a migration for the new user model and update the database using these CLI commands:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="powershell"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="powershell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.627838134765625px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-identifier">dotnet</span> <span class="cm-identifier">ef</span> <span class="cm-identifier">migrations</span> <span class="cm-identifier">add</span> <span class="cm-identifier">Identity</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-identifier">dotnet</span> <span class="cm-identifier">ef</span> <span class="cm-identifier">database</span> <span class="cm-identifier">update</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 45px;"></div></div></div></pre></li></ol><p><span>After adding Identity to your project, Inspect the database using SQL Server Object Explorer and note the new tables added by Identity. The tables listed below should have been created.</span></p><ul><li><span>AspNetRoleClaims</span></li><li><span>AspNetRoles</span></li><li><span>AspNetUserClaims</span></li><li><span>AspNetUserLogins</span></li><li><span>AspNetUserRoles</span></li><li><span>AspNetUsers</span>&mdash;<span>this is your user table, it contains the fields you added in your own user class.</span></li><li><span>AspNetUserTokens</span></li><li><span>Using Identity in administrative pages</span></li></ul><h5><a name="" class="md-header-anchor"></a></h5><p>&nbsp;</p><hr /><p>&nbsp;</p><p>&nbsp;</p><h2><a name="references" class="md-header-anchor"></a><span>References</span></h2><h3><a name="basic" class="md-header-anchor"></a><span>Basic</span></h3><ul><li><p><em><span>Murach’s ASP.NET Core MVC</span></em><span>, Mary Delamater and Joel Murach, 2020</span></p><ul><li><span>Ch. 16, &quot;How to Authenticate and Authorize Users&quot;</span></li></ul></li><li><p><em><span>Pro ASP.NET Core 2</span></em><span>, Adam Freeman, 2017            </span></p><ul><li><span>Ch. 28 – Getting Started with Identity</span></li><li><span>Ch. 12, pg. 321–330, SportsStore: Securing the Administration Features</span></li></ul></li><li><p><a href='https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1'><span>Introduction to Identity in ASP.NET Core</span></a></p></li></ul><h3><a name="advanced" class="md-header-anchor"></a><span>Advanced</span></h3><ul><li><a href='https://code-maze.com/http-series-part-4/'><span> HTTP Authentication Mechanisms</span></a></li><li><a href='https://andrewlock.net/exploring-the-asp-net-core-identity-passwordhasher/'><span>Exploring the  ASP.NET Core Identity Password Hasher</span></a></li></ul><p>&nbsp;</p><hr /><h2><a name="example-code-on-github" class="md-header-anchor"></a><span>Example Code on GitHub</span></h2><ul><li><span>Pro ASP.NET Core MVC 2, Ch. 28: </span><a href='https://github.com/Apress/pro-asp.net-core-mvc-2/tree/master/28%20-%20Identity/Users'><span>Identity example</span></a></li><li><span>Instructor&#39;s Demo Web App using ASP.NET Core 3.1: </span><a href='Instructor&#39;s Demo Web App using ASP.NET Core 2.2: [BookInfo&amp;mdash;AddIdentity branch](https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity)'><span>BookInfo</span>&mdash;<span>Identity branch</span></a></li></ul><hr /><p>&nbsp;</p><h2><a name="next-class" class="md-header-anchor"></a><span>Next Class</span></h2><ul><li><span>We will add pages that use Identity for registration and login (authentication)</span></li><li><span>We will restrict different parts of the web app based on user role (authorization)</span>
+<span>          </span></li></ul><hr /><p><a href='http://creativecommons.org/licenses/by/4.0/'><span> </span><img src="https://i.creativecommons.org/l/by/4.0/80x15.png" referrerpolicy="no-referrer" alt="Creative Commons License"></a><span> </span><a href='http://lcc-cit.github.io/CS296N-CourseMaterials/'><span>ASP.NET Core MVC Course Materials</span></a><span> by </span><a href='https://profbird.dev'><span> Brian Bird</span></a><span>, written winter 2017, revised winter 2021 are licensed under a </span><a href='http://creativecommons.org/licenses/by/4.0/'><span>Creative Commons Attribution 4.0 International License</span></a><span>. </span>
+<span>    </span></p><hr /><p>&nbsp;</p></div>
 </body>
 </html>
