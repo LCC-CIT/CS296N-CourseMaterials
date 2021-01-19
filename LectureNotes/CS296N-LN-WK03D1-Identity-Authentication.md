@@ -12,169 +12,82 @@
 | 4. Security                             | 9. Docker containers            |
 | 5. Publishing to a production server    | 10. Term project                |
 
+## Contents
 
+[TOC]
 
 ## Introduction
 
-- Do PRs and code reviews
-- Review quiz 2
-
-------
+- Q and A
+- Review quiz 3
 
 
 
 ## Review - Identity
 
-- Run BookInfo
-- Add a user, list the accounts
-- [What else do we need? ](#weneed)
+- Adding Identity to a project
 
-------
+  - NuGet package
+  - Startup service and configuration
+    - Note: we should add `app.UseAuthorization` to the Configure method.
+  - User model inherits from IdentityUser
+  - App's DbContext class inherits from IdentityDbContext
+  - New migration
 
+- Run BookReviews
 
+- Code to register a user
 
-## Textbook Example (Freeman, Ch. 29)
+  - View
+  - ViewModel
+  - Controller methods
 
-The example MVC app has the following features 
+  
 
-- /Home - Shows details on the currently logged in user
+## Overview
 
-- - Index - requires login, has [Authorize] attribute
-  - OtherAction - same as above, has [Authorize(Roles="Users")] attribute 
-
-- /Admin - Shows a list of users and has buttons for:
-
-- - Create - create a user account
-  - Edit
-  - Delete
-
-- /Account
-
-- - Login
-  - Logout
-
-- /RoleAdmin - Shows roles and the users in them and has buttons for:
-
-- - Create - will only be useful after adding claims (Ch. 29)
-  - Edit - use this to add a user to a role 
-  - Delete - will only be useful after adding claims (Ch. 29)
-
-------
+We will use Delamater and Murach (2020) as a guide to adding authentication to our web app. We'll discuss both the "how" and the "why" as we do it.
 
 
 
-## Adding Authentication to Your Web App
+## Adding Authentication to Our Web Apps
 
 ### Authentication: Login and Logout 
 
-In an account controller, add:
+#### Modify the navbar
 
-TODO: Show code needed for dependency injection of Identity objects into the constructor of the controller.
+Page 665, "How to add Log In/Out buttons" and links to the layout.
+Note: add a register button as well.
 
-- Login methods:
+##### Using DI with views
 
-  ```C#
-  [AllowAnonymous]
-  public IActionResult Login(string returnUrl) { 
-    ViewBag.returnUrl = returnUrl; return View();
-  }
-  
-  [HttpPost]
-  [AllowAnonymous]
-  [ValidateAntiForgeryToken]
-  public async Task Login(LoginViewModel model, string returnUrl) { 
-    if (ModelState.IsValid) {   
-      User user = await userManager.FindByEmailAsync(model.Email);
-      if (user != null) {
-        await signInManager.SignOutAsync();
-        var result = await signInManager.PasswordSignInAsync(user, 
-                                             model.Password, false, false);
-        if (result.Succeeded) {
-          return Redirect(returnUrl ?? "/");
-        }
-      }
-      ModelState.AddModelError(nameof(LoginViewModel.Email), 
-                                        "Invalid user or password");
-    }
-    return View(model);
-  }
-  ```
+Page 568 describes this.
 
-- logout method:
-  
-```C#
-[Authorize]
-public async Task Logout() {
-   await signInManager.SignOutAsync();
-   return RedirectToAction("Index", "Home");
-}
+Normally it's not a good practice to inject dependencies into views, but since a layout doesn't have a controller method to pass it a model, this is an acceptable solution.
+
+The @Inject directive does the same thing for a view that adding a parameter to a controller does for a type for which a DI service is defined in startup.
+
+#### Login
+
+Pages 674&ndash;679 describe the process of adding login
+
+- ViewModel
+- View
+- Controller methods
+
+#### Getting the current user
+
+We will refactor our current code, so that in views that currently require a user to enter their name, we will use the identity of the currently logged in user instead. To get the current user, simply use the `User` property of the controller:
+
+```c#
+string userName = User.Identity.Name;
 ```
-
-In views, add:
-
-- A login view
-  `@model LoginViewModelLog In      Log In`
-- A logout view `x `
-
-- Add the [Authorize] attribute to methods that require authorization
-
-------
-
-
-
-### Redirection to Login
-
-The ASP.NET Core platform provides information about the user through the HttpContext object, which is used by the Authorize attribute to check the status of the current request and see whether the user has been authenticated. 
-
-Add the [Authorize] attributes to methods that require authentication.
-
-- This will cause a redirect to *Account/Login*
-
-- And a parameter for the return URL will be appended to the Account/Login URL. For example:
-
-  Account/Login?ReturnUrl=%2FBook%2FAdd
-
-  - Note: %2F is the hex code for the forward slash, /
-
-> > ##### Default Login URL 
-> >
-> > > The URL /Account/Login is the default for ASP.NET Core MVC, but you can specify your own URL in Startup.cs, *ConfigureServices*, like this:
-> > > `services.ConfigureApplicationCookie(opts => opts.LoginPath = "/Users/Login"`
-
-------
 
 
 
 ## Example Code Repositories
 
-[BookInfo, Core 2.2, AddLogin branch](https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity) &mdash;User login and logout and authorization of controller methods.
-
 [BookInfo, Core 3.1, Authentication branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authentication) &mdash;User login and logout controller methods and views.
-
-### Getting the Current User
-
-Example from the default Visual Studio MVC project with authentication, from the Manage controller:
-
-```C#
-[HttpGet]
-public async Task<IActionResult> Index()
-{
-  var user = await _userManager.GetUserAsync(User); 
-  if (user == null)
-  { 
-    throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'."); 
-  }
-  var model = new IndexViewModel {
-	  Username = user.UserName,
-	  Email = user.Email,
-	  PhoneNumber = user.PhoneNumber,
-	  IsEmailConfirmed = user.EmailConfirmed,
-	  StatusMessage = StatusMessage };
-  return View(model);
-}
-```
-
-------
 
 
 

@@ -2,21 +2,23 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>CS296N-LN-WK03D1-Identity-Authentication</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+<title>CS296N-LN-WK03D1-Identity-Authentication</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
 .in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
 #write.first-line-indent p { text-indent: 2em; }
 #write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
 #write.first-line-indent li { margin-left: 2em; }
 .for-image #write { padding-left: 8px; padding-right: 8px; }
 body.typora-export { padding-left: 30px; padding-right: 30px; }
 .typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
-@media screen and (max-width: 500px) { 
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
   body.typora-export { padding-left: 0px; padding-right: 0px; }
   #write { padding-left: 20px; padding-right: 20px; }
   .CodeMirror-sizer { margin-left: 0px !important; }
@@ -24,14 +26,14 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; }
-button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
 p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
 p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
@@ -43,17 +45,17 @@ h6 { font-size: 1rem; }
 .hidden { display: none; }
 .md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
 a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.701961); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
 sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
 figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px !important; }
+figure > table { margin: 0px; }
 tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
 table.md-table td { min-width: 32px; }
-.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
-.CodeMirror-linenumber { }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
 .CodeMirror { text-align: left; }
 .CodeMirror-placeholder { opacity: 0.3; }
 .CodeMirror pre { padding: 0px 4px; }
@@ -63,7 +65,7 @@ div.hr:focus { cursor: none; }
 #write.fences-no-line-wrapping pre { white-space: pre; }
 #write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
-.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit inherit; background-repeat: inherit inherit; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
 .md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
 #write .md-fences.mock-cm { white-space: pre-wrap; }
 .md-fences.md-fences-with-lineno { padding-left: 0px; }
@@ -72,37 +74,40 @@ div.hr:focus { cursor: none; }
 .CodeMirror-line, twitterwidget { break-inside: avoid; }
 .footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
 .footnotes + .footnotes { margin-top: 0px; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; background-repeat: initial initial; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
 li div { padding-top: 0px; }
 blockquote { margin: 1rem 0px; }
 li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
 li { margin: 0px; position: relative; }
 blockquote > :last-child { margin-bottom: 0px; }
 blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
-@media print { 
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid-page; break-before: avoid-page; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
   #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
-  html.blink-to-pdf { font-size: 13px; }
-  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid-page; }
+  .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
-pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .md-math-block { width: 100%; }
 .md-math-block:not(:empty)::after { display: none; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
 .md-task-list-item { position: relative; list-style-type: none; }
 .task-list-item.md-task-list-item { padding-left: 0px; }
 .md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
 .math { font-size: 1rem; }
-.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
 .md-toc-content { position: relative; margin-left: 0px; }
 .md-toc-content::after, .md-toc::after { display: none; }
 .md-toc-item { display: block; color: rgb(65, 131, 196); }
@@ -115,7 +120,7 @@ p > .md-image:only-child { display: inline-block; width: 100%; }
 .md-toc-h4 .md-toc-inner { margin-left: 6em; }
 .md-toc-h5 .md-toc-inner { margin-left: 8em; }
 .md-toc-h6 .md-toc-inner { margin-left: 10em; }
-@media screen and (max-width: 48em) { 
+@media screen and (max-width: 48em) {
   .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
   .md-toc-h4 .md-toc-inner { margin-left: 5em; }
   .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
@@ -126,38 +131,44 @@ a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; 
 .md-attr { display: none; }
 .md-fn-count::after { content: "."; }
 code, pre, samp, tt { font-family: var(--monospace); }
-kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; background-position: initial initial; background-repeat: initial initial; }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
 .md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
-code { text-align: left; }
-a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
 .md-inline-math .MathJax_SVG .noError { display: none !important; }
 .html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
 .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
 .MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
 .MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
 .MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
-.MathJax_SVG * { transition: none; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
 .MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
-[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
 [lang="mermaid"] .node text { font-size: 1rem; }
-table tr th { border-bottom-width: 0px; }
+table tr th { border-bottom: 0px; }
 video { max-width: 100%; display: block; margin: 0px auto; }
 iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
-svg[id^="mermaidChart"] { line-height: 1em; }
-mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); background-position: initial initial; background-repeat: initial initial; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
 mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
 
 
 .CodeMirror { height: auto; }
-.CodeMirror.cm-s-inner { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
-.CodeMirror-scroll { overflow-y: hidden; overflow-x: auto; z-index: 3; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
 .CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
-.CodeMirror-gutters { border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; white-space: nowrap; background-position: inherit inherit; background-repeat: inherit inherit; }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
 .CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
 .cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
 .cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
@@ -193,9 +204,9 @@ mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 .cm-defined { color: rgb(181, 137, 0); }
 div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
 div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
-.cm-s-inner .CodeMirror-activeline-background { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
 .CodeMirror { position: relative; overflow: hidden; }
-.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
 .CodeMirror-sizer { position: relative; }
 .CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
 .CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
@@ -204,24 +215,24 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
 .CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
 .CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
 .CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
-.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; border: none !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
 .CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
 .CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
 .CodeMirror-lines { cursor: text; }
-.CodeMirror pre { border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-width: 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; background-position: 0px 0px; background-repeat: initial initial; }
-.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
-.CodeMirror-code pre { border-right-width: 30px; border-right-style: solid; border-right-color: transparent; width: fit-content; }
-.CodeMirror-wrap .CodeMirror-code pre { border-right-style: none; width: auto; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
 .CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
 .CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
 .CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
 .CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
 .CodeMirror-measure pre { position: static; }
-.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right-style: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
 .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
 .CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
-.cm-searching { background-color: rgba(255, 255, 0, 0.4); background-position: initial initial; background-repeat: initial initial; }
-@media print { 
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
   .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
 }
 
@@ -233,12 +244,16 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
 
 @include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
 
-html {
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
     font-size: 16px;
 }
 
 body {
-    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: rgb(51, 51, 51);
     line-height: 1.6;
 }
@@ -249,6 +264,19 @@ body {
   	padding: 30px;
     padding-bottom: 100px;
 }
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
 #write > ul:first-child,
 #write > ol:first-child{
     margin-top: 30px;
@@ -303,17 +331,33 @@ h6 code {
     font-size: inherit;
 }
 h1 {
-    padding-bottom: .3em;
     font-size: 2.25em;
     line-height: 1.2;
     border-bottom: 1px solid #eee;
 }
 h2 {
-   padding-bottom: .3em;
     font-size: 1.75em;
     line-height: 1.225;
     border-bottom: 1px solid #eee;
 }
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
 h3 {
     font-size: 1.5em;
     line-height: 1.43;
@@ -386,24 +430,24 @@ table tr:nth-child(2n),
 thead {
     background-color: #f8f8f8;
 }
-table tr th {
+table th {
     font-weight: bold;
     border: 1px solid #dfe2e5;
     border-bottom: 0;
     margin: 0;
     padding: 6px 13px;
 }
-table tr td {
+table td {
     border: 1px solid #dfe2e5;
     margin: 0;
     padding: 6px 13px;
 }
-table tr th:first-child,
-table tr td:first-child {
+table th:first-child,
+table td:first-child {
     margin-top: 0;
 }
-table tr th:last-child,
-table tr td:last-child {
+table th:last-child,
+table td:last-child {
     margin-bottom: 0;
 }
 
@@ -573,13 +617,12 @@ header, .context-menu, .megamenu-content, footer{
     background: #999;
 }
 
- .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+ :root {--mermaid-font-zoom:1.5em ;} 
 </style>
 </head>
-<body class='typora-export' >
-<div  id='write'  class = 'is-mac'><p><strong><span>CS296N Web Development 2: ASP.NET</span></strong><span>                                                        </span></p><p><span> Brian Bird</span></p><h1><a name="authentication-with-identity" class="md-header-anchor"></a><em><span>Authentication with Identity</span></em></h1><figure><table><thead><tr><th><span>Weekly topics</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>1. Intro to course and input validation</span></td><td><span>6. Load testing and performance</span></td></tr><tr><td><span>2. Identity</span></td><td><span>7. Creating a web service</span></td></tr><tr><td><strong><span>3. Authentication and authorization</span></strong></td><td><span>8. Consuming a web service</span></td></tr><tr><td><span>4. Security</span></td><td><span>9. Docker containers</span></td></tr><tr><td><span>5. Publishing to a production server</span></td><td><span>10. Term project</span></td></tr></tbody></table></figure><p>&nbsp;</p><h2><a name="introduction" class="md-header-anchor"></a><span>Introduction</span></h2><ul><li><span>Do PRs and code reviews</span></li><li><span>Review quiz 2</span></li></ul><hr /><p>&nbsp;</p><h2><a name="review---identity" class="md-header-anchor"></a><span>Review - Identity</span></h2><ul><li><span>Run BookInfo</span></li><li><span>Add a user, list the accounts</span></li><li><a href='#weneed'><span>What else do we need? </span></a></li></ul><hr /><p>&nbsp;</p><h2><a name="textbook-example-freeman-ch-29" class="md-header-anchor"></a><span>Textbook Example (Freeman, Ch. 29)</span></h2><p><span>The example MVC app has the following features </span></p><ul><li><p><span>/Home - Shows details on the currently logged in user</span></p></li><li><ul><li><span>Index - requires login, has [Authorize] attribute</span></li><li><span>OtherAction - same as above, has [Authorize(Roles=&quot;Users&quot;)] attribute </span></li></ul></li><li><p><span>/Admin - Shows a list of users and has buttons for:</span></p></li><li><ul><li><span>Create - create a user account</span></li><li><span>Edit</span></li><li><span>Delete</span></li></ul></li><li><p><span>/Account</span></p></li><li><ul><li><span>Login</span></li><li><span>Logout</span></li></ul></li><li><p><span>/RoleAdmin - Shows roles and the users in them and has buttons for:</span></p></li><li><ul><li><span>Create - will only be useful after adding claims (Ch. 29)</span></li><li><span>Edit - use this to add a user to a role </span></li><li><span>Delete - will only be useful after adding claims (Ch. 29)</span></li></ul></li></ul><hr /><p>&nbsp;</p><h2><a name="adding-authentication-to-your-web-app" class="md-header-anchor"></a><span>Adding Authentication to Your Web App</span></h2><h3><a name="authentication-login-and-logout" class="md-header-anchor"></a><span>Authentication: Login and Logout </span></h3><p><span>In an account controller, add:</span></p><p><span>TODO: Show code needed for dependency injection of Identity objects into the constructor of the controller.</span></p><ul><li><p><span>Login methods:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="C#" style="page-break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[<span class="cm-variable">AllowAnonymous</span>]</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-variable">IActionResult</span> <span class="cm-def">Login</span>(<span class="cm-variable-3">string</span> <span class="cm-variable">returnUrl</span>) { </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">ViewBag</span>.<span class="cm-variable">returnUrl</span> <span class="cm-operator">=</span> <span class="cm-variable">returnUrl</span>; <span class="cm-keyword">return</span> <span class="cm-variable">View</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[<span class="cm-variable">HttpPost</span>]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[<span class="cm-variable">AllowAnonymous</span>]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[<span class="cm-variable">ValidateAntiForgeryToken</span>]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">async</span> <span class="cm-variable-3">Task</span> <span class="cm-def">Login</span>(<span class="cm-variable">LoginViewModel</span> <span class="cm-variable">model</span>, <span class="cm-variable-3">string</span> <span class="cm-variable">returnUrl</span>) { </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">if</span> (<span class="cm-variable">ModelState</span>.<span class="cm-variable">IsValid</span>) { &nbsp; </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">User</span> <span class="cm-variable">user</span> <span class="cm-operator">=</span> <span class="cm-keyword">await</span> <span class="cm-variable">userManager</span>.<span class="cm-variable">FindByEmailAsync</span>(<span class="cm-variable">model</span>.<span class="cm-variable">Email</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">if</span> (<span class="cm-variable">user</span> <span class="cm-operator">!=</span> <span class="cm-atom">null</span>) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;<span class="cm-keyword">await</span> <span class="cm-variable">signInManager</span>.<span class="cm-variable">SignOutAsync</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;<span class="cm-keyword">var</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-keyword">await</span> <span class="cm-variable">signInManager</span>.<span class="cm-variable">PasswordSignInAsync</span>(<span class="cm-variable">user</span>, </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-variable">model</span>.<span class="cm-variable">Password</span>, <span class="cm-atom">false</span>, <span class="cm-atom">false</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;<span class="cm-keyword">if</span> (<span class="cm-variable">result</span>.<span class="cm-variable">Succeeded</span>) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">Redirect</span>(<span class="cm-variable">returnUrl</span> <span class="cm-operator">??</span> <span class="cm-string">"/"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">ModelState</span>.<span class="cm-variable">AddModelError</span>(<span class="cm-variable">nameof</span>(<span class="cm-variable">LoginViewModel</span>.<span class="cm-variable">Email</span>), </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-string">"Invalid user or password"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">View</span>(<span class="cm-variable">model</span>);</span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 538px;"></div><div class="CodeMirror-gutters" style="display: none; height: 538px;"></div></div></div></pre></li><li><p><span>logout method:</span></p></li></ul><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="C#"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[<span class="cm-variable">Authorize</span>]</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">async</span> <span class="cm-variable-3">Task</span> <span class="cm-def">Logout</span>() {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; <span class="cm-keyword">await</span> <span class="cm-variable">signInManager</span>.<span class="cm-variable">SignOutAsync</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; <span class="cm-keyword">return</span> <span class="cm-variable">RedirectToAction</span>(<span class="cm-string">"Index"</span>, <span class="cm-string">"Home"</span>);</span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 112px;"></div><div class="CodeMirror-gutters" style="display: none; height: 112px;"></div></div></div></pre><p><span>In views, add:</span></p><ul><li><span>A login view</span>
-<code>@model LoginViewModelLog In      Log In</code></li><li><span>A logout view </span><code>x</code></li><li><span>Add the [Authorize] attribute to methods that require authorization</span></li></ul><hr /><p>&nbsp;</p><h3><a name="redirection-to-login" class="md-header-anchor"></a><span>Redirection to Login</span></h3><p><span>The ASP.NET Core platform provides information about the user through the HttpContext object, which is used by the Authorize attribute to check the status of the current request and see whether the user has been authenticated. </span></p><p><span>Add the [Authorize] attributes to methods that require authentication.</span></p><ul><li><p><span>This will cause a redirect to </span><em><span>Account/Login</span></em></p></li><li><p><span>And a parameter for the return URL will be appended to the Account/Login URL. For example:</span></p><p><span>Account/Login?ReturnUrl=%2FBook%2FAdd</span></p><ul><li><span>Note: %2F is the hex code for the forward slash, /</span></li></ul></li></ul><blockquote><blockquote><h5><a name="default-login-url" class="md-header-anchor"></a><span>Default Login URL </span></h5><blockquote><p><span>The URL /Account/Login is the default for ASP.NET Core MVC, but you can specify your own URL in Startup.cs, </span><em><span>ConfigureServices</span></em><span>, like this:</span>
-<code>services.ConfigureApplicationCookie(opts =&gt; opts.LoginPath = &quot;/Users/Login&quot;</code></p></blockquote></blockquote></blockquote><hr /><p>&nbsp;</p><h2><a name="example-code-repositories" class="md-header-anchor"></a><span>Example Code Repositories</span></h2><p><a href='https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity'><span>BookInfo, Core 2.2, AddLogin branch</span></a><span> </span>&mdash;<span>User login and logout and authorization of controller methods.</span></p><p><a href='https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authentication'><span>BookInfo, Core 3.1, Authentication branch</span></a><span> </span>&mdash;<span>User login and logout controller methods and views.</span></p><h3><a name="getting-the-current-user" class="md-header-anchor"></a><span>Getting the Current User</span></h3><p><span>Example from the default Visual Studio MVC project with authentication, from the Manage controller:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="C#" style="page-break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[<span class="cm-variable">HttpGet</span>]</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">async</span> <span class="cm-variable-3">Task</span><span class="cm-operator">&lt;</span><span class="cm-variable">IActionResult</span><span class="cm-operator">&gt;</span> <span class="cm-def">Index</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">var</span> <span class="cm-def">user</span> <span class="cm-operator">=</span> <span class="cm-keyword">await</span> <span class="cm-variable">_userManager</span>.<span class="cm-variable">GetUserAsync</span>(<span class="cm-variable">User</span>); </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">if</span> (<span class="cm-variable">user</span> <span class="cm-operator">==</span> <span class="cm-atom">null</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  { </span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">throw</span> <span class="cm-keyword">new</span> <span class="cm-variable">ApplicationException</span>(<span class="cm-variable">$</span><span class="cm-string">"Unable to load user with ID '{_userManager.GetUserId(User)}'."</span>); </span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">var</span> <span class="cm-def">model</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">IndexViewModel</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span> &nbsp;<span class="cm-variable">Username</span> <span class="cm-operator">=</span> <span class="cm-variable">user</span>.<span class="cm-variable">UserName</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span> &nbsp;<span class="cm-variable">Email</span> <span class="cm-operator">=</span> <span class="cm-variable">user</span>.<span class="cm-variable">Email</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span> &nbsp;<span class="cm-variable">PhoneNumber</span> <span class="cm-operator">=</span> <span class="cm-variable">user</span>.<span class="cm-variable">PhoneNumber</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span> &nbsp;<span class="cm-variable">IsEmailConfirmed</span> <span class="cm-operator">=</span> <span class="cm-variable">user</span>.<span class="cm-variable">EmailConfirmed</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span> &nbsp;<span class="cm-variable">StatusMessage</span> <span class="cm-operator">=</span> <span class="cm-variable">StatusMessage</span> };</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">View</span>(<span class="cm-variable">model</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 381px;"></div><div class="CodeMirror-gutters" style="display: none; height: 381px;"></div></div></div></pre><hr /><p>&nbsp;</p><h2><a name="reading" class="md-header-anchor"></a><span>Reading</span></h2><p><strong><span>Freeman,</span></strong><span> </span><strong><em><span>Pro ASP.NET Core MVC 2</span></em></strong></p><ul><li><span>Ch. 12 - SportsStore: Sections on Identity - </span><a href='SportsStoreCh12.html'><span>Notes</span></a></li><li><span>Ch. 29 - Applying ASP.NET Core Identity: Authorizing users with roles </span></li></ul><p><strong><span>Microsoft ASP.NET Core MVC Tutorial</span></strong><span> </span></p><ul><li><a href='https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1'><span>Overview of ASP.NET Core Authentication</span></a>&mdash;<span>for ASP.NET Core 3.1 </span></li></ul><hr /><p>&nbsp;</p><h2><a name="conclusion" class="md-header-anchor"></a><span>Conclusion</span></h2><ul><li><span>Review due dates on Moodle</span></li></ul><hr /><p>&nbsp;</p><p><a href='http://creativecommons.org/licenses/by-sa/4.0/'><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" referrerpolicy="no-referrer" alt="Creative Commons License"><span> </span></a>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><p><strong><span>CS296N Web Development 2: ASP.NET</span></strong><span>                                                        </span></p><p><span> Brian Bird</span></p><h1><a name="authentication-with-identity" class="md-header-anchor"></a><em><span>Authentication with Identity</span></em></h1><figure><table><thead><tr><th><span>Weekly topics</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>1. Intro to course and input validation</span></td><td><span>6. Load testing and performance</span></td></tr><tr><td><span>2. Identity</span></td><td><span>7. Creating a web service</span></td></tr><tr><td><strong><span>3. Authentication and authorization</span></strong></td><td><span>8. Consuming a web service</span></td></tr><tr><td><span>4. Security</span></td><td><span>9. Docker containers</span></td></tr><tr><td><span>5. Publishing to a production server</span></td><td><span>10. Term project</span></td></tr></tbody></table></figure><h2><a name="contents" class="md-header-anchor"></a><span>Contents</span></h2><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n118"><a class="md-toc-inner" href="#authentication-with-identity"><em>Authentication with Identity</em></a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n138"><a class="md-toc-inner" href="#contents">Contents</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n139"><a class="md-toc-inner" href="#introduction">Introduction</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n147"><a class="md-toc-inner" href="#review---identity">Review - Identity</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n157"><a class="md-toc-inner" href="#overview">Overview</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n161"><a class="md-toc-inner" href="#adding-authentication-to-our-web-apps">Adding Authentication to Our Web Apps</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n162"><a class="md-toc-inner" href="#authentication-login-and-logout">Authentication: Login and Logout </a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n163"><a class="md-toc-inner" href="#modify-the-navbar">Modify the navbar</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n281"><a class="md-toc-inner" href="#using-di-with-views">Using DI with views</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n245"><a class="md-toc-inner" href="#login">Login</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n274"><a class="md-toc-inner" href="#getting-the-current-user">Getting the current user</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n183"><a class="md-toc-inner" href="#example-code-repositories">Example Code Repositories</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n190"><a class="md-toc-inner" href="#reading">Reading</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n203"><a class="md-toc-inner" href="#conclusion">Conclusion</a></span></p></div><h2><a name="introduction" class="md-header-anchor"></a><span>Introduction</span></h2><ul><li><span>Q and A</span></li><li><span>Review quiz 3</span></li></ul><p>&nbsp;</p><h2><a name="review---identity" class="md-header-anchor"></a><span>Review - Identity</span></h2><ul><li><p><span>Adding Identity to a project</span></p><ul><li><p><span>NuGet package</span></p></li><li><p><span>Startup service and configuration</span></p><ul><li><span>Note: we should add </span><code>app.UseAuthorization</code><span> to the Configure method.</span></li></ul></li><li><p><span>User model inherits from IdentityUser</span></p></li><li><p><span>App&#39;s DbContext class inherits from IdentityDbContext</span></p></li><li><p><span>New migration</span></p></li></ul></li><li><p><span>Run BookReviews</span></p></li><li><p><span>Code to register a user</span></p><ul><li><span>View</span></li><li><span>ViewModel</span></li><li><span>Controller methods</span></li></ul><p>&nbsp;</p></li></ul><h2><a name="overview" class="md-header-anchor"></a><span>Overview</span></h2><p><span>We will use Delamater and Murach (2020) as a guide to adding authentication to our web app. We&#39;ll discuss both the &quot;how&quot; and the &quot;why&quot; as we do it.</span></p><p>&nbsp;</p><h2><a name="adding-authentication-to-our-web-apps" class="md-header-anchor"></a><span>Adding Authentication to Our Web Apps</span></h2><h3><a name="authentication-login-and-logout" class="md-header-anchor"></a><span>Authentication: Login and Logout </span></h3><h4><a name="modify-the-navbar" class="md-header-anchor"></a><span>Modify the navbar</span></h4><p><span>Page 665, &quot;How to add Log In/Out buttons&quot; and links to the layout.</span>
+<span>Note: add a register button as well.</span></p><h5><a name="using-di-with-views" class="md-header-anchor"></a><span>Using DI with views</span></h5><p><span>Page 568 describes this.</span></p><p><span>Normally it&#39;s not a good practice to inject dependencies into views, but since a layout doesn&#39;t have a controller method to pass it a model, this is an acceptable solution.</span></p><p><span>The @Inject directive does the same thing for a view that adding a parameter to a controller does for a type for which a DI service is defined in startup.</span></p><h4><a name="login" class="md-header-anchor"></a><span>Login</span></h4><p><span>Pages 674</span>&ndash;<span>679 describe the process of adding login</span></p><ul><li><span>ViewModel</span></li><li><span>View</span></li><li><span>Controller methods</span></li></ul><h4><a name="getting-the-current-user" class="md-header-anchor"></a><span>Getting the current user</span></h4><p><span>We will refactor our current code, so that in views that currently require a user to enter their name, we will use the identity of the currently logged in user instead. To get the current user, simply use the </span><code>User</code><span> property of the controller:</span></p><pre lang="c#" class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">string</span> <span class="cm-variable">userName</span> <span class="cm-operator">=</span> <span class="cm-variable">User</span>.<span class="cm-variable">Identity</span>.<span class="cm-variable">Name</span>;</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p>&nbsp;</p><h2><a name="example-code-repositories" class="md-header-anchor"></a><span>Example Code Repositories</span></h2><p><a href='https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authentication'><span>BookInfo, Core 3.1, Authentication branch</span></a><span> </span>&mdash;<span>User login and logout controller methods and views.</span></p><p>&nbsp;</p><h2><a name="reading" class="md-header-anchor"></a><span>Reading</span></h2><p><strong><span>Freeman,</span></strong><span> </span><strong><em><span>Pro ASP.NET Core MVC 2</span></em></strong></p><ul><li><span>Ch. 12 - SportsStore: Sections on Identity - </span><a href='SportsStoreCh12.html'><span>Notes</span></a></li><li><span>Ch. 29 - Applying ASP.NET Core Identity: Authorizing users with roles </span></li></ul><p><strong><span>Microsoft ASP.NET Core MVC Tutorial</span></strong><span> </span></p><ul><li><a href='https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1'><span>Overview of ASP.NET Core Authentication</span></a>&mdash;<span>for ASP.NET Core 3.1 </span></li></ul><hr /><p>&nbsp;</p><h2><a name="conclusion" class="md-header-anchor"></a><span>Conclusion</span></h2><ul><li><span>Review due dates on Moodle</span></li><li><span>Talk about the lab assignment</span></li></ul><hr /><p>&nbsp;</p><p><a href='http://creativecommons.org/licenses/by-sa/4.0/'><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" referrerpolicy="no-referrer" alt="Creative Commons License"><span> </span></a>
 <span>ASP.NET Core MVC Lecture Notes by </span><a href='https://birdsbits.blog'><span>Brian Bird</span></a><span> is licensed under a </span><a href='http://creativecommons.org/licenses/by-sa/4.0/'><span>Creative Commons Attribution-ShareAlike 4.0 International License</span></a><span>. </span></p></div>
 </body>
 </html>
