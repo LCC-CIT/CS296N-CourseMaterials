@@ -109,6 +109,7 @@ string userName = User.Identity.Name;
 ## Conclusion
 
 - Review due dates on Moodle
+- Talk about the lab assignment
 
 ------
 

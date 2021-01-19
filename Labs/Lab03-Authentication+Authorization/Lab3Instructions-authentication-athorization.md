@@ -2,13 +2,13 @@
 
 CS296N, Web Development 2: ASP.NET
 
+## Contents
 
+[TOC]
 
 ## Objective
 
 Learn how to authenticate a user and authorize user access to different sections of a web app based on user roles.
-
-
 
 ## Instructions
 
@@ -26,7 +26,27 @@ Report what you did for this exercise by entering the appropriate phrase in the 
 
 ### Part 2, Your Web Site
 
-**TBD**
+You will add all the same features to your web site that your instructor added to the example web site.
+
+### Authentication
+
+Add Authentication code to your lab web site for each of these features:
+
+- Registration
+- Login
+- Logout
+- Use the currently logged in user in any place where a user previously needed to enter their name.
+
+### Authorization
+
+Add code for these authentication features to your web app:
+
+- Two roles of your choice.
+  - One for all registered users.
+  - Another for administrators.
+- Restrict some part of the web site to only be accessed by registered users.
+- Add a page for user and role management.
+- Restrict access to the management page to administrators.
 
   
 
@@ -47,9 +67,8 @@ Report what you did for this exercise by entering the appropriate phrase in the 
 1.  In the "online text" for the Moodle assignment:
     - Report of what you did in part 1.
     - Paste a link to your GitHub repository and branch for part 2.
-2.  Upload the code review document containing a review of your code.
 
-  
+
 
 ------
 
