@@ -37,16 +37,17 @@ Add Authentication code to your lab web site for each of these features:
 - Logout
 - Use the currently logged in user in any place where a user previously needed to enter their name.
 
-### Authorization
+### ~~Authorization~~
 
-Add code for these authentication features to your web app:
+~~Add code for these authentication features to your web app:~~
 
-- Two roles of your choice.
-  - One for all registered users.
-  - Another for administrators.
-- Restrict some part of the web site to only be accessed by registered users.
-- Add a page for user and role management.
-- Restrict access to the management page to administrators.
+- ~~Two roles of your choice.~~
+  
+  - ~~One for all registered users.~~
+  - ~~Another for administrators.~~
+- ~~Restrict some part of the web site to only be accessed by registered users.~~
+- ~~Add a page for user and role management.~~
+- ~~Restrict access to the management page to administrators.~~
 
   
 
