@@ -9,8 +9,8 @@
 | 1. Intro to course and input validation | 6. Load testing and performance |
 | 2. Identity                             | 7. Creating a web service       |
 | **3. Authentication and authorization** | 8. Consuming a web service      |
-| 4. Security                             | 9. Docker containers            |
-| 5. Publishing to a production server    | 10. Term project                |
+| 4. A more complex data model            | 9. Docker containers            |
+| 5. Security                             | 10. Term project                |
 
 ## Contents
 
@@ -30,8 +30,8 @@
   - NuGet package
   - Startup service and configuration
     - Note: we should add `app.UseAuthorization` to the Configure method.
-  - User model inherits from IdentityUser
-  - App's DbContext class inherits from IdentityDbContext
+  - User model inherits from `IdentityUser`
+  - App's DbContext class inherits from `IdentityDbContext`
   - New migration
 
 - Run BookReviews
@@ -52,7 +52,7 @@ We will use Delamater and Murach (2020) as a guide to adding authentication to o
 
 ## Adding Authentication to Our Web Apps
 
-### Authentication: Login and Logout 
+### Login and Logout 
 
 #### Modify the navbar
 
@@ -75,19 +75,77 @@ Pages 674&ndash;679 describe the process of adding login
 - View
 - Controller methods
 
-#### Getting the current user
+### Updating code that uses `AppUser`
 
-We will refactor our current code, so that in views that currently require a user to enter their name, we will use the identity of the currently logged in user instead. To get the current user, simply use the `User` property of the controller:
+Since we refactored our user domain model, now named `AppUser`, to inherit from `IdentityUser` we need to change the way we use the user model in some of our code.
+
+#### Saving new reviews in the database
+
+This is done in the *Post* version of the `Review` method in the `BookReviews` controller:
 
 ```c#
-string userName = User.Identity.Name;
+[HttpPost]
+public IActionResult Review(Review model)
+{
+    model.ReviewDate = DateTime.Now;
+    // Store the model in the database
+    if(ModelState.IsValid)
+    { 
+        repo.AddReview(model);
+    }
+    return View(model);
+}
 ```
 
+##### Getting a `Reviewer` model from Identity
 
+The Review model contains an `AppUser object named Reviewer:
+(Validation annotations removed for clarity)
+
+```c#
+public class Review
+    {
+        public int ReviewID { get; set; }
+        public string BookTitle { get; set; }
+        public string AuthorName { get; set; }
+        public AppUser Reviewer { get; set; }
+        public string ReviewText { get; set; }
+        public DateTime ReviewDate { get; set; }
+    }
+```
+
+The Reviewer object is currently being supplied by the Reivew.cshtml view. We need to get it from Identity instead. We'll do this by refactoring the *Post* version of the `Review` method in the `BookReviews` controller:
+
+
+
+##### Getting the current user
+
+ To get the current user, simply use the `User` property of the controller to get an object that identifies the current user, then use `GetUserAsync` to get the `AppUser` object:
+
+```c#
+  model.Reviewer = userManager.GetUserAsync(User).Result;
+```
+
+```c#
+[HttpPost]
+public IActionResult Review(Review model)
+{
+    // Get the AppUser object for the current user
+    model.Reviewer = userManager.GetUserAsync(User).Result;
+    // TODO: modify the register code to get the user's name
+    model.Reviewer.Name = model.Reviewer.UserName;  // Temporary hack
+    model.ReviewDate = DateTime.Now;
+    // Store the model in the database
+    repo.AddReview(model);
+    return View(model);
+}
+```
 
 ## Example Code Repositories
 
-[BookInfo, Core 3.1, Authentication branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authentication) &mdash;User login and logout controller methods and views.
+[BookReivew, Lab03 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab03)&mdash;2021 example
+
+[BookInfo, Authentication branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authentication) &mdash;User login and logout controller methods and views from 2020.
 
 
 
