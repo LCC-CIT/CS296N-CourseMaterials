@@ -1,6 +1,4 @@
-**CS296N Web Development 2: ASP.NET**                                                        
-
- Brian Bird
+**CS296N Web Development 2: ASP.NET, 2020**
 
 # *User Management with Identity*
 
