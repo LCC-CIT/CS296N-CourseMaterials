@@ -7,8 +7,8 @@
 | 1. Intro to course and Input validation | 6. Load Testing and Performance |
 | 2. Identity                             | 7. Creating a Web Service       |
 | **3. Authentication and authorization** | 8. Consuming a Web Service      |
-| 4. Security                             | 9. Docker containers            |
-| 5. Publishing to a production server    | 10. Term project                |
+| 4. A more complex data model            | 9. Docker containers            |
+| 5. Security                             | 10. Term project                |
 
 ## Contents
 
@@ -56,6 +56,7 @@ We will use Delamater and Murach (2020) as a guide to adding authentication to o
 ## Conclusion
 
 - Review due dates on Moodle
+- No reading or quiz for next week
 
 ------
 
