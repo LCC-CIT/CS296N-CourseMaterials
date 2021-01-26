@@ -40,14 +40,18 @@ We will use Delamater and Murach (2020) as a guide to adding authentication to o
 
 
 
-## Reading
+## References
 
-**Freeman,** ***Pro ASP.NET Core MVC 2***
+*Murach’s ASP.NET Core MVC*, Mary Delamater and Joel Murach, 2020
+
+- Ch. 16, "How to Authenticate and Authorize Users"
+
+*Pro ASP.NET Core MVC 2*, Freeman, Apress, 2017
 
 - Ch. 12 - SportsStore: Sections on Identity - [Notes](SportsStoreCh12.html)
 - Ch. 29 - Applying ASP.NET Core Identity: Authorizing users with roles 
 
-**Microsoft ASP.NET Core MVC Tutorial** 
+Microsoft ASP.NET Core MVC Tutorial 
 
 - [Authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/)&mdash;for ASP.NET Core 3.1 
 

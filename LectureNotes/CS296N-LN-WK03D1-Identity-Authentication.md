@@ -1,7 +1,5 @@
 **CS296N Web Development 2: ASP.NET**                                                        
 
- Brian Bird
-
 # *Authentication with Identity*
 
 | Weekly topics                           |                                 |
@@ -23,26 +21,31 @@
 
 
 
-## Review - Identity
+## Review of last class
 
-- Adding Identity to a project
+### Adding Identity
 
-  - NuGet package
-  - Startup service and configuration
-    - Note: we should add `app.UseAuthorization` to the Configure method.
-  - User model inherits from `IdentityUser`
-  - App's DbContext class inherits from `IdentityDbContext`
-  - New migration
+We Added Identity to a project by adding these things:
 
-- Run BookReviews
+- NuGet package
+- Startup service and configuration
+- User model inherits from `IdentityUser`
+- App's DbContext class inherits from `IdentityDbContext`
+- New migration and database update
 
-- Code to register a user
+When we were done with this, we were able to see Identity tables in our database, but that is all. Nothing changed in our web site behavior.
 
-  - View
-  - ViewModel
-  - Controller methods
+### Adding User Registration
 
-  
+We got a head-start on this week's topic of Authentication by adding registration to our web app by adding the following:
+
+- A view: Registration
+- A view-model: RegisterVM
+- Methods in the AccountController:
+  - HttpGet version of Register
+  - HttpPost version of Register
+
+
 
 ## Overview
 
@@ -50,7 +53,7 @@ We will use Delamater and Murach (2020) as a guide to adding authentication to o
 
 
 
-## Adding Authentication to Our Web Apps
+## Adding Authentication to Our Web App
 
 ### Login and Logout 
 
@@ -141,22 +144,28 @@ public IActionResult Review(Review model)
 }
 ```
 
+
+
 ## Example Code Repositories
 
-[BookReivew, Lab03 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab03)&mdash;2021 example
+[BookReivew, Lab03 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab03)&mdash;Instructor's 2021 example
 
-[BookInfo, Authentication branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authentication) &mdash;User login and logout controller methods and views from 2020.
+[BookInfo, Authentication branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authentication) &mdash;Instructors 2020 example.
 
 
 
-## Reading
+## References
 
-**Freeman,** ***Pro ASP.NET Core MVC 2***
+*Murach’s ASP.NET Core MVC*, Mary Delamater and Joel Murach, 2020
+
+- Ch. 16, "How to Authenticate and Authorize Users"
+
+Freeman, *Pro ASP.NET Core MVC 2*, Freeman, 2017
 
 - Ch. 12 - SportsStore: Sections on Identity - [Notes](SportsStoreCh12.html)
 - Ch. 29 - Applying ASP.NET Core Identity: Authorizing users with roles 
 
-**Microsoft ASP.NET Core MVC Tutorial** 
+Microsoft ASP.NET Core MVC Tutorial 
 
 - [Overview of ASP.NET Core Authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1)&mdash;for ASP.NET Core 3.1 
 
