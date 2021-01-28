@@ -2,13 +2,13 @@
 
 # *Authorization with Identity*
 
-| Weekly topics                           |                                 |
-| --------------------------------------- | ------------------------------- |
-| 1. Intro to course and Input validation | 6. Load Testing and Performance |
-| 2. Identity                             | 7. Creating a Web Service       |
-| **3. Authentication and authorization** | 8. Consuming a Web Service      |
-| 4. A more complex data model            | 9. Docker containers            |
-| 5. Security                             | 10. Term project                |
+| Weekly topics                           |                            |
+| --------------------------------------- | -------------------------- |
+| 1. Intro to course and Input validation | 6. Security                |
+| 2. Identity                             | 7. Creating a Web Service  |
+| 3. Authentication                       | 8. Consuming a Web Service |
+| **4. Authorization**                    | 9. Docker containers       |
+| 5. Complex Domain Model                 | 10. Term project           |
 
 ## Contents
 
@@ -24,9 +24,9 @@
 
 In the last two classes, we added these features to the BookReivew app:
 
-- New user registration
 - Login
 - Logout
+- Modified code using the user model that inherits IdentityUser
 
 ## Overview
 
@@ -34,7 +34,7 @@ We will use Delamater and Murach (2020) as a guide to adding authentication to o
 
 ## Example Code Repositories
 
-[BookReivew, Lab03 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab03)&mdash;2021 example
+[BookReivew, Lab04 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab04)&mdash;2021 example
 
 [BookInfo, Authentication branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authentication) &mdash;User login and logout controller methods and views from 2020.
 
