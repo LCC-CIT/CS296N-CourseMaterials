@@ -17,11 +17,11 @@
 ## Introduction
 
 - Q and A
-- Areas&mdash;question from the last class
+- Areas&mdash;answer to a question from the last class:
   - Microsoft Tutorial: [Areas in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/areas?view=aspnetcore-3.1)
   - Delamater and Murach (2020), pg. 218&ndash;221, "How to work with areas"
 
-## Review - Last Class
+## Review - Last Class' Demo
 
 In the last  class, we made these changes to the BookReview app: 
 
@@ -47,7 +47,7 @@ In the last  class, we made these changes to the BookReview app:
 
   
 
-## Overview
+## Overview of Today's Demo
 
 We will use Delamater and Murach (2020) as a guide to continue adding an administrative page for user and role management to our web site.  We will add these items:
 
