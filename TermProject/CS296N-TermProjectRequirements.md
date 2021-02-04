@@ -49,18 +49,13 @@ Your web site should meet the following requirements:
 
    - Publish your web app to Azure or some other web host.
 
-8. **Load testing**
-   Use jMeter to load-test your app. Test your web app running on the internet, not   on your development machine.
+   
 
-   - The script should include login and search.
-
-   - Provide a document containing screen shots of the results.
-   - Provide your testing script.
 
 
 **Notes**
 
-- The term project must be different from the web app you used in your weekly lab assignments.
+- The term project must be different from the web app you used in your weekly lab assignments and different from the instructors examples or the textbook examples.
 
 - Good coding practices, such as using unit tests, are expected in the term project.
 
@@ -69,7 +64,7 @@ Your web site should meet the following requirements:
 ------
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) 
-​ASP.NET Core MVC course materials by [Brian Bird](https://profbird.online), 2020, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+​ASP.NET Core MVC course materials written by [Brian Bird](https://profbird.dev), 2020 and revised 2021, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 ------
 
