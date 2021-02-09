@@ -66,9 +66,11 @@ Use the `IsLocalUrl` method to check that the return URL is not from another sit
 
 ### SQL Injection
 
+An attacker enters an SQL statement into an input field on a web page which could be executed by your database when the data is submitted.
 
+Mitigation:
 
-
+Use LINQ queries instead of direct SQL queries
 
 ------
 
