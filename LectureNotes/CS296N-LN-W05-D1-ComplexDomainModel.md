@@ -2,6 +2,18 @@
 
 **CS296N ASP.NET Core MVC**
 
+
+
+| Weekly topics                             |                            |
+| ----------------------------------------- | -------------------------- |
+| 1. Intro to course and Input validation   | 6. Security                |
+| 2. Identity                               | 7. Creating a Web Service  |
+| 3. Authentication                         | 8. Consuming a Web Service |
+| 4. Authorization                          | 9. Docker containers       |
+| 5. Async/Await & **Complex Domain Model** | 10. Term project           |
+
+## Contents
+
 [TOC]
 
 ## Review: Designing Domain Models for ASP.NET Core MVC

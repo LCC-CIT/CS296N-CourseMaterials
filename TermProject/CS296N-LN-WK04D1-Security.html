@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>CS296N-TermProjectRequirements</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+<title>CS296N-LN-WK04D1-Security</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
 .mac-os-11 { --title-bar-height:28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
@@ -162,6 +162,79 @@ mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 .md-diagram-panel .start-state { fill: var(--node-fill); }
 .md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
 .md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
 
 
 :root {
@@ -548,13 +621,14 @@ header, .context-menu, .megamenu-content, footer{
 </style>
 </head>
 <body class='typora-export os-windows'>
-<div id='write'  class=''><h1><a name="term-project-requirements" class="md-header-anchor"></a><span>Term Project Requirements </span></h1><p><strong><span>Web Development 2: ASP.NET</span></strong></p><p><span>Your web site should meet the following requirements:</span></p><ol start='' ><li><p><strong><span>Rich Media</span></strong>
-<span>Include some kind of interactive “rich” media. This could be as simple as images the user can click on, and/or various images that are displayed in response to user input. It could involve video or sound or jQuery animations, or some other media besides text.</span></p></li><li><p><strong><span>Data-driven</span></strong>
-<span>To be data-driven means that the content of one or more of your web pages contains content derived from information stored in a database. </span>
-<span>In addition:</span></p><ul><li><p><span>Users should be able to enter data that will be stored in the database.</span></p></li><li><p><span>Some of the data entered by users should be visible to other users. </span></p></li><li><p><span>Users should be able to do some kind of searching of the database.</span></p><p><span>An example would be a classified advertising site where users could enter items for sale and other users would be able to see those items and search for items by key words in the item description.</span></p></li></ul></li><li><p><strong><span>Complexity</span></strong>
-<span>Be moderately complex</span>&mdash;<span>not too simple, but not too hard to build. Here are some criteria:</span></p><ul><li><span>The database should have  4 to 6 domain models.</span></li><li><span>The total number of fields in the domain models should be between 12 and 30.</span></li><li><span>There should be between 10 and 15 web pages.</span></li><li><span>The web site should have some kind of consistent navigation that appears on each page.</span></li></ul></li><li><p><strong><span>Identity</span></strong>
-<span>Require authentication and authorization. This means there will be a way for users to register and log in. There should be at least three levels of authorization:</span></p><ul><li><span>Guest: these users don’t need to log in, but will only be able to access a limited number of pages and/or features. (This does not need an Identity Role.)</span></li><li><span>Member: these users can access anything except the pages/features that are only for administrators.</span></li><li><span>Administrator: these users can access everything.</span></li></ul></li><li><p><strong><span>Consume a Web Service</span></strong></p><ul><li><span>At least one page of the site will pull data from a web API</span>&mdash;<span>like a weather forecast or stock prices.</span></li></ul></li><li><p><strong><span>Security</span></strong>
-<span>Use Zap to test your app. Do these tests on your own machine, not on a public web server.</span></p><ul><li><span>Be sure to test your app with yourself logged into the app in a non-admin role.</span></li><li><span>Mitigate any high-priority security risks.</span></li><li><span>Provide a document containing screen shots and notes on mitigation.</span></li></ul></li><li><p><strong><span>Publish to a server</span></strong></p><ul><li><span>Publish your web app to Azure or some other web host.</span></li></ul><p>&nbsp;</p></li></ol><p><strong><span>Notes</span></strong></p><ul><li><span>The term project must be different from the web app you used in your weekly lab assignments and different from the instructors examples or the textbook examples.</span></li><li><span>Good coding practices, such as using unit tests, are expected in the term project.</span></li></ul><p><span> </span></p><hr /><p><a href='http://creativecommons.org/licenses/by-sa/4.0/'><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" referrerpolicy="no-referrer" alt="Creative Commons License"></a><span> </span>
-<span>​ASP.NET Core MVC course materials written by </span><a href='https://profbird.dev'><span>Brian Bird</span></a><span>, 2020 and revised 2021, are licensed under a </span><a href='http://creativecommons.org/licenses/by-sa/4.0/'><span>Creative Commons Attribution-ShareAlike 4.0 International License</span></a><span>. </span></p><hr /><p>&nbsp;</p></div>
+<div id='write'  class=''><p><strong><span>CS296N Web Development 2: ASP.NET</span></strong></p><h1><a name="web-security" class="md-header-anchor"></a><span>Web Security</span></h1><figure><table><thead><tr><th><span>Weekly topics</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>1. Intro to course and Input validation</span></td><td><span>6. </span><strong><span>Security</span></strong></td></tr><tr><td><span>2. Identity</span></td><td><span>7. Creating a Web Service</span></td></tr><tr><td><span>3. Authentication</span></td><td><span>8. Consuming a Web Service</span></td></tr><tr><td><span>4. Authorization</span></td><td><span>9. Docker containers</span></td></tr><tr><td><span>5. Async/Await &amp; Complex Domain Model</span></td><td><span>10. Term project</span></td></tr></tbody></table></figure><h2><a name="" class="md-header-anchor"></a></h2><h2><a name="contents" class="md-header-anchor"></a><span>Contents</span></h2><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n3"><a class="md-toc-inner" href="#web-security">Web Security</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n109"><a class="md-toc-inner" href="#"></a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n22"><a class="md-toc-inner" href="#contents">Contents</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n37"><a class="md-toc-inner" href="#introduction">Introduction</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n121"><a class="md-toc-inner" href="#common-security-vulnerabilities">Common Security Vulnerabilities</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n119"><a class="md-toc-inner" href="#cross-site-scripting-xss">Cross-site scripting (XSS)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n122"><a class="md-toc-inner" href="#cross-site-request-forgery-xsrf">Cross-site request forgery (XSRF)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n124"><a class="md-toc-inner" href="#open-redirect-attacks">Open redirect attacks</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n126"><a class="md-toc-inner" href="#sql-injection">SQL Injection</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n44"><a class="md-toc-inner" href="#resources">Resources</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n45"><a class="md-toc-inner" href="#tutorials">Tutorials </a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n56"><a class="md-toc-inner" href="#videos">Videos</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n60"><a class="md-toc-inner" href="#web-sites">Web Sites</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n67"><a class="md-toc-inner" href="#conclusion">Conclusion</a></span></p></div><h2><a name="introduction" class="md-header-anchor"></a><span>Introduction</span></h2><ul><li><span>Talk about the term project proposal</span></li><li><span>Any questions about lab 6?</span></li><li><span>Review the quiz</span></li></ul><p>&nbsp;</p><h2><a name="common-security-vulnerabilities" class="md-header-anchor"></a><span>Common Security Vulnerabilities</span></h2><h3><a name="cross-site-scripting-xss" class="md-header-anchor"></a><span>Cross-site scripting (XSS)</span></h3><p><span>An attacker puts html and JavaScript into an input element on a web page so that the script gets saved in the database. When another user displays the data, the script can be executed by the browser and perform some malicious action.</span></p><p><span>Example: </span></p><pre lang="html" class="md-fences md-end-block ty-contain-cm modeLoaded md-focus" spellcheck="false"><div class="CodeMirror cm-s-inner CodeMirror-wrap CodeMirror-focused" lang="html"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 406.885px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-variable">alert</span>(<span class="cm-string">"You've been hacked!"</span>);<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p>&nbsp;</p><h3><a name="cross-site-request-forgery-xsrf" class="md-header-anchor"></a><span>Cross-site request forgery (XSRF)</span></h3><h3><a name="open-redirect-attacks" class="md-header-anchor"></a><span>Open redirect attacks</span></h3><h3><a name="sql-injection" class="md-header-anchor"></a><span>SQL Injection</span></h3><p>&nbsp;</p><p>&nbsp;</p><hr /><h2><a name="resources" class="md-header-anchor"></a><span>Resources</span></h2><h3><a name="tutorials" class="md-header-anchor"></a><span>Tutorials </span></h3><ul><li><p><span>Overview of ASP.NET Core Security: Common Vulnerabilities</span></p><ul><li><a href='https://docs.microsoft.com/en-us/aspnet/core/security/cross-site-scripting?view=aspnetcore-2.2'><span>Cross-site scripting attacks</span>
+</a><span>An attacker places client side scripts (usually JavaScript) into web pages. When other users load the affected pages the attacker&#39;s scripts will run, enabling the attacker to do something malicious.</span><a href='https://docs.microsoft.com/en-us/aspnet/core/security/cross-site-scripting?view=aspnetcore-2.2'>
+</a></li><li><a href='SQL injection attacks'><span>SQL injection attacks</span></a>
+<a href='Cross-Site Request Forgery (CSRF)'><span>Cross-Site Request Forgery (CSRF)</span>
+</a><span>A malicious web app can take advantage of the user&#39;s previously authenticated session to gain access to secured pages.</span><a href='Cross-Site Request Forgery (CSRF)'>
+</a></li><li><a href='https://docs.microsoft.com/en-us/aspnet/core/security/preventing-open-redirects?view=aspnetcore-3.1'><span>Open redirect attacks</span>
+</a><span>A redirect URL that&#39;s specified via the request such as the query-string, or form data, can potentially be tampered with to redirect users to an external, malicious URL.</span><a href='https://docs.microsoft.com/en-us/aspnet/core/security/preventing-open-redirects?view=aspnetcore-3.1'>
+</a></li></ul></li></ul><h3><a name="videos" class="md-header-anchor"></a><span>Videos</span></h3><ul><li><a href='https://channel9.msdn.com/Events/dotnetConf/2017/T324'><span>.NET Conf 2017: ASP.NET Core 2.0 Security - Barry Dorrans</span></a></li></ul><h3><a name="web-sites" class="md-header-anchor"></a><span>Web Sites</span></h3><ul><li><a href='https://idunno.org'><span>Barry Dorrans web site</span></a></li><li><a href='https://www.troyhunt.com/'><span>Troy Hunt</span></a><span> - security blog</span></li></ul><hr /><h2><a name="conclusion" class="md-header-anchor"></a><span>Conclusion</span></h2><ul><li><p><span>Review lab due dates on Moodle</span></p><p>&nbsp;</p></li></ul><hr /><p><a href='http://creativecommons.org/licenses/by-sa/4.0/'><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" referrerpolicy="no-referrer" alt="Creative Commons License"></a>
+<span>ASP.NET Core MVC Lecture Notes by </span><a href='https://profbird.dev'><span>Brian Bird</span></a><span>, written 2018, revised 2021, are licensed under a </span><a href='http://creativecommons.org/licenses/by-sa/4.0/'><span>Creative Commons Attribution-ShareAlike 4.0 International License</span></a><span>.</span></p><hr /></div>
 </body>
 </html>
