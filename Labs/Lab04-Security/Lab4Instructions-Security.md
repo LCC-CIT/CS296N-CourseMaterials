@@ -5,8 +5,9 @@
 Get practice:
 
 - Testing your web app using the Zed Attack Proxy using:
-  - Passive testing
-  - Active testing
+  - A manual, passive scan
+  - An automated, passive scan
+  - An active attack scan
 - Mitigating (reducing or eliminating) security vulnerabilities in your app by changing your app’s code.
 
 ## Instructions
@@ -17,8 +18,9 @@ Use OWASP ZAP to scan your code for security vulnerabilities.
 
 1. Do a manual passive scan.
    Before doing the scan, log in as a registered user, but not as an admin. Navigate to every page of your web site and enter data in all the forms.  
-2. Without closing the app, or after loading a stored passive testing session, run an active test of your web app.
-3. Fix at least three of the security vulnerabilities identified in the alerts. Preferably, solve the highest priority issues. Only solve issues that can be fixed in your app’s code, not issues that require changes to the web server.
+2. Run an automated passive scan.
+3. Without closing the app, or after loading a stored passive testing session, run an active test of your web app.
+4. Fix at least three of the security vulnerabilities identified in the alerts. Preferably, solve the highest priority issues. Only solve issues that can be fixed in your app’s code, not issues that require changes to the web server.
 
 #### Research
 
