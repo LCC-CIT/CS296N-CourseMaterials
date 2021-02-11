@@ -24,7 +24,7 @@ Use OWASP ZAP to scan your code for security vulnerabilities.
 
 #### Research
 
-In order to solve the security issues, you will first need to do some research. Work with one or two other students and choose one issue each to research. Each of you will post a description of the issue you are researching to the forum for this lab.
+In order to solve the security issues, you will first need to do some research. Work with one or two other students and choose one issue each to research. Each of you will <u>post a description of the issue you are researching</u> to the forum for this lab.
 
 - Focus on the high risk issues.
 - Try to choose issues that others haven't chosen. 
@@ -38,17 +38,23 @@ Based on the research you, your team and the rest of the class have done, fix <u
 
 #### Reporting
 
-In the docs folder, on the Lab4-Security branch of your Git repository, add a markdown document containing:
+You will report in two places:
 
-1. A list of the high, medium and low priority issues that came up in the initial passive and active scans of your app.
-2. The issues you chose to mitigate and the classes and methods that you changed to implement the mitigation.
-3. A list of the issues that come up in passive and active scans after making the code changes.
+- In the lab forum
+
+- In the docs folder, on the Lab06 branch of your Git repository.
+
+  Add a markdown document containing:
+
+  1. A list of the high, medium and low priority issues that came up in the initial passive and active scans of your app.
+  2. The issues you chose to mitigate and the classes and methods that you changed to implement the mitigation.
+  3. A list of the issues that come up in passive and active scans after making the code changes.
 
 ## Submission to Git and Moodle
 
 ####  Code Review
 
-      1. Using GitHub, send a pull request to another student asking them to review your code. After you have gotten a review, and finished revising your code, merge it into the master branch. Keep the lab branch, don't delete it.
+   1. Using GitHub, send a pull request to another student asking them to review your code. After you have gotten a review, and finished revising your code, merge it into the master branch. Keep the lab branch, don't delete it.
    2. You should get a pull request from the other student. Review their code and forum posts. You don't need to run ZAP against their web app--just verify that the app still works, that they have used best practices, and fulfilled the lab requirements.
       3. Paste the review form into the comments of the other student's pull request.
       4. In the "online text" field of the Code Review assignment on Moodle, enter the URL of the pull request you responded to and which contains the review you gave.
@@ -65,11 +71,11 @@ In the docs folder, on the Lab4-Security branch of your Git repository, add a ma
 
 Here are examples of posts you would make as you identify the security issue you are researching, then find some information about it, then find a way to mitigate it.
 
-**Lab 4 Research: X-Frame-Options Header Not Set**
+**Research: X-Frame-Options Header Not Set**
 
 The security vulnerability I am researching is: X-Frame-Options Header Not Set
 
-**RE: Lab 4 Research: X-Frame-Options Header Not Set**
+**RE: Research: X-Frame-Options Header Not Set**
 
 Here's what I've found out about this issue so far:
 
@@ -77,7 +83,7 @@ X-Frame-Options header is not included in the HTTP response to protect against '
 
 Clickjacking (User Interface redress attack, UI redress attack, UI redressing) is a malicious technique of tricking a Web user into clicking on something different from what the user perceives they are clicking on, thus potentially revealing confidential information or taking control of their computer while clicking on seemingly innocuous web pages. (Clickjacking - Wikipedia)
 
-**RE: Lab 4 Research: X-Frame-Options Header Not Set**
+**RE: Research: X-Frame-Options Header Not Set**
 
 How to fix this in ASP.NET Core: [Set X-FRAME OPTIONS in ASP.NET Core](https://dotnetcoretutorials.com/2017/01/08/set-x-frame-options-asp-net-core/)
 
