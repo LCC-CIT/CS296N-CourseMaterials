@@ -1,4 +1,4 @@
-# Lab 4 – Web Security Testing and Countermeasures
+# Lab 6 – Web Security Testing and Countermeasures
 
 ## Objectives
 
@@ -22,7 +22,7 @@ Use OWASP ZAP to scan your code for security vulnerabilities.
 
 #### Research
 
-In order to solve the security issues, you will first need to do some research. Work with one or two other students and choose one issue each to research. Each of you will post a description of the issue you are researching to the class discussion forum.
+In order to solve the security issues, you will first need to do some research. Work with one or two other students and choose one issue each to research. Each of you will post a description of the issue you are researching to the forum for this lab.
 
 - Focus on the high risk issues.
 - Try to choose issues that others haven't chosen. 
