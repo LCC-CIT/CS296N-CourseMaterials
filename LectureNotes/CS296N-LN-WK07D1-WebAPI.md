@@ -4,14 +4,15 @@
 
 
 
+| Weekly topics                           |                                        |
+| --------------------------------------- | -------------------------------------- |
+| 1. Intro to course and Input validation | 6. Security                            |
+| 2. Identity                             | 7. <mark>Creating a Web Service</mark> |
+| 3. Authentication                       | 8. Consuming a Web Service             |
+| 4. Authorization                        | 9. Docker containers                   |
+| 5. Async/Await & Complex Domain Model   | 10. Term project                       |
 
-| Topics by week                       |                                     |
-| ------------------------------------ | ----------------------------------- |
-| 1. Validation                        | 6. ~~Load Testing and Performance~~ |
-| 2. Identity                          | **7. Creating a Web Service**       |
-| 3. Authentication and Authorization  | 8. Consuming a Web Service          |
-| 4. Web Security                      | 9. Docker Containers                |
-| 5. Publishing to a Production Server | 10. Term Project                    |
+## 
 
 ## Contents
 
@@ -30,9 +31,9 @@
 An ASP.NET Core Web API (aka web service) can be used in several ways: 	
 
 1. As a way to add AJAX to Razor views to make them more efficient.
-    		The reservation web app in Ch. 20 of Freeman (2017) is an example of this.
+    The reservation web app in Ch. 20 of Freeman (2017) is an example of this.
 
-2. As a way to create a web service.
+2. As a way to create a web service
 
    - Think of a web service as a web site that doesn't have a UI, it is meant to be accessed by a computer not a human. 
 - You can also think of it as an API that contains methods that can be called over a network or over the Internet. 		
@@ -65,7 +66,7 @@ There are two main scenarios in which web services are used:
 
 ## REST Architecture
 
-REST is not really a new protocol&mdash;it is just HTTP
+REST is not really a new protocol&mdash;it is just HTTP.
 
 Examples from [OpenWeather](https://openweathermap.org):
 
@@ -175,6 +176,6 @@ Requests have these parts:
 ------
 
 ​	[ 	![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) 	](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NETCore MVC Lecture Notes by [Brian Bird](https://profbird.online) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+ASP.NETCore MVC Lecture Notes by [Brian Bird](https://profbird.dev) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
 
 ------
