@@ -40,7 +40,10 @@ Implement your domain model in code. Add the corresponding controller method and
 
 ### Code Review
 
-1. Put the UML diagram in a docs folder in your solution.
+1. Put the UML diagram in a *docs* folder in your Visual Studio solution and commit to Git. Add two versions of the diagram:
+
+   - UMLet .uxf file
+   - PDF file
 
 2. Send a pull request to another student asking them to review your class diagram and code. 
 
