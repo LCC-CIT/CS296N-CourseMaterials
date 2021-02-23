@@ -42,7 +42,7 @@ An ASP.NET Core Web API (aka web service) can be used in several ways:
 There are two main scenarios in which web services are used: 		
 
 1. To facilitate a [Service Oriented Architecture](https://en.wikipedia.org/wiki/Service-oriented_architecture) in which different components of a system communicate over a network.
-   2. To provide a service that can be used by third parties or subscribers.
+2. To provide a service that can be used by third parties or subscribers.
 
 - Advantages of using web services: 		
   - Allows computing services to be distributed across: 			
@@ -66,7 +66,7 @@ There are two main scenarios in which web services are used:
 
 ## REST Architecture
 
-REST is not really a new protocol&mdash;it is just HTTP.
+REST is not really a new protocol&mdash;it is just another way to use HTTP.
 
 Examples from [OpenWeather](https://openweathermap.org):
 
@@ -170,12 +170,12 @@ Requests have these parts:
 ## References
 
 - Freeman, Adam. 2017. Ch. 20, "Web API," in *Pro ASP.NET Core MVC 2.* 
-- [RESTful Web Services: A Tutorial - Dr. Dobb's](http://www.drdobbs.com/web-development/restful-web-services-a-tutorial/240169069)
 - [Weather Underground Web API](https://www.wunderground.com/weather/api/d/docs)
 
 ------
 
-​	[ 	![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) 	](http://creativecommons.org/licenses/by-sa/4.0/)
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 ASP.NETCore MVC Lecture Notes by [Brian Bird](https://profbird.dev) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
 
 ------
+
