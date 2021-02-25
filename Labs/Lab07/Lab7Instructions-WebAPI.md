@@ -24,21 +24,25 @@ Report what you did:
 
 ## Part 2: Your Own Web API
 
-1. Add an API controller to your web site.
-
-   This Web API will have REST endpoints to allow users to do the following for each group:
+1. Add two API controllers to your web site. The Web API (consisting of two controllers) will have REST endpoints to allow users to do the following for each group:
 
    - Group A
 
-     Post or read messages and replies. 
+     Post or read messages and replies.
+
+     Use one controller for messages and another for replies.
 
    - Group B
 
      Post or read stories and comments.
 
+     Use one controller for stories and another for comments.
+
    - Group C
 
      Post or read posts and replies.
+
+     Use one controller for posts and another for replies.
 
 B\) Test each endpoint using [Postman](https://www.getpostman.com/).  Copy/paste each request and response into a document.
 
