@@ -33,9 +33,9 @@ Your web site should meet the following requirements:
    - Member: these users can access anything except the pages/features that are only for administrators.
    - Administrator: these users can access everything.
 
-5. **Consume a Web Service**
+5. ~~**Consume a Web Service**~~
 
-   - At least one page of the site will pull data from a web API&mdash;like a weather forecast or stock prices.
+   - ~~At least one page of the site will pull data from a web API&mdash;like a weather forecast or stock prices.~~
 
 6. **Security**
    Use Zap to test your app. Do these tests on your own machine, not on a public web server.
