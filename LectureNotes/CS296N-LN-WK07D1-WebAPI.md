@@ -170,7 +170,12 @@ Requests have these parts:
 ## References
 
 - Freeman, Adam. 2017. Ch. 20, "Web API," in *Pro ASP.NET Core MVC 2.* 
+
 - [Weather Underground Web API](https://www.wunderground.com/weather/api/d/docs)
+
+- [Using HttpClient to Send HTTP PATCH Requests in ASP.NET Core](https://code-maze.com/using-httpclient-to-send-http-patch-requests-in-asp-net-core/), 2021, Code-Maze.
+
+  This article has a good explanation of the HTTP PATCH request.
 
 ------
 

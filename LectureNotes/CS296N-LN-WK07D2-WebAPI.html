@@ -242,15 +242,27 @@ href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view
                     face="Courier New, Courier, monospace ">{</font></b></font><br>
               <font face="Courier New, Courier, monospace "><b><font
                     face="Courier New, Courier, monospace ">&nbsp;&nbsp;&nbsp;
+
+
+
                     "title": "Oliver Twist",</font></b></font><br>
               <font face="Courier New, Courier, monospace "><b><font
                     face="Courier New, Courier, monospace ">&nbsp;&nbsp;&nbsp;
+
+
+
                     "date": "3/1/1839",</font></b></font><br>
               <font face="Courier New, Courier, monospace "><b><font
                     face="Courier New, Courier, monospace ">&nbsp;&nbsp;&nbsp;
+
+
+
                     "name": "Charles Dickens",</font></b></font><br>
               <font face="Courier New, Courier, monospace "><b><font
                     face="Courier New, Courier, monospace ">&nbsp;&nbsp;&nbsp;
+
+
+
                     "birthday": "6/8/1870"</font></b></font><br>
               <font face="Courier New, Courier, monospace "><b><font
                     face="Courier New, Courier, monospace ">}</font></b></font><br>
@@ -298,8 +310,7 @@ href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view
                     &nbsp;&nbsp;&nbsp; "op": "replace",<br>
                     &nbsp;&nbsp;&nbsp; "path": "title",<br>
                     &nbsp;&nbsp;&nbsp; "value": "David Copperfield"<br>
-                    }</font></b></font><font face="Courier New, Courier,
-                monospace "><b></b></font><br>
+                    }</font></b></font><br>
               <br>
               <code>[HttpPatch("{id} ")]&nbsp; &nbsp;&nbsp;&nbsp; //
                 TODO: Add support for more ops: remove, copy, move, test<br>
@@ -320,6 +331,9 @@ href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view
 
 
 
+
+
+
                 break;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "date ":<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -331,8 +345,14 @@ href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view
 
 
 
+
+
+
                 book.Date = Convert.ToDateTime(value);<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
 
 
@@ -353,9 +373,15 @@ href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view
 
 
 
+
+
+
                 book.Authors[0].Name = value;&nbsp;&nbsp; // TODO:
                 manage author collection<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
 
 
@@ -376,8 +402,14 @@ href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view
 
 
 
+
+
+
                 book.Authors[0].Birthday = Convert.ToDateTime(value);<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
 
 
@@ -389,6 +421,9 @@ href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view
                 break;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
 
 
 
@@ -456,7 +491,7 @@ href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view
             is a sub-class of ControllerBase) since Controller contains
             View related members that you don't need.</li>
         </ol>
-        <hr width="100%" size="2">
+        <hr size="2" width="100%">
         <h2>Testing</h2>
         <p>One way to test a web API is to use a tool like <a
             href="https://www.postman.com/product/api-client"
@@ -509,13 +544,14 @@ href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view
           <ul>
             <li> Freeman, Adam. (2017). Ch. 20, "Web API, " in <span
                 style="font-style: italic; ">Pro ASP.NET Core MVC 2. </span></li>
-            <li> Appel, Rachel. (2018). "<a
-href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-2.2">Model
-
-
-
-                Binding in ASP.NET Core</a>", in <a
+            <li> Appel, Rachel. (2019). "<a
+href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-3.1"
+                moz-do-not-send="true">Model Binding in ASP.NET Core</a>",
+              in <a
                 href="https://docs.microsoft.com/en-us/aspnet/#pivot=core">ASP.NET
+
+
+
 
 
 
@@ -528,12 +564,18 @@ href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=
 
 
 
+
+
+
                 Core Documentation</a>. Microsoft. </li>
             <li>Addie, Scott. (2020). "<a
 href="https://docs.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-3.1"
                 target="_blank">Controller action return types in
                 ASP.NET Core Web API</a>," in <a
                 href="https://docs.microsoft.com/en-us/aspnet/#pivot=core">ASP.NET
+
+
+
 
 
 
@@ -545,34 +587,43 @@ href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.statu
 
 
 
+
+
+
                 Core Documentation</a>. Microsoft. </li>
             <li>Crockford, Douglas. (2018). "<a
                 href="https://www.json.org">Introducing JSON"</a> in <a
                 href="https://www.howjavascriptworks.com/"
                 target="_blank"><i>How JavaScript Works</i></a>. </li>
+            <li> Spasojevic, Marinko. (2021). "<a
+href="https://code-maze.com/using-httpclient-to-send-http-patch-requests-in-asp-net-core/">Using
+                HttpClient to Send HTTP PATCH Requests in ASP.NET Core"</a>.
+              Code-Maze.<br>
+              This article has a good explanation of the HTTP PATCH
+              request.</li>
           </ul>
-        </article>
-      </section>
-      <hr>
-      <footer>
-        <div style="float:left; padding-right:5px;"> <a rel="license"
+          <a rel="license"
             href="http://creativecommons.org/licenses/by-sa/4.0/"> <img
               alt="Creative Commons License" style="border-width:0"
               src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-        </div>
-        <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">These
+        </article>
+      </section>
+    </div>
+    <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">These
 
 
 
-          ASP.NET Core MVC Lecture Notes</span> are licensed under a <a
-          rel="license"
-          href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-          Commons Attribution-ShareAlike 4.0 International License</a>.
-        Written by <a xmlns:cc="http://creativecommons.org/ns#"
-          href="https://profbird.online" property="cc:attributionName"
-          rel="cc:attributionURL">Brian Bird</a>, winter 2019, revised
-        by Brian Bird winter 2020.<br>
-      </footer>
-      <hr> </div>
+
+
+
+      ASP.NET Core MVC Lecture Notes</span> are licensed under a <a
+      rel="license"
+      href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+      Commons Attribution-ShareAlike 4.0 International License</a>.
+    Written by <a xmlns:cc="http://creativecommons.org/ns#"
+      href="https://profbird.dev" property="cc:attributionName"
+      rel="cc:attributionURL">Brian Bird</a>, winter 2019, revised by
+    Brian Bird winter 2020.<br>
+    <hr>
   </body>
 </html>
