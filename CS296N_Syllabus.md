@@ -1,13 +1,13 @@
 # Syllabus for Web Development 2: ASP.NET
 
-CS296N, Winter 2021
+CS296N, Winter 2022
 
-| Class     |                                                      |      | Instructor   |                                                              |
-| --------- | ---------------------------------------------------- | ---- | ------------ | ------------------------------------------------------------ |
-| Sections  | CRNs 35649 and 37037                                 |      | Name         | Brian Bird                                                   |
-| Credits   | 4                                                    |      | Email        | birdb@lanecc.edu                                             |
-| Time      | Tu, Th, 10:00 – 11:50                                |      | Office       | [Zoom meeting](https://lanecc.zoom.us/j/965222036)           |
-| Classroom | [Zoom meeting](https://lanecc.zoom.us/j/91287714915) |      | Office Hours | M, W 2:00&ndash;2:50<br />Tu, Th 12:00&ndash;12:50<br />or by appointment |
+| Class     |                       |      | Instructor   |                        |
+| --------- | --------------------- | ---- | ------------ | ---------------------- |
+| Sections  | CRN 30486             |      | Name         | Brian Bird             |
+| Credits   | 4                     |      | Email        | birdb@lanecc.edu       |
+| Time      | Tu, Th, 10:00 – 11:50 |      | Office       | 19/152                 |
+| Classroom | 19/126 and Zoom       |      | Office Hours | TBD and by appointment |
 
 
 
@@ -98,30 +98,28 @@ Letter grades for the course will be determined by the following percentages:
 
 **Monday**
 
-- Finish the assigned reading.
-- Take the reading quiz.
+- Finish the assigned <u>reading</u>.
+- Take the reading <u>quiz</u>.
 
 **Tuesday**
 
-- Do a code review of last week's lab for your lab partner.
+- Do a <u>code review</u> of last week's lab for your lab partner.
 
 **Thursday**
 
-- Submit the production version of last week's lab.
+- Submit the <u>production version</u> of last week's lab.
 
 **Saturday**
 
-- Finish the beta version of this week's lab.
+- Finish the <u>beta version</u> of this week's lab.
 
-- Send a PR for this week's lab to your lab partner.
+- Send a <u>PR</u> for this week's lab to your lab partner.
 
   
 
 ### Academic Honesty
 
 While students are encouraged to discuss labs and to use each other as resources, each student is responsible for his/her own work. In other words, you can help each other, but you can't copy any part of someone else's work. The end product must be each student's own individual work.
-
-
 
 ### Attendance
 
@@ -135,13 +133,13 @@ LCC has a [no-show drop](https://www.lanecc.edu/esfs/noshow-drops) policy which 
 
 | Winter Term 2021              |                 |
 | ----------------------------- | --------------- |
-| Term begins                   | 1/4             |
-| Last day to receive refund    | 1/10            |
-| MLK Holiday                   | 1/18            |
-| President's Day Holiday       | 2/15            |
-| Last day for schedule changes | 2/26            |
-| Final Project Presentation    | 3/15            |
-| Spring Break                  | 3/21&ndash;3/28 |
+| Term begins                   | 1/3             |
+| Last day to receive refund    | 1/9             |
+| MLK Holiday                   | 1/17            |
+| President's Day Holiday       | 2/21            |
+| Last day for schedule changes | 2/25            |
+| Final Project Presentation    | 3/16            |
+| Spring Break                  | 3/20&ndash;3/27 |
 
 
 
