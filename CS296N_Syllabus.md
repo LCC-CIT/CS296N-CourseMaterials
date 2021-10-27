@@ -1,6 +1,6 @@
 # Syllabus for Web Development 2: ASP.NET
 
-CS296N, Winter 2022
+**CS296N, Winter 2022**
 
 | Class     |                       |      | Instructor   |                        |
 | --------- | --------------------- | ---- | ------------ | ---------------------- |
@@ -11,17 +11,19 @@ CS296N, Winter 2022
 
 
 
-### Course Description
+## Course Description
 
 This course builds on the basic concepts of ASP.NET Core MVC web development covered in CS295N, to cover topics including security, web APIs, and DevOps.
 
-### Learning Outcome
+### Learning Outcomes
 
 To be able to develop a web application that uses the ASP.NET Core framework for a moderately complex web application.
 
-### Learning Resources
 
-#### Textbook  
+
+## Learning Resources
+
+### Textbook  
 
 *Murach’s ASP.NET Core MVC*, 1st Edition, by Mary Delamater and Joel Murach, Murach Books, 2020. ISBN 978-1-943872-49-7. You can purchase the textbook from the [Titan Store](https://www.bkstr.com/laneccstore/home) or from the publisher, [Murach Books](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-detail). The publisher provides free download of [exercise starters and example code](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-detail) 
 
@@ -32,7 +34,7 @@ The additional resources are available on the following Microsoft web sites:
 - [ASP.NET Core MVC Tutorials](https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-2.1)
 - [ASP.NET Core Reference Docs](https://docs.microsoft.com/en-us/dotnet/api/?view=aspnetcore-2.0)
 
-#### Software
+### Software
 
 Visual Studio 2019 will be used for example code and lab assignments. You may obtain Visual Studio through Azure Dev Tools for Teaching, or use the Community Edition which is available for Windows or Mac OS as a free download from Microsoft at [www.visualstudio.com/en-us/products/visual-studio-community-vs](https://visualstudio.microsoft.com/vs/community/).
 
@@ -41,7 +43,7 @@ Visual Studio 2019 will be used for example code and lab assignments. You may ob
 - **Azure Dev Tools for Teaching** (previously known as Microsoft Imagine Premium) is a subscription-based offering, paid for by the LCC CIT department, providing access to professional development and design tools, software, and services from Microsoft. 
 - [On The Hub](https://lanecc.onthehub.com/WebStore/ProductsByMajorVersionList.aspx?cmi_mnuMain=f189368a-f0a6-e811-8109-000d3af41938) has partnered with Microsoft, Adobe, IBM, Symantec, VmWare and other software publishers to offer discounted and free software for students and faculty.
 
-#### CIT Computer Lab
+### CIT Computer Lab
 
 The in-person computer lab and tutoring center is temporarily closed due to COVID-19, but tutoring is still available online. You can drop into the [Lane Support Hub Zoom Room](https://lanecc.zoom.us/j/98549544816) and request a CIT tutor, or make an appointment with a CIT tutor via the scheduling page at [lanecc.mywconline.com](https://lanecc.mywconline.com/). More information is available on the [LCC Tutoring Services](https://www.lanecc.edu/tutor) web page.
 
@@ -49,23 +51,24 @@ The in-person computer lab and tutoring center is temporarily closed due to COVI
 
 #### Web Resources
 
-- [http://classes.lanecc.edu](https://visualstudio.microsoft.com/vs/community/) (Moodle) will be used as the Learning Management System for this course. All course materials and activities will be managed through this site.
+- [http://classes.lanecc.edu](https://visualstudio.microsoft.com/vs/community/) Moodle is the Learning Management System used for this course. All course materials and activities will be managed through the Moodle course page.
 - You will be deploying web apps that you create to the Microsoft Azure cloud. You are entitled to a free Azure account through LCC’s Microsoft Imagine subscription as described here: [https://azure.microsoft.com/en-us/offers/ms-azr-0144p](https://azure.microsoft.com/en-us/offers/ms-azr-0144p/) 
-  
 
-### Assessment and Grading
+
+
+## Assessment and Grading
 
 Specific grading criteria will be applied to each of the labs, quizzes, and exams you will be working on in this class. Part of the lab involves a code review. Attendance is not graded.
-The table below summarizes the grade distribution for each of the assessment tasks:
+The table below summarizes the grade distribution for each of the learning and assessment activities:
 
 
 
-| Assessment Activities | Percentage of grade |
-| --------------------- | ------------------- |
-| Labs                  | 40%                 |
-| Code Reviews          | 10%                 |
-| Quizzes               | 10%                 |
-| Term Project          | 40%                 |
+| Activity     | Percentage of grade |
+| ------------ | ------------------- |
+| Labs         | 40%                 |
+| Code Reviews | 10%                 |
+| Quizzes      | 10%                 |
+| Term Project | 40%                 |
 
 
 Letter grades for the course will be determined by the following percentages:        
@@ -80,7 +83,7 @@ Letter grades for the course will be determined by the following percentages:
 
 
 
-#### Late Work
+### Late Work
 
 - The grade for lab assignments submitted after the due date will be reduced by 10%.
 
@@ -90,9 +93,21 @@ Letter grades for the course will be determined by the following percentages:
 
 - Exceptions will only be made for illness or emergency situations.
 
-  
+### Academic Honesty
 
-#### Weekly Learning Activities
+While students are encouraged to discuss labs and to use each other as resources, each student is responsible for his/her own work. In other words, you can help each other, but you can't copy any part of someone else's work. The end product must be each student's own individual work.
+
+### Attendance
+
+Attendance is not graded but will be essential for successful completion of the class. Students who miss a class are responsible for obtaining the course content provided in class and mastering it. 
+
+### No-Show Drop
+
+LCC has a [no-show drop](https://www.lanecc.edu/esfs/noshow-drops) policy which means that during the first week of the term, to avoid being dropped, a student must attend at least one class meeting.
+
+
+
+## Weekly Learning Activities
 
 *This cycle starts on the second week*
 
@@ -112,24 +127,11 @@ Letter grades for the course will be determined by the following percentages:
 **Saturday**
 
 - Finish the <u>beta version</u> of this week's lab.
-
 - Send a <u>PR</u> for this week's lab to your lab partner.
 
-  
 
-### Academic Honesty
 
-While students are encouraged to discuss labs and to use each other as resources, each student is responsible for his/her own work. In other words, you can help each other, but you can't copy any part of someone else's work. The end product must be each student's own individual work.
-
-### Attendance
-
-Attendance is not graded but will be essential for successful completion of the class. Students who miss a class are responsible for obtaining the course content provided in class and mastering it. 
-
-#### No-Show Drop
-
-LCC has a [no-show drop](https://www.lanecc.edu/esfs/noshow-drops) policy which means that during the first week of the term, to avoid being dropped, a student must attend at least one class meeting.
-
-#### Academic Calendar
+## Academic Calendar
 
 | Winter Term 2021              |                 |
 | ----------------------------- | --------------- |
@@ -143,7 +145,7 @@ LCC has a [no-show drop](https://www.lanecc.edu/esfs/noshow-drops) policy which 
 
 
 
-### Accessibility and Accommodations: 
+## Accessibility and Accommodations
 
 If you need support or assistance because of a disability, you may be eligible for academic accommodations through Disability Services. For more information, contact Disability Services at 463-5150 (voice) or 463-3079 (TTY), or stop by building 1, room 218. 
 
@@ -151,7 +153,7 @@ Please be aware that any accessible tables and chairs in this room should remain
 
 
 
-### Course Schedule 
+## Course Schedule 
 
 (may be subject to change)
 
