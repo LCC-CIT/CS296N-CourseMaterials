@@ -21,8 +21,18 @@
 
 ## Introduction
 
-- Overview of this course.
-- Review of key concepts from last term.
+- What did you do last term?
+  - Three different versions of each lab assignment? Let me know which version each of you are doing
+    - Group A: Community site
+    - Group B: Fan site
+    - Group C: Informational site
+
+  - Lab partners, each partner doing a different version (A, B, or C) of the lab project?
+    - Let me know who your lab partner is or if you want to switch lab partners.
+
+  - Code reviews using GitHub pull requests?
+  - Lab 9, Adding seed data to a web app and writing Linq expressions?
+
 - This week, we will cover the "left over" topic from fall term, input validation.
 
 
@@ -83,11 +93,26 @@ Let's look at the term project requirements.
 
 ### Lab Assignments
 
-Fork last term's repository for use this term.
+- Make a new repository for use this term.
 
-Look at this week's lab assignment.
+  - Create a new, empty, repository on GitHub but with a .gitignore file.
+
+  - Clone the repository to your local machine
+
+  - Copy your working files from the last lab of last term into the local repository and commit the files to Git.
+
+  - Push the newly committed files up to GitHub.
+
+- Look at this week's learning activities and due dates.
+
+  - Quiz
+
+  - Lab assignment
+    - Beta version
+      - Code review
+      - Production version
 
 
 
-[![ccbysa88x31](ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.online) , 2020, revised 2021, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![ccbysa88x31](ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev) , 2020, revised 2022, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
