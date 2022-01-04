@@ -21,17 +21,18 @@
 
 ## Introduction
 
-- What did you do last term?
-  - Three different versions of each lab assignment? Let me know which version each of you are doing
+- What did you do last term? Did you:
+  - do three different versions of each lab assignment? Let me know which version each of you are doing
     - Group A: Community site
     - Group B: Fan site
     - Group C: Informational site
 
-  - Lab partners, each partner doing a different version (A, B, or C) of the lab project?
+  - Have lab partners, each partner doing a different version (A, B, or C) of the lab project?
     - Let me know who your lab partner is or if you want to switch lab partners.
 
-  - Code reviews using GitHub pull requests?
-  - Lab 9, Adding seed data to a web app and writing Linq expressions?
+  - Do code reviews using GitHub pull requests?
+  - Do lab 9, Adding seed data to a web app and writing Linq expressions?
+  - Publish you lab assignments and term project to a web server?
 
 - This week, we will cover the "left over" topic from fall term, input validation.
 
