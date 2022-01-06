@@ -21,7 +21,7 @@ To make the validation useful, in addition to adding validation annotations to m
 
 1. Send a pull request to another student asking them to review your code.
 
-   After you have finished revising your code, you can merge it into the master branch, but keep the lab branch, don't delete it.
+   After getting a code review, when you have finished revising your code, you can merge it into the master branch, but keep the lab branch, don't delete it.
 
 2. You should get a pull request from the other student and review their code.
 
@@ -30,15 +30,14 @@ To make the validation useful, in addition to adding validation annotations to m
 ### Production Version
 
 1.  In the "online text" for the Moodle assignment:
-    - Report of what you did in part 1.
-    - Paste a link to your GitHub repository and branch for part 2.
-2.  Upload the code review document containing a review of your code.
+    - Paste a link to your GitHub repository and branch for this lab.
+2.  Upload the code review document containing a review another student did of your code, with your comments describing what you changed or fixed.
 
 
 
 ------
 
-Written by Brian Bird, Lane Community College, Fall 2017, revised Winter 2021
+Written by Brian Bird, Lane Community College, Fall 2017, revised Winter 2022
 
 ------
 
