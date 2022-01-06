@@ -143,13 +143,40 @@ Custom error messages can be added to the validation attribute. For example:
 - Try running the web app. Can you enter invalid data? Are there any error messages?
 - Write a unit test for an HttpPost controller method that uses a data model with validation. Will the method accept the data and store it in the repository?
 
-### Displaying Validation Errors in the View
+### Validation in the View
 
-A strongly typed view with model-binding using asp-for tag helpers are required.
+A strongly typed view with model-binding using asp-for tag helpers is required.
 
-There are tag helpers, for displaying a summary of validation errors and for displaying errors on individual fields
+Links to JavaScript CDNs with the libraries for validation are required.
 
-#### Summary
+In *_Layout.cshtml* add this line:
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+```
+
+In *_ValidationScriptsPartial.cshtml* add these lines:
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+```
+
+
+
+#### Displaying Validation Errors
+
+There are tag helpers for displaying validation errors on individual fields and for displaying a summary of validation errors.
+
+##### Individual field
+
+```html
+<label asp-for="ClientName">Your name:</label>
+<span asp-validation-for="ClientName"></span>
+<input asp-for="ClientName" />
+```
+
+##### Summary
 
 ```html
 <form method="post">
@@ -162,15 +189,7 @@ There are tag helpers, for displaying a summary of validation errors and for dis
   - `ModelOnly`
   - `None`
 
-#### Individual field
-
-```html
-<label asp-for="ClientName">Your name:</label>
-<span asp-validation-for="ClientName"></span>
-<input asp-for="ClientName" />
-```
-
-#### <mark>Exercises</mark>
+##### <mark>Exercises</mark>
 
 - Try entering invalid data. Do you get error messages?
 - Put a break-point in the controller method that gets called with the data from the view with validation tag helpers. Does the method get called when you enter invalid data?
