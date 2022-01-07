@@ -147,7 +147,7 @@ Custom error messages can be added to the validation attribute. For example:
 
 A strongly typed view with model-binding using asp-for tag helpers is required.
 
-Links to JavaScript CDNs with the libraries for validation are required.
+Links to JavaScript libraries for validation are required. Either libraries that are in CDNs, like those shown below, or libraries that are in the ```wwwroot``` folder of your project can be used.
 
 In *_Layout.cshtml* add this line:
 
@@ -155,11 +155,32 @@ In *_Layout.cshtml* add this line:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 ```
 
+Then you can add a script section with links to validation libraries to the bottom of each view that needs to do validation:
+
+```html
+@section Scripts {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+}
+```
+
+(Note: Look near the bottom of  *_Layout.cshtml* to see how it processes ```@section Scripts```)
+
+**OR**
+
 In *_ValidationScriptsPartial.cshtml* add these lines:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+```
+
+And in each view that needs to do validation add code to load the libraries listed above:
+
+```javascript
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 ```
 
 
