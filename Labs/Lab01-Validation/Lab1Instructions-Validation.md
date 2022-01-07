@@ -29,7 +29,10 @@ To make the validation useful, in addition to adding validation annotations to m
 
 ### Production Version
 
+Be sure to add your instructor to your GitHub repository so they can view and clone it. 
+
 In the "online text" for the Moodle assignment:
+
 - Paste a link to your GitHub repository and branch for this lab.
 - Paste a link to the PR with the code review done for you by another student.
 
