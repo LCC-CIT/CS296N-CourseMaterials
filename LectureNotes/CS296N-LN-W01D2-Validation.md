@@ -147,15 +147,21 @@ Custom error messages can be added to the validation attribute. For example:
 
 A strongly typed view with model-binding using asp-for tag helpers is required.
 
-Links to JavaScript libraries for validation are required. Either libraries that are in CDNs, like those shown below, or libraries that are in the ```wwwroot``` folder of your project can be used.
+#### JavaScript Libraries Required
 
-In *_Layout.cshtml* add this line:
+Links to JavaScript libraries for validation are required. Either libraries that are in CDNs, like those shown in the code snippets below, or libraries that are in the ```wwwroot``` folder of your project can be used.
+
+##### jQuery
+
+In *_Layout.cshtml* add a line like this to load jQuery (if it isn't already there):
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 ```
 
-Then you can add a script section with links to validation libraries to the bottom of each view that needs to do validation:
+##### jQuery validate and unobtrusive validation
+
+Add a script section with links to validation libraries to the bottom of each view that needs to do validation:
 
 ```html
 @section Scripts {
@@ -166,7 +172,7 @@ Then you can add a script section with links to validation libraries to the bott
 
 (Note: Look near the bottom of  *_Layout.cshtml* to see how it processes ```@section Scripts```)
 
-**OR**
+**or**
 
 In *_ValidationScriptsPartial.cshtml* add these lines:
 
