@@ -2,21 +2,11 @@
 
 #   Troubleshooting Deployment to Azure   
 
-| Weekly topics                            |                                              |
-| ---------------------------------------- | -------------------------------------------- |
-| 1. Intro to course and Input validation  | **6. Publishing to Azure ~~& Async/Await~~** |
-| 2. Identity                              | 7. Creating a Web Service                    |
-| 3. Authentication and authorization      | 8. Consuming a Web Service                   |
-| 4. Security                              | 9. Docker containers                         |
-| 5. ~~Publishing to a production server~~ | 10. Term project                             |
-
 
 
 ## Contents
 
 [TOC]
-
-
 
 ## Problems with the Publish Process
 
@@ -87,6 +77,6 @@
 ------
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) 
-​ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.online), 2020, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+​ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2020, revised 2022, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 ------
