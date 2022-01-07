@@ -31,19 +31,13 @@ Microsoft offers a free Azure subscription for students and gives you $100 in cr
 ### Create a database via the Azure Web Portal         
 
 - Log into the [Azure portal](https://portal.azure.com).
-
 - Select SQL databases from the menu of services.
-
 - Click on +Add, then fill in the required fields.
-
 - - Create a resource group if you don't already have one.
-
-  - Create a server. You are only allowed to have one free database per region. You select the region when you set up your  server.
-
+  - Create a server. **Caution**: You are only allowed to have one free database per region. You select the region when you set up your  server.
   - Select a pricing tier
-
-  - - If you are using a free student subscription, select the "Standard" option. (You will be charged for any of the others, including "Basic").
-
+  - 
+    If you are using a free student subscription, select the "Standard" option. (You will be charged for any of the others, including "Basic").
 - Copy the ADO.NET connection string for your database. You will need to add it to the publish profile in Visual Studio.
    Example connection string:
    `Server=tcp:practiceserver.database.windows.net,1433;Initial Catalog=Movie; Persist Security Info=False; User ID={your_username}; Password={your_password}; MultipleActiveResultSets=False; Encrypt=True; TrustServerCertificate=False; Connection Timeout=30;`
