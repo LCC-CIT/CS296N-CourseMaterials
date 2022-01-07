@@ -29,9 +29,9 @@ To make the validation useful, in addition to adding validation annotations to m
 
 ### Production Version
 
-1.  In the "online text" for the Moodle assignment:
-    - Paste a link to your GitHub repository and branch for this lab.
-2.  Upload the code review document containing a review another student did of your code, with your comments describing what you changed or fixed.
+In the "online text" for the Moodle assignment:
+- Paste a link to your GitHub repository and branch for this lab.
+- Paste a link to the PR with the code review done for you by another student.
 
 
 
