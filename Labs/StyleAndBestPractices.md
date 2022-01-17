@@ -45,7 +45,7 @@
 
   ```C#
   string name = "Forrest Gump";
-  List<string> = names = new List<string>();
+  List<string> names = new List<string>();
   ```
 
   
