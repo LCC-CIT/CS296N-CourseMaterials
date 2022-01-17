@@ -15,10 +15,10 @@
 
 - Opening curly braces are placed below their associated line of code.
 
-- Conditional statements are always inside curly braces.
+- Conditional statements are always inside curly braces. (A style requirement, not a language requirement.)
 
   ```
-  if(gallons < 1)
+  if (gallons < 1)
   {
       isLowFuel = true;
   }
@@ -27,13 +27,28 @@
 ### Naming of variables, methods, classes, etc.
 
 - Names should be descriptive.
+
 - Boolean variables are prefixed with *is*, like `isValid`.
+
 - UI elements have the element type as a suffix, like `valueInput`.
+
 - Casing:
   - camelCase for variables.
   - CAPS_WITH_UNDERBARS should be used for constants.
     - Any repeated numbers should be represented by named constants.
   - TitleCase for everything else: properties, methods, classes, namespaces, etc.
+
+- 
+  Plurality
+
+  Variable, object, or property names should be singular unless they are for a collection (Array, List, Dictionary, etc.). For example:
+
+  ```C#
+  string name = "Forrest Gump";
+  List<string> = names = new List<string>();
+  ```
+
+  
 
 ### Dead Code
 
@@ -99,7 +114,7 @@ catch (System.DivideByZeroException e)
 
 -----
 
-[![ccbysa88x31](C:/Users/Brian/Repos/CS296N-CourseMaterials/LectureNotes/ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC course materials by [Brian Bird](https://profbird.dev) , written 2017, revised 2021, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![ccbysa88x31](C:/Users/Brian/Repos/CS296N-CourseMaterials/LectureNotes/ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC course materials by [Brian Bird](https://profbird.dev) , written 2017, revised 2022, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 -----
 
