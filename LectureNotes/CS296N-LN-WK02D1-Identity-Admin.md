@@ -1,7 +1,5 @@
 **CS296N Web Development 2: ASP.NET**                                                        
 
- Brian Bird
-
 # *User Management with Identity*
 
 | Weekly topics                           |                                 |
@@ -39,19 +37,18 @@ It is a class library (an API) for:
 
 ### Adding the infrastructure
 
-1. Use the NuGet package manager to add the following packages to your project:
+1. Use the NuGet package manager to add the following package to your project:
 
    - Microsoft.AspNetCore.Identity.EntityFrameworkCore
                  
 
-3. Modify your application's DbContext class to inherit from  IdentityDbContext.            
+3. Modify your application's DbContext class to inherit from `IdentityDbContext`.            
 
-   - This provides a way for Identity to add tables for storing user information to your database.
-   - All you need to do is change the inheritance.
-   - Don't add a new DbSet for Identity, that will be done by the parent class.
-   - Remove the DbSet for your user model, that is also managed in the parent class.
-
-4. Modify your *user* model so that the class inherits from `IdentityUser`. 
+   - This provides a way for Identity to add tables for storing user information to your database. All you need to do is change the inheritance.
+   - Don't add a new `DbSet` for Identity, that will be done by the parent class.
+   - Remove the DbSet for your User model, that is also managed in the parent class, `IdentityDbContext`.
+   
+4. Modify your *User* model so that the class inherits from `IdentityUser`. 
 
    - If your current user class is named "User", you should change it to something else, like "AppUser" so that you don't have a conflict with a library class named "User".
    - If your user class has user name or email properties, you should remove them since they are in the new base class (see below).
@@ -76,7 +73,7 @@ It is a class library (an API) for:
        .AddDefaultTokenProviders();
    ```
 
-   The `AddIdentity` method has generic type specifiers for the user class and the built-in `IdentityRole` class for roles.            
+   The `AddIdentity` method has generic type specifiers for the user class and the built-in `IdentityRole` class for user roles.            
 
    - The `AddEntityFrameworkStores` method specifies that Identity should use Entity Framework Core to store and retrieve its data, using the application's database context class. 
    - The `AddDefaultTokenProviders` method uses the default configuration to support operations that require a token, such as changing a password.
@@ -89,7 +86,7 @@ It is a class library (an API) for:
 7. Add a migration for the new user model and update the database using these CLI commands:
 
    ```powershell
-dotnet ef migrations add Identity
+   dotnet ef migrations add Identity
    dotnet ef database update
    ```
 
@@ -113,11 +110,7 @@ After adding Identity to your project, Inspect the database using SQL Server Obj
 
 ##### 
 
-
-
 ------
-
-
 
 
 
@@ -144,8 +137,8 @@ After adding Identity to your project, Inspect the database using SQL Server Obj
 
 ## Example Code on GitHub
 
-- Pro ASP.NET Core MVC 2, Ch. 28: [Identity example](https://github.com/Apress/pro-asp.net-core-mvc-2/tree/master/28%20-%20Identity/Users)
-- Instructor's Demo Web App using ASP.NET Core 3.1: [BookInfo&mdash;Identity branch](Instructor's Demo Web App using ASP.NET Core 2.2: [BookInfo&mdash;AddIdentity branch](https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity))
+- Instructor's Demo Web App using ASP.NET Core 3.1: [BookReviews&mdash;Identity branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/2-Identity)
+
 ------
 
 
@@ -158,7 +151,7 @@ After adding Identity to your project, Inspect the database using SQL Server Obj
 
 ------
 
-[ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) [ASP.NET Core MVC Course Materials](http://lcc-cit.github.io/CS296N-CourseMaterials/) by [ Brian Bird](https://profbird.dev), written winter 2017, revised winter 2021 are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+[ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) [ASP.NET Core MVC Course Materials](http://lcc-cit.github.io/CS296N-CourseMaterials/) by [ Brian Bird](https://profbird.dev), written winter 2017, revised winter 2022 are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
     
 
 ------
