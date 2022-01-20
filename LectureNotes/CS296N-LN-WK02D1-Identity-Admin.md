@@ -1,14 +1,14 @@
 **CS296N Web Development 2: ASP.NET**                                                        
 
-# *User Management with Identity*
+# *Intro to User Management with Identity*
 
-| Weekly topics                           |                                 |
-| --------------------------------------- | ------------------------------- |
-| 1. Intro to course and Input validation | 6. Load Testing and Performance |
-| **2. Identity**                         | 7. Creating a Web Service       |
-| 3. Authentication and authorization     | 8. Consuming a Web Service      |
-| 4. Publishing to a production server    | 9. Docker containers            |
-| 5. Security                             | 10. Term project                |
+| Weekly topics                                  |                                        |
+| ---------------------------------------------- | -------------------------------------- |
+| 1. Intro to course and Input validation        | 6. Async/Await / Complex Domain Models |
+| 2. Repositories and Unit Testing               | 7. Creating a Web Service              |
+| **3. Publishing to Azure / Intro to Identity** | 8. Consuming a Web Service             |
+| 4. Authentication                              | 9. Docker containers                   |
+| 5. Authorization                               | 10. Term project                       |
 
 **Contents**
 
@@ -83,14 +83,15 @@ It is a class library (an API) for:
     `app.UseAuthentication();`
              
 
-7. Add a migration for the new user model and update the database using these CLI commands:
-
-   ```powershell
-   dotnet ef migrations add Identity
-   dotnet ef database update
-   ```
-
-After adding Identity to your project, Inspect the database using SQL Server Object Explorer and note the new tables added by Identity. The tables listed below should have been created.
+7. 
+   Add a migration for the new user model and update the database using these commands:
+   
+   | CLI Commands                                                 | Package Console Commands                        |
+   | ------------------------------------------------------------ | ----------------------------------------------- |
+   | `dotnet ef migrations add Identity`<br />`dotnet ef database update` | `add-migration Identity`<br />`update-database` |
+   
+   After adding Identity to your project, Inspect the database using SQL Server Object Explorer and note the new tables added by Identity. The tables listed below should have been created.
+   
 
 - AspNetRoleClaims
 
@@ -107,10 +108,6 @@ After adding Identity to your project, Inspect the database using SQL Server Obj
 - AspNetUserTokens
 
 - Using Identity in administrative pages
-
-##### 
-
-------
 
 
 
