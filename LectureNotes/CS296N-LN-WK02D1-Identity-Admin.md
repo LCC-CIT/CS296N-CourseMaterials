@@ -127,6 +127,7 @@ It is a class library (an API) for:
 
 -  [ HTTP Authentication Mechanisms](https://code-maze.com/http-series-part-4/)
 -  [Exploring the  ASP.NET Core Identity Password Hasher](https://andrewlock.net/exploring-the-asp-net-core-identity-passwordhasher/)
+-  [Download SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) Use SSMS (free) to troubleshoot database problems.
 
 
 
