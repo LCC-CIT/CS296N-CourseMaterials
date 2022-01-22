@@ -15,11 +15,13 @@ How to deploy an ASP.NET Core web app with a database to the Azure cloud
 
 ## Azure for Students
 
-Microsoft offers a free Azure subscription for students and gives you $100 in credit on to spend on Azure services. The subscription is good for 12 moths <u>or</u> until you use up your credit&mdash;whichever comes first. There are many [services that are free](https://azure.microsoft.com/en-us/free/students/) with this subscription. We will not use Azure for anything that requires you to use your Azure credit in this class, so you should be able to use your account for the full 12 months. If you are still a student when the 12 months end, you can renew your free subscription.
+Microsoft offers a free Azure subscription for students and gives you $100 in credit on to spend on Azure services. The subscription is good for 12 moths <u>or</u> until you use up your credit&mdash;whichever comes first. There are many [services that are free](https://azure.microsoft.com/en-us/free/students/) with this subscription. If you are still a student when the 12 months end, you can renew your free subscription.
+
+We will not use Azure for anything that requires you to spend your Azure credit in this class until you do your term project and then you will only use about &dollar;5 a month. So you should be able to use your account for the full 12 months. 
 
 ### Get a Free *Azure for Students* Account 
 
-1. If you haven't already [signed up for a personal Microsoft account](https://account.microsoft.com/) using your LCC e-mail address, do it now. Be sure to select the "Personal" account option **not** the "Work or Scool" option.
+1. If you haven't already [signed up for a personal Microsoft account](https://account.microsoft.com/) using your LCC e-mail address, do it now.
 2. Sign up for [Azure Dev Tools for Teaching](https://signup.azure.com/studentverification?offerType=3) using your LCC e-mail address&mdash;if you haven't already done this.
 3. On the [Azure Dev Tools for Teaching](https://portal.azure.com/?Microsoft_Azure_Education_correlationId=bbe97574-470e-4568-b0db-4d73ba7adfd2#blade/Microsoft_Azure_Education/EducationMenuBlade/overview) page, click the blue button with the title "Claim your Azure Credit Now"
 4. On the following page, [Start building the future with Azure for Students](https://azure.microsoft.com/en-us/free/students/), click the green button with the title "Activate now".
@@ -37,7 +39,7 @@ Microsoft offers a free Azure subscription for students and gives you $100 in cr
   - Create a server. **Caution**: You are only allowed to have one free database per region. You select the region when you set up your  server.
   - Select a pricing tier
   - 
-    If you are using a free student subscription, select the "Standard" option. (You will be charged for any of the others, including "Basic").
+    Select the "**Standard**" option. (You will be charged for any of the others, including "Basic").
 - Copy the ADO.NET connection string for your database. You will need to add it to the publish profile in Visual Studio.
    Example connection string:
    `Server=tcp:practiceserver.database.windows.net,1433;Initial Catalog=Movie; Persist Security Info=False; User ID={your_username}; Password={your_password}; MultipleActiveResultSets=False; Encrypt=True; TrustServerCertificate=False; Connection Timeout=30;`
@@ -47,19 +49,17 @@ Microsoft offers a free Azure subscription for students and gives you $100 in cr
 ### Publish Your App from Visual Studio         
 
 
--  In Visual Studio, run the publish wizard by right-clicking on the project and selecting publish.
+-  In Visual Studio 2022, run the publish wizard by right-clicking on the project name in Solution Explorer and selecting "Publish...".
+-  Click on "More Actions", then "Edit" to change the settings in your publish profile
+-  Select the Settings page
 
-- Click on configure to change the settings in your publish profile
+    -  In the *Databases* section, check the checkbox for your SQL Server connection string name and paste in the connection string for your Azure SQL Database. (The one you got from the Azure portal web page.)
 
-- Select the Settings page
+    -  Be sure to put the <u>user name and password</u> for your Azure SQL Database into the connection string in place of your_username and your_password and delete the curly braces.
 
--  - In the *Databases* section, check the checkbox for your SQL Server connection string and paste the connection string for your Azure SQL Database.
+   -  In the *Entity Framework Migrations* section, check the check box for AppDbContext and add the connection string again.
 
-    - Be sure to put the <u>user name and password</u> for your Azure SQL Database in place of your_username and your_password and delete the curly braces.
-
-  - In the *Entity Framework Migrations* section, check the check box for AppDbContext and add the connection string again.
-
-- Now you can publish your web app.
+-  Now you can publish your web app.
 
 
 
@@ -77,30 +77,21 @@ All of the services we will use in this class are free and will not reduce your 
 
 - SQL Database on the "Standard S0: 10 DTUs" pricing plan
 
-  Note that currently (Fall 2020), a billing rate is shown when you select this pricing plan, but that billing rate does not apply to Azure for Students accounts. the Standard plan is actually free.
+  Note that currently (winter 2022), a billing rate is shown when you select this pricing plan, but that billing rate does not apply to Azure for Students accounts. the Standard plan is actually free.
 
 ### Monitoring your charges
 
-To be sure you aren't being charged, or to see what you are being charged for, you can check the [Microsoft Azure Sponsorships](https://www.microsoftazuresponsorships.com/) page. To see which services you are being charged for, click on the link for [Usage Details](https://www.microsoftazuresponsorships.com/Usage) and if you want to see which days each charge was made, you can click on the "Download" button, select "csv", and download a file you can open in a spreadsheet program like Excel so you can see a detailed description of your charges. Once you see what is using your credit, you can either shut down that service or change it's pricing tier.
+To be sure you aren't being charged, or to see what you are being charged for, you can check the [Microsoft Azure Sponsorships](https://www.microsoftazuresponsorships.com/) page. To see which services you are being charged for, click on the link for [Usage Details](https://www.microsoftazuresponsorships.com/Usage) and if you want to see which days each charge was made, you can click on the "Download" button, select "csv", and download a file you can open in a spreadsheet program like Excel so you can see a detailed description of your charges. Once you see what is using your credit, you can either delete that service or change it's pricing tier.
 
 
 
 ## Troubleshooting Your Web App on Azure
 
-If you are having problems with your web app on Azure there are a couple things that will help you with debugging:
+If you are having problems with your web app on Azure the main thing that will help you with debugging is enabling logging and looking at log files:
 
-1. Enable detailed error pages:
+https://stackify.com/azure-app-service-log-files/
 
-   - Follow these instructions to go to the configure app services page in the Azure portal:[ https://docs.microsoft.com/en-us/azure/app-service/configure-common#configure-app-settings](https://docs.microsoft.com/en-us/azure/app-service/configure-common#configure-app-settings) 
-   - Add a new application setting with:
-     - Name: ASPNETCORE_ENVIRONMENT
-     - Value: Development
 
-2. Enable logging and look at log files:
-
-   https://stackify.com/azure-app-service-log-files/
-
-   
 
 ---
 
