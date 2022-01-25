@@ -17,7 +17,6 @@
 ## Introduction
 
 - Q and A
-- Review due dates
 - Reminder to check Azure credit balances
 
 
