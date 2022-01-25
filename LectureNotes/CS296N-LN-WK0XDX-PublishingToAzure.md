@@ -81,9 +81,10 @@ All of the services we will use in this class are free and will not reduce your 
 
 ### Monitoring your charges
 
-To be sure you aren't being charged, or to see what you are being charged for, you can check the [Microsoft Azure Sponsorships](https://www.microsoftazuresponsorships.com/) page. To see which services you are being charged for, click on the link for [Usage Details](https://www.microsoftazuresponsorships.com/Usage) and if you want to see which days each charge was made, you can click on the "Download" button, select "csv", and download a file you can open in a spreadsheet program like Excel so you can see a detailed description of your charges. Once you see what is using your credit, you can either delete that service or change it's pricing tier.
+Some of your accounts give you one way to check the usage of your $100 credit, some another. These are the two different ways to check:
 
-
+1. By going to the https://www.microsoftazuresponsorships.com/ web page and checking it there.
+2. By going to https://azure.portal.com and clicking your name in the upper-right corner, then clicking the three dots, then the menu option: "View My Bill."
 
 ## Troubleshooting Your Web App on Azure
 
