@@ -2,13 +2,13 @@
 
 # *Authentication with Identity*
 
-| Weekly topics                           |                                 |
-| --------------------------------------- | ------------------------------- |
-| 1. Intro to course and input validation | 6. Load testing and performance |
-| 2. Identity                             | 7. Creating a web service       |
-| **3. Authentication and authorization** | 8. Consuming a web service      |
-| 4. A more complex data model            | 9. Docker containers            |
-| 5. Security                             | 10. Term project                |
+| Weekly topics                                  |                                        |
+| ---------------------------------------------- | -------------------------------------- |
+| 1. Intro to course and Input validation        | 6. Async/Await / Complex Domain Models |
+| 2. Repositories and Unit Testing               | 7. Creating a Web Service              |
+| **3. Publishing to Azure / Intro to Identity** | 8. Consuming a Web Service             |
+| 4. Authentication                              | 9. Docker containers                   |
+| 5. Authorization                               | 10. Term project                       |
 
 ## Contents
 
@@ -17,23 +17,10 @@
 ## Introduction
 
 - Q and A
-- Review quiz 3
+- Review due dates
+- Reminder to check Azure credit balances
 
 
-
-## Review of last class
-
-### Adding Identity
-
-We Added Identity to a project by adding these things:
-
-- NuGet package
-- Startup service and configuration
-- User model inherits from `IdentityUser`
-- App's DbContext class inherits from `IdentityDbContext`
-- New migration and database update
-
-When we were done with this, we were able to see Identity tables in our database, but that is all. Nothing changed in our web site behavior.
 
 ### Adding User Registration
 
@@ -183,4 +170,4 @@ Microsoft ASP.NET Core MVC Tutorial
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes by [Brian Bird](https://birdsbits.blog) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 

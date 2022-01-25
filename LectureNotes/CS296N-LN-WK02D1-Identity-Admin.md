@@ -81,8 +81,10 @@ It is a class library (an API) for:
 
 6. In Startup.cs, `Configure`, add:
     `app.UseAuthentication();`
-             
-
+    
+6. If you have overridden `OnModelCreating` in your database context class, then add a call to the base class method. This is because the base class method creates the Identity tables.    
+    ```
+    
 7. 
    Add a migration for the new user model and update the database using these commands:
    

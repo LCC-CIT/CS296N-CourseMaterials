@@ -15,7 +15,6 @@
 ## Introduction
 
 - Do PRs and code reviews
-- Review quiz 2
 
 ------
 
