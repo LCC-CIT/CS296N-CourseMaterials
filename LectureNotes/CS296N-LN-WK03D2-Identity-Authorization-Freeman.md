@@ -1,14 +1,14 @@
-**CS296N Web Development 2: ASP.NET, 2020**                                                    
+**CS296N Web Development 2: ASP.NET**                                                 
 
 # *Authorization with Identity*
 
-| Weekly topics                           |                                 |
-| --------------------------------------- | ------------------------------- |
-| 1. Intro to course and Input validation | 6. Load Testing and Performance |
-| 2. Identity                             | 7. Creating a Web Service       |
-| **3. Authentication and authorization** | 8. Consuming a Web Service      |
-| 4. Security                             | 9. Docker containers            |
-| 5. Publishing to a production server    | 10. Term project                |
+| Weekly topics                                  |                                        |
+| ---------------------------------------------- | -------------------------------------- |
+| 1. Intro to course and Input validation        | 6. Async/Await / Complex Domain Models |
+| 2. Repositories and Unit Testing               | 7. Creating a Web Service              |
+| **3. Publishing to Azure / Intro to Identity** | 8. Consuming a Web Service             |
+| 4. Authentication                              | 9. Docker containers                   |
+| 5. Authorization                               | 10. Term project                       |
 
 
 

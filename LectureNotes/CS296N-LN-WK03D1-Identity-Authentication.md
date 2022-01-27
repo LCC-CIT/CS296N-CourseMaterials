@@ -21,12 +21,12 @@
 
 
 
-### Adding User Registration
+### Review User Registration
 
-We got a head-start on this week's topic of Authentication by adding registration to our web app by adding the following:
+Last time we added user registration to our web app by adding the following:
 
-- A view: Registration
 - A view-model: RegisterVM
+- A view: Registration
 - Methods in the AccountController:
   - HttpGet version of Register
   - HttpPost version of Register
