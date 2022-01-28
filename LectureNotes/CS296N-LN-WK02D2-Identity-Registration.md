@@ -66,11 +66,12 @@ We will add authentication to our app in the next class.
 
 We take a bit of a short-cut by copying the registration code from the textbook. We will be adding the following:
 
-- A view: Registration
 - A view-model: RegisterVM
-- Methods in the AccountController:
+- A controller: AccountController, with these methods:
   - HttpGet version of Register
   - HttpPost version of Register
+- A view: Registration
+  - Add code to load JavaScript libraries for validation in the browser
 
 
 
