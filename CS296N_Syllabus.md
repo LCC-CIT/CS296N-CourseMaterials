@@ -7,7 +7,7 @@
 | CRN | 30486                            |      | Name         | Brian Bird                           |
 | Credits | 4                                    |      | Email        | birdb@lanecc.edu                     |
 | Time     | Tu, Th, 10:00 – 11:50                |      | Office       | [lanecc.zoom.us/j/94002309439](https://lanecc.zoom.us/j/94002309439) |
-| Zoom     | [lanecc.zoom.us/j/98797466911](https://lanecc.zoom.us/j/98797466911) |      | Office Hours | 2:00 &ndash; 2:50 and by appointment |
+| Zoom     | [lanecc.zoom.us/j/98797466911](https://lanecc.zoom.us/j/98797466911) |      | Office Hours | M, W 1:00&ndash;2:00<br />Tu, Th 2:00&dash;3:00<br /> or by appointment |
 
 
 
