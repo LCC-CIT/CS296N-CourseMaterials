@@ -1,0 +1,8 @@
+It's great to see your site running on Azure! Here's the breakdown for your score:
+Screen-shot of credit balance: 10
+Site runs on Azure: 20
+Database works on Azure: 20
+
+Your screenshot shows that your balance is not shown on that page. It says "Scholarship not active". This means that to see your credit balance you need to go to https://azure.portal.com and click on your name in the upper-right corner, then click on the three dots, then in the menu option: "View My Bill."
+
+
