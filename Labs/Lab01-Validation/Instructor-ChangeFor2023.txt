@@ -1,6 +1,11 @@
 Modify the lab instructions to  have part 1 and part 2. The current instructions go in part 2.
 Part 1 will be the textbook exercise.
 
+Instructions for reporting the exercise:
+* "Studied it": Carefully studied the code in the book to understand it. 5/10
+* "Ran and studied it": Downloaded the code, put breakpoints in relevant methods and experimented with the code to understand how it works: 7/10
+* "Did it all": Downloaded the exercise start and did all the steps in the exercise: 10/10
+
 Change the requirements for model properties to validate. Validate all properties that have corresponding form fields in views. At least 4?
 
 Change the requirements for validation in the browser:
