@@ -1,4 +1,4 @@
-Make the instructions for reporting the exercise consistent. 
+Make the instructions for reporting the exercise consistent:
 Recommendation:
 * "Studied it": Carefully studied the code in the book to understand it. 5/10
 * "Ran and studied it": Downloaded the code, put breakpoints in relevant methods and experimented with the code to understand how it works: 7/10
