@@ -47,9 +47,9 @@ Your web site should meet the following requirements:
 
    Publish your web app to Azure or some other web host.
 
-   On Azure this will require a second Azure database. Use a database with the Basic pricing tier. This will only use about $5 a month ofyour student credit.
+   - On Azure this will require a second Azure database. Use a database with the Basic pricing tier. This will only use about $5 a month of your student credit.
    
-   Alternatively, you could use a [low-cost hosting service](https://birdsbits.wordpress.com/2019/02/18/publishing-an-asp-net-core-web-app-to-a-cheap-windows-hosting-service/). 
+   - Alternatively, you could use a [low-cost hosting service](https://birdsbits.wordpress.com/2019/02/18/publishing-an-asp-net-core-web-app-to-a-cheap-windows-hosting-service/). 
    
    
 
