@@ -83,7 +83,6 @@ In order to work with roles, we need a way to create roles and assign roles to u
     
     -  We're using `IEnumerable<AppUser>` here instead of` IList<AppUser>` because we will only be iterating over the collection and don't need arbitrary access to it.[^1]
     
-
 4. Add the `AdminController` (`UserController` in the textbook) that will be used to manage users and roles. The controller implements these action methods:
 
    - User Management
@@ -99,7 +98,6 @@ In order to work with roles, we need a way to create roles and assign roles to u
         - `CreateAdminRole()`&mdash;Creates the "Admin" role
         - `DeleteRole(string)`&mdash;Removes a role
    
-
 5. Add the `Admin` / `Index` view
 
 6. Add the `Admin` / `Add` view
@@ -157,7 +155,7 @@ Microsoft ASP.NET Core MVC Tutorial
 
 See also When [To Use IEnumerable Or ICollection Or IList Or List](https://www.c-sharpcorner.com/blogs/when-to-use-ienumerable-or-icollection-or-ilist-or-list) by Tanuj Khurana, 2016
 
-
+[.NET API Documentation for System.Collections](https://docs.microsoft.com/en-us/dotnet/api/system.collections?view=net-6.0) See which classes are derived from which interfaces.
 
 ------
 
