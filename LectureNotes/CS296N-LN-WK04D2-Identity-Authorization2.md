@@ -27,24 +27,13 @@ We added the `AdminController`, some supporting code and two views:
 
 ## Overview of Today's Demo
 
-We will use Delamater and Murach (2020) as a guide to continue adding an administrative page for user and role management to our web site.  We will add these items:
+We will:
 
-- `AdminController` methods for:
-
-  - Delete user
-  - Add to Admin
-  - Remove from Admin
-  - Delete role
-- Restrict the admin controller
-- Add Admin to our navigation menu, but only for admin users
+- Restrict posting of reviews to logged in users.
+- Restrict the admin controller to users in the "Admin" role.
+- Add Admin to our navigation menu, but only for admin users.
+- Add code to seed the database with a default admin user.
 - Re-publish to Azure
-
-
-### More Administrative Features
-
-As shown in the section of the textbook titled "Other action methods of the UserController"
-
-We will add these methods to the `AdminController`.
 
 
 
@@ -53,18 +42,21 @@ We will add these methods to the `AdminController`.
 We will use the following C# attributes to restrict access classes or methods:
 
 - `[Authorize]`
-
-  Limits access to logged in users.
+- Limits access to logged in users.
+  - If a user tries to access a method that requires authorization, they will automatically be redirected to Account/Login[^1]. 
 
 - `[Authorize(Roles = "Admin")]`
+  - Limits access to users in the Admin role.
+  - If a user not in this role tries to access a method with this restriction, they will be automatically redirected to Account/AccessDenied[^2].
 
-  Limits access to users in the Admin role
 
 We will add an `AccessDenied` view to the Account views
 
 
 
 ### Seeding Uses and Roles
+
+We will add code to seed an Admin user[^3].
 
 Add a method to the `SeedData` class named `SeedUsers`.
 
@@ -82,11 +74,7 @@ Add a method to the `SeedData` class named `SeedUsers`.
 
 - Review due dates on Moodle
 
-## Footnotes
 
-Note: seeded users don't have a password--but this isn't necessarily a problem.
-We wouldn't normally seed users for production--except an administrator.
-The admin can register to give themselves a password; noting that the username is case sensitive when registering.
 
 ## Example Code Repositories
 
@@ -102,7 +90,7 @@ The admin can register to give themselves a password; noting that the username i
 
 - Ch. 16, "How to Authenticate and Authorize Users"
 
-*Pro ASP.NET Core MVC 2*, Freeman, Apress, 2017
+*Pro ASP.NET Core MVC 2*, Freeman, Apress, 2017
 
 - Ch. 12 - SportsStore: Sections on Identity - [Notes](SportsStoreCh12.html)
 - Ch. 29 - Applying ASP.NET Core Identity: Authorizing users with roles 
@@ -118,7 +106,19 @@ Microsoft ASP.NET Core MVC Tutorial
 - Review due dates on Moodle.
 - There is reading, but no reading quiz for next week.
 
+
+
+## Footnotes
+
+[^1]: Account/Login is the default path that unauthorized (not logged in) users will be redirected to when they try to access an action method restricted with the [Authorize] attribute. 
+[^2]: Account/AccessDenied is the default path that unauthorized (not in the required role) users will be redirected to when they try to access an action method restricted with the [Authorize(Roles = "SomeRole")] attribute.
+[^3]: The users I seeded before adding authentication don't have a password--but this isn't necessarily a problem. They work for the Reviews in the seed data. 
+
+
+
+
+
 ------
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes, written winter 2021, by [Brian Bird](https://birdsbits.blog) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes, written winter 2021, revised winter 2022, by [Brian Bird](https://profbird.dev) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
