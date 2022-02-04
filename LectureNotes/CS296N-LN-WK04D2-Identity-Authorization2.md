@@ -41,12 +41,13 @@ We will use Delamater and Murach (2020) as a guide to finish adding authorizatio
 We will use the following C# attributes to restrict access classes or methods:
 
 - `[Authorize]`
-
-  Limits access to logged in users.
+- Limits access to logged in users.
+  - If a user tries to access a method that requires authorization, they will automatically be redirected to Account/Login[^1]. 
 
 - `[Authorize(Roles = "Admin")]`
+  - Limits access to users in the Admin role.
+  - If a user not in this role tries to access a method with this restriction, they will be automatically redirected to Account/AccessDenied[^2].
 
-  Limits access to users in the Admin role
 
 
 
@@ -70,6 +71,7 @@ We will use the following C# attributes to restrict access classes or methods:
         ```
 
 4. Turn off scope validation for the default service provider. In `Program.cs`, add this code that modifies the expression `webBuilder.UserStartup<Startup>;`
+We will add code to seed an Admin user[^3].
 
        ```c#
        webBuilder.UserStartup<Startup>
@@ -109,7 +111,7 @@ We will use the following C# attributes to restrict access classes or methods:
 
 - Ch. 16, "How to Authenticate and Authorize Users"
 
-*Pro ASP.NET Core MVC 2*, Freeman, Apress, 2017
+*Pro ASP.NET Core MVC 2*, Freeman, Apress, 2017
 
 - Ch. 12 - SportsStore: Sections on Identity - [Notes](SportsStoreCh12.html)
 - Ch. 29 - Applying ASP.NET Core Identity: Authorizing users with roles 
@@ -129,13 +131,15 @@ Microsoft ASP.NET Core MVC Tutorial
 
 ## Footnotes
 
-Note: seeded users don't have a password--but this isn't necessarily a problem.
-We wouldn't normally seed users for production--except an administrator.
-The admin can register to give themselves a password; noting that the username is case sensitive when registering.
+[^1]: Account/Login is the default path that unauthorized (not logged in) users will be redirected to when they try to access an action method restricted with the [Authorize] attribute. 
+[^2]: Account/AccessDenied is the default path that unauthorized (not in the required role) users will be redirected to when they try to access an action method restricted with the [Authorize(Roles = "SomeRole")] attribute.
+[^3]: The users I seeded before adding authentication don't have a password--but this isn't necessarily a problem. They work for the Reviews in the seed data. 
 
-## 
+
+
+
 
 ------
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes, written winter 2021, by [Brian Bird](https://birdsbits.blog) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes, written winter 2021, revised winter 2022, by [Brian Bird](https://profbird.dev) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 

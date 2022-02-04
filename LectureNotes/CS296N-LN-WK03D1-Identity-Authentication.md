@@ -2,13 +2,13 @@
 
 # *Authentication with Identity*
 
-| Weekly topics                                  |                                        |
-| ---------------------------------------------- | -------------------------------------- |
-| 1. Intro to course and Input validation        | 6. Async/Await / Complex Domain Models |
-| 2. Repositories and Unit Testing               | 7. Creating a Web Service              |
-| **3. Publishing to Azure / Intro to Identity** | 8. Consuming a Web Service             |
-| 4. Authentication                              | 9. Docker containers                   |
-| 5. Authorization                               | 10. Term project                       |
+| Weekly topics                              |                                        |
+| ------------------------------------------ | -------------------------------------- |
+| 1. Intro to course and Input validation    | 6. Async/Await / Complex Domain Models |
+| 2. Repositories and Unit Testing           | 7. Creating a Web Service              |
+| 3. Publishing to Azure / Intro to Identity | 8. Consuming a Web Service             |
+| **4. Authentication**                      | 9. Docker containers                   |
+| 5. Authorization                           | 10. Term project                       |
 
 ## Contents
 
@@ -28,8 +28,8 @@ Last time we added user registration to our web app by adding the following:
 - A view-model: RegisterVM
 - A view: Registration
 - Methods in the AccountController:
-  - HttpGet version of Register
-  - HttpPost version of Register
+  - HttpGet version of `Register`
+  - HttpPost version of `Register`
 
 
 
@@ -58,11 +58,21 @@ The @Inject directive does the same thing for a view that adding a parameter to 
 
 #### Login
 
-Pages 674&ndash;679 describe the process of adding login
+Pages 674&ndash;679 describe the process of adding:
 
-- ViewModel
-- View
-- Controller methods
+- `LoginVM` view model
+- `Login` view
+- `AccountController` methods
+  - HttpGet version of `Login`
+    - Note: this method will be called with a returnUrl as an argument if an unauthorized user tries to access an action method that requires authorization. When they do that, they are automatically redirected to this action method.
+
+  - HttpPost version of `Login`
+  - `Logout`
+
+
+##### Setting a persistent cookie
+
+The Login view has a check box labeled "Remember me". When this box is checked, the user's login information will be stored in a *persistent cookie*[^1] instead of a *session cookie*. The type of cookie is that is created is determined by the `isPersistent` parameter of `SignInManager.PasswordSignInAsync`. 
 
 ### Updating code that uses `AppUser`
 
@@ -136,8 +146,6 @@ public IActionResult Review(Review model)
 
 [BookReivew, Lab03 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab03)&mdash;Instructor's 2021 example
 
-[BookInfo, Authentication branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authentication) &mdash;Instructors 2020 example.
-
 
 
 ## References
@@ -163,6 +171,14 @@ Microsoft ASP.NET Core MVC Tutorial
 
 - Review due dates on Moodle
 - Talk about the lab assignment
+
+
+
+## Footnotes
+
+[^1]:  A *session cookie* expires as soon as its browser session ends. A *persistent cookie* can persist across multiple sessions and has an expiration date and time on it that determine its lifetime. See [Define the lifetime of a cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#define_the_lifetime_of_a_cookie).
+
+
 
 ------
 

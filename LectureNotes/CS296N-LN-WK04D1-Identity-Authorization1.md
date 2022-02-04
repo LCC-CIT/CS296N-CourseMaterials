@@ -55,13 +55,15 @@ There are two main parts to authorization:
 
 ## Implementing Authorization
 
-We will use Delamater and Murach (2020) as a guide to adding authentication to our web app. We'll discuss both the "how" and the "why" as we do it.
+We will use Delamater and Murach (2020) as a guide to adding authorization to our web app. We'll discuss both the "how" and the "why" as we do it.
+
+In today's session we will not actually restrict any parts of the web site. We'll just set up user roles and role management. We'll add restrictions to parts of our web site based on roles in the next session.
 
 ### Managing Users and Roles
 
 In order to work with roles, we need a way to create roles and assign roles to users. We'll make the changes and add the view shown in the textbook starting with the section titled "The user entity and view model".
 
-1. Add `app.UseAuthorization` to the Configure method in the Startup class. This must come <u>after</u> `app.UseAuthentication`!
+1. Add `app.UseAuthorization` to the Configure method in the Startup class. This must come <u>after</u> `app.UseAuthentication`!
 2. Add a list of role names to `AppUser`. This is not needed by Identity. We're just adding it to facilitate our administrative page for managing users and roles.
 
     ```c#
