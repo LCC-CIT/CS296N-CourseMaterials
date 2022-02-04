@@ -27,28 +27,16 @@ We added the `AdminController`, some supporting code and two views:
 
 ## Overview of Today's Demo
 
-We will use Delamater and Murach (2020) as a guide to continue adding an administrative page for user and role management to our web site.  We will add these items:
+We will use Delamater and Murach (2020) as a guide to finish adding authorization to our web app.
 
-- `AdminController` methods for:
-
-  - Delete user
-  - Add to Admin
-  - Remove from Admin
-  - Delete role
 - Restrict the admin controller
 - Add Admin to our navigation menu, but only for admin users
+- Seed users and an admin role
 - Re-publish to Azure
 
 
-### More Administrative Features
 
-As shown in the section of the textbook titled "Other action methods of the UserController"
-
-We will add these methods to the `AdminController`.
-
-
-
-### Restricting Access 
+## Restricting Access 
 
 We will use the following C# attributes to restrict access classes or methods:
 
@@ -60,15 +48,38 @@ We will use the following C# attributes to restrict access classes or methods:
 
   Limits access to users in the Admin role
 
-We will add an `AccessDenied` view to the Account views
 
 
+## Demo&mdash;Finishing the Authorization Code
 
-### Seeding Uses and Roles
+1. Restrict access to authorized users
+   - Add the `[Authorize]` attribute to the `Review` methods (for posting a review) in the `ReviewController`.
+   - Add `[Authorize(Roles = "Admin")]` to the `AdminController` 
+2. Provide notification and redirection to unauthorized users
+   - Add an HTTP GET `AccessDenied()` action method to the `AcccountController`. This will notify unauthorized users that they either need to log in or don't have Admin priveleges.
+   - Add the `AccessDenied` view to the Views / Account folder
+3. Seed an admin user
+   - Write a new method, `SeedAdminUser(IServiceProvider serviceProvider)` in the `SeedData` class. 
+     - Notes:
+       -  I've changed the name and class of this method from those used by the `CreateAdminUser` method in the textbook.)
+       - This method needs to return an `async Task` because it calls `UserManager` async methods  using `await`.
+     - In `Startup`, in the `Cofnigure` method, after all the other configuration statements, add a call to the `CreateAdminUser` method.
 
-Add a method to the `SeedData` class named `SeedUsers`.
+        ```c#
+        SeedData.SeedAdminUser(app.ApplicationServices).Wait();
+        ```
 
+4. Turn off scope validation for the default service provider. In `Program.cs`, add this code that modifies the expression `webBuilder.UserStartup<Startup>;`
 
+       ```c#
+       webBuilder.UserStartup<Startup>
+         .UseDefaultServiceProvider(
+             options => options.ValidateScopes = false); }
+       ```
+
+   - Scope validation is turned on by default. It's purpose is a bit complicated, but it has to do with ensuring objects that are injected with a scoped lifetime are managed correctly. Scope validation will not properly handle the `ServiceProvider` object we are injecting a  into our `SeedAdminUser` method, so we need to turn it off. Read more about scope validation [here](https://bartwullems.blogspot.com/2019/02/aspnet-core-scope-validation.html).
+
+     
 
 ## Conclusion
 
@@ -82,17 +93,13 @@ Add a method to the `SeedData` class named `SeedUsers`.
 
 - Review due dates on Moodle
 
-## Footnotes
 
-Note: seeded users don't have a password--but this isn't necessarily a problem.
-We wouldn't normally seed users for production--except an administrator.
-The admin can register to give themselves a password; noting that the username is case sensitive when registering.
 
-## Example Code Repositories
+## Examples
 
 [BookReivew, Lab04 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab04)&mdash;2021 example
 
-[BookInfo, Authorization branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Authorization) &mdash;Admin view and controller methods from 2020.
+
 
 
 
@@ -117,6 +124,16 @@ Microsoft ASP.NET Core MVC Tutorial
 
 - Review due dates on Moodle.
 - There is reading, but no reading quiz for next week.
+
+
+
+## Footnotes
+
+Note: seeded users don't have a password--but this isn't necessarily a problem.
+We wouldn't normally seed users for production--except an administrator.
+The admin can register to give themselves a password; noting that the username is case sensitive when registering.
+
+## 
 
 ------
 
