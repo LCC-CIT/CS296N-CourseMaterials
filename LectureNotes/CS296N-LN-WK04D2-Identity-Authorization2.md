@@ -58,8 +58,6 @@ We will add an `AccessDenied` view to the Account views
 
 We will add code to seed an Admin user[^3].
 
-Add a method to the `SeedData` class named `SeedUsers`.
-
 
 
 ## Conclusion
