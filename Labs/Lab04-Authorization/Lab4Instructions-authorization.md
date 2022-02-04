@@ -14,24 +14,18 @@ Learn how to authorize user access to different sections of a web app based on u
 
 You will add all the same Authorization and Administration features to your web site that your instructor added to the example web site:
 
-- Two roles of your choice.
-  
-  - One for all registered users.
-  - Another for administrators.
-  
-- Restrict some part of the web site to only be accessed by registered users.
-
+- Add the code needed to support authorization (inject `UserManager` and `RoleManager` objects into the appropriate controllers, etc.)
 - Add a page for user and role management. 
-  The operations on this page will be:
-
+  The page will have these features at a minimum:
   - Delete user
   - Add to Admin
   - Remove from Admin
   - Delete role
+- Restrict some parts of the web site:
+  - Only logged in users can do operations that store information in the database.
+  - Only admin users can access the admin pages.
 
-- Restrict access to the management page to administrators.
-
-  - You will need to seed the database with a user who is in the Admin role in order to be able to access the management page for the first time.
+- Seed the database with a user who is in the Admin. In addition, be sure to add or change the appropriate code in the `Startup` and `Program` classes.
 
 
 - Add a link for the admin page to the navigation menu that only appears when a user in the Admin role is logged in.
