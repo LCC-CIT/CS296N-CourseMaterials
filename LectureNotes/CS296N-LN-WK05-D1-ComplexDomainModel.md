@@ -54,7 +54,7 @@ This web site lets users enter book reviews, which include information on the bo
 
 ### UML diagram
 
-[Domain model UML class diagram](BookInfo3DomainModel.pdf)
+[Domain model UML class diagram](Images/BookInfo3DomainModel.pdf)
 
 ### C# code
 

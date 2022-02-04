@@ -41,7 +41,7 @@ We will use Delamater and Murach (2020) as a guide to finish adding authorizatio
 We will use the following C# attributes to restrict access classes or methods:
 
 - `[Authorize]`
-- Limits access to logged in users.
+  - Limits access to logged in users.
   - If a user tries to access a method that requires authorization, they will automatically be redirected to Account/Login[^1]. 
 
 - `[Authorize(Roles = "Admin")]`
@@ -71,16 +71,16 @@ We will use the following C# attributes to restrict access classes or methods:
         ```
 
 4. Turn off scope validation for the default service provider. In `Program.cs`, add this code that modifies the expression `webBuilder.UserStartup<Startup>;`
-We will add code to seed an Admin user[^3].
+   We will add code to seed an Admin user[^3].
 
-       ```c#
-       webBuilder.UserStartup<Startup>
-         .UseDefaultServiceProvider(
-             options => options.ValidateScopes = false); }
-       ```
+   ```c#
+   webBuilder.UserStartup<Startup>
+     .UseDefaultServiceProvider(
+         options => options.ValidateScopes = false); }
+   ```
 
    - Scope validation is turned on by default. It's purpose is a bit complicated, but it has to do with ensuring objects that are injected with a scoped lifetime are managed correctly. Scope validation will not properly handle the `ServiceProvider` object we are injecting a  into our `SeedAdminUser` method, so we need to turn it off. Read more about scope validation [here](https://bartwullems.blogspot.com/2019/02/aspnet-core-scope-validation.html).
-
+   
      
 
 ## Conclusion
