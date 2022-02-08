@@ -1,25 +1,25 @@
 # *Introduction to Async and Await in C#*
 
-| Weekly topics                              |                                            |
-| ------------------------------------------ | ------------------------------------------ |
-| 1. Intro to course and Input validation    | **6. Async/Await / Complex Domain Models** |
-| 2. Repositories and Unit Testing           | 7. Creating a Web Service                  |
-| 3. Publishing to Azure / Intro to Identity | 8. Consuming a Web Service                 |
-| 4. Authentication                          | 9. Docker containers                       |
-| 5. Authorization                           | 10. Term project                           |
+| Weekly topics                              |                                 |
+| ------------------------------------------ | ------------------------------- |
+| 1. Intro to course and Input validation    | **6. Async/Await**              |
+| 2. Repositories and Unit Testing           | 7. Load Testing and Performance |
+| 3. Publishing to Azure / Intro to Identity | 8. Complex Domain Models        |
+| 4. Authentication                          | 9. Docker containers            |
+| 5. Authorization                           | 10. Term project                |
 
 
 [TOC]
 
 ## Task Asynchronous Programming Model
 
-Asynchronous methods are non-blocking methods. Execution moves on to the next line  of code after the method call without waiting for the method to reutrn.
+Asynchronous methods are non-blocking methods. Execution moves on to the next line  of code after the method call without waiting for the method to return.
 
-Each asyc method returns a *Task* object. You can start as many Async methods as you want (within  practical limits) without waiting for one to finish before you start  another.
+Each async method returns a *Task* object. You can start as many Async methods as you want (within  practical limits) without waiting for one to finish before you start  another.
 
 The *await* keyword provides a way to pause execution until an async method  completes or until it returns a Task object. Using await on a Task  rather than a method often improves performance.
 
-Use the *async* keyword when declaring an asynchronous method. Any method declared as  async, must return a Task object. Every async method must be called from withiin another async method or use the .*Wait()* method when calling the async method.
+Use the *async* keyword when declaring an asynchronous method. Any method declared as  async, must return a Task object. Every async method must be called from within another async method or use the .*Wait()* method when calling the async method.
 
 ## Examples
 
