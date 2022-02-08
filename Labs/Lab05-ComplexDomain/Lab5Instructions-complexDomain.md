@@ -1,4 +1,4 @@
-# Lab 5 – A Complex Domain Model
+# Lab 5 – Async Methods and a Complex Domain Model
 
 CS296N, Web Development 2: ASP.NET
 
