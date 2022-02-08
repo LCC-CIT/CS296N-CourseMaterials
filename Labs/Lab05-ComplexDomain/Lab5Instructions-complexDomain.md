@@ -1,38 +1,45 @@
-# Lab 5 – A Complex Domain Model
+# Lab 5 – Async Methods and a Complex Domain Model
 
 CS296N, Web Development 2: ASP.NET
 
-## Contents
+## Objectives
 
-[TOC]
-
-## Objective
-
-Learn to design and implement a domain model that has more than two classes and includes a one-to-many, or many-to-one relationship.
+1. Learn to use async methods in controllers and repositories.
+2. Learn to design and implement a domain model that has more than two classes and includes a one-to-many, or many-to-one relationship.
 
 ## Part 1
 
-Add one or two additional classes to your web site's domain model. Make a UML class diagram of your domain model--include cardinality. Here are suggestions:
+Modify the controller that will use your new model class(es) so that it uses async methods. You only need to make the methods that access the database or that use the UserManager or RoleManager async. 
 
-### Group A
+This will have ripple effects:
+
+- You will need to make methods in the repository async as well&mdash;Interface, real repository, and fake repository. 
+- You will need to modify any affected unit tests to use .Wait() on the async controller methods
+
+## Part 2
+
+Add one or two additional model classes to your web site's domain model.
+
+- Make a UML class diagram of your domain model with the new class(es)--include cardinality.
+- Code the new domain model and add the corresponding controller method(s) and view(s) so that the new feature can be used. Use async methods in the controller.
+
+### Suggested Domain Model additions
+
+You can add any additional model(s) classes that make sense, but here are some suggestions:
+
+#### Group A
 
 Add replies as an additional type of message. A message can have multiple replies. Hint: a reply is a message.
 
-### Group B
+#### Group B
 
 Add comments to stories. A story can have multiple comments.
 
-### Group C
+#### Group C
 
 Add replies to posts. A post can have multiple replies and a reply is a post.
 
 
-
-
-
-## Part 2
-
-Implement your domain model in code. Add the corresponding controller method and view so that the new feature can be used by site users.
 
 
 
@@ -64,7 +71,7 @@ Implement your domain model in code. Add the corresponding controller method and
 
 ------
 
-Written by Brian Bird, Lane Community College, winter 2019, revised winter 2021
+Written by Brian Bird, Lane Community College, winter 2019, revised winter 2022
 
 ------
 
