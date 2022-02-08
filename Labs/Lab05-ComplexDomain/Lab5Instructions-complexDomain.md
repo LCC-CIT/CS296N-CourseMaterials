@@ -2,15 +2,16 @@
 
 CS296N, Web Development 2: ASP.NET
 
-## Objective
+## Objectives
 
-Learn to design and implement a domain model that has more than two classes and includes a one-to-many, or many-to-one relationship.
+1. Learn to use async methods in controllers and repositories.
+2. Learn to design and implement a domain model that has more than two classes and includes a one-to-many, or many-to-one relationship.
 
 ## Part 1
 
 Modify the controller that will use your new model class(es) so that it uses async methods. You only need to make the methods that access the database or that use the UserManager or RoleManager async. 
 
-This will have ripple effects. 
+This will have ripple effects:
 
 - You will need to make methods in the repository async as well&mdash;Interface, real repository, and fake repository. 
 - You will need to modify any affected unit tests to use .Wait() on the async controller methods
