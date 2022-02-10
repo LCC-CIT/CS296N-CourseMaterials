@@ -11,6 +11,15 @@
 
 [TOC]
 
+## Intro
+
+- Q and A
+- Announcements (2022)
+  - I've added links to LinkedIn Learning (formerly Lynda.con) video courses for most topics in this class.
+  - I plan to get caught up on grading over the weekend.
+
+
+
 ## Task Asynchronous Programming Model
 
 Asynchronous methods are *non-blocking* methods. Execution moves on to the next line  of code after the method call without waiting for the method to return.
@@ -23,15 +32,48 @@ Use the `async` keyword when declaring an asynchronous method. Any method declar
 
 Synchronous code can be made asynchronous using `Task.Run(()=> SomeSyncronousCode);`
 
+### Viewing Running Threads
+
+If you want to see the threads created by your tasks, you can view processes and threads running on Windows using the free [Process Explorer](https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer) app.
+
+
+
+## Asynchronous Programming for ASP.NET MVC
+
+### Why Use Async Methods?
+
+Since the MVC framework only creates one short-lived instance of controller objects in response to HTTP requests, there won't be much need to run tasks concurrently for a single user. But, when we have multiple users on our site, there will be a need to run tasks concurrently because there are multiple users accessing the site simultaneously.
+
+### Making Your Controller Methods Asynchronous
+
+The only controller methods that need to be async are those that are:
+
+- **I/O bound**: code that does input/output, like accessing a database or web service.
+- **CPU bound**: code that takes a long time to execute. For example, code that does many iterations of a loop, or deep recursion.
+
+ In the instructor's example app and most of your lab apps, you only have i/o bound methods--those that access the database either through the DbContext object or Identity (the UserManager, RoleManager, etc.). The methods that use those are the ones that need to be made async.
+
+Making controller methods async will have ripple effects:
+
+- You will need to make methods in the repository async as well—Interface, real repository, and fake repository. 
+- You will need to modify any affected unit tests to use `.Wait()` on the async controller methods they call.
+
+
+
 ## Examples
 
 [Async breakfast example](https://github.com/dotnet/docs/tree/main/docs/csharp/programming-guide/concepts/async/snippets/index) (for the Microsoft tutorial).
 
 [Simplified async breakfast and async timer examples](https://github.com/LCC-CIT/AsyncAwaitDemo) (Instructor's examples)
 
-## Viewing Running Threads
 
-You can view the processes and threads running on Windows using [Process Explorer](https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer).
+
+## Conclusion
+
+- Look at due dates 
+- Look at next week's topic
+
+
 
 ## References
 
