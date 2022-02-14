@@ -1,11 +1,9 @@
-**[CS296N Web Development 2: ASP.NET](http://lcc-cit.github.io/CS296N-CourseMaterials/CS296N_Syllabus.pdf)**                         
-
-# *Load Testing and Performance* 
+# *Performance and Load Testing* 
 
 | Weekly topics                              |                                     |
 | ------------------------------------------ | ----------------------------------- |
 | 1. Intro to course and Input validation    | 6. Async/Await                      |
-| 2. Repositories and Unit Testing           | **7. Load Testing and Performance** |
+| 2. Repositories and Unit Testing           | **7. Performance and Load Testing** |
 | 3. Publishing to Azure / Intro to Identity | 8. Complex Domain Models            |
 | 4. Authentication                          | 9. Docker containers                |
 | 5. Authorization                           | 10. Term project                    |
@@ -140,9 +138,53 @@ This can be "low hanging fruit"&mdash;meaning it may not take much effort to get
 Here are some common types of code optimization:
 
 - **Async methods**: Make CPU or I/O bound controller methods async.
-- **Caching**: 
 
-### Increase Server Resources
+- **Caching**: You can cash a whole page or part of a page 
+
+  - Cache a whole page just by using a C# attribute:
+
+    ```C#
+    [OutputCache(Duration=10, VaryByParam="none")] 
+        public ActionResult Index() { 
+            return View(); 
+        } 
+    ```
+
+  - Cache part of a page using a tag helper:
+
+    ```C#
+    <cache expires-after="@TimeSpan.FromMinutes(10)">
+        @Html.Partial("_WhatsNew")
+        *last updated  @DateTime.Now.ToLongTimeString()
+    </cache>
+    ```
+
+    (Examples from Tims 2018)
+
+There are many more things you can do to optimize code. See the References section at the end of the notes.
+
+### Increase Server Performance
+
+#### Optimize Server Configuration
+
+In an Azure App Service, most of this has already been done for you. These are default settings:
+
+- **Response Compression**: Compression of response headers using gzip is turned on by default for ASP.NET Core apps running on Azure App Service. (This needs to be verified.)
+- **Logging**: Off by default.
+- **Remote Debugging**: Off by default.
+
+But, there are still a few things you can do:
+
+- Under "Settings", "Configuration", on the "Application Settings" tab:
+  - **Local Cache**: Create a new App Setting for the app with a key of WEBSITE_LOCAL_CACHE_OPTION and a value of AlwaysThis option is only viable if your application doesn't write files to the server's file system.
+- Under "Settings", "Configuration", on the "General" tab:
+  - **HTTP 2**: Set the protocol to HTTP 2.
+  - **Always On**: Set to "on". When *Always On* is not turned on (the default), the app is unloaded after 20 minutes without any incoming requests. Un fortunately this can not be turned off on the free pricing plan.
+  - **ARR Affinity**: Turn off the Application Request Routing Cookie. This is only needed when you have multiple instances of the app and you are doing load balancing.
+
+
+
+#### Upgrade Server Resources
 
 This normally means greater monthly expenses.
 
@@ -154,6 +196,8 @@ This normally means greater monthly expenses.
 | **Cores** | shared | shared | 1 to 4     | 1 to 4     | 1 to 8       |
 | **RAM**   | 1 GB   | 1 GB   | Up to 7 GB | Up to 7 GB | 3.5 to 32 GB |
 
+
+
 ### Use a Content Delivery Network
 
 This works best for static pages, but can have some benefit for dynamic pages as well.
@@ -164,11 +208,21 @@ A popular CDN is provided by [Cloud Flare](https://www.cloudflare.com/cdn/). You
 
 ## References
 
+### JMeter
+
 - [JMeter Web Site](http://jmeter.apache.org/usermanual/generating-dashboard.html)&mdash;Official site: downloads and documentation
 - [JMeter HTTP(S) Test Script Recorder](https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html)&mdash;how to record your browser actions in a test script
 - [JMeter Beginner Tutorials](https://www.youtube.com/playlist?list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c)&mdash;YouTube
+
+### ASP.NET Core Code Optimization
+
 - [ASP.NET Core Performance Best Practices](https://docs.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-6.0#cache-aggressively)&mdash;MIcrosoft tutorial
-- [15 Simple ASP.NET Performance Tuning Tips](https://stackify.com/asp-net-performance-tuning/)&mdash;Stackify article
+- [15 Simple ASP.NET Performance Tuning Tips](https://stackify.com/asp-net-performance-tuning/)&mdash;Stackify article by Simon Tims. 2018.
+
+### Azure App Service Configuration
+
+- [Nine Performance Tips for Azure App Services](https://odetocode.com/blogs/scott/archive/2020/01/14/nine-performance-tips-for-azure-app-services.aspx)&mdash;Ode to Code by K. Scott Allen. 2020.
+- [Configure an Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/configure-common?tabs=portal)&mdash;Microsoft tutorial. 2022.
 
 
 
