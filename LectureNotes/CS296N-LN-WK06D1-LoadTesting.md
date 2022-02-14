@@ -16,11 +16,11 @@
 
 ------
 
-## Overview 
+## Introduction
 
-We will be learning to do load testing using JMeter.
+- Q and A
 
-------
+
 
 ## Web Site Performance
 
@@ -131,10 +131,6 @@ Two of the primary metrics reported by JMeter are:
 
 
 
-
-
-
-
  ## Footnotes
 
 [^1]: [Apdex](https://en.wikipedia.org/wiki/Apdex) (Application Performance Index) is an open standard developed by an alliance of companies for measuring performance of software applications.
@@ -155,6 +151,6 @@ Two of the primary metrics reported by JMeter are:
 ------
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in 2022, is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 ------
