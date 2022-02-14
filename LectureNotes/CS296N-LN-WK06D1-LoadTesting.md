@@ -26,7 +26,7 @@
 
 ### Why Performance Matters
 
-Web pages that load quickly are a major contributor to UX on your site. Site UX matters, because better UX means that users:
+Web pages that load quickly are a major contributor to UX (User experience) on your site. Site UX matters, because better UX means that users:
 
 - stay on your site longer.
 - are more like to return to your site.
@@ -86,7 +86,7 @@ Notice that the most heavily weighted metrics are *Largest Contentful Paint* and
 
 ### Measuring Page Performance
 
-Google provides a tool called [Lighthouse](https://developers.google.com/web/tools/lighthouse/) so developers can evaluate their page performance the same way Google does. It is available at [Page Speed Insights](https://pagespeed.web.dev/) and will run in any browser without installing any software or browser extensions. Note that this tool only loads your site with a single user. 
+Google provides a tool called [Lighthouse](https://developers.google.com/web/tools/lighthouse/) so developers can evaluate the performance of their web pages the same way Google does. It is available at [Page Speed Insights](https://pagespeed.web.dev/) and will run in any browser without installing any software or browser extensions. Note that this tool only loads your site with a single user. 
 
 Here is an example of "desktop" results from the [show all reviews](https://bookreviews.azurewebsites.net/Review) page of the instructor's example web site running on an Azure App Service using the free pricing plan:
 
@@ -120,7 +120,7 @@ Your goal will be to have a site that performs in accord with Google's definitio
 
 You can do both load testing and stress testing using automated tools that simulate multiple users.
 
-### JMeter
+### Measuring Performance Under Load
 
 JMeter is a popular free, open source, tool for load testing web sites. You can use it to simulate any number of simultaneous visitors to your site and you can write (or record) a test script of actions that those simulated visitors will take on the site. These actions can include registering, logging in, making posts, etc.
 
@@ -131,12 +131,36 @@ Two of the primary metrics reported by JMeter are:
 
 
 
- ## Footnotes
+## Improving Site Performance
 
-[^1]: [Apdex](https://en.wikipedia.org/wiki/Apdex) (Application Performance Index) is an open standard developed by an alliance of companies for measuring performance of software applications.
-[^2]: These standards are based on Google's [Lighthouse Scoring Calculator](https://googlechrome.github.io/lighthouse/scorecalc/) metrics for a score of 90, which is the minimum for a "good" site.
+### Optimize Web Site Code
 
-------
+This can be "low hanging fruit"&mdash;meaning it may not take much effort to get significant performance improvements.
+
+Here are some common types of code optimization:
+
+- **Async methods**: Make CPU or I/O bound controller methods async.
+- **Caching**: 
+
+### Increase Server Resources
+
+This normally means greater monthly expenses.
+
+**Azure App Service Plan Resources**
+
+|           | Free   | Shared | Basic      | Standard   | Premium      |
+| --------- | ------ | ------ | ---------- | ---------- | ------------ |
+| **Disk**  | 1 GB   | 1 GB   | 10 GB      | 50 GB      | 250 GB       |
+| **Cores** | shared | shared | 1 to 4     | 1 to 4     | 1 to 8       |
+| **RAM**   | 1 GB   | 1 GB   | Up to 7 GB | Up to 7 GB | 3.5 to 32 GB |
+
+### Use a Content Delivery Network
+
+This works best for static pages, but can have some benefit for dynamic pages as well.
+
+A popular CDN is provided by [Cloud Flare](https://www.cloudflare.com/cdn/). You can get a [free account](https://www.cloudflare.com/plans/applicationservices/#overview) for personal web sites.
+
+
 
 ## References
 
@@ -150,7 +174,16 @@ Two of the primary metrics reported by JMeter are:
 
 ------
 
+ ## Footnotes
+
+[^1]: [Apdex](https://en.wikipedia.org/wiki/Apdex) (Application Performance Index) is an open standard developed by an alliance of companies for measuring performance of software applications.
+[^2]: These standards are based onGoogle's [Lighthouse Scoring Calculator](https://googlechrome.github.io/lighthouse/scorecalc/) and their criteria for a score of 90&mdash;which is the minimum for what they consider a "good" site.
+
+
+
+------
+
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in 2022, is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in 2022, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 ------
