@@ -65,13 +65,15 @@ repo.SetupGet(x => x.Reviews).Returns(queryableReviews.ToAsyncEnumerable());
 
 
 
-## A Solution that Works Using the Repository Pattern without Moq
+## A Solution that ~~Works~~ Using the Repository Pattern without Moq
+
+Well, the test passed once, but then after some more refactoring it failed. I don't think it was a legit pass the first time around.
 
 I opted for the non-moq version because I was already using the repository pattern, but the solution looks like it's easier if you use Moq.
 
 [Testing with your own test doubles](https://docs.microsoft.com/en-us/ef/ef6/fundamentals/testing/writing-test-doubles). Microsoft tutorial. 2020.
 
-I implemented this here:
+I implemented this here: https://github.com/LCC-CIT/CS296N-Example-BookReviews
 
 
 
