@@ -16,6 +16,10 @@
 
 ## Introduction
 
+Winter 2022 topics
+
+- Additional example of unit testing async controller methods&mdash;specifically, methods that use IQueryable: https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/5-AsyncQueriesRefactored
+- Term project proposals. Will finish grading today.
 - Q and A
 
 
