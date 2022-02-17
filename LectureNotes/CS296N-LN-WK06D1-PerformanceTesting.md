@@ -1,4 +1,4 @@
-# *Performance and Load Testing* 
+# *Performance Testing* 
 
 | Weekly topics                              |                                     |
 | ------------------------------------------ | ----------------------------------- |
@@ -119,19 +119,6 @@ Your goal will be to have a site that performs in accord with Google's definitio
 
 You can do both load testing and stress testing using automated tools that simulate multiple users.
 
-### Measuring Performance Under Load
-
-JMeter is a popular free, open source, tool for load testing web sites. You can use it to simulate any number of simultaneous visitors to your site and you can write (or record) a test script of actions that those simulated visitors will take on the site. These actions can include registering, logging in, making posts, etc.
-
-Two of the primary metrics reported by JMeter are:
-
-- **Latency**: The time elapsed from when the HTTP request was sent and when an initial response was received. This is comparable to *First Contentful Paint*.
-- **Sample Time**: The time that the server took to fully serve the request (response + latency). This is comparable to *Time to Interactive*.
-
-### How to Use JMeter
-
-Follow the instructions in the tutorial by Anicas (2014) in the references below
-
 
 
 ## Improving Site Performance
@@ -213,11 +200,11 @@ A popular CDN is provided by [Cloud Flare](https://www.cloudflare.com/cdn/). You
 
 ## References
 
-### JMeter
+### Lighthouse
 
-- [JMeter Web Site](http://jmeter.apache.org/usermanual/generating-dashboard.html)&mdash;Official site: downloads and documentation
-- [Load Testing with Apache JMeter](https://www.digitalocean.com/community/tutorial_series/load-testing-with-apache-jmeter)&mdash;DigitalOcean tutorial by Mitchell Anicas, 2014.
-- [JMeter Beginner Tutorials](https://www.youtube.com/playlist?list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c)&mdash;YouTube
+[Google Lighthouse](https://developers.google.com/web/tools/lighthouse/) 
+
+[Google Page Speed Insights](https://pagespeed.web.dev/)
 
 ### ASP.NET Core Code Optimization
 
