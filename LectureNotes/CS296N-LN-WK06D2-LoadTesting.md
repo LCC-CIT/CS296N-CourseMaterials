@@ -95,6 +95,31 @@ This listener shows you graphs of web stite performance over time as more simula
 This listener gives you a statistical summary of the parameters measured in your test.
 
 
+
+### Run the Test from a CLI
+
+To get better test results you should run the test from the command line. When you run the test from the GUI, the overhead of the GUI limits JMeter's ability to deliver simulated users (threads) at a high rate.
+
+The JMeter documentation provides a list of [options for running from the command line](https://jmeter.apache.org/usermanual/get-started.html#non_gui). If you want to run a test that you have set up and saved using the GUI, you use a command with this syntax:
+
+`jmeter -n -t [jmx file] -l [results file] -e -o [Path to web report folder]`
+
+Example (run from the folder containing the .jmx file): 
+`C:\apache-jmeter\bin\jmeter -n -t BookSite.jmx -l TestOutput.txt -e -o Dashboard`
+
+**-n** specifies that JMeter run in CLI mode.
+
+**-t** is followed by the path/filename of the test plan.
+
+**-l** is followed by the path/filename for the file to which the test results will be saved.
+
+**-e** causes a web page report dashboard to be generated after the test.
+
+**-o** is followed by the path to the folder where the report dashboard files will be written.
+
+
+
+
 ### Recording a Test Plan
 
 Follow the instructions in the tutorial by Anicas (2014), [How to Use JMeter to Record Test Scenarios](https://www.digitalocean.com/community/tutorials/how-to-use-jmeter-to-record-test-scenarios). 
@@ -109,12 +134,7 @@ Follow the instructions in the tutorial by Anicas (2014), [How to Use JMeter to 
 
 
 
+
+
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
 ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in 2022, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
-
-
-
-
-[^1]:[Apdex](https://en.wikipedia.org/wiki/Apdex) (Application Performance Index) is an open standard developed by an alliance of companies for measuring performance of software applications.
-[^2]:These standards are based onGoogle's [Lighthouse Scoring Calculator](https://googlechrome.github.io/lighthouse/scorecalc/) and their criteria for a score of 90&mdash;which is the minimum for what they consider a "good" site.
-
