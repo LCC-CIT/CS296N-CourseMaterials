@@ -1,4 +1,4 @@
-# *Performance and Load Testing* 
+# *Performance Testing* 
 
 | Weekly topics                              |                                     |
 | ------------------------------------------ | ----------------------------------- |
@@ -92,20 +92,17 @@ Google provides a tool called [Lighthouse](https://developers.google.com/web/too
 
 Here is an example of "desktop" results from the [show all reviews](https://bookreviews.azurewebsites.net/Review) page of the instructor's example web site running on an Azure App Service using the free pricing plan:
 
-- First Contentful Paint:
-  600 ms
-
-- Time to Interactive:
-  600 ms
-
+- First Contentful Paint: 600 ms
+  
+- Time to Interactive: 600 ms
+  
 - Speed Index: 700 ms
 
 - Total Blocking Time: 0 ms
 
 - Largest Contentful Paint: 600 ms
 
-- Cumulative Layout Shift:
-  0
+- Cumulative Layout Shift: 0
 
 Overall score: 100/100
 
@@ -121,15 +118,6 @@ If your site is successful, then you should expect to have multiple simultaneous
 Your goal will be to have a site that performs in accord with Google's definition of a "good" site even when there are multiple simultaneous users. 
 
 You can do both load testing and stress testing using automated tools that simulate multiple users.
-
-### Measuring Performance Under Load
-
-JMeter is a popular free, open source, tool for load testing web sites. You can use it to simulate any number of simultaneous visitors to your site and you can write (or record) a test script of actions that those simulated visitors will take on the site. These actions can include registering, logging in, making posts, etc.
-
-Two of the primary metrics reported by JMeter are:
-
-- **Latency**: The time elapsed from when the HTTP request was sent and when an initial response was received. This is comparable to *First Contentful Paint*.
-- **Sample Time**: The time that the server took to fully serve the request (response + latency). This is comparable to *Time to Interactive*.
 
 
 
@@ -180,7 +168,7 @@ In an Azure App Service, most of this has already been done for you. These are d
 But, there are still a few things you can do:
 
 - Under "Settings", "Configuration", on the "Application Settings" tab:
-  - **Local Cache**: Create a new App Setting for the app with a key of WEBSITE_LOCAL_CACHE_OPTION and a value of AlwaysThis option is only viable if your application doesn't write files to the server's file system.
+  - **Local Cache**: Create a new App Setting for the app with a key of WEBSITE_LOCAL_CACHE_OPTION and a value of Always. Note that this option is only viable if your application doesn't write files to the server's file system.
 - Under "Settings", "Configuration", on the "General" tab:
   - **HTTP 2**: Set the protocol to HTTP 2.
   - **Always On**: Set to "on". When *Always On* is not turned on (the default), the app is unloaded after 20 minutes without any incoming requests. Un fortunately this can not be turned off on the free pricing plan.
@@ -212,15 +200,15 @@ A popular CDN is provided by [Cloud Flare](https://www.cloudflare.com/cdn/). You
 
 ## References
 
-### JMeter
+### Lighthouse
 
-- [JMeter Web Site](http://jmeter.apache.org/usermanual/generating-dashboard.html)&mdash;Official site: downloads and documentation
-- [JMeter HTTP(S) Test Script Recorder](https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html)&mdash;how to record your browser actions in a test script
-- [JMeter Beginner Tutorials](https://www.youtube.com/playlist?list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c)&mdash;YouTube
+[Google Lighthouse](https://developers.google.com/web/tools/lighthouse/) 
+
+[Google Page Speed Insights](https://pagespeed.web.dev/)
 
 ### ASP.NET Core Code Optimization
 
-- [ASP.NET Core Performance Best Practices](https://docs.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-6.0#cache-aggressively)&mdash;MIcrosoft tutorial
+- [ASP.NET Core Performance Best Practices](https://docs.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-6.0#cache-aggressively)&mdash;Microsoft tutorial
 - [15 Simple ASP.NET Performance Tuning Tips](https://stackify.com/asp-net-performance-tuning/)&mdash;Stackify article by Simon Tims. 2018.
 
 ### Azure App Service Configuration
