@@ -49,17 +49,17 @@ Follow the instructions in the tutorial by Anicas (2014),  [How To Use Apache JM
 
 ##### Thread Group
 
-- Number of Threads (users)
+- **Number of Threads (users)**
 
   A practical maximum number of threads that can be handled by an average computer running JMeter would be around 500 (depending on the test plan and loop count). 
 
   Note that each thread will execute the test plan's HTTP requests <u>once</u> and then terminate, unless the loop count is greater than 1. The threads will <u>not necessarily execute simultaneously</u>.
 
-- Ramp-up period (seconds)
+- **Ramp-up period (seconds)**
 
   This specifies how long JMeter will take to start all the threads. If the number of threads is 100 and ramp-up period is 10 seconds, then JMeter will start 10 new threads per second. 
 
-- Loop Count
+- **Loop Count**
 
   This determines the number of times each thread will execute the test plan. If it is set to 1, each thread will terminate as soon as it has completed the HTTP requests in the test plan. 
 
@@ -67,7 +67,7 @@ Follow the instructions in the tutorial by Anicas (2014),  [How To Use Apache JM
 
 ##### HTTP Request Defaults
 
-- Server Name or IP
+- **Server Name or IP**
 
   Do not include https:// or http:// in the server name. If you wish to specify https do it in the *protocol* field.
   
@@ -161,9 +161,11 @@ The results of the test will be put into the *ReportDashboard* directory. This f
 
 ## References
 
-- [JMeter Web Site](http://jmeter.apache.org/usermanual/generating-dashboard.html)&mdash;Official site: downloads and documentation
+- [JMeter Web Site](http://jmeter.apache.org/usermanual/generating-dashboard.html)&mdash;Official site: downloads and documentation.
 - [Load Testing with Apache JMeter](https://www.digitalocean.com/community/tutorial_series/load-testing-with-apache-jmeter)&mdash;DigitalOcean tutorial by Mitchell Anicas, 2014.
 - [JMeter Beginner Tutorials](https://www.youtube.com/playlist?list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c)&mdash;YouTube
+- [JMeter Test Results: Why the Actual Users Number is Lower than Expected](https://www.blazemeter.com/blog/jmeter-test-results-why-actual-users-number-lower-expected)&mdash;BlazeMeter tutorial by Dmitri Tikhanski, 2016.
+- [ASP.NET Login Testing with JMeter](https://www.blazemeter.com/blog/aspnet-login-testing-jmeter)&mdash;BlazeMeter tutorial by Dmitri Tikhanski, 2014.
 
 
 
