@@ -39,7 +39,7 @@ JMeter requires the Java Runtime Environment (JRE). You can check to see if Java
 
  Download JMeter from the [official Apache JMeter web site](https://jmeter.apache.org/). You can either download a "tarball" (.tgz) file or a Zip (.zip) file. Download whichever one you know how to unarchive (unzip). 
 
-JMeter doesn't have an installation or setup program. You just run it from wherever you put the unarchived apache-jmeter-5.4.3 folder.  The program will run from almost anywhere you put the folder,but some features won't work if you put it in You can put C:\Program Files&mdash;particularly, you won't be able to record test scripts because JMeter won't have permission to write a file in the Program Files folder.
+JMeter doesn't have an installation or setup program. You just run it from wherever you put the unarchived apache-jmeter-5.4.3 folder.  The program will run from almost anywhere you put the folder, but some features won't work if you put it in C:\Program Files&mdash;particularly, you won't be able to record test scripts because JMeter won't have permission to write a file in the Program Files folder.
 
 You run JMeter by double-clicking on ApacheJMeter.bat, which is in the bin folder. If you want to create a shortcut to the .bat file to more easily start JMeter, you can do that and place it on your desktop.
 
