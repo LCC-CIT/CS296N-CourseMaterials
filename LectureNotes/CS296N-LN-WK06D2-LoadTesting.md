@@ -20,18 +20,9 @@ Winter 2022 topics
 
 - Q and A
 
-## Performance Under Load
 
-If your site is successful, then you should expect to have multiple simultaneous users on your site. There are two types of testing that will help you understand what your site's performance will be for those users:
 
-- **Load tests**: measure system behaves under an expected load.
-- **Stress tests**: measure the upper limits of a system's capacity using a load the expected maximum.
-
-Your goal will be to have a site that performs in accord with Google's definition of a "good" site even when there are multiple simultaneous users. 
-
-You can do both load testing and stress testing using automated tools that simulate multiple users.
-
-### Measuring Performance Under Load
+## How to Use JMeter
 
 JMeter is a popular free, open source, tool for load testing web sites. You can use it to simulate any number of simultaneous visitors to your site and you can write (or record) a test script of actions that those simulated visitors will take on the site. These actions can include registering, logging in, making posts, etc.
 
@@ -39,8 +30,6 @@ Two of the primary metrics reported by JMeter are:
 
 - **Latency**: The time elapsed from when the HTTP request was sent and when an initial response was received. This is comparable to *First Contentful Paint*.
 - **Sample Time**: The time that the server took to fully serve the request (response + latency). This is comparable to *Time to Interactive*.
-
-## How to Use JMeter
 
 ### Downloading and Running JMeter
 
@@ -54,49 +43,90 @@ You run JMeter by double-clicking on ApacheJMeter.bat, which is in the bin folde
 
 ### Setting up a Test Plan Manually
 
-Follow the instructions in the tutorial by Anicas (2014),  [How To Use Apache JMeter To Perform Load Testing on a Web Server](https://www.digitalocean.com/community/tutorials/how-to-use-apache-jmeter-to-perform-load-testing-on-a-web-server). Here are some supplemental notes:
+Follow the instructions in the tutorial by Anicas (2014),  [How To Use Apache JMeter To Perform Load Testing on a Web Server](https://www.digitalocean.com/community/tutorials/how-to-use-apache-jmeter-to-perform-load-testing-on-a-web-server). 
 
-#### Thread Group, Ramp-up period
-The JMeter help docs give this additional information:
+#### Notes on Settings
 
-> The ramp-up period tells JMeter how long to take to "ramp-up" to the full number of threads chosen. If 10 threads are used, and the ramp-up period is 100 seconds, then JMeter will take 100 seconds to get all 10 threads up and running. Each thread will start 10 (100/10) seconds after the previous thread was begun. If there are 30 threads and a ramp-up period of 120 seconds, then each successive thread will be delayed by 4 seconds.
->
+##### Thread Group
 
-Note that a ramp up time that equates to 
+- Number of Threads (users)
 
-#### HTTP Request Defaults, Server Name or IP
+  A practical maximum number of threads that can be handled by an average computer running JMeter would be around 500 (depending on the test plan and loop count). 
 
-Do not include https:// or http:// in the server name. If you wish to specify https do it in the *protocol* field.
+  Note that each thread will execute the test plan's HTTP requests <u>once</u> and then terminate, unless the loop count is greater than 1. The threads will <u>not necessarily execute simultaneously</u>.
 
-#### Additional Listeners
+- Ramp-up period (seconds)
 
-You may want to add other listeners besides "View Results in Table". Here are some useful ones:
+  This specifies how long JMeter will take to start all the threads. If the number of threads is 100 and ramp-up period is 10 seconds, then JMeter will start 10 new threads per second. 
 
-##### View Results Tree
+- Loop Count
 
-This listener will let you see detailed results for each HTTP response. If you are getting error responses this is especially useful in helping you determine the cause of the errors. Here's an example:
+  This determines the number of times each thread will execute the test plan. If it is set to 1, each thread will terminate as soon as it has completed the HTTP requests in the test plan. 
 
-###### Unsuccessful results
+  Note that if you want all the threads to run concurrently, you will need to set the loop count to some number greater than 1. For example, a test plan with just 2 HTTP requests and 50 threads will need a loop count of around 200 in order for all the threads to run simultaneously for at least part of the test.
 
-This is the type of error you might get when the web server is getting too many simultaneous requests to handle:
+##### HTTP Request Defaults
 
->  Response code: 503
-> Response message: Service Unavailable
+- Server Name or IP
 
-This error message indicates that you are trying to send requests at a rate the computer running JMeter can't handle:
+  Do not include https:// or http:// in the server name. If you wish to specify https do it in the *protocol* field.
+  
+  
 
->  Response code: Non HTTP response code: java.net.SocketException
-> Response message:Non HTTP response message: Socket closed
+### Recording a Test Plan
 
-##### Graph Results
+Follow the instructions in the tutorial by Anicas (2014), [How to Use JMeter to Record Test Scenarios](https://www.digitalocean.com/community/tutorials/how-to-use-jmeter-to-record-test-scenarios). 
+
+#### Notes on the tutorial
+
+- Test Script Recorder
+
+  Add the *HTTP(S) Test Script Recorder* to the *Test Plan*, not the *Workbench*. The Workbench is no longer a part of JMeter. 
+
+- 
+  Port Setting
+
+  The default port for the proxy is now 8888.
+
+
+
+### Managing Anti-forgery Tokens
+
+ASP.NET automatically [injects anti-forgery tokens](https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-3.1#aspnet-core-antiforgery-configuration) into HTML form elements in views. If you don't configure your JMeter test to manage anti-forgery tokens, when you try to authenticate a user, you will get a error response like this:
+
+> The anti-forgery cookie token and form field token do not match.
+
+This article explains how to resolve this issue: https://www.blazemeter.com/blog/aspnet-login-testing-jmeter
+
+### Adding Additional Listeners
+
+In addition to the  "View Results in Table" listener described in the tutorial by Ancias (2014), you may want to add some others. Here are some useful ones:
+
+#### View Results Tree
+
+This listener will let you see detailed results for each HTTP response. If you are getting error responses this is especially useful in helping you determine the cause of the errors. Here are some examples:
+
+- This is the type of error you might get when the web server is getting too many simultaneous requests to handle:
+
+  > Response code: 503
+  > Response message: Service Unavailable
+
+- This error message indicates that you are trying to send requests at a rate the computer running JMeter can't handle:
+
+  > Response code: Non HTTP response code: java.net.SocketException
+  > Response message:Non HTTP response message: Socket closed
+
+#### Graph Results
+
 This listener shows you graphs of web stite performance over time as more simulated users are added to the test.
 
-##### Summary Report
+#### Summary Report
+
 This listener gives you a statistical summary of the parameters measured in your test.
 
 
 
-### Run the Test from a CLI
+### Running a Test from a Command Line
 
 To get better test results you should run the test from the command line. When you run the test from the GUI, the overhead of the GUI limits JMeter's ability to deliver simulated users (threads) at a high rate.
 
@@ -117,12 +147,15 @@ Example (run from the folder containing the .jmx file):
 
 **-o** is followed by the path to the folder where the report dashboard files will be written.
 
+#### Results of a Command Line Test
 
+While the test is running, summary results like these will be shown in the console:
 
+```
+Todo: add output of a log file
+```
 
-### Recording a Test Plan
-
-Follow the instructions in the tutorial by Anicas (2014), [How to Use JMeter to Record Test Scenarios](https://www.digitalocean.com/community/tutorials/how-to-use-jmeter-to-record-test-scenarios). 
+The results of the test will be put into the *ReportDashboard* directory. This forms a local web site that you can view by opening index.html.
 
 
 
