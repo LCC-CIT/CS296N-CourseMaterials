@@ -31,15 +31,19 @@ Two of the primary metrics reported by JMeter are:
 - **Latency**: The time elapsed from when the HTTP request was sent and when an initial response was received. This is comparable to *First Contentful Paint*.
 - **Sample Time**: The time that the server took to fully serve the request (response + latency). This is comparable to *Time to Interactive*.
 
+
+
 ### Downloading and Running JMeter
 
 JMeter requires the Java Runtime Environment (JRE). You can check to see if Java is installed on your Windows computer by opening a command prompt and typing: `java -versioin`. For the current version of JMeter, you need version 1.8 (known as "Java 8") or higher. If Java is not on your computer, or you have an older version, you can download the latest version from the [official Oracle Java website](https://www.java.com/en/) and install it.
 
  Download JMeter from the [official Apache JMeter web site](https://jmeter.apache.org/). You can either download a "tarball" (.tgz) file or a Zip (.zip) file. Download whichever one you know how to unarchive (unzip). 
 
-JMeter doesn't have an installation or setup program. You just run it from wherever you put the unarchived apache-jmeter-5.4.3 folder.  The program will run from almost anywhere you put the folder,but some features won't work if you put it in You can put C:\Program Files&mdash;particularly, you won't be able to record test scripts because JMeter won't have permission to write a file in the Program Files folder.
+JMeter doesn't have an installation or setup program. You just run it from wherever you put the unarchived apache-jmeter-5.4.3 folder.  The program will run from almost anywhere you put the folder, but some features won't work if you put it in C:\Program Files&mdash;particularly, you won't be able to record test scripts because JMeter won't have permission to write a file in the Program Files folder.
 
 You run JMeter by double-clicking on ApacheJMeter.bat, which is in the bin folder. If you want to create a shortcut to the .bat file to more easily start JMeter, you can do that and place it on your desktop.
+
+
 
 ### Setting up a Test Plan Manually
 
@@ -98,6 +102,8 @@ ASP.NET automatically [injects anti-forgery tokens](https://docs.microsoft.com/e
 
 This article explains how to resolve this issue: https://www.blazemeter.com/blog/aspnet-login-testing-jmeter
 
+
+
 ### Adding Additional Listeners
 
 In addition to the  "View Results in Table" listener described in the tutorial by Ancias (2014), you may want to add some others. Here are some useful ones:
@@ -147,15 +153,28 @@ Example (run from the folder containing the .jmx file):
 
 **-o** is followed by the path to the folder where the report dashboard files will be written.
 
+
+
 #### Results of a Command Line Test
 
-While the test is running, summary results like these will be shown in the console:
+While the test is running, summary results like the ones below will be shown in the console (not a complete listing).
 
 ```
-Todo: add output of a log file
+summary + 3516 in 00:00:20 = 171.9/s Avg:120 Min:45 Max:11629 Err:0 (0.00%) Active:41 Started:41 Finished:0
+summary + 18732 in 00:00:30 = 624.5/s Avg:113 Min:46 Max:481 Err:0 (0.00%) Active:101 Started:101 Finished:0
+summary = 22248 in 00:00:50 = 441.0/s Avg:114 Min:45 Max:11629 Err:0 (0.00%)
+summary + 21970 in 00:00:30 = 732.3/s Avg:178 Min:74 Max:650 Err:0 (0.00%) Active:161 Started:161 Finished:0
+summary =  44218 in 00:01:20 =  549.6/s Avg:146 Min:45 Max:11629 Err:0 (0.00%)
 ```
 
-The results of the test will be put into the *ReportDashboard* directory. This forms a local web site that you can view by opening index.html.
+- **summary +** lines show incremental updates on the test.
+- **summary =** lines show cumulative updates on the test.
+- **3516** (just one example) is the number of HTTP requests sent, followed by the time period and the rate of requests.
+- **Avg**, **Min**, and **Max** are sample times.
+- **Err** is the number and percentage of HTTP error responses.
+- **Active** is the number of concurrent threads, **Started** is the number of threads started during the time period of the summary, and **Finished** is the number of threads that terminated.
+
+The results of the test will be put into the *ReportDashboard* directory. This forms a local web site that you can view by opening [index.html](../Labs/Lab06-LoadTesting/JMeter/ReportDashboard/index.html).
 
 
 
