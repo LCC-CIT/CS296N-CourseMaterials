@@ -73,36 +73,31 @@ public class AppUser : IdentityUser
 
 public class Book
 {
-  private List<Author> authors = new List<Author>();
-  private List<Review> reviews = new List<Review>();
-
-  public int BookID { get; set; }
-  public List<Author> Authors { get { return authors; } }
-  public List<Review> Reviews { get { return reviews; } }
+	public int BookId { get; set; }
   public string Title { get; set; }
   public DateTime PubDate { get; set; }
+  public ICollection<Author> Authors { get; set; }
+  public ICollection<Review> Reviews { get; set; }
 }
 
 public class Author
 {
-  public int AuthorID { get; set; }
+  public int AuthorId { get; set; }
   public string Name { get; set; }
   public DateTime Birthday { get; set; }
 }
 
 public class Review
 {
-  private List<Comment> comments = new List<Comment>();
-  
-  public List<Comment> Comments { get { return comments; } }
-  public int ReviewID { get; set; }
+  public int ReviewId { get; set; }
   public string ReviewText { get; set; }
   public AppUser Reviewer { get; set; }
+  public ICollection<Comment> Comments { get; set; }
 }
 
 public class Comment
     {
-        public int CommentID { get; set; }
+        public int CommentId { get; set; }
         public string CommentText { get; set; }
         public AppUser UserName { get; set; }
         public Review UserReview { get; set; }
