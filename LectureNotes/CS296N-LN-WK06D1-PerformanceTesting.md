@@ -1,3 +1,9 @@
+---
+title: Performance Testing
+description: Testing and improving page load speed in a web site.
+keywords: Lighthouse, PageInsights
+---
+
 # *Performance Testing* 
 
 | Weekly topics                              |                                     |
@@ -219,7 +225,7 @@ A popular CDN is provided by [Cloud Flare](https://www.cloudflare.com/cdn/). You
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in 2022, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in <time>2022</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 
 

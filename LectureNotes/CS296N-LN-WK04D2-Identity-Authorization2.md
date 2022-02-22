@@ -1,5 +1,8 @@
-**CS296N Web Development 2: ASP.NET**                                                                                                         
-
+---
+title: Authorization with Identity--Part 2
+description: Use Delamater and Murach (2020) as a guide to finish adding authorization to a web app: Restrict the admin controller. Add Admin to our navigation menu, but only for admin users. Seed users and an admin role. Re-publish to Azure
+keywords: Identity, Authorization, UserManager, Authorize attribute
+---
 # *Authorization with Identity Part 2*
 
 | Weekly topics                              |                                        |
@@ -142,4 +145,4 @@ Microsoft ASP.NET Core MVC Tutorial
 ------
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes, written winter 2021, revised winter 2022, by [Brian Bird](https://profbird.dev) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes, written winter 2021, revised winter <time>2022</time>, by [Brian Bird](https://profbird.dev) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 

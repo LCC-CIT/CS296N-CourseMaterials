@@ -63,7 +63,7 @@ Get practice:
 
 ------
 
-Written by Brian Bird, Lane Community College, winter 2019, revised winter 2022
+Written by Brian Bird, Lane Community College, winter 2019, revised winter <time>2022</time>
 
 ------
 
