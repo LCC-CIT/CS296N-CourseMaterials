@@ -73,7 +73,7 @@ public class AppUser : IdentityUser
 
 public class Book
 {
-	public int BookId { get; set; }
+  public int BookId { get; set; }
   public string Title { get; set; }
   public DateTime PubDate { get; set; }
   public ICollection<Author> Authors { get; set; }
@@ -100,7 +100,6 @@ public class Comment
         public int CommentId { get; set; }
         public string CommentText { get; set; }
         public AppUser UserName { get; set; }
-        public Review UserReview { get; set; }
     }
 ```
 
