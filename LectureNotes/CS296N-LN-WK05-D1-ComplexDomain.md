@@ -61,7 +61,7 @@ Look at the Book Reviews example
 
 Implementing the domain model in C# is straightforward except for implementing composition vs. aggregation. Since we are using Entity Framework to persist our model objects, we need to write our code so that EF will understand which dependent entities will be deleted with the root entity (composition) and which will not.
 
-Composition will the the default relationship. If we want to indicate aggregation, we do it in the dependent entity by including the FK of the root entity and making it nullable (ie optional).
+Composition will the the default relationship. If we want to indicate aggregation, we do it in the dependent entity by including the FK of the root entity and making it nullable (ie optional). 
 
 Code based on the UML class diagram:
 
@@ -112,16 +112,16 @@ public class Comment
 
   
 
-
-
 ### How Entity Framework Maps a Domain Model to a DB Schema
 
 Each domain model entity is mapped to a table in the database. Additional join tables are created where needed.
 
 - EF creates "shadow properties" for Foreign Keys if the FK properties were not a part of the domain model. Your instructor prefers to leave FK properties out of the model and let EF create them.
+- When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. 
+  - Look  at a migration with Create Table, look at the constraints to see cascade delete specified on a FK.
+    - `onDelete: ReferentialAction.Restrict` means that a cascade delete will not be done.
+    - 
 
-- 
-  When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. (Look  at a migration with Create Table to see cascade delete specified on a FK).
 
 
   In order to signal EF not to do a cascade delete, include the FK property explicitly in the model and make it nullable. (See above).
