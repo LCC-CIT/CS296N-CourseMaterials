@@ -1,8 +1,11 @@
+// This code is based on code from https://github.com/BLE-LTER/Lunr-Index-and-Search-for-Static-Sites
+// Adapted by Brian Bird, winter 2022
+
 "use strict";
 
 var LUNR_CONFIG = {
-    "resultsElementId": "searchResults",  // Element to contain results
-    "countElementId": "resultCount"  // Element showing number of results
+    "resultsElementId": "searchResults", // Element to contain results
+    "countElementId": "resultCount" // Element showing number of results
 };
 
 
@@ -24,18 +27,18 @@ function parseLunrResults(results) {
     for (var i = 0; i < results.length; i++) {
         var id = results[i]["ref"];
         var item = PREVIEW_LOOKUP[id]
+        var time = item["time"];
         var title = item["t"];
         var preview = item["p"];
         var link = item["l"];
-        var result = ('<p><span class="result-title"><a href="' + link + '">'
-                    + title + '</a></span><br><span class="result-preview">'
-                    + preview + '</span></p>');
+        var result = ('<p><span class="result-title"><a href="' + link + '">' +
+            title + '</a></span><br><span class="result-preview">' +
+            time + ". " + preview + '</span></p>');
         html.push(result);
     }
     if (html.length) {
         return html.join("");
-    }
-    else {
+    } else {
         return "<p>Your search returned no results.</p>";
     }
 }
@@ -43,11 +46,11 @@ function parseLunrResults(results) {
 
 function escapeHtml(unsafe) {
     return unsafe
-         .replace(/&/g, "&amp;")
-         .replace(/</g, "&lt;")
-         .replace(/>/g, "&gt;")
-         .replace(/"/g, "&quot;")
-         .replace(/'/g, "&#039;");
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 
@@ -64,8 +67,7 @@ function showResultCount(query, total, domElementId) {
     if (query != "" && query != null) {
         query = escapeHtml(query);
         var forQuery = ' for <span class="result-query">' + query + '</span>';
-    }
-    else {
+    } else {
         var forQuery = "";
     }
     var element = document.getElementById(domElementId);

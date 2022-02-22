@@ -1,14 +1,12 @@
 .loading {
-	display: none;
+    display: none;
     width: 100px;
     height: 100px;
-
     position: absolute;
-    top:0;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-
     margin: auto;
 }
 
@@ -38,18 +36,25 @@
 }
 
 .pagination {
-	text-align: center;
-	margin: 16px 8px 16px 8px;
+    text-align: center;
+    margin: 16px 8px 16px 8px;
 }
+
 .pagination a {
-	color: black;
-	padding: 8px 16px;
-	text-decoration: none;
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
 }
+
 .pagination a.active {
-	background-color: #4CAF50;
-	color: white;
+    background-color: #4CAF50;
+    color: white;
 }
+
 .pagination a:hover:not(.active) {
-	background-color: #ddd;
+    background-color: #ddd;
 }
+
+
+/* This code is based on code from https://github.com/BLE-LTER/Lunr-Index-and-Search-for-Static-Sites
+ Adapted by Brian Bird, winter 2022 */

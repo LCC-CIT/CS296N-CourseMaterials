@@ -1,3 +1,8 @@
+---
+title: Designing a Domain Model
+description: Using Domain Driven Development and UML to design a more complex domain model.
+keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entity Framework
+---
 # Designing a Domain Model
 
 **CS296N Web Development 2**
@@ -143,6 +148,6 @@ We won't use the full-blown model shown above. We'll just (add a comment model? 
 
 ------
 
- [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)System Design  Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter 2022), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+ [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)System Design  Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2022</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
 
 ------
