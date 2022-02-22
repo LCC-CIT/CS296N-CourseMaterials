@@ -11,7 +11,7 @@ var cheerio = require("cheerio");
 const HTML_FOLDER = "../"; // folder with your HTML files
 // Valid search fields: "title", "description", "keywords", "body"
 const SEARCH_FIELDS = ["title", "body", "time"];
-const EXCLUDE_FILES = ["search.html"];
+const EXCLUDE_FILES = ["Search.html", "Archive"];
 const MAX_PREVIEW_CHARS = 275; // Number of characters to show for a given search result
 const OUTPUT_INDEX = "lunr_index.js"; // Index file
 
@@ -34,11 +34,14 @@ function findHtml(folder) {
         var filename = path.join(folder, files[i]);
         var stat = fs.lstatSync(filename);
         if (stat.isDirectory()) {
-            var recursed = findHtml(filename);
-            for (var j = 0; j < recursed.length; j++) {
-                recursed[j] = path.join(files[i], recursed[j]).replace(/\\/g, "/");
+            if (!EXCLUDE_FILES.includes(files[i])) // check for an excluded folder
+            {
+                var recursed = findHtml(filename);
+                for (var j = 0; j < recursed.length; j++) {
+                    recursed[j] = path.join(files[i], recursed[j]).replace(/\\/g, "/");
+                }
+                htmls.push.apply(htmls, recursed);
             }
-            htmls.push.apply(htmls, recursed);
         } else if (isHtml(filename) && !EXCLUDE_FILES.includes(files[i])) {
             htmls.push(files[i]);
         }
