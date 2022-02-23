@@ -62,7 +62,7 @@ Look at the Book Reviews example
 
 Implementing the domain model in C# is straightforward except for implementing composition vs. aggregation. Since we are using Entity Framework to persist our model objects, we need to write our code so that EF will understand which dependent entities will be deleted with the root entity (composition) and which will not.
 
-Aggregation will the the default relationship. If we want to indicate composition, we do it in the dependent entity by making the FK of the root entity a non-nullable property.
+Aggregation is the the default relationship. If we want to specify composition, we do it in the dependent entity by adding an FK that points to the root entity and is a non-nullable property.
 
 Code based on the UML class diagram:
 
@@ -163,6 +163,6 @@ Vickers, Arthur, et al. [Entity Framework Core: Cascade Delete)](https://docs.mi
 
 ------
 
- [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)System Design  Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2022</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+ [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2022</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
 
 ------
