@@ -23,7 +23,7 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 ### OOP Design and Domain Models
 
-In the System Design class, we covered [the basics of Object Oriented design](https://profbird.github.io/CS246-CourseMaterials/LectureNotes/CS246LN-W04-D1-OopDesignReview+UML.html) and how to model the relationships between classes in a UML class diagram like the [Tip of the Day domain model.](https://profbird.github.io/CS246-CourseMaterials/LectureNotes/Images/TipOfTheDayDomainModel2022.pdf)
+In CS246, System Design, we covered the basics of [Object Oriented Analysis and Design](https://profbird.github.io/CS246-CourseMaterials/LectureNotes/CS246LN-W04-D1-OopDesignReview+UML.html) and how to model the relationships between classes in a UML class diagram like the [Tip of the Day domain model](https://profbird.github.io/CS246-CourseMaterials/LectureNotes/Images/TipOfTheDayDomainModel2022.pdf).  We also looked at how to [implement the relationships in a class diagram in C# code](https://profbird.github.io/CS246-CourseMaterials/LectureNotes/CS246LN-W04-D2-OopDesignReview+Implementation.html). 
 
 ### Entity Framework
 
@@ -154,6 +154,8 @@ We won't use the full-blown model shown above. We'll just add a comment model
 
 
 ## References
+
+Freeman, Adam. [Applying Domain-Driven Development](../ArticleAndNotes/ProAspNetMvc4Freeman-DomainDriveDev.pdf) in ch. 4 of *Pro ASP.NET MVC 4*, Apress, 2012.
 
 Vickers, Arthur, et al. [Entity Framework Core: Saving Related Data)](https://docs.microsoft.com/en-us/ef/core/saving/related-data). 2022. 
 
