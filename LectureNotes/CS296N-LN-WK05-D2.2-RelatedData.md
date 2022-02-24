@@ -2,7 +2,7 @@
 title: Working with Scaffolding and Related Data
 description: You will learn how to scaffold a domain model entity to create views and controller methods. You will also learn to manage the way Entity Framework handles related data.
 ---
-# Working with Scaffolding and Related Data
+# Working with Related Data
 
 **CS296N Web Development 2**
 
@@ -20,52 +20,13 @@ description: You will learn how to scaffold a domain model entity to create view
 
 ## Review
 
-### Aggregates and Root Entities
-
-An aggregate entity groups together several domain model objects—there is a root entity that is used
-to identify the entire aggregate, and it acts as the “boss” for validation and persistence operations.
-
 ### Entity Framework
 
-You learned how to include related data when retrieving an entity from a DbSet. We did this using `Include` and `ThenInclude` which is the way to do *eager loading*. Today, you will learn about other ways to load related data.
-
-------
+You have already learned how to include related data when retrieving an entity from a DbSet. We did this using `Include` and `ThenInclude` which is the way to do *eager loading*. Today, you will learn about other ways to load related data.
 
 
 
-## Scaffolding
-
-Scaffold the Review model. This will be an admin page for managing reviews.
-
-These instructions are for Visual Studio 2022.
-
-- Right-click the controllers folder and select *Add*, then select:
-  - *New Scaffolded Item...*
-  - *MVC Controller with views, using Entity Framework* and click *Add*
-    - Select a *Model class* (`Review`&mdash;in my case) and your Data context class.
-    - Check all three check boxes.
-    - Enter a *Controller name* (ManageController&mdash;in my case, since I already had a ReviewController).
-    - Click *Add*.
-
-A new controller and view will be added to your project.
-
-### Shortcomings of a Scaffolded Web Page
-
-- The controller and view do not read related data. They only read data from the model entity selected when setting up the scaffolding.
-- The controller uses a DbContext object to access data rather than a repository.
-- The page is very generic and most often won't fit the needs of your users or give them a good experience.
-
-### Exercise / Demo: BookReview Web Site Scaffolding
-
-- Examine the code:
-  - Which methods are async?
-  - How is data passed between views and the controller?
-  - How is the table of data on the Index page constructed?
-- Test the cascade delete that was set up for Comments in our last class session.
-
-
-
-## Working with Related Data
+## Loading Related Data
 
 When a model class has composition or aggregation relationships to other classes, the data in those other classes is referred to as *related data*. With EF, when you get data from a DbSet, the default is that you only get the data from the entity represented by that DbSet. You don't get related data with it. There are three ways to get related data:
 
@@ -171,9 +132,7 @@ Use explicit loading when you know you will need some, but not all of the relate
 
 ### Exercise / Demo: BookReview web site
 
-- Test cascade deletes
-- Experiment with eager and lazy loading
-  - 
+Experiment with eager and lazy loading
 
 
 
@@ -186,8 +145,6 @@ Book Review site on GitHub: [MoreComplexDomain branch](https://github.com/LCC-CI
 
 
 ## References
-
-Anderson, Rick, et al. [MVC Movie Tutorial: Scaffold Movies Pages](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-model?view=aspnetcore-3.1&tabs=visual-studio#scaffold-movie-pages-2). A Microsoft Tutorial. 2022. 
 
 Anderson, Rick. [Tutorial: Read related data - ASP.NET MVC with EF Core](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/read-related-data?view=aspnetcore-3.1). A Microsoft tutorial. 2022.
 
