@@ -65,7 +65,7 @@ Book Review site on GitHub: [MoreComplexDomain branch](https://github.com/LCC-CI
 
 Anderson, Rick, et al. [MVC Movie Tutorial: Scaffold Movies Pages](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-model?view=aspnetcore-3.1&tabs=visual-studio#scaffold-movie-pages-2). A Microsoft Tutorial. 2022. 
 
-
+Delamater, Mary, Murach, Joel. "How to add a controller" 44 &ndash;45 in Ch. 2 of *Murach's ASP.NET Core MVC*. Murach, 2020. Shows you how to scaffold an empty controller.
 
 ------
 

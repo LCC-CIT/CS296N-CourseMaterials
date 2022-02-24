@@ -113,7 +113,7 @@ This is similar to lazy loading in that when the entity is first read, related d
 ```C#
 using (var context = new BookReviewContext())
 {
-    // Get a Review object wihtout related data
+    // Get a Review IQueryable object. This loads no data.
     var review = context.Reviews.First();
     // Load the Comments collection
     context.Entry(review).Collection(r => r.Comments).Load();
@@ -122,7 +122,15 @@ using (var context = new BookReviewContext())
 }
 ```
 
-In the above example, querying Context.Reviews will return an IQueryable. When you call Load() on a query, it has the same effect as ToList(), except it doesn't build the list. It just stores the data locally in EF.
+In the above example, querying Context.Reviews will return an IQueryable. When you call Load() on a query, it has the same effect as ToList(), except it doesn't build the list. It just stores the data locally in EF's memory space.
+
+If you want to load more than one related entity, you should do it in one query expression so that there is only one round-trip to the database. For example:
+
+```C#
+context.Entry(review).Collection(r => r.Comments).Reference(r => r.Reviewer).Load();
+```
+
+
 
 #### When to Use Explicit Loading
 
@@ -147,6 +155,8 @@ Book Review site on GitHub: [MoreComplexDomain branch](https://github.com/LCC-CI
 ## References
 
 Anderson, Rick. [Tutorial: Read related data - ASP.NET MVC with EF Core](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/read-related-data?view=aspnetcore-3.1). A Microsoft tutorial. 2022.
+
+Delamater, Mary, Murach, Joel. "How to work with related data" 156 &ndash;165 in Ch. 4 of *Murach's ASP.NET Core MVC*. Murach, 2020. Presents a somewhat different approach to working with related data.
 
 Rojansky, Shay, et al. [Loading Related Data](https://docs.microsoft.com/en-us/ef/core/querying/related-data/). A Microsoft tutorial. 2021.
 
