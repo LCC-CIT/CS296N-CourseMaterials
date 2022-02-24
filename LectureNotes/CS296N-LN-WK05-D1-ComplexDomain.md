@@ -23,7 +23,7 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 ### OOP Design and Domain Models
 
-In the System Design class, we covered [the basics of Object Oriented design](https://profbird.github.io/CS246-CourseMaterials/LectureNotes/CS246LN-W04-D1-OopDesignReview+UML.html) and how to model the relationships between classes in a UML class diagram like the [Tip of the Day domain model.](https://profbird.github.io/CS246-CourseMaterials/LectureNotes/Images/TipOfTheDayDomainModel2022.pdf)
+In CS246, System Design, we covered the basics of [Object Oriented Analysis and Design](https://profbird.github.io/CS246-CourseMaterials/LectureNotes/CS246LN-W04-D1-OopDesignReview+UML.html) and how to model the relationships between classes in a UML class diagram like the [Tip of the Day domain model](https://profbird.github.io/CS246-CourseMaterials/LectureNotes/Images/TipOfTheDayDomainModel2022.pdf).  We also looked at how to [implement the relationships in a class diagram in C# code](https://profbird.github.io/CS246-CourseMaterials/LectureNotes/CS246LN-W04-D2-OopDesignReview+Implementation.html). 
 
 ### Entity Framework
 
@@ -39,6 +39,7 @@ We learned how to create a DbContext class containing DbSets that are based on o
 
 - What is the meaning of "[domain](https://www.wolframalpha.com/input/?i=domain)" in general, in math?
 - What is meant by the problem "domain" in software development?
+- A domain model is a set of classes that reflect the relevant things in our problem domain that we want to persist in a database.
 
 ### How do we Apply Domain Driven Design?
 
@@ -61,7 +62,7 @@ Look at the Book Reviews example
 
 Implementing the domain model in C# is straightforward except for implementing composition vs. aggregation. Since we are using Entity Framework to persist our model objects, we need to write our code so that EF will understand which dependent entities will be deleted with the root entity (composition) and which will not.
 
-Composition will the the default relationship. If we want to indicate aggregation, we do it in the dependent entity by including the FK of the root entity and making it nullable (ie optional). 
+Aggregation is the the default relationship. If we want to specify composition, we do it in the dependent entity by adding an FK that points to the root entity and is a non-nullable property.
 
 Code based on the UML class diagram:
 
@@ -73,11 +74,11 @@ public class AppUser : IdentityUser
 
 public class Book
 {
-  public int BookId { get; set; }
+	public int BookId { get; set; }
   public string Title { get; set; }
   public DateTime PubDate { get; set; }
   public ICollection<Author> Authors { get; set; }
-  public ICollection<Review> Reviews { get; set; }
+  public ICollection<Review> Reviews { get; set; }  // Composition--FK in Review
 }
 
 public class Author
@@ -91,36 +92,30 @@ public class Review
 {
   public int ReviewId { get; set; }
   public string ReviewText { get; set; }
-  public AppUser Reviewer { get; set; }
-  public ICollection<Comment> Comments { get; set; }
+  public AppUser Reviewer { get; set; }               
+  public ICollection<Comment> Comments { get; set; }  // Compositioin--FK in review
+  public int BookId {get; set;}      // Composition (a review is part of a book.)
 }
 
 public class Comment
-    {
-        public int CommentId { get; set; }
-        public string CommentText { get; set; }
-        public AppUser UserName { get; set; }
-    }
+{
+   public int CommentId { get; set; }
+   public string CommentText { get; set; }
+   public AppUser UserName { get; set; }   
+   public int ReviewId {get; set;} // Composition (a comment is part of a review.)
+}
 ```
 
-#### Questions
 
-- How is aggregation being implemented?
-
-- How is composition being implemented?
-
-  
 
 ### How Entity Framework Maps a Domain Model to a DB Schema
 
 Each domain model entity is mapped to a table in the database. Additional join tables are created where needed.
 
 - EF creates "shadow properties" for Foreign Keys if the FK properties were not a part of the domain model. Your instructor prefers to leave FK properties out of the model and let EF create them.
-- When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. 
-  - Look  at a migration with Create Table, look at the constraints to see cascade delete specified on a FK.
-    - `onDelete: ReferentialAction.Restrict` means that a cascade delete will not be done.
-    - 
 
+- 
+  When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. (Look  at a migration with Create Table to see cascade delete specified on a FK).
 
 
   In order to signal EF not to do a cascade delete, include the FK property explicitly in the model and make it nullable. (See above).
@@ -150,14 +145,17 @@ We won't use the full-blown model shown above. We'll just add a comment model
    - Identify composition vs. aggregation relationships
    - Identify aggregates and root entities
 2. Write the model class
+   - Do you need to add foreign keys to any models?
 3. Write a view and view-model
 4. Write controller methods
    - Do we need a new repository method?
-   - Will there be issues with related data being returned from the DbSet?
+   - Will there be issues with related data being returned from a DbSet?
 
 
 
 ## References
+
+Freeman, Adam. [Applying Domain-Driven Development](../ArticleAndNotes/ProAspNetMvc4Freeman-DomainDriveDev.pdf) in ch. 4 of *Pro ASP.NET MVC 4*, Apress, 2012.
 
 Vickers, Arthur, et al. [Entity Framework Core: Saving Related Data)](https://docs.microsoft.com/en-us/ef/core/saving/related-data). 2022. 
 
@@ -167,6 +165,6 @@ Vickers, Arthur, et al. [Entity Framework Core: Cascade Delete)](https://docs.mi
 
 ------
 
- [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)System Design  Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2022</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+ [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2022</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
 
 ------
