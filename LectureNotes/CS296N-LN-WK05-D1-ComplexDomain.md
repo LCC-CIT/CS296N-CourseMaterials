@@ -157,14 +157,20 @@ We won't use the full-blown model shown above. We'll just add a Comment class to
    - Identify aggregates and root entities
 2. Write the model class
    - Do you need to add non-nullable foreign keys to any models to enable cascade deletes?[^5]
-3. Write a view and view-model
-4. Modify the exiting view that displays reviews so that users can:
-   - See comments left by other users
-   - Make comments on reviews
-5. Write controller methods
-6. Modify the repository
+3. Add Comment objects to the seed data.
+4. Modify the exiting view that displays reviews so that users can read and write comments.
+   - Modify the repository Reviews property: Add .Include(r => r.Comments).ThenInclude(c => c.Commenter) to the code that gets reviews from the DbContext object.
+5. **Test what we've done so far**. You should be able to view comments that come from the seed data.
+   - Add a new migration (since we changed the domain model)
+   - Update the database
+6. Write a view and view-model
+7. Write new controller methods
+   - Comment HttpGet method to display the form for entering comments
+   - Comment HttpPost method to store the new comments. 
+8. Modify the repository
    - Do we need a new repository method?[^6]
    - Will there be issues with related data being returned from a DbSet?[^7]
+9. **Test it again**. You should be able to post comments now.
 
 
 
@@ -197,5 +203,5 @@ Vickers, Arthur, et al. [Entity Framework Core: Cascade Delete)](https://docs.mi
 [^3]: Yes, EF will now create a database that is in 2nd(?) normal form.
 [^4]: No, if we model Book as having a collection of Authors, that's all we need. If we want to know all the books written by a given author, we can write a query for that. 
 [^5]: Yes, we need to add a FK of CommentId to the Review class.
-[^6]: No, since Review is the root entity of an aggregate with Comment, we will do all operations on Comment through Review.
+[^6]: Yes, we need a method to update Review objects that have had Comments added to them. But, no new method is needed for saving Comments since Review is the root entity of an aggregate with Comment, we will do all operations on Comment through Review.
 [^7]: Yes, we will need to modify the Reviews property of the ReviewRepository by adding a `ThenInclude` method for the Comment collection.
