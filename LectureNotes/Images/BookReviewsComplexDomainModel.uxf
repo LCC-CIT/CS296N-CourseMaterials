@@ -135,7 +135,7 @@ m2=1
       <h>440</h>
     </coordinates>
     <panel_attributes>lt=.
-r1=Aggregate - Root Entity is Book
+r1=Aggregate - Root Entity is Review
 </panel_attributes>
     <additional_attributes>330.0;30.0;10.0;30.0;10.0;420.0;460.0;420.0;460.0;250.0;330.0;190.0;330.0;30.0</additional_attributes>
   </element>
