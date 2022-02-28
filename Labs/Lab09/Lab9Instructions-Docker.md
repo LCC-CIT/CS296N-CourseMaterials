@@ -14,15 +14,16 @@ Gain experience:
 
   
 
-## Part 1. Docker Exercises
+## Part A Docker Exercises
 
-Read the Docker [Getting Started](https://docs.docker.com/get-started/) guide, parts 1, 2 and 3. Do all the steps that can be done on your development machine. 
+Read the Docker [Getting Started](https://docs.docker.com/get-started/) guide, parts 1, 2, 3 and 5. Do all the steps that can be done on your development machine. 
 
-Your grade on this part will be based on self-reporting:
+Your grade on this part will be based on self-reporting of the parts you completed. Points will be given as shown:
 
-- "Read it": 7 points
-- "Did part of it": 8 points
-- "Did it all" (Performed all the steps): 10 points
+- Part 1: 2 points
+- Parts 1 & 2: 5 points
+- Parts 1&ndash;3: 8 points
+- Parts 1&ndash;3 & 5: 10 points
 
 
 
@@ -30,7 +31,7 @@ Your grade on this part will be based on self-reporting:
 
 - Create a git branch named Lab9-Docker.
   (You won't be writing any new code, but this branch will contain your dockerfile, a new publish profile, and any changes you might make to your appsettings.json or launchsettings.json files)
-- Publish your app to a folder on your development machine. Your app should be using a SQL database on Azure. 
+- Publish your app to a folder on your development machine. 
 - Add a Dockerfile to the solution folder of your web app and add the appropriate commands to the file.
 - Build a Docker image and create a  container for your web app.
 - Deploy the container to Azure.
@@ -52,4 +53,4 @@ No beta version or code review is needed for this lab assignment.
 
 ------
 
-Written by Brian Bird, Lane Community College, winter 2020
+Written by Brian Bird, Lane Community College, winter 2020, revised <time>2022</time>

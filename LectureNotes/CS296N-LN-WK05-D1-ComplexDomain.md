@@ -118,15 +118,42 @@ public class Comment
 
 ### How Entity Framework Maps a Domain Model to a DB Schema
 
-Each domain model entity is mapped to a table in the database. Additional join tables are created where needed.
+Each domain model entity is mapped to a table in the database. Additional join tables are created where needed. EF creates "shadow properties" for Foreign Keys if the FK properties were not a part of the domain model. Your instructor prefers to leave FK properties out of the model and let EF create them.
 
-- EF creates "shadow properties" for Foreign Keys if the FK properties were not a part of the domain model. Your instructor prefers to leave FK properties out of the model and let EF create them.
+#### Cascade Delete
 
-- 
-  When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. (Look  at a migration with Create Table to see cascade delete specified on a FK).
+When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. (Look  at a migration that includes Create Table to see cascade delete specified on a FK).
 
+You can control cascade deletes several ways:
 
-  In order to signal EF not to do a cascade delete, include the FK property explicitly in the model and make it nullable. (See above).
+- In order to signal EF not to do a cascade delete, include the FK property explicitly in the model and make it nullable. (See the Comment model above).
+
+- Add a ModelBuilder rule in DbContext.OnModelBuilding. See [Configuring Cascade Behaviors](https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete#configuring-cascading-behaviors) (Vickers 2022) for descriptions of the options for the `DeleteBehavior` enum.
+
+   Examples:
+
+  - 
+    In Delamater (2020), this will prevent Genre records from being deleted with a Book record.
+
+    ```C#
+    modelBuilder.Entity<Book>()
+      .HasOne(b => b.Genre)
+      .WithMany(g => g.Books)
+    	.OnDelete(DeleteBehavior.Restrict); // don't delete dependent rows
+    
+    ```
+
+  - 
+    
+    In the instructor's BookReview example, we want Comment records to be deleted with a Review record. Note that when defining this rule with the ModelBuilder we don't need to have the `ReviewId` FK defined as it is in the code shown above.
+
+    ```c#
+    modelBuilder.Entity<Review>()
+                  .HasMany(b => b.Comments)
+                  .OnDelete(DeleteBehavior.ClientCascade); // delete dependent rows
+    ```
+
+    
 
 #### Model Relationships Supported by Entity Framework
 
@@ -186,7 +213,9 @@ Book Review site on GitHub: [MoreComplexDomain branch](https://github.com/LCC-CI
 
 Delamater, Mary, Murach, Joel. "How to work with relationships", pg. 450&ndash;459 in Ch. 12 of *Murach's ASP.NET Core MVC*. Murach, 2020. Presents a different approach to defining relationships in a domain model and managing cascade deletes.
 
-Freeman, Adam. [Applying Domain-Driven Development](../ArticleAndNotes/ProAspNetMvc4Freeman-DomainDriveDev.pdf) in ch. 3 of *Pro ASP.NET MVC 4*, Apress, 2012.
+Freeman, Adam. [Applying Domain-Driven Development](../ArticleAndNotes/ProAspNetMvc4Freeman-DomainDriveDev.pdf) in ch. 3 of *Pro ASP.NET MVC 4*, Apress, 2012.
+
+[Entity Framework Core, Modeling Relationships](https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#required-and-optional-relationships)
 
 Vickers, Arthur, et al. [Entity Framework Core: Saving Related Data)](https://docs.microsoft.com/en-us/ef/core/saving/related-data). 2022. 
 
