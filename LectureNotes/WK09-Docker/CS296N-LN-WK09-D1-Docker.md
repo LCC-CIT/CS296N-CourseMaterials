@@ -22,7 +22,8 @@ keywords: Docker, containers, dockerfile, Docker image.
 
 ## Announcements and Questions
 
-- Term Project
+- Reading and Quiz
+- Term Project&mdash;how is it going?
 - Q and A
 
 ------
@@ -76,16 +77,16 @@ We will deploy a framework-dependent ASP.NET Core web app to a Linux Azure App S
 
    - Open a new profile.
 
-       <img src="D:\Repos\CS296N-CourseMaterials\LectureNotes\WK09-Docker/PublishProfile-New.png" style="zoom:60%;" />
+       <img src="PublishProfile-New.png" style="zoom:60%;" />
 
    - Select "Folder" as the destination for publishing your web app. You can use the default path, `bin\Release\netcoreapp3.1\publish\`, or change it if you wish.
-     <img src="D:\Repos\CS296N-CourseMaterials\LectureNotes\WK09-Docker\PublishDestination.png" style="zoom:60%;" />
+     <img src="PublishDestination.png" style="zoom:60%;" />
 
    - Edit your new profile.
-      <img src="D:\Repos\CS296N-CourseMaterials\LectureNotes\WK09-Docker\PublishProfile-Edit.png" style="zoom: 67%;" />
+      <img src="PublishProfile-Edit.png" style="zoom: 67%;" />
 
    - Use all the setting you used in the previous one, including your Azure database connection string. but change the "target runtime" to "linux-x64".
-      <img src="D:\Repos\CS296N-CourseMaterials\LectureNotes\WK09-Docker\PublishProfile-Settings.png" style="zoom:67%;" />
+      <img src="PublishProfile-Settings.png" style="zoom:67%;" />
 
    - Publish the web app.
 
