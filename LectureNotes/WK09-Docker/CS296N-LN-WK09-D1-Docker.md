@@ -76,8 +76,7 @@ We will deploy a framework-dependent ASP.NET Core web app to a Linux Azure App S
 2. Make a new publish profile and use it to  publish your web app to a folder on your development machine. 
 
    - Open a new profile.
-
-       <img src="PublishProfile-New.png" style="zoom:60%;" />
+     <img src="PublishProfile-New.png" style="zoom:60%;" />
 
    - Select "Folder" as the destination for publishing your web app. You can use the default path, `bin\Release\netcoreapp3.1\publish\`, or change it if you wish.
      <img src="PublishDestination.png" style="zoom:60%;" />
