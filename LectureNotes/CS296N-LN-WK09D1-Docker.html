@@ -30,21 +30,23 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
   </head>
   <body>
     <div class="container-fluid">
-      <header> <a href="../index.html" target="_blank"><b>CS296N Web
-            Development 2: ASP.NET</b></a> <br>
+      <header>
+        <h1>Using Docker Containers</h1>
+        <b>CS296N Web Development 2: ASP.NET</b> <br>
         <br>
         <div class="table-responsive">
           <table class="table-bordered">
             <caption style="caption-side: top;">Weekly Topics</caption>
             <tbody>
               <tr>
-                <td id="week01">1. Intro to course and Identity<br>
+                <td id="week01">1. Intro to course and Input Validation<br>
                 </td>
                 <td id="week06">6. <strike>Load Testing and Performance</strike><br>
                 </td>
               </tr>
               <tr>
-                <td id="week02">2. Authentication and Authorization</td>
+                <td id="week02">2. Repositories and Unit Testing<br>
+                </td>
                 <td id="week07">7. Creating a Web Service<br>
                 </td>
               </tr>
@@ -73,7 +75,8 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
       </header>
       <section>
         <article>
-          <h1>Using Docker Containers</h1>
+          <h1><br>
+          </h1>
           <hr>
           <h2>Announcements</h2>
           <ul>
@@ -155,10 +158,11 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows"
             Dockerfile: <br>
             <font size="+1"><br>
             </font>
-            <pre><font face="Courier New, Courier, monospace" size="+1">docker build -t yourwebappname . </font><br></pre>
+            <pre><font size="+1" face="Courier New, Courier, monospace">docker build -t yourwebappname . </font><br></pre>
           </li>
           <li>To see the images currently installed, type:<br>
-            <font face="Courier New, Courier, monospace" size="+1">docker
+            <font size="+1" face="Courier New, Courier, monospace">docker
+
               images </font> <br>
             <br>
           </li>
@@ -194,7 +198,8 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows"
                 size="+1">docker create yourwebappname</font><br>
             </font>The output of the command shows the ID of your new
             container. To see a list of all containers, type:<br>
-            <font face="Courier New, Courier, monospace" size="+1">docker
+            <font size="+1" face="Courier New, Courier, monospace">docker
+
               ps -a<br>
             </font> <font face="Courier New, Courier, monospace"> <font
                 face="Helvetica, Arial, sans-serif">You'll notice that
@@ -203,16 +208,17 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows"
             <br>
           </li>
           <li>Start the container using it's name:<br>
-            <font face="Courier New, Courier, monospace" size="+1">docker
+            <font size="+1" face="Courier New, Courier, monospace">docker
+
               start some_name<br>
             </font> <font face="Courier New, Courier, monospace"> <font
                 face="Helvetica, Arial, sans-serif">FYI, you can use the
-                <font face="Courier New, Courier, monospace" size="+1">
+                <font size="+1" face="Courier New, Courier, monospace">
                   docker stop</font> command to stop the container.<br>
               </font> </font><br>
           </li>
           <li>Run the app<br>
-            <pre><font face="Courier New, Courier, monospace" size="+1">docker run --rm -p 5001:8080 yourwebappname</font></pre>
+            <pre><font size="+1" face="Courier New, Courier, monospace">docker run --rm -p 5001:8080 yourwebappname</font></pre>
             Notes:
             <ul>
               <li>I set the port option to map port 5001 inside the
@@ -237,26 +243,28 @@ href="https://hub.docker.com/editions/community/docker-ce-desktop-windows"
         </p>
         <ol>
           <li>Start the container using it's name:<br>
-            <font face="Courier New, Courier, monospace" size="+1">docker
+            <font size="+1" face="Courier New, Courier, monospace">docker
+
               start container_name<br>
             </font> <font face="Courier New, Courier, monospace"> <font
                 face="Helvetica, Arial, sans-serif">Notes:</font> </font>
-            <font face="Courier New, Courier, monospace" size="+1"><br>
+            <font size="+1" face="Courier New, Courier, monospace"><br>
             </font> </li>
           <ul>
             <li> <font face="Courier New, Courier, monospace"> <font
                   face="Helvetica, Arial, sans-serif">You can stop your
-                  container using the command: <font face="Courier New,
-                    Courier, monospace" size="+1"> docker stop</font><br>
+                  container using the command: <font size="+1"
+                    face="Courier New, Courier, monospace"> docker stop</font><br>
                 </font> </font> </li>
             <li> <font face="Courier New, Courier, monospace"> <font
                   face="Helvetica, Arial, sans-serif">You can get the
                   names of your containers using the command: </font> </font>
-              <font face="Courier New, Courier, monospace" size="+1">docker
+              <font size="+1" face="Courier New, Courier, monospace">docker
+
                 ps -a <font face="Helvetica, Arial, sans-serif"><br>
                 </font> </font> </li>
           </ul>
-          <li> <font face="Courier New, Courier, monospace" size="+1">
+          <li> <font size="+1" face="Courier New, Courier, monospace">
               <font face="Helvetica, Arial, sans-serif">Use the docker
                 attach command. <br>
                 <font face="Courier New, Courier, monospace">docker
@@ -339,6 +347,7 @@ href="https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-c
 
 
 
+
                 a .NET Core Application</a>. Sample Applications,
               Docker. </li>
             <li>Fernandez, D., Lyalin, D. &amp; Kaim L. 2015. <a
@@ -347,6 +356,7 @@ href="https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview
               Video. Channel 9, Microsoft.</li>
             <li>Dharmapuri, Likhit. 2017. <a
 href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e">ASP.NET
+
 
 
 
@@ -370,6 +380,7 @@ href="https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-3-e382
               src="https://i.creativecommons.org/l/by/4.0/80x15.png"
               style="border-width: 0"></a> </div>
         <span property="dct:title" xmlns:dct="http://purl.org/dc/terms/">ASP.NET
+
 
 
 
