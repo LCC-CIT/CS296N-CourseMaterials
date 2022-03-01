@@ -69,11 +69,31 @@ We will deploy a framework-dependent ASP.NET Core web app to a Linux Azure App S
 
 ### On your development machine:
 
+#### Modify your web app to use SQLite
+
+1. Install NuGet package: Microsoft.EntityFrameworkCore.Sqlite
+
+2. Change the ConfigureServices method of Startup:
+
+   ```c#
+   services.AddDbContext<BookReviewContext>(
+     options => options
+       .UseSqlite(Configuration["ConnectionStrings:SQLiteConnection"]));
+   ```
+
+3. Add a connection string to appsettings.json
+   ```json
+     "ConnectionStrings": {
+        "SQLiteConnection": "Data Source=Data/BookReviews.db" }
+   ```
+
+4. Remove any old migrations and add a new migration.
+
+5. Update the database.
+
 #### Publish your web app to a folder
 
-1. Using your [Azure portal](https://portal.azure.com), stop the app service where your lab web app is currently running. The reason, is that you will be using the same database for the containerized version of your app and the two shouldn't try to make changes to the database at the same time.
-
-2. Make a new publish profile and use it to  publish your web app to a folder on your development machine. 
+1. Make a new publish profile and use it to  publish your web app to a folder on your development machine. 
 
    - Open a new profile.
      <img src="PublishProfile-New.png" style="zoom:60%;" />
