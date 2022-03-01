@@ -18,8 +18,6 @@ keywords: Docker, containers, dockerfile, Docker image.
 
 [TOC]
 
-
-
 ## Announcements and Questions
 
 - Reading and Quiz
@@ -67,13 +65,15 @@ Notes:
 
 We will deploy a framework-dependent ASP.NET Core web app to a Linux Azure App Service in a Docker container.
 
-### On your development machine:
+### On your development machine
 
 #### Modify your web app to use SQLite
 
+I haven't been able to get a web app that uses Azure SQL Server from a Linux Docker container to work, so we're using SQLite instead of SQL Server.
+
 1. Install NuGet package: Microsoft.EntityFrameworkCore.Sqlite
 
-2. Change the ConfigureServices method of Startup:
+2. Change the ConfigureServices method of Startup so that AddDbContext uses SQLite instead of SQL Server:
 
    ```c#
    services.AddDbContext<BookReviewContext>(
@@ -176,7 +176,6 @@ We will deploy a framework-dependent ASP.NET Core web app to a Linux Azure App S
 ## References
 
 - [Getting Started with Docker](https://addons.mozilla.org/en-US/firefox/addon/jetbrains-toolbox/)
-  
 - Addie, S. & Anderson, R. (2018). [Host ASP.NET Core in Docker Containers](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-3.1). ASP.NET Core 3.1 Documentation, Microsoft. 
 - De George, Andy, et al. 2020. [ How to containerize a .NET Core  application](https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-core). .NET Core Guide, Microsoft 
 - Staff. 2019. [Get Started with Docker](https://docs.docker.com/get-started/). Docker. 
@@ -184,10 +183,13 @@ We will deploy a framework-dependent ASP.NET Core web app to a Linux Azure App S
 - Fernandez, D., Lyalin, D. & Kaim L. 2015. [ Docker Overview for .NET Developers](https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers).  Video. Channel 9, Microsoft.
 - Dharmapuri, Likhit. 2017. [ASP.NET Core and MySQL with Docker](https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e). Medium. [Part 1](https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e), [Part 2](https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-2-ee7fba1fc508), and [Part 3](https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-3-e3827e006e3).
 
+
+
 ------
 
- [ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/) ASP.NET Core MVC Lecture Notes, licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/), by [ Brian Bird](https://profbird.dev), winter 2019, updated winter <time>2022</time>.
 
+
+ [ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/) ASP.NET Core MVC Lecture Notes, licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/), by [ Brian Bird](https://profbird.dev), winter 2019, updated winter <time>2022</time>.
 
 [^1]: You can also use the CLI command `docker images` to see the images currently installed. 
 [^2]: Use this command to check the Linux distribution and version: ` cat /etc/issue.net`
