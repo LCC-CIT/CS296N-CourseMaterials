@@ -1,5 +1,5 @@
 ---
-title: Docker Part 2: Deploying an Dockerized web app to an Azure App Service.
+title: Docker Part 2: Deploying a Containerized web app to an Azure App Service.
 description: How to configure the Azure Container Registry and publish an image to the registry. How to configure an Azure App Service running Linux for a Docker container, pull a container from a registry and run it.
 keywords: Docker, containers, Azure App Service, Azure Container Service.
 ---

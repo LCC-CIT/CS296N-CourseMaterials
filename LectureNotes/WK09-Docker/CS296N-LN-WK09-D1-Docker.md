@@ -158,7 +158,7 @@ When I started writing these notes, I tried to set up my web app to use Azure SQ
 4. Build your image again as you did in step 2.
 
 5. Run the the container[^4]
-   `docker run --rmd -p 5000:80 bookreviews`
+   `docker run --rm -d -p 5000:80 bookreviews`
 
    The -p switch maps port <u>80 inside</u> the container to <u>5000 outside</u> the container[^5].
    
