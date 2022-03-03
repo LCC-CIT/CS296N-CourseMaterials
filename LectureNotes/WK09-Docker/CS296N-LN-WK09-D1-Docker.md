@@ -1,6 +1,6 @@
 ---
 title: Docker Part 1: Containerizing your ASP.NET Core web app
-description: How to Set up Docker and deploy a web app in a container.
+description: How to set up Docker and run a web app in a container.
 keywords: Docker, containers, dockerfile, Docker image.
 ---
 
