@@ -200,15 +200,13 @@ Open a command line interface on the container:
 - De George, Andy, et al. 2021. [ How to containerize a .NET Core  application](https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-core). .NET Core Guide, Microsoft 
 - Staff. 2019. [Get Started with Docker](https://docs.docker.com/get-started/). Docker. 
 - Staff. 2019. [Dockerize  a .NET Core Application](https://docs.docker.com/engine/examples/dotnetcore/). Sample Applications,Docker. 
-- [Alpine User Handbook](https://docs.alpinelinux.org/user-handbook/0.1a/index.html). Documentation for the flavor of Linux used by Docker.
 - [ASP.NET Core Runtime Images](https://hub.docker.com/_/microsoft-dotnet-aspnet/) on DockerHub.
 
------
+---------------
 
-------
+
 
  [ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/) ASP.NET Core MVC Lecture Notes, licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/), by [ Brian Bird](https://profbird.dev), winter 2019, updated winter <time>2022</time>.
-
 
 [^1]: You can also use the CLI command `docker images` to see the images currently installed. 
 [^2]: Use this command to check the Linux distribution and version: ` cat /etc/issue.net`
