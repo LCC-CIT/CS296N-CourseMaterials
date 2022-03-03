@@ -1,10 +1,10 @@
 ---
-title: Docker Containers
+title: Docker Part 1: Containerizing your ASP.NET Core web app
 description: How to Set up Docker and deploy a web app in a container.
 keywords: Docker, containers, dockerfile, Docker image.
 ---
 
-# Using Docker Containers
+# Docker: Containerizing your Web App
 
 **CS296N Web  Development 2: ASP.NET**
 
@@ -18,26 +18,17 @@ keywords: Docker, containers, dockerfile, Docker image.
 
 [TOC]
 
-
-
 ## Announcements and Questions
 
 - Reading and Quiz
 - Term Project&mdash;how is it going?
 - Q and A
 
-------
 
-## Overview
-
-This week you will learn how to...
-
-- [Set up Docker](http://lcc-cit.github.io/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK09D1-Docker.html#setup)
-- [How to Deploy a Web App in a Container](http://lcc-cit.github.io/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK09D1-Docker.html#howto)
-- [Examples](http://lcc-cit.github.io/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK09D1-Docker.html#examples)
-- [References](http://lcc-cit.github.io/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK09D1-Docker.html#references)
 
 ## Introduction
+
+This is part 1 of a 2 part series on using Docker with ASP.NET Core. You will learn how to put your web app in a Docker Linux container and run it in the container on your development machine. In part 2, you will learn to publish your docker image to a repository (Azure Container Repository) and run the image on an Azure App Service with Linux as its operating system.
 
 ### Containers
 
@@ -55,7 +46,7 @@ From the [Docker web site](https://www.docker.com/resources/what-container):
 
 Follow the instructions on the [Get Docker](https://docs.docker.com/get-docker/) page. Docker can be installed on Windows, Mac OS, or Linux.
 
-Notes:
+**Notes:**
 
 - On Windows, the Docker Desktop app relies on WSL 2, ([Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about)). During the Docker installation you will be prompted to set up WSL 2, if you have not already installed it.
 - If you run the 2 minute Getting Started tutorial that is launched by the installer, at the last step, after you run your container, you will need to open a browser to the address http://localhost, or, in Docker Desktop, click on "Open in browser" to see the web page that's being hosted in the container.
@@ -63,13 +54,13 @@ Notes:
 
 ------
 
-## Deploy a Web App in a Container
+## Running a Web App in a Container
 
-We will deploy a framework-dependent ASP.NET Core web app to a Linux Azure App Service in a Docker container.
-
-### On your development machine:
+We will wet up a framework-dependent ASP.NET Core web app to run in a Linux  Docker container.
 
 #### Modify your web app to use SQLite
+
+When I started writing these notes, I tried to set up my web app to use Azure SQL Server as the database, but got errors trying from the SQL Server provider when I tried to run my app on Linux. For this reason, I switched to SQLite.
 
 1. Install NuGet package: Microsoft.EntityFrameworkCore.Sqlite
 
@@ -161,14 +152,43 @@ We will deploy a framework-dependent ASP.NET Core web app to a Linux Azure App S
    - EXPOSE&mdash;Opens up network ports in the Docker container to the host operating system.
    - ENTRYPOINT—specifies the command to run when the container starts. The first item in the square brackets is the command, the ones that follow it are arguments for that command.
 
-4. Build your image again as you did in step 3.
+4. Build your image again as you did in step 2.
 
 5. Run the the container[^4]
-   `docker run --rm -p 80:5000 bookreviews`
+   `docker run --rmd -p 5000:80 bookreviews`
 
-   I set the port option to map port <u>80 inside</u> the container to <u>5000 outside</u> the container[^5].
+   The -p switch maps port <u>80 inside</u> the container to <u>5000 outside</u> the container[^5].
    
 6. Upload the image to Docker Hub or any other container registry. 
+
+
+
+## Troubleshooting
+
+### Did the App Start in the Container?
+
+If the app started correctly when you started it (step 5 above), then you should have seen a response like this in the terminal:
+
+```bash
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://[::]:80
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /app
+```
+
+### Does it Run Correctly Elsewhere?
+
+If your app working in the Docker container, then verify where it does work.
+
+- Does it work when you run it from Visual Studio?
+- Does it work when you run it from the publish directory using the WSL command line: `dotnet yourwebapp.dll`?
+
+Open a command line interface on the container:
+`docker exec container_name -it bash`
 
 
 
@@ -176,13 +196,14 @@ We will deploy a framework-dependent ASP.NET Core web app to a Linux Azure App S
 ## References
 
 - [Getting Started with Docker](https://addons.mozilla.org/en-US/firefox/addon/jetbrains-toolbox/)
-  
-- Addie, S. & Anderson, R. (2018). [Host ASP.NET Core in Docker Containers](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-3.1). ASP.NET Core 3.1 Documentation, Microsoft. 
-- De George, Andy, et al. 2020. [ How to containerize a .NET Core  application](https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-core). .NET Core Guide, Microsoft 
+- Addie, S. & Anderson, R. (2022). [Host ASP.NET Core in Docker Containers](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/?view=aspnetcore-3.1). ASP.NET Core 3.1 Documentation, Microsoft. 
+- De George, Andy, et al. 2021. [ How to containerize a .NET Core  application](https://docs.microsoft.com/en-us/dotnet/core/docker/docker-basics-dotnet-core). .NET Core Guide, Microsoft 
 - Staff. 2019. [Get Started with Docker](https://docs.docker.com/get-started/). Docker. 
 - Staff. 2019. [Dockerize  a .NET Core Application](https://docs.docker.com/engine/examples/dotnetcore/). Sample Applications,Docker. 
-- Fernandez, D., Lyalin, D. & Kaim L. 2015. [ Docker Overview for .NET Developers](https://channel9.msdn.com/Series/Docker-for-NET-Developers/Docker-Overview-for-NET-Developers).  Video. Channel 9, Microsoft.
-- Dharmapuri, Likhit. 2017. [ASP.NET Core and MySQL with Docker](https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e). Medium. [Part 1](https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-1-b7ef538ecd8e), [Part 2](https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-2-ee7fba1fc508), and [Part 3](https://medium.com/@Likhitd/asp-net-core-and-mysql-with-docker-part-3-e3827e006e3).
+- [Alpine User Handbook](https://docs.alpinelinux.org/user-handbook/0.1a/index.html). Documentation for the flavor of Linux used by Docker.
+- [ASP.NET Core Runtime Images](https://hub.docker.com/_/microsoft-dotnet-aspnet/) on DockerHub.
+
+-----
 
 ------
 
