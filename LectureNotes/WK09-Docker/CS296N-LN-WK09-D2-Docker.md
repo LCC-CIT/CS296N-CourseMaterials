@@ -60,7 +60,7 @@ We will wet up a framework-dependent ASP.NET Core web app to run in a Linux  Doc
 
 #### Modify your web app to use SQLite
 
-When I started writing these notes, I tried to set up my web app to use Azure SQL Server as the database, but got errors trying from the SQL Server provider when I tried to run my app on Linux. For this reason, I switched to [SQLite](https://sqlite.org).
+When I started writing these notes, I tried to set up my web app to use Azure SQL Server as the database, but got errors trying from the SQL Server provider when I tried to run my app on Linux. For this reason, I switched to SQLite.
 
 1. Install NuGet package: Microsoft.EntityFrameworkCore.Sqlite
 
@@ -81,9 +81,6 @@ When I started writing these notes, I tried to set up my web app to use Azure SQ
 4. Remove any old migrations and add a new migration.
 
 5. Update the database.
-
-6. Add the database file (BookReviews.db in the example) to your Visual Studio project. In Solution Explorer, right-click on the file and select "properties". Set "Copy to Output Directory" to "Copy if newer".
-   <img src="DbFileProperties.png" alt="DbFileProperties" style="zoom:67%;" />
 
 #### Publish your web app to a folder
 
@@ -135,7 +132,7 @@ When I started writing these notes, I tried to set up my web app to use Azure SQ
    - Copy the web app's binaries into the image.
    - Set a working directory for the web app.
    - Set the HTTP ports to listen on.
-     *Note: I currently haven't been able to get HTTPS on port 443 to work for my BookReviews app. 3/2/2022*
+     *Note: I currently haven't been able to get HTTPS on port 443 to work.*
    - Set the run-time commands that will start the web app.
 
    ```dockerfile
@@ -162,7 +159,7 @@ When I started writing these notes, I tried to set up my web app to use Azure SQ
 
    The -p switch maps port <u>80 inside</u> the container to <u>5000 outside</u> the container[^5].
    
-6. Test your containerized app by opening the address http://localhost:5000 in a browser.
+6. Upload the image to Docker Hub or any other container registry. 
 
 
 
@@ -195,15 +192,10 @@ Open a command line interface on the container:
 
 ### View Web App Logs
 
-This Docker command will show all your web app's log messages since the container was started:
+This Docker command will show all your web app's messages since the container was started:
 
 `docker logs container_name`
 
-
-
-## Example
-
-[BookReveiws: 9-Docker branch](https://classes.lanecc.edu/mod/url/view.php?id=3233943) on GitHub
 
 
 
