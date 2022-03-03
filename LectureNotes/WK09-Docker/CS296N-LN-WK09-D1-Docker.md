@@ -190,6 +190,12 @@ If your app working in the Docker container, then verify where it does work.
 Open a command line interface on the container:
 `docker exec container_name -it bash`
 
+### View Web App Logs
+
+This Docker command will show all your web app's messages since the container was started:
+
+`docker logs container_name`
+
 
 
 
