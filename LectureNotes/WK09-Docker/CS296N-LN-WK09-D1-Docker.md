@@ -83,7 +83,7 @@ When I started writing these notes, I tried to set up my web app to use Azure SQ
 5. Update the database.
 
 6. Add the database file (BookReviews.db in the example) to your Visual Studio project. In Solution Explorer, right-click on the file and select "properties". Set "Copy to Output Directory" to "Copy if newer".
-   <img src="DbFileProperties.png" alt="DbFileProperties" style="zoom:67%;" />
+   <img src="DbFileProperties.png" alt="DbFileProperties" style="zoom:60%;" />
 
 #### Publish your web app to a folder
 
