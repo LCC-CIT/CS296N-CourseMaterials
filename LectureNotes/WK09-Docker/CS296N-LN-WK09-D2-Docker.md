@@ -39,15 +39,22 @@ Note that a container registry is a place to store <u>images</u>, not containers
 #### Create an ACR Service
 
 1. Log into the [Azure portal](https://portal.azure.com).
+
 2. Click the "+ Create" button, then type "container registry" in the search box.
+
 3. Click on  <img src="AzureContainerRegistryIcon.png" alt="AzureContainerRegistryIcon" style="zoom:67%;" /> then click on the "Create" button.
+
 4. Enter all the required information
    - **Subscription**: Azure for Students subscription.
    - **Resource Group**: Any existing resource group. (For good organization choose the same one you will use for the App Services that will host your containers.)
    - **Name**: Make up one that is descriptive.
    - **Location**: Choose any region. (For good organization use the same one as the resource group.)
    - **SKU**: Standard&mdash;this is the free one.
-5. After your container registry has been created, open it and click on "Access keys". Set "Admin User" to "Enabled".
+   
+5. 
+   After your container registry has been created, open it and click on "Access keys". Set "Admin User" to "Enabled".
+
+   <img src="AcrAccessKeysSettings.png" alt="AcrAccessKeysSettings" style="zoom:40%;" />
 
 #### Push a Docker Image to ACR
 

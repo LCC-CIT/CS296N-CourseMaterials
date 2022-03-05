@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{97A3A362-2A94-470D-86EF-F9A89EA19461}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MultiSelectExperiments/wwwroot/html/HtmlMultiSelectExperiment.html">
+    <Files>
+      <File FileName="MultiSelectExperiments/wwwroot/html/HtmlMultiSelectExperiment.html" Line="12" Column="81" />
+      <File FileName="MultiSelectExperiments/Program.cs" Line="16" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MultiSelectExperiments" expanded="True">
+            <Node name="MultiSelectExperiments" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="wwwroot" expanded="True">
+                <Node name="html" expanded="True">
+                  <Node name="HtmlMultiSelectExperiment.html" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.MultiSelectExperiments PreferredExecutionTarget="/Applications/Safari.app" />
+</Properties>
