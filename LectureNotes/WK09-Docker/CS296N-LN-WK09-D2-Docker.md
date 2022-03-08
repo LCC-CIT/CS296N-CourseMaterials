@@ -70,7 +70,7 @@ Note that a container registry is a place to store <u>images</u>, not containers
    `docker image ls`
 
 3. Log into your ACR service. 
-   (To do this step, you need to [install the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli))
+   To do this, you must [install the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and you need to use Windows Power Shell[^1].
    `az acr login --name {your ACR name} `
 
    You will be asked for login credentials. You get these from the Azure portal, in the "Access Keys" page of your ACR service.
@@ -159,8 +159,10 @@ There are two ways to look at the logs:
 [Enable diagnostics logging for apps in Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs)
 
 
+------
+
 
  [ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/) ASP.NET Core MVC Lecture Notes, licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/), by [ Brian Bird](https://profbird.dev), winter 2019, updated winter <time>2022</time>.
 
-
+[^1]: Alternatively, you can log into Azure from a Linux command line after installing the Azure CLI using the package manager for your Linux distribution.
 
