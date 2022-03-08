@@ -143,16 +143,6 @@ You can control cascade deletes several ways:
     
     ```
 
-  - 
-    
-    In the instructor's BookReview example, we want Comment records to be deleted with a Review record. Note that when defining this rule with the ModelBuilder we don't need to have the `ReviewId` FK defined as it is in the code shown above.
-
-    ```c#
-    modelBuilder.Entity<Review>()
-                  .HasMany(b => b.Comments)
-                  .OnDelete(DeleteBehavior.ClientCascade); // delete dependent rows
-    ```
-
     
 
 #### Model Relationships Supported by Entity Framework
@@ -161,7 +151,12 @@ EF Core 3.1 supports one-to-one, one-to-many, as well as inheritance.
 
 - While many-to-many relationships aren't automatically implemented in version 3.1, you can implement this relationship by using a model entity that represents a join table. 
 
-  But, most of the time this relationship isn't needed and just complicates your system. For example: Do we need a many-to-many relationship to manage books that have multiple authors and authors that have written multiple books?[^4]
+  But, most of the time this relationship isn't needed and just complicates your system. 
+  
+  For example (Question): 
+  
+  Do we need a many-to-many relationship to manage books that have multiple authors and authors that have written multiple books?[^4]
+  
 - Inheritance doesn't translate well to a database schema. All the inherited properties end up in one table.
 
 EF 6 automatically implements many-to-many relationships.
@@ -206,6 +201,8 @@ We won't use the full-blown model shown above. We'll just add a Comment class to
 Book Review site on GitHub: [ComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain), and [running on Azure](https://bookreviews.azurewebsites.net/).
 
 Book Review site on GitHub: [MoreComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-MoreComplexDomain)
+
+UML class diagrams of the domain models are in the Doc folder of this repository.
 
 
 
