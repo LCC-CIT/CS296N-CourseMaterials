@@ -5,7 +5,7 @@ keywords: Term project, related data, capstone
 
 ---
 
-# End of Term Wrap-Up
+# End of Term Wrap-Up, Part 2
 
 **CS296N Web  Development 2: ASP.NET**
 
@@ -21,29 +21,25 @@ keywords: Term project, related data, capstone
 
 ## Announcements and Questions
 
-- Term Project&mdash;how is it going?
-- Internships&mdash;have you talked to Gerry?
 - Q and A
 - Review due dates
 
 
 
-## Related Data
+## Uploading Files
 
-Today we'll talk about [Related Data](https://lcc-cit.github.io/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK05-D2.2-RelatedData.html), a topic we skipped earlier in the term.
+Today we'll talk about providing a way for users to upload files to a web site. This is a a topic that a number of you have requested that we cover.
 
 
-
-## More ASP.NET Topics
-
-There are some other topics we skipped this term, as well as things I would have liked to include. We might be able to fit them in during the capstone class next term.
-
-- Consuming a web API using C# (server-side).
-- Ajax
-- Security
-- User file upload (pictures, videos, etc.)
 
 ## Debugging and Code help
 
 Time to do some screen sharing and look at people's code.
 
+
+
+## References
+
+Smith, Steve, and Storm, Rutger. [Upload files in ASP.NET Core)](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-3.1). Microsoft, 2022. 
+
+MDN. [Using files from web applications](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications). Mozilla Developer Network.
