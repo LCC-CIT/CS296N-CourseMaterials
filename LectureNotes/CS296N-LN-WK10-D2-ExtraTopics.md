@@ -1,10 +1,11 @@
 ---
-title: End of term wrap-up, part 1
+title: End of term wrap-up, part 2
 description: Discussion of related data and other topics we skipped earlier in the term.
 keywords: Term project, related data, capstone
+
 ---
 
-# End of Term Wrap-Up, Part 1
+# End of Term Wrap-Up
 
 **CS296N Web  Development 2: ASP.NET**
 
