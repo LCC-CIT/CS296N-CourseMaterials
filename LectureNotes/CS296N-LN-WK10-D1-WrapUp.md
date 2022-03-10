@@ -41,8 +41,14 @@ There are some other topics we skipped this term, as well as things I would have
 - Ajax
 - Security
 - User file upload (pictures, videos, etc.)
+- Use a combo-box (drop-down list with text input field) to enter (with autocomplete) or select items from a database to facilitate consistency of items entered or selected.
+- Send e-mail to users.
 
 ## Debugging and Code help
 
 Time to do some screen sharing and look at people's code.
 
+
+
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
+ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in <time>2022</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
