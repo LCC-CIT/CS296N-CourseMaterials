@@ -30,7 +30,7 @@ keywords: Term project, related data, capstone
 
 Today we'll talk about providing a way for users to upload files to a web site. This is a a topic that a number of you have requested that we cover.
 
-### Trying out HTML code in the wwwroot folder
+## Trying out HTML code in the wwwroot folder
 
 This is an approach to testing or experimenting with new new UI code without having to make controller methods and a view to do it.
 
@@ -84,7 +84,7 @@ Time to do some screen sharing and look at people's code.
 
 [How TO - File Upload Button](https://www.w3schools.com/howto/howto_html_file_upload_button.asp). W3Schools.
 
-Smith, Steve, and Storm, Rutger. [Upload files in ASP.NET Core)](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-3.1). Microsoft, 2022. 
+Smith, Steve, and Storm, Rutger. [Upload files in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-3.1). Microsoft, 2022. 
 
 MDN. [Using files from web applications](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications). Mozilla Developer Network. This tutorial shows you how to do a lot of different operations with files using just HTML and JavaScript, including:
 
