@@ -1,0 +1,14 @@
+﻿@model ImageVM
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Displaying Images from wwwroot</h1>
+    <p>This image is in this project's' wwwroot/image/ folder.
+    </p>
+    <figure>
+        <img src="~/image/@Model.FileName" />
+        <figcaption>@Model.Description</figcaption>
+    </figure>
+</div>
