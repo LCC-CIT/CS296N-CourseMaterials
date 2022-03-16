@@ -13,6 +13,8 @@
 
 - Messaging site with channels that can be subscribed to (like Telegram)
 - Chatbot site (with fake chatbot, not real AI) for some topic (programming, travel, gaming, food, etc.)
+- Dating site?
+- 
 
 
 
