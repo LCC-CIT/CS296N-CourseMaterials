@@ -9,6 +9,8 @@
 | Time     | Tu, Th, 10:00 – 11:50                |      | Office       | [lanecc.zoom.us/j/94002309439](https://lanecc.zoom.us/j/94002309439) |
 | Zoom     | [lanecc.zoom.us/j/98797466911](https://lanecc.zoom.us/j/98797466911) |      | Office Hours | M, W 1:00&ndash;2:00<br />Tu, Th 2:00&dash;3:00<br /> or by appointment |
 
+[TOC]
+
 
 
 ## Course Description
