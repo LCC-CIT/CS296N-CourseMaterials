@@ -1,5 +1,9 @@
 # Suggestions for Next Year's Class (2023)
 
+[TOC]
+
+
+
 ## Ideas for web dev lab projects
 
 - Ride share service (like uber)
@@ -57,4 +61,27 @@
 - **Ethics**
 - Debugging and troubleshooting
 - OOAnD and UML
+
+
+
+## Lab 9 - Docker
+
+Ask for some kind of verification that the container is in the registry and that the app is running in a container (screen-shot of the app service setup?)
+
+## Term Project
+
+- Don't allow projects that are too similar to the example: review sites, or sites with the same domain model structure.
+- Add requirement for updated UML diagram of domain model.
+  - Require at least 3 of the 4 classes to be related to each other and at least one one-to-many or many-to-many relationship.
+- Number of pages doesn't count unmodified scaffolded pages. (modification means at least a 25% change.)
+- Add a requirement and grading criteria for UX (more than just navigation).
+- Add a requirement for validation
+- Make clear criteria for what should be tested by unit tests and min number of tests, 3?
+- Make clear criteria for what can be copied from Stack Overflow--etc.
+- Remove advice about using Winhost, add permission to use SQLite or MySQL on Azure.
+- Require seed data and a seed admin user.
+- Require repositories?
+- More detailed requirements for load testing and reporting.
+
+
 
