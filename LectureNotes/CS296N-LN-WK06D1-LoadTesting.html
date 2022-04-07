@@ -1,4 +1,682 @@
-<!DOCTYPE html><html>  <head>    <meta http-equiv="content-type" content="text/html; charset=UTF-8">    <title>Load Testing</title>    <style>        body {            font-family: "Arial", "Helvetica", "sans-serif";        }                #week06 {            background-color: #f8ff2e;        }                code {            display: block;            font-size: larger;            background-color: lightgoldenrodyellow;            max-height: 400px;            width: 90%;            overflow: scroll;        }                .exercise {            background-color: #c6ffe2;        }                </style> <base target="_blank">  </head>  <body> <b><a href="http://lcc-cit.github.io/CS296N-CourseMaterials/CS296N_Syllabus.pdf"        target="_blank">CS296N
-        Web Development 2: ASP.NET</a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </b> <br>    <header>      <h1> <i> Load and Performance Testing </i> </h1>      <b>Topics by week </b>      <table style="width: 807px; height: 127px;" border="1">        <tbody>          <tr>            <td id="week01">1. Intro to course and Identity<br>            </td>            <td id="week06">6. Load Testing and Performance, Midterm Quiz<br>            </td>          </tr>          <tr>            <td id="week02">2. Authentication and Authorization</td>            <td>7. Creating a Web Service<br>            </td>          </tr>          <tr>            <td id="week03">3. Claims and Third Party Authentication<br>            </td>            <td id="week08" style="width: 395.333px;">8. Consuming a Web              Service, Async / Await<br>            </td>          </tr>          <tr>            <td id="week04">4. Web Security<br>            </td>            <td id="week09">9. Docker Containers<br>            </td>          </tr>          <tr>            <td id="week05">5. Publishing to a Production Server</td>            <td id="week10">10.&nbsp; Microservices<br>            </td>          </tr>        </tbody>      </table>      <h2>Contents</h2>      <div>        <ul>          <li> <a href="#topic1">Overview</a> </li>          <li> <a href="#topic2">Detailed Instructions</a> </li>          <li> <a href="#topic6">References</a> </li>        </ul>      </div>    </header>    <section>      <hr>      <article id="topic1">        <h2>Overview </h2>        <p>We will be learning to do load testing using JMeter</p>        <hr>        <h2>JMeter</h2>        <p>Thread Group: controls simulation of users</p>        <p>Sampler: Generates requests. Most common: HTTP Request</p>        <p>Listener: Collects results</p>        <ul>          <li>View results in table</li>          <li>View results in tree (mainly used for debugging a test or            diangnosing failures)</li>          <li>Aggregate report</li>          <li>Graph result</li>          <li>Summary report</li>          <li>Simple data writer</li>        </ul>        <p>Command line:<br>          On Mac: sh jmeter (runs jmeter.sh)<br>          On Windows: jmeter (runs jmeter.bat)</p>        <ul>          <li>-h help</li>          <li>-n non-gui mode</li>          <li>-t location of test script (.jmx)</li>          <li>-l location of the result file</li>          <li>-e generate html report</li>          <li>- o location of html report folder</li>        </ul>        <article id="topic8">          <p>&nbsp;</p>        </article>        <hr>        <article id="topic9">          <h3>APDEX</h3>        </article>        <p>https://en.wikipedia.org/wiki/Apdex</p>      </article>      <hr>      <article id="topic2">        <h3>FAQ</h3>        <p>Q: Does Visual Studio have a load testing add-on?<br>          A: Yes, but only for the Enterprise Edition</p>        <p>Q: What is latency?<br>          A: The time between the start of the connection and the first byte of          the response</p>        <p>&nbsp;</p>        <p>&nbsp;</p>      </article>      <hr>      <article id="topic7">        <h2>References</h2>        <ul>          <li> <a href="http://jmeter.apache.org/usermanual/generating-dashboard.html">              JMeter Web Site</a> -- Downloads, Documentation, and Tutorials <br>            (A condensed version of the MS tutorial above)</li>          <li> <a href="https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html">              JMeter HTTP(S) Test Script Recorder</a> - how to record your            browser actions in a test script</li>          <li> <a href="https://www.youtube.com/playlist?list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c">              JMeter Beginner Tutorials</a> on YouTube</li>        </ul>        <p>&nbsp;</p>      </article>      <hr> </section>    <footer> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">      </a> <br>      <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ASP.NET        Core MVC Lecture Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#"        href="https://birdsbits.blog"        property="cc:attributionName"        rel="cc:attributionURL">Brian
-        Bird</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-        Commons Attribution-ShareAlike 4.0 International License</a>. </footer>    <hr>  </body></html>
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>CS296N-LN-WK06D1-LoadTesting</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='performance-and-load-testing'><em><span>Performance and Load Testing</span></em><span> </span></h1><figure><table><thead><tr><th><span>Weekly topics</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>1. Intro to course and Input validation</span></td><td><span>6. Async/Await</span></td></tr><tr><td><span>2. Repositories and Unit Testing</span></td><td><strong><span>7. Performance and Load Testing</span></strong></td></tr><tr><td><span>3. Publishing to Azure / Intro to Identity</span></td><td><span>8. Complex Domain Models</span></td></tr><tr><td><span>4. Authentication</span></td><td><span>9. Docker containers</span></td></tr><tr><td><span>5. Authorization</span></td><td><span>10. Term project</span></td></tr></tbody></table></figure><h2 id='contents'><span>Contents</span></h2><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#performance-and-load-testing"><em>Performance and Load Testing</em> </a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n21"><a class="md-toc-inner" href="#contents">Contents</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n24"><a class="md-toc-inner" href="#introduction">Introduction</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n34"><a class="md-toc-inner" href="#web-site-performance">Web Site Performance</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n35"><a class="md-toc-inner" href="#why-performance-matters">Why Performance Matters</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n45"><a class="md-toc-inner" href="#performance-standards">Performance Standards</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n91"><a class="md-toc-inner" href="#definitions">Definitions</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n112"><a class="md-toc-inner" href="#measuring-page-performance">Measuring Page Performance</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n130"><a class="md-toc-inner" href="#performance-under-load">Performance Under Load</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n139"><a class="md-toc-inner" href="#measuring-performance-under-load">Measuring Performance Under Load</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n275"><a class="md-toc-inner" href="#how-to-use-jmeter">How to Use JMeter</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n280"><a class="md-toc-inner" href="#downloading-and-running-jmeter">Downloading and Running JMeter</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n295"><a class="md-toc-inner" href="#setting-up-a-test-plan">Setting up a Test Plan</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n148"><a class="md-toc-inner" href="#improving-site-performance">Improving Site Performance</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n149"><a class="md-toc-inner" href="#optimize-web-site-code">Optimize Web Site Code</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n166"><a class="md-toc-inner" href="#increase-server-performance">Increase Server Performance</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n167"><a class="md-toc-inner" href="#optimize-server-configuration">Optimize Server Configuration</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n193"><a class="md-toc-inner" href="#upgrade-server-resources">Upgrade Server Resources</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n226"><a class="md-toc-inner" href="#use-a-content-delivery-network">Use a Content Delivery Network</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n230"><a class="md-toc-inner" href="#references">References</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n231"><a class="md-toc-inner" href="#jmeter">JMeter</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n239"><a class="md-toc-inner" href="#aspnet-core-code-optimization">ASP.NET Core Code Optimization</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n245"><a class="md-toc-inner" href="#azure-app-service-configuration">Azure App Service Configuration</a></span></p></div><hr /><h2 id='introduction'><span>Introduction</span></h2><p><span>Winter 2022 topics</span></p><ul><li><span>Additional example of unit testing async controller methods</span>&mdash;<span>specifically, methods that use IQueryable: </span><a href='https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/5-AsyncQueriesRefactored' target='_blank' class='url'>https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/5-AsyncQueriesRefactored</a></li><li><span>Term project proposals. Will finish grading today.</span></li><li><span>Q and A</span></li></ul><p>&nbsp;</p><h2 id='web-site-performance'><span>Web Site Performance</span></h2><h3 id='why-performance-matters'><span>Why Performance Matters</span></h3><p><span>Web pages that load quickly are a major contributor to UX (User experience) on your site. Site UX matters, because better UX means that users:</span></p><ul><li><span>stay on your site longer.</span></li><li><span>are more like to return to your site.</span></li><li><span>are more likely to engage in the mission of your site (buy, donate, read, post, comment, etc.).</span></li></ul><p><span>Page load time is also a significant factor in SEO. Google uses this aspect of UX as part of their determination of search rankings.</span></p><h3 id='performance-standards'><span>Performance Standards</span></h3><p><span>How fast is fast enough? There are no universally accepted standards</span><sup class='md-footnote'><a href='#dfref-footnote-1' name='ref-footnote-1'>1</a></sup><span> for this, but, one way to answer this question is to use Google&#39;s standards for what their site ranking tools consider &quot;good&quot; page load speeds</span><sup class='md-footnote'><a href='#dfref-footnote-2' name='ref-footnote-2'>2</a></sup><span>. These are their current (2/13/2022) standards:</span></p><figure><table><thead><tr><th><span>Desktop Sites</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>First Contentful Paint</span></td><td><span>930 ms</span></td></tr><tr><td><span>Speed Index</span></td><td><span>1,310 ms</span></td></tr><tr><td><span>Largest Contentful Paint</span></td><td><span>1,200 ms</span></td></tr><tr><td><span>Time to Interactive</span></td><td><span>2,470 ms</span></td></tr><tr><td><span>Total Blocking Time</span></td><td><span>150 ms</span></td></tr><tr><td><span>Cumulative Layout Shift</span></td><td><span>0.10</span></td></tr></tbody></table></figure><figure><table><thead><tr><th><span>Mobile Sites (or reactive sites)</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>First Contentful Paint</span></td><td><span>1,800 ms</span></td></tr><tr><td><span>Speed Index</span></td><td><span>3,390 ms</span></td></tr><tr><td><span>Largest Contentful Paint</span></td><td><span>2,500 ms</span></td></tr><tr><td><span>Time to Interactive</span></td><td><span>3,780 ms</span></td></tr><tr><td><span>Total Blocking Time</span></td><td><span>200 ms</span></td></tr><tr><td><span>Cumulative Layout Shift</span></td><td><span>0.10</span></td></tr></tbody></table></figure><h4 id='definitions'><span>Definitions</span></h4><ul><li><p><strong><span>First Contentful Paint</span></strong></p><p><span>How long it takes the browser to render the first item of DOM content after a user navigates to your page. 10% of Lighthouse score.</span></p></li><li><p><strong><span>Speed Index</span></strong></p><p><span>How quickly content is visually displayed during page load. 10% of Lighthouse score.</span></p></li><li><p><strong><span>Largest Contentful Paint</span></strong></p><p><span>The perceived load speed</span>&mdash;<span>it marks the point when the page&#39;s main content has likely loaded. 25% of Lighthouse score.</span></p></li><li><p><strong><span>Time to Interactive</span></strong></p><p><span>How long it takes a page to become </span><em><span>fully</span></em><span> interactive. 10% of Lighthouse score.</span></p></li><li><p><strong><span>Total Blocking Time</span></strong></p><p><span>The total amount of time that a page is blocked from responding to user input. 30% of Lighthouse score.</span></p></li><li><p><strong><span>Cumulative Layout Shift</span></strong></p><p><span>A measure of the largest burst of </span><em><span>layout shift scores</span></em><span> for every </span><a href='https://web.dev/cls/#expected-vs.-unexpected-layout-shifts'><span>unexpected</span></a><span> layout shift that occurs during the entire lifespan of a page. 15% of Lighthouse score.</span></p></li></ul><p><span>Notice that the most heavily weighted metrics are </span><em><span>Largest Contentful Paint</span></em><span> and </span><em><span>Total Blocking Time</span></em><span>.</span></p><h3 id='measuring-page-performance'><span>Measuring Page Performance</span></h3><p><span>Google provides a tool called </span><a href='https://developers.google.com/web/tools/lighthouse/'><span>Lighthouse</span></a><span> so developers can evaluate the performance of their web pages the same way Google does. It is available at </span><a href='https://pagespeed.web.dev/'><span>Page Speed Insights</span></a><span> and will run in any browser without installing any software or browser extensions. Note that this tool only loads your site with a single user. </span></p><p><span>Here is an example of &quot;desktop&quot; results from the </span><a href='https://bookreviews.azurewebsites.net/Review'><span>show all reviews</span></a><span> page of the instructor&#39;s example web site running on an Azure App Service using the free pricing plan:</span></p><ul><li><span>First Contentful Paint: 600 ms</span></li><li><span>Time to Interactive: 600 ms</span></li><li><span>Speed Index: 700 ms</span></li><li><span>Total Blocking Time: 0 ms</span></li><li><span>Largest Contentful Paint: 600 ms</span></li><li><span>Cumulative Layout Shift: 0</span></li></ul><p><span>Overall score: 100/100</span></p><p>&nbsp;</p><h2 id='performance-under-load'><span>Performance Under Load</span></h2><p><span>If your site is successful, then you should expect to have multiple simultaneous users on your site. There are two types of testing that will help you understand what your site&#39;s performance will be for those users:</span></p><ul><li><strong><span>Load tests</span></strong><span>: measure system behaves under an expected load.</span></li><li><strong><span>Stress tests</span></strong><span>: measure the upper limits of a system&#39;s capacity using a load the expected maximum.</span></li></ul><p><span>Your goal will be to have a site that performs in accord with Google&#39;s definition of a &quot;good&quot; site even when there are multiple simultaneous users. </span></p><p><span>You can do both load testing and stress testing using automated tools that simulate multiple users.</span></p><h3 id='measuring-performance-under-load'><span>Measuring Performance Under Load</span></h3><p><span>JMeter is a popular free, open source, tool for load testing web sites. You can use it to simulate any number of simultaneous visitors to your site and you can write (or record) a test script of actions that those simulated visitors will take on the site. These actions can include registering, logging in, making posts, etc.</span></p><p><span>Two of the primary metrics reported by JMeter are:</span></p><ul><li><strong><span>Latency</span></strong><span>: The time elapsed from when the HTTP request was sent and when an initial response was received. This is comparable to </span><em><span>First Contentful Paint</span></em><span>.</span></li><li><strong><span>Sample Time</span></strong><span>: The time that the server took to fully serve the request (response + latency). This is comparable to </span><em><span>Time to Interactive</span></em><span>.</span></li></ul><h3 id='how-to-use-jmeter'><span>How to Use JMeter</span></h3><h4 id='downloading-and-running-jmeter'><span>Downloading and Running JMeter</span></h4><p><span>JMeter requires the Java Runtime Environment (JRE). You can check to see if Java is installed on your Windows computer by opening a command prompt and typing: </span><code>java -versioin</code><span>. For the current version of JMeter, you need version 1.8 (known as &quot;Java 8&quot;) or higher. If Java is not on your computer, or you have an older version, you can download the latest version from the </span><a href='https://www.java.com/en/'><span>official Oracle Java website</span></a><span> and install it.</span></p><p><span> Download JMeter from the </span><a href='https://jmeter.apache.org/'><span>official Apache JMeter web site</span></a><span>. The file you download will be a &quot;tarball&quot;, meaning it has been archived using the Linux tar utility. The tar utility is also a part of Windows 10. To run it open a command prompt at the folder with the downloaded file and type </span><code>tar -xvzf .\apache-jmeter-5.4.3.tgz</code><span> (using the file name of your downloaded file).</span></p><p><span>JMeter doesn&#39;t have an installation or setup program. You just run it from wherever you put the unarchived apache-jmeter-5.4.3 folder. You run it by double-clicking on ApacheJMeter.jar, which is in the bin folder. You can put the folder anywhere, but a good place to put it on a Windows computer (for the sake of organization) is in C:\Program Files. If you want to create a shortcut to the .jar file to use to start JMeter, you might want to first remove the version number from the folder so that when you update to a new version it doesn&#39;t break your shortcut. </span></p><h4 id='setting-up-a-test-plan'><span>Setting up a Test Plan</span></h4><p><span>Follow the instructions in the tutorial by Anicas (2014) in the </span><a href='#jmeter'><span>JMeter references</span></a><span> below to set up a test plan manually.</span></p><p>&nbsp;</p><p>&nbsp;</p><h2 id='improving-site-performance'><span>Improving Site Performance</span></h2><h3 id='optimize-web-site-code'><span>Optimize Web Site Code</span></h3><p><span>This can be &quot;low hanging fruit&quot;</span>&mdash;<span>meaning it may not take much effort to get significant performance improvements.</span></p><p><span>Here are some common types of code optimization:</span></p><ul><li><p><strong><span>Async methods</span></strong><span>: Make CPU or I/O bound controller methods async.</span></p></li><li><p><strong><span>Caching</span></strong><span>: You can cash a whole page or part of a page </span></p><ul><li><p><span>Cache a whole page just by using a C# attribute:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="C#"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.38889px; left: 7.98611px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[<span class="cm-variable">OutputCache</span>(<span class="cm-variable">Duration</span><span class="cm-operator">=</span><span class="cm-number">10</span>, <span class="cm-variable">VaryByParam</span><span class="cm-operator">=</span><span class="cm-string">"none"</span>)] </span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-variable">ActionResult</span> <span class="cm-def">Index</span>() { </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">View</span>(); </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  } </span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 91px;"></div><div class="CodeMirror-gutters" style="display: none; height: 91px;"></div></div></div></pre></li><li><p><span>Cache part of a page using a tag helper:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="C#"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.38889px; left: 7.98611px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">&lt;</span><span class="cm-variable">cache</span> <span class="cm-variable">expires</span><span class="cm-operator">-</span><span class="cm-variable">after</span><span class="cm-operator">=</span><span class="cm-string">"@TimeSpan.FromMinutes(10)"</span><span class="cm-operator">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-meta">@Html</span>.<span class="cm-variable">Partial</span>(<span class="cm-string">"_WhatsNew"</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-operator">*</span><span class="cm-variable">last</span> <span class="cm-variable">updated</span> &nbsp;<span class="cm-meta">@DateTime</span>.<span class="cm-variable">Now</span>.<span class="cm-variable">ToLongTimeString</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">&lt;/</span><span class="cm-variable">cache</span><span class="cm-operator">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 91px;"></div><div class="CodeMirror-gutters" style="display: none; height: 91px;"></div></div></div></pre><p><span>(Examples from Tims 2018)</span></p></li></ul></li></ul><p><span>There are many more things you can do to optimize code. See the References section at the end of the notes.</span></p><h3 id='increase-server-performance'><span>Increase Server Performance</span></h3><h4 id='optimize-server-configuration'><span>Optimize Server Configuration</span></h4><p><span>In an Azure App Service, most of this has already been done for you. These are default settings:</span></p><ul><li><strong><span>Response Compression</span></strong><span>: Compression of response headers using gzip is turned on by default for ASP.NET Core apps running on Azure App Service. (This needs to be verified.)</span></li><li><strong><span>Logging</span></strong><span>: Off by default.</span></li><li><strong><span>Remote Debugging</span></strong><span>: Off by default.</span></li></ul><p><span>But, there are still a few things you can do:</span></p><ul><li><p><span>Under &quot;Settings&quot;, &quot;Configuration&quot;, on the &quot;Application Settings&quot; tab:</span></p><ul><li><strong><span>Local Cache</span></strong><span>: Create a new App Setting for the app with a key of WEBSITE_LOCAL_CACHE_OPTION and a value of Always. Note that this option is only viable if your application doesn&#39;t write files to the server&#39;s file system.</span></li></ul></li><li><p><span>Under &quot;Settings&quot;, &quot;Configuration&quot;, on the &quot;General&quot; tab:</span></p><ul><li><strong><span>HTTP 2</span></strong><span>: Set the protocol to HTTP 2.</span></li><li><strong><span>Always On</span></strong><span>: Set to &quot;on&quot;. When </span><em><span>Always On</span></em><span> is not turned on (the default), the app is unloaded after 20 minutes without any incoming requests. Un fortunately this can not be turned off on the free pricing plan.</span></li><li><strong><span>ARR Affinity</span></strong><span>: Turn off the Application Request Routing Cookie. This is only needed when you have multiple instances of the app and you are doing load balancing.</span></li></ul></li></ul><p>&nbsp;</p><h4 id='upgrade-server-resources'><span>Upgrade Server Resources</span></h4><p><span>This normally means greater monthly expenses.</span></p><p><strong><span>Azure App Service Plan Resources</span></strong></p><figure><table><thead><tr><th>&nbsp;</th><th><span>Free</span></th><th><span>Shared</span></th><th><span>Basic</span></th><th><span>Standard</span></th><th><span>Premium</span></th></tr></thead><tbody><tr><td><strong><span>Disk</span></strong></td><td><span>1 GB</span></td><td><span>1 GB</span></td><td><span>10 GB</span></td><td><span>50 GB</span></td><td><span>250 GB</span></td></tr><tr><td><strong><span>Cores</span></strong></td><td><span>shared</span></td><td><span>shared</span></td><td><span>1 to 4</span></td><td><span>1 to 4</span></td><td><span>1 to 8</span></td></tr><tr><td><strong><span>RAM</span></strong></td><td><span>1 GB</span></td><td><span>1 GB</span></td><td><span>Up to 7 GB</span></td><td><span>Up to 7 GB</span></td><td><span>3.5 to 32 GB</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3 id='use-a-content-delivery-network'><span>Use a Content Delivery Network</span></h3><p><span>This works best for static pages, but can have some benefit for dynamic pages as well.</span></p><p><span>A popular CDN is provided by </span><a href='https://www.cloudflare.com/cdn/'><span>Cloud Flare</span></a><span>. You can get a </span><a href='https://www.cloudflare.com/plans/applicationservices/#overview'><span>free account</span></a><span> for personal web sites.</span></p><p>&nbsp;</p><h2 id='references'><span>References</span></h2><h3 id='jmeter'><span>JMeter</span></h3><ul><li><a href='http://jmeter.apache.org/usermanual/generating-dashboard.html'><span>JMeter Web Site</span></a>&mdash;<span>Official site: downloads and documentation</span></li><li><a href='https://www.digitalocean.com/community/tutorial_series/load-testing-with-apache-jmeter'><span>Load Testing with Apache JMeter</span></a>&mdash;<span>DigitalOcean tutorial by Mitchell Anicas, 2014.</span></li><li><a href='https://www.youtube.com/playlist?list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c'><span>JMeter Beginner Tutorials</span></a>&mdash;<span>YouTube</span></li></ul><h3 id='aspnet-core-code-optimization'><span>ASP.NET Core Code Optimization</span></h3><ul><li><a href='https://docs.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-6.0#cache-aggressively'><span>ASP.NET Core Performance Best Practices</span></a>&mdash;<span>Microsoft tutorial</span></li><li><a href='https://stackify.com/asp-net-performance-tuning/'><span>15 Simple ASP.NET Performance Tuning Tips</span></a>&mdash;<span>Stackify article by Simon Tims. 2018.</span></li></ul><h3 id='azure-app-service-configuration'><span>Azure App Service Configuration</span></h3><ul><li><a href='https://odetocode.com/blogs/scott/archive/2020/01/14/nine-performance-tips-for-azure-app-services.aspx'><span>Nine Performance Tips for Azure App Services</span></a>&mdash;<span>Ode to Code by K. Scott Allen. 2020.</span></li><li><a href='https://docs.microsoft.com/en-us/azure/app-service/configure-common?tabs=portal'><span>Configure an Azure App Service</span></a>&mdash;<span>Microsoft tutorial. 2022.</span></li></ul><p>&nbsp;</p><p><a href='http://creativecommons.org/licenses/by-sa/4.0/'><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" referrerpolicy="no-referrer" alt="Creative Commons License"><span> </span></a>
+<span>ASP.NET Core MVC Lecture Notes written by </span><a href='https://profbird.dev'><span>Brian Bird</span></a><span> in 2018, revised in 2022, are licensed under a </span><a href='http://creativecommons.org/licenses/by-sa/4.0/'><span>Creative Commons Attribution-ShareAlike 4.0 International License</span></a><span>. </span></p><p>&nbsp;</p><p>&nbsp;</p><div class='footnotes-area'  ><hr/>
+<div class='footnote-line'><span class='md-fn-count'>1</span> <a href='https://en.wikipedia.org/wiki/Apdex'><span>Apdex</span></a><span> (Application Performance Index) is an open standard developed by an alliance of companies for measuring performance of software applications.</span> <a name='dfref-footnote-1' href='#ref-footnote-1' title='back to document' class='reversefootnote' >↩</a></div>
+<div class='footnote-line'><span class='md-fn-count'>2</span> <span>These standards are based onGoogle&#39;s </span><a href='https://googlechrome.github.io/lighthouse/scorecalc/'><span>Lighthouse Scoring Calculator</span></a><span> and their criteria for a score of 90</span>&mdash;<span>which is the minimum for what they consider a &quot;good&quot; site.</span> <a name='dfref-footnote-2' href='#ref-footnote-2' title='back to document' class='reversefootnote' >↩</a></div></div></div></div>
+</body>
+</html>

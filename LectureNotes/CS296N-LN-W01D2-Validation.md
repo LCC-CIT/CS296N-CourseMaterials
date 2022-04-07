@@ -2,28 +2,22 @@
 
 # Validation of User Input
 
-| Topics by week                          |                                 |
-| --------------------------------------- | ------------------------------- |
-| 1. Intro to course and Input validation | 6. Load Testing and Performance |
-| 2. Identity                             | 7. Creating a Web Service       |
-| 3. Authentication and authorization     | 8. Consuming a Web Service      |
-| 4. Publishing to a production server    | 9. Docker containers            |
-| 5. Security                             | 10. Term project                |
+| Topics by week                                       |                                 |
+| ---------------------------------------------------- | ------------------------------- |
+| 1. Intro to course and <mark>Input validation</mark> | 6. Load Testing and Performance |
+| 2. Identity                                          | 7. Creating a Web Service       |
+| 3. Authentication and authorization                  | 8. Consuming a Web Service      |
+| 4. Publishing to a production server                 | 9. Docker containers            |
+| 5. Security                                          | 10. Term project                |
 
 
 
 ## Contents
 
 [TOC]
-------
-
-
-
 ## Introduction
 
 - This week, we will cover the "left over" topic from fall term, input validation.
-
-------
 
 
 
@@ -36,14 +30,10 @@
 - Attributes are a means of associating metadata with code
 
   - Metadata is additional information about types defined in your program (and remember that classes are types).
-
-  - Attributes are declarative.
-
+- Attributes are declarative.
   - Attributes can be applied to assemblies (think DLLs), classes, methods, and properties. 
 
-------
-
-
+  
 
 ## Validation 
 
@@ -81,8 +71,6 @@
   public string Title { get; set; }
   ```
   
-
-
 
 #### Common validation annotations
 
@@ -141,8 +129,6 @@
 
 - For a complete list see:  [System.ComponentModel.DataAnnotations Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netcore-2.1)
 
-
-
 #### Custom error messages
 
 Custom error messages can be added to the validation attribute. For example:
@@ -151,6 +137,90 @@ Custom error messages can be added to the validation attribute. For example:
 [Required(ErrorMessage = "Please enter your name")]
 ```
 
+#### <mark>Exercises</mark>
+
+- Try adding a migration to your project. Has the schema changed?
+- Try running the web app. Can you enter invalid data? Are there any error messages?
+- Write a unit test for an HttpPost controller method that uses a data model with validation. Will the method accept the data and store it in the repository?
+
+### Validation in the View
+
+A strongly typed view with model-binding using asp-for tag helpers is required.
+
+#### JavaScript Libraries Required
+
+Links to JavaScript libraries for validation are required. Either libraries that are in CDNs, like those shown in the code snippets below, or libraries that are in the ```wwwroot``` folder of your project can be used.
+
+##### jQuery
+
+In *_Layout.cshtml* add a line like this to load jQuery (if it isn't already there):
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+```
+
+##### jQuery validate and unobtrusive validation
+
+Add a script section with links to validation libraries to the bottom of each view that needs to do validation:
+
+```html
+@section Scripts {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+}
+```
+
+(Note: Look near the bottom of  *_Layout.cshtml* to see how it processes ```@section Scripts```)
+
+**or**
+
+In *_ValidationScriptsPartial.cshtml* add these lines:
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+```
+
+And in each view that needs to do validation add code to load the libraries listed above:
+
+```javascript
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+```
+
+
+
+#### Displaying Validation Errors
+
+There are tag helpers for displaying validation errors on individual fields and for displaying a summary of validation errors.
+
+##### Individual field
+
+```html
+<label asp-for="ClientName">Your name:</label>
+<span asp-validation-for="ClientName"></span>
+<input asp-for="ClientName" />
+```
+
+##### Summary
+
+```html
+<form method="post">
+    <div asp-validation-summary="All"></div>
+```
+
+  Options for the value are:
+
+  - `All`
+  - `ModelOnly`
+  - `None`
+
+##### <mark>Exercises</mark>
+
+- Try entering invalid data. Do you get error messages?
+- Put a break-point in the controller method that gets called with the data from the view with validation tag helpers. Does the method get called when you enter invalid data?
+
 
 
 
@@ -158,6 +228,16 @@ Custom error messages can be added to the validation attribute. For example:
 
 There are several ways you can perform validation in controller methods:
 
+- Make decisions based on model validation. 
+  
+  Example:
+  
+  ```C#
+  if (ModelState.IsValid) {
+     repo.AddBook(book);
+  }
+  ```
+  
 - Explicit Validation: You add the validation code to a controller method yourself and put values in the Modelstate dictionary.
 
   - Example: 
@@ -170,77 +250,38 @@ There are several ways you can perform validation in controller methods:
     ```
 
   - Modelstate dictionary properties and methods:
+
     - `AddModelError(property, message)`
-    
+
       This method is used to record a model validation error for the specified property.
+
     - `GetValidationState(property)`
-      
+
       This method is used to determine whether there are model validation errors for a specific property, expressed as a value from the `ModelValidationState` enumeration:
-      
+
       - *Unvalidated* 
-      
+
         This value means that no validation has been performed on the model property, usually because there was no value in the request that corresponded to the property name.
-        
+
       - *Valid* 
-        
-          This value means that the request value associated with the property is valid.
-      
+
+        This value means that the request value associated with the property is valid.
+
       - *Invalid* 
-      
+
         This value means that the request value associated with the property is invalid and should not be used.
+
       - *Skipped* 
-      
+
         This value means that the model property has not been processed, which usually means that there have been so many validation errors that there is no point continuing to perform validation checks.
+
     - `IsValid`
-    
+
       This property returns true if all the model properties are valid and returns false otherwise.
 
-- Make decisions based on model validation. 
-  
-  Example:
-  
-  ```C#
-  if (ModelState.IsValid) {
-     repo.AddBook(book);
-  }
-  ```
-  
-  
+#### <mark>Exercises</mark>
 
-### Displaying Validation Errors in the View
-
-- A strongly typed view and model-binding using asp-for tag helpers are required.
-
-- Special Microsoft jQuery functions must be included in the view:
-  
-```html
-<script src= "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
-
-<script src= "https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
-
-<script src= "https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
-```
-
-- Tag Helpers that display validation errors
-
-  - Summary
-    
-  ```html
-    <div asp-validation-summary="ModelOnly"></div>
-  ```
-  
-  - Individual field
-    
-    ```html
-    <label asp-for="ClientName">Your name:</label>
-    <div><span asp-validation-for="ClientName"></span></div>
-    <input asp-for="ClientName" />
-    ```
-    
-
-------
-
-
+- Run the unit test for the controller method which now checks `ModelState.isValid`
 
 ## Notes
 
@@ -269,19 +310,24 @@ You will need to add a migration and update the database after adding validation
 
 ## Examples
 
-- Instructor's example, BookInfo: [Validation branch](https://github.com/LCC-CIT/CS295N-Bookinfo-Core-21/tree/Validation)
-- Pro ASP.NET Core MVC 2, Ch. 2: [PartyInvites](https://github.com/Apress/pro-asp.net-core-mvc-2/tree/master/02%20-%20Your%20First%20MVC%20Application/PartyInvites)
+- Instructor's 2020 example, [BookInfo: Validation branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Validation)
+
+- Instructor's 2021 example, [BookReviews: Lab01 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab01)
 
 - Pro ASP.NET Core MVC 2, Ch. 27: [Model validation example](https://github.com/Apress/pro-asp.net-core-mvc-2/tree/master/27%20-%20Model%20Validation/ModelValidation)
+
 - Microsoft Tutorial, MVC Movies: [Validation example](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples/2.x/ValidationSample)
 
-------
+  
 
 
 
 ## References
 
-- Textbook - *Pro ASP.NET Core MVC 2.0*, Adam Freeman, Apress, 2017.
+- Textbook - *Murach's ASP.NET Core MVC*, Delameter and Murach, Murach, 2020.
+  - Ch. 2, pg. 70–74, "How to validate user input"
+  - Ch. 11, "How to validate data"
+- *Pro ASP.NET Core MVC 2.0*, Adam Freeman, Apress, 2017.
   - Ch. 2 "Your First MVC Application", Adding Validation, pp. 38&ndash;45
   - Ch. 27 "Model Validation", 
 - Microsoft tutorial, MVC Movies: [Model validation in ASP.NET Core MVC  and Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-3.1)
@@ -292,5 +338,5 @@ You will need to add a migration and update the database after adding validation
 
 
 
-[![ccbysa88x31](ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.online) are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![ccbysa88x31](ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written 2020, revised 2021, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
