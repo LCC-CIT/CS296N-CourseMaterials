@@ -2,8 +2,6 @@
 
 [TOC]
 
-
-
 ## Ideas for web dev lab projects
 
 - Ride share service (like uber)
@@ -63,6 +61,10 @@
 - OOAnD and UML
 
 
+
+## Week X - Security
+
+Look at this article for more on security in ASP.NET: https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html
 
 ## Lab 9 - Docker
 
