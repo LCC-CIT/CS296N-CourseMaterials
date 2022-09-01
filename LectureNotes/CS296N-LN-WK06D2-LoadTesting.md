@@ -34,20 +34,22 @@ JMeter is a popular free, open source, tool for load testing web sites. You can 
 
 Two of the primary metrics reported by JMeter are:
 
-- **Latency**: The time elapsed from when the HTTP request was sent and when an initial response was received. This is comparable to *First Contentful Paint*.
-- **Sample Time**: The time that the server took to fully serve the request (response + latency). This is comparable to *Time to Interactive*.
+- **Latency**: The time elapsed from when the HTTP request was sent until an initial response was received. This is comparable to *First Contentful Paint* in Google Lighthouse.
+- **Sample Time**: The time that the server took to fully serve the request (response + latency). This is comparable to *Time to Interactive* in Google Lighthouse.
 
 
 
 ### Downloading and Running JMeter
 
-JMeter requires the Java Runtime Environment (JRE). You can check to see if Java is installed on your Windows computer by opening a command prompt and typing: `java -versioin`. For the current version of JMeter, you need version 1.8 (known as "Java 8") or higher. If Java is not on your computer, or you have an older version, you can download the latest version from the [official Oracle Java website](https://www.java.com/en/) and install it.
+JMeter requires the Java Runtime Environment (JRE). You can check to see if Java is installed on your Windows computer by opening a command prompt and typing: `java -version`. For the current version of JMeter (as of August 2022), you need version 1.8 of Java (known as "Java 8") or higher. If Java is not on your computer, or you have an older version, you can download the latest version from the [official Oracle Java website](https://www.java.com/en/) and install it.
 
- Download JMeter from the [official Apache JMeter web site](https://jmeter.apache.org/). You can either download a "tarball" (.tgz) file or a Zip (.zip) file. Download whichever one you know how to unarchive (unzip). 
+ Download JMeter from the [official Apache JMeter web site](https://jmeter.apache.org/). You can either download a "tarball" (.tgz) file or a Zip (.zip) file. Download whichever one you have the tools to unarchive (unzip). 
 
-JMeter doesn't have an installation or setup program. You just run it from wherever you put the unarchived apache-jmeter-5.4.3 folder.  The program will run from almost anywhere you put the folder, but some features won't work if you put it in C:\Program Files&mdash;particularly, you won't be able to record test scripts because JMeter won't have permission to write a file in the Program Files folder.
+JMeter doesn't have an installation or setup program. You just run it from wherever you put the unarchived apache-jmeter-5.4.3 folder.  The program will run from almost anywhere you put the folder, but some features won't work on Windows if you put it in `C:\Program Files`&mdash;particularly, you won't be able to record test scripts because JMeter won't have permission to write a file in the Program Files folder.
 
-You run JMeter by double-clicking on ApacheJMeter.bat, which is in the bin folder. If you want to create a shortcut to the .bat file to more easily start JMeter, you can do that and place it on your desktop.
+On Windows, you run JMeter by double-clicking on ApacheJMeter.bat, which is in the bin folder. If you want to create a shortcut to the .bat file to more easily start JMeter, you can do that and place it on your desktop.
+
+On a Mac, you can put the JMeter folder in the Applications folder. You start the app by double-clicking on `ApacheJMeter.jar`.
 
 
 
@@ -61,7 +63,7 @@ Follow the instructions in the tutorial by Anicas (2014),  [How To Use Apache JM
 
 - **Number of Threads (users)**
 
-  A practical maximum number of threads that can be handled by an average computer running JMeter would be around 500 (depending on the test plan and loop count). 
+  A practical maximum number of threads that can be handled by an average host desktop machine running JMeter would be around 500 (depending on the test plan and loop count). 
 
   Note that each thread will execute the test plan's HTTP requests <u>once</u> and then terminate, unless the loop count is greater than 1. The threads will <u>not necessarily execute simultaneously</u>.
 
@@ -184,12 +186,25 @@ The results of the test will be put into the *ReportDashboard* directory. This f
 
 
 
+## Examples
+
+- Example test file: [BookReviews-Book-1000.jmx](JMeterTestExample.html)
+- The [Report Dashboard](../Labs/Lab06-LoadTesting/JMeter/ReportDashboard/index.html) in a static web site created by running a command-line test.
+
+
+
 ## References
 
 - [JMeter Web Site](http://jmeter.apache.org/usermanual/generating-dashboard.html)&mdash;Official site: downloads and documentation.
+
 - [Load Testing with Apache JMeter](https://www.digitalocean.com/community/tutorial_series/load-testing-with-apache-jmeter)&mdash;DigitalOcean tutorial by Mitchell Anicas, 2014.
+
 - [JMeter Beginner Tutorials](https://www.youtube.com/playlist?list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c)&mdash;YouTube
-- [JMeter Test Results: Why the Actual Users Number is Lower than Expected](https://www.blazemeter.com/blog/jmeter-test-results-why-actual-users-number-lower-expected)&mdash;BlazeMeter tutorial by Dmitri Tikhanski, 2016.
+
+  <span hidden>JMeter Test Results: Why the Actual Users Number is Lower than Expected](https://www.blazemeter.com/blog/jmeter-test-results-why-actual-users-number-lower-expected)&mdash;BlazeMeter tutorial by Dmitri Tikhanski, 2016.</span>
+
+- [The Advanced Guide to JMeter Load Testing](https://www.blazemeter.com/blog/jmeter-load-testing)&mdash;BlaxeMeter tutorial by Noga Cohen, 2020.
+
 - [ASP.NET Login Testing with JMeter](https://www.blazemeter.com/blog/aspnet-login-testing-jmeter)&mdash;BlazeMeter tutorial by Dmitri Tikhanski, 2014.
 
 
