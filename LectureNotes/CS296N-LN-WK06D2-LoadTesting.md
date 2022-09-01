@@ -71,11 +71,13 @@ Follow the instructions in the tutorial by Anicas (2014),  [How To Use Apache JM
 
   This specifies how long JMeter will take to start all the threads. If the number of threads is 100 and ramp-up period is 10 seconds, then JMeter will start 10 new threads per second. 
 
+  Once ramp-up period has completed, all the threads will have been started and the test will run for as long as it takes for each thread to execute all the HTTP requests in the test plan.
+
 - **Loop Count**
 
   This determines the number of times each thread will execute the test plan. If it is set to 1, each thread will terminate as soon as it has completed the HTTP requests in the test plan. 
 
-  Note that if you want all the threads to run concurrently, you will need to set the loop count to some number greater than 1. For example, a test plan with just 2 HTTP requests and 50 threads will need a loop count of around 200 in order for all the threads to run simultaneously for at least part of the test.
+  Note that if you want all the threads to run concurrently, you will need to set the loop count to some number greater than 1. For example, a test plan with just 2 HTTP requests and 50 threads might need a loop count of around 200 in order for all the threads to run simultaneously for at least part of the test. The loop count required for all threads to be running concurrently depends on the number of HTTP requests and the sample time.
 
 ##### HTTP Request Defaults
 
@@ -203,7 +205,7 @@ The results of the test will be put into the *ReportDashboard* directory. This f
 
   <span hidden>JMeter Test Results: Why the Actual Users Number is Lower than Expected](https://www.blazemeter.com/blog/jmeter-test-results-why-actual-users-number-lower-expected)&mdash;BlazeMeter tutorial by Dmitri Tikhanski, 2016.</span>
 
-- [The Advanced Guide to JMeter Load Testing](https://www.blazemeter.com/blog/jmeter-load-testing)&mdash;BlaxeMeter tutorial by Noga Cohen, 2020.
+- [The Advanced Guide to JMeter Load Testing](https://www.blazemeter.com/blog/jmeter-load-testing)&mdash;BlazeMeter tutorial by Noga Cohen, 2020.
 
 - [ASP.NET Login Testing with JMeter](https://www.blazemeter.com/blog/aspnet-login-testing-jmeter)&mdash;BlazeMeter tutorial by Dmitri Tikhanski, 2014.
 
