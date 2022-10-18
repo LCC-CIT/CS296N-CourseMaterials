@@ -36,15 +36,15 @@ Winter 2022 topics
 
 Web pages that load quickly are a major contributor to UX (User experience) on your site. Site UX matters, because better UX means that users:
 
-- stay on your site longer.
-- are more like to return to your site.
-- are more likely to engage in the mission of your site (buy, donate, read, post, comment, etc.).
+- Stay on your site longer.
+- Are more like to return to your site.
+- Are more likely to engage in the mission of your site (buy, donate, read, post, comment, etc.).
 
-Page load time is also a significant factor in SEO. Google uses this aspect of UX as part of their determination of search rankings.
+Page load time is also a significant factor in SEO (Search Engine Optimization). Google uses this aspect of UX as part of their determination of search rankings.
 
 ### Performance Standards
 
-How fast is fast enough? There are no universally accepted standards[^1] for this, but, one way to answer this question is to use Google's standards for what their site ranking tools consider "good" page load speeds[^2]. These are their current (2/13/2022) standards:
+How fast is fast enough? There are no universally accepted standards[^1] for page loading speed, but one way to answer this question is to use Google's standards for what their site ranking tools consider "good"[^2]. These are their current (2/13/2022) standards:
 
 | Desktop Sites            |          |
 | ------------------------ | -------- |
@@ -118,10 +118,10 @@ Overall score: 100/100
 
 If your site is successful, then you should expect to have multiple simultaneous users on your site. There are two types of testing that will help you understand what your site's performance will be for those users:
 
-- **Load tests**: measure system behaves under an expected load.
-- **Stress tests**: measure the upper limits of a system's capacity using a load the expected maximum.
+- **Load tests**: measure system behavior under an expected load.
+- **Stress tests**: measure the upper limits of a system's capacity using a load beyond the expected maximum.
 
-Your goal will be to have a site that performs in accord with Google's definition of a "good" site even when there are multiple simultaneous users. 
+Your goal will be to have a site that performs in accord with Google's definition of a "good" site even under a heavy load. 
 
 You can do both load testing and stress testing using automated tools that simulate multiple users.
 
@@ -177,8 +177,8 @@ But, there are still a few things you can do:
   - **Local Cache**: Create a new App Setting for the app with a key of WEBSITE_LOCAL_CACHE_OPTION and a value of Always. Note that this option is only viable if your application doesn't write files to the server's file system.
 - Under "Settings", "Configuration", on the "General" tab:
   - **HTTP 2**: Set the protocol to HTTP 2.
-  - **Always On**: Set to "on". When *Always On* is not turned on (the default), the app is unloaded after 20 minutes without any incoming requests. Un fortunately this can not be turned off on the free pricing plan.
-  - **ARR Affinity**: Turn off the Application Request Routing Cookie. This is only needed when you have multiple instances of the app and you are doing load balancing.
+  - **Always On**: Set to "on". When *Always On* is not turned on (the default), the app is unloaded after 20 minutes without any incoming requests. Unfortunately this can not be turned off on the free pricing plan.
+  - **ARR Affinity**: Turn off the *Application Request Routing* cookie. This is only needed when you have multiple instances of the app and you are doing load balancing.
 
 
 
