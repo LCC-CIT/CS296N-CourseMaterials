@@ -164,8 +164,8 @@ Please be aware that any accessible tables and chairs in this room should remain
 | 3    | Authentication                                               | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user" | Lab 3          |
 | 4    | Authorization                                                | "How to work with roles", pg. 680–695<br /> "More skills for working with identity", pg. 696–699 | Lab 4          |
 | 5    | Security: SSL, Cross-site scripting, SQL injection, man in the middle. | Online tutorials                                             | Lab 5          |
-| 6    | Async/Await & a more complex data model                      | Online tutorials                                             | Lab 6          |
-| 7    | Creating a REST web API                                      | Online tutorials                                             | Lab 7          |
-| 8    | Consuming a REST web service Async / Await                   | Online tutorials                                             | Lab 8          |
+| 6    | Async/Await & a more complex domain model                    | Online tutorials                                             | Lab 6          |
+| 7    | Consuming a REST web service Async / Await                   | Online tutorials                                             | Lab 7          |
+| 8    | Load Testing and Performance                                 | Online tutorials                                             | Lab 8          |
 | 9    | Docker containers                                            | Online tutorials                                             | Lab 9          |
 | 10   | Term Project                                                 |                                                              |                |
