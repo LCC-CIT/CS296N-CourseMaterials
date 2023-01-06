@@ -1,13 +1,13 @@
 # Syllabus for Web Development 2: ASP.NET
 
-**CS296N, Winter 2022**
+**CS296N, Winter 2023**
 
 |          | Class                                |      |              | Instructor                           |
 | -------- | ------------------------------------ | -- | ------ | ---------------------------------------- |
-| CRN | 30486                            |      | Name         | Brian Bird                           |
+| CRN | 30397                       |      | Name         | Brian Bird                           |
 | Credits | 4                                    |      | Email        | birdb@lanecc.edu                     |
-| Time     | Tu, Th, 10:00 – 11:50                |      | Office       | [lanecc.zoom.us/j/94002309439](https://lanecc.zoom.us/j/94002309439) |
-| Zoom     | [lanecc.zoom.us/j/98797466911](https://lanecc.zoom.us/j/98797466911) |      | Office Hours | M, W 1:00&ndash;2:00<br />Tu, Th 2:00&dash;3:00<br /> or by appointment |
+| Time     | Tu, Th, 10:00 – 11:50                |      | Office Hours | M&mdash;Th, 4:00&ndash;4:50<br /> or by appointment |
+| Room | Building 19, Room 128 |      | Office | Building 19, Room 152 |
 
 [TOC]
 
@@ -27,29 +27,29 @@ To be able to develop a web application that uses the ASP.NET Core framework for
 
 ### Textbook  
 
-*Murach’s ASP.NET Core MVC*, 1st Edition, by Mary Delamater and Joel Murach, Murach Books, 2020. ISBN 978-1-943872-49-7. You can purchase the textbook from the [Titan Store](https://www.bkstr.com/laneccstore/home) or from the publisher, [Murach Books](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-detail). The publisher provides free download of [exercise starters and example code](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-detail) 
+*Murach’s ASP.NET Core MVC*, 2nd Edition, by Mary Delamater and Joel Murach, Murach Books, 2022. ISBN 978-1-943873-02-9. You can purchase the textbook from the [Titan Store](https://www.bkstr.com/laneccstore/home) or from the publisher, [Murach Books](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-detail). The publisher provides free download of [exercise starters and example code](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-2nd-edition-detail) 
 
 #### Supplemental Materials
 
 The additional resources are available on the following Microsoft web sites:
 
-- [ASP.NET Core MVC Tutorials](https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-2.1)
-- [ASP.NET Core Reference Docs](https://docs.microsoft.com/en-us/dotnet/api/?view=aspnetcore-2.0)
+- [ASP.NET Core MVC Tutorials](https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-6.0)
+- [ASP.NET Core Reference Docs](https://docs.microsoft.com/en-us/dotnet/api/?view=aspnetcore-6.0)
 
 ### Software
 
-Visual Studio 2019 will be used for example code and lab assignments. You may obtain Visual Studio through Azure Dev Tools for Teaching, or use the Community Edition which is available for Windows or Mac OS as a free download from Microsoft at [www.visualstudio.com/en-us/products/visual-studio-community-vs](https://visualstudio.microsoft.com/vs/community/).
+Visual Studio 2022 will be used for example code and lab assignments. You may obtain Visual Studio through Azure Dev Tools for Teaching, or use the Community Edition which is available for Windows or Mac OS as a free download from Microsoft at [www.visualstudio.com/en-us/products/visual-studio-community-vs](https://visualstudio.microsoft.com/vs/community/).
 
 ####  Free and Discounted Software for Students
 
-- **Azure Dev Tools for Teaching** (previously known as Microsoft Imagine Premium) is a subscription-based offering, paid for by the LCC CIT department, providing access to professional development and design tools, software, and services from Microsoft. 
+- [Azure Dev Tools for Teaching](https://azureforeducation.microsoft.com/devtools) (previously known as Microsoft Imagine Premium) is a subscription-based offering, paid for by the LCC CIT department, providing access to professional development and design tools, software, and services from Microsoft. 
 - [On The Hub](https://lanecc.onthehub.com/WebStore/ProductsByMajorVersionList.aspx?cmi_mnuMain=f189368a-f0a6-e811-8109-000d3af41938) has partnered with Microsoft, Adobe, IBM, Symantec, VmWare and other software publishers to offer discounted and free software for students and faculty.
 
 ### CIT Computer Lab
 
 The in-person computer lab and tutoring center is temporarily closed due to COVID-19, but tutoring is still available online. You can drop into the [Lane Support Hub Zoom Room](https://lanecc.zoom.us/j/98549544816) and request a CIT tutor, or make an appointment with a CIT tutor via the scheduling page at [lanecc.mywconline.com](https://lanecc.mywconline.com/). More information is available on the [LCC Tutoring Services](https://www.lanecc.edu/tutor) web page.
 
-<s>The CIT Main lab (Bldg. 19, room 135) is equipped with computers and software which are available exclusively for students in the CIT department. There are tutors available in the lab to help you with your lab work. There is a schedule is posted on the large white board inside the lab which lists the tutors and the times they will be available.</s>
+The CIT Main lab (Bldg. 19, room 135) is equipped with computers and software which are available exclusively for students in the CIT department. There are tutors available in the lab to help you with your lab work. There is a schedule is posted on the large white board inside the lab which lists the tutors and the times they will be available.
 
 #### Web Resources
 
@@ -89,8 +89,6 @@ Letter grades for the course will be determined by the following percentages:
 
 - The grade for lab assignments submitted after the due date will be reduced by 10%.
 
-  Labs 1 through 7 won't be accepted late after week 9.
-
 - Quizzes cannot be taken after the due date.
 
 - Exceptions will only be made for illness or emergency situations.
@@ -105,7 +103,7 @@ Attendance is not graded but will be essential for successful completion of the 
 
 ### No-Show Drop
 
-LCC has a [no-show drop](https://www.lanecc.edu/esfs/noshow-drops) policy which means that during the first week of the term, to avoid being dropped, a student must attend at least one class meeting.
+LCC has a [no-show drop](https://inside.lanecc.edu/copps/documents/no-show-drops) policy which means that during the first week of the term, to avoid being dropped, a student must attend at least one class meeting.
 
 
 
@@ -135,15 +133,15 @@ LCC has a [no-show drop](https://www.lanecc.edu/esfs/noshow-drops) policy which 
 
 ## Academic Calendar
 
-| Winter Term 2021              |                 |
-| ----------------------------- | --------------- |
-| Term begins                   | 1/3             |
-| Last day to receive refund    | 1/9             |
-| MLK Holiday                   | 1/17            |
-| President's Day Holiday       | 2/21            |
-| Last day for schedule changes | 2/25            |
-| Final Project Presentation    | 3/15            |
-| Spring Break                  | 3/20&ndash;3/27 |
+| Winter Term 2023              |                |
+| ----------------------------- | -------------- |
+| Term begins                   | 1/9            |
+| Last day to receive refund    | 1/16           |
+| MLK Holiday                   | 1/16           |
+| President's Day Holiday       | 2/20           |
+| Last day for schedule changes | 3/3            |
+| Final Project Presentation    | 3/21           |
+| Spring Break                  | 3/26&ndash;4/2 |
 
 
 
