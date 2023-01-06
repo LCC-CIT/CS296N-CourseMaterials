@@ -155,17 +155,17 @@ Please be aware that any accessible tables and chairs in this room should remain
 
 ## Course Schedule 
 
-(may be subject to change)
+(May be subject to change)
 
-| Week | Topic                                               | Reading in Murach & Delameter                                | Lab Assignment       |
-| ---- | --------------------------------------------------- | ------------------------------------------------------------ | -------------------- |
-| 1    | Validation                                          | - Read ch. 2, pg. 70&ndash;74, "How to validate user input"<br />- Skim ch. 11, "How to validate data" | Lab 1                |
-| 2    | Unit Testing using DI and the repository pattern    | In ch. 14,  "How to use dependency injection (DI)", pg. 560–569<br/>    "How to test methods that have dependencies", pg. 578–581 | Unit Testing Lab     |
-| 3    | Publishing to Azure<br />and<br />Intro to Identity | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 650&ndash;657, "An introduction to authentication"<br />- pg. 658&ndash;667, "How to get started with Identity"<br /> | Azure Lab<br />Lab 2 |
-| 4    | Authentication                                      | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user" | Lab 3                |
-| 5    | Authorization                                       | "How to work with roles", pg. 680–695<br /> "More skills for working with identity", pg. 696–699 | Lab 4                |
-| 6    | Async/Await & a more complex data model             | TBD                                                          | Lab 5                |
-| 7    | Creating a REST web API                             | Online tutorials                                             | Lab 7                |
-| 8    | Consuming a REST web service Async / Await          | Online tutorials                                             | Lab 8                |
-| 9    | Docker containers                                   | Online tutorials                                             | Lab 9                |
-| 10   | Term Project                                        |                                                              |                      |
+| Week | Topic                                                        | Reading in Murach & Delameter                                | Lab Assignment |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------- |
+| 1    | Validation                                                   | - Read ch. 2, pg. 70&ndash;74, "How to validate user input"<br />- Skim ch. 11, "How to validate data" | Lab 1          |
+| 2    | Intro to Identity                                            | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 650&ndash;657, "An introduction to authentication"<br />- pg. 658&ndash;667, "How to get started with Identity"<br /> | Lab 2          |
+| 3    | Authentication                                               | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user" | Lab 3          |
+| 4    | Authorization                                                | "How to work with roles", pg. 680–695<br /> "More skills for working with identity", pg. 696–699 | Lab 4          |
+| 5    | Security: SSL, Cross-site scripting, SQL injection, man in the middle. | Online tutorials                                             | Lab 5          |
+| 6    | Async/Await & a more complex data model                      | Online tutorials                                             | Lab 6          |
+| 7    | Creating a REST web API                                      | Online tutorials                                             | Lab 7          |
+| 8    | Consuming a REST web service Async / Await                   | Online tutorials                                             | Lab 8          |
+| 9    | Docker containers                                            | Online tutorials                                             | Lab 9          |
+| 10   | Term Project                                                 |                                                              |                |
