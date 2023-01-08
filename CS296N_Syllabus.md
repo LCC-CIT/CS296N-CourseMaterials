@@ -157,15 +157,16 @@ Please be aware that any accessible tables and chairs in this room should remain
 
 (May be subject to change)
 
-| Week | Topic                                      | Reading in Murach & Delameter                                | Lab Assignment |
-| ---- | ------------------------------------------ | ------------------------------------------------------------ | -------------- |
-| 1    | Validation                                 | - Read ch. 2, pg. 70&ndash;74, "How to validate user input"<br />- Skim ch. 11, "How to validate data" | Lab 1          |
-| 2    | Intro to Identity                          | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 650&ndash;657, "An introduction to authentication"<br />- pg. 658&ndash;667, "How to get started with Identity"<br /> | Lab 2          |
-| 3    | Authentication                             | In ch. 16, "How to Authenticate and Authorize Users":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user" | Lab 3          |
-| 4    | Authorization                              | "How to work with roles", pg. 680–695<br /> "More skills for working with identity", pg. 696–699 | Lab 4          |
-| 5    |                                            | Online tutorials                                             |                |
-| 6    | Async/Await & a more complex domain model  | Online tutorials                                             | Lab 6          |
-| 7    | Consuming a REST web service Async / Await | Online tutorials                                             | Lab 7          |
-| 8    | Load Testing and Performance               | Online tutorials                                             | Lab 8          |
-| 9    | Docker containers                          | Online tutorials                                             | Lab 9          |
-| 10   | Term Project                               |                                                              |                |
+| Week<br/>Date   | Topic                             | Reading in Textbook                                          | Lab   |
+| --------------- | --------------------------------- | ------------------------------------------------------------ | ----- |
+| 1<br/>Jan. 9    | Publishing to Linux               | Online tutorials                                             | Lab 1 |
+| 2<br />Jan. 16  | Intro to Identity                 | In ch. 16, "How to Authenticate and Authorize":<br />- pg. 650&ndash;657, "An introduction to authentication"<br />- pg. 658&ndash;667, "How to get started with Identity"<br /> | Lab 2 |
+| 3<br />Jan. 23  | Authentication                    | In ch. 16, "How to Authenticate and Authorize":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user" | Lab 3 |
+| 4<br />Jan. 30  | Authorization                     | "How to work with roles", pg. 680–695<br /> "More skills for  identity", pg. 696–699 | Lab 4 |
+| 5<br />Feb. 6   | Async/Await                       | Online tutorials                                             | Lab 5 |
+| 6<br />Feb. 13  | Load Testing<br />and Performance | Online tutorials                                             | Lab 6 |
+| 7<br />Feb. 20  | A more complex domain model       | Online tutorials                                             | Lab 7 |
+| 8<br />Feb. 27  | Validation                        | - Read ch. 2, pg. 70&ndash;74, "How to validate user input"<br />- Skim ch. 11, "How to validate data" | Lab 8 |
+| 9<br />Mar. 6   | Docker containers                 | Online tutorials                                             | Lab 9 |
+| 10<br />Mar. 13 | Term Project                      |                                                              |       |
+| 11<br />Mar. 20 | Final project presentations       |                                                              |       |
