@@ -2,15 +2,15 @@
 
 # Introduction to the Course
 
-| Topics by week                          |                                 |
-| --------------------------------------- | ------------------------------- |
-| 1. Intro to course and Input validation | 6. Load Testing and Performance |
-| 2. Identity                             | 7. Creating a Web Service       |
-| 3. Authentication and authorization     | 8. Consuming a Web Service      |
-| 4. Publishing to a production server    | 9. Docker containers            |
-| 5. Security                             | 10. Term project                |
+| Weekly topics                                           |                                  |
+| ------------------------------------------------------- | -------------------------------- |
+| <mark>1. Intro to course and Publishing to Linux</mark> | 6.  A More Complex Domain Model  |
+| 2. Identity                                             | 7.  Load Testing and Performance |
+| 3. Authentication                                       | 8. Validation                    |
+| 4. Authorization                                        | 9. Docker containers             |
+| 5. Async/Await                                          | 10. Term project                 |
 
-
+## 
 
 ## Contents
 
@@ -21,22 +21,10 @@
 
 ## Introduction
 
-- What did you do last term? Did you:
-  - do three different versions of each lab assignment? Let me know which version each of you are doing
-    - Group A: Community site
-    - Group B: Fan site
-    - Group C: Informational site
-
-  - Have lab partners, each partner doing a different version (A, B, or C) of the lab project?
-    - Let me know who your lab partner is or if you want to switch lab partners.
-
-  - Do code reviews using GitHub pull requests?
-  - Do lab 9, Adding seed data to a web app and writing Linq expressions?
-  - Publish you lab assignments and term project to a web server?
-
-- This week, we will cover the "left over" topic from fall term, input validation.
-
-
+- Find out how many people still have a working Azure account
+  
+- Introduce Digital Ocean
+  
 
 ## Review
 
@@ -115,5 +103,5 @@ Let's look at the term project requirements.
 
 
 
-[![ccbysa88x31](ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev) , 2020, revised 2022, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![ccbysa88x31](Images/ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev) , 2020, revised 2023, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
