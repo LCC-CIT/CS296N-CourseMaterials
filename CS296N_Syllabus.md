@@ -8,7 +8,7 @@
 | **Credits** | 4                                    |      | Email        | birdb@lanecc.edu                     |
 | **Time** | Tu, Th, 10:00 – 11:50                |      | Office Hours | M&mdash;Th, 4:00&ndash;4:50<br /> or by appointment |
 | **Room** | Building 19, Room 128<br />[Zoom meeting](https://lanecc.zoom.us/j/94648109001) |      | Office | Building 19, Room 152<br />[Zoom meeting](https://lanecc.zoom.us/j/97027167891) |
-| **Instructional Method** | HyFlex | |  |  |
+| **Modality** | [HyFlex](https://www.lanecc.edu/programs-academics/online-distance-learning/distance-education-course-modalities) | |  |  |
 
 <h2>Table of Contents</h2>
 [TOC]
