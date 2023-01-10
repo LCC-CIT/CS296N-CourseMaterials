@@ -104,7 +104,7 @@ Attendance is not graded but will be essential for successful completion of the 
 
 ### No-Show Drop
 
-LCC has a [no-show drop](https://inside.lanecc.edu/copps/documents/no-show-drops) policy which means that during the first week of the term, to avoid being dropped, a student must attend at least one class meeting.
+LCC has a [no-show drop](https://inside.lanecc.edu/copps/documents/no-show-drops) policy which means that during the first week of the term, to avoid being dropped, a student must attend at least one class meeting or complete one assignment or quiz.
 
 
 
