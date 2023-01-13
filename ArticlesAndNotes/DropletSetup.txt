@@ -1,0 +1,31 @@
+Ubuntu droplet setup
+
+Server setup: no firewall
+root password: 123!Secret
+uff is enabled and OpenSSH allowed
+ssh guest@134.209.120.65 (Using IP4, not the private IP)
+guest password: 123!Secret
+
+MySQL setup
+mysql -u guest -p
+
+ASP.NET setup
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
+sudo apt install dotnet-sdk-6.0
+
+
+Welcome to DigitalOcean's 1-Click LEMP Droplet.
+To keep this Droplet secure, the UFW firewall is enabled.
+All ports are BLOCKED except 22 (SSH), 80 (HTTP), and 443 (HTTPS).
+
+In a web browser, you can view:
+  * The LEMP 1-Click Quickstart guide: https://do.co/2GOFe5J#start
+  * Your LEMP website: http://143.198.51.93
+
+On the server:
+  * The default web root is located at /var/www/html
+  * The MySQL root password is saved in /root/.digitalocean_password
+  * Certbot is preinstalled. Run it to configure HTTPS. See
+    https://do.co/2GOFe5J#enable-https for more detail.
+
+For help and more information, visit https://do.co/2GOFe5J
