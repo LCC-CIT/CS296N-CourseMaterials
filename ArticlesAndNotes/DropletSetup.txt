@@ -13,6 +13,10 @@ ASP.NET setup
 wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
 sudo apt install dotnet-sdk-6.0
 
+App deployment
+Source code: /var/www/book-reviews
+
+
 
 Welcome to DigitalOcean's 1-Click LEMP Droplet.
 To keep this Droplet secure, the UFW firewall is enabled.

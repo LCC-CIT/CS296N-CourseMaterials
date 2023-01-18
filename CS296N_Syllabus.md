@@ -28,7 +28,7 @@ To be able to develop a web application that uses the ASP.NET Core framework for
 
 ### Textbook  
 
-*Murach’s ASP.NET Core MVC*, 2nd Edition, by Mary Delamater and Joel Murach, Murach Books, 2022. ISBN 978-1-943873-02-9. You can purchase the textbook from the [Titan Store](https://www.bkstr.com/laneccstore/home) or from the publisher, [Murach Books](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-detail). The publisher provides free download of [exercise starters and example code](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-2nd-edition-detail) 
+*Murach’s ASP.NET Core MVC*, 2nd Edition, by Mary Delamater and Joel Murach, Murach Books, 2022. ISBN 978-1-943873-02-9. You can purchase the textbook from the [Titan Store](https://www.bkstr.com/laneccstore/home) or from the publisher, [Murach Books](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-2nd-edition-detail). The publisher provides free download of [exercise starters and example code](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-2nd-edition-detail) 
 
 #### Supplemental Materials
 
