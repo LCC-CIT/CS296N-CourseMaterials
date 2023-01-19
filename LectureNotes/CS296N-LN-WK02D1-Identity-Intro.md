@@ -2,13 +2,13 @@
 
 # *Intro to User Management with Identity*
 
-| Weekly topics                                  |                                        |
-| ---------------------------------------------- | -------------------------------------- |
-| 1. Intro to course and Input validation        | 6. Async/Await / Complex Domain Models |
-| 2. Repositories and Unit Testing               | 7. Creating a Web Service              |
-| **3. Publishing to Azure / Intro to Identity** | 8. Consuming a Web Service             |
-| 4. Authentication                              | 9. Docker containers                   |
-| 5. Authorization                               | 10. Term project                       |
+| Weekly topics                          |                                 |
+| -------------------------------------- | ------------------------------- |
+| 1. Publishing a site to a Linux server | 6. Load testing and performance |
+| <mark>2. Intro to Identity</mark>      | 7. Complex domain models        |
+| 3. Authentication                      | 8. Validation                   |
+| 4. Authorization                       | 9. Docker containers            |
+| 5. Async/Await                         | 10. Term project                |
 
 **Contents**
 
@@ -29,10 +29,6 @@ It is a class library (an API) for:
 
 
 
-------
-
-
-
 ## Adding Identity to a web app
 
 ### Adding the infrastructure
@@ -50,7 +46,7 @@ It is a class library (an API) for:
    
 4. Modify your *User* model so that the class inherits from `IdentityUser`. 
 
-   - If your current user class is named "User", you should change it to something else, like "AppUser" so that you don't have a conflict with a library class named "User".
+   - If your current user class is named `User`, you should change it to something else, like `AppUser` so that you don't have a conflict with a library class named `User`.
    - If your user class has user name or email properties, you should remove them since they are in the new base class (see below).
    - Remove the ID property from your user class. The ID is in the base class.
    - The `IdentityUser` class has these properties:            
@@ -65,7 +61,8 @@ It is a class library (an API) for:
      - SecurityStamp - This property returns a value that is changed when the user identity is altered, such as by a password change. 
                               
 
-4. In Startup.cs, `ConfigureServices`, add:
+4. In Program.cs, add:
+   (for .NET 3.1, these changes go in Startup.cs, `ConfigureServices`)
 
    ```C#
    services.AddIdentity<AppUser, IdentityRole>()
@@ -79,11 +76,15 @@ It is a class library (an API) for:
    - The `AddDefaultTokenProviders` method uses the default configuration to support operations that require a token, such as changing a password.
                    
 
-6. In Startup.cs, `Configure`, add:
+6. In Program.cs add:
+    
+    (for .NET 3.1 this goes in Startup.cs, `ConfigureServices`)
+    
     `app.UseAuthentication();`
     
 6. If you have overridden `OnModelCreating` in your database context class, then add a call to the base class method. This is because the base class method creates the Identity tables.    
-    ```
+    
+    
     
 7. 
    Add a migration for the new user model and update the database using these commands:
@@ -131,15 +132,11 @@ It is a class library (an API) for:
 -  [Exploring the  ASP.NET Core Identity Password Hasher](https://andrewlock.net/exploring-the-asp-net-core-identity-passwordhasher/)
 -  [Download SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) Use SSMS (free) to troubleshoot database problems.
 
-
-
 ------
 
 ## Example Code on GitHub
 
 - Instructor's Demo Web App using ASP.NET Core 3.1: [BookReviews&mdash;Identity branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/2-Identity)
-
-------
 
 
 
@@ -151,7 +148,7 @@ It is a class library (an API) for:
 
 ------
 
-[ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) [ASP.NET Core MVC Course Materials](http://lcc-cit.github.io/CS296N-CourseMaterials/) by [ Brian Bird](https://profbird.dev), written winter 2017, revised winter 2022 are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+[ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) [ASP.NET Core MVC Course Materials](http://lcc-cit.github.io/CS296N-CourseMaterials/) by [ Brian Bird](https://profbird.dev), written winter 2017, revised winter 2023 are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
     
 
 ------
