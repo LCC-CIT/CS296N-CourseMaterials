@@ -1,16 +1,16 @@
 **CS296N Web Development 2: ASP.NET**                                                        
 
-# *Authentication with Identity*
+<h1>Authentication with Identity</h1>
 
-| Weekly topics                              |                                        |
-| ------------------------------------------ | -------------------------------------- |
-| 1. Intro to course and Input validation    | 6. Async/Await / Complex Domain Models |
-| 2. Repositories and Unit Testing           | 7. Creating a Web Service              |
-| 3. Publishing to Azure / Intro to Identity | 8. Consuming a Web Service             |
-| **4. Authentication**                      | 9. Docker containers                   |
-| 5. Authorization                           | 10. Term project                       |
+| Weekly topics                          |                                 |
+| -------------------------------------- | ------------------------------- |
+| 1. Publishing a site to a Linux server | 6. Load testing and performance |
+| 2. Intro to Identity                   | 7. Complex domain models        |
+| <mark>3. Authentication</mark>         | 8. Validation                   |
+| 4. Authorization                       | 9. Docker containers            |
+| 5. Async/Await                         | 10. Term project                |
 
-## Contents
+<h2>Contents</h2>
 
 [TOC]
 
@@ -142,26 +142,21 @@ public IActionResult Review(Review model)
 
 
 
-## Example Code Repositories
+## Example Code on GitHub
 
-[BookReivew, Lab03 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab03)&mdash;Instructor's 2021 example
+Instructor's Demo Web App using ASP.NET Core 6.0: [BookInfo&mdash;Authentication](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/03-Authentication)
 
 
 
 ## References
 
-*Murach’s ASP.NET Core MVC*, Mary Delamater and Joel Murach, 2020
+*Murach’s ASP.NET Core MVC*, Second Ed., Mary Delamater and Joel Murach, 2022
 
 - Ch. 16, "How to Authenticate and Authorize Users"
 
-Freeman, *Pro ASP.NET Core MVC 2*, Freeman, 2017
-
-- Ch. 12 - SportsStore: Sections on Identity - [Notes](SportsStoreCh12.html)
-- Ch. 29 - Applying ASP.NET Core Identity: Authorizing users with roles 
-
 Microsoft ASP.NET Core MVC Tutorial 
 
-- [Overview of ASP.NET Core Authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1)&mdash;for ASP.NET Core 3.1 
+- [Overview of ASP.NET Core Authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)&mdash;for ASP.NET Core 6.0
 
 ------
 
@@ -185,4 +180,4 @@ Microsoft ASP.NET Core MVC Tutorial
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev) is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2023, is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 

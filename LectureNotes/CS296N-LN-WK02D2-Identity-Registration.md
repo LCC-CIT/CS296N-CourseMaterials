@@ -1,16 +1,18 @@
 **CS296N Web Development 2: ASP.NET**
 
-# *User Registration with Identity*
+<h1>User Registration with Identity</h1>
 
-| Weekly topics                                  |                                        |
-| ---------------------------------------------- | -------------------------------------- |
-| 1. Intro to course and Input validation        | 6. Async/Await / Complex Domain Models |
-| 2. Repositories and Unit Testing               | 7. Creating a Web Service              |
-| **3. Publishing to Azure / Intro to Identity** | 8. Consuming a Web Service             |
-| 4. Authentication                              | 9. Docker containers                   |
-| 5. Authorization                               | 10. Term project                       |
 
-**Contents**
+
+| Weekly topics                          |                                 |
+| -------------------------------------- | ------------------------------- |
+| 1. Publishing a site to a Linux server | 6. Load testing and performance |
+| 2. Intro to Identity                   | 7. Complex domain models        |
+| <mark>3. Authentication</mark>         | 8. Validation                   |
+| 4. Authorization                       | 9. Docker containers            |
+| 5. Async/Await                         | 10. Term project                |
+
+<h2>Contents</h2>
 
 [TOC]
 
@@ -79,9 +81,9 @@ We take a bit of a short-cut by copying the registration code from the textbook.
 
 ### Basic
 
-- *Murach’s ASP.NET Core MVC*, Mary Delamater and Joel Murach, 2020
+- *Murach’s ASP.NET Core MVC*, Second Ed., Mary Delamater and Joel Murach, 2022
   - Ch. 16, "How to register a user"
-- [Introduction to Identity in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-3.1)
+- [Introduction to Identity in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)
 
 ### Advanced
 
@@ -94,7 +96,7 @@ We take a bit of a short-cut by copying the registration code from the textbook.
 
 ## Example Code on GitHub
 
-- Instructor's Demo Web App using ASP.NET Core 3.1: [BookInfo&mdash;Identity branch](Instructor's Demo Web App using ASP.NET Core 2.2: [BookInfo&mdash;AddIdentity branch](https://github.com/LCC-CIT/CS296N-BookInfo-Core-2/tree/AddIdentity))
+Instructor's Demo Web App using ASP.NET Core 6.0: [BookInfo&mdash;Registration(https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/02-Registration)
 
 ## Upcoming Classes
 
@@ -104,7 +106,7 @@ We take a bit of a short-cut by copying the registration code from the textbook.
 
 ------
 
-[ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) [ASP.NET Core MVC Course Materials](http://lcc-cit.github.io/CS296N-CourseMaterials/) by [ Brian Bird](https://profbird.dev), written winter 2017, revised winter 2022 are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+[ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) [ASP.NET Core MVC Course Materials](http://lcc-cit.github.io/CS296N-CourseMaterials/) by [ Brian Bird](https://profbird.dev), written winter 2017, revised winter 2023 are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
     
 
 ------
