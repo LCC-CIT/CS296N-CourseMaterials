@@ -21,15 +21,13 @@
 
 
 
-### Review User Registration
+## Identity UserManager
 
-Last time we added user registration to our web app by adding the following:
+When we added Identity to our project, we removed the `DbSet` for our user from our`DbContext` class. This is because the user table in the database is now managed by Identity. Instead of using the DbContext to do CRUD operations with our user model, we will do all of those operations using the Identity `UserManager` service.
 
-- A view-model: RegisterVM
-- A view: Registration
-- Methods in the AccountController:
-  - HttpGet version of `Register`
-  - HttpPost version of `Register`
+### Adding a User in Seed Data with the UserManager
+
+As an example of how to use the UserManager service, we will refactor our SeedData to use the UserManager.
 
 
 
