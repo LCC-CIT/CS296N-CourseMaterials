@@ -96,7 +96,7 @@ We take a bit of a short-cut by copying the registration code from the textbook.
 
 ## Example Code on GitHub
 
-Instructor's Demo Web App using ASP.NET Core 6.0: [BookInfo&mdash;Registration(https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/02-Registration)
+Instructor's Demo Web App using ASP.NET Core 6.0: [BookInfo&mdash;Registration](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/02-Registration)
 
 ## Upcoming Classes
 

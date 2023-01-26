@@ -45,7 +45,7 @@ We will use Delamater and Murach (2020) as a guide to adding authentication to o
 
 #### Modify the navbar
 
-Page 665, "How to add Log In/Out buttons" and links to the layout.
+Pages 662&mdash;663, "How to add Log In/Out buttons" and links to the layout.
 Note: add a register button as well.
 
 ##### Using DI with views
