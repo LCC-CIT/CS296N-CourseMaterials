@@ -45,8 +45,7 @@ We will use Delamater and Murach (2020) as a guide to adding authentication to o
 
 #### Modify the navbar
 
-Pages 662&mdash;663, "How to add Log In/Out buttons" and links to the layout.
-Note: add a register button as well.
+Pages 662&mdash;663, "How to add Log In/Out buttons" and links to the layout; and add a register button as well.
 
 ##### Using DI with views
 
@@ -150,15 +149,13 @@ Instructor's Demo Web App using ASP.NET Core 6.0: [BookInfo&mdash;Authentication
 
 ## References
 
-*Murach’s ASP.NET Core MVC*, Second Ed., Mary Delamater and Joel Murach, 2022
+- *Murach’s ASP.NET Core MVC*, Second Ed., Mary Delamater and Joel Murach, 2022 
 
-- Ch. 16, "How to Authenticate and Authorize Users"
+  Ch. 16, "How to Authenticate and Authorize Users"
 
-Microsoft ASP.NET Core MVC Tutorial 
+- [Overview of ASP.NET Core Authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)&mdash;Microsoft Tutorial for .Net 6.0
 
-- [Overview of ASP.NET Core Authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0)&mdash;for ASP.NET Core 6.0
-
-------
+- [Bootstrap NavBar](https://getbootstrap.com/docs/5.1/components/navbar/)&mdash;Bootstrap 5.1 Documentation
 
 
 
