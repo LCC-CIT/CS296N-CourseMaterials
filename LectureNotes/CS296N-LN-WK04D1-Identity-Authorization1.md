@@ -18,6 +18,8 @@
 
 ## Introduction
 
+- I still plan to do a video of publishing to DigitalOcean. I'm still catching up after being sick, but I should be able to do that this week. If your Azure account has expired, just put a note in your lab 3 submission saying that and I won't make publishing to a web host part of your grade.
+
 - Q and A
 
   
@@ -26,12 +28,23 @@
 
 In the last two classes, we added these features to the Book Review app:
 
+- Registration
 - Login
 - Logout
 - 
   Modified code using the `AppUser` model that now  inherits from `IdentityUser`
 
   All operations on data in the Identity database tables now goes through one of the Identity classes like `UserManager`.
+  
+- I updated the bootstrap code for the navbar and added [details to the notes](http://lcc-cit.github.io/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK03D2-Identity-Authentication.html#modify-the-navbar). Let's take a quick look at the code: [BookReviews&mdash;Authentication branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/blob/03-Authentication/BookReviews/Views/Shared/_Layout.cshtml)
+  Discussion:
+
+  - What is the purpose of the SignInManager in this shared layout?
+    - Where is this code executed?
+    - When a user logs in, how are passwords sent to the controller?
+  
+  - What do the `<li>` elements correspond to?
+  - How are the Font Awesome icons added to the NavBar?
 
 
 
