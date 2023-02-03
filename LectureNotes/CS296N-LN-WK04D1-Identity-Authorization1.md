@@ -102,12 +102,13 @@ In order to work with roles, we need a way to create roles and assign roles to u
 
    Notes:
 
-   - The Authorize attribute is incorrect as shown in the book. The correct attribute is:  
+   - Leave off the *Authorize attribute* for now. It will block us from testing the controller until we have a user in the "Admin" role. We'll add that next time.  
+     Also, the attribute is incorrect as shown in the book. The correct attribute is:  
      `[Authorize(Roles = "Admin")] `
    - We are not using *Areas*, so omit the  `[Area("Admin")]` attribute
-
+   
    This controller implements these action methods:
-
+   
    - User Management
      - `Index()`Renders the admin page for managing users and roles
      
