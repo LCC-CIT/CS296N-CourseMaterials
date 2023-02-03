@@ -1,4 +1,4 @@
-# Lab 1 Rubric
+# Lab 2 Rubric
 
 ## Part 1: Textbook Tutorial
 
