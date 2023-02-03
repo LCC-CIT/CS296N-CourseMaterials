@@ -161,7 +161,9 @@ We don't need to add a migration since we have not made any change to our domain
 
 ## Example Code Repositories
 
-[BookReivews, Authorization branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/04-Authorization)&mdash;2023 example
+[BookReivews, Authorization branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/04-Authorization)&mdash;2023 example using .NET 6.0 and MySQL
+
+[BookReivews, Authorization branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/4-Authorization)&mdash;2022 example using .NET 3.1 and SQL Server
 
 
 

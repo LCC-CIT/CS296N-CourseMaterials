@@ -82,7 +82,19 @@ We will use the following C# attributes to restrict access classes or methods:
 
 4. Add an *Admin* link to the navbar menu.
 
-   
+   This code isn't in the textbook. Add the code below to the shared _Layout.cshtml file, inside the @if statement that checks to see if a user is logged in.
+
+  ```c#
+  @if (User.IsInRole("Admin"))
+  {
+    <li class="nav-item">
+      <a class="nav-link" asp-controller="User" asp-action="Index">
+          <span class="fas fa-cog"></span>&nbsp;Admin</a>
+    </li>
+  }
+  ```
+
+  
 
 ## Conclusion
 
@@ -100,9 +112,9 @@ We will use the following C# attributes to restrict access classes or methods:
 
 ## Examples
 
-[BookReivew, Lab04 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab04)&mdash;2021 example
+[BookReivews, Authorization branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/04-Authorization)&mdash;2023 example using .NET 6.0 and MySQL
 
-
+[BookReivews, Authorization branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/4-Authorization)&mdash;2022 example using .NET 3.1 and SQL Server
 
 
 
