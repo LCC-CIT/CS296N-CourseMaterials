@@ -14,14 +14,14 @@
 
 [TOC]
 
-## Introduction
+# Introduction
 
 - Q and A
 - Reminder to check Azure credit balances
 
 
 
-### Review User Registration
+# Review User Registration
 
 Last time we added user registration to our web app by adding the following:
 
@@ -33,11 +33,11 @@ Last time we added user registration to our web app by adding the following:
 
 
 
+# Authentication: Registration and Login
+
 ## Overview
 
 We will use Delamater and Murach (2020) as a guide to adding authentication to our web app. We'll discuss both the "how" and the "why" as we do it.
-
-
 
 ## Adding Authentication to Our Web App
 
@@ -46,6 +46,69 @@ We will use Delamater and Murach (2020) as a guide to adding authentication to o
 #### Modify the navbar
 
 Pages 662&mdash;663, "How to add Log In/Out buttons" and links to the layout; and add a register button as well.
+
+We're not going make our navbar look quite like the one in the book. Here are some differences:
+
+- We don't need a cart button.
+- We won't use the `Nav` class in the BookStore models.
+- We will change the style of the buttons and links in the textbook to match our existing navbar styles.
+
+Here's our version of the new navbar code:
+
+```html
+<!-- head element ends here -->
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> signInManager
+<!-- body element starts here 
+     New code goes after the existing <ul> in the navbar -->
+<ul class="navbar-nav flex-grow-1">
+    @if (signInManager.IsSignedIn(User))
+    {
+        // Signed-in user - Log Out button and username 
+        <li class="nav-item"> 
+            <form method="post" asp-action="Logout" asp-controller="Account">
+                <input type="submit" value="Log Out" class="btn btn-outline-dark" />
+                <span class="text-dark">@User.Identity.Name</span>
+            </form>
+        </li>
+    }
+    else
+    {
+        // Get current action 
+        var action = ViewContext.RouteData.Values["action"]?.ToString();
+        // anonymous user - Register link and Log In button 
+        <li class="nav-item"> 
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">
+                <span class="fas fa-edit"></span> &nbsp; Register </a> 
+        </li>
+        <li class="nav-item"> 
+            <a asp-action="Login" asp-controller="Account" class="btn btn-outline-dark">
+                Log In
+            </a>
+        </li> 
+    }
+</ul>
+    
+```
+
+**Bootstrap notes**
+
+- `ps-3` adds one *spacer* of padding on the left, `pe-3` adds one *spacer* of padding on the right.
+- `ms-auto` and`me-auto` (margin start and margin end) are auto-margin class that push items to the left, or right, respectively.
+
+**Font Awesome notes**
+
+- `fas` is the Font Awesome *solid* style, which is used for buttons, icons, or links.
+
+- `fa-edit` is the Font Awesome icon used for registration.
+
+- If you aren't using *Font Awesome* in your site yet, you can add this `link` element to the `head` of your shared layout:
+  ```html
+  <link rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha-long-hash_code" crossorigin="anonymous">
+  ```
+
+  
 
 ##### Using DI with views
 
@@ -71,7 +134,7 @@ Pages 674&ndash;679 describe the process of adding:
 
 ##### Setting a persistent cookie
 
-The Login view has a check box labeled "Remember me". When this box is checked, the user's login information will be stored in a *persistent cookie*[^1] instead of a *session cookie*. The type of cookie is that is created is determined by the `isPersistent` parameter of `SignInManager.PasswordSignInAsync`. 
+The Login view has a check box labeled "Remember me". When this box is checked, the user's login information will be stored in a *persistent cookie*[^1] instead of a *session cookie*. The type of cookie that is created is determined by the `isPersistent` parameter of `SignInManager.PasswordSignInAsync`. 
 
 ### Updating code that uses `AppUser`
 
@@ -104,8 +167,7 @@ The Review model contains an `AppUser object named Reviewer:
 public class Review
     {
         public int ReviewID { get; set; }
-        public string BookTitle { get; set; }
-        public string AuthorName { get; set; }
+        public Book Book { get; set; }
         public AppUser Reviewer { get; set; }
         public string ReviewText { get; set; }
         public DateTime ReviewDate { get; set; }
@@ -177,4 +239,4 @@ Instructor's Demo Web App using ASP.NET Core 6.0: [BookInfo&mdash;Authentication
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2023, is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written 2019, revised 2023, is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
