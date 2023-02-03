@@ -77,37 +77,37 @@ In today's session we will not actually restrict any parts of the web site. We'l
 In order to work with roles, we need a way to create roles and assign roles to users. We'll make the changes and add the view shown in the textbook starting with the section titled "The user entity and view model".
 
 1. Add `app.UseAuthorization` to Program.cs. This must come <u>after</u> `app.UseAuthentication`!
-2. Add a `List` for role names to `AppUser`. This is not needed by Identity. We're just adding it to facilitate our administrative page for managing users and roles.
+2. Add a `List` for role names to `AppUser`. This is not needed by Identity. We're just adding it to facilitate our administrative page for managing users and roles.
 
     ```c#
     [NotMapped]
     public IList<string> RoleNames { get; set; }
     ```
-    
+
       - The `[NotMapped]` attribute tells Entity Framework that it should not add this property as a field in the AspNetUsers table.
       -  `IList<string>`
         - One reason we're using `IList<string>` rather than `List<string>` is because  the `GetRolesAsync` method of `UserManager` returns this type.
         - Another reason is the "best practice" of using the most general type possible for properties. Here we need arbitrary access to the collection so we need `IList`, not `IEnumerable`.[^1]
-    
+
 3. Create the `UserVM` view-model to hold the lists shown below. This will be used by the Index view below.
 
     ```c#
     public IEnumerable<AppUser> Users { get; set; }
     public IEnumerable<IdentityRole> Roles { get; set; }
     ```
-    
+
     -  We're using `IEnumerable<AppUser>` here instead of` IList<AppUser>` because we will only be iterating over the collection and don't need arbitrary access to it.[^1]
-    
+
 4. Add the `UserController` that will be used to manage users and roles. 
 
    Notes:
-   
+
    - The Authorize attribute is incorrect as shown in the book. The correct attribute is:  
      `[Authorize(Roles = "Admin")] `
-   - We are not using *Areas*, so omit the  `[Area("Admin")]` attribute
-   
+   - We are not using *Areas*, so omit the  `[Area("Admin")]` attribute
+
    This controller implements these action methods:
-   
+
    - User Management
      - `Index()`Renders the admin page for managing users and roles
      
@@ -117,21 +117,28 @@ In order to work with roles, we need a way to create roles and assign roles to u
          foreach (AppUser user in userManager.Users.ToList())
          ```
      
-         This is needed because `userManager.Users` returns an `IQueryable`, which defers execution of database queries until all further processing of the query is completed. The EF provider for MySQL doesn't seem to like this. Adding `ToList()` forces the database query to be completed immediately.
+         This is needed because `userManager.Users` returns an `IQueryable`, which defers execution of database queries until all further processing of the query is completed. The EF provider for MySQL doesn't seem to like this. Adding `ToList()` forces the database query to be completed immediately.
      - `Add()`&mdash;Renders the form for adding users
+     
+       - This code isn't shown in the textbook, but it is the same as the corresponding method in the `AccountController`.
      - `Add(RegisterVM)`&mdash;Adds a user
+     
+       - This code also isn't shown in the textbook but is the same as in the `AccountController`.
      - `Delete(string)`&mdash;Removes a user
-   
-   
+
+
       - Role Management
         - `AddToAdmin(string)`&mdash;Adds a user to the "Admin" role
         - `RemoveFromAdmin(string)`&mdash;Removes a user from the "Admin" role
         - `CreateAdminRole()`&mdash;Creates the "Admin" role
         - `DeleteRole(string)`&mdash;Removes a role
-   
+
 5. Add the `User` / `Index` view
 
 6. Add the `User` / `Add` view
+
+   - This code is not shown in the textbook. It can be copied from the "Ch16Bookstore" source code.
+
 
 We don't need to add a migration since we have not made any change to our domain model that will affect the database.
 
