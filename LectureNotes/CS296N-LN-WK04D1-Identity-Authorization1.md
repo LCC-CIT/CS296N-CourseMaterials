@@ -127,7 +127,6 @@ In order to work with roles, we need a way to create roles and assign roles to u
        - This code also isn't shown in the textbook but is the same as in the `AccountController`.
      - `Delete(string)`&mdash;Removes a user
 
-
       - Role Management
         - `AddToAdmin(string)`&mdash;Adds a user to the "Admin" role
         - `RemoveFromAdmin(string)`&mdash;Removes a user from the "Admin" role

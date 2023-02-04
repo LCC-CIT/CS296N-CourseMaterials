@@ -120,18 +120,13 @@ We will use the following C# attributes to restrict access classes or methods:
 
 ## References
 
-*Murach’s ASP.NET Core MVC*, Mary Delamater and Joel Murach, 2020
+*Murach’s ASP.NET Core MVC*, Mary Delamater and Joel Murach, 2022
 
 - Ch. 16, "How to Authenticate and Authorize Users"
 
-*Pro ASP.NET Core MVC 2*, Freeman, Apress, 2017
-
-- Ch. 12 - SportsStore: Sections on Identity - [Notes](SportsStoreCh12.html)
-- Ch. 29 - Applying ASP.NET Core Identity: Authorizing users with roles 
-
 Microsoft ASP.NET Core MVC Tutorial 
 
-- [Authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/)&mdash;for ASP.NET Core 3.1 
+- [Authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/)&mdash;for ASP.NET Core
 
 ------
 
