@@ -1,9 +1,9 @@
 ---
 title: Authorization with Identity--Part 2
-description: Use Delamater and Murach (2020) as a guide to finish adding authorization to a web app: Restrict the admin controller. Add Admin to our navigation menu, but only for admin users. Seed users and an admin role. Re-publish to Azure
+description: Use Delamater and Murach (2022) as a guide to finish adding authorization to a web app: Restrict the admin controller. Add Admin to our navigation menu, but only for admin users. Seed users and an admin role. Re-publish to Azure
 keywords: Identity, Authorization, UserManager, Authorize attribute
 ---
-# *Authorization with Identity Part 2*
+<h1>Authorization with Identity Part 2</h1>
 
 | Weekly topics                              |                                        |
 | ------------------------------------------ | -------------------------------------- |
@@ -32,10 +32,10 @@ We added the `AdminController`, some supporting code and two views:
 
 We will use Delamater and Murach (2020) as a guide to finish adding authorization to our web app.
 
-- Restrict the admin controller
-- Add Admin to our navigation menu, but only for admin users
-- Seed users and an admin role
-- Re-publish to Azure
+- Seed a user and an admin role.
+- Restrict the admin controller.
+- Add Admin to our navigation menu, but only for admin users.
+- Re-publish to Azure.
 
 
 
@@ -59,32 +59,42 @@ We will use the following C# attributes to restrict access classes or methods:
 1. Restrict access to authorized users
    - Add the `[Authorize]` attribute to the `Review` methods (for posting a review) in the `ReviewController`.
    - Add `[Authorize(Roles = "Admin")]` to the `AdminController` 
+
 2. Provide notification and redirection to unauthorized users
    - Add an HTTP GET `AccessDenied()` action method to the `AcccountController`. This will notify unauthorized users that they either need to log in or don't have Admin priveleges.
    - Add the `AccessDenied` view to the Views / Account folder
+
 3. Seed an admin user
-   - Write a new method, `SeedAdminUser(IServiceProvider serviceProvider)` in the `SeedData` class. 
-     - Notes:
-       -  I've changed the name and class of this method from those used by the `CreateAdminUser` method in the textbook.)
-       - This method needs to return an `async Task` because it calls `UserManager` async methods  using `await`.
-     - In `Startup`, in the `Cofnigure` method, after all the other configuration statements, add a call to the `CreateAdminUser` method.
 
-        ```c#
-        SeedData.SeedAdminUser(app.ApplicationServices).Wait();
-        ```
+   We will follow the approach used in the textbook and use the code from the section of ch. 16 titled "How to seed roles and users". 
 
-4. Turn off scope validation for the default service provider. In `Program.cs`, add this code that modifies the expression `webBuilder.UserStartup<Startup>;`
-   We will add code to seed an Admin user[^3].
+   - Copy the `ConfigureIdentity` class (I renamed it to `SeedUsers` in my example code) which contains a static method named `CreateAdminUserAsync`. I put the file in  the Data` folder of my project.
 
+   - Add a call to the `CreateAdminUserAsync` method to `Program.cs`. It goes in the `using` statement at the bottom where we are already calling the `SeedData.Seed` method. Here's what the `using` statement looks like after adding the call to `CreateAdminUserAsync`:  
    ```c#
-   webBuilder.UserStartup<Startup>
-     .UseDefaultServiceProvider(
-         options => options.ValidateScopes = false); }
+   using (var scope = app.Services.CreateScope())
+   {
+       await SeedUsers.CreateAdminUserAsync(scope.ServiceProvider);
+       var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+       SeedData.Seed(context, scope.ServiceProvider);
+   }
    ```
 
-   - Scope validation is turned on by default. It's purpose is a bit complicated, but it has to do with ensuring objects that are injected with a scoped lifetime are managed correctly. Scope validation will not properly handle the `ServiceProvider` object we are injecting a  into our `SeedAdminUser` method, so we need to turn it off. Read more about scope validation [here](https://bartwullems.blogspot.com/2019/02/aspnet-core-scope-validation.html).
-   
-     
+4. Add an *Admin* link to the navbar menu.
+
+   This code isn't in the textbook. Add the code below to the shared _Layout.cshtml file, inside the @if statement that checks to see if a user is logged in.
+
+  ```c#
+  @if (User.IsInRole("Admin"))
+  {
+    <li class="nav-item">
+      <a class="nav-link" asp-controller="User" asp-action="Index">
+          <span class="fas fa-cog"></span>&nbsp;Admin</a>
+    </li>
+  }
+  ```
+
+  
 
 ## Conclusion
 
@@ -102,26 +112,21 @@ We will use the following C# attributes to restrict access classes or methods:
 
 ## Examples
 
-[BookReivew, Lab04 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab04)&mdash;2021 example
+[BookReivews, Authorization branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/04-Authorization)&mdash;2023 example using .NET 6.0 and MySQL
 
-
+[BookReivews, Authorization branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/4-Authorization)&mdash;2022 example using .NET 3.1 and SQL Server
 
 
 
 ## References
 
-*Murach’s ASP.NET Core MVC*, Mary Delamater and Joel Murach, 2020
+*Murach’s ASP.NET Core MVC*, Mary Delamater and Joel Murach, 2022
 
 - Ch. 16, "How to Authenticate and Authorize Users"
 
-*Pro ASP.NET Core MVC 2*, Freeman, Apress, 2017
-
-- Ch. 12 - SportsStore: Sections on Identity - [Notes](SportsStoreCh12.html)
-- Ch. 29 - Applying ASP.NET Core Identity: Authorizing users with roles 
-
 Microsoft ASP.NET Core MVC Tutorial 
 
-- [Authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/)&mdash;for ASP.NET Core 3.1 
+- [Authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/)&mdash;for ASP.NET Core
 
 ------
 
