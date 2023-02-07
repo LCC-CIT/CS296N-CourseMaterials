@@ -1,12 +1,12 @@
 # *Introduction to Async and Await in C#*
 
-| Weekly topics                              |                                 |
-| ------------------------------------------ | ------------------------------- |
-| 1. Intro to course and Input validation    | **6. Async/Await**              |
-| 2. Repositories and Unit Testing           | 7. Load Testing and Performance |
-| 3. Publishing to Azure / Intro to Identity | 8. Complex Domain Models        |
-| 4. Authentication                          | 9. Docker containers            |
-| 5. Authorization                           | 10. Term project                |
+| Weekly topics                          |                                 |
+| -------------------------------------- | ------------------------------- |
+| 1. Publishing a site to a Linux server | 6. Load testing and performance |
+| 2. Intro to Identity                   | 7. Complex domain models        |
+| 3. Authentication                      | 8. Validation                   |
+| 4. Authorization                       | 9. Docker containers            |
+| 5. <mark>Async/Await</mark>            | 10. Term project                |
 
 
 [TOC]
@@ -14,9 +14,6 @@
 ## Intro
 
 - Q and A
-- Announcements (2022)
-  - I've added links to LinkedIn Learning (formerly Lynda.con) video courses for most topics in this class.
-  - I plan to get caught up on grading over the weekend.
 
 
 
