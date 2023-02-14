@@ -6,13 +6,13 @@ keywords: JMeter, load test, stress test
 
 # *Load Testing* 
 
-| Weekly topics                              |                                     |
-| ------------------------------------------ | ----------------------------------- |
-| 1. Intro to course and Input validation    | 6. Async/Await                      |
-| 2. Repositories and Unit Testing           | **7. Performance and Load Testing** |
-| 3. Publishing to Azure / Intro to Identity | 8. Complex Domain Models            |
-| 4. Authentication                          | 9. Docker containers                |
-| 5. Authorization                           | 10. Term project                    |
+| Weekly topics                          |                                              |
+| -------------------------------------- | -------------------------------------------- |
+| 1. Publishing a site to a Linux server | <mark>6. Load testing and performance</mark> |
+| 2. Intro to Identity                   | 7. Complex domain models                     |
+| 3. Authentication                      | 8. Validation                                |
+| 4. Authorization                       | 9. Docker containers                         |
+| 5. Async/Await                         | 10. Term project                             |
 
 ## Contents
 
@@ -21,8 +21,6 @@ keywords: JMeter, load test, stress test
 ------
 
 ## Introduction
-
-Winter 2022 topics
 
 - Q and A
 
@@ -214,4 +212,4 @@ The results of the test will be put into the *ReportDashboard* directory. This f
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in <time>2022</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in <time>2023</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
