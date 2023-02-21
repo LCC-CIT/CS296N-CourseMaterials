@@ -7,17 +7,24 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 **CS296N Web Development 2**
 
-| Weekly topics                              |                                 |
-| ------------------------------------------ | ------------------------------- |
-| 1. Intro to course and Input validation    | 6. Async/Await                  |
-| 2. Repositories and Unit Testing           | 7. Performance and Load Testing |
-| 3. Publishing to Azure / Intro to Identity | **8. Complex Domain Models**    |
-| 4. Authentication                          | 9. Docker containers            |
-| 5. Authorization                           | 10. Term project                |
+| Weekly topics                             |                                       |
+| ----------------------------------------- | ------------------------------------- |
+| 1. 1. Publishing a site to a Linux server | 6. Load testing and performance       |
+| 2. Intro to Identity                      | 7. <mark>Complex domain models</mark> |
+| 3. Authentication                         | 8. Validation                         |
+| 4. Authorization                          | 9. Docker containers                  |
+| 5. Async/Await                            | 10. Term project                      |
 
 ## Contents
 
 [TOC]
+
+## Q & A
+
+- Announcements
+  - Balsamiq subscription: need to move to Balsamiq for Google Drive. I've already moved all the projects and posted info about the move in the CS246 forum.
+- JMeter load testing: I added more details to the JMeter notes&mdash; screen-shots and info on managing the anti-forgery token.
+- Term project proposal: I'll read those and give feedback today.
 
 ## Review
 
@@ -47,7 +54,7 @@ We learned how to create a DbContext class containing DbSets that are based on o
 
 - Use the terminology of the domain (ubiquitous language) for our classes, fields, etc..
 - Keep our focus narrow&mdash;on the problem we are solving. Don't make it too general or abstract.
-- Identify aggregates and root entities.
+- Identify *aggregates* and *root entities.*
 - Separate the domain model from other classes responsible for persistence.
 
 ### Example: Book Reviews with a More Complex Domain Model
