@@ -75,7 +75,7 @@ Will this more complex domain model:
 
 #### C# code
 
-Implementing the domain model in C# is straightforward except for implementing composition vs. aggregation. Since we are using Entity Framework to persist our model objects, we need to write our code so that EF will understand which dependent entities will be deleted with the root entity (composition) and which will not.
+Implementing the domain model in C# is straightforward except for implementing composition vs. aggregation. Since we are using Entity Framework to persist our model objects, we need to write our code so that EF will understand which dependent entities will be deleted with the root entity (composition) and which will not (aggregation).
 
 Aggregation is the the default relationship. If we want to specify composition, we do it in the dependent entity by adding an FK that points to the root entity and is a non-nullable property.
 
@@ -129,7 +129,7 @@ Each domain model entity is mapped to a table in the database. Additional join t
 
 #### Cascade Delete
 
-When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. (Look  at a migration that includes Create Table to see cascade delete specified on a FK).
+When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. (Look at a migration that includes Create Table to see cascade delete specified on a FK).
 
 You can control cascade deletes several ways:
 
@@ -140,7 +140,7 @@ You can control cascade deletes several ways:
    Examples:
 
   - 
-    In Delamater (2020), this will prevent Genre records from being deleted with a Book record.
+    In Delamater (2022), this will prevent Genre records from being deleted with a Book record.
 
     ```C#
     modelBuilder.Entity<Book>()
@@ -154,19 +154,9 @@ You can control cascade deletes several ways:
 
 #### Model Relationships Supported by Entity Framework
 
-EF Core 3.1 supports one-to-one, one-to-many, as well as inheritance. 
+- EF Core 3.1 only supported one-to-one, one-to-many, as well as inheritance. 
 
-- While many-to-many relationships aren't automatically implemented in version 3.1, you can implement this relationship by using a model entity that represents a join table. 
-
-  But, most of the time this relationship isn't needed and just complicates your system. 
-  
-  For example (Question): 
-  
-  Do we need a many-to-many relationship to manage books that have multiple authors and authors that have written multiple books?[^4]
-  
-- Inheritance doesn't translate well to a database schema. All the inherited properties end up in one table.
-
-EF 6 automatically implements many-to-many relationships.
+- EF 6.0 and above automatically implements all of the above as well as many-to-many relationships.
 
 #### The database
 
@@ -205,8 +195,6 @@ We won't use the full-blown model shown above. We'll just add a Comment class to
 
 ## Examples
 
-Book Review site on GitHub: [ComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain), and [running on Azure](https://bookreviews.azurewebsites.net/).
-
 Book Review site on GitHub: [MoreComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-MoreComplexDomain)
 
 UML class diagrams of the domain models are in the Doc folder of this repository.
@@ -215,7 +203,7 @@ UML class diagrams of the domain models are in the Doc folder of this repository
 
 ## References
 
-Delamater, Mary, Murach, Joel. "How to work with relationships", pg. 450&ndash;459 in Ch. 12 of *Murach's ASP.NET Core MVC*. Murach, 2020. Presents a different approach to defining relationships in a domain model and managing cascade deletes.
+Delamater, Mary, Murach, Joel. "How to work with relationships", pg. 450&ndash;459 in Ch. 12 of *Murach's ASP.NET Core MVC*. 2nd Ed. Murach, 2022. Presents a different approach to defining relationships in a domain model and managing cascade deletes.
 
 Freeman, Adam. [Applying Domain-Driven Development](../ArticleAndNotes/ProAspNetMvc4Freeman-DomainDriveDev.pdf) in ch. 3 of *Pro ASP.NET MVC 4*, Apress, 2012.
 
@@ -229,7 +217,7 @@ Vickers, Arthur, et al. [Entity Framework Core: Cascade Delete)](https://docs.mi
 
 -----
 
- [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2022</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+ [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2023</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
 
 [^1]: Yes, now users can add comments to reviews, but that's all.
 [^2]: Yes, Books and Authors can be directly retrieved from the database. Other queries are simplified.
