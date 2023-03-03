@@ -55,8 +55,14 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 ## Examples
 
-  - Last year's example, using .NET 3.2, with 3 domain model classes: [CS296N-Example-BookReviews, branch 7-ComplexDomain](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models).
-  - This year's example, using .NET 6.0, with 5 domain model classes: [CS296N-Example-BookReviews-DotNet6, branch 07-ComplexDomain](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models).
+  - 2022 example, using .NET 3.2, SQL Server, and 3 domain model classes:
+    - [CS296N-Example-BookReviews](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models), branch 7-ComplexDomain on GitHub.
+    - [UML class diagram](https://github.com/LCC-CIT/CS296N-Example-BookReviews/blob/7-ComplexDomain/BookReviews/Docs/BookReviewsComplexDomainModel.pdf) of the domain model.
+
+  - 2023 example, using .NET 6.0, MySQL, and 5 domain model classes:
+    -  [CS296N-Example-BookReviews-DotNet6](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models), branch 07-ComplexDomain on GitHub.
+    - [UML class diagram](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/blob/07-ComplexDomain/Docs/BookReviewsDomainModel.pdf) of the domain model.
+
 
 -----
 
