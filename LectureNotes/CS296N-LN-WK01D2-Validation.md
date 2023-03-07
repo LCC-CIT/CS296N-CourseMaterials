@@ -1,23 +1,23 @@
 **CS296N Web Development 2: ASP.NET** 
 
-# Validation of User Input
+<h1>Validation of User Input</h1>
 
-| Topics by week                                       |                                 |
-| ---------------------------------------------------- | ------------------------------- |
-| 1. Intro to course and <mark>Input validation</mark> | 6. Load Testing and Performance |
-| 2. Identity                                          | 7. Creating a Web Service       |
-| 3. Authentication and authorization                  | 8. Consuming a Web Service      |
-| 4. Publishing to a production server                 | 9. Docker containers            |
-| 5. Security                                          | 10. Term project                |
-
-
-
-## Contents
+<h2>Contents</h2>
 
 [TOC]
 ## Introduction
 
-- This week, we will cover the "left over" topic from fall term, input validation.
+- I finished updating my complex domain model and scaffolding code on https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/07-ComplexDomain
+
+- For lab 7: 
+
+  - Regarding complexity of your domain model, since you already have two domain model classes (counting AppUser) you only need one additional domain model class which is related to an existing domain model class (probably a root entity) by composition. 
+
+    My example for this year is much more complex than that. If you look at the [example from last year](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain) it just has one additional domain model class&mdash;like you you do for your assignment.
+
+  - Add scaffolding for one of your classes. It makes the most sense to do it for your root entity. Modify the scaffolding so that it includes the related data (composed classes).
+
+- Validation lectures: I won't be here Thursday. I'll post a video recording of last year's lecture.
 
 
 
