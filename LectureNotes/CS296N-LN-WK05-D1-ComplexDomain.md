@@ -7,17 +7,24 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 **CS296N Web Development 2**
 
-| Weekly topics                              |                                 |
-| ------------------------------------------ | ------------------------------- |
-| 1. Intro to course and Input validation    | 6. Async/Await                  |
-| 2. Repositories and Unit Testing           | 7. Performance and Load Testing |
-| 3. Publishing to Azure / Intro to Identity | **8. Complex Domain Models**    |
-| 4. Authentication                          | 9. Docker containers            |
-| 5. Authorization                           | 10. Term project                |
+| Weekly topics                             |                                       |
+| ----------------------------------------- | ------------------------------------- |
+| 1. 1. Publishing a site to a Linux server | 6. Load testing and performance       |
+| 2. Intro to Identity                      | 7. <mark>Complex domain models</mark> |
+| 3. Authentication                         | 8. Validation                         |
+| 4. Authorization                          | 9. Docker containers                  |
+| 5. Async/Await                            | 10. Term project                      |
 
 ## Contents
 
 [TOC]
+
+## Q & A
+
+- Announcements
+  - Balsamiq subscription: need to move to Balsamiq for Google Drive. I've already moved all the projects and posted info about the move in the CS246 forum.
+- JMeter load testing: I added more details to the JMeter notes&mdash; screen-shots and info on managing the anti-forgery token.
+- Term project proposal: I'll read those and give feedback today.
 
 ## Review
 
@@ -47,7 +54,7 @@ We learned how to create a DbContext class containing DbSets that are based on o
 
 - Use the terminology of the domain (ubiquitous language) for our classes, fields, etc..
 - Keep our focus narrow&mdash;on the problem we are solving. Don't make it too general or abstract.
-- Identify aggregates and root entities.
+- Identify *aggregates* and *root entities.*
 - Separate the domain model from other classes responsible for persistence.
 
 ### Example: Book Reviews with a More Complex Domain Model
@@ -68,7 +75,7 @@ Will this more complex domain model:
 
 #### C# code
 
-Implementing the domain model in C# is straightforward except for implementing composition vs. aggregation. Since we are using Entity Framework to persist our model objects, we need to write our code so that EF will understand which dependent entities will be deleted with the root entity (composition) and which will not.
+Implementing the domain model in C# is straightforward except for implementing composition vs. aggregation. Since we are using Entity Framework to persist our model objects, we need to write our code so that EF will understand which dependent entities will be deleted with the root entity (composition) and which will not (aggregation).
 
 Aggregation is the the default relationship. If we want to specify composition, we do it in the dependent entity by adding an FK that points to the root entity and is a non-nullable property.
 
@@ -122,18 +129,20 @@ Each domain model entity is mapped to a table in the database. Additional join t
 
 #### Cascade Delete
 
-When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. (Look  at a migration that includes Create Table to see cascade delete specified on a FK).
+When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. (Look at a migration that includes Create Table to see cascade delete specified on a FK).
 
 You can control cascade deletes several ways:
 
-- In order to signal EF not to do a cascade delete, include the FK property explicitly in the model and make it nullable. (See the Comment model above).
+- In order to signal EF <u>not</u> to do a cascade delete, include the FK property explicitly in the model and make it nullable. (See the `Comment` model above).  
+
+   -- OR --
 
 - Add a ModelBuilder rule in DbContext.OnModelBuilding. See [Configuring Cascade Behaviors](https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete#configuring-cascading-behaviors) (Vickers 2022) for descriptions of the options for the `DeleteBehavior` enum.
 
-   Examples:
+   Example:
 
   - 
-    In Delamater (2020), this will prevent Genre records from being deleted with a Book record.
+    In Delamater (2022), this will prevent Genre records from being deleted with a Book record.
 
     ```C#
     modelBuilder.Entity<Book>()
@@ -145,28 +154,26 @@ You can control cascade deletes several ways:
 
     
 
-#### Model Relationships Supported by Entity Framework
-
-EF Core 3.1 supports one-to-one, one-to-many, as well as inheritance. 
-
-- While many-to-many relationships aren't automatically implemented in version 3.1, you can implement this relationship by using a model entity that represents a join table. 
-
-  But, most of the time this relationship isn't needed and just complicates your system. 
-  
-  For example (Question): 
-  
-  Do we need a many-to-many relationship to manage books that have multiple authors and authors that have written multiple books?[^4]
-  
-- Inheritance doesn't translate well to a database schema. All the inherited properties end up in one table.
-
-EF 6 automatically implements many-to-many relationships.
-
 #### The database
 
 Look at the database generated by EF. 
 
-- Look for FK columns&mdash;they will be in the tables that represent collections and will be the PK of a table that represents the model holding the collection.
-- If the FK is not nullable then it means that records in that table will be cascade deleted. Otherwise, if it's nullable, they will not.
+- Look for FK columns&mdash;they will be in the tables that represent a collection of objects (like `Reviews`) and will be the PK of a table that represents the model holding the collection (like `BookId` and `ReviewerId`).
+
+  **Reviews Table**
+
+  | ReviewId | BookId | ReviewText                                                | ReviewDate | ReviewerId                           |
+  | -------- | ------ | --------------------------------------------------------- | ---------- | ------------------------------------ |
+  | 1        | 1      | Great book, a must read!                                  | 2020-11-01 | 7fa122e5-00be-415a-b683-39b2fca90e4c |
+  | 2        | 1      | I love the clever, witty dialog                           | 2020-11-15 | b09e9fcd-9cba-4e8f-8a9f-83895baf1d2b |
+  | 3        | 2      | Wonderful book, written by a distant cousin of mine.      | 2020-11-30 | 2254a440-0d71-4b10-aaf9-e382595ab62b |
+  | 4        | 3      | It was a little hard going at first, but then I loved it! | 2020-11-01 | 2254a440-0d71-4b10-aaf9-e382595ab62b |
+  | 5        | 4      | This is a classic that lives up to its reputation!        | 2020-09-22 | 2254a440-0d71-4b10-aaf9-e382595ab62b |
+
+
+
+
+- If the FK is not nullable then it means that records in that table will be cascade deleted. Otherwise, if it is nullable, they will not.
 
 
 
@@ -196,11 +203,17 @@ We won't use the full-blown model shown above. We'll just add a Comment class to
 
 
 
+#### Model Relationships Supported by Entity Framework
+
+- EF Core 3.1 only supported one-to-one, one-to-many, as well as inheritance. 
+
+- EF 6.0 and above automatically implements all of the above as well as many-to-many relationships.
+
+#### 
+
 ## Examples
 
-Book Review site on GitHub: [ComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain), and [running on Azure](https://bookreviews.azurewebsites.net/).
-
-Book Review site on GitHub: [MoreComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-MoreComplexDomain)
+2023 Book Review site on GitHub: [MoreComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6)
 
 UML class diagrams of the domain models are in the Doc folder of this repository.
 
@@ -208,11 +221,11 @@ UML class diagrams of the domain models are in the Doc folder of this repository
 
 ## References
 
-Delamater, Mary, Murach, Joel. "How to work with relationships", pg. 450&ndash;459 in Ch. 12 of *Murach's ASP.NET Core MVC*. Murach, 2020. Presents a different approach to defining relationships in a domain model and managing cascade deletes.
+Delamater, Mary, Murach, Joel. "How to work with relationships", pg. 450&ndash;459 in Ch. 12 of *Murach's ASP.NET Core MVC*. 2nd Ed. Murach, 2022. Presents a different approach to defining relationships in a domain model and managing cascade deletes.
 
 Freeman, Adam. [Applying Domain-Driven Development](../ArticleAndNotes/ProAspNetMvc4Freeman-DomainDriveDev.pdf) in ch. 3 of *Pro ASP.NET MVC 4*, Apress, 2012.
 
-[Entity Framework Core, Modeling Relationships](https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#required-and-optional-relationships)
+Svyryd, Andriy, et al. [Entity Framework Core, Modeling Relationships](https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#required-and-optional-relationships). 2023
 
 Vickers, Arthur, et al. [Entity Framework Core: Saving Related Data)](https://docs.microsoft.com/en-us/ef/core/saving/related-data). 2022. 
 
@@ -222,12 +235,12 @@ Vickers, Arthur, et al. [Entity Framework Core: Cascade Delete)](https://docs.mi
 
 -----
 
- [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2022</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+ [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2023</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
 
 [^1]: Yes, now users can add comments to reviews, but that's all.
 [^2]: Yes, Books and Authors can be directly retrieved from the database. Other queries are simplified.
 [^3]: Yes, EF will now create a database that is in 2nd(?) normal form.
 [^4]: No, if we model Book as having a collection of Authors, that's all we need. If we want to know all the books written by a given author, we can write a query for that. 
-[^5]: Yes, we need to add a FK of CommentId to the Review class.
+[^5]: Yes, we need to add a FK of `CommentId` to the `Review` class.
 [^6]: Yes, we need a method to update Review objects that have had Comments added to them. But, no new method is needed for saving Comments since Review is the root entity of an aggregate with Comment, we will do all operations on Comment through Review.
 [^7]: Yes, we will need to modify the Reviews property of the ReviewRepository by adding a `ThenInclude` method for the Comment collection.

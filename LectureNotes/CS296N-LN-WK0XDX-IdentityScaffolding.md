@@ -25,7 +25,7 @@ When you create a new ASP.NET MVC project and select the option to add *Individu
 
 You can add the Identity UI library, a DbContext class and all that goes with Identity to an existing project without Identity by adding Identity Scaffolding (See "Scaffold Identity in ASP.NET Core projects" in the References.) When you add the scaffolding, you have the option to "override" the library code with source code files that it will add to the project so that you can customize them. You can also use the scaffolder to add these files to a project that is already using the Identity UI library.
 
-![IdentityScaffoldDialog](D:\Repos\CS296N-CourseMaterials\LectureNotes\Images\IdentityScaffoldDialog.png)
+![IdentityScaffoldDialog](Images\IdentityScaffoldDialog.png)
 
 
 
@@ -34,6 +34,16 @@ You can add the Identity UI library, a DbContext class and all that goes with Id
 The web pages provided by Identity UI are not MVC views, they are Razor Pages. (Not to be confused with Razor views! See "Introduction to Razor Pages" in the References below.)
 
 Also, see Andrew Locke's blog post, Customizing the ASP.NET Core default UI without editing the PageModels, in the References below.
+
+Here are some comments on Andrew's post about customizing the default UI:
+
+- **Customizing the default UI**
+  In this section he tells you how you can override the default pages by placing your own pages in a "magic" location to override the default pages. It appears that these have to be Razor Pages, not MVC views.
+- **Scaffolding Identity files with the .NET CLI**
+  In this section he shows you how to add the Identity files that we already added to our project. We did it using the scaffolding feature in Visual Studio, he did it suing the .NET CLI (Command Line Interface).
+- **Remove your liabilities - deleting the scaffolded PageModel**
+  Here he reccomends that you remove any scaffolded pages that you didn't modify so you don't have to keep them in your source control (Git).
+
 ## A Brief Intro to Razor Pages
 
 ### Razor Pages service added to your app

@@ -6,13 +6,13 @@ keywords: Lighthouse, PageInsights
 
 # *Performance Testing* 
 
-| Weekly topics                              |                                     |
-| ------------------------------------------ | ----------------------------------- |
-| 1. Intro to course and Input validation    | 6. Async/Await                      |
-| 2. Repositories and Unit Testing           | **7. Performance and Load Testing** |
-| 3. Publishing to Azure / Intro to Identity | 8. Complex Domain Models            |
-| 4. Authentication                          | 9. Docker containers                |
-| 5. Authorization                           | 10. Term project                    |
+| Weekly topics                          |                                              |
+| -------------------------------------- | -------------------------------------------- |
+| 1. Publishing a site to a Linux server | <mark>6. Load testing and performance</mark> |
+| 2. Intro to Identity                   | 7. Complex domain models                     |
+| 3. Authentication                      | 8. Validation                                |
+| 4. Authorization                       | 9. Docker containers                         |
+| 5. Async/Await                         | 10. Term project                             |
 
 ## Contents
 
@@ -22,10 +22,7 @@ keywords: Lighthouse, PageInsights
 
 ## Introduction
 
-Winter 2022 topics
-
-- Additional example of unit testing async controller methods&mdash;specifically, methods that use IQueryable: https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/5-AsyncQueriesRefactored
-- Term project proposals. Will finish grading today.
+- Term project proposals due Thursday (or this weekend if you need more time)
 - Q and A
 
 
@@ -139,7 +136,7 @@ Here are some common types of code optimization:
 
 - **Caching**: You can cash a whole page or part of a page 
 
-  - Cache a whole page just by using a C# attribute:
+  - Cache a whole page just by using a C# attribute on a controller method:
 
     ```C#
     [OutputCache(Duration=10, VaryByParam="none")] 
@@ -148,7 +145,7 @@ Here are some common types of code optimization:
         } 
     ```
 
-  - Cache part of a page using a tag helper:
+  - Cache part of a page using a tag helper in a view:
 
     ```C#
     <cache expires-after="@TimeSpan.FromMinutes(10)">
@@ -225,7 +222,7 @@ A popular CDN is provided by [Cloud Flare](https://www.cloudflare.com/cdn/). You
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in <time>2022</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in <time>2023</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 
 
