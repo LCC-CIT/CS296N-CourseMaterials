@@ -101,8 +101,8 @@ public class Review
   public int ReviewId { get; set; }
   public string ReviewText { get; set; }
   public AppUser Reviewer { get; set; }               
-  public ICollection<Comment> Comments { get; set; }  // Compositioin--FK in review
-  public int BookId {get; set;}      // Composition (a review is part of a book.)
+  public ICollection<Comment> Comments { get; set; }  // Compositioin--FK in Comment
+  public int BookId {get; set;}      // Composition (a Review is part of a Book.)
 }
 
 public class Comment
@@ -110,7 +110,7 @@ public class Comment
    public int CommentId { get; set; }
    public string CommentText { get; set; }
    public AppUser UserName { get; set; }   
-   public int ReviewId {get; set;} // Composition (a comment is part of a review.)
+   public int ReviewId {get; set;} // Composition (a Comment is part of a Review.)
 }
 ```
 
