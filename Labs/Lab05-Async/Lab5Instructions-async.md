@@ -8,12 +8,12 @@ Get practice using async methods in controllers, repositories and unit tests.
 
 ## Requirements
 
-Modify the controller that will use your new model class(es) so that it uses async methods. You only need to make the methods that access the database or that use the UserManager or RoleManager async. 
+Modify the controllers so that they uses async methods. You only need to make the methods that access the database or that use the UserManager or RoleManager async. 
 
 This will have ripple effects:
 
 - You will need to make methods in the repository async as well&mdash;Interface, real repository, and fake repository. 
-- You will need to modify any affected unit tests to use .Wait() on the async controller methods
+- You will need to modify any affected unit tests to use .Wait() or .Result on the async controller methods.
 
 ## Review and Submission
 
@@ -37,7 +37,7 @@ Don't republish your web site to Azure yet. We will do load testing next week an
 
 ------
 
-Written by Brian Bird, Lane Community College, winter 2019, revised winter 2022
+Written by Brian Bird, Lane Community College, winter 2019, revised winter 2023
 
 ------
 
