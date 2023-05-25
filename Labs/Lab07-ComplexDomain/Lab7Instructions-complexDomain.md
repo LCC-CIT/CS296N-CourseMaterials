@@ -6,7 +6,7 @@
 
 A. Learn to design and implement a domain model that has composition relationship(s) and includes a one-to-many relationship.
 
-B. Create Views and Controllers using Scaffolding.
+B. Create Views and Controllers that use complex objects.
 
 
 
@@ -30,13 +30,13 @@ You can add any additional model class(es) that make sense, but here are some su
 
 - Group C
 
-  Add replies to posts. A post can have multiple replies and a reply is a post.
+  Add replies to posts. A post can have multiple replies. 
 
 
 
 ## Part B
 
-Code the new domain model and add the corresponding controller method(s) and view(s) so that the new feature can be used. Use async methods in the controller.
+Code the new domain model and add the corresponding controller method(s) and view(s) so that the new feature can be used. Use async methods in the controller's HTTP POST methods.
 
 
 
@@ -74,7 +74,7 @@ Modify your domain model so that cascade delete is enabled for any related data 
 
 ------
 
-Written by Brian Bird for CS296N, Web Design 2 at Lane Community College, winter 2019, revised winter <time>2022</time>
+Written by Brian Bird for CS296N, Web Design 2 at Lane Community College, winter 2019, revised winter <time>2023</time>.
 
 ------
 

@@ -146,7 +146,7 @@ These are the steps for adding the items to our test plan that we need in order 
    - Set the HTTP Request type to GET.
    - Set the path to the controller/method of your login page, such as `Account/Login`
 
-   <img src="/Users/birdb/Projects/CS296N-CourseMaterials/LectureNotes/Images/JMeterHttpLoginGetRequest.png" alt="JMeterHttpLoginGetRequest" style="zoom:60%;" />
+   <img src="Images/JMeterHttpLoginGetRequest.png" alt="JMeterHttpLoginGetRequest" style="zoom:60%;" />
 
 3. Add a Regular Expression Extractor  
    We need to load the request varification token that is in the hidden input field into a JMeter variable so we can use it when we make a post request. We will use a [regular expression](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference) so that we get just the *value* out of that input field.
