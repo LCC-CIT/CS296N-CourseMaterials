@@ -1,14 +1,14 @@
 <h1>Syllabus for Web Development 2: ASP.NET</h1>
 
-**CS296N, Winter 2023**
+**CS296N, Winter 2024*
 
 |          | Class                                |      |              | Instructor                           |
 | -------- | ------------------------------------ | -- | ------ | ---------------------------------------- |
-| **CRN** | 30397                       |      | Name         | Brian Bird                           |
+| **CRN** | 30275 Hybrid (on campus)  <br />31137 Online |      | Name         | Brian Bird                           |
 | **Credits** | 4                                    |      | Email        | birdb@lanecc.edu                     |
-| **Time** | Tu, Th, 10:00 – 11:50                |      | Office Hours | M&mdash;Th, 4:00&ndash;4:50<br /> or by appointment |
-| **Room** | Building 19, Room 128<br />[Zoom meeting](https://lanecc.zoom.us/j/94648109001) |      | Office | Building 19, Room 152<br />[Zoom meeting](https://lanecc.zoom.us/j/97027167891) |
-| **Modality** | [HyFlex](https://www.lanecc.edu/programs-academics/online-distance-learning/distance-education-course-modalities) | |  |  |
+| **Time** | M, W, 2:00 – 3:50            |      | Office Hours | M&mdash;Th, 4:00&ndash;4:50<br /> or by appointment |
+| **Room** | Building 19, Room 128<br />[Zoom meeting](https://lanecc.zoom.us/j/93218472576) |      | Office | Building 19, Room 152<br />[Zoom meeting](https://lanecc.zoom.us/j/93655119209) |
+|             |                                                              | |  |  |
 
 <h2>Table of Contents</h2>
 [TOC]
@@ -116,10 +116,15 @@ LCC has a [no-show drop](https://inside.lanecc.edu/copps/documents/no-show-drops
 
 - Finish the assigned <u>reading</u>.
 - Take the reading <u>quiz</u>.
+- Go to class, join the Zoom meeting, or watch the Zoom recording
 
 **Tuesday**
 
 - Do a <u>code review</u> of last week's lab for your lab partner.
+
+**Wednesday**
+
+- Go to class, join the Zoom meeting, or watch the Zoom recording
 
 **Thursday**
 
@@ -132,17 +137,18 @@ LCC has a [no-show drop](https://inside.lanecc.edu/copps/documents/no-show-drops
 
 
 
-## Academic Calendar
+## Academic Calendar for Winter Term 2024
 
-| Winter Term 2023              |                |
-| ----------------------------- | -------------- |
-| Term begins                   | 1/9            |
-| Last day to receive refund    | 1/16           |
-| MLK Holiday                   | 1/16           |
-| President's Day Holiday       | 2/20           |
-| Last day for schedule changes | 3/3            |
-| Final Project Presentation    | 3/21           |
-| Spring Break                  | 3/26&ndash;4/2 |
+| Event                                               | Date        |
+| --------------------------------------------------- | ----------- |
+| Fall term classes begin                             | 1/8 Monday  |
+| Last day to receive refund                          | 1/15 Monday |
+| Martin Luther King Jr. holiday&mdash;college closed | 1/15 Monday |
+| Presidents Day holiday&mdash;college closed         | 2/19 Monday |
+| Last day for schedule changes                       | 3/1 Friday  |
+| Final exam                                          | 3/18 Monday |
+
+View [academic calendars](https://www.lanecc.edu/calendars/academic-calendar) on the LCC web site.  
 
 
 
@@ -158,16 +164,16 @@ Please be aware that any accessible tables and chairs in this room should remain
 
 (May be subject to change)
 
-| Week<br/>Date   | Topic                             | Reading in Textbook                                          | Lab   |
-| --------------- | --------------------------------- | ------------------------------------------------------------ | ----- |
-| 1<br/>Jan. 9    | Publishing to Linux               | Online tutorials                                             | Lab 1 |
-| 2<br />Jan. 16  | Intro to Identity                 | In ch. 16, "How to Authenticate and Authorize":<br />- pg. 650&ndash;657, "An introduction to authentication"<br />- pg. 658&ndash;667, "How to get started with Identity"<br /> | Lab 2 |
-| 3<br />Jan. 23  | Authentication                    | In ch. 16, "How to Authenticate and Authorize":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user" | Lab 3 |
-| 4<br />Jan. 30  | Authorization                     | "How to work with roles", pg. 680–695<br /> "More skills for  identity", pg. 696–699 | Lab 4 |
-| 5<br />Feb. 6   | Async/Await                       | Online tutorials                                             | Lab 5 |
-| 6<br />Feb. 13  | Load Testing<br />and Performance | Online tutorials                                             | Lab 6 |
-| 7<br />Feb. 20  | A more complex domain model       | Online tutorials                                             | Lab 7 |
-| 8<br />Feb. 27  | Validation                        | - Read ch. 2, pg. 70&ndash;74, "How to validate user input"<br />- Skim ch. 11, "How to validate data" | Lab 8 |
-| 9<br />Mar. 6   | Docker containers                 | Online tutorials                                             | Lab 9 |
-| 10<br />Mar. 13 | Term Project                      |                                                              |       |
-| 11<br />Mar. 20 | Final project presentations       |                                                              |       |
+| Week<br/>Date    | Topic                             | Reading in Textbook                                          | Lab    |
+| ---------------- | --------------------------------- | ------------------------------------------------------------ | ------ |
+| 1<br />Jan. 8    | Intro to Identity                 | In ch. 16, "How to Authenticate and Authorize":<br />- pg. 650&ndash;657, "An introduction to authentication"<br />- pg. 658&ndash;667, "How to get started with Identity"<br /> | Lab 1  |
+| 2<br />Jan. 15   | Authentication                    | In ch. 16, "How to Authenticate and Authorize":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user" | Lab 2  |
+| 3<br />Jan. 22   | Authorization                     | "How to work with roles", pg. 680–695<br /> "More skills for  identity", pg. 696–699 | Lab 3  |
+| 4<br />Jan. 29   | Async/Await                       | Online tutorials                                             | Lab 4  |
+| 5<br />Feb. 5    | Load Testing<br />and Performance | Online tutorials                                             | Lab 5  |
+| 6<br />Feb. 12   | Complex domain model              | Online tutorials                                             | Lab 6  |
+| 7<br />Feb. 19   | A more complex domain model       | Online tutorials                                             | Lab 7  |
+| 8<br />Feb. 26   | Validation                        | - Read ch. 2, pg. 70&ndash;74, "How to validate user input"<br />- Skim ch. 11, "How to validate data" | Lab 8  |
+| 9<br />Mar. 4    | Web Security                      | Online tutorials                                             | Lab  9 |
+| 10<br />Mar. 11  | Term project completion           |                                                              |        |
+| 11 <br />Mar. 18 | Final project presentations       |                                                              |        |
