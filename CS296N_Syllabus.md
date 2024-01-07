@@ -1,6 +1,6 @@
 <h1>Syllabus for Web Development 2: ASP.NET</h1>
 
-**CS296N, Winter 2024*
+**CS296N, Winter 2024**
 
 |          | Class                                |      |              | Instructor                           |
 | -------- | ------------------------------------ | -- | ------ | ---------------------------------------- |
