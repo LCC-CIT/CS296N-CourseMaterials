@@ -36,7 +36,7 @@ This is an approach to testing or experimenting with new new UI code without hav
 
 #### Start with a good tutorial
 
-When I want to learn how to do something with HTML, my favorite starting place is W3Schools. Here's what they have for file upload: [How TO - File Upload Button](https://www.w3schools.com/howto/howto_html_file_upload_button.asp).
+When I want to learn how to do something with HTML, my favorite starting place is W3Schools. Here's what they have for file upload: [How To - File Upload Button](https://www.w3schools.com/howto/howto_html_file_upload_button.asp).
 
 - Read the tutorial and run the "Try it Yourself" demo.
 
@@ -78,11 +78,15 @@ When I want to learn how to do something with HTML, my favorite starting place i
 
 Time to do some screen sharing and look at people's code.
 
+## Example
 
+[FileUploader](https://github.com/ProfBird/FileUploader) on GitHub
+
+An experimental web app based on the Microsoft tutorial shown below.
 
 ## References
 
-[How TO - File Upload Button](https://www.w3schools.com/howto/howto_html_file_upload_button.asp). W3Schools.
+[How To - File Upload Button](https://www.w3schools.com/howto/howto_html_file_upload_button.asp). W3Schools.
 
 Smith, Steve, and Storm, Rutger. [Upload files in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-3.1). Microsoft, 2022. 
 
@@ -94,4 +98,4 @@ MDN. [Using files from web applications](https://developer.mozilla.org/en-US/doc
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in <time>2022</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2022, revised <time>2023</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
