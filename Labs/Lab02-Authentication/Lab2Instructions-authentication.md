@@ -1,4 +1,4 @@
-# Lab 3 – Authentication
+# Lab 2 – Authentication
 
 CS296N, Web Development 2: ASP.NET
 
@@ -62,7 +62,7 @@ Add Authentication code to your lab web site for each of these features:
 
 ------
 
-Written by Brian Bird, Lane Community College, winter 2019, revised winter 2022
+Written by Brian Bird, Lane Community College, winter 2019, revised winter 2024
 
 ------
 
