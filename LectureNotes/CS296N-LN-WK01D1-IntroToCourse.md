@@ -2,13 +2,15 @@
 
 # Introduction to the Course
 
-| Weekly topics                                           |                                  |
-| ------------------------------------------------------- | -------------------------------- |
-| <mark>1. Intro to course and Publishing to Linux</mark> | 6.  A More Complex Domain Model  |
-| 2. Identity                                             | 7.  Load Testing and Performance |
-| 3. Authentication                                       | 8. Validation                    |
-| 4. Authorization                                        | 9. Docker containers             |
-| 5. Async/Await                                          | 10. Term project                 |
+
+
+| Weekly topics                     |                                |
+| --------------------------------- | ------------------------------ |
+| <mark>1. Intro to Identity</mark> | 6. Complex domain models       |
+| 2. Authentication                 | 7. A more complex domain model |
+| 3. Authorization                  | 8. Validation                  |
+| 4. Async/Await                    | 10. Term project               |
+| 5. Load testing and performance   | 11. Project presentations      |
 
 ## 
 
@@ -22,9 +24,8 @@
 ## Introduction
 
 - Find out how many people still have a working Azure account
-  
-- Introduce Digital Ocean
-  
+
+  Alternative  to Azure: For those of you who are not able to use their Azure for Students account, or who just want a hosting account you can use after you are no longer a student, [SmarterASP.NET](https://www.smarterasp.net/index?r=profbird) is the best value option that I know about. 
 
 ## Review
 

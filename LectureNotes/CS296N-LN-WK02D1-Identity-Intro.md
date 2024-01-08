@@ -2,13 +2,13 @@
 
 # *Intro to User Management with Identity*
 
-| Weekly topics                          |                                 |
-| -------------------------------------- | ------------------------------- |
-| 1. Publishing a site to a Linux server | 6. Load testing and performance |
-| <mark>2. Intro to Identity</mark>      | 7. Complex domain models        |
-| 3. Authentication                      | 8. Validation                   |
-| 4. Authorization                       | 9. Docker containers            |
-| 5. Async/Await                         | 10. Term project                |
+| Weekly topics                     |                                |
+| --------------------------------- | ------------------------------ |
+| <mark>1. Intro to Identity</mark> | 6. Complex domain models       |
+| 2. Authentication                 | 7. A more complex domain model |
+| 3. Authorization                  | 8. Validation                  |
+| 4. Async/Await                    | 10. Term project               |
+| 5. Load testing and performance   | 11. Project presentations      |
 
 **Contents**
 
@@ -20,7 +20,7 @@
 
 ### What is ASP.NET Core Identity?
 
-It is a class library (an API) for:          
+It is a class library for:          
 
 - Authentication
 - Authorization
@@ -77,15 +77,15 @@ It is a class library (an API) for:
                    
 
 6. In Program.cs add:
-    
+  
     (for .NET 3.1 this goes in Startup.cs, `ConfigureServices`)
     
     `app.UseAuthentication();`
     
 6. If you have overridden `OnModelCreating` in your database context class, then add a call to the base class method. This is because the base class method creates the Identity tables.    
+  
     
-    
-    
+  
 7. 
    Add a migration for the new user model and update the database using these commands:
    
@@ -148,7 +148,7 @@ It is a class library (an API) for:
 
 ------
 
-[ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) [ASP.NET Core MVC Course Materials](http://lcc-cit.github.io/CS296N-CourseMaterials/) by [ Brian Bird](https://profbird.dev), written winter 2017, revised winter 2023 are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+[ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) [ASP.NET Core MVC Course Materials](http://lcc-cit.github.io/CS296N-CourseMaterials/) by [ Brian Bird](https://profbird.dev), written winter 2017, revised winter 2024 are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
     
 
 ------

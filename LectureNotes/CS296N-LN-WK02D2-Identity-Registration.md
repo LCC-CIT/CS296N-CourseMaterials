@@ -4,13 +4,15 @@
 
 
 
-| Weekly topics                          |                                 |
-| -------------------------------------- | ------------------------------- |
-| 1. Publishing a site to a Linux server | 6. Load testing and performance |
-| 2. Intro to Identity                   | 7. Complex domain models        |
-| <mark>3. Authentication</mark>         | 8. Validation                   |
-| 4. Authorization                       | 9. Docker containers            |
-| 5. Async/Await                         | 10. Term project                |
+| Weekly topics                     |                                |
+| --------------------------------- | ------------------------------ |
+| <mark>1. Intro to Identity</mark> | 6. Complex domain models       |
+| 2. Authentication                 | 7. A more complex domain model |
+| 3. Authorization                  | 8. Validation                  |
+| 4. Async/Await                    | 10. Term project               |
+| 5. Load testing and performance   | 11. Project presentations      |
+
+
 
 <h2>Contents</h2>
 
