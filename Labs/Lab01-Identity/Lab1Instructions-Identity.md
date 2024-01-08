@@ -1,4 +1,4 @@
-# Lab 2 – Identity
+# Lab 1 – Identity
 
 CS296N, Web Development 2: ASP.NET
 
@@ -65,7 +65,7 @@ The changes you've made to your project won't have any effect on the way the web
 
 ------
 
-Written by Brian Bird, Lane Community College, winter 2019, revised winter 2023
+Written by Brian Bird, Lane Community College, winter 2019, revised winter 2024
 
 ------
 
