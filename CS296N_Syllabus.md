@@ -114,8 +114,7 @@ LCC has a [no-show drop](https://inside.lanecc.edu/copps/documents/no-show-drops
 
 **Monday**
 
-- Finish the assigned <u>reading</u>.
-- Take the reading <u>quiz</u>.
+- Start the assigned <u>reading</u>.
 - Go to class, join the Zoom meeting, or watch the Zoom recording
 
 **Tuesday**
@@ -124,6 +123,7 @@ LCC has a [no-show drop](https://inside.lanecc.edu/copps/documents/no-show-drops
 
 **Wednesday**
 
+- Take the reading before class<u>quiz</u>
 - Go to class, join the Zoom meeting, or watch the Zoom recording
 
 **Thursday**
