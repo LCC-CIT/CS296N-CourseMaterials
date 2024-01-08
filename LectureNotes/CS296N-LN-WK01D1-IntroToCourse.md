@@ -86,6 +86,9 @@ Let's look at the term project requirements.
 - Make a new repository for use this term.
 
   - Create a new, empty, repository on GitHub but with a .gitignore file.
+    - You can download a pre-made [.gitignore file from GitHub](https://github.com/github/gitignore).
+
+    - Be sure to commit your .gitignore file before any other file!
 
   - Clone the repository to your local machine
 
@@ -104,5 +107,5 @@ Let's look at the term project requirements.
 
 
 
-[![ccbysa88x31](Images/ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev) , 2020, revised 2023, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![ccbysa88x31](Images/ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev) , 2020, revised 2024, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
