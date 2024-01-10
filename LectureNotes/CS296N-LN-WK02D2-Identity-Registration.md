@@ -70,14 +70,15 @@ We will add authentication to our app in the next class.
 
 We take a bit of a short-cut by copying the registration code from the textbook. We will be adding the following:
 
-- A view-model: RegisterVM
-- A controller: AccountController, with these methods:
-  - HttpGet version of Register
-  - HttpPost version of Register
-- A view: Registration
+- A view-model: `RegisterVM`
+- A controller: `AccountController`, with these methods:
+  - HttpGet version of `Register`
+  - HttpPost version of `Register`
+- A view: `Registration`
   - Add code to load JavaScript libraries for validation in the browser
 
-
+This code is in the textbook in ch. 16 and also in the Ch16Bookstore app.  
+(Download [textbook code here](https://www.murach.com/shop-books/web-development-books/murach-s-asp-net-core-mvc-2nd-edition-detail))
 
 ## References
 
