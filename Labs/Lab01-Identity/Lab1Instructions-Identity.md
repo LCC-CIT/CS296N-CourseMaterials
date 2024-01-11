@@ -20,24 +20,17 @@ For steps 1 through 7, in addition to inspecting the code, set a breakpoint in e
 
 Report what you did for this exercise by entering the appropriate phrase in the online text of the Moodle assignment:
 
-- "Did it all" means you added a migration, updated the database, set breakpoints, ran the app and studied the code.
-- "Inspected the code" means that's all you did.
-- "None of the above" means you didn't do the exercise
+- "Didn't do it"
+- "Studied it": Carefully studied the code in the book to understand it. 5/10
+* "Ran and studied it": Downloaded the code, put breakpoints in relevant methods and experimented with the code to understand how it works: 7/10
+* "Did it all": Downloaded the exercise start and did all the steps in the exercise: 10/10
 
 ### Part 2, Your Web Site
 
--   Since this is the first lab of the term in which you are pushing code to GitHub, you can delete all your old branches from last term. Be sure your main branch is up to date before deleting them!
--   Create a new branch named *Lab02* based on your main branch.
--   You may want to upgrade your web site to use .NET 6.0, but this is not required.
--   Add Identity to your web app&mdash;use the same database as the one used by your application. (**don't** create a separate `DbContext` class.)
-- Your *user* model will need to inherit from the IdentityUser class. Make the following changes to your *user* model.
-
-  -   Remove the the `DbSet` you were using for your *user* model
-  -   Remove the ID.
-  -   Add one or more properties. You can choose the properties, just don't duplicate the ones already in `IdentityUser`. 
--   Add a migration and update your database. Confirm that the identity tables have been added to your database correctly.
-
-The changes you've made to your project won't have any effect on the way the web app works, but the database will now contain the Identity tables, including a new table for `AppUser`.
+-   Make a new repository. Copy the source code for the final version of your web app from last term into a new repository and create a Lab01 branch.
+-   Add Identity to your web.
+-   Modify the seed data to work with the Identity UserManager.
+-   Add a Registration page to your web app.
 
 
 
