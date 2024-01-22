@@ -4,13 +4,13 @@
 
 
 
-| Weekly topics                     |                                |
-| --------------------------------- | ------------------------------ |
-| <mark>1. Intro to Identity</mark> | 6. Complex domain models       |
-| 2. Authentication                 | 7. A more complex domain model |
-| 3. Authorization                  | 8. Validation                  |
-| 4. Async/Await                    | 10. Term project               |
-| 5. Load testing and performance   | 11. Project presentations      |
+| Weekly topics                   |                                |
+| ------------------------------- | ------------------------------ |
+| 1. Intro to Identity            | 6. Complex domain models       |
+| <mark>2. Authentication</mark>  | 7. A more complex domain model |
+| 3. Authorization                | 8. Validation                  |
+| 4. Async/Await                  | 10. Term project               |
+| 5. Load testing and performance | 11. Project presentations      |
 
 
 
@@ -39,9 +39,10 @@ We Added Identity to a project by adding these things:
 - NuGet package
 - Startup service and configuration
 - User model inherits from `IdentityUser`
-- App's DbContext class inherits from `IdentityDbContext`
+- App's `DbContext` class inherits from `IdentityDbContext`
+- Modify the `SeedData.Seed` method to use an instance of the Identity `UserManager` class to create AppUser objects.
 - New migration and database update
-- If you have overridden `OnModelCreating`, add a call to the base class method
+- If you have overridden `DbContext.OnModelCreating`, add a call to the base class method
 
 When we were done with this, we were able to see Identity tables in our database, but that is all. Nothing changed in our web site behavior.
 
@@ -109,7 +110,7 @@ Instructor's Demo Web App using ASP.NET Core 6.0: [BookInfo&mdash;Registration](
 
 ------
 
-[ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) [ASP.NET Core MVC Course Materials](http://lcc-cit.github.io/CS296N-CourseMaterials/) by [ Brian Bird](https://profbird.dev), written winter 2017, revised winter 2023 are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+[ ![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/) [ASP.NET Core MVC Course Materials](http://lcc-cit.github.io/CS296N-CourseMaterials/) by [ Brian Bird](https://profbird.dev), written winter 2017, revised winter 2024 are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
     
 
 ------

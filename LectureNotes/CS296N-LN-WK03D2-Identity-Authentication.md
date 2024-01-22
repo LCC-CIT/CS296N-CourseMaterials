@@ -2,13 +2,13 @@
 
 <h1>Authentication with Identity</h1>
 
-| Weekly topics                          |                                 |
-| -------------------------------------- | ------------------------------- |
-| 1. Publishing a site to a Linux server | 6. Load testing and performance |
-| 2. Intro to Identity                   | 7. Complex domain models        |
-| <mark>3. Authentication</mark>         | 8. Validation                   |
-| 4. Authorization                       | 9. Docker containers            |
-| 5. Async/Await                         | 10. Term project                |
+| Weekly topics                   |                               |
+| ------------------------------- | ----------------------------- |
+| 1. Intro to Identity            | 6. Complex domain models      |
+| <mark>2. Authentication</mark>  | 7. More complex domain models |
+| 3. Authorization                | 8. Validation                 |
+| 4. Async/Await                  | 9. Web Security               |
+| 5. Load testing and performance | 10. Term project              |
 
 <h2>Contents</h2>
 
@@ -37,7 +37,7 @@ Last time we added user registration to our web app by adding the following:
 
 ## Overview
 
-We will use Delamater and Murach (2020) as a guide to adding authentication to our web app. We'll discuss both the "how" and the "why" as we do it.
+We will use Delamater and Murach (2022) as a guide to adding authentication to our web app. We'll discuss both the "how" and the "why" as we do it.
 
 ## Adding Authentication to Our Web App
 
@@ -45,7 +45,7 @@ We will use Delamater and Murach (2020) as a guide to adding authentication to o
 
 #### Modify the navbar
 
-Pages 662&mdash;663, "How to add Log In/Out buttons" and links to the layout; and add a register button as well.
+Pages 662&mdash;663, "How to add Log In/Out buttons" and links to the layout; and add a register button as well. This can also be found in the Ch16Bookstore app.
 
 We're not going make our navbar look quite like the one in the book. Here are some differences:
 
@@ -140,9 +140,9 @@ The Login view has a check box labeled "Remember me". When this box is checked, 
 
 Since we refactored our user domain model, now named `AppUser`, to inherit from `IdentityUser` we need to change the way we use the user model in some of our code.
 
-#### Saving new reviews in the database
+#### Saving new items in the database
 
-This is done in the *Post* version of the `Review` method in the `BookReviews` controller:
+In the instructor's BookReview example app, this is done in the *Post* version of the `Review` method in the `BookReviews` controller:
 
 ```c#
 [HttpPost]
@@ -158,9 +158,9 @@ public IActionResult Review(Review model)
 }
 ```
 
-##### Getting a `Reviewer` model from Identity
+##### Getting a AppUser model from Identity
 
-The Review model contains an `AppUser object named Reviewer:
+The `Review` model contains an `AppUser` object named `Reviewer`:
 (Validation annotations removed for clarity)
 
 ```c#
@@ -174,7 +174,7 @@ public class Review
     }
 ```
 
-The Reviewer object is currently being supplied by the Reivew.cshtml view. We need to get it from Identity instead. We'll do this by refactoring the *Post* version of the `Review` method in the `BookReviews` controller:
+The `Reviewer` object is currently being supplied by the Reivew.cshtml view. We need to get it from Identity instead. We'll do this by refactoring the *Post* version of the `Review` method in the `BookReviews` controller:
 
 
 
