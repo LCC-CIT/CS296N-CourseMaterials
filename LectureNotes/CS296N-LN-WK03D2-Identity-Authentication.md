@@ -19,7 +19,7 @@
 - Q and A
 - Reminder to check Azure credit balances
 
-
+- I fixed a problem in the SeedData code.
 
 # Review User Registration
 

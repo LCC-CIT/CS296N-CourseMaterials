@@ -1,30 +1,27 @@
 **CS296N Web Development 2: ASP.NET**                                                        
 
-# *Authorization with Identity Part 1*
+<h1>Authorization with Identity Part 1</h1>
 
-| Weekly topics                          |                                 |
-| -------------------------------------- | ------------------------------- |
-| 1. Publishing a site to a Linux server | 6. Load testing and performance |
-| 2. Intro to Identity                   | 7. Complex domain models        |
-| 3. Authentication                      | 8. Validation                   |
-| <mark>4. Authorization</mark>          | 9. Docker containers            |
-| 5. Async/Await                         | 10. Term project                |
+| Weekly topics                   |                               |
+| ------------------------------- | ----------------------------- |
+| 1. Intro to Identity            | 6. Complex domain models      |
+| 2. Authentication               | 7. More complex domain models |
+| <mark>3. Authorization</mark>   | 8. Validation                 |
+| 4. Async/Await                  | 9. Web Security               |
+| 5. Load testing and performance | 10. Term project              |
 
-## Contents
+<h2>Contents</h2>
 
 [TOC]
 
 
-
 ## Introduction
 
-- I still plan to do a video of publishing to DigitalOcean. I'm still catching up after being sick, but I should be able to do that this week. If your Azure account has expired, just put a note in your lab 3 submission saying that and I won't make publishing to a web host part of your grade.
+### Q and A
 
-- Q and A
+- Any questions about anything?
 
-  
-
-## Review&mdash;Authentication
+### Review&mdash;Authentication
 
 In the last two classes, we added these features to the Book Review app:
 
