@@ -55,6 +55,12 @@ Report what you did for this exercise by entering the appropriate phrase in the 
     
     
     
+    ## Assessment
+    
+    [Lab 1 grading rubric](Lab1Rubric-Identity.htm)
+    
+    
+    
 
 ------
 

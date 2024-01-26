@@ -53,10 +53,10 @@ Add Authentication code to your lab web site for each of these features:
 
 ### Production Version
 
-1.  In the "online text" for the Moodle assignment:
-    - Report of what you did in part 1.
-    - Paste a link to your GitHub repository and branch for part 2.
-    - Paste a link to your web site running on Azure
+In the "online text" for the Moodle assignment:
+- Report what you did in part 1.
+- Paste a link to your GitHub repository and branch for part 2.
+- Paste a link to your web site running on Azure.
 
 
 

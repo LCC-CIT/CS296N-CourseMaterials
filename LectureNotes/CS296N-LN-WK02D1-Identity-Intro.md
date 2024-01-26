@@ -46,7 +46,7 @@ It is a class library for:
    
 4. Modify your *User* model so that the class inherits from `IdentityUser`. 
 
-   - If your current user class is named `User`, you should change it to something else, like `AppUser` so that you don't have a conflict with a library class named `User`.
+   - If your current user model class is named `User`, you should change it to something else, like `AppUser` so that you don't have a conflict with an Identity class named `User`.
    - If your user class has user name or email properties, you should remove them since they are in the new base class (see below).
    - Remove the ID property from your user class. The ID is in the base class.
    - The `IdentityUser` class has these properties:            
@@ -62,25 +62,25 @@ It is a class library for:
                               
 
 4. In Program.cs, add:
-   (for .NET 3.1, these changes go in Startup.cs, `ConfigureServices`)
-
+   
    ```C#
-   services.AddIdentity<AppUser, IdentityRole>()
+   builder.Services.AddIdentity<AppUser, IdentityRole>()
        .AddEntityFrameworkStores<AppDbContext>()
        .AddDefaultTokenProviders();
    ```
-
+   
    The `AddIdentity` method has generic type specifiers for the user class and the built-in `IdentityRole` class for user roles.            
-
+   
    - The `AddEntityFrameworkStores` method specifies that Identity should use Entity Framework Core to store and retrieve its data, using the application's database context class. 
    - The `AddDefaultTokenProviders` method uses the default configuration to support operations that require a token, such as changing a password.
                    
-
+   
 6. In Program.cs add:
   
-    (for .NET 3.1 this goes in Startup.cs, `ConfigureServices`)
-    
     `app.UseAuthentication();`
+    
+    This should go <u>after</u> `app.UseAuthorization();`  
+    
     
 6. If you have overridden `OnModelCreating` in your database context class, then add a call to the base class method. This is because the base class method creates the Identity tables.    
   
@@ -118,7 +118,7 @@ It is a class library for:
 
 ### Basic
 
-- *Murach’s ASP.NET Core MVC*, Mary Delamater and Joel Murach, 2020
+- *Murach’s ASP.NET Core MVC*, Mary Delamater and Joel Murach, 2022
   - Ch. 16, "How to Authenticate and Authorize Users"
 - *Pro ASP.NET Core 2*, Adam Freeman, 2017            
 - Ch. 28 – Getting Started with Identity
@@ -136,7 +136,7 @@ It is a class library for:
 
 ## Example Code on GitHub
 
-- Instructor's Demo Web App using ASP.NET Core 3.1: [BookReviews&mdash;Identity branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/2-Identity)
+- Instructor's Demo Web App using ASP.NET 6.0: [BookReviews&mdash;Identity branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/02-Identity)
 
 
 
