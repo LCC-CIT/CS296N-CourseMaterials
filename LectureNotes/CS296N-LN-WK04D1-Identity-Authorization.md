@@ -159,21 +159,18 @@ We don't need to add a migration since we have not made any change to our domain
 
 [BookReivews, Authorization branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/04-Authorization)&mdash;2023 example using .NET 6.0 and MySQL
 
-[BookReivews, Authorization branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/4-Authorization)&mdash;2022 example using .NET 3.1 and SQL Server
-
 
 
 ## References
 
-*Murach’s ASP.NET Core MVC*, 2nd Ed., Mary Delamater and Joel Murach, 2022
+- *Murach’s ASP.NET Core MVC*, 2nd Ed., Mary Delamater and Joel Murach, 2022  
+  Ch. 16, "How to Authenticate and Authorize Users"
 
-- Ch. 16, "How to Authenticate and Authorize Users"
+- [Introduction to Authorization in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-6.0), Microsoft  Tutorial 
 
-Microsoft ASP.NET Core MVC Tutorial 
+- [ASP.NET Core Identity: Authorization Management](https://www.linkedin.com/learning/asp-dot-net-core-identity-authorization-management/securing-asp-dot-net-core-apps-with-authorization?u=88355058), LinkedIn video course by Ervis Trupja, 1 hour 27 minutes, 2019.
 
-- [Introduction to Authorization in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-6.0)
-
-
+  
 
 ## Footnotes
 
@@ -192,4 +189,4 @@ See also When [To Use IEnumerable Or ICollection Or IList Or List](https://www.c
 ------
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written winter 2020, revised winter 2023, is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written winter 2020, revised winter 2024, is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
