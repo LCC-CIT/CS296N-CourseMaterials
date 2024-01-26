@@ -60,6 +60,12 @@ Add Authentication code to your lab web site for each of these features:
 
 
 
+## Assessment
+
+[Lab 2 grading rubric](Lab2Rubric-Authentication.htm)
+
+
+
 ------
 
 Written by Brian Bird, Lane Community College, winter 2019, revised winter 2024
