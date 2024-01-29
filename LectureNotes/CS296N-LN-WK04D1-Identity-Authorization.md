@@ -17,6 +17,14 @@
 
 ## Introduction
 
+### Announcements (Winter 2024)
+
+Lab 1: I didn't get this graded yet, I'll work on it this week!
+
+Lab 2: PRs were due Saturday, code reviews are due tomorrow (Tuesday)
+
+Quiz 3: Take it before class tiime on Wednesday.
+
 ### Q and A
 
 - Any questions about anything?
@@ -26,22 +34,22 @@
 In the last two classes, we added these features to the Book Review app:
 
 - Registration
+
 - Login
+
 - Logout
+
 - 
   Modified code using the `AppUser` model that now  inherits from `IdentityUser`
 
-  All operations on data in the Identity database tables now goes through one of the Identity classes like `UserManager`.
+  All operations on data in the Identity database tables now goes through one of the Identity classes like `UserManager`.  
   
-- I updated the bootstrap code for the navbar and added [details to the notes](http://lcc-cit.github.io/CS296N-CourseMaterials/LectureNotes/CS296N-LN-WK03D2-Identity-Authentication.html#modify-the-navbar). Let's take a quick look at the code: [BookReviews&mdash;Authentication branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/blob/03-Authentication/BookReviews/Views/Shared/_Layout.cshtml)
-  Discussion:
-
-  - What is the purpose of the SignInManager in this shared layout?
-    - Where is this code executed?
-    - When a user logs in, how are passwords sent to the controller?
+- Winter 2024 notes: 
   
-  - What do the `<li>` elements correspond to?
-  - How are the Font Awesome icons added to the NavBar?
+  - I modified _Layout so that it doesn't need to have the UserManager injected into it. (Thanks Bryce Fisher!)
+  - I fixed my unit tests, in particualr the one that uses the UserManager.
+  - I added links to Moodle for GitHub and Azure for the All About Pigeons example.
+  
 
 
 
@@ -59,13 +67,18 @@ There are two main parts to authorization:
   
   - Members can view all non-administrative pages and make posts.
   
-  - Guests can only view non-administrative pages. They can't make posts.
+  - Guests can only view non-administrative pages and they can't make posts.
   
     
 
 ## Implementing Authorization
 
-We will use Delamater and Murach (2022) as a guide to adding authorization to our web app. We'll discuss both the "how" and the "why" as we do it.
+We will use Delamater and Murach (2022), Ch. 16, as a guide to adding authorization to our web app. We'll discuss both the "how" and the "why" as we do it.  
+We will add ths code:
+
+- A list of user roles to the AppUser
+- UserVM
+- UserController
 
 In today's session we will not actually restrict any parts of the web site. We'll just set up user roles and role management. We'll add restrictions to parts of our web site based on roles in the next session.
 
@@ -146,9 +159,8 @@ We don't need to add a migration since we have not made any change to our domain
 - Look at the lab instructions
 
   - Reminder to publish to Azure
-  - Don't delete your migrations, add to them so your migration will run smoothly on the Azure database.
   - Reminder to keep your unit tests working
-
+  
 - Reminder to keep checking your Azure credit balance!
 
 - Review due dates on Moodle

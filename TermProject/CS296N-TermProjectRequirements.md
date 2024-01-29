@@ -6,11 +6,12 @@ Your web site should meet the following requirements:
 
 1. **Rich Media**
 
-   Include some kind of interactive “rich” media. This could be as simple as images the user can click on, and/or various images that are displayed in response to user input. It could involve video or sound or jQuery animations, or some other media besides text.
+   Include some kind of interactive “rich” media. This could be as simple as images the user can click on, and/or various images that are displayed in response to user input. It could involve video, sound, jQuery animations, or some other media that's not text.
 
 2. **Data-driven**
 
-   To be data-driven means that the content of one or more of your web pages contains content derived from information stored in a database. In addition:
+   To be data-driven means that the content of one or more of your web pages contains content derived from information stored in a database. 
+   In addition:
 
    - Users should be able to enter data that will be stored in the database.
    - Some of the data entered by users should be visible to other users. 
@@ -43,7 +44,7 @@ Your web site should meet the following requirements:
 
    Publish your web app to Azure or some other web host.
 
-   - On Azure this will require a second Azure database. Use a database with the Basic pricing tier. This will only use about $5 a month of your student credit.
+   - On Azure this will require a second Azure database. If you're using MySQL you can add a second database to the same server you are using for your lab assignment and I *think* it will still be free. Check your credits to make there aren't too many being used.
    - Alternatively, you could use a [low-cost hosting service](https://birdsbits.wordpress.com/2019/02/18/publishing-an-asp-net-core-web-app-to-a-cheap-windows-hosting-service/). 
 
 7. **Load testing**
@@ -54,7 +55,14 @@ Your web site should meet the following requirements:
 
 **Notes**
 
-- The term project must be different from the web app you used in your weekly lab assignments and different from the instructor's examples or the textbook examples. It can be an enhancement of last term's project.
+- The term project must be different from:
+  -  The web app you used in your weekly lab assignments
+  -  The instructor's examples
+  - The textbook examples. 
+
+
+- It can be an enhancement of last term's project.
+
 - Good design and development practices are expected, such as using:
   -  Unit tests.
   - Async controller methods.
@@ -67,7 +75,7 @@ Your web site should meet the following requirements:
 ------
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) 
-​ASP.NET Core MVC course materials written by [Brian Bird](https://profbird.dev), 2020 and revised 2023, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+​ASP.NET Core MVC course materials written by [Brian Bird](https://profbird.dev), 2020 and revised 2024, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 ------
 
