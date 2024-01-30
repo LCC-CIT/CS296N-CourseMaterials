@@ -28,9 +28,9 @@ Report what you did for this exercise by entering the appropriate phrase in the 
 ### Part 2, Your Web Site
 
 -   Make a new repository. Copy the source code for the final version of your web app from last term into a new repository and create a Lab01 branch.
--   Add Identity to your web.
--   Modify the seed data to work with the Identity UserManager.
--   Add a Registration page to your web app.
+-   Add Identity to your web app.
+-   Modify the seed data to work with the Identity `UserManager`.
+-   Add a registration page to your web app.
 
 
 
@@ -57,7 +57,7 @@ Report what you did for this exercise by entering the appropriate phrase in the 
     
     ## Assessment
     
-    [Lab 1 grading rubric](Lab1Rubric-Identity.htm)
+    [Lab 1 grading rubric](Lab1_2024_Rubric-Identity.htm)
     
     
     
