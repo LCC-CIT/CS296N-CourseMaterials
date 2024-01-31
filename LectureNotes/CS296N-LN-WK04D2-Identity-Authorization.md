@@ -5,13 +5,13 @@ keywords: Identity, Authorization, UserManager, Authorize attribute
 ---
 <h1>Authorization with Identity Part 2</h1>
 
-| Weekly topics                          |                                 |
-| -------------------------------------- | ------------------------------- |
-| 1. Publishing a site to a Linux server | 6. Load testing and performance |
-| 2. Intro to Identity                   | 7. Complex domain models        |
-| 3. Authentication                      | 8. Validation                   |
-| <mark>4. Authorization</mark>          | 9. Docker containers            |
-| 5. Async/Await                         | 10. Term project                |
+| Weekly topics                   |                               |
+| ------------------------------- | ----------------------------- |
+| 1. Intro to Identity            | 6. Complex domain models      |
+| 2. Authentication               | 7. More complex domain models |
+| <mark>3. Authorization</mark>   | 8. Validation                 |
+| 4. Async/Await                  | 9. Web Security               |
+| 5. Load testing and performance | 10. Term project              |
 
 [TOC]
 
@@ -19,18 +19,29 @@ keywords: Identity, Authorization, UserManager, Authorize attribute
 
 - Q and A
 
-## Review - Last Class' Demo
+## Review - Last Class' Demo (2024)
 
-We added the `AdminController`, some supporting code and two views:
+We added this code:
 
-- `Index` for managing users and roles
-- `Add` for adding new users
+- An `[Authorize]` attribute to the controller method for posting a message.  
+  Note that if a user isn't authenticated, they will be redirected to *login*.
+
+  - Do you know how the framework knows where to redirect the user to log in?
+  - How does the return URL get sent to the login controller method?
+
+- The `UserController`, some supporting code and two views:
+
+  - `Index` for managing users and roles
+
+  - `Add` for adding new users  
+    This is redundant to our register view! We should refacotr this.
+
 
 
 
 ## Overview of Today's Demo
 
-We will use Delamater and Murach (2020) as a guide to finish adding authorization to our web app.
+We will use Delamater and Murach (2022) as a guide to finish adding authorization to our web app.
 
 - Seed a user and an admin role.
 - Restrict the admin controller.
@@ -68,7 +79,7 @@ We will use the following C# attributes to restrict access classes or methods:
 
    We will follow the approach used in the textbook and use the code from the section of ch. 16 titled "How to seed roles and users". 
 
-   - Copy the `ConfigureIdentity` class (I renamed it to `SeedUsers` in my example code) which contains a static method named `CreateAdminUserAsync`. I put the file in  the Data` folder of my project.
+   - Copy the `ConfigureIdentity` class (I renamed it to `SeedUsers` in my example code) which contains a static method named `CreateAdminUserAsync`. I put the file in  the `Data` folder of my project.
 
    - Add a call to the `CreateAdminUserAsync` method to `Program.cs`. It goes in the `using` statement at the bottom where we are already calling the `SeedData.Seed` method. Here's what the `using` statement looks like after adding the call to `CreateAdminUserAsync`:  
    ```c#
@@ -124,9 +135,8 @@ We will use the following C# attributes to restrict access classes or methods:
 
 - Ch. 16, "How to Authenticate and Authorize Users"
 
-Microsoft ASP.NET Core MVC Tutorial 
-
-- [Authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/)&mdash;for ASP.NET Core
+- [Authorization in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/)&mdash;Microsoft ASP.NET Core MVC Tutorial 
+- [Asp.net Core Redirect To Login Page With Return Url](https://vectorlinux.com/asp-net-core-redirect-to-login-page-with-return-url/), Vector Linux: tech help tutorials, 2023.
 
 ------
 
