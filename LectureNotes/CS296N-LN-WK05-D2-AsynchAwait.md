@@ -19,15 +19,19 @@
 
 ## Task Asynchronous Programming Model
 
-Asynchronous methods are *non-blocking* methods. Execution moves on to the next line  of code after the method call without waiting for the method to return.
+- **Non-blocking methods**  
+  Asynchronous methods are *non-blocking* methods. Execution moves on to the next line of code after the method call without waiting for the method to return.
 
-Each `async` method returns a `Task` object. You can start as many Async methods as you want (within  practical limits) without waiting for one to finish before you start  another. 
+- **Delcare an `async` method**  
+  Use the `async` keyword when declaring an asynchronous method. Any method declared as `async`, must return a `Task` object. Every `async` method must be called from within another `async` method or use the `.Wait()` method when calling the `async` method.
+- **The `Task` object**  
+  Each `async` method returns a `Task` object. You can start as many `Async` methods as you want (within  practical limits) without waiting for one to finish before starting another. 
 
-The `await` keyword provides a way to pause execution until an async method  completes or until it returns a Task object. Using await on a Task  rather than a method often improves performance.
+- **`Await` completion of an async method**  
+  The `await` keyword provides a way to pause execution until an async method  completes or until it returns a Task object. Using await on a Task  rather than a method often improves performance.
 
-Use the `async` keyword when declaring an asynchronous method. Any method declared as  async, must return a Task object. Every async method must be called from within another async method or use the `.Wait()` method when calling the async method.
-
-Synchronous code can be made asynchronous using `Task.Run(()=> SomeSyncronousCode);`
+- **Running synchronous code assynchronously**  
+  Synchronous code can be made asynchronous using `Task.Run(()=> SomeSyncronousCode);`
 
 ### Viewing Running Threads
 
@@ -39,7 +43,7 @@ If you want to see the threads created by your tasks, you can view processes and
 
 ### Why Use Async Methods?
 
-Since the MVC framework only creates one short-lived instance of controller objects in response to HTTP requests, there won't be much need to run tasks concurrently for a single user. But, when we have multiple users on our site, there will be a need to run tasks concurrently because there are multiple users accessing the site simultaneously.
+Since the MVC framework only creates one short-lived instance of each controller objects, in response to HTTP requests, there won't be much need to run tasks concurrently for a single user. But, when we have <u>multiple users</u> on our site, we will need to run tasks concurrently because there are multiple users accessing the site simultaneously.
 
 ### Making Your Controller Methods Asynchronous
 
