@@ -86,11 +86,11 @@ Wagner, Bill, et al. [Asynchronous Programming](https://docs.microsoft.com/en-us
 
 Wenzel, Maria, et al [Asynchronous programming with async and await](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/). 2019. Microsoft Programming Guide. (This is the written version of the "async breakfast" tutorial.)
 
- 
+[Asynchronous Programming with Entity Framework and Linq](https://learn.microsoft.com/en-us/ef/core/miscellaneous/async). 2022. Microsoft.
 
 ------
 
-[![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/) These ASP.NET Core MVC Lecture Notes, written by [Brian Bird](https://profbird.dev), fall 2019, revised winter 2022, are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+[![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/) These ASP.NET Core MVC Lecture Notes, written by [Brian Bird](https://profbird.dev), fall 2019, revised winter 2024, are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
 
 ------
 
