@@ -6,13 +6,13 @@ keywords: Lighthouse, PageInsights
 
 # *Performance Testing* 
 
-| Weekly topics                          |                                              |
-| -------------------------------------- | -------------------------------------------- |
-| 1. Publishing a site to a Linux server | <mark>6. Load testing and performance</mark> |
-| 2. Intro to Identity                   | 7. Complex domain models                     |
-| 3. Authentication                      | 8. Validation                                |
-| 4. Authorization                       | 9. Docker containers                         |
-| 5. Async/Await                         | 10. Term project                             |
+| Weekly topics        |                                              |
+| -------------------- | -------------------------------------------- |
+| 1. Intro to Identity | <mark>6. Load testing and performance</mark> |
+| 2. Ice Storm         | 7. Complex domain models                     |
+| 3. Authentication    | 8. Validation                                |
+| 4. Authorization     | 9. Security                                  |
+| 5. Async/Await       | 10. Term project                             |
 
 ## Contents
 
@@ -22,7 +22,6 @@ keywords: Lighthouse, PageInsights
 
 ## Introduction
 
-- Term project proposals due Thursday (or this weekend if you need more time)
 - Q and A
 
 
@@ -33,7 +32,7 @@ keywords: Lighthouse, PageInsights
 
 Web pages that load quickly are a major contributor to UX (User experience) on your site. Site UX matters, because better UX means that users:
 
-- Stay on your site longer.
+- Will stay on your site longer.
 - Are more like to return to your site.
 - Are more likely to engage in the mission of your site (buy, donate, read, post, comment, etc.).
 
@@ -93,7 +92,7 @@ Notice that the most heavily weighted metrics are *Largest Contentful Paint* and
 
 Google provides a tool called [Lighthouse](https://developers.google.com/web/tools/lighthouse/) so developers can evaluate the performance of their web pages the same way Google does. It is available at [Page Speed Insights](https://pagespeed.web.dev/) and will run in any browser without installing any software or browser extensions. Note that this tool only loads your site with a single user. 
 
-Here is an example of "desktop" results from the [show all reviews](https://bookreviews.azurewebsites.net/Review) page of the instructor's example web site running on an Azure App Service using the free pricing plan:
+Here is an example of "desktop" results from the [show all reviews](https://bookreview-w22-sqlite.azurewebsites.net/Review) page of the instructor's example web site running on an Azure App Service using the free pricing plan:
 
 - First Contentful Paint: 600 ms
   
@@ -174,7 +173,7 @@ But, there are still a few things you can do:
   - **Local Cache**: Create a new App Setting for the app with a key of WEBSITE_LOCAL_CACHE_OPTION and a value of Always. Note that this option is only viable if your application doesn't write files to the server's file system.
 - Under "Settings", "Configuration", on the "General" tab:
   - **HTTP 2**: Set the protocol to HTTP 2.
-  - **Always On**: Set to "on". When *Always On* is not turned on (the default), the app is unloaded after 20 minutes without any incoming requests. Unfortunately this can not be turned off on the free pricing plan.
+  - **Always On**: Set to "on". When *Always On* is not turned on (the default), the app is unloaded after 20 minutes without any incoming requests. Unfortunately this <u>can not be turned off on the free pricing plan</u>.
   - **ARR Affinity**: Turn off the *Application Request Routing* cookie. This is only needed when you have multiple instances of the app and you are doing load balancing.
 
 
@@ -222,7 +221,7 @@ A popular CDN is provided by [Cloud Flare](https://www.cloudflare.com/cdn/). You
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in <time>2023</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in <time>2024</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 
 

@@ -1,12 +1,12 @@
 # *Introduction to Async and Await in C#*
 
-| Weekly topics                          |                                 |
-| -------------------------------------- | ------------------------------- |
-| 1. Publishing a site to a Linux server | 6. Load testing and performance |
-| 2. Intro to Identity                   | 7. Complex domain models        |
-| 3. Authentication                      | 8. Validation                   |
-| 4. Authorization                       | 9. Docker containers            |
-| 5. <mark>Async/Await</mark>            | 10. Term project                |
+| Weekly topics               |                                 |
+| --------------------------- | ------------------------------- |
+| 1. Intro to Identity        | 6. Load testing and performance |
+| 2. Ice storm                | 7. Complex domain models        |
+| 3. Authentication           | 8. Validation                   |
+| 4. Authorization            | 9. Security                     |
+| 5. <mark>Async/Await</mark> | 10. Term project                |
 
 
 [TOC]
