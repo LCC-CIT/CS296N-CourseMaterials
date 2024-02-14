@@ -6,13 +6,14 @@ keywords: JMeter, load test, stress test
 
 # *Load Testing* 
 
-| Weekly topics                          |                                              |
-| -------------------------------------- | -------------------------------------------- |
-| 1. Publishing a site to a Linux server | <mark>6. Load testing and performance</mark> |
-| 2. Intro to Identity                   | 7. Complex domain models                     |
-| 3. Authentication                      | 8. Validation                                |
-| 4. Authorization                       | 9. Docker containers                         |
-| 5. Async/Await                         | 10. Term project                             |
+| Weekly topics        |                                              |
+| -------------------- | -------------------------------------------- |
+| 1. Intro to Identity | <mark>6. Load testing and performance</mark> |
+| 2. Ice Storm         | 7. Complex domain models                     |
+| 3. Authentication    | 8. Validation                                |
+| 4. Authorization     | 9. Security testing                          |
+| 5. Async/Await       | 10. Term project                             |
+| 11. Finals week      |                                              |
 
 ## Contents
 
@@ -39,11 +40,11 @@ Two of the primary metrics reported by JMeter are:
 
 ### Downloading and Running JMeter
 
-JMeter requires the Java Runtime Environment (JRE). You can check to see if Java is installed on your Windows computer by opening a command prompt and typing: `java -version`. For the current version of JMeter (as of August 2022), you need version 1.8 of Java (known as "Java 8") or higher. If Java is not on your computer, or you have an older version, you can download the latest version from the [official Oracle Java website](https://www.java.com/en/) and install it.
+JMeter requires the Java Runtime Environment (JRE). You can check to see if Java is installed on your Windows computer by opening a command prompt and typing: `java -version`. For the current version of JMeter, 5.6.x, (as of February 2024), you need version 1.8 of Java (known as "Java 8") or higher. Java 17 is reccomended. If Java is not on your computer, or you have an older version, you can download the latest version from the [official Oracle Java website](https://www.java.com/en/) and install it.
 
  Download JMeter from the [official Apache JMeter web site](https://jmeter.apache.org/). You can either download a "tarball" (.tgz) file or a Zip (.zip) file. Download whichever one you have the tools to unarchive (unzip). 
 
-JMeter doesn't have an installation or setup program. You just run it from wherever you put the unarchived apache-jmeter-5.4.3 folder.  The program will run from almost anywhere you put the folder, but some features won't work on Windows if you put it in `C:\Program Files`&mdash;particularly, you won't be able to record test scripts because JMeter won't have permission to write a file in the Program Files folder.
+JMeter doesn't have an installation or setup program. You just run it from wherever you put the unarchived apache-jmeter-5.6.x folder.  The program will run from almost anywhere you put the folder, but some features won't work on Windows if you put it in `C:\Program Files`&mdash;particularly, you won't be able to record test scripts because JMeter won't have permission to write a file in the Program Files folder.
 
 On Windows, you run JMeter by double-clicking on `ApacheJMeter.bat`, which is in the bin folder. If you want to create a shortcut to the .bat file to more easily start JMeter, you can do that and place it on your desktop.
 
@@ -81,7 +82,8 @@ Follow the instructions in the tutorial by Anicas (2014),  [How To Use Apache JM
 
 - **Server Name or IP**
 
-  Do not include https:// or http:// in the server name. If you wish to specify https do it in the *protocol* field.
+  - Do not include https:// or http:// in the server name. If you wish to specify https do it in the *protocol* field, just enter `https`.
+  - Do not put a slash at the end of the server name.
   
   
 
@@ -270,7 +272,7 @@ The results of the test will be put into the *ReportDashboard* directory. This f
 
 - [ASP.NET Login Testing with JMeter](https://www.blazemeter.com/blog/aspnet-login-testing-jmeter)&mdash;BlazeMeter tutorial by Dmitri Tikhanski, 2014.
 
-
+- [Azure App Service Limits](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#app-service-limits) in Managing Azure Resources Documentation.
 
 
 
