@@ -124,7 +124,7 @@ If you are running JMeter on Mac OS, you will need to:
 
 ### Managing Anti-forgery Tokens
 
-ASP.NET automatically [injects anti-forgery tokens](https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-3.1#aspnet-core-antiforgery-configuration) into HTML form elements in views. You can see this if you run go to the loging page of a running web app and view the page source. It will look something like this:
+ASP.NET automatically [injects anti-forgery tokens](https://docs.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-3.1#aspnet-core-antiforgery-configuration) into HTML form elements in views. You can see this if you go to the login page of a running web app and view the page source. It will look something like this:
 
 ```html
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8H78Yg0pQSdFvzSWY33NhOQWK7KCFFm27e8Qst1L4Gp4OouVs2NLE77D_wM-xqwxOlzICeBn2dKjqQ2Ct60Nt6_Tpgifdy6ksNxpWlzx7V15SUZzSN_0ESFBGnZp0oNA1NZq9G283-ECbQrmpsz89qo" />
@@ -275,4 +275,4 @@ The results of the test will be put into the *ReportDashboard* directory. This f
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) ](http://creativecommons.org/licenses/by-sa/4.0/)
-ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in <time>2023</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+ASP.NET Core MVC Lecture Notes written by [Brian Bird](https://profbird.dev) in 2018, revised in <time>2024</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
