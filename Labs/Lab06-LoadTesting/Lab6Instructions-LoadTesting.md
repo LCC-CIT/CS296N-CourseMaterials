@@ -20,12 +20,13 @@ Get practice:
 
 2. Create a test script.
 
-   - Record a test script using JMeter as a proxy.
+   - You can either record a test script using JMeter as a proxy, <u>or</u> create a test script manually.
      - Include logging in and logging out.
      - Open each page of your web site.
      - Do a search, if your site supports searching.
 
-   - Modify the test script to manage the antiforgery token on the login page.
+   - Modify the test script to manage the antiforgery token on the login page.  
+     *Note for 2024: This is optional.*
 
    - Add listeners for:
      - A summary report.
@@ -63,7 +64,7 @@ Get practice:
 
 ------
 
-Written by Brian Bird, Lane Community College, winter 2019, revised winter <time>2022</time>
+Written by Brian Bird, Lane Community College, winter 2019, revised winter <time>2024</time>
 
 ------
 
