@@ -1,4 +1,4 @@
-# Lab 6 – Load Testing
+# Lab 5 – Load Testing
 
 CS296N, Web Development 2: ASP.NET
 
@@ -52,7 +52,7 @@ Get practice:
 ### Production Version
 
 1. Document your load tests.
-   - Put your test script in an appropriate folder in your repository and commit it to an appropriately named branch (for example:lab6).
+   - Put your test script in an appropriate folder in your repository and commit it to an appropriately named branch (for example: lab5).
    - Put the screen-shots of your reports in a document (Word or PDF)
 2. Submit to Moodle 
    - Upload the screen-shot document
