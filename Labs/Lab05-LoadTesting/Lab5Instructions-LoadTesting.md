@@ -52,13 +52,12 @@ Get practice:
 ### Production Version
 
 1. Document your load tests.
-   - Put your test script in an appropriate folder in your repository and commit it to an appropriately named branch (for example: lab5).
+   - Put your test script in an appropriatly named folder in your repository and commit it to an appropriately named branch (for example: lab5).
    - Put the screen-shots of your reports in a document (Word or PDF)
 2. Submit to Moodle 
    - Upload the screen-shot document
    - Paste URLs into the "Online text" box:
-     - The URL of your lab 6 branch on GitHub
-     - The URL of your site running on Azure
+     - The URL of your lab 5 branch on GitHub
 
 
 
