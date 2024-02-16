@@ -164,16 +164,16 @@ Please be aware that any accessible tables and chairs in this room should remain
 
 (May be subject to change)
 
-| Week<br/>Date    | Topic                                     | Reading in Textbook                                          | Lab    |
-| ---------------- | ----------------------------------------- | ------------------------------------------------------------ | ------ |
-| 1<br />Jan. 8    | Intro to Identity                         | In ch. 16, "How to Authenticate and Authorize":<br />- pg. 650&ndash;657, "An introduction to authentication"<br />- pg. 658&ndash;667, "How to get started with Identity"<br /> | Lab 1  |
-| 2<br />Jan. 15   | No class due to ice storm                 | No reading, nothing due this week                            |        |
-| 3<br />Jan. 22   | Authentication                            | In ch. 16, "How to Authenticate and Authorize":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user" | Lab 2  |
-| 4<br />Jan. 29   | Authorization                             | "How to work with roles", pg. 680–695<br /> "More skills for  identity", pg. 696–699 | Lab 3  |
-| 5<br />Feb. 5    | Async/Await                               | Online tutorials                                             | Lab 4  |
-| 6<br />Feb. 12   | Load Testing<br />and Performance         | Online tutorials                                             | Lab 5  |
-| 7<br />Feb. 19   | Complex domain model                      | Online tutorials                                             | Lab 6  |
-| 8<br />Feb. 26   | A more complex domain model               | Online tutorials                                             | Lab 7  |
-| 9<br />Mar. 4    | Validation                                | - Read ch. 2, pg. 70&ndash;74, "How to validate user input"<br />- Skim ch. 11, "How to validate data" | Lab 8  |
-| 10<br />Mar. 11  | Web Security<br />Term project completion | Online tutorials                                             | Lab  9 |
-| 11 <br />Mar. 18 | Final project presentations               |                                                              |        |
+| Week<br>Date   | Topic                             | Reading in Textbook                                          | Lab    |
+| -------------- | --------------------------------- | ------------------------------------------------------------ | ------ |
+| 1<br>Jan. 8    | Intro to Identity                 | In ch. 16, "How to Authenticate and Authorize":<br />- pg. 650&ndash;657, "An introduction to authentication"<br />- pg. 658&ndash;667, "How to get started with Identity"<br /> | Lab 1  |
+| 2<br>Jan. 15   | No class due to ice storm         | No reading, nothing due this week                            |        |
+| 3<br>Jan. 22   | Authentication                    | In ch. 16, "How to Authenticate and Authorize":<br />- pg. 668&ndash;673, "How to register a user"<br />- pg. 674&ndash;679, "How to log in a user" | Lab 2  |
+| 4<br>Jan. 29   | Authorization                     | "How to work with roles", pg. 680–695<br /> "More skills for  identity", pg. 696–699 | Lab 3  |
+| 5<br>Feb. 5    | Async/Await                       | Online tutorials                                             | Lab 4  |
+| 6<br>Feb. 12   | Load Testing<br />and Performance | Online tutorials                                             | Lab 5  |
+| 7<br>Feb. 19   | A more complex domain model       | Online tutorials                                             | Lab 7  |
+| 8<br>Feb. 26   | Validation                        | - Read ch. 2, pg. 70&ndash;74, "How to validate user input"<br />- Skim ch. 11, "How to validate data" | Lab 8  |
+| 9<br>Mar. 4    | Web Security                      | Online tutorials                                             | Lab  9 |
+| 10<br>Mar. 11  | Term project completion           |                                                              |        |
+| 11 <br>Mar. 18 | Final project presentations       |                                                              |        |
