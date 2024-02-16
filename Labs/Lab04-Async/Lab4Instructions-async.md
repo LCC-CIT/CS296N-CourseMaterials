@@ -1,4 +1,4 @@
-# Lab 5 – Asynchronous Programming
+# Lab 4 – Asynchronous Programming
 
 CS296N, Web Development 2: ASP.NET
 
@@ -12,7 +12,7 @@ Modify the controllers so that they uses async methods. You only need to make th
 
 This will have ripple effects:
 
-- You will need to make methods in the repository async as well&mdash;Interface, real repository, and fake repository. 
+- You will need to make methods in the repository async as well; that includes the Interface, real repository, and fake repository. 
 - You will need to modify any affected unit tests to use .Wait() or .Result on the async controller methods.
 
 ## Review and Submission
@@ -31,13 +31,13 @@ This will have ripple effects:
 
 In the "online text" for the Moodle assignment paste a link to your GitHub repository and branch.
 
-Don't republish your web site to Azure yet. We will do load testing next week and you will compare the results of load testing before and after changing your controller methods to async methods.
+Publishing to a web server is optional. You may want to wait until after we will do load testing next week so you can compare the results of load testing before and after changing your controller methods to async methods.
 
 
 
 ------
 
-Written by Brian Bird, Lane Community College, winter 2019, revised winter 2023
+Written by Brian Bird, Lane Community College, winter 2019, revised winter <time>2024</time>
 
 ------
 

@@ -1,4 +1,4 @@
-# Lab 7 – A More Complex Domain Model
+# Lab 6 – A More Complex Domain Model
 
 [TOC]
 
@@ -74,7 +74,7 @@ Modify your domain model so that cascade delete is enabled for any related data 
 
 ------
 
-Written by Brian Bird for CS296N, Web Design 2 at Lane Community College, winter 2019, revised winter <time>2023</time>.
+Written by Brian Bird for CS296N, Web Design 2 at Lane Community College, winter 2019, revised winter <time>2024</time>.
 
 ------
 

@@ -46,7 +46,7 @@ JMeter requires the Java Runtime Environment (JRE). You can check to see if Java
 
 JMeter doesn't have an installation or setup program. You just run it from wherever you put the unarchived apache-jmeter-5.6.x folder.  The program will run from almost anywhere you put the folder, but some features won't work on Windows if you put it in `C:\Program Files`&mdash;particularly, you won't be able to record test scripts because JMeter won't have permission to write a file in the Program Files folder.
 
-On Windows, you run JMeter by double-clicking on `ApacheJMeter.bat`, which is in the bin folder. If you want to create a shortcut to the .bat file to more easily start JMeter, you can do that and place it on your desktop.
+On Windows, you run JMeter by double-clicking on `jMeter.bat`, which is in the bin folder. If you want to create a shortcut to the .bat file to more easily start JMeter, you can do that and place it on your desktop.
 
 On a Mac, you can put the JMeter folder in the Applications folder. You start the app by double-clicking on `ApacheJMeter.jar`.
 
@@ -68,7 +68,7 @@ Follow the instructions in the tutorial by Anicas (2014),  [How To Use Apache JM
 
 - **Ramp-up period (seconds)**
 
-  This specifies how long JMeter will take to start all the threads. If the number of threads is 100 and ramp-up period is 10 seconds, then JMeter will start 10 new threads per second. 
+  This specifies how long JMeter will take to start all the threads. For example, if the number of threads is 100 and ramp-up period is 10 seconds, then JMeter will start 10 new threads per second. 
 
   Once ramp-up period has completed, all the threads will have been started and the test will run for as long as it takes for each thread to execute all the HTTP requests in the test plan.
 
@@ -109,7 +109,7 @@ Follow the instructions in the tutorial by Anicas (2014), [How to Use JMeter to 
 
   - Located under *Network Settings* (at the bottom or general settings)
 
-<img src="/Users/birdb/Projects/CS296N-CourseMaterials/LectureNotes/Images/FirefoxProxySettings.png" alt="FirefoxProxySettings" style="zoom:50%;" />
+<img src="Images/FirefoxProxySettings.png" alt="FirefoxProxySettings" style="zoom:50%;" />
 
 
 
@@ -132,7 +132,7 @@ ASP.NET automatically [injects anti-forgery tokens](https://docs.microsoft.com/e
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8H78Yg0pQSdFvzSWY33NhOQWK7KCFFm27e8Qst1L4Gp4OouVs2NLE77D_wM-xqwxOlzICeBn2dKjqQ2Ct60Nt6_Tpgifdy6ksNxpWlzx7V15SUZzSN_0ESFBGnZp0oNA1NZq9G283-ECbQrmpsz89qo" />
 ```
 
-If you don't configure your JMeter test to manage anti-forgery tokens, when you try to authenticate a user, you will get a error response like this:
+If you don't configure your JMeter test to manage anti-forgery tokens, when you try to authenticate a user, you will get an error response like this:
 
 > The anti-forgery cookie token and form field token do not match.
 
@@ -146,12 +146,12 @@ These are the steps for adding the items to our test plan that we need in order 
 
    - Right-click on *Thread Group*, *Add*, *Sampler* and select *HTTP Request*.
    - Set the HTTP Request type to GET.
-   - Set the path to the controller/method of your login page, such as `Account/Login`
+   - Set the path to the controller/method of your login page, such as `/Account/Login`
 
    <img src="Images/JMeterHttpLoginGetRequest.png" alt="JMeterHttpLoginGetRequest" style="zoom:60%;" />
 
 3. Add a Regular Expression Extractor  
-   We need to load the request varification token that is in the hidden input field into a JMeter variable so we can use it when we make a post request. We will use a [regular expression](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference) so that we get just the *value* out of that input field.
+   We need to load the request verification token that is in the hidden input field into a JMeter variable so we can use it when we make a post request. We will use a [regular expression](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference) so that we get just the *value* out of that input field.
 
    - Right-click on *HTTP Request*, *Add*, *Post Processors* and select *Regular Expression Extractor*.
 
@@ -161,15 +161,15 @@ These are the steps for adding the items to our test plan that we need in order 
      - Regular Expression: `name="__RequestVerificationToken" type="hidden" value="([A-Za-z0-9+=/\-\_]+?)"`
      - Template: `$1$`
 
-     <img src="/Users/birdb/Projects/CS296N-CourseMaterials/LectureNotes/Images/JMeterRegExExtractor.png" alt="JMeterRegExExtractor" style="zoom:60%;" />
+     <img src="Images/JMeterRegExExtractor.png" alt="JMeterRegExExtractor" style="zoom:60%;" />
 
 4. Add a HTTP POST request to login to the site.  
    We will use the anti-forger token we retrieved from the login page to log JMeter in as a user.
 
    - Right-click on *Thread Group*, *Add*, *Sampler* and select *HTTP Request*.
 
-   - Add the folling parameters to send with the POST request:  
-     (These parameters shoud match the input field names on your login page.)
+   - Add the following parameters to send with the POST request:  
+     (These parameters should match the input field names on your login page.)
 
      | Name                       | Value                       | URL Encode | Type | Include Equals |
      | -------------------------- | --------------------------- | :--------: | ---- | :------------: |
@@ -177,7 +177,7 @@ These are the steps for adding the items to our test plan that we need in order 
      | Password                   | Secret!123                  |    [  ]    |      |      [X]       |
      | __RequestVerificationToken | ${requestVerificationToken} |    [X]     |      |      [X]       |
 
-     <img src="/Users/birdb/Projects/CS296N-CourseMaterials/LectureNotes/Images/JMeterLoginPost.png" alt="JMeterLoginPost" style="zoom:60%;" />
+     <img src="Images/JMeterLoginPost.png" alt="JMeterLoginPost" style="zoom:60%;" />
 
 ### Adding Additional Listeners
 
