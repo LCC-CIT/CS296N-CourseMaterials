@@ -2,11 +2,10 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-
-<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+<title>Lab4Instructions-Security</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
 .mac-os-11 { --title-bar-height: 28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit; background-repeat: inherit; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
@@ -66,8 +65,8 @@ div.hr:focus { cursor: none; }
 #write.fences-no-line-wrapping pre { white-space: pre; }
 #write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
-.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit; background-repeat: inherit; }
-.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit inherit; background-repeat: inherit inherit; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
 #write .md-fences.mock-cm { white-space: pre-wrap; }
 .md-fences.md-fences-with-lineno { padding-left: 0px; }
 #write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
@@ -75,7 +74,7 @@ div.hr:focus { cursor: none; }
 .CodeMirror-line, twitterwidget { break-inside: avoid; }
 .footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
 .footnotes + .footnotes { margin-top: 0px; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; background-repeat: initial initial; }
 li div { padding-top: 0px; }
 blockquote { margin: 1rem 0px; }
 li .mathjax-block, li p { margin: 0.5rem 0px; }
@@ -92,11 +91,10 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
   .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
   .is-mac table { break-inside: avoid; }
-  .typora-export-show-outline .typora-export-sidebar { display: none; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
-pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
 #write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
@@ -133,10 +131,19 @@ a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; 
 .md-attr { display: none; }
 .md-fn-count::after { content: "."; }
 code, pre, samp, tt { font-family: var(--monospace); }
-kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
-.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; background-position: initial initial; background-repeat: initial initial; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
 code { text-align: left; }
-a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
 [lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
@@ -145,60 +152,16 @@ table tr th { border-bottom-width: 0px; }
 video { max-width: 100%; display: block; margin: 0px auto; }
 iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
-mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); background-position: initial initial; background-repeat: initial initial; }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
-.md-expand mark .md-meta { opacity: 0.3 !important; }
-mark .md-meta { color: rgb(0, 0, 0); }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 @media print { 
   .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
 }
 .md-diagram-panel .messageText { stroke: none !important; }
 .md-diagram-panel .start-state { fill: var(--node-fill); }
 .md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
-.md-fences.md-fences-math { font-size: 1em; }
-.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
-.md-fences-advanced:not(.md-focus) { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
-.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
-.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
-.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
-.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
-@media screen and (max-width: 1024px) { 
-  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
-}
-@media screen and (max-width: 800px) { 
-  .typora-export-sidebar { display: none; }
-}
-.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
-.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
-.outline-content strong { font-weight: 400; }
-.outline-expander { width: 1rem; height: 1.428571429rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
-.outline-expander::before { content: ''; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
-.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
-.outline-expander:hover::before { content: ''; }
-.outline-h1 > .outline-item { padding-left: 0px; }
-.outline-h2 > .outline-item { padding-left: 1em; }
-.outline-h3 > .outline-item { padding-left: 2em; }
-.outline-h4 > .outline-item { padding-left: 3em; }
-.outline-h5 > .outline-item { padding-left: 4em; }
-.outline-h6 > .outline-item { padding-left: 5em; }
-.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
-.outline-label:hover { text-decoration: underline; }
-.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
-.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
-.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
-.outline-item-open > .outline-item > .outline-expander::before { content: ''; }
-.outline-children { display: none; }
-.info-panel-tab-wrapper { display: none; }
-.outline-item-open > .outline-children { display: block; }
-.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
-.typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
-.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
-.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: '−'; }
-.typora-export-collapse-outline .outline-children { display: none; }
-.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
-.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
-.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
-.md-inline-math-container mjx-container { zoom: 0.95; }
+.md-require-zoom-fix foreignObject { font-size: var(--mermaid-font-zoom); }
 
 
 :root {
@@ -214,11 +177,10 @@ mark .md-meta { color: rgb(0, 0, 0); }
     /* open-sans-700italic - latin-ext_latin */
   html {
     font-size: 16px;
-    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: rgb(51, 51, 51);
     line-height: 1.6;
 }
@@ -387,7 +349,7 @@ table {
     word-break: initial;
 }
 table tr {
-    border: 1px solid #dfe2e5;
+    border-top: 1px solid #dfe2e5;
     margin: 0;
     padding: 0;
 }
@@ -561,9 +523,9 @@ header, .context-menu, .megamenu-content, footer{
     color: #b4654d;
 }
 
-/*.html-for-mac {
+.html-for-mac .context-menu {
     --item-hover-bg-color: #E6F0FE;
-}*/
+}
 
 #md-notification .btn {
     border: 0;
@@ -571,7 +533,6 @@ header, .context-menu, .megamenu-content, footer{
 
 .dropdown-menu .divider {
     border-color: #e5e5e5;
-    opacity: 0.4;
 }
 
 .ty-preferences .window-content {
@@ -583,16 +544,11 @@ header, .context-menu, .megamenu-content, footer{
     background: #999;
 }
 
-.menu-item-container a.menu-style-btn {
-    background-color: #f5f8fa;
-    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
-}
-
-
- @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}} .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
-</style><title>Lab7Instructions_CS295N_rev</title>
+ :root {--mermaid-font-zoom:1em ;}  .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+</style>
 </head>
-<body class='typora-export'><div class='typora-export-content'>
-<div id='write'  class=''><h1 id='unit-testing-with-repositories'><span>Unit Testing with Repositories</span></h1><p><span> Revised version of Lab 7 from CS295N for CS296N</span></p><p><strong><span>Contents</span></strong></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#unit-testing-with-repositories">Unit Testing with Repositories</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n5"><a class="md-toc-inner" href="#part-a-textbook-exercise">Part A: Textbook Exercise</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n7"><a class="md-toc-inner" href="#part-b-repositories-and-unit-tests">Part B: Repositories and Unit tests</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n26"><a class="md-toc-inner" href="#review-and-submission">Review and Submission</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n27"><a class="md-toc-inner" href="#prs-and-code-reviews">PRs and Code Reviews</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n35"><a class="md-toc-inner" href="#final-submission-to-moodle">Final Submission to Moodle</a></span></p></div><h2 id='part-a-textbook-exercise'><span>Part A: Textbook Exercise</span></h2><p><span>Do exercise 14-1 in the Textbook, &quot;Add dependency Injection and some unit tests&quot;</span></p><h2 id='part-b-repositories-and-unit-tests'><span>Part B: Repositories and Unit tests</span></h2><p><span>The instructions are the same for groups A, B, and C.</span></p><p><span>Add repositories and unit tests to your web site.</span></p><ol start='' ><li><p><span>Create a repository interface for the DbSet class that is based on your &quot;top level&quot; model.</span></p><p><span>(For example, if I have a User class that is part of my Review class, then, for this lab assignment, I just need to create IReviewRepository.)</span></p></li><li><p><span>Create a &quot;real&quot; repository based on the interface above.</span></p></li><li><p><span>Replace the code in your controller methods that uses your DB context with code that uses the repository. This will require adding dependency injection for your repository.</span></p></li><li><p><span>In your test project, write a fake repository</span></p></li><li><p><span>Add unit tests to tests for at least two of your controller methods.</span></p></li></ol><p>&nbsp;</p><h2 id='review-and-submission'><span>Review and Submission</span></h2><h3 id='prs-and-code-reviews'><span>PRs and Code Reviews</span></h3><ol start='' ><li><p><span>Send a PR (Pull Request) to your lab partner asking them to review your code. </span></p><p><span>After you have gotten a code review and revised your code as needed, you can merge it into the main branch, but keep the lab branch, don&#39;t delete it.</span></p></li><li><p><span>You should receive a PR from your lab partner and review their code using this </span><a href='../CodeReviewGuide.html'><span>Code Review Guide</span></a><span>.</span></p><p><span>On Moodle, in the &quot;online text&quot; field of the Code Review assignment, enter the URL of the pull request with the code review </span><u><span>you gave</span></u><span>.</span></p></li></ol><h3 id='final-submission-to-moodle'><span>Final Submission to Moodle</span></h3><ol start='' ><li><p><span>Upload a screen-shot of the textbook exercise. Take of screen-shot of the unit test runner, showing the passing tests.</span></p></li><li><p><span>In the &quot;online text&quot; for the Moodle assignment:</span></p><ul><li><span>Paste a link to the branch of your GitHub repository for this lab.</span></li><li><span>Paste a link to the PR on GitHub with the code review from your lab partner.</span></li></ul></li></ol></div></div>
+<body class='typora-export'>
+<div id='write'  class=''><h1><a name="lab-6----web-security-testing-and-countermeasures" class="md-header-anchor"></a><span>Lab 6 – Web Security Testing and Countermeasures</span></h1><h2><a name="objectives" class="md-header-anchor"></a><span>Objectives</span></h2><p><span>Get practice:</span></p><ul><li><p><span>Testing your web app using the Zed Attack Proxy using:</span></p><ul><li><span>A manual, passive scan</span></li><li><span>An automated, passive scan</span></li><li><span>An active attack scan</span></li></ul></li><li><p><span>Mitigating (reducing or eliminating) security vulnerabilities in your app by changing your app’s code.</span></p></li></ul><h2><a name="instructions" class="md-header-anchor"></a><span>Instructions</span></h2><h4><a name="testing-with-zap" class="md-header-anchor"></a><span>Testing with ZAP</span></h4><p><span>Use OWASP ZAP to scan your code for security vulnerabilities.</span></p><ol start='' ><li><span>Do a manual passive scan.</span>
+<span>Before doing the scan, log in as a registered user, but not as an admin. Navigate to every page of your web site and enter data in all the forms.  </span></li><li><span>Run an automated passive scan.</span></li><li><span>Without closing the app, or after loading a stored passive testing session, run an active test of your web app.</span></li><li><span>Fix at least three of the security vulnerabilities identified in the alerts. Preferably, solve the highest priority issues. Only solve issues that can be fixed in your app’s code, not issues that require changes to the web server.</span></li></ol><h4><a name="research" class="md-header-anchor"></a><span>Research</span></h4><p><span>In order to solve the security issues, you will first need to do some research. Work with one or two other students and choose one issue each to research. Each of you will </span><u><span>post a description of the issue you are researching</span></u><span> to the forum for this lab.</span></p><ul><li><span>Focus on the high risk issues.</span></li><li><span>Try to choose issues that others haven&#39;t chosen. </span></li><li><span>When you have finished your research, share relevant links and information on how to mitigate the issue with the class by replying to your own post in the forum.</span></li></ul><p><span>See the instructor’s example posts at the end of this document for an idea of what to include in your posts.</span></p><h4><a name="security-risk-mitigation-in-code" class="md-header-anchor"></a><span>Security Risk Mitigation in Code</span></h4><p><span>Based on the research you, your team and the rest of the class have done, fix </span><u><span>three</span></u><span> of the highest priority issues that ZAP found in your app.</span></p><h4><a name="reporting" class="md-header-anchor"></a><span>Reporting</span></h4><p><span>You will report in two places:</span></p><ul><li><p><span>In the lab forum</span></p></li><li><p><span>In the docs folder, on the Lab06 branch of your Git repository.</span></p><p><span>Add a markdown document containing:</span></p><ol><li><span>A list of the high, medium and low priority issues that came up in the initial passive and active scans of your app.</span></li><li><span>The issues you chose to mitigate and the classes and methods that you changed to implement the mitigation.</span></li><li><span>A list of the issues that come up in passive and active scans after making the code changes.</span></li></ol></li></ul><h2><a name="submission-to-git-and-moodle" class="md-header-anchor"></a><span>Submission to Git and Moodle</span></h2><h4><a name="code-review" class="md-header-anchor"></a><span>Code Review</span></h4><ol start='' ><li><p><span>Using GitHub, send a pull request to another student asking them to review your code. After you have gotten a review, and finished revising your code, merge it into the master branch. Keep the lab branch, don&#39;t delete it.</span></p></li><li><p><span>You should get a pull request from the other student. Review their code and forum posts. You don&#39;t need to run ZAP against their web app--just verify that the app still works, that they have used best practices, and fulfilled the lab requirements.</span></p><ol start='3' ><li><span>Paste the review form into the comments of the other student&#39;s pull request.</span></li><li><span>In the &quot;online text&quot; field of the Code Review assignment on Moodle, enter the URL of the pull request you responded to and which contains the review you gave.</span></li></ol></li></ol><p><span>   </span><strong><span>Production Version</span></strong></p><ol start='' ><li><span>In the &quot;online text&quot; for the Moodle assignment, paste a link to your GitHub repository and branch for this lab.</span></li><li><span>Upload a document with copies of the security research you posted in the forum. Just copy and paste the text, no screen shots are needed.</span></li><li><span>Upload a code review document containing the review done on your code.</span></li></ol><p>&nbsp;</p><h2><a name="example-fourm-posts" class="md-header-anchor"></a><span>Example Fourm Posts</span></h2><p><span>Here are examples of posts you would make as you identify the security issue you are researching, then find some information about it, then find a way to mitigate it.</span></p><p><strong><span>Research: X-Frame-Options Header Not Set</span></strong></p><p><span>The security vulnerability I am researching is: X-Frame-Options Header Not Set</span></p><p><strong><span>RE: Research: X-Frame-Options Header Not Set</span></strong></p><p><span>Here&#39;s what I&#39;ve found out about this issue so far:</span></p><p><span>X-Frame-Options header is not included in the HTTP response to protect against &#39;ClickJacking&#39; attacks.</span></p><p><span>Clickjacking (User Interface redress attack, UI redress attack, UI redressing) is a malicious technique of tricking a Web user into clicking on something different from what the user perceives they are clicking on, thus potentially revealing confidential information or taking control of their computer while clicking on seemingly innocuous web pages. (Clickjacking - Wikipedia)</span></p><p><strong><span>RE: Research: X-Frame-Options Header Not Set</span></strong></p><p><span>How to fix this in ASP.NET Core: </span><a href='https://dotnetcoretutorials.com/2017/01/08/set-x-frame-options-asp-net-core/'><span>Set X-FRAME OPTIONS in ASP.NET Core</span></a></p><p><span> </span></p><hr /><p><span>Written by Brian Bird, Lane Community College, winter 2019, revised winter 2020.</span></p><p><span>CS296N, Web Development 2: ASP.NET</span></p><hr /><p>&nbsp;</p></div>
 </body>
 </html>
