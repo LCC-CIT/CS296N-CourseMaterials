@@ -12,6 +12,7 @@ keywords: Identity, Authorization, UserManager, Authorize attribute
 | <mark>3. Authorization</mark>   | 8. Validation                 |
 | 4. Async/Await                  | 9. Web Security               |
 | 5. Load testing and performance | 10. Term project              |
+| 11. Project Presentations       |                               |
 
 [TOC]
 
