@@ -7,13 +7,14 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 **CS296N Web Development 2**
 
-| Weekly topics                             |                                       |
-| ----------------------------------------- | ------------------------------------- |
-| 1. 1. Publishing a site to a Linux server | 6. Load testing and performance       |
-| 2. Intro to Identity                      | 7. <mark>Complex domain models</mark> |
-| 3. Authentication                         | 8. Validation                         |
-| 4. Authorization                          | 9. Docker containers                  |
-| 5. Async/Await                            | 10. Term project                      |
+| Weekly topics                   |                                       |
+| ------------------------------- | ------------------------------------- |
+| 1. Intro to Identity            | <mark>6. Complex domain models</mark> |
+| 2. Authentication               | 7. More complex domain models         |
+| 3. Authorization                | 8. Validation                         |
+| 4. Async/Await                  | 9. Web Security                       |
+| 5. Load testing and performance | 10. Term project                      |
+| 11. Project Presentations       |                                       |
 
 ## Contents
 
@@ -21,10 +22,8 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 ## Q & A
 
-- Announcements
-  - Balsamiq subscription: need to move to Balsamiq for Google Drive. I've already moved all the projects and posted info about the move in the CS246 forum.
-- JMeter load testing: I added more details to the JMeter notes&mdash; screen-shots and info on managing the anti-forgery token.
-- Term project proposal: I'll read those and give feedback today.
+- This week's quiz is closing at 11:59pm. (2024)
+- JMeter load testing: I fixed the test plan step for logging into my web site thanks Juliet. (2024)
 
 ## Review
 
@@ -45,17 +44,18 @@ We learned how to create a DbContext class containing DbSets that are based on o
 ### What is a domain model?
 
 - What is the meaning of "[domain](https://www.wolframalpha.com/input/?i=domain)" in general, in math?
-- What is meant by the problem "domain" in software development?
-- A domain model is a set of classes that reflect the relevant things in our problem domain that we want to persist in a database.
+- What is meant by the *problem domain* in software development?
+- A *domain model* is a set of classes that reflect the relevant things in our problem domain.
 
 ### How do we Apply Domain Driven Design?
 
 [Domain Driven Design](https://martinfowler.com/bliki/DomainDrivenDesign.html)
 
-- Use the terminology of the domain (ubiquitous language) for our classes, fields, etc..
+- Use the terminology of the domain (ubiquitous language) for our classes, fields, etc.
 - Keep our focus narrow&mdash;on the problem we are solving. Don't make it too general or abstract.
 - Identify *aggregates* and *root entities.*
-- Separate the domain model from other classes responsible for persistence.
+- In the *domain model*, identify the *persistent objects* (those that will be stored in a database) and the *transient objects* (those that will not be stored).  
+  Note, ViewModels are *trainsient objects*, but are not part of the *domain model*.
 
 ### Example: Book Reviews with a More Complex Domain Model
 
@@ -75,9 +75,10 @@ Will this more complex domain model:
 
 #### C# code
 
-Implementing the domain model in C# is straightforward except for implementing composition vs. aggregation. Since we are using Entity Framework to persist our model objects, we need to write our code so that EF will understand which dependent entities will be deleted with the root entity (composition) and which will not (aggregation).
+Implementing the domain model in C# is straightforward except for implementing *composition* vs. *aggregation*. Since we are using Entity Framework to persist our model objects, we need to write our code so that EF will understand which dependent entities will be deleted with the root entity (*composition*) and which will not (*aggregation*).
 
-Aggregation is the the default relationship. If we want to specify composition, we do it in the dependent entity by adding an FK that points to the root entity and is a non-nullable property.
+- **Aggregation** is the the default relationship. 
+- **Composition** is implemented in the dependent entity by adding an FK that points to the root entity and is a non-nullable property. This will enable a cascade delete.
 
 Code based on the UML class diagram:
 
@@ -108,7 +109,7 @@ public class Review
   public int ReviewId { get; set; }
   public string ReviewText { get; set; }
   public AppUser Reviewer { get; set; }               
-  public ICollection<Comment> Comments { get; set; }  // Compositioin--FK in Comment
+  public ICollection<Comment> Comments { get; set; }  // Composition--FK in Comment
   public int BookId {get; set;}      // Composition (a Review is part of a Book.)
 }
 
@@ -125,19 +126,21 @@ public class Comment
 
 ### How Entity Framework Maps a Domain Model to a DB Schema
 
-Each domain model entity is mapped to a table in the database. Additional join tables are created where needed. EF creates "shadow properties" for Foreign Keys if the FK properties were not a part of the domain model. Your instructor prefers to leave FK properties out of the model and let EF create them.
+Each persistent domain model entity is mapped to a table in the database. Additional join tables are created where needed. EF creates s*hadow properties* for Foreign Keys if the FK properties were not a part of the domain model. Your instructor prefers to leave FK properties out of the model and let EF create them.
+
+Model classes are identified as persistent by being part of a `DbSet` property of a `DbContext` derived class.
 
 #### Cascade Delete
 
-When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. (Look at a migration that includes Create Table to see cascade delete specified on a FK).
+*Cascade delete* is EF's way of implementing a *composition* relationship. When a root entity is deleted the dependent entities will also be deleted in a *cascade delete* operation in the database. (Look at a migration that includes Create Table to see cascade delete specified on a FK).
 
 You can control cascade deletes several ways:
 
-- In order to signal EF <u>not</u> to do a cascade delete, include the FK property explicitly in the model and make it nullable. (See the `Comment` model above).  
+- In order to signal EF <u>not</u> to do a cascade delete, include the FK property explicitly in the model and <u>make it nullable</u>. (See the `Comment` model above).  
 
    -- OR --
 
-- Add a ModelBuilder rule in DbContext.OnModelBuilding. See [Configuring Cascade Behaviors](https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete#configuring-cascading-behaviors) (Vickers 2022) for descriptions of the options for the `DeleteBehavior` enum.
+- Add a ModelBuilder rule in `DbContext.OnModelBuilding`. See [Configuring Cascade Behaviors](https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete#configuring-cascading-behaviors) (Vickers 2022) for descriptions of the options for the `DeleteBehavior` enum.
 
    Example:
 
