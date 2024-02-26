@@ -7,13 +7,14 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 **CS296N Web Development 2**
 
-| Weekly topics                             |                                               |
-| ----------------------------------------- | --------------------------------------------- |
-| 1. 1. Publishing a site to a Linux server | 6. Load testing and performance               |
-| 2. Intro to Identity                      | 7. Complex domain models                      |
-| 3. Authentication                         | 8. <mark>More on complex domain models</mark> |
-| 4. Authorization                          | 9.  Validation                                |
-| 5. Async/Await                            | 10. Term project / Docker containers          |
+| Weekly topics                   |                                            |
+| ------------------------------- | ------------------------------------------ |
+| 1. Intro to Identity            | 6. Complex domain models                   |
+| 2. Authentication               | 7. <mark>More complex domain models</mark> |
+| 3. Authorization                | 8. Validation                              |
+| 4. Async/Await                  | 9. Web Security                            |
+| 5. Load testing and performance | 10. Term project                           |
+| 11. Project Presentations       |                                            |
 
 ## Contents
 
@@ -23,41 +24,33 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 ### Q & A
 
-- Lab 7 due date extended by one week to Thursday, March 9
+- Due dates corrected:
+  - Lab 6 beta version due Tuesday, March 5
+  - Lab 6 production version due Thursday, March 7
+
 - Next week, week 9, we will cover validation
-- The Docker lab, lab 9, is now optional extra credit. You can watch videos of the lectures and do the reading on your own.
+- Week 10 we will cover Security.
 
 ### This Week's Agenda
 
-- Coding and Refactoring Faster
-  - Scaffolding
-  - Unit Testing with an In-Memory Database
-  - Hot Reload
 - How to Code an MVC Web App with a More Complex Domain Model
-  - Getting user input for domain property model collections
+  - Add a reply to a message
+  - Loading related data
   - Managing cascade deletes
-  - Many-to-Many relaitonships
+  - Many-to-Many relaitonships  
+- Scaffolding
 
 ### Review
 
 - Domain Driven Design
 
-  - Aggregates
-  - Root entities
+  - Aggregate: a group of persistent domain model objects that will be loaded together and deleted together.
+  - Root entity: The main entity in an aggregate the one that you will perfor load or delete operations on.
   - Design decisions about relationships between domain model classes.
 
-- Multiple Versions of the BookReview Domain Model
-
-  - Last year's BookReview, branch 7-ComplexDomain, has just 3: Review, AppUser, Comment.
-  - The notes show an example with 5: Book, Author, Review, AppUser, Comment.
-    - We started coding this version in this year's BookReview example on branch 07-ComplexDomain.
-    - We had to do a lot of refactoring of the repository, controllers, and unit tests because I changed the root entity from Review to Book.
+  
 
 ## Examples
-
-  - 2022 example, using .NET 3.2, SQL Server, and 3 domain model classes:
-    - [CS296N-Example-BookReviews](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models), branch 7-ComplexDomain on GitHub.
-    - [UML class diagram](https://github.com/LCC-CIT/CS296N-Example-BookReviews/blob/7-ComplexDomain/BookReviews/Docs/BookReviewsComplexDomainModel.pdf) of the domain model.
 
   - 2023 example, using .NET 6.0, MySQL, and 5 domain model classes:
     -  [CS296N-Example-BookReviews-DotNet6](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models), branch 07-ComplexDomain on GitHub.
@@ -66,4 +59,4 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 -----
 
- [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written winter <time>2023</time>, are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+ [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written in <time>2023</time>, revised in 2024, are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
