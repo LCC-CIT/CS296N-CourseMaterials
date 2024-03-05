@@ -47,7 +47,7 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 ## Self-Referential Composition Relationship
 
-In the AllAboutPigeons example, Message objects can have replies which are also Message objects. Here's the UML diagram:
+In the AllAboutPigeons example, `Message` objects can have replies which are also `Message` objects. Here's the UML class diagram:
 
 ```mermaid
 classDiagram
