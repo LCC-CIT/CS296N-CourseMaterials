@@ -58,7 +58,7 @@ classDiagram
         +Text: string
         +Date: DateOnly
         +Rating: int
-        +Replies: List<Message>
+        +Replies: List~Message~
         +OriginalMessageId: int?
     }
 
