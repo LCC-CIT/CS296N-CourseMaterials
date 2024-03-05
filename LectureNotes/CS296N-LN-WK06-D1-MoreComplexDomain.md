@@ -66,9 +66,9 @@ classDiagram
         // Properties of AppUser
     }
 
-    Message --|> AppUser : To
-    Message --|> AppUser : From
-    Message --|> Message : Replies
+    Message o--> AppUser : To
+    Message o--> AppUser : From
+    Message *--> Message : Replies
 ```
 
 Here's the code:
