@@ -71,7 +71,7 @@ classDiagram
     Message *--> Message : Replies
 ```
 
-Here's the code:
+Here's the code. Note that the `Foreignkey` attribute is on the `List<Message>` collection property. The FK property name is passed into the attribute constructor. This shows that the FK property is referencing the `List<Message>` collection.
 
 ```c#
 public class Message
