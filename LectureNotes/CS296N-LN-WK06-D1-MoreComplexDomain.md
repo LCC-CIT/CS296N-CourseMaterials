@@ -7,13 +7,14 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 **CS296N Web Development 2**
 
-| Weekly topics                             |                                               |
-| ----------------------------------------- | --------------------------------------------- |
-| 1. 1. Publishing a site to a Linux server | 6. Load testing and performance               |
-| 2. Intro to Identity                      | 7. Complex domain models                      |
-| 3. Authentication                         | 8. <mark>More on complex domain models</mark> |
-| 4. Authorization                          | 9.  Validation                                |
-| 5. Async/Await                            | 10. Term project / Docker containers          |
+| Weekly topics                   |                                            |
+| ------------------------------- | ------------------------------------------ |
+| 1. Intro to Identity            | 6. Complex domain models                   |
+| 2. Authentication               | 7. <mark>More complex domain models</mark> |
+| 3. Authorization                | 8. Validation                              |
+| 4. Async/Await                  | 9. Web Security                            |
+| 5. Load testing and performance | 10. Term project                           |
+| 11. Project Presentations       |                                            |
 
 ## Contents
 
@@ -31,8 +32,8 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 - Domain Driven Design
 
-  - Aggregates
-  - Root entities
+  - Aggregate: a group of persistent domain model objects that will be loaded together and deleted together.
+  - Root entity: The main entity in an aggregate the one that you will perfor load or delete operations on.
   - Design decisions about relationships between domain model classes.
 
 - Cascade delete&mdash;this is how we implement a composition relationship when using Entity Framework.

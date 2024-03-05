@@ -27,7 +27,7 @@ Your web site should meet the following requirements:
 
    Your site shouldn't be too simple, but not too hard to build either. Here are some criteria:
 
-   - The should be 4 to 6 domain model classes.
+   - There should be 4 to 6 persistant domain model classes.
    - The total number of fields in the domain models should be between 12 and 30 (not counting Identity fields).
    - There should be between 10 and 15 views. At least 8 views should be used for either getting or displaying user input.
 
@@ -38,7 +38,7 @@ Your web site should meet the following requirements:
    - Member: these users can access anything except the pages/features that are only for administrators.
    - Administrator: these users can access everything.
 
-   There should be administrative pages for managing users.
+   There should be administrative page(s) for managing users.
 
 6. **Publish to a server**
 

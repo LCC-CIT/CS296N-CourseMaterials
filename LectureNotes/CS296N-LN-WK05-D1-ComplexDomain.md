@@ -61,7 +61,7 @@ We learned how to create a DbContext class containing DbSets that are based on o
 
 #### UML diagram
 
-The Book Reviews domain model with Book, Author, and Comments model classes added:
+The Book Reviews domain model with Book, Author, Review and Comments model classes added:
 
 [Domain model UML class diagram](Images/BookReviewsMoreComplexDomainModel.pdf)
 
