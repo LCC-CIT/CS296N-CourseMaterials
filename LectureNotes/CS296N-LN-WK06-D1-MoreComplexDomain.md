@@ -23,20 +23,9 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
 
 ### Q & A
 
-- Lab 7 due date extended by one week to Thursday, March 9
-- Next week, week 9, we will cover validation
-- The Docker lab, lab 9, is now optional extra credit. You can watch videos of the lectures and do the reading on your own.
+- Are there any questions about anything?
 
-### This Week's Agenda
-
-- Coding and Refactoring Faster
-  - Scaffolding
-  - Unit Testing with an In-Memory Database
-  - Hot Reload
-- How to Code an MVC Web App with a More Complex Domain Model
-  - Getting user input for domain property model collections
-  - Managing cascade deletes
-  - Many-to-Many relaitonships
+- 
 
 ### Review
 
@@ -46,24 +35,32 @@ keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entit
   - Root entities
   - Design decisions about relationships between domain model classes.
 
-- Multiple Versions of the BookReview Domain Model
+- Cascade delete&mdash;this is how we implement a composition relationship when using Entity Framework.
+  - Add an FK (non-nullable) in the dependent model class to enable cascade delete.
+    - Example: Review has a collection of comment objects, Comment has a FK for Review.
 
-  - Last year's BookReview, branch 7-ComplexDomain, has just 3: Review, AppUser, Comment.
-  - The notes show an example with 5: Book, Author, Review, AppUser, Comment.
-    - We started coding this version in this year's BookReview example on branch 07-ComplexDomain.
-    - We had to do a lot of refactoring of the repository, controllers, and unit tests because I changed the root entity from Review to Book.
+  - The default relationship is aggregation (no cascade delete). This is what you get if there is no FK in the dependent model class. A nullable FK in the dependent model class will have the same effect.
+
+- Multiple examples (see links below) of persistent domain models with both composition (cascade delete) and aggregation relationships:
+
+  - 2022 BookReview example, branch 7-ComplexDomain, has 3 persistent model classes: `Review`, `Comment` and `AppUser` .
+  - 2023 BookReview example ([previous notes](CS296N-LN-WK05-D1-ComplexDomain.html) show code from this) with 5 persistent model classes: `Book`, `Author`, `Review`, `Comment` and `AppUser`. Includes a many-to-many relationship between `Author` and `Book`.
+  - 2024 AllAboutPigeons example with 2 persistent model classes: `Message`, with a self-referential composition relationship for replies, and `AppUser`.
 
 ## Examples
 
-  - 2022 example, using .NET 3.2, SQL Server, and 3 domain model classes:
+- 2022 example, using .NET 3.2, SQL Server, and 3 domain model classes:
     - [CS296N-Example-BookReviews](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models), branch 7-ComplexDomain on GitHub.
     - [UML class diagram](https://github.com/LCC-CIT/CS296N-Example-BookReviews/blob/7-ComplexDomain/BookReviews/Docs/BookReviewsComplexDomainModel.pdf) of the domain model.
 
-  - 2023 example, using .NET 6.0, MySQL, and 5 domain model classes:
+- 2023 example, using .NET 6.0, MySQL, and 5 domain model classes:
     -  [CS296N-Example-BookReviews-DotNet6](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models), branch 07-ComplexDomain on GitHub.
     - [UML class diagram](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/blob/07-ComplexDomain/Docs/BookReviewsDomainModel.pdf) of the domain model.
+- 2024 example using .NET 6.0, MySQL and a domain model with self-referential composition (Message class):
+  - [CS296_AllAboutPigeons](https://github.com/ProfBird/CS296_AllAboutPigeons/tree/Lab06), Lab06 branch.
+
 
 
 -----
 
- [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written winter <time>2023</time>, are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+ [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written winter 2023, revised <time>2024</time>, are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
