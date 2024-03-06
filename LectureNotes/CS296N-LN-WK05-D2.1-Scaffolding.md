@@ -55,20 +55,18 @@ A new controller and view will be added to your project.
 
 ## Examples
 
-Book Review site on GitHub: [ComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain), and [running on Azure](https://bookreviews.azurewebsites.net/).
+Book Review site on GitHub: [ComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain).
 
-Book Review site on GitHub: [MoreComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-MoreComplexDomain)
-
-
+Book Review site on GitHub: [MoreComplexDomain branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-MoreComplexDomain).
 
 ## References
 
 Anderson, Rick, et al. [MVC Movie Tutorial: Scaffold Movies Pages](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-model?view=aspnetcore-3.1&tabs=visual-studio#scaffold-movie-pages-2). A Microsoft Tutorial. 2022. 
 
-Delamater, Mary, Murach, Joel. "How to add a controller" 44 &ndash;45 in Ch. 2 of *Murach's ASP.NET Core MVC*. Murach, 2020. Shows you how to scaffold an empty controller.
+Delamater, Mary, Murach, Joel. "How to add a controller" 44 &ndash;45 in Ch. 2 of *Murach's ASP.NET Core MVC*. 2nd Ed., Murach, 2022. Shows you how to scaffold an empty controller.
 
 ------
 
- [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/) ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2022</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+ [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/) ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2024</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
 
 ------
