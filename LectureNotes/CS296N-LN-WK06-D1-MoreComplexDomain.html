@@ -1,23 +1,464 @@
 <!doctype html>
-<html style='font-size:20px !important'>
+<html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<meta name="title" content="More on Designing a Domain Model">
-<meta name="description" content="How to use Domain Driven Design and UML to design a more complex domain model. How to write a model so Entity Framework enables cascade deletes of related data in the database.">
-<meta name="keywords" content="Object Oriented Design, UML, Domain Driven Design, domain model, Entity Framework, related data, cascade delete">
-<meta name="material" content="">
-<meta name="author" content="">
-<meta name="generator" content="">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --mermaid-theme: default; --mermaid-sequence-numbers: off; --mermaid-flowchart-curve: linear; --mermaid--gantt-left-padding: 75; --sequence-theme: simple; }
+.tooltip[data-v-70836592] { cursor: pointer; position: relative; display: block; width: 100%; text-align: center; z-index: 10; }
+.tooltip span[data-v-70836592] { border-bottom: 1px dotted; }
+.tooltip[data-v-70836592]::after { display: none; content: attr(data-tooltip); background: rgb(232, 233, 233); max-width: 500px; width: 200px; position: absolute; left: -200px; right: 0px; margin: auto; opacity: 0; height: auto; font-size: 14px; padding: 10px; border-radius: 4px; color: rgb(17, 17, 17); text-align: left; }
+.tooltip.bottom[data-v-70836592]::after { top: 80%; transition: opacity 0.3s ease 0.3s, top 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s; }
+.tooltip.bottom[data-v-70836592]:hover::after { display: block; top: 130%; opacity: 1; }
+.lifeline .line[data-v-6efc771f] { background-size: 1px 20px; }
+.zenuml .interaction { border: 0px dashed transparent; }
+.zenuml .interaction.sync { border-right-width: 7px; }
+.zenuml .interaction.inited-from-occurrence, .zenuml .interaction.self-invocation { border-left-width: 7px; }
+.zenuml .interaction.return { border-left-width: 7px; border-right-width: 7px; }
+.zenuml .interaction.return-to-start { border-left-width: 0px; }
+.zenuml .interaction:hover { cursor: pointer; }
+.zenuml .message { position: relative; }
+.zenuml .message > .name { text-align: center; }
+.zenuml .interaction.right-to-left > .occurrence { left: -14px; }
+.zenuml .interaction.self > .occurrence { left: -8px; margin-top: -10px; }
+.zenuml .fragment { border-width: 1px; margin: 8px 0px 0px; padding-bottom: 10px; }
+.zenuml .sequence-diagram * { box-sizing: inherit; }
+.zenuml .sequence-diagram { line-height: normal; }
+.zenuml .participant { border-width: 2px; padding: 8px 4px; min-width: 88px; max-width: 250px; text-align: center; pointer-events: all; }
+.no-fill svg.arrow polyline[data-v-ca07199a] { fill: none !important; }
+.async > .message > .point > svg.arrow > polyline[data-v-ca07199a] { fill: none; }
+.right-to-left.point[data-v-ca07199a] { left: 0px; right: auto; }
+.right-to-left.point > svg > polyline.right[data-v-ca07199a] { display: none; }
+.right-to-left.point > svg > polyline.left[data-v-ca07199a] { display: inline; }
+.point > svg > polyline.left[data-v-ca07199a] { display: none; }
+:root { --color-bg-base: #fff; --color-text-base: #000; --color-text-secondary: #333; --color-border-base: #000; }
+.theme-default { --color-text-base: #222; --color-border-base: #666; --color-message-arrow: #000; --color-bg-occurrence: #dedede; }
+.theme-mermaid { --color-bg-base: #fff; --color-text-base: #222; --color-border-base: #666; --color-bg-occurrence: #dedede; }
+.theme-mermaid .footer { visibility: hidden; }
+.theme-darcula { --color-bg-canvas: #ffffff; --color-bg-frame: #2b2b2b; --color-border-frame: #cccccc; --color-bg-title: #2b2b2b; --color-text-title: #f8f8f2; --color-bg-participant: #44475a; --color-text-participant: #f8f8f2; --color-border-participant: #cccccc; --color-text-message: #ffb86c; --color-message-arrow: #cccccc; --color-bg-message-hover: #a6d2ff; --color-text-message-hover: #174ad4; --color-text-comment: #666666; --color-bg-fragment-header: #44475a; --color-text-fragment: #8be9fd; --color-border-fragment: #cccccc; --color-bg-occurrence: #44475a; --color-border-occurrence: #555555; --color-text-link: #a6d2ff; --color-text-control: #e2ba88; }
+.theme-sky { --color-bg-canvas: #ffffff; --color-bg-frame: #ffffff; --color-border-frame: #cccccc; --color-bg-title: #deecfb; --color-text-title: #032c72; --color-bg-participant: #deecfb; --color-text-participant: #032c72; --color-border-participant: #032c72; --color-text-message: #032c72; --color-message-arrow: #032c72; --color-bg-message-hover: #a6d2ff; --color-text-message-hover: #174ad4; --color-text-comment: #666666; --color-bg-fragment-header: #f0f0f0; --color-text-fragment: #032c72; --color-border-fragment: #032c72; --color-bg-occurrence: #deecfb; --color-border-occurrence: #555555; --color-text-link: #a6d2ff; --color-text-control: #a6d2ff; }
+.theme-idle-afternoon { --color-bg-canvas: #d8dad9; --color-bg-frame: #d8dad9; --color-border-frame: #324939; --color-bg-title: #d8dad9; --color-text-title: #182e27; --color-bg-participant: #f3f5f7; --color-text-participant: #182e27; --color-border-participant: #182e27; --color-text-message: #030809; --color-message-arrow: #324939; --color-bg-message-hover: #aea690; --color-text-message-hover: #000000; --color-text-comment: #030809; --color-bg-fragment-header: #f0f0f0; --color-text-fragment: #182e27; --color-border-fragment: #344337; --color-bg-occurrence: #f3f5f7; --color-border-occurrence: #344337; --color-text-link: #344337; --color-text-control: #97a49b; }
+.theme-coles { --color-bg-canvas: #ffffff; --color-bg-frame: #ffde00; --color-border-frame: #ee141f; --color-bg-title: #ffffff; --color-text-title: #182e27; --color-bg-participant: #f3f5f7; --color-text-participant: #000000; --color-border-participant: #344337; --color-text-message: #000000; --color-message-arrow: #000000; --color-bg-message-hover: #ee141f; --color-text-message-hover: #ffffff; --color-text-comment: #000000; --color-bg-fragment-header: #ee141f; --color-text-fragment: #ffffff; --color-border-fragment: #ee141f; --color-bg-occurrence: #f3f5f7; --color-border-occurrence: #344337; --color-text-link: #344337; --color-text-control: #97a49b; }
+.theme-coles .footer { background-color: rgb(255, 255, 255); }
+.theme-woolworths { --color-bg-canvas: #e6eaf3; --color-bg-frame: #e6eaf3; --color-border-frame: #049e50; --color-bg-title: #ffffff; --color-text-title: #12522f; --color-bg-participant: #aacb51; --color-text-participant: #000000; --color-border-participant: #344337; --color-text-message: #12522f; --color-message-arrow: #049e50; --color-bg-message-hover: #fffefb; --color-text-message-hover: #ffffff; --color-text-comment: #000000; --color-bg-fragment-header: #aacb51; --color-text-fragment: #12522f; --color-border-fragment: #049e50; --color-bg-occurrence: #aacb51; --color-border-occurrence: #344337; --color-text-link: #344337; --color-text-control: #335c80; }
+.theme-anz { --color-bg-canvas: #ffffff; --color-bg-frame: #ffffff; --color-border-frame: #089fd8; --color-bg-title: #ffffff; --color-text-title: #006e9c; --color-bg-participant: #fcfdf8; --color-text-participant: #00abd8; --color-border-participant: #00abd8; --color-text-message: #42a4e0; --color-message-arrow: #089fd8; --color-bg-message-hover: #006e9c; --color-text-message-hover: #ffffff; --color-text-comment: #000000; --color-bg-fragment-header: #42a4e0; --color-text-fragment: #006e9c; --color-border-fragment: #089fd8; --color-bg-occurrence: #fcfdf8; --color-border-occurrence: #006e9c; --color-text-link: #c9d8e7; --color-text-control: #335c80; }
+.theme-anz .fragment .header { color: rgb(255, 255, 255); }
+.theme-nab { --color-bg-canvas: #f2f4f6; --color-bg-participant: #c30000; --color-text-participant: #ffffff; --color-border-participant: #c30000; --color-text-message: #c30000; --color-bg-fragment-header: #c30000; --color-text-fragment-header: #ffffff; }
+.theme-google { --color-white: #ffffff; --color-red-google: #db4437; --color-blue-google: #4285f4; --color-green-google: #0f9d58; --color-yellow-google: #f4b400; --color-bg-canvas: var(--color-white); --color-bg-frame: #f2f4f6; --color-border-frame: #4285f4; --color-bg-title: #4285f4; --color-text-title: #ffffff; --color-bg-participant: var(--color-red-google); --color-text-participant: #ffffff; --color-border-participant: #4285f4; --color-text-message: var(--color-red-google); --color-message-arrow: var(--color-red-google); --color-bg-message-hover: #fffefb; --color-text-message-hover: #ffffff; --color-text-comment: #000000; --color-bg-fragment-header: var(--color-green-google); --color-text-fragment: #ffffff; --color-border-fragment: #4285f4; --color-bg-occurrence: #f4b400; --color-border-occurrence: #4285f4; --color-text-link: #c9d8e7; --color-text-control: #335c80; }
+:root { --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / .5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; }
+.container { width: 100%; }
+@media (min-width: 640px) {
+  .container { max-width: 640px; }
+}
+@media (min-width: 768px) {
+  .container { max-width: 768px; }
+}
+@media (min-width: 1024px) {
+  .container { max-width: 1024px; }
+}
+@media (min-width: 1280px) {
+  .container { max-width: 1280px; }
+}
+@media (min-width: 1536px) {
+  .container { max-width: 1536px; }
+}
+.zenuml .sr-only { position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; }
+.zenuml .pointer-events-none { pointer-events: none; }
+.zenuml .pointer-events-auto { pointer-events: auto; }
+.zenuml .invisible { visibility: hidden; }
+.zenuml .fixed { position: fixed; }
+.zenuml .absolute { position: absolute; }
+.zenuml .relative { position: relative; }
+.zenuml .sticky { position: sticky; }
+.zenuml .inset-0 { inset: 0px; }
+.zenuml .bottom-1 { bottom: 0.25rem; }
+.zenuml .left-1 { left: 0.25rem; }
+.zenuml .right-1 { right: 0.25rem; }
+.zenuml .top-0 { top: 0px; }
+.zenuml .top-8 { top: 2rem; }
+.zenuml .left-1\/2 { left: 50%; }
+.zenuml .right-0 { right: 0px; }
+.zenuml .right-\[100\%\] { right: 100%; }
+.zenuml .left-full { left: 100%; }
+.zenuml .z-40 { z-index: 40; }
+.zenuml .z-10 { z-index: 10; }
+.zenuml .col-span-2 { grid-column: span 2 / span 2; }
+.zenuml .col-span-1 { grid-column: span 1 / span 1; }
+.zenuml .col-span-4 { grid-column: span 4 / span 4; }
+.zenuml .float-right { float: right; }
+.zenuml .m-1 { margin: 0.25rem; }
+.zenuml .m-2 { margin: 0.5rem; }
+.zenuml .m-auto { margin: auto; }
+.zenuml .mx-auto { margin-left: auto; margin-right: auto; }
+.zenuml .mx-2 { margin-left: 0.5rem; margin-right: 0.5rem; }
+.zenuml .-my-px { margin-top: -1px; margin-bottom: -1px; }
+.zenuml .ml-3 { margin-left: 0.75rem; }
+.zenuml .mr-1 { margin-right: 0.25rem; }
+.zenuml .ml-4 { margin-left: 1rem; }
+.zenuml .mt-3 { margin-top: 0.75rem; }
+.zenuml .mt-4 { margin-top: 1rem; }
+.zenuml .mb-4 { margin-bottom: 1rem; }
+.zenuml .mt-8 { margin-top: 2rem; }
+.zenuml .-mt-12 { margin-top: -3rem; }
+.zenuml .mt-1 { margin-top: 0.25rem; }
+.zenuml .mb-0 { margin-bottom: 0px; }
+.zenuml .mt-2 { margin-top: 0.5rem; }
+.zenuml .box-border { box-sizing: border-box; }
+.zenuml .block { display: block; }
+.zenuml .inline-block { display: inline-block; }
+.zenuml .inline { display: inline; }
+.zenuml .flex { display: flex; }
+.zenuml .inline-flex { display: inline-flex; }
+.zenuml .table { display: table; }
+.zenuml .grid { display: grid; }
+.zenuml .contents { display: contents; }
+.zenuml .hidden { display: none; }
+.zenuml .h-10 { height: 2.5rem; }
+.zenuml .h-5 { height: 1.25rem; }
+.zenuml .h-0 { height: 0px; }
+.zenuml .h-screen { height: 100vh; }
+.zenuml .h-full { height: 100%; }
+.zenuml .h-4 { height: 1rem; }
+.zenuml .h-6 { height: 1.5rem; }
+.zenuml .h-12 { height: 3rem; }
+.zenuml .h-8 { height: 2rem; }
+.zenuml .h-14 { height: 3.5rem; }
+.zenuml .h-3 { height: 0.75rem; }
+.zenuml .min-h-screen { min-height: 100vh; }
+.zenuml .min-h-\[1em\] { min-height: 1em; }
+.zenuml .w-full { width: 100%; }
+.zenuml .w-96 { width: 24rem; }
+.zenuml .w-28 { width: 7rem; }
+.zenuml .w-4 { width: 1rem; }
+.zenuml .w-6 { width: 1.5rem; }
+.zenuml .w-8 { width: 2rem; }
+.zenuml .w-11\/12 { width: 91.6667%; }
+.zenuml .w-px { width: 1px; }
+.zenuml .w-3 { width: 0.75rem; }
+.zenuml .min-w-\[100px\] { min-width: 100px; }
+.zenuml .max-w-full { max-width: 100%; }
+.zenuml .max-w-7xl { max-width: 80rem; }
+.zenuml .flex-shrink-0, .zenuml .shrink-0 { flex-shrink: 0; }
+.zenuml .flex-grow, .zenuml .grow { flex-grow: 1; }
+.zenuml .origin-top-left { transform-origin: left top; }
+.zenuml .-translate-x-1\/2 { --tw-translate-x: -50%; transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+.zenuml .-translate-y-full { --tw-translate-y: -100%; transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+.zenuml .-translate-y-8 { --tw-translate-y: -2rem; transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+.zenuml .-translate-x-full { --tw-translate-x: -100%; transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+.zenuml .-translate-y-1\/2 { --tw-translate-y: -50%; transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+.zenuml .translate-y-1\/2 { --tw-translate-y: 50%; transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+.zenuml .transform { transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+.zenuml .cursor-pointer { cursor: pointer; }
+.zenuml .select-none { user-select: none; }
+.zenuml .resize { resize: both; }
+.zenuml .grid-cols-6 { grid-template-columns: repeat(6, minmax(0px, 1fr)); }
+.zenuml .grid-cols-4 { grid-template-columns: repeat(4, minmax(0px, 1fr)); }
+.zenuml .grid-cols-1 { grid-template-columns: repeat(1, minmax(0px, 1fr)); }
+.zenuml .flex-row-reverse { flex-direction: row-reverse; }
+.zenuml .flex-col { flex-direction: column; }
+.zenuml .flex-nowrap { flex-wrap: nowrap; }
+.zenuml .items-start { align-items: flex-start; }
+.zenuml .items-end { align-items: flex-end; }
+.zenuml .items-center { align-items: center; }
+.zenuml .justify-center { justify-content: center; }
+.zenuml .justify-between { justify-content: space-between; }
+.zenuml .justify-around { justify-content: space-around; }
+.zenuml .gap-5 { gap: 1.25rem; }
+.zenuml .overflow-hidden { overflow: hidden; }
+.zenuml .overflow-visible { overflow: visible; }
+.zenuml .overflow-y-auto { overflow-y: auto; }
+.zenuml .whitespace-normal { white-space: normal; }
+.zenuml .whitespace-nowrap { white-space: nowrap; }
+.zenuml .rounded { border-radius: 0.25rem; }
+.zenuml .rounded-sm { border-radius: 0.125rem; }
+.zenuml .rounded-md { border-radius: 0.375rem; }
+.zenuml .rounded-lg { border-radius: 0.5rem; }
+.zenuml .rounded-t { border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem; }
+.zenuml .rounded-t-md { border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem; }
+.zenuml .rounded-b-md { border-bottom-right-radius: 0.375rem; border-bottom-left-radius: 0.375rem; }
+.zenuml .border-2 { border-width: 2px; }
+.zenuml .border { border-width: 1px; }
+.zenuml .border-b-2 { border-bottom-width: 2px; }
+.zenuml .border-b { border-bottom-width: 1px; }
+.zenuml .border-t { border-top-width: 1px; }
+.zenuml .border-r { border-right-width: 1px; }
+.zenuml .border-solid { border-style: solid; }
+.zenuml .border-dashed { border-style: dashed; }
+.zenuml .border-red-900 { --tw-border-opacity: 1; border-color: rgb(127 29 29 / var(--tw-border-opacity)); }
+.zenuml .border-skin-frame { border-color: var(--color-border-frame, var(--color-border-base, #000)); }
+.zenuml .border-gray-200 { --tw-border-opacity: 1; border-color: rgb(229 231 235 / var(--tw-border-opacity)); }
+.zenuml .border-skin-participant { border-color: var(--color-border-participant, var(--color-border-frame, var(--color-border-base, #000))); }
+.zenuml .border-skin-fragment { border-color: var(--color-border-fragment, var(--color-border-frame, var(--color-border-base, #000))); }
+.zenuml .border-skin-message-arrow { border-color: var(--color-message-arrow, var(--color-border-frame, var(--color-border-base, #000))); }
+.zenuml .border-skin-occurrence { border-color: var(--color-border-occurrence, var(--color-border-frame, var(--color-border-base, #000))); }
+.zenuml .bg-gray-50 { --tw-bg-opacity: 1; background-color: rgb(249 250 251 / var(--tw-bg-opacity)); }
+.zenuml .bg-skin-canvas { background-color: var(--color-bg-canvas, var(--color-bg-base, #fff)); }
+.zenuml .bg-skin-frame { background-color: var(--color-bg-frame, var(--color-bg-canvas, var(--color-bg-base, #fff))); }
+.zenuml .bg-skin-title { background-color: var(--color-bg-title, var(--color-bg-frame, var(--color-bg-canvas, var(--color-bg-base, #fff)))); }
+.zenuml .bg-skin-base { background-color: var(--color-bg-base); }
+.zenuml .bg-green-200 { --tw-bg-opacity: 1; background-color: rgb(187 247 208 / var(--tw-bg-opacity)); }
+.zenuml .bg-white { --tw-bg-opacity: 1; background-color: rgb(255 255 255 / var(--tw-bg-opacity)); }
+.zenuml .bg-gray-500 { --tw-bg-opacity: 1; background-color: rgb(107 114 128 / var(--tw-bg-opacity)); }
+.zenuml .bg-skin-lifeline { background-color: var(--color-border-participant, var(--color-border-participant, var(--color-border-frame, var(--color-border-base, #000)))); }
+.zenuml .bg-skin-participant { background-color: var(--color-bg-participant, var(--color-bg-frame, var(--color-bg-canvas, var(--color-bg-base, #fff)))); }
+.zenuml .bg-gray-400 { --tw-bg-opacity: 1; background-color: rgb(156 163 175 / var(--tw-bg-opacity)); }
+.zenuml .bg-skin-divider { background-color: var(--color-border-participant, var(--color-border-frame, var(--color-border-base, #000))); }
+.zenuml .bg-skin-fragment-header { background-color: var(--color-bg-fragment-header, transparent); }
+.zenuml .bg-skin-occurrence { background-color: var(--color-bg-occurrence, var(--color-bg-participant, var(--color-bg-frame, var(--color-bg-canvas, var(--color-bg-base, #fff))))); }
+.zenuml .bg-opacity-75 { --tw-bg-opacity: .75; }
+.zenuml .fill-current { fill: currentcolor; }
+.zenuml .fill-none { fill: none; }
+.zenuml .stroke-current { stroke: currentcolor; }
+.zenuml .stroke-2 { stroke-width: 2; }
+.zenuml .object-contain { object-fit: contain; }
+.zenuml .p-1 { padding: 0.25rem; }
+.zenuml .p-2 { padding: 0.5rem; }
+.zenuml .p-0 { padding: 0px; }
+.zenuml .px-1 { padding-left: 0.25rem; padding-right: 0.25rem; }
+.zenuml .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+.zenuml .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+.zenuml .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+.zenuml .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.zenuml .px-4 { padding-left: 1rem; padding-right: 1rem; }
+.zenuml .py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.zenuml .px-px { padding-left: 1px; padding-right: 1px; }
+.zenuml .pb-8 { padding-bottom: 2rem; }
+.zenuml .pt-8 { padding-top: 2rem; }
+.zenuml .pt-4 { padding-top: 1rem; }
+.zenuml .pb-20 { padding-bottom: 5rem; }
+.zenuml .pb-4 { padding-bottom: 1rem; }
+.zenuml .pb-32 { padding-bottom: 8rem; }
+.zenuml .pb-2 { padding-bottom: 0.5rem; }
+.zenuml .pr-24 { padding-right: 6rem; }
+.zenuml .pt-24 { padding-top: 6rem; }
+.zenuml .pb-10 { padding-bottom: 2.5rem; }
+.zenuml .pr-1 { padding-right: 0.25rem; }
+.zenuml .text-left { text-align: left; }
+.zenuml .text-center { text-align: center; }
+.zenuml .align-bottom { vertical-align: bottom; }
+.zenuml .text-xs { font-size: 0.75rem; line-height: 1rem; }
+.zenuml .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.zenuml .text-base { font-size: 1rem; line-height: 1.5rem; }
+.zenuml .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.zenuml .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.zenuml .font-bold { font-weight: 700; }
+.zenuml .font-semibold { font-weight: 600; }
+.zenuml .font-medium { font-weight: 500; }
+.zenuml .font-thin { font-weight: 100; }
+.zenuml .italic { font-style: italic; }
+.zenuml .leading-6 { line-height: 1.5rem; }
+.zenuml .leading-4 { line-height: 1rem; }
+.zenuml .text-skin-title { color: var(--color-text-title, var(--color-text-message, var(--color-text-base, #000))); }
+.zenuml .text-skin-control { color: var(--color-text-control, var(--color-text-secondary, var(--color-text-base, #000))); }
+.zenuml .text-skin-link { color: var(--color-text-link, var(--color-text-secondary, var(--color-text-base, #000))); }
+.zenuml .text-green-700 { --tw-text-opacity: 1; color: rgb(21 128 61 / var(--tw-text-opacity)); }
+.zenuml .text-white { --tw-text-opacity: 1; color: rgb(255 255 255 / var(--tw-text-opacity)); }
+.zenuml .text-gray-900 { --tw-text-opacity: 1; color: rgb(17 24 39 / var(--tw-text-opacity)); }
+.zenuml .text-gray-400 { --tw-text-opacity: 1; color: rgb(156 163 175 / var(--tw-text-opacity)); }
+.zenuml .text-gray-600 { --tw-text-opacity: 1; color: rgb(75 85 99 / var(--tw-text-opacity)); }
+.zenuml .text-gray-500 { --tw-text-opacity: 1; color: rgb(107 114 128 / var(--tw-text-opacity)); }
+.zenuml .text-skin-participant { color: var(--color-text-participant, var(--color-text-message, var(--color-text-base, #000))); }
+.zenuml .text-skin-base { color: var(--color-text-base); }
+.zenuml .text-skin-message { color: var(--color-text-message, var(--color-text-base, #000)); }
+.zenuml .text-skin-comment { color: var(--color-text-comment, var(--color-text-secondary, var(--color-text-base, #000))); }
+.zenuml .text-skin-fragment-header { color: var(--color-text-fragment-header, var(--color-text-message, #000)); }
+.zenuml .text-skin-fragment { color: var(--color-text-fragment, var(--color-text-message, #000)); }
+.zenuml .text-skin-message-arrow { color: var(--color-message-arrow, var(--color-border-frame, var(--color-border-base, #000))); }
+.zenuml .opacity-50 { opacity: 0.5; }
+.zenuml .shadow-sm { --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / .05); --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow); }
+.zenuml .shadow-xl { --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1); --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow); }
+.zenuml .shadow { --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1); --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow); }
+.zenuml .shadow-slate-500\/50 { --tw-shadow-color: rgb(100 116 139 / .5); --tw-shadow: var(--tw-shadow-colored); }
+.zenuml .blur { --tw-blur: blur(8px); filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow); }
+.zenuml .grayscale { --tw-grayscale: grayscale(100%); filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow); }
+.zenuml .filter { filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow); }
+.zenuml .transition { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s; }
+.zenuml .transition-opacity { transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s; }
+.zenuml .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 0.15s; }
+.zenuml .hover\:whitespace-normal:hover { white-space: normal; }
+.zenuml .hover\:bg-yellow-300:hover { --tw-bg-opacity: 1; background-color: rgb(253 224 71 / var(--tw-bg-opacity)); }
+.zenuml .hover\:bg-gray-100:hover { --tw-bg-opacity: 1; background-color: rgb(243 244 246 / var(--tw-bg-opacity)); }
+.zenuml .hover\:bg-skin-message-hover:hover { background-color: var(--color-bg-message-hover, var(--color-text-base, #000)); }
+.zenuml .hover\:text-gray-600:hover { --tw-text-opacity: 1; color: rgb(75 85 99 / var(--tw-text-opacity)); }
+.zenuml .hover\:text-gray-500:hover { --tw-text-opacity: 1; color: rgb(107 114 128 / var(--tw-text-opacity)); }
+.zenuml .hover\:text-skin-message-hover:hover { color: var(--color-text-message-hover, var(--color-bg-base, #fff)); }
+.zenuml .hover\:opacity-100:hover { opacity: 1; }
+.zenuml .focus\:outline-none:focus { outline: transparent solid 2px; outline-offset: 2px; }
+.zenuml .focus\:ring-2:focus { --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000); }
+.zenuml .focus\:ring-inset:focus { --tw-ring-inset: inset; }
+.zenuml .focus\:ring-indigo-500:focus { --tw-ring-opacity: 1; --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity)); }
+.zenuml .group:hover .group-hover\:flex { display: flex; }
+.zenuml .group:hover .group-hover\:hidden { display: none; }
+@media (min-width: 640px) {
+  .zenuml .sm\:my-8 { margin-top: 2rem; margin-bottom: 2rem; }
+  .zenuml .sm\:block { display: block; }
+  .zenuml .sm\:inline-block { display: inline-block; }
+  .zenuml .sm\:h-screen { height: 100vh; }
+  .zenuml .sm\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0px, 1fr)); }
+  .zenuml .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0px, 1fr)); }
+  .zenuml .sm\:gap-6 { gap: 1.5rem; }
+  .zenuml .sm\:p-2 { padding: 0.5rem; }
+  .zenuml .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .zenuml .sm\:align-middle { vertical-align: middle; }
+}
+@media (min-width: 1024px) {
+  .zenuml .lg\:mx-auto { margin-left: auto; margin-right: auto; }
+  .zenuml .lg\:mx-0 { margin-left: 0px; margin-right: 0px; }
+  .zenuml .lg\:max-w-none { max-width: none; }
+  .zenuml .lg\:grid-cols-8 { grid-template-columns: repeat(8, minmax(0px, 1fr)); }
+  .zenuml .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0px, 1fr)); }
+  .zenuml .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+}
+.zenuml .\[\&\>svg\]\:h-full > svg { height: 100%; }
+.zenuml .\[\&\>svg\]\:w-full > svg { width: 100%; }
+.zenuml *, .zenuml ::before, .zenuml ::after { box-sizing: border-box; border-width: 0px; border-style: solid; border-color: rgb(229, 231, 235); }
+.zenuml ::before, .zenuml ::after { --tw-content: ""; }
+.zenuml html { line-height: 1.5; text-size-adjust: 100%; tab-size: 4; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; font-feature-settings: normal; }
+.zenuml body { margin: 0px; line-height: inherit; }
+.zenuml hr { height: 0px; color: inherit; border-top-width: 1px; }
+.zenuml abbr:where([title]) { text-decoration: underline dotted; }
+.zenuml h1, .zenuml h2, .zenuml h3, .zenuml h4, .zenuml h5, .zenuml h6 { font-size: inherit; font-weight: inherit; }
+.zenuml a { color: inherit; text-decoration: inherit; }
+.zenuml b, .zenuml strong { font-weight: bolder; }
+.zenuml code, .zenuml kbd, .zenuml samp, .zenuml pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 1em; }
+.zenuml small { font-size: 80%; }
+.zenuml sub, .zenuml sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+.zenuml sub { bottom: -0.25em; }
+.zenuml sup { top: -0.5em; }
+.zenuml table { text-indent: 0px; border-color: inherit; border-collapse: collapse; }
+.zenuml button, .zenuml input, .zenuml optgroup, .zenuml select, .zenuml textarea { font-family: inherit; font-size: 100%; font-weight: inherit; line-height: inherit; color: inherit; margin: 0px; padding: 0px; }
+.zenuml button, .zenuml select { text-transform: none; }
+.zenuml button, .zenuml [type="button"], .zenuml [type="reset"], .zenuml [type="submit"] { appearance: button; background-color: transparent; background-image: none; }
+.zenuml progress { vertical-align: baseline; }
+.zenuml ::-webkit-inner-spin-button, .zenuml ::-webkit-outer-spin-button { height: auto; }
+.zenuml [type="search"] { appearance: textfield; outline-offset: -2px; }
+.zenuml ::-webkit-search-decoration { appearance: none; }
+.zenuml ::-webkit-file-upload-button { appearance: button; font: inherit; }
+.zenuml summary { display: list-item; }
+.zenuml blockquote, .zenuml dl, .zenuml dd, .zenuml h1, .zenuml h2, .zenuml h3, .zenuml h4, .zenuml h5, .zenuml h6, .zenuml hr, .zenuml figure, .zenuml p, .zenuml pre { margin: 0px; }
+.zenuml fieldset { margin: 0px; padding: 0px; }
+.zenuml legend { padding: 0px; }
+.zenuml ol, .zenuml ul, .zenuml menu { list-style: none; margin: 0px; padding: 0px; }
+.zenuml textarea { resize: vertical; }
+.zenuml input::placeholder, .zenuml textarea::placeholder { opacity: 1; color: rgb(156, 163, 175); }
+.zenuml button, .zenuml [role="button"] { cursor: pointer; }
+.zenuml :disabled { cursor: default; }
+.zenuml img, .zenuml svg, .zenuml video, .zenuml canvas, .zenuml audio, .zenuml iframe, .zenuml embed, .zenuml object { display: block; vertical-align: middle; }
+.zenuml img, .zenuml video { max-width: 100%; height: auto; }
+.zenuml [hidden] { display: none; }
+pre.zenuml { margin: 0px; }
+.zenuml { font-family: Helvetica, Verdana, serif; font-size: 16px; }
+.zenuml .frame .sequence-diagram .comments code { background-color: rgb(249, 242, 244); padding: 2px; margin: 1px 0px; border-radius: 2px; }
+.zenuml .frame .sequence-diagram .comments .rest-api .http-method-post { color: rgb(13, 75, 59); }
+.zenuml .frame .sequence-diagram .comments .rest-api .http-method-get { color: rgb(47, 61, 137); }
+.zenuml .frame .sequence-diagram .comments .rest-api .http-method-delete { color: rgb(126, 30, 35); }
+.zenuml .frame .sequence-diagram .comments ol, .zenuml .frame .sequence-diagram .comments ul { margin: 0px; padding-left: 20px; }
+.zenuml .frame .sequence-diagram .comments ul li { list-style-type: none; }
+.zenuml .frame .sequence-diagram .comments ul li input[type="checkbox"] { margin-left: -1em; }
+.zenuml .frame .sequence-diagram .comments table { border-collapse: collapse; border-spacing: 0px; empty-cells: show; border-color: rgb(203, 203, 203); }
+.zenuml .frame .sequence-diagram .comments table td, .zenuml .frame .sequence-diagram .comments table th { padding: 0.5em; }
+.zenuml .frame .sequence-diagram .comments table thead { background-color: rgb(224, 224, 224); }
+.zenuml .frame .sequence-diagram .comments table td { background-color: transparent; }
+.zenuml .theme-blue .sequence-diagram .divider .name { border-radius: 4px; border: 1px solid rgb(226, 133, 83); color: rgb(226, 133, 83); }
+.zenuml .theme-blue .sequence-diagram .divider .left, .zenuml .theme-blue .sequence-diagram .divider .right { background: rgb(226, 133, 83); }
+.zenuml .theme-blue .sequence-diagram .lifeline .participant { border-color: rgb(3, 44, 114); background: rgba(146, 192, 240, 0.3); }
+.zenuml .theme-blue .sequence-diagram .lifeline .participant label { color: rgb(3, 44, 114); }
+.zenuml .theme-blue .sequence-diagram .lifeline .line { border-left-color: rgb(3, 44, 114); }
+.zenuml .theme-blue .sequence-diagram .message { border-bottom-color: rgb(3, 44, 114); }
+.zenuml .theme-blue .sequence-diagram .message .name { color: rgb(3, 44, 114); }
+.zenuml .theme-blue .sequence-diagram .message svg polyline { stroke: rgb(3, 44, 114); }
+.zenuml .theme-blue .sequence-diagram .message svg polyline.head { fill: rgb(3, 44, 114); }
+.zenuml .theme-blue .sequence-diagram .occurrence { border-color: rgb(3, 44, 114); background-color: rgb(255, 255, 255); }
+.zenuml .theme-blue .sequence-diagram .fragment { border-radius: 4px; border-color: rgba(4, 46, 110, 0.3); }
+.zenuml .theme-blue .sequence-diagram .fragment .header .name { background: rgba(4, 46, 110, 0.1); }
+.zenuml .theme-blue .sequence-diagram .fragment .header label { color: rgb(3, 44, 114); }
+.zenuml .theme-black-white .sequence-diagram .divider .name { border-radius: 0px; border-color: rgb(0, 0, 0); box-shadow: rgb(0, 0, 0) 2px 2px; }
+.zenuml .theme-black-white .sequence-diagram .divider .left, .zenuml .theme-black-white .sequence-diagram .divider .right { background: rgb(0, 0, 0); }
+.zenuml .theme-black-white .sequence-diagram .lifeline .participant { border-color: rgb(0, 0, 0); background: rgb(255, 255, 255); box-shadow: rgb(0, 0, 0) 2px 2px; }
+.zenuml .theme-black-white .sequence-diagram .lifeline .line { border-left-color: rgba(0, 0, 0, 0.4); }
+.zenuml .theme-black-white .sequence-diagram .message { border-bottom-color: rgb(0, 0, 0); }
+.zenuml .theme-black-white .sequence-diagram .message .name { color: rgb(0, 0, 0); }
+.zenuml .theme-black-white .sequence-diagram .message svg polyline { stroke: rgb(0, 0, 0); }
+.zenuml .theme-black-white .sequence-diagram .message svg polyline.head { fill: rgb(0, 0, 0); }
+.zenuml .theme-black-white .sequence-diagram .occurrence { border-color: rgb(0, 0, 0); background-color: rgb(245, 245, 245); }
+.zenuml .theme-black-white .sequence-diagram .fragment { border-color: rgba(0, 0, 0, 0.3); }
+.zenuml .theme-black-white .sequence-diagram .fragment .header .name { background: rgba(0, 0, 0, 0.07); }
+.zenuml .theme-star-uml .sequence-diagram .lifeline .participant { border-color: rgb(185, 64, 101); background-color: rgb(255, 254, 200); }
+.zenuml .theme-star-uml .sequence-diagram .lifeline .line { border-left-color: rgb(185, 64, 101); }
+.zenuml .theme-star-uml .sequence-diagram .message { border-bottom-color: rgb(185, 64, 101); }
+.zenuml .theme-star-uml .sequence-diagram .message svg polyline { stroke: rgb(185, 64, 101); }
+.zenuml .theme-star-uml .sequence-diagram .message svg polyline.head { fill: rgb(185, 64, 101); }
+.zenuml .theme-star-uml .sequence-diagram .occurrence { background-color: rgb(255, 254, 200); border-color: rgb(185, 64, 101); }
+.zenuml .blue-river .sequence-diagram { color: rgb(84, 82, 246); }
+.zenuml .blue-river .sequence-diagram .life-line-layer .lifeline.actor .participant::before { filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%); }
+.zenuml .blue-river .sequence-diagram .life-line-layer .participant { background: rgb(32, 151, 247); box-shadow: rgb(131, 196, 248) 4px 4px; border-radius: 9px; color: rgb(255, 255, 255); }
+.zenuml .blue-river .sequence-diagram .life-line-layer .participant .interface { font-size: 0.8em; }
+.zenuml .blue-river .sequence-diagram .life-line-layer .line { border-left-color: rgb(32, 151, 247); }
+.zenuml .blue-river .sequence-diagram .message-layer .message { border-bottom-color: rgb(32, 151, 247); }
+.zenuml .blue-river .sequence-diagram .message-layer .message svg.arrow polyline { stroke: rgb(32, 151, 247); fill: rgb(32, 151, 247); }
+.zenuml .blue-river .sequence-diagram .message-layer .message.self svg.arrow polyline { fill: none; }
+.zenuml .blue-river .sequence-diagram .message-layer .message.self svg.arrow polyline.head { fill: rgb(32, 151, 247); }
+.zenuml .blue-river .sequence-diagram .message-layer .occurrence { background: rgb(229, 253, 232); border-color: rgb(101, 191, 115); box-shadow: rgb(147, 198, 155) 4px 4px; }
+.zenuml .blue-river .sequence-diagram .message-layer .fragment { border-color: rgb(32, 151, 247); }
+.zenuml .blue-river .sequence-diagram .message-layer .fragment .header .name label { display: inline-block; min-width: 50px; background: rgb(84, 82, 246); color: rgb(255, 255, 255); padding: 2px 0px 2px 10px; }
+.zenuml .blue-river .sequence-diagram .message-layer .fragment .header .name::after { content: "SO"; display: inline-block; background: rgb(84, 82, 246); margin-left: -23px; width: 34px; transform: translateY(-2px); height: 22px; clip-path: polygon(66% 0px, 100% 0px, 100% 66%, 66% 100%); }
+.zenuml .blue-river .sequence-diagram .message-layer .fragment .header > label { display: inline-block; min-width: 50px; font-weight: 700; color: rgb(255, 255, 255); background: rgb(101, 191, 115); }
+.zenuml .blue-river .sequence-diagram .message-layer .fragment .comments { border-color: inherit; }
+.zenuml .blue-river .sequence-diagram .message-layer .fragment .divider { border-bottom-color: inherit; }
+:root { --background: #282a36; --hover: #2b2b2b; --occurance-border: #6e7191; --border: #585b74; --white: #f8f8f2; --current: #44475a; --comment: #6272a4; --cyan: #8be9fd; --green: #50fa7b; --orange: #ffb86c; --pink: #ff79c6; --purple: #bd93f9; --red: #ff5555; --yellow: #f1fa8c; --crayola: #a9b7c6; }
+body .zenuml.theme-dark { background-color: var(--background); }
+.zenuml.theme-dark .header { color: var(--crayola); font-weight: 700; }
+.zenuml.theme-dark .sequence-diagram .lifeline-group:hover { background-color: rgb(34, 48, 73); }
+.zenuml.theme-dark .sequence-diagram .lifeline .participant { border-color: var(--border); border-radius: 2px; background: var(--background); }
+.zenuml.theme-dark .sequence-diagram .lifeline .participant label { color: var(--cyan); }
+.zenuml.theme-dark .sequence-diagram .lifeline .line { background: var(--border); }
+.zenuml.theme-dark .fragment > .header > .condition { color: var(--crayola); padding: 6px; }
+.zenuml.theme-dark .sequence-diagram .fragment .header label { color: var(--crayola); padding: 6px; }
+.zenuml.theme-dark .sequence-diagram .fragment .header .name { border-bottom-color: var(--border); }
+.zenuml.theme-dark .sequence-diagram .fragment .header .name label { color: var(--pink); font-weight: 400; }
+.zenuml.theme-dark .sequence-diagram .fragment { border-color: var(--border); }
+.zenuml.theme-dark .sequence-diagram .comments { border: none; background: transparent; color: var(--comment); }
+.zenuml.theme-dark .sequence-diagram .fragment .segment:not(:first-child) { border-top-color: var(--border); }
+.zenuml.theme-dark .sequence-diagram .interaction { color: var(--orange); }
+.zenuml.theme-dark .sequence-diagram .message { border-bottom-color: var(--border); }
+.zenuml.theme-dark .sequence-diagram .message .name:hover { color: var(--crayola); }
+.zenuml.theme-dark .sequence-diagram .message svg polyline { fill: var(--border); stroke: var(--border); }
+.zenuml.theme-dark .sequence-diagram .message.self svg > polyline:not(.head) { fill: none; }
+.zenuml.theme-dark .sequence-diagram .occurrence { background-color: var(--current); box-shadow: 0 0 0 1px var(--occurance-border); border-radius: 2px; }
+.zenuml.theme-dark .sequence-diagram .divider .left, .zenuml.theme-dark .sequence-diagram .divider .right { background: var(--border); }
+.zenuml.theme-dark .sequence-diagram .divider .name { color: var(--comment); }
+.zenuml.theme-dark .interaction .message > .name:hover { background-color: rgb(34, 139, 34); color: rgb(255, 255, 255); }
+p[data-v-15224042] { margin: 0px; line-height: 1.25em; }
+.occurrence[data-v-4e715276] { width: 15px; padding: 16px 0px 16px 5px; }
+[data-v-4e715276] > .statement-container:last-child > .interaction.return:last-of-type { margin-bottom: 0px; border-bottom: 0px; transform: translateY(1px); }
+[data-v-4e715276] > .statement-container:last-child > .interaction.return:last-of-type > .message { bottom: -17px; height: 0px; }
+.right-to-left.occurrence[data-v-4e715276] { left: -14px; }
+.occurrence { margin-top: -2px; }
+.interaction .occurrence.source[data-v-703306ae] { position: absolute; height: calc(100% + 14px); left: -12px; display: none; }
+.interaction .occurrence.source.right-to-left[data-v-703306ae] { left: unset; right: -13px; }
+.message.self[data-v-fbc5fa7e] { transform: translate(-5px); }
+.interaction .invisible-occurrence[data-v-40bff5d3] { height: 20px; }
+.interaction.async[data-v-40bff5d3] .message { width: 100%; }
+.collapsible-header[data-v-b41acdfc] { display: flex; width: 100%; justify-content: space-between; }
+.collapse-button[data-v-b41acdfc] { display: none; }
+.fragment:hover .collapsible-header .collapse-button.expanded[data-v-b41acdfc] { display: inline-block !important; }
+[data-v-0a896a9f], [data-v-0f640fba] { border-color: inherit; }
+.fragment.par > .block > .statement-container:not(:first-child) { border-top-color: inherit; border-top-width: 1px; border-top-style: solid; }
+[data-v-ce259a11], [data-v-a846d536], [data-v-7b7c43b8] { border-color: inherit; }
+.divider[data-v-9e567e69] { display: flex; align-items: center; }
+.name[data-v-9e567e69] { margin: 0px; padding: 2px 6px; }
+.left[data-v-9e567e69], .right[data-v-9e567e69] { height: 1px; flex-grow: 1; }
+
+
+:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
 .mac-os-11 { --title-bar-height: 28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 h1, h2, h3, h4, h5 { white-space: pre-wrap; }
-body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
 .in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
 #write.first-line-indent p { text-indent: 2em; }
 #write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
 #write.first-line-indent li { margin-left: 2em; }
@@ -32,7 +473,7 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
 img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
-button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+button, input, select, textarea { color: inherit; font: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
@@ -59,8 +500,8 @@ thead, tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
 table.md-table td { min-width: 32px; }
-.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
-.CodeMirror-linenumber { -webkit-user-select: none; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
 .CodeMirror { text-align: left; }
 .CodeMirror-placeholder { opacity: 0.3; }
 .CodeMirror pre { padding: 0px 4px; }
@@ -70,7 +511,7 @@ div.hr:focus { cursor: none; }
 #write.fences-no-line-wrapping pre { white-space: pre; }
 #write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
-.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit; background-repeat: inherit; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
 .md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
 #write .md-fences.mock-cm { white-space: pre-wrap; }
 .md-fences.md-fences-with-lineno { padding-left: 0px; }
@@ -80,7 +521,7 @@ div.hr:focus { cursor: none; }
 svg { break-inside: avoid; }
 .footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
 .footnotes + .footnotes { margin-top: 0px; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
 li div { padding-top: 0px; }
 blockquote { margin: 1rem 0px; }
 li .mathjax-block, li p { margin: 0.5rem 0px; }
@@ -93,7 +534,7 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
 @media print {
   body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
   #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
-  .typora-export * { print-color-adjust: exact; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
   .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
   .is-mac table { break-inside: avoid; }
@@ -103,7 +544,7 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
-pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
 #write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
@@ -141,19 +582,19 @@ a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; 
 .md-attr { display: none; }
 .md-fn-count::after { content: "."; }
 code, pre, samp, tt { font-family: var(--monospace); }
-kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
 .md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
-code { text-align: left; }
-a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
 [lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
 [lang="mermaid"] .node text { font-size: 1rem; }
-table tr th { border-bottom-width: 0px; }
+table tr th { border-bottom: 0px; }
 video { max-width: 100%; display: block; margin: 0px auto; }
 iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
-mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
 .md-expand mark .md-meta { opacity: 0.3 !important; }
 mark .md-meta { color: rgb(0, 0, 0); }
@@ -165,7 +606,7 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
 .md-fences.md-fences-math { font-size: 1em; }
 .md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
-.md-fences-advanced:not(.md-focus) { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
 .typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
 .typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
 .typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
@@ -179,7 +620,7 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
 .outline-content ul { margin-top: 0px; margin-bottom: 0px; }
 .outline-content strong { font-weight: 400; }
-.outline-expander { width: 1rem; height: 1.428571429rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
 .outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
 .outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
 .outline-expander:hover::before { content: ""; }
@@ -192,14 +633,14 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
 .outline-label:hover { text-decoration: underline; }
 .outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
-.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
 .outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
 .outline-item-open > .outline-item > .outline-expander::before { content: ""; }
 .outline-children { display: none; }
 .info-panel-tab-wrapper { display: none; }
 .outline-item-open > .outline-children { display: block; }
 .typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
-.typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
 .typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
 .typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
 .typora-export-collapse-outline .outline-children { display: none; }
@@ -213,7 +654,7 @@ mjx-container { break-inside: avoid; }
 .md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
 .md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
 .md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
-.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left-width: 0.25em; border-left-style: solid; border-left-color: rgb(0, 0, 0); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
 .md-alert-text-note { color: rgb(9, 105, 218); }
 .md-alert-text-important { color: rgb(130, 80, 223); }
 .md-alert-text-warning { color: rgb(154, 103, 0); }
@@ -222,6 +663,87 @@ mjx-container { break-inside: avoid; }
 .md-alert-text { font-size: 0.9rem; font-weight: 700; }
 .md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
 .md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
 
 
 :root {
@@ -613,10 +1135,10 @@ header, .context-menu, .megamenu-content, footer{
 }
 
 
- @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}} .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} h1,h2,h3,h4,h5 {white-space:pre-line}
+
 </style><title>More on Designing a Domain Model</title>
 </head>
-<body class='typora-export'><div class='typora-export-content'>
-<div id='write'  class=''><h1>More on Designing a Domain Model</h1><p><strong><span>CS296N Web Development 2</span></strong></p><figure class='table-figure'><table><thead><tr><th><span>Weekly topics</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>1. Intro to Identity</span></td><td><span>6. Complex domain models</span></td></tr><tr><td><span>2. Authentication</span></td><td><span>7. </span><mark><span>More complex domain models</span></mark></td></tr><tr><td><span>3. Authorization</span></td><td><span>8. Validation</span></td></tr><tr><td><span>4. Async/Await</span></td><td><span>9. Web Security</span></td></tr><tr><td><span>5. Load testing and performance</span></td><td><span>10. Term project</span></td></tr><tr><td><span>11. Project Presentations</span></td><td>&nbsp;</td></tr></tbody></table></figure><h2 id='contents'><span>Contents</span></h2><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n170"><a class="md-toc-inner" href="#contents">Contents</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n172"><a class="md-toc-inner" href="#intro">Intro</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n173"><a class="md-toc-inner" href="#q--a">Q &amp; A</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n186"><a class="md-toc-inner" href="#this-weeks-agenda">This Week's Agenda</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n201"><a class="md-toc-inner" href="#review">Review</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n213"><a class="md-toc-inner" href="#examples">Examples</a></span></p></div><h2 id='intro'><span>Intro</span></h2><h3 id='q--a'><span>Q &amp; A</span></h3><ul><li><p><span>Due dates corrected:</span></p><ul><li><p><span>Lab 6 beta version due Tuesday, March 5</span></p></li><li><p><span>Lab 6 production version due Thursday, March 7</span></p></li></ul></li><li><p><span>Next week, week 9, we will cover validation</span></p></li><li><p><span>Week 10 we will cover Security.</span></p></li></ul><h3 id='this-weeks-agenda'><span>This Week&#39;s Agenda</span></h3><ul><li><p><span>How to Code an MVC Web App with a More Complex Domain Model</span></p><ul><li><p><span>Add a reply to a message</span></p></li><li><p><span>Loading related data</span></p></li><li><p><span>Managing cascade deletes</span></p></li><li><p><span>Many-to-Many relaitonships  </span></p></li></ul></li><li><p><span>Scaffolding</span></p></li></ul><h3 id='review'><span>Review</span></h3><ul><li><p><span>Domain Driven Design</span></p><ul><li><p><span>Aggregate: a group of persistent domain model objects that will be loaded together and deleted together.</span></p></li><li><p><span>Root entity: The main entity in an aggregate the one that you will perfor load or delete operations on.</span></p></li><li><p><span>Design decisions about relationships between domain model classes.</span></p></li></ul><p>&nbsp;</p></li></ul><h2 id='examples'><span>Examples</span></h2><ul><li><p><span>2023 example, using .NET 6.0, MySQL, and 5 domain model classes:</span></p><ul><li><p><a href='https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models'><span>CS296N-Example-BookReviews-DotNet6</span></a><span>, branch 07-ComplexDomain on GitHub.</span></p></li><li><p><a href='https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/blob/07-ComplexDomain/Docs/BookReviewsDomainModel.pdf'><span>UML class diagram</span></a><span> of the domain model.</span></p></li></ul></li></ul><hr /><p><span> </span><a href='http://creativecommons.org/licenses/by/4.0/'><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" referrerpolicy="no-referrer" alt="Creative Commons License"></a><span>ASP.NET Core MVC Lecture Notes by </span><a href='https://profbird.dev'><span>Brian Bird</span></a><span>, written in </span><time><span>2023</span></time><span>, revised in 2024, are licensed under a </span><a href='http://creativecommons.org/licenses/by/4.0/'><span>Creative Commons Attribution 4.0 International License</span></a><span>. </span></p></div></div>
-<base target="_blank"></body>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1>More on Designing a Domain Model</h1><p><strong><span>CS296N Web Development 2</span></strong></p><figure class='table-figure'><table><thead><tr><th><span>Weekly topics</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>1. 1. Publishing a site to a Linux server</span></td><td><span>6. Load testing and performance</span></td></tr><tr><td><span>2. Intro to Identity</span></td><td><span>7. Complex domain models</span></td></tr><tr><td><span>3. Authentication</span></td><td><span>8. </span><mark><span>More on complex domain models</span></mark></td></tr><tr><td><span>4. Authorization</span></td><td><span>9.  Validation</span></td></tr><tr><td><span>5. Async/Await</span></td><td><span>10. Term project / Docker containers</span></td></tr></tbody></table></figure><h2 id='contents'><span>Contents</span></h2><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n23"><a class="md-toc-inner" href="#contents">Contents</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n25"><a class="md-toc-inner" href="#intro">Intro</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n26"><a class="md-toc-inner" href="#q--a">Q &amp; A</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n30"><a class="md-toc-inner" href="#review">Review</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n60"><a class="md-toc-inner" href="#self-referential-composition-relationship">Self-Referential Composition Relationship</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n68"><a class="md-toc-inner" href="#examples">Examples</a></span></p></div><h2 id='intro'><span>Intro</span></h2><h3 id='q--a'><span>Q &amp; A</span></h3><ul><li><p><span>Are there any questions about anything?</span></p></li></ul><h3 id='review'><span>Review</span></h3><ul><li><p><span>Domain Driven Design</span></p><ul><li><p><span>Aggregates</span></p></li><li><p><span>Root entities</span></p></li><li><p><span>Design decisions about relationships between domain model classes.</span></p></li></ul></li><li><p><span>Cascade delete</span>&mdash;<span>this is how we implement a composition relationship when using Entity Framework.</span></p><ul><li><p><span>Add an FK (non-nullable) in the dependent model class to cause cascade delete.</span></p><ul><li><p><span>Example: Review has a collection of comment objects, Comment has a FK for Review.</span></p></li></ul></li><li><p><span>The default relationship is aggregation (no cascade delete). This is what you get if there is no FK in the dependent model class. </span></p></li></ul></li><li><p><span>Multiple examples (see links below) of persistent domain models with both composition (cascade delete) and aggregation relationships:</span></p><ul><li><p><span>2022 BookReview example, branch 7-ComplexDomain, has 3 persistent model classes: </span><code>Review</code><span>, </span><code>Comment</code><span> and </span><code>AppUser</code><span> .</span></p></li><li><p><span>2023 BookReview example (</span><a href='CS296N-LN-WK05-D1-ComplexDomain.html'><span>previous notes</span></a><span> show code from this) with 5 persistent model classes: </span><code>Book</code><span>, </span><code>Author</code><span>, </span><code>Review</code><span>, </span><code>Comment</code><span> and </span><code>AppUser</code><span>. Includes a many-to-many relationship between </span><code>Author</code><span> and </span><code>Book</code><span>.</span></p></li><li><p><span>2024 AllAboutPigeons example with 2 persistent model classes: </span><code>Message</code><span>, with a self-referential composition relationship for replies, and </span><code>AppUser</code><span>.</span></p></li></ul></li></ul><h2 id='self-referential-composition-relationship'><span>Self-Referential Composition Relationship</span></h2><p><span>In the AllAboutPigeons example, </span><code>Message</code><span> objects can have replies which are also </span><code>Message</code><span> objects. Here&#39;s the UML class diagram:</span></p><div class="md-diagram-panel md-fences-adv-panel" lang="mermaid"><svg id="mermaidChart4" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width: 299.469px; margin: auto;" viewBox="0 0 299.46875 487.125" role="graphics-document document" aria-roledescription="classDiagram"><style>#mermaidChart4{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart4 .error-icon{fill:#552222;}#mermaidChart4 .error-text{fill:#552222;stroke:#552222;}#mermaidChart4 .edge-thickness-normal{stroke-width:2px;}#mermaidChart4 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart4 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart4 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart4 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart4 .marker{fill:#333333;stroke:#333333;}#mermaidChart4 .marker.cross{stroke:#333333;}#mermaidChart4 svg{font-family:sans-serif;font-size:16px;}#mermaidChart4 g.classGroup text{fill:#9370DB;stroke:none;font-family:sans-serif;font-size:10px;}#mermaidChart4 g.classGroup text .title{font-weight:bolder;}#mermaidChart4 .nodeLabel,#mermaidChart4 .edgeLabel{color:#131300;}#mermaidChart4 .edgeLabel .label rect{fill:#ECECFF;}#mermaidChart4 .label text{fill:#131300;}#mermaidChart4 .edgeLabel .label span{background:#ECECFF;}#mermaidChart4 .classTitle{font-weight:bolder;}#mermaidChart4 .node rect,#mermaidChart4 .node circle,#mermaidChart4 .node ellipse,#mermaidChart4 .node polygon,#mermaidChart4 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart4 .divider{stroke:#9370DB;stroke-width:1;}#mermaidChart4 g.clickable{cursor:pointer;}#mermaidChart4 g.classGroup rect{fill:#ECECFF;stroke:#9370DB;}#mermaidChart4 g.classGroup line{stroke:#9370DB;stroke-width:1;}#mermaidChart4 .classLabel .box{stroke:none;stroke-width:0;fill:#ECECFF;opacity:0.5;}#mermaidChart4 .classLabel .label{fill:#9370DB;font-size:10px;}#mermaidChart4 .relation{stroke:#333333;stroke-width:1;fill:none;}#mermaidChart4 .dashed-line{stroke-dasharray:3;}#mermaidChart4 .dotted-line{stroke-dasharray:1 2;}#mermaidChart4 #compositionStart,#mermaidChart4 .composition{fill:#333333!important;stroke:#333333!important;stroke-width:1;}#mermaidChart4 #compositionEnd,#mermaidChart4 .composition{fill:#333333!important;stroke:#333333!important;stroke-width:1;}#mermaidChart4 #dependencyStart,#mermaidChart4 .dependency{fill:#333333!important;stroke:#333333!important;stroke-width:1;}#mermaidChart4 #dependencyStart,#mermaidChart4 .dependency{fill:#333333!important;stroke:#333333!important;stroke-width:1;}#mermaidChart4 #extensionStart,#mermaidChart4 .extension{fill:transparent!important;stroke:#333333!important;stroke-width:1;}#mermaidChart4 #extensionEnd,#mermaidChart4 .extension{fill:transparent!important;stroke:#333333!important;stroke-width:1;}#mermaidChart4 #aggregationStart,#mermaidChart4 .aggregation{fill:transparent!important;stroke:#333333!important;stroke-width:1;}#mermaidChart4 #aggregationEnd,#mermaidChart4 .aggregation{fill:transparent!important;stroke:#333333!important;stroke-width:1;}#mermaidChart4 #lollipopStart,#mermaidChart4 .lollipop{fill:#ECECFF!important;stroke:#333333!important;stroke-width:1;}#mermaidChart4 #lollipopEnd,#mermaidChart4 .lollipop{fill:#ECECFF!important;stroke:#333333!important;stroke-width:1;}#mermaidChart4 .edgeTerminals{font-size:11px;}#mermaidChart4 .classTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaidChart4 :root{--mermaid-alt-font-family:sans-serif;}</style><g><defs><marker id="mermaidChart4_classDiagram-aggregationStart" class="marker aggregation classDiagram" refX="18" refY="7" markerWidth="190" markerHeight="240" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaidChart4_classDiagram-aggregationEnd" class="marker aggregation classDiagram" refX="1" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaidChart4_classDiagram-extensionStart" class="marker extension classDiagram" refX="18" refY="7" markerWidth="190" markerHeight="240" orient="auto"><path d="M 1,7 L18,13 V 1 Z"></path></marker></defs><defs><marker id="mermaidChart4_classDiagram-extensionEnd" class="marker extension classDiagram" refX="1" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 1,1 V 13 L18,7 Z"></path></marker></defs><defs><marker id="mermaidChart4_classDiagram-compositionStart" class="marker composition classDiagram" refX="18" refY="7" markerWidth="190" markerHeight="240" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaidChart4_classDiagram-compositionEnd" class="marker composition classDiagram" refX="1" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaidChart4_classDiagram-dependencyStart" class="marker dependency classDiagram" refX="6" refY="7" markerWidth="190" markerHeight="240" orient="auto"><path d="M 5,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaidChart4_classDiagram-dependencyEnd" class="marker dependency classDiagram" refX="13" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaidChart4_classDiagram-lollipopStart" class="marker lollipop classDiagram" refX="13" refY="7" markerWidth="190" markerHeight="240" orient="auto"><circle stroke="currentColor" fill="transparent" cx="7" cy="7" r="6"></circle></marker></defs><defs><marker id="mermaidChart4_classDiagram-lollipopEnd" class="marker lollipop classDiagram" refX="1" refY="7" markerWidth="190" markerHeight="240" orient="auto"><circle stroke="currentColor" fill="transparent" cx="7" cy="7" r="6"></circle></marker></defs><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M84.484,327.205L84.069,330.527C83.654,333.85,82.823,340.495,83.888,349.154C84.954,357.812,87.916,368.484,89.397,373.82L90.877,379.156" id="id1" class="  edge-pattern-solid relation" style="fill:none" marker-start="url(#mermaidChart4_classDiagram-aggregationStart)" marker-end="url(#mermaidChart4_classDiagram-dependencyEnd)"></path><path d="M126.62,327.205L127.035,330.527C127.451,333.85,128.281,340.495,127.216,349.154C126.15,357.812,123.188,368.484,121.708,373.82L120.227,379.156" id="id2" class="  edge-pattern-solid relation" style="fill:none" marker-start="url(#mermaidChart4_classDiagram-aggregationStart)" marker-end="url(#mermaidChart4_classDiagram-dependencyEnd)"></path><path d="M215.294,39.435L220.116,34.196C224.938,28.957,234.582,18.478,241.117,13.239C247.652,8,251.079,8,254.506,33.112C257.933,58.224,261.36,108.448,261.36,158.672C261.36,208.896,257.933,259.12,254.506,284.232C251.079,309.344,247.652,309.344,239.763,302.633C231.873,295.922,219.52,282.501,213.344,275.79L207.167,269.079" id="id3" class="  edge-pattern-solid relation" style="fill:none" marker-start="url(#mermaidChart4_classDiagram-compositionStart)" marker-end="url(#mermaidChart4_classDiagram-dependencyEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(81.99218940734863, 347.140625)"><g class="label" transform="translate(-8.453125, -12.796875)"><foreignObject width="16.90625" height="25.59375"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"><span class="edgeLabel">To</span></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(129.11198234558105, 347.140625)"><g class="label" transform="translate(-18.666667938232422, -12.796875)"><foreignObject width="37.333335876464844" height="25.59375"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"><span class="edgeLabel">From</span></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(264.7864646911621, 158.671875)"><g class="label" transform="translate(-26.682292938232422, -12.796875)"><foreignObject width="53.364585876464844" height="25.59375"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"><span class="edgeLabel">Replies</span></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="classId-Message-8" transform="translate(105.55208587646484, 158.671875)"><rect class="outer title-state" x="-97.55208587646484" y="-150.671875" width="195.1041717529297" height="301.34375"></rect><line class="divider" x1="-97.55208587646484" x2="97.55208587646484" y1="-113.078125" y2="-113.078125"></line><line class="divider" x1="-97.55208587646484" x2="97.55208587646484" y1="139.671875" y2="139.671875"></line><g class="label"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel"></span></div></foreignObject><foreignObject class="classTitle" width="67.59375" height="25.59375" transform="translate( -33.796875, -143.171875)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">Message</span></div></foreignObject><foreignObject width="113.40625" height="25.59375" transform="translate( -90.05208587646484, -101.578125)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">+MessageId: int</span></div></foreignObject><foreignObject width="96.5" height="25.59375" transform="translate( -90.05208587646484, -71.984375)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">+To: AppUser</span></div></foreignObject><foreignObject width="116.9375" height="25.59375" transform="translate( -90.05208587646484, -42.390625)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">+From: AppUser</span></div></foreignObject><foreignObject width="86.70833587646484" height="25.59375" transform="translate( -90.05208587646484, -12.796875)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">+Text: string</span></div></foreignObject><foreignObject width="118.72917175292969" height="25.59375" transform="translate( -90.05208587646484, 16.796875)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">+Date: DateOnly</span></div></foreignObject><foreignObject width="81.38542175292969" height="25.59375" transform="translate( -90.05208587646484, 46.390625)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">+Rating: int</span></div></foreignObject><foreignObject width="180.1041717529297" height="25.59375" transform="translate( -90.05208587646484, 75.984375)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">+Replies: List&lt;Message&gt;</span></div></foreignObject><foreignObject width="168.53125" height="25.59375" transform="translate( -90.05208587646484, 105.578125)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">+OriginalMessageId: int</span></div></foreignObject></g></g><g class="node default" id="classId-AppUser-9" transform="translate(105.55208587646484, 432.03125)"><rect class="outer title-state" x="-92.43229675292969" y="-47.09375" width="184.86459350585938" height="94.1875"></rect><line class="divider" x1="-92.43229675292969" x2="92.43229675292969" y1="-9.5" y2="-9.5"></line><line class="divider" x1="-92.43229675292969" x2="92.43229675292969" y1="36.09375" y2="36.09375"></line><g class="label"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel"></span></div></foreignObject><foreignObject class="classTitle" width="66.6875" height="25.59375" transform="translate( -33.34375, -39.59375)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">AppUser</span></div></foreignObject><foreignObject width="169.86459350585938" height="25.59375" transform="translate( -84.93229675292969, 2)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">// Properties of AppUser</span></div></foreignObject></g></g></g></g></g></svg></div><p><span>Here&#39;s the code. Note that the </span><code>Foreignkey</code><span> attribute is on the </span><code>List&lt;Message&gt;</code><span> collection property. The FK property name is passed into the attribute constructor. This shows that the FK property is referencing the </span><code>List&lt;Message&gt;</code><span> collection.</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c#" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">class</span> <span class="cm-def">Message</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  [<span class="cm-variable">Key</span>]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-variable-3">int</span> <span class="cm-variable">MessageId</span> { <span class="cm-keyword">get</span>; <span class="cm-keyword">set</span>; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-variable">AppUser</span> <span class="cm-variable">To</span> { &nbsp;<span class="cm-keyword">get</span>; <span class="cm-keyword">set</span>; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-variable">AppUser</span> <span class="cm-variable">From</span> { <span class="cm-keyword">get</span>; <span class="cm-keyword">set</span>; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-variable-3">string</span> <span class="cm-variable">Text</span> { &nbsp;<span class="cm-keyword">get</span>; <span class="cm-keyword">set</span>; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-variable">DateOnly</span> <span class="cm-variable">Date</span> { &nbsp;<span class="cm-keyword">get</span>; <span class="cm-keyword">set</span>; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-variable-3">int</span> <span class="cm-variable">Rating</span> { <span class="cm-keyword">get</span>; <span class="cm-keyword">set</span>; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  [<span class="cm-variable">ForeignKey</span>(<span class="cm-string">"OriginalMessageId"</span>)]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-variable">List</span><span class="cm-operator">&lt;</span><span class="cm-variable">Message</span><span class="cm-operator">&gt;</span> <span class="cm-variable">Replies</span> { <span class="cm-keyword">get</span>; <span class="cm-keyword">set</span>; } <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">List</span><span class="cm-operator">&lt;</span><span class="cm-variable">Message</span><span class="cm-operator">&gt;</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span> <span class="cm-variable-3">int</span><span class="cm-operator">?</span> <span class="cm-variable">OriginalMessageId</span> { <span class="cm-keyword">get</span>; <span class="cm-keyword">set</span>; } <span class="cm-operator">=</span> <span class="cm-atom">null</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 322px;"></div><div class="CodeMirror-gutters" style="display: none; height: 322px;"></div></div></div></pre><p><span>It appears that neither MySQL nor SQL Server support cascade delete of self-referencing tables, so we have to implement that in the delete method of our repository:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c#" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> <span class="cm-keyword">public</span> <span class="cm-variable-3">int</span> <span class="cm-def">DeleteMessage</span>(<span class="cm-variable-3">int</span> <span class="cm-variable">messageId</span>)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; <span class="cm-variable">Message</span> <span class="cm-variable">message</span> <span class="cm-operator">=</span> <span class="cm-variable">GetMessageByIdAsync</span>(<span class="cm-variable">messageId</span>).<span class="cm-variable">Result</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; <span class="cm-comment">// If the message has replies, remove them first to avoid a FK constraint violation</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; <span class="cm-keyword">if</span> (<span class="cm-variable">message</span>.<span class="cm-variable">Replies</span>.<span class="cm-variable">Count</span> <span class="cm-operator">&gt;</span> <span class="cm-number">0</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-keyword">foreach</span> (<span class="cm-keyword">var</span> <span class="cm-def">reply</span> <span class="cm-keyword">in</span> <span class="cm-variable">message</span>.<span class="cm-variable">Replies</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-variable">_context</span>.<span class="cm-variable">Messages</span>.<span class="cm-variable">Remove</span>(<span class="cm-variable">reply</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; <span class="cm-variable">_context</span>.<span class="cm-variable">Messages</span>.<span class="cm-variable">Remove</span>(<span class="cm-variable">message</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; <span class="cm-keyword">return</span> <span class="cm-variable">_context</span>.<span class="cm-variable">SaveChanges</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> }</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 345px;"></div><div class="CodeMirror-gutters" style="display: none; height: 345px;"></div></div></div></pre><p>&nbsp;</p><h2 id='examples'><span>Examples</span></h2><ul><li><p><span>2022 example, using .NET 3.2, SQL Server, and 3 domain model classes:</span></p><ul><li><p><a href='https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models'><span>CS296N-Example-BookReviews</span></a><span>, branch 7-ComplexDomain on GitHub.</span></p></li><li><p><a href='https://github.com/LCC-CIT/CS296N-Example-BookReviews/blob/7-ComplexDomain/BookReviews/Docs/BookReviewsComplexDomainModel.pdf'><span>UML class diagram</span></a><span> of the domain model.</span></p></li></ul></li><li><p><span>2023 example, using .NET 6.0, MySQL, and 5 domain model classes:</span></p><ul><li><p><a href='https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain/BookReviews/BookReviews/Models'><span>CS296N-Example-BookReviews-DotNet6</span></a><span>, branch 07-ComplexDomain on GitHub.</span></p></li><li><p><a href='https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/blob/07-ComplexDomain/Docs/BookReviewsDomainModel.pdf'><span>UML class diagram</span></a><span> of the domain model.</span></p></li></ul></li><li><p><span>2024 example using .NET 6.0, MySQL and a domain model with self-referential composition (Message class):</span></p><ul><li><p><a href='https://github.com/ProfBird/CS296_AllAboutPigeons/tree/Lab06'><span>CS296_AllAboutPigeons</span></a><span>, Lab06 branch.</span></p></li></ul></li></ul><p>&nbsp;</p><hr /><p><span> </span><a href='http://creativecommons.org/licenses/by/4.0/'><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" referrerpolicy="no-referrer" alt="Creative Commons License"></a><span>ASP.NET Core MVC Lecture Notes by </span><a href='https://profbird.dev'><span>Brian Bird</span></a><span>, written winter 2023, revised </span><time><span>2024</span></time><span>, are licensed under a </span><a href='http://creativecommons.org/licenses/by/4.0/'><span>Creative Commons Attribution 4.0 International License</span></a><span>. </span></p></div></div>
+</body>
 </html>
