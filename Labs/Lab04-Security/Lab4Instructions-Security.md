@@ -24,31 +24,21 @@ Use OWASP ZAP to scan your code for security vulnerabilities.
 
 #### Research
 
-In order to solve the security issues, you will first need to do some research. Work with one or two other students and choose one issue each to research. Each of you will <u>post a description of the issue you are researching</u> to the forum for this lab.
+In order to solve the security issues, you will first need to do some research. Search the internet for posts or tutorials on how to mitigate the security vulnerabilities in ASP.NET.
 
-- Focus on the high risk issues.
-- Try to choose issues that others haven't chosen. 
-- When you have finished your research, share relevant links and information on how to mitigate the issue with the class by replying to your own post in the forum.
-
-See the instructor’s example posts at the end of this document for an idea of what to include in your posts.
+See the instructor’s example posts at the end of this document for an idea of the type of information you might find.
 
 #### Security Risk Mitigation in Code
 
-Based on the research you, your team and the rest of the class have done, fix <u>three</u> of the highest priority issues that ZAP found in your app.
+Based on your research, fix <u>three</u> of the highest priority issues that ZAP found in your app.
 
 #### Reporting
 
-You will report in two places:
+In the docs folder, on this lab's branch of your Git repository add a markdown document containing:
 
-- In the lab forum
-
-- In the docs folder, on the Lab06 branch of your Git repository.
-
-  Add a markdown document containing:
-
-  1. A list of the high, medium and low priority issues that came up in the initial passive and active scans of your app.
-  2. The issues you chose to mitigate and the classes and methods that you changed to implement the mitigation.
-  3. A list of the issues that come up in passive and active scans after making the code changes.
+1. A list of the high, medium and low priority issues that came up in the initial passive and active scans of your app.
+2. The issues you chose to mitigate and the classes and methods that you changed to implement the mitigation.
+3. A list of the issues that come up in passive and active scans after making the code changes.
 
 ## Submission to Git and Moodle
 
@@ -67,23 +57,19 @@ You will report in two places:
 
 
 
-## Example Fourm Posts
+## Example Security Issue Research
 
-Here are examples of posts you would make as you identify the security issue you are researching, then find some information about it, then find a way to mitigate it.
+Here are examples of the kind of information you might find about the security issue you are researching, and a way to mitigate it.
 
-**Research: X-Frame-Options Header Not Set**
+**X-Frame-Options Header Not Set**
 
-The security vulnerability I am researching is: X-Frame-Options Header Not Set
+The security vulnerability I researched is: X-Frame-Options Header Not Set
 
-**RE: Research: X-Frame-Options Header Not Set**
-
-Here's what I've found out about this issue so far:
+Here's what I've found out about this issue:
 
 X-Frame-Options header is not included in the HTTP response to protect against 'ClickJacking' attacks.
 
 Clickjacking (User Interface redress attack, UI redress attack, UI redressing) is a malicious technique of tricking a Web user into clicking on something different from what the user perceives they are clicking on, thus potentially revealing confidential information or taking control of their computer while clicking on seemingly innocuous web pages. (Clickjacking - Wikipedia)
-
-**RE: Research: X-Frame-Options Header Not Set**
 
 How to fix this in ASP.NET Core: [Set X-FRAME OPTIONS in ASP.NET Core](https://dotnetcoretutorials.com/2017/01/08/set-x-frame-options-asp-net-core/)
 
@@ -91,8 +77,7 @@ How to fix this in ASP.NET Core: [Set X-FRAME OPTIONS in ASP.NET Core](https://d
 
 ------
 
-Written by Brian Bird, Lane Community College, winter 2019, revised winter 2020.
-
+Written by Brian Bird, Lane Community College, winter 2019, revised winter <time>2024</time>.
 CS296N, Web Development 2: ASP.NET
 
 ------

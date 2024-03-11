@@ -11,14 +11,6 @@ author: Brian Bird
 
 <h1>Web Security</h1>
 
-| Weekly topics                           |                            |
-| --------------------------------------- | -------------------------- |
-| 1. Intro to course and Input validation | 6. **Security**            |
-| 2. Identity                             | 7. Creating a Web Service  |
-| 3. Authentication                       | 8. Consuming a Web Service |
-| 4. Authorization                        | 9. Docker containers       |
-| 5. Async/Await & Complex Domain Model   | 10. Term project           |
-
 
 <h2>Contents</h2>
 
@@ -36,7 +28,9 @@ author: Brian Bird
 
 ### Cross-Site Scripting (XSS)
 
-An attacker puts HTML and JavaScript into an input element on a web page so that the script gets saved in the web app's database. When another user displays the data, the script will potentially be executed by the browser and perform some malicious action.
+An attacker puts HTML and JavaScript into an `input` element on a web page so that the script gets saved in the web app's database. When another user displays the data, the script will potentially be executed by the browser and perform some malicious action.
+
+This is done automatically by the ASP.NET Razor engine. Try putting HTML into an input element, submit it, then view the data on a web page. View the source to see the html encoding.
 
 Example: 
 
@@ -51,8 +45,6 @@ Example:
 - Use HTML encoding on data from HTML form input elements. 
   For implementation details, see the XSS tutorial by Anderson (2022) in the references section below.
   Example:
-
-
 
 ```html
 &lt;script&gt;alert("You've been hacked!");&lt;/script&gt;
@@ -75,7 +67,7 @@ In ASP.NET Core, mitigation middle-ware is automatically added when any of the f
 
 For mitigation when not using ASP.NET, see the tutorial by Acunetix in the References below.
 
-
+Here's a tutorial containing some [XSRF scenario examples](https://brightsec.com/blog/csrf-example/).
 
 ### Open Redirect Attacks
 
