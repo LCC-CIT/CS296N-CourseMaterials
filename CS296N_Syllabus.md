@@ -92,6 +92,8 @@ Letter grades for the course will be determined by the following percentages:
 
 - Quizzes cannot be taken after the due date.
 
+- No late assignments accepted after Tuesday of week 11, finals week.
+
 - Exceptions will only be made for illness or emergency situations.
 
 ### Academic Honesty
