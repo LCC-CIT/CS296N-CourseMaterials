@@ -11,14 +11,6 @@ author: Brian Bird
 
 <h1>Web Security</h1>
 
-| **Topics by week**                          |                            |
-| ------------------------------------------- | -------------------------- |
-| 1. Intro to course and input validation     | 6. Web Security            |
-| 2. Identity and user account administration | 7. Creating a Web Service  |
-| 3. Authentication                           | 8. Consuming a Web Service |
-| 4. Authorization and Administration         | 9. Docker Containers       |
-| 5. Async/Await & Complex Domain Models      | 10. Term Project           |
-
 <h2>Contents</h2>
 
 [TOC]
@@ -47,7 +39,7 @@ Official Open Web Application Security Project, ZAP web site.
 ##### Modes of operation 
 
 - Automated passive scanning: ZAP uses a spider to explore your web site and look for vulnerabilities without issuing any attacks.
-- Manual passive, manual scanning: ZAP watches your web app while you register, log in, and navigate between pages and enter data. ZAP scans all HTTP messages (requests and responses) sent to the web app for vulnerabilities without making attacks.
+- Manual passive scanning: ZAP watches your web app while you register, log in, and navigate between pages and enter data. ZAP scans all HTTP messages (requests and responses) sent to the web app for vulnerabilities without making attacks.
 - Active scanning: ZAP fires HTTP requests at your web app using known attack techniques and scans the responses.
   Note: manual, passive scanning, followed by an active scan is the most effective form of security testing.
 
@@ -77,7 +69,7 @@ Official Open Web Application Security Project, ZAP web site.
 
 ##### How to do an active scan 
 
-You need to have done a passive scan first and either saved your passive scan session or not close ZAP.
+You need to have done a passive scan first and either saved your passive scan session or not closed ZAP.
 
 1. Start your web app in Visual Studio.
 
