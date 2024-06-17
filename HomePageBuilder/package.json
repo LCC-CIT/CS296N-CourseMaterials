@@ -1,0 +1,24 @@
+{
+  "name": "homepagebuilder",
+  "version": "1.0.0",
+  "description": "Writes an html file with links to all the lecture notes.",
+  "main": "homePageBuilder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LCC-CIT/CS296N-CourseMaterials.git"
+  },
+  "author": "Brian Bird",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LCC-CIT/CS296N-CourseMaterials/issues"
+  },
+  "homepage": "https://github.com/LCC-CIT/CS296N-CourseMaterials#readme",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cheerio": "^1.0.0-rc.12",
+    "remove-markdown": "^0.5.0"
+  }
+}
