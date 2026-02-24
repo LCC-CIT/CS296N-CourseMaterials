@@ -5,47 +5,20 @@
 <h2>Contents</h2>
 
 [TOC]
-## Introduction
+## Learning Objectives
 
-### Announcements for Winter 2024
+- Distinguish between *client-side validation* for user experience and *server-side validation* for application security.
+- Perform model validation using *data annotations* to enforce constraints on model properties.
+- Configure views to display errors using *unobtrusive validation* and built-in *Validation Tag Helpers*.
+- Manage controller logic by evaluating `ModelState.IsValid` and adding explicit validation errors to the *ModelState dictionary*.
+- Synchronize *database schemas* with model constraints by executing Entity Framework *migrations*.
 
-- I finished updating my complex domain model with replies: https://github.com/ProfBird/CS296_AllAboutPigeons/tree/Lab06
-
-- For lab 6 (complex domain model): 
-
-  - Regarding complexity of your domain model, since you already have two persistent domain model classes (counting AppUser) you only need one additional domain model class which is related to an existing domain model class (probably a root entity) by composition. 
-    - My Book Review example from 2023 is much more complex than that. If you look at the [example from 2022](https://github.com/LCC-CIT/CS296N-Example-BookReviews/tree/7-ComplexDomain) it just has one additional domain model class&mdash;like you you do for your assignment.
-
-    - My All About Pigeons example for this year, 2024, has a self-refrerential model, `Message`, which also satisfys the requirement to have three persistent model classes since `Message` sort of  taking the place of two models.
-
-  - ~~I haven't demonstrated scaffolding yet. I'll do that today.  
-    Add scaffolding for one of your classes. It makes the most sense to do it for your root entity. Modify the scaffolding so that the the code that load data from your DbContext object also loads the related data (composed classes).~~  
-    This isn't actually a requirement in the lab 6 instructions.
-
-- Validation lectures: I was out sick Monday, so hopefully you watched the recorded lecture from 2022.
-
-
-
-### Review Concept for This Week's Topic
-
-#### C# Attributes
-
-- Programming Guide: [C# Attributes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/)
-
-- Attributes are a means of associating metadata with code
-
-  - Metadata is additional information about types defined in your program (and remember that classes are types).
-- Attributes are declarative.
-  - Attributes can be applied to assemblies (think DLLs), classes, methods, and properties. 
-
-  
-
-## Validation 
+## Introductin to Validation
 
 - Validation is expected in the browser for good UX (user experience), and required on the server for security.
 - Good UX design means users are provided with an easy way to fix input errors.
 - In ASP.NET Core MVC, validation is done on the models.
-- Validation is implemented using C# attributes. In .NET Core, attributes that are used on model properties are called *data annotations*.
+- Validation is implemented using C# *attributes*. In .NET Core, attributes that are used on model properties are called *data annotations*.
 
 #### Data Annotations
 
@@ -57,7 +30,7 @@
 
 ### Validation Using Data Annotations
 
-- Validation is specified on the  model properties and is then enforced in multiple places:
+- Validation is specified on the model properties and is then enforced in multiple places:
 
   - In the database.
 
@@ -315,17 +288,13 @@ You will need to add a migration and update the database after adding validation
 
 ## Examples
 
-- Instructor's 2020 example, [BookInfo: Validation branch](https://github.com/ProfBird/BookInfo-WebApp-Core3/tree/Validation)
-
-- Instructor's 2021 example, [BookReviews: Lab01 branch](https://github.com/LCC-CIT/CS296N-Winter2021LabExample/tree/Lab01)
+- Instructor's 2024 example, [BookReviews: Validation branch](https://github.com/LCC-CIT/CS296N-Example-BookReviews-DotNet6/tree/08-Validation)
 
 - Pro ASP.NET Core MVC 2, Ch. 27: [Model validation example](https://github.com/Apress/pro-asp.net-core-mvc-2/tree/master/27%20-%20Model%20Validation/ModelValidation)
 
-- Microsoft Tutorial, MVC Movies: [Validation example](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples/2.x/ValidationSample)
+- Microsoft Tutorial, MVC Movies: [Validation example](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples)
 
   
-
-
 
 ## References
 
@@ -335,13 +304,13 @@ You will need to add a migration and update the database after adding validation
 - *Pro ASP.NET Core MVC 2.0*, Adam Freeman, Apress, 2017.
   - Ch. 2 "Your First MVC Application", Adding Validation, pp. 38&ndash;45
   - Ch. 27 "Model Validation", 
-- Microsoft tutorial, MVC Movies: [Model validation in ASP.NET Core MVC  and Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-6.0)
+- Microsoft tutorial, MVC Movies: [Model validation in ASP.NET Core MVC  and Razor Pages](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-10.0)
 - Reference: [System.ComponentModel.DataAnnotations Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netcore-6.0)&mdash;Contains a complete list of validation attributes.
-- Microsoft tutorial, Tag Helpers: [Validation Tag Helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0#the-validation-tag-helpers)
+- Microsoft tutorial, Tag Helpers: [Validation Tag Helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-10.0#the-validation-tag-helpers)
 
 ------
 
 
 
-[![ccbysa88x31](ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written 2020, revised <time>2024</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+[![ccbysa88x31](ccbysa88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), written 2020, revised <time>2026</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
