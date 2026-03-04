@@ -12,8 +12,6 @@
 | 4. Async/Await                    | 10. Term project               |
 | 5. Load testing and performance   | 11. Project presentations      |
 
-## 
-
 ## Contents
 
 [TOC]
