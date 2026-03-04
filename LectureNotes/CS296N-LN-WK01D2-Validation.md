@@ -154,7 +154,7 @@ Add a script section with links to validation libraries to the bottom of each vi
 }
 ```
 
-(Note: Look near the bottom of  *_Layout.cshtml* to see how it processes ```@section Scripts```)
+(Notes: a. Look near the bottom of  *_Layout.cshtml* to see how it processes ```@section Scripts```,  b. update jQuery version numbers to the latest.)
 
 **or**
 
@@ -314,9 +314,9 @@ You will need to add a migration and update the database after adding validation
 - *Pro ASP.NET Core MVC 2.0*, Adam Freeman, Apress, 2017.
   - Ch. 2 "Your First MVC Application", Adding Validation, pp. 38&ndash;45
   - Ch. 27 "Model Validation", 
-- Microsoft tutorial, MVC Movies: [Model validation in ASP.NET Core MVC  and Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-6.0)
-- Reference: [System.ComponentModel.DataAnnotations Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netcore-6.0)&mdash;Contains a complete list of validation attributes.
-- Microsoft tutorial, Tag Helpers: [Validation Tag Helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0#the-validation-tag-helpers)
+- Microsoft tutorial, MVC Movies: [Model validation in ASP.NET Core MVC  and Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-10.0)
+- Reference: [System.ComponentModel.DataAnnotations Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netcore-100)&mdash;Contains a complete list of validation attributes.
+- Microsoft tutorial, Tag Helpers: [Validation Tag Helpers](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-10.0#the-validation-tag-helpers)
 
 ------
 
