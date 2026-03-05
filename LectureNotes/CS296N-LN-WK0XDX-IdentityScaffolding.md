@@ -29,15 +29,342 @@ When you create a new ASP.NET MVC project and select the option to add *Individu
 
 (See "Create a Web App with Authentication" in the References.)
 
-## Scaffolding Identity
+### Scaffolding Identity
 
 You can add the Identity UI library, a DbContext class and all that goes with Identity to an existing project without Identity by adding Identity Scaffolding (See "Scaffold Identity in ASP.NET Core projects" in the References.) When you add the scaffolding, you have the option to "override" the library code with source code files that it will add to the project so that you can customize them. You can also use the scaffolder to add these files to a project that is already using the Identity UI library.
 
 ![IdentityScaffoldDialog](Images\IdentityScaffoldDialog.png)
 
+#### Steps to Add Identity Scaffolding to a Project
+
+1. Right-click on the project in the Visual Studio Solution Explorer
+2. Select **Add** > **New Scaffolded Item**
+3. Choose **Identity** from the left menu
+4. Select **Add Identity**
+5. In the scaffolding dialog:
+   - Select the pages you want to override (or select all)
+   - The scaffolder will create a new DbContext (e.g., `CodeReviewsContext`)
+   - Click **Add**
+
+##### Files added by scaffolding
+
+- `Areas/Identity/Pages/Account/` folder with Razor Pages
+- `Areas/Identity/Data/CodeReviewsContext.cs` (a separate context)
+- Identity configuration in `Program.cs`
+
+##### Packages Added by Scaffolding
+
+The scaffolder automatically adds these NuGet packages:
+
+```xml
+<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.2" />
+<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.2" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.2" />
+<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
+```
 
 
-## Editing Identity UI Pages
+
+#### Refactoring Steps
+
+The scaffolded Identity system creates a separate context, but we want to use our existing `AppDbContext` and `AppUser` model. Here are the refactoring steps:
+
+##### 1. Modify your user model class to inherit from `IdentityUser`
+
+Modify your user model class to inherit from `IdentityUser`. For example, if your user model class was named `AppUser` and had one property, `Name`, you would modify it like this:
+
+```csharp
+using Microsoft.AspNetCore.Identity;
+
+namespace CodeReviews.Models
+{
+    public class AppUser : IdentityUser
+    {
+        // The person's full name
+        public string Name { get; set; } = string.Empty;
+    }
+}
+```
+
+##### 2. Modify your DbContext class to Inherit from `IdentityDbContext<AppUser>`
+
+Notes:
+
+-  The`IdentityDbContext` class requires a generic type. Provide the type of your user model.
+- The `OnModelCreating` method is optional. Only include it if you were already doing something in that method.
+
+```csharp
+using CodeReviews.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
+namespace CodeReviews.Data
+{
+    public class AppDbContext : IdentityDbContext<AppUser>
+    {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+        // Remove or comment out AppUsers DbSet - Identity provides this
+        // public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<AssignmentVersion> AssignmentVersions { get; set; }
+        public DbSet<Submission> Submissions { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            // Your custom configurations here
+        }
+    }
+}
+```
+
+##### 3. Update `Program.cs`
+
+Configure Identity to use your existing context by making these changes:
+
+- Add `using Microsoft.AspNetCore.Identity;` and `using CodeReviews.Models;` .
+- If you are using precompiler directives to select the database provider, move Identity configuration outside the `#if/#else` block so it applies to both databases.
+- Use `AddDefaultIdentity<AppUser>()` instead of `IdentityUser`  (Where `AppUser` is your user model class).
+- Call `.AddEntityFrameworkStores<AppDbContext>()` to use your existing context.
+- Add `app.UseAuthentication();` before `app.UseAuthorization(); ` .
+- Add `app.MapRazorPages();` for Identity Razor Pages routing.
+
+Here's an example:
+
+```csharp
+#undef SQLITE  // To use SQLite, change #undef to #define. MySQL is the default.
+using CodeReviews.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using CodeReviews.Models;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+#if SQLITE
+var connectionString = builder.Configuration.GetConnectionString("SqliteConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(connectionString));
+#else
+var baseConnectionString = builder.Configuration.GetConnectionString("MySqlConnection");
+var user = builder.Configuration["DbUser"];
+var password = builder.Configuration["DbPassword"];
+var connectionString = $"{baseConnectionString}userid={user};password={password};";
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySQL(connectionString));
+#endif
+
+// Configure Identity - applies to both SQLite and MySQL
+builder.Services.AddDefaultIdentity<AppUser>(options => 
+    options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<AppDbContext>();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseRouting();
+
+app.UseAuthentication(); // Add this - must be before UseAuthorization
+app.UseAuthorization();
+
+app.MapStaticAssets();
+app.MapRazorPages(); // Add this - required for Identity Razor Pages
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}")
+    .WithStaticAssets();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    SeedData.Seed(dbContext);
+}
+
+app.Run();
+```
+
+**Key Changes:**
+
+- ? Add `using Microsoft.AspNetCore.Identity;` and `using CodeReviews.Models;`
+- ? Move Identity configuration outside the `#if/#else` block so it applies to both databases
+- ? Use `AddDefaultIdentity<AppUser>()` instead of `IdentityUser`
+- ? Call `.AddEntityFrameworkStores<AppDbContext>()` to use your existing context
+- ? Add `app.UseAuthentication();` before `app.UseAuthorization();`
+- ? Add `app.MapRazorPages();` for Identity Razor Pages routing
+
+##### 4. Delete the scaffolded Context
+
+Delete the file:
+
+- `Areas/Identity/Data/CodeReviewsContext.cs`
+
+##### 5. Update all identity Razor Page code-behind Files
+
+All scaffolded Identity pages use `IdentityUser` by default. You need to replace all references with `AppUser` (or whatever your user model class is named). These files are all in the Pages/Account and Pages/Account/Manage folders.
+
+For each file, make these replacements:
+
+1. Add the using statement for the namespace for the models in your project. For example:
+
+```csharp
+using CodeReviews.Models;
+```
+
+1. Replace all type references:
+
+```csharp
+// Before:
+private readonly SignInManager<IdentityUser> _signInManager;
+private readonly UserManager<IdentityUser> _userManager;
+private readonly IUserStore<IdentityUser> _userStore;
+private readonly IUserEmailStore<IdentityUser> _emailStore;
+
+// After:
+private readonly SignInManager<AppUser> _signInManager;
+private readonly UserManager<AppUser> _userManager;
+private readonly IUserStore<AppUser> _userStore;
+private readonly IUserEmailStore<AppUser> _emailStore;
+```
+
+1. Replace in constructor parameters:
+
+```csharp
+// Before:
+public RegisterModel(
+    UserManager<IdentityUser> userManager,
+    IUserStore<IdentityUser> userStore,
+    SignInManager<IdentityUser> signInManager,
+    // ...
+)
+
+// After:
+public RegisterModel(
+    UserManager<AppUser> userManager,
+    IUserStore<AppUser> userStore,
+    SignInManager<AppUser> signInManager,
+    // ...
+)
+```
+
+1. Replace in helper methods:
+
+```csharp
+// Before:
+private IdentityUser CreateUser()
+{
+    return Activator.CreateInstance<IdentityUser>();
+}
+
+private async Task LoadAsync(IdentityUser user) { }
+
+// After:
+private AppUser CreateUser()
+{
+    return Activator.CreateInstance<AppUser>();
+}
+
+private async Task LoadAsync(AppUser user) { }
+```
+
+1. Replace in return types:
+
+```csharp
+// Before:
+private IUserEmailStore<IdentityUser> GetEmailStore()
+{
+    return (IUserEmailStore<IdentityUser>)_userStore;
+}
+
+// After:
+private IUserEmailStore<AppUser> GetEmailStore()
+{
+    return (IUserEmailStore<AppUser>)_userStore;
+}
+```
+
+###### A PowerShell Script to Update All Files:
+
+```powershell
+$files = Get-ChildItem -Path "CodeReviews\Areas\Identity\Pages\Account" -Recurse -Filter "*.cs"
+
+foreach ($file in $files) {
+    $content = Get-Content $file.FullName -Raw
+    
+    # Skip if already using AppUser
+    if ($content -notmatch "IdentityUser") { continue }
+    
+    $newContent = $content `
+        -replace 'UserManager<IdentityUser>', 'UserManager<AppUser>' `
+        -replace 'SignInManager<IdentityUser>', 'SignInManager<AppUser>' `
+        -replace 'IUserStore<IdentityUser>', 'IUserStore<AppUser>' `
+        -replace 'IUserEmailStore<IdentityUser>', 'IUserEmailStore<AppUser>' `
+        -replace 'Activator\.CreateInstance<IdentityUser>\(\)', 'Activator.CreateInstance<AppUser>()' `
+        -replace "nameof\(IdentityUser\)", "nameof(AppUser)" `
+        -replace 'Task LoadAsync\(IdentityUser user\)', 'Task LoadAsync(AppUser user)' `
+        -replace 'Task LoadSharedKeyAndQrCodeUriAsync\(IdentityUser user\)', 'Task LoadSharedKeyAndQrCodeUriAsync(AppUser user)'
+    
+    # Add using statement if not present
+    if ($newContent -notmatch "using CodeReviews.Models;") {
+        $newContent = $newContent -replace '(using Microsoft\.AspNetCore\.Mvc\.RazorPages;)', "`$1`r`nusing CodeReviews.Models;"
+    }
+    
+    Set-Content -Path $file.FullName -Value $newContent -NoNewline
+}
+```
+
+##### 6. Update Foreign Key References (If Applicable)
+
+If you have model classes with foreign keys to `AppUser`, update them from `int` to `string`:
+
+**Example - Before:**
+
+```csharp
+public class Submission
+{
+    public int SubmissionId { get; set; }
+    public int SubmitterId { get; set; } // Foreign key to AppUser
+    public AppUser Submitter { get; set; }
+}
+```
+
+**Example - After:**
+
+```csharp
+public class Submission
+{
+    public int SubmissionId { get; set; }
+    public string SubmitterId { get; set; } // Changed to string (IdentityUser.Id is string)
+    public AppUser Submitter { get; set; }
+}
+```
+
+##### 7. Create New Migrations
+
+Here are the CLI commands to create new migrations and a new database schema:
+
+- `dotnet ef database drop`
+- `dotnet ef migrations remove` (This only removes the most recent migration. To remove them all, manually delete the contents of the migrations folder.)
+- `dotnet ef migrations add InitialMigration`
+- `dotnet ef database update`
+
+
+
+## Editing Identity UI Razor Pages
 
 The web pages provided by Identity UI are not MVC views, they are Razor Pages. (Not to be confused with Razor views! See "Introduction to Razor Pages" in the References below.)
 
@@ -98,21 +425,25 @@ Pretty much all the database operations are done through Identity method calls l
 
 ## References
 
-- Microsoft. 2022. [Create a Web App with Authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-5.0&tabs=visual-studio#create-a-web-app-with-authentication-1)
+- Microsoft. 2025. [Introduction to Identity on ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-10.0&tabs=visual-studio)
 
-- Microsoft. 2022. [Scaffold Identity in ASP.NET Core projects](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-5.0&tabs=visual-studio)
+  - [Create an MVC App with Authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-10.0&tabs=visual-studio#create-an-mvc-app-with-authentication)
+
+- Microsoft. 2025. [Scaffold Identity in ASP.NET Core projects](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-10.0&tabs=visual-studio)
+
+  - [Scaffold Identity into an MVC project without existing authorization](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-10.0&tabs=visual-studio#scaffold-identity-into-an-mvc-project-without-existing-authorization)
 
 - Lock, Andrew, .NET Escapades. 2020. [Customizing the ASP.NET Core default UI without editing the PageModels](https://andrewlock.net/customising-aspnetcore-identity-without-editing-the-pagemodel/) 
 
-- Microsoft. 2022. [Introduction to Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio#razor-pages-1)
+- Microsoft. 2025. [Razor Pages architecture and concepts in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-10.0&tabs=visual-studio#razor-pages-1)
 
-- MIcrosoft. 2022. [Model Binding in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-5.0)
+- MIcrosoft. 2025. [Model Binding in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-10.0)
 
   
 
 ------
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) 
-​ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), <time>2022</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
+​ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2022, revised in <time>2026</time>, are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
 
 ------
