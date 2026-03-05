@@ -8,16 +8,24 @@ author: Brian Bird
 
 ---
 
-# How to Use Scaffolding
+<h1>How to Use Scaffolding</h1>
 
 **CS296N Web Development 2**
 
-## Contents
+<h2>Contents</h2>
 
 [TOC]
 ## Overview
 
-When you create a new ASP.NET MVC project and select the option to add *Individual Authorization* to the project, Visual Studio adds a library (a NuGet package), *AspNetCore.Identity.UI* (aka Identity UI), that contains views and all the code that goes with them for a large number of Identity related operations. This code is already compiled into a library, so you don't seen any source files in Visual Studio's Solution Explorer.
+Identity is the ASP.NET package that provides authentication and authorization libraries for ASP.NET apps. It can be added to a project in one of three ways:
+
+- By selecting the option to include Identity when creating a new project.
+- Using the Visual Studio scaffolding feature to add it to an existing project.
+- By adding the NuGet package manually and editing project code to work with it.
+
+### Identity Option Selected for a New Project
+
+When you create a new ASP.NET MVC project and select the option to add *Individual Authorization* to the project, Visual Studio adds a library (a NuGet package), *AspNetCore.Identity.UI* (aka Identity UI), that contains views and all the code that goes with them for a large number of Identity related operations. This code is already compiled into a library, so you don't see any source files in Visual Studio's Solution Explorer.
 
 (See "Create a Web App with Authentication" in the References.)
 
