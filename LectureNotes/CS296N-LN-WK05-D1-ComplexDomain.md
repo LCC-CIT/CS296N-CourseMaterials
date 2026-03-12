@@ -3,27 +3,13 @@ title: Designing a Domain Model
 description: How to use Domain Driven Design and UML to design a more complex domain model. How to write a model so Entity Framework enables cascade deletes of related data in the database.
 keywords: Object Oriented Design, UML, Domain Driven Design, domain model, Entity Framework, related data, cascade delete
 ---
-# Designing a Domain Model
+<h1>Designing a Domain Model</h1>
 
 **CS296N Web Development 2**
 
-| Weekly topics                   |                                       |
-| ------------------------------- | ------------------------------------- |
-| 1. Intro to Identity            | <mark>6. Complex domain models</mark> |
-| 2. Authentication               | 7. More complex domain models         |
-| 3. Authorization                | 8. Validation                         |
-| 4. Async/Await                  | 9. Web Security                       |
-| 5. Load testing and performance | 10. Term project                      |
-| 11. Project Presentations       |                                       |
-
-## Contents
+<h2>Contents</h2>
 
 [TOC]
-
-## Q & A
-
-- This week's quiz is closing at 11:59pm. (2024)
-- JMeter load testing: I fixed the test plan step for logging into my web site thanks Juliet. (2024)
 
 ## Review
 
@@ -33,7 +19,7 @@ In CS246, System Design, we covered the basics of [Object Oriented Analysis and 
 
 ### Entity Framework
 
-We learned how to create a DbContext class containing DbSets that are based on our domain models.
+We learned how to create a `DbContext` class containing `DbSets` that are based on our domain models.
 
 ------
 
@@ -61,7 +47,7 @@ We learned how to create a DbContext class containing DbSets that are based on o
 
 #### UML diagram
 
-The Book Reviews domain model with Book, Author, Review and Comments model classes added:
+The Book Reviews domain model with Book, Author, Review and Comments model classes. Note the *aggregates* and *root entities*:
 
 [Domain model UML class diagram](Images/BookReviewsMoreComplexDomainModel.pdf)
 
@@ -212,7 +198,7 @@ We won't use the full-blown model shown above. We'll just add a Comment class to
 
 - EF 6.0 and above automatically implements all of the above as well as many-to-many relationships.
 
-#### 
+
 
 ## Examples
 
@@ -226,19 +212,19 @@ UML class diagrams of the domain models are in the Doc folder of this repository
 
 Delamater, Mary, Murach, Joel. "How to work with relationships", pg. 450&ndash;459 in Ch. 12 of *Murach's ASP.NET Core MVC*. 2nd Ed. Murach, 2022. Presents a different approach to defining relationships in a domain model and managing cascade deletes.
 
-Freeman, Adam. [Applying Domain-Driven Development](../ArticleAndNotes/ProAspNetMvc4Freeman-DomainDriveDev.pdf) in ch. 3 of *Pro ASP.NET MVC 4*, Apress, 2012.
+Freeman, Adam. [Applying Domain-Driven Development](https://lcc-cit.github.io/CS296N-CourseMaterials/ArticlesAndNotes/ProAspNetMvc4Freeman-DomainDriveDev.pdf) in ch. 3 of *Pro ASP.NET MVC 4*, Apress, 2012.
 
 Svyryd, Andriy, et al. [Entity Framework Core, Modeling Relationships](https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#required-and-optional-relationships). 2023
 
 Vickers, Arthur, et al. [Entity Framework Core: Saving Related Data)](https://docs.microsoft.com/en-us/ef/core/saving/related-data). 2022. 
 
-Vickers, Arthur, et al. [Entity Framework Core: Cascade Delete)](https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete). 2022. 
+Vickers, Arthur, et al. [Entity Framework Core: Cascade Delete)](https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete). 2021. 
 
 
 
 -----
 
- [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2023</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+ [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)ASP.NET Core MVC Lecture Notes by [Brian Bird](https://profbird.dev), 2018 (Revised winter <time>2026</time>), are licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
 
 [^1]: Yes, now users can add comments to reviews, but that's all.
 [^2]: Yes, Books and Authors can be directly retrieved from the database. Other queries are simplified.

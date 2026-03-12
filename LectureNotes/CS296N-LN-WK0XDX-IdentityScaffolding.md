@@ -8,7 +8,7 @@ author: Brian Bird
 
 ---
 
-<h1>How to Scaffold Identity</h1>
+<h1>How to Add Identity Using Scaffolding</h1>
 
 **CS296N Web Development 2**
 
@@ -86,12 +86,13 @@ namespace CodeReviews.Models
 }
 ```
 
-##### 2. Modify your DbContext class to Inherit from `IdentityDbContext<AppUser>`
+##### 2. Modify your DbContext class
 
-Notes:
+- Modify your DbContext class to Inherit from `IdentityDbContext<AppUser>`  
+  The`IdentityDbContext` class requires a generic type. Provide the type of your user model.
+- Remove the `DbSet` for your user model class (`AppUser` in this example).
 
--  The`IdentityDbContext` class requires a generic type. Provide the type of your user model.
-- The `OnModelCreating` method is optional. Only include it if you were already doing something in that method.
+Note: The `OnModelCreating` method is optional. Only include it if you were already doing something in that method.
 
 ```csharp
 using CodeReviews.Models;

@@ -2,19 +2,11 @@
 title: Working with Scaffolding and Related Data
 description: You will learn how to scaffold a domain model entity to create views and controller methods. You will also learn to manage the way Entity Framework handles related data.
 ---
-# How to Use Scaffolding
+<h1>How to Use Scaffolding</h1>
 
 **CS296N Web Development 2**
 
-| Weekly topics                              |                                 |
-| ------------------------------------------ | ------------------------------- |
-| 1. Intro to course and Input validation    | 6. Async/Await                  |
-| 2. Repositories and Unit Testing           | 7. Performance and Load Testing |
-| 3. Publishing to Azure / Intro to Identity | **8. Complex Domain Models**    |
-| 4. Authentication                          | 9. Docker containers            |
-| 5. Authorization                           | 10. Term project                |
-
-## Contents
+<h2>Contents</h2>
 
 [TOC]
 
