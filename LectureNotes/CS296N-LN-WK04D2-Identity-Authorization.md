@@ -5,15 +5,6 @@ keywords: Identity, Authorization, UserManager, Authorize attribute
 ---
 <h1>Authorization with Identity Part 2</h1>
 
-| Weekly topics                   |                               |
-| ------------------------------- | ----------------------------- |
-| 1. Intro to Identity            | 6. Complex domain models      |
-| 2. Authentication               | 7. More complex domain models |
-| <mark>3. Authorization</mark>   | 8. Validation                 |
-| 4. Async/Await                  | 9. Web Security               |
-| 5. Load testing and performance | 10. Term project              |
-| 11. Project Presentations       |                               |
-
 [TOC]
 
 ## Introduction
@@ -105,20 +96,6 @@ We will use the following C# attributes to restrict access classes or methods:
     </li>
   }
   ```
-
-  
-
-## Conclusion
-
-- Look at the lab instructions
-
-  - Reminder to publish to Azure
-  - Don't delete your migrations, add to them so your migration will run smoothly on the Azure database.
-  - Reminder to keep your unit tests working
-
-- Reminder to keep checking your Azure credit balance!
-
-- Review due dates on Moodle
 
 
 

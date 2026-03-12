@@ -2,28 +2,12 @@
 
 <h1>Authorization with Identity Part 1</h1>
 
-| Weekly topics                   |                               |
-| ------------------------------- | ----------------------------- |
-| 1. Intro to Identity            | 6. Complex domain models      |
-| 2. Authentication               | 7. More complex domain models |
-| <mark>3. Authorization</mark>   | 8. Validation                 |
-| 4. Async/Await                  | 9. Web Security               |
-| 5. Load testing and performance | 10. Term project              |
-
 <h2>Contents</h2>
 
 [TOC]
 
 
 ## Introduction
-
-### Announcements (Winter 2024)
-
-Lab 1: I didn't get this graded yet, I'll work on it this week!
-
-Lab 2: PRs were due Saturday, code reviews are due tomorrow (Tuesday)
-
-Quiz 3: Take it before class tiime on Wednesday.
 
 ### Q and A
 
@@ -43,13 +27,6 @@ In the last two classes, we added these features to the Book Review app:
   Modified code using the `AppUser` model that now  inherits from `IdentityUser`
 
   All operations on data in the Identity database tables now goes through one of the Identity classes like `UserManager`.  
-  
-- Winter 2024 notes: 
-  
-  - I modified _Layout so that it doesn't need to have the UserManager injected into it. (Thanks Bryce Fisher!)
-  - I fixed my unit tests, in particualr the one that uses the UserManager.
-  - I added links to Moodle for GitHub and Azure for the All About Pigeons example.
-  
 
 
 
@@ -153,19 +130,6 @@ In order to work with roles, we need a way to create roles and assign roles to u
 We don't need to add a migration since we have not made any change to our domain model that will affect the database.
 
 
-
-## Conclusion
-
-- Look at the lab instructions
-
-  - Reminder to publish to Azure
-  - Reminder to keep your unit tests working
-  
-- Reminder to keep checking your Azure credit balance!
-
-- Review due dates on Moodle
-
-  
 
 ## Example Code Repositories
 

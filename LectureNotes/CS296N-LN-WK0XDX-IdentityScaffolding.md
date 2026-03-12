@@ -8,7 +8,7 @@ author: Brian Bird
 
 ---
 
-<h1>How to Use Scaffolding</h1>
+<h1>How to Scaffold Identity</h1>
 
 **CS296N Web Development 2**
 
